@@ -21,8 +21,9 @@ def card(r, needs):
                 + (' · National' if r['scope'] == 'US' else '') + '</p>')
     bits.append(f'<p>{esc(r["what"])}</p><p><strong>Next step:</strong> {esc(r["how"])}</p><p class="actions">')
     if r.get('phone'):
-        label = r.get('phone_label') or r['phone']
-        bits.append(f'<a class="btn call" href="{tel(r["phone"])}">Call {esc(label)}</a>')
+        bits.append(f'<a class="btn call" href="{tel(r["phone"])}">Call {esc(r["phone"])}</a>')
+        if r.get('phone_label'):
+            bits.append(f'<span class="note">{esc(r["phone_label"])}</span>')
     if r.get('text'):
         bits.append(f'<span class="btn plain">{esc(r["text"])}</span>')
     if r.get('url'):

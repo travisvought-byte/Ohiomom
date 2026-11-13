@@ -21,7 +21,6 @@ Source for **OhioMom.org**, an Ohio resource hub for mothers and caregivers: cle
 
 ## Still to settle
 
-- `site.founder` and `site.corrections_email` in `data/resources.json` are empty; the founder credit and "Report a problem" link appear once they are filled in.
 - County-by-county pages (Job and Family Services, board of developmental disabilities, housing front door, energy assistance provider).
 - Domain: point ohiomom.org at this site.
 
