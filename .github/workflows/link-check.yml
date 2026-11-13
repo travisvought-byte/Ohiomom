@@ -1,0 +1,21 @@
+name: Monthly link check
+# Requests every listed website once a month and opens an issue naming any that fail,
+# so a dead link is found by the site before a mother finds it.
+on:
+  schedule:
+    - cron: '17 9 3 * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+  issues: write
+jobs:
+  links:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - id: check
+        run: python3 scripts/check_links.py > report.md || echo "failed=1" >> "$GITHUB_OUTPUT"
+      - if: steps.check.outputs.failed == '1'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh issue create --title "Links to review ($(date +%B\ %Y))" --body-file report.md
