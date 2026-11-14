@@ -1,0 +1,962 @@
+[
+  {
+    "county": "Adams",
+    "dd": {
+      "name": "Adams County Board of DD",
+      "phone": "937-544-2574",
+      "url": null,
+      "city": "West Union",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Allen",
+    "dd": {
+      "name": "Allen County Board of DD",
+      "phone": "419-221-1385",
+      "url": null,
+      "city": "Lima",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Ashland",
+    "dd": {
+      "name": "Ashland County Board of DD",
+      "phone": "419-289-0470",
+      "url": null,
+      "city": "Ashland",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Ashtabula",
+    "dd": {
+      "name": "Ashtabula County Board of DD",
+      "phone": "440-335-1587",
+      "url": null,
+      "city": "Ashtabula",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Athens",
+    "dd": {
+      "name": "Athens County Board of DD",
+      "phone": "740-594-3539",
+      "url": null,
+      "city": "Athens",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Auglaize",
+    "dd": {
+      "name": "Auglaize County Board of DD",
+      "phone": "419-629-2419",
+      "url": null,
+      "city": "New Bremen",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Belmont",
+    "dd": {
+      "name": "Belmont County Board of DD",
+      "phone": "740-695-0407",
+      "url": null,
+      "city": "St. Clairsville",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Brown",
+    "dd": {
+      "name": "Brown County Board of DD",
+      "phone": "937-378-4891",
+      "url": null,
+      "city": "Georgetown",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Butler",
+    "dd": {
+      "name": "Butler County Board of DD",
+      "phone": "513-785-2800",
+      "url": null,
+      "city": "Hamilton",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Carroll",
+    "dd": {
+      "name": "Carroll County Board of DD",
+      "phone": "330-627-6555",
+      "url": null,
+      "city": "Carrollton",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Champaign",
+    "dd": {
+      "name": "Champaign County Board of DD",
+      "phone": "937-653-5217",
+      "url": null,
+      "city": "Urbana",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Clark",
+    "dd": {
+      "name": "Clark County Board of DD",
+      "phone": "937-328-2683",
+      "url": null,
+      "city": "Springfield",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Clermont",
+    "dd": {
+      "name": "Clermont County Board of DD",
+      "phone": "513-732-7000",
+      "url": null,
+      "city": "Batavia",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Clinton",
+    "dd": {
+      "name": "Clinton County Board of DD",
+      "phone": "937-382-7519",
+      "url": null,
+      "city": "Wilmington",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Columbiana",
+    "dd": {
+      "name": "Columbiana County Board of DD",
+      "phone": "330-424-7788",
+      "url": null,
+      "city": "Lisbon",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Coshocton",
+    "dd": {
+      "name": "Coshocton County Board of DD",
+      "phone": "740-622-2032",
+      "url": null,
+      "city": "Coshocton",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Crawford",
+    "dd": {
+      "name": "Crawford County Board of DD",
+      "phone": "419-562-3321",
+      "url": null,
+      "city": "Bucyrus",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Cuyahoga",
+    "dd": {
+      "name": "Cuyahoga County Board of DD",
+      "phone": "216-241-8230",
+      "url": null,
+      "city": "Cleveland",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Darke",
+    "dd": {
+      "name": "Darke County Board of DD",
+      "phone": "937-548-9057",
+      "url": null,
+      "city": "Greenville",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Defiance",
+    "dd": {
+      "name": "Defiance County Board of DD",
+      "phone": "419-782-6621",
+      "url": null,
+      "city": "Defiance",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Delaware",
+    "dd": {
+      "name": "Delaware DD intake and service coordination",
+      "phone": "740-201-3601",
+      "url": "https://www.dcbdd.org/eligibility/",
+      "reviewed_on": "2026-10-02"
+    }
+  },
+  {
+    "county": "Erie",
+    "dd": {
+      "name": "Erie County Board of DD",
+      "phone": "419-626-0208",
+      "url": null,
+      "city": "Sandusky",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Fairfield",
+    "dd": {
+      "name": "Fairfield County Board of DD",
+      "phone": "740-652-7220",
+      "url": null,
+      "city": "Lancaster",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Fayette",
+    "dd": {
+      "name": "Fayette County Board of DD",
+      "phone": "740-335-7453",
+      "url": null,
+      "city": "Washington Court House",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Franklin",
+    "dd": {
+      "name": "Franklin County Board of DD",
+      "phone": "614-475-6440",
+      "url": null,
+      "city": "Columbus",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Fulton",
+    "dd": {
+      "name": "Fulton County Board of DD",
+      "phone": "419-337-4575",
+      "url": null,
+      "city": "Wauseon",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Gallia",
+    "dd": {
+      "name": "Gallia County Board of DD",
+      "phone": "740-446-6902",
+      "url": null,
+      "city": "Gallipolis",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Geauga",
+    "dd": {
+      "name": "Geauga County Board of DD",
+      "phone": "440-729-9406",
+      "url": null,
+      "city": "Chesterland",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Greene",
+    "dd": {
+      "name": "Greene County Board of DD",
+      "phone": "937-562-6500",
+      "url": null,
+      "city": "Xenia",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Guernsey",
+    "dd": {
+      "name": "Guernsey County Board of DD",
+      "phone": "740-439-4451",
+      "url": null,
+      "city": "Byesville",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Hamilton",
+    "dd": {
+      "name": "Hamilton County Board of DD",
+      "phone": "513-794-3300",
+      "url": null,
+      "city": "Cincinnati",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Hancock",
+    "dd": {
+      "name": "Hancock County Board of DD",
+      "phone": "419-422-6387",
+      "url": null,
+      "city": "Findlay",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Hardin",
+    "dd": {
+      "name": "Hardin County Board of DD",
+      "phone": "419-674-4158",
+      "url": null,
+      "city": "Kenton",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Harrison",
+    "dd": {
+      "name": "Harrison County Board of DD",
+      "phone": "740-942-2158",
+      "url": null,
+      "city": "Cadiz",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Henry",
+    "dd": {
+      "name": "Henry County Board of DD",
+      "phone": "419-599-2892",
+      "url": null,
+      "city": "Napoleon",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Highland",
+    "dd": {
+      "name": "Highland County Board of DD",
+      "phone": "937-393-4237",
+      "url": null,
+      "city": "Hillsboro",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Hocking",
+    "dd": {
+      "name": "Hocking County Board of DD",
+      "phone": "740-385-6805",
+      "url": null,
+      "city": "Logan",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Holmes",
+    "dd": {
+      "name": "Holmes County Board of DD",
+      "phone": "330-674-8045",
+      "url": null,
+      "city": "Holmesville",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Huron",
+    "dd": {
+      "name": "Huron County Board of DD",
+      "phone": "419-668-8840",
+      "url": null,
+      "city": "Norwalk",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Jackson",
+    "dd": {
+      "name": "Jackson County Board of DD",
+      "phone": "740-286-6491",
+      "url": null,
+      "city": "Jackson",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Jefferson",
+    "dd": {
+      "name": "Jefferson County Board of DD",
+      "phone": "740-264-5812",
+      "url": null,
+      "city": "Steubenville",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Knox",
+    "dd": {
+      "name": "Knox DD intake and service coordination",
+      "phone": "740-397-4656",
+      "url": "https://www.knoxdd.com/eligibility",
+      "reviewed_on": "2026-10-02"
+    }
+  },
+  {
+    "county": "Lake",
+    "dd": {
+      "name": "Lake County Board of DD",
+      "phone": "440-350-5100",
+      "url": null,
+      "city": "Mentor",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Lawrence",
+    "dd": {
+      "name": "Lawrence County Board of DD",
+      "phone": "740-532-0406",
+      "url": null,
+      "city": "Coal Grove",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Licking",
+    "dd": {
+      "name": "Licking County Board of DD",
+      "phone": "740-349-6588",
+      "url": null,
+      "city": "Newark",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Logan",
+    "dd": {
+      "name": "Logan County Board of DD",
+      "phone": "937-592-0015",
+      "url": null,
+      "city": "Bellefontaine",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Lorain",
+    "dd": {
+      "name": "Lorain County Board of DD",
+      "phone": "440-329-3734",
+      "url": null,
+      "city": "Elyria",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Lucas",
+    "dd": {
+      "name": "Lucas County Board of DD",
+      "phone": "419-380-4000",
+      "url": null,
+      "city": "Toledo",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Madison",
+    "dd": {
+      "name": "Madison County Board of DD",
+      "phone": "740-852-7050",
+      "url": null,
+      "city": "London",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Mahoning",
+    "dd": {
+      "name": "Mahoning County Board of DD",
+      "phone": "330-797-2825",
+      "url": null,
+      "city": "Austintown",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Marion",
+    "dd": {
+      "name": "Marion DD intake and service coordination",
+      "phone": "740-387-1035",
+      "url": "https://www.marioncountydd.org/getting-started/",
+      "reviewed_on": "2026-10-02"
+    }
+  },
+  {
+    "county": "Medina",
+    "dd": {
+      "name": "Medina County Board of DD",
+      "phone": "330-725-7751",
+      "url": null,
+      "city": "Medina",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Meigs",
+    "dd": {
+      "name": "Meigs County Board of DD",
+      "phone": "740-992-6681",
+      "url": null,
+      "city": "Syracuse",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Mercer",
+    "dd": {
+      "name": "Mercer County Board of DD",
+      "phone": "419-586-2369",
+      "url": null,
+      "city": "Celina",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Miami",
+    "dd": {
+      "name": "Miami County Board of DD",
+      "phone": "937-440-3000",
+      "url": null,
+      "city": "Troy",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Monroe",
+    "dd": {
+      "name": "Monroe County Board of DD",
+      "phone": "740-472-1712",
+      "url": null,
+      "city": "Woodsfield",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Montgomery",
+    "dd": {
+      "name": "Montgomery County Board of DD",
+      "phone": "937-890-0730",
+      "url": null,
+      "city": "Dayton",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Morgan",
+    "dd": {
+      "name": "Morgan County Board of DD",
+      "phone": "740-962-4200",
+      "url": null,
+      "city": "McConnelsville",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Morrow",
+    "dd": {
+      "name": "Morrow DD intake and service coordination",
+      "phone": "419-947-1159",
+      "url": "https://www.morrowdd.com/service-and-support-administration/",
+      "reviewed_on": "2026-10-02"
+    }
+  },
+  {
+    "county": "Muskingum",
+    "dd": {
+      "name": "Muskingum County Board of DD",
+      "phone": "740-453-4829",
+      "url": null,
+      "city": "Zanesville",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Noble",
+    "dd": {
+      "name": "Noble County Board of DD",
+      "phone": "740-732-7144",
+      "url": null,
+      "city": "Caldwell",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Ottawa",
+    "dd": {
+      "name": "Ottawa County Board of DD",
+      "phone": "419-898-0400",
+      "url": null,
+      "city": "Oak Harbor",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Paulding",
+    "dd": {
+      "name": "Paulding County Board of DD",
+      "phone": "419-399-4800",
+      "url": null,
+      "city": "Paulding",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Perry",
+    "dd": {
+      "name": "Perry County Board of DD",
+      "phone": "740-342-3542",
+      "url": null,
+      "city": "New Lexington",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Pickaway",
+    "dd": {
+      "name": "Pickaway County Board of DD",
+      "phone": "740-477-3353",
+      "url": null,
+      "city": "Circleville",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Pike",
+    "dd": {
+      "name": "Pike County Board of DD",
+      "phone": "740-947-8470",
+      "url": null,
+      "city": "Waverly",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Portage",
+    "dd": {
+      "name": "Portage County Board of DD",
+      "phone": "330-297-6209",
+      "url": null,
+      "city": "Ravenna",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Preble",
+    "dd": {
+      "name": "Preble County Board of DD",
+      "phone": "937-456-5891",
+      "url": null,
+      "city": "Eaton",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Putnam",
+    "dd": {
+      "name": "Putnam County Board of DD",
+      "phone": "419-523-0122",
+      "url": null,
+      "city": "Ottawa",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Richland",
+    "dd": {
+      "name": "Richland County Board of DD",
+      "phone": "419-774-4200",
+      "url": null,
+      "city": "Mansfield",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Ross",
+    "dd": {
+      "name": "Ross County Board of DD",
+      "phone": "740-775-7044",
+      "url": null,
+      "city": "Chillicothe",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Sandusky",
+    "dd": {
+      "name": "Sandusky County Board of DD",
+      "phone": "419-332-9296",
+      "url": null,
+      "city": "Fremont",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Scioto",
+    "dd": {
+      "name": "Scioto County Board of DD",
+      "phone": "740-353-4677",
+      "url": null,
+      "city": "Portsmouth",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Seneca",
+    "dd": {
+      "name": "Seneca County Board of DD",
+      "phone": "419-447-7521",
+      "url": null,
+      "city": "Tiffin",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Shelby",
+    "dd": {
+      "name": "Shelby County Board of DD",
+      "phone": "937-497-8155",
+      "url": null,
+      "city": "Sidney",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Stark",
+    "dd": {
+      "name": "Stark County Board of DD",
+      "phone": "330-477-5200",
+      "url": null,
+      "city": "Canton",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Summit",
+    "dd": {
+      "name": "Summit County Board of DD",
+      "phone": "330-634-8000",
+      "url": null,
+      "city": "Cuyahoga Falls",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Trumbull",
+    "dd": {
+      "name": "Trumbull County Board of DD",
+      "phone": "330-652-9800",
+      "url": null,
+      "city": "Niles",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Tuscarawas",
+    "dd": {
+      "name": "Tuscarawas County Board of DD",
+      "phone": "330-308-7173",
+      "url": null,
+      "city": "New Philadelphia",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Union",
+    "dd": {
+      "name": "Union County Board of DD",
+      "phone": "937-645-6733",
+      "url": null,
+      "city": "Marysville",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Van Wert",
+    "dd": {
+      "name": "Van Wert County Board of DD",
+      "phone": "419-238-1514",
+      "url": null,
+      "city": "Van Wert",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Vinton",
+    "dd": {
+      "name": "Vinton County Board of DD",
+      "phone": "740-596-5515",
+      "url": null,
+      "city": "McArthur",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Warren",
+    "dd": {
+      "name": "Warren County Board of DD",
+      "phone": "513-228-6400",
+      "url": null,
+      "city": "Lebanon",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Washington",
+    "dd": {
+      "name": "Washington County Board of DD",
+      "phone": "740-373-3781",
+      "url": null,
+      "city": "Marietta",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Wayne",
+    "dd": {
+      "name": "Wayne County Board of DD",
+      "phone": "330-345-6016",
+      "url": null,
+      "city": "Wooster",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Williams",
+    "dd": {
+      "name": "Williams County Board of DD",
+      "phone": "419-485-8331",
+      "url": null,
+      "city": "Bryan",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Wood",
+    "dd": {
+      "name": "Wood County Board of DD",
+      "phone": "419-352-5115",
+      "url": null,
+      "city": "Bowling Green",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  },
+  {
+    "county": "Wyandot",
+    "dd": {
+      "name": "Wyandot County Board of DD",
+      "phone": "419-294-4901",
+      "url": null,
+      "city": "Upper Sandusky",
+      "ask": true,
+      "reviewed_on": "2026-11-09"
+    }
+  }
+]
