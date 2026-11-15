@@ -18,6 +18,11 @@
    "summary": "Shelter, utilities, food and benefits."
   },
   {
+   "id": "pregnancy-baby",
+   "label": "Pregnancy and new baby",
+   "summary": "Health coverage, home visits, food, diapers and a safe place for baby to sleep."
+  },
+  {
    "id": "disability",
    "label": "Disability and neurodiversity",
    "summary": "Autism, ADHD, evaluations, school supports and respite."
@@ -369,6 +374,142 @@
    ],
    "reviewed_on": "2026-11-13",
    "phone_label": "1-866-LAW-OHIO"
+  },
+  {
+   "id": "oh-medicaid-pregnancy",
+   "section": "pregnancy-baby",
+   "scope": "OH",
+   "name": "Health coverage during pregnancy and after birth",
+   "org": "Ohio Department of Medicaid",
+   "what": "Ohio Medicaid covers pregnancy care. Pregnancy Related Services add help scheduling appointments, rides to Medicaid-covered visits, referrals to WIC and Help Me Grow, baby-care education, and referrals for food and clothing. Coverage continues for 12 months after the pregnancy ends; the state has that extension authorized through April 2027.",
+   "how": "Apply at Benefits.Ohio.Gov, by phone, or at your county Job and Family Services office. Ask about Pregnancy Related Services when you enroll. Income limits apply.",
+   "phone": "800-324-8680",
+   "url": "https://medicaid.ohio.gov/",
+   "sources": [
+    "https://dam.assets.ohio.gov/image/upload/medicaid.ohio.gov/Resources/Publications/Materials/English/PRS.pdf",
+    "https://dam.assets.ohio.gov/image/upload/medicaid.ohio.gov/Families%2C%20Individuals/Programs/MISP/MISP_Services_Overview_V_2.0_FINAL_1.22.2026.pdf"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone_label": "Medicaid Consumer Hotline"
+  },
+  {
+   "id": "us-health-centers",
+   "section": "pregnancy-baby",
+   "scope": "US",
+   "name": "Low-cost prenatal care at a community health center",
+   "org": "HRSA health centers, U.S. Department of Health and Human Services",
+   "what": "Health centers funded by HRSA charge on a sliding fee scale, so you can get care even if you are uninsured or cannot pay. Free or reduced-cost prenatal care may also be available through your area health department.",
+   "how": "Search by ZIP code on the HRSA site, call the center, and ask whether it provides prenatal care and what the sliding fee would be. Or call 1-800-311-BABY to find your area health department.",
+   "phone": "800-311-2229",
+   "url": "https://findahealthcenter.hrsa.gov/",
+   "sources": [
+    "https://www.hhs.gov/answers/health-care-assistance/index.html"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone_label": "1-800-311-BABY"
+  },
+  {
+   "id": "oh-hmg-home-visiting",
+   "section": "pregnancy-baby",
+   "scope": "OH",
+   "name": "Free home visits during pregnancy and with a young child",
+   "org": "Help Me Grow Home Visiting, Ohio Department of Children and Youth",
+   "what": "A trained home visitor meets with you where you choose, during pregnancy or after the baby arrives. You get parenting information and support, and a link to other services. It is voluntary and free to families.",
+   "how": "Call the Help Me Grow line or fill out the online referral. You can refer yourself. If someone else refers you, Help Me Grow contacts you first.",
+   "phone": "800-755-4769",
+   "url": "https://ochids.childrenandyouth.ohio.gov/public/refer",
+   "sources": [
+    "https://ochids.childrenandyouth.ohio.gov/public/refer",
+    "https://dam.assets.ohio.gov/image/upload/childrenandyouth.ohio.gov/Tuesday%20Times/2025/09%20September/FCO_External_Help_Desk_FAQs_Talking_Points.pdf",
+    "https://filecabinet10.eschoolview.com/61E43BB9-875E-4565-87EC-0759A84E50FA/3e47308c-18c8-4274-8078-1592aeceff1a.pdf",
+    "https://filecabinet10.eschoolview.com/78255D86-5236-4E27-8619-555D19B221AB/1d1f8659-3f84-436d-9fa6-29e815bff3c0.pdf"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone_label": "1-800-755-GROW"
+  },
+  {
+   "id": "oh-family-connects",
+   "section": "pregnancy-baby",
+   "scope": "OH",
+   "name": "Free nurse visit after your baby is born (Family Connects Ohio)",
+   "org": "Family Connects Ohio, part of Help Me Grow",
+   "what": "A nurse visits you at home, usually about three weeks after the baby comes home. The nurse checks on you and the baby, answers questions about caring for a newborn, and connects you to other services. It is free, whatever your income, and open to every family in a participating county, including adoptive families and families who have lost a baby.",
+   "how": "Counties taking part as of September 2025: Darke, Erie, Fayette, Greene, Guernsey, Hamilton, Huron, Mahoning, Noble, Shelby and Trumbull. If you live in one, ask for a visit through Help Me Grow within 12 weeks of bringing the baby home. If your county is not listed, call and ask whether it has started since.",
+   "phone": "800-755-4769",
+   "url": "https://www.helpmegrow.org/FamilyConnects",
+   "sources": [
+    "https://dam.assets.ohio.gov/image/upload/childrenandyouth.ohio.gov/Tuesday%20Times/2025/09%20September/FCO_External_Help_Desk_FAQs_Talking_Points.pdf",
+    "https://dam.assets.ohio.gov/image/upload/medicaid.ohio.gov/Families%2C%20Individuals/Programs/MISP/MISP_Services_Overview_V_2.0_FINAL_1.22.2026.pdf"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone_label": "1-800-755-GROW"
+  },
+  {
+   "id": "oh-medicaid-doula",
+   "section": "pregnancy-baby",
+   "scope": "OH",
+   "name": "A doula covered by Medicaid",
+   "org": "Ohio Department of Medicaid",
+   "what": "A doula is a trained, non-medical support person who gives advocacy and emotional, physical and educational support during pregnancy and birth. Since October 3, 2024, Ohio Medicaid has covered doula services for pregnant and postpartum members. The doula must be certified by the Ohio Board of Nursing.",
+   "how": "Ask your Medicaid health plan for its list of certified doulas, or call the Medicaid Consumer Hotline. Doulas are not equally available in every area, so start early in pregnancy.",
+   "phone": "800-324-8680",
+   "url": "https://medicaid.ohio.gov/",
+   "sources": [
+    "https://dam.assets.ohio.gov/image/upload/medicaid.ohio.gov/About%20Us/PoliciesGuidelines/MHTL/MTL_Doula_v2.pdf",
+    "https://dam.assets.ohio.gov/image/upload/medicaid.ohio.gov/Families%2C%20Individuals/Programs/MISP/MISP_Services_Overview_V_2.0_FINAL_1.22.2026.pdf",
+    "https://dam.assets.ohio.gov/image/upload/medicaid.ohio.gov/Families%2C%20Individuals/Programs/MISP/All_MCO_Resource_Guide_Ohio_Doulas_2025.pdf",
+    "https://www.gongwer-oh.com/public/OBN_Doula_Advisory_Group_Legislative_Report_CY2025.pdf"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone_label": "Medicaid Consumer Hotline"
+  },
+  {
+   "id": "us-owh-breastfeeding",
+   "section": "pregnancy-baby",
+   "scope": "US",
+   "name": "Breastfeeding questions: free helpline",
+   "org": "Office on Women's Health, U.S. Department of Health and Human Services",
+   "what": "Breastfeeding peer counselors answer questions, help with common problems and point you to other help, in English or Spanish. It is an information line and does not give medical advice.",
+   "how": "Call Monday to Friday, 9 a.m. to 6 p.m. Eastern; it is closed on federal holidays. WIC also offers breastfeeding peer counselors, and Ohio Medicaid includes lactation consultation and breast pump supplies.",
+   "phone": "800-994-9662",
+   "url": "https://www.womenshealth.gov/node/1140",
+   "sources": [
+    "https://www.womenshealth.gov/node/1140",
+    "https://dam.assets.ohio.gov/image/upload/medicaid.ohio.gov/Families%2C%20Individuals/Programs/MISP/MISP_Services_Overview_V_2.0_FINAL_1.22.2026.pdf"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "oh-diaper-banks",
+   "section": "pregnancy-baby",
+   "scope": "OH",
+   "name": "Free diapers from a diaper bank",
+   "org": "National Diaper Bank Network member banks in Ohio",
+   "what": "Ohio has ten member diaper banks: Heart of Ohio Diaper Bank (Canton), Hannah's Treasure Chest (Centerville), Sweet Cheeks Diaper Bank (Cincinnati), The Diaper Bank of Greater Cleveland, Columbus Diaper Bank, Bottoms Up Diaper Drive (Lancaster), The Diaper Angels (Plain City), As We Grow (Toledo), Gem City Diaper Bank (Trotwood) and Project MKC (Youngstown). Each serves its own area.",
+   "how": "Find the one nearest you in the national directory, then contact it and ask how to sign up. Rules differ by bank. If none is close, dial 211 and ask about diaper help.",
+   "url": "https://nationaldiaperbanknetwork.org/member-directory/",
+   "sources": [
+    "https://nationaldiaperbanknetwork.org/member-directory/",
+    "https://ohparent.com/?p=65062"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "oh-cribs-for-kids",
+   "section": "pregnancy-baby",
+   "scope": "OH",
+   "name": "A free safe place for baby to sleep (Cribs for Kids)",
+   "org": "Ohio Cribs for Kids, through local health departments and partners",
+   "what": "Local Cribs for Kids partners give families who qualify a free portable crib, a fitted sheet and safe sleep education. Babies sleep safest alone, on their back, in a crib. Partners serve 71 of Ohio's 88 counties, so availability depends on where you live, and supplies can run out.",
+   "how": "Call your county health department and ask about Cribs for Kids. If you are not sure who to call, dial 211 and give your county.",
+   "phone": "211",
+   "sources": [
+    "https://www.cincinnati-oh.gov/health/chd-programs/infant-health",
+    "https://greenecophoh.gov/platform/cms/MCH/Cribs%20for%20Kids%20Flyer.pdf",
+    "https://mchb.tvisdata.hrsa.gov/Narratives/PlanForTheApplicationYear2/0d85a1f4-7787-4b53-a215-531d5fb00c7b"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone_label": "Ohio 211"
   }
  ]
 }
