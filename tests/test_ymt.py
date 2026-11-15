@@ -142,6 +142,26 @@ class SiteTests(unittest.TestCase):
                 continue
             self.assertNotRegex(path.read_text(encoding='utf-8'), r'(?i)no (tracking, )?cookies|no third-party scripts', path)
 
+    def test_front_pages_show_no_listings(self):
+        """The front page asks what she needs. Listings appear only after she chooses."""
+        for rel in ('index.html', 'ohio/index.html'):
+            text = (ROOT / rel).read_text(encoding='utf-8')
+            self.assertNotIn('class="card', text, f'{rel}: a front page shows no listing cards')
+            self.assertEqual(text.count('class="tile '), 6, f'{rel}: six needs to choose from')
+        home = (ROOT / 'index.html').read_text(encoding='utf-8')
+        self.assertEqual(home.count('class="phonecard"'), 3)
+
+    def test_needs_are_closed_and_cards_are_short(self):
+        for path in PAGES:
+            text = path.read_text(encoding='utf-8')
+            self.assertNotRegex(text, r'<details[^>]*\sopen', f'{path}: nothing is open until it is asked for')
+            for card in re.findall(r'<article class="card[^"]*" id="[^"]+">(.*?)</article>', text, re.S):
+                visible = card.split('<details class="more">')[0]
+                self.assertIn('<details class="more">', card, path)
+                self.assertNotIn('Sources:', visible, f'{path}: sources belong in the details')
+                self.assertNotIn('Next step:', visible, f'{path}: the next step belongs in the details')
+                self.assertLessEqual(len(re.sub(r'<[^>]+>', '', visible)), 330, f'{path}: the short part of a card got long')
+
     def test_sitemap_lists_every_page_but_404_and_stubs(self):
         sm = (ROOT / 'sitemap.xml').read_text(encoding='utf-8')
         locs = re.findall(r'<loc>([^<]+)</loc>', sm)

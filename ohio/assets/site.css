@@ -126,8 +126,10 @@ body.county .brandline{font-weight:700;margin:0 0 .4rem}
   .mainnav{order:3;width:100%;margin-left:-.6rem}
   .areachip{margin-left:auto}
   .hero{padding:2rem 0 2rem;border-radius:0 0 1.5rem 1.5rem}
-  .tiles{grid-template-columns:1fr 1fr;gap:.7rem}
-  .tile{padding:.85rem .85rem .95rem}.tile strong{font-size:1.02rem}.tile span{font-size:.88rem}
+  .tiles{grid-template-columns:1fr;gap:.5rem;margin-top:1.1rem}
+  .tile{display:grid;grid-template-columns:auto 1fr;column-gap:.8rem;align-items:center;padding:.6rem .8rem}
+  .tile .ico{grid-row:1 / span 2;width:2.5rem;height:2.5rem;font-size:1.25rem}
+  .tile strong{font-size:1.02rem;margin:0;align-self:end}.tile span:last-child{font-size:.88rem;line-height:1.35;align-self:start}
   .event{grid-template-columns:3.6rem 1fr;gap:.75rem}.date{width:3.6rem;height:3.6rem}.date b{font-size:1.3rem}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
@@ -147,3 +149,9 @@ body.county .brandline{font-weight:700;margin:0 0 .4rem}
 .fb textarea,.fb input,.fb select{display:block;width:100%;max-width:36rem;font:inherit;padding:.6rem .7rem;border:1.5px solid #cbbfd0;border-radius:.8rem;background:#fff;color:var(--ink)}
 .helpful{text-align:center;color:var(--muted);margin-top:3rem}
 .helpful input{width:min(18rem,100%);padding:.4rem .6rem}
+/* The map opens on request on a phone; site.js opens it on wider screens. */
+.mapfold>summary{cursor:pointer;color:var(--teal);font-weight:700;padding:.4rem 0;list-style:none}
+.mapfold>summary::-webkit-details-marker{display:none}
+.mapfold>summary::before{content:"+";display:inline-block;width:1.1rem}
+.mapfold[open]>summary::before{content:"\2212"}
+@media (min-width:761px){.mapfold>summary{display:none}}
