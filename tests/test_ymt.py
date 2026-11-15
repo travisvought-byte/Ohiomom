@@ -108,12 +108,31 @@ class SiteTests(unittest.TestCase):
             text = path.read_text(encoding='utf-8')
             self.assertNotRegex(text, r'\{(state|slug|snap_slug)\}', path)
 
+    def test_no_page_sends_visitors_to_ohiomom_org(self):
+        """ohiomom.org is not the address the site is served on. No page may redirect or link there,
+        and no canonical may name it, so the site works whether or not that domain is connected."""
+        for path in ROOT.rglob('*.html'):
+            if 'node_modules' in path.parts or 'templates' in path.parts:
+                continue
+            text = path.read_text(encoding='utf-8')
+            self.assertNotRegex(text, r'(href|url|content)="https?://(www\.)?ohiomom\.org', path)
+            self.assertNotRegex(text, r"location\.(replace|assign|href)\s*[(=]\s*['\"]https?://(www\.)?ohiomom\.org", path)
+
+    def test_family_guide_points_home_to_ohio(self):
+        text = (ROOT / 'family-guide.html').read_text(encoding='utf-8')
+        self.assertIn('<link rel="canonical" href="https://www.yogamomtalk.com/family-guide.html">', text)
+        self.assertNotIn('href="./"', text)
+        self.assertIn('<a href="ohio/" id="back-guide">OhioMom</a>', text)
+
     def test_sitemap_lists_every_page_but_404_and_stubs(self):
         sm = (ROOT / 'sitemap.xml').read_text(encoding='utf-8')
         locs = re.findall(r'<loc>([^<]+)</loc>', sm)
         self.assertEqual(len(locs), len(set(locs)))
-        ohio = [p for p in (ROOT / 'ohio').rglob('*.html')]
-        self.assertEqual(len(locs), len(PAGES) - 1 + len(ohio) + 1)  # minus 404, plus ohio pages and the family guide
+        ohio = [p for p in (ROOT / 'ohio').rglob('*.html')
+                if 'name="robots" content="noindex"' not in p.read_text(encoding='utf-8')]
+        # minus 404, plus the ohio pages that are not pass-through pages, plus the family guide
+        self.assertEqual(len(locs), len(PAGES) - 1 + len(ohio) + 1)
+        self.assertNotIn('https://www.yogamomtalk.com/ohio/help/disability.html', locs)
         self.assertIn('https://www.yogamomtalk.com/ohio/', locs)
         self.assertIn('https://www.yogamomtalk.com/family-guide.html', locs)
         for loc in locs:

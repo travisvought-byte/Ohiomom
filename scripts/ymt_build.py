@@ -262,7 +262,9 @@ def build_all(data):
         files[f'states/{s["abbr"].lower()}.html'] = build_state(data, s)
     domain = data['site']['domain']
     pages = sorted(p for p in files if p != '404.html')
-    ohio = sorted(str(p.relative_to(ROOT)) for p in (ROOT / 'ohio').rglob('*.html'))
+    # Pages that only pass the visitor on (marked noindex) stay out of the sitemap.
+    ohio = sorted(str(p.relative_to(ROOT)) for p in (ROOT / 'ohio').rglob('*.html')
+                  if 'name="robots" content="noindex"' not in p.read_text(encoding='utf-8'))
     pages += ohio + ['family-guide.html']
 
     def loc(p):
