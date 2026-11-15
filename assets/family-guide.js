@@ -192,7 +192,7 @@
   $('print-context').textContent = where + (stage === 'all' ? '' : ' · ' + stageLabel.get(stage)) + (needs.length ? ' · ' + needs.map(n => needName.get(n)).join(', ') : '');
   renderAnchors(state, county);
   $('cvso-link').href = 'https://guide.vethomeguard.org/?state=' + state + (ohio && county ? '&county=' + encodeURIComponent(county) : '');
-  $('back-guide').href = 'ohio/';
+  $('back-guide').href = 'ohio/index.html';
   updateReports(state);
   if (write) writeParams(state, county, needs);
  }

@@ -44,7 +44,7 @@ Ohio site (OhioMom):
 ## Safety standards
 
 - A fixed "Leave this site" button is on every national page. It jumps to an everyday page and does not erase browser history; the About page says so.
-- No cookies, tracking, sign-up forms or third-party scripts on the national site. The report page uses a mail link only.
+- The national pages carry no cookies, tracking, sign-up forms or third-party scripts of our own, and the report page uses a mail link only. Wix adds its own script and cookies to every page it serves, so the pages say that plainly and do not claim to be cookie-free.
 - Domestic violence shelter addresses are never listed. Listings point to the hotline or program that places people safely.
 
 ## Still to settle
