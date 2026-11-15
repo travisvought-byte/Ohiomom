@@ -15,7 +15,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import ymt_lib as lib  # noqa: E402
 
-UA = 'Mozilla/5.0 (compatible; YogaMomTalk link check; +https://yogamomtalk.com/about.html)'
+UA = 'Mozilla/5.0 (compatible; YogaMomTalk link check; +https://www.yogamomtalk.com/about.html)'
 SOFT = {401, 403, 405, 406, 429, 999}
 
 

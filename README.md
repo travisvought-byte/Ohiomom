@@ -2,7 +2,7 @@
 
 One site for mothers and caregivers who need real help and a place to connect.
 
-- **Yoga Mom Talk** (https://yogamomtalk.com/) is the national home: source-linked resources for all 50 states and DC. It is Deborah Vought's project and the primary site.
+- **Yoga Mom Talk** (https://www.yogamomtalk.com/) is the national home: source-linked resources for all 50 states and DC. It is Deborah Vought's project and the primary site.
 - **OhioMom** (https://www.ohiomom.org/) is the Ohio home of the same site and lives under `/ohio/`. It is one way in, with Ohio county pages, the Ohio family guide, listening and reporting forms.
 
 Yoga Mom Talk is independent and is not affiliated with any other "Mom Talk" show or site.
@@ -13,7 +13,7 @@ Yoga Mom Talk is independent and is not affiliated with any other "Mom Talk" sho
 | --- | --- |
 | `/` (`index.html`, `help.html`, `connect.html`, `yoga.html`, `states.html`, `states/xx.html`, `about.html`, `report.html`) | National Yoga Mom Talk pages, generated from `data/ymt/` |
 | `/ohio/` | OhioMom: the Ohio landing page, county pages, Ohio help pages, Wix forms and polls. Pages and their own `assets/` are self-contained here |
-| `/family-guide.html` | The Ohio family guide. The URL is fixed because the Veteran Home Guardians guide redirects to `ohiomom.org/family-guide.html`. It stays Ohio-only |
+| `/family-guide.html` | The Ohio family guide. The path is fixed because the Veteran Home Guardians guide and the printed flyer's QR code point to `ohiomom.org/family-guide.html`. It stays Ohio-only. Its own links and canonical address use `www.yogamomtalk.com`, so the page works whether or not ohiomom.org is connected |
 | `/js/wix/` | Wix form code. It stays at the site root because the Ohio pages import `/js/wix/form-store.js` |
 | Old Ohio URLs (`/events.html`, `/near-you.html`, `/counties.html`, `/listen.html`, `/wellbeing.html`, `/counties/*.html`, `/help/{bills,disability,pregnancy-baby,single-parent}.html`) | Small redirect pages that send people to the same page under `/ohio/` and keep the query string and fragment |
 
@@ -49,8 +49,8 @@ Ohio site (OhioMom):
 
 ## Still to settle
 
-- **Hosting.** Wix headless currently serves ohiomom.org. Whether both domains stay on Wix or move to GitHub Pages is open. The build does not assume either: there is no `CNAME` file, and nothing deploys when this branch is merged.
-- **Domains.** Point yogamomtalk.com at the chosen host, decide how ohiomom.org reaches `/ohio/`, and buy yogamomtalk.org.
+- **Hosting.** Decided: Wix headless serves the whole site. Nothing deploys when a branch is merged; each release is uploaded to the Wix site by hand.
+- **Domains.** Decided (Nov 15, 2026): `www.yogamomtalk.com` is the primary domain and yogamomtalk.org redirects to it. Still open: ohiomom.org is not assigned, so every outside link to it is dead until it is connected again, including the Veteran Home Guardians guide's link and the QR code on the printed family guide flyer. No page on this site links or redirects to ohiomom.org any more (a test enforces it). Assigned as a redirecting domain, its old page links land on the same page here and the redirect pages carry them on to `/ohio/`, but its home page lands on the national home, because the visitor has already left ohiomom.org by the time the page loads and the home page check never runs. Sending the ohiomom.org home page straight to `/ohio/` needs a redirect hosted outside Wix.
 - **Corrections email.** The default is `travis@vethomeguard.org`; change it in `data/ymt/resources.json` and rebuild.
 - **Trademark.** The name is a decision for later. It is kept in one config value so a change is a rebuild.
 - **First link check.** Run the national link check once from the Actions tab. These links were not confirmed from the build environment: Safe to Sleep, Veterans Crisis Line, the HRSA maternal mental health hotline page, Childhelp, Legal Services Corporation and LawHelp.org.
