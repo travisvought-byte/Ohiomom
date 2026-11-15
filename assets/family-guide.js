@@ -15,7 +15,11 @@
  // Remember authored order so sorting can always return to it.
  const original = new Map();
  document.querySelectorAll('.resource').forEach((c, i) => original.set(c, i));
- let stage = 'all';
+ // '' until the visitor makes a choice. Nothing is listed before that; 'all' is the choice "Show everything".
+ let stage = '';
+ // Six listings first, the rest when asked. A new stage or need starts short again.
+ const CAP = 6;
+ let showAll = false;
  // Language: English by default; ?lang=es switches the top of the page to Spanish. Listings stay in English.
  const es = data.es;
  let lang = 'en';
@@ -59,11 +63,13 @@
   $('state').value = states[s] ? s : 'OH';
   const c = p.get('county') || '';
   $('county').value = counties.has(c) ? c : '';
-  const st = p.get('stage') || 'all';
-  stage = stageIds.has(st) ? st : 'all';
+  const st = p.get('stage') || '';
+  stage = st === 'all' || stageIds.has(st) ? st : '';
   const needs = new Set((p.get('need') || '').split(',').filter(n => needName.has(n)));
   document.querySelectorAll('input[name=need]').forEach(i => { i.checked = needs.has(i.value); });
   if (needs.size) $('needs-box').open = true;
+  // A link that already names a county, a need or one listing is a choice.
+  if (!stage && ($('county').value || needs.size || /^#r-/.test(location.hash))) stage = 'all';
  }
 
  const selectedNeeds = () => [...document.querySelectorAll('input[name=need]:checked')].map(i => i.value);
@@ -72,7 +78,7 @@
   const p = new URLSearchParams();
   p.set('state', state);
   if (state === 'OH' && county) p.set('county', county);
-  if (stage !== 'all') p.set('stage', stage);
+  if (stage) p.set('stage', stage);
   if (needs.length) p.set('need', needs.join(','));
   if (lang === 'es') p.set('lang', 'es');
   history.replaceState(null, '', location.pathname + '?' + p.toString() + location.hash);
@@ -81,7 +87,7 @@
  function matches(card, state, needs) {
   if (card.dataset.scope === 'OH' && state !== 'OH') return false;
   if ((card.dataset.replaced || '').split(' ').some(r => r.split(':')[0] === state)) return false;
-  if (stage !== 'all' && !card.dataset.stages.split(' ').includes(stage)) return false;
+  if (stage && stage !== 'all' && !card.dataset.stages.split(' ').includes(stage)) return false;
   if (needs.length) {
    const cardNeeds = card.dataset.needs.split(' ');
    if (!cardNeeds.includes('any') && !needs.some(n => cardNeeds.includes(n))) return false;
@@ -98,13 +104,19 @@
    c.classList.toggle('match', isMatch);
    return (isMatch ? 0 : 2) + (c.dataset.scope === state ? 0 : 1);
   };
-  cards.sort((a, b) => rank(a) - rank(b) || original.get(a) - original.get(b)).forEach(c => {
-   const ok = matches(c, state, needs);
-   c.hidden = !ok;
-   if (ok) { shown++; if (c.classList.contains('match')) specific++; }
+  const sorted = cards.sort((a, b) => rank(a) - rank(b) || original.get(a) - original.get(b));
+  const ok = new Map(sorted.map(c => [c, matches(c, state, needs)]));
+  const total = sorted.filter(c => ok.get(c)).length;
+  // Only the main list is cut short, and only when that hides more than a couple of listings.
+  const cap = container.id === 'cards' && !showAll && total > CAP + 2 ? CAP : Infinity;
+  sorted.forEach(c => {
+   const yes = ok.get(c);
+   c.hidden = !yes;
+   if (yes) { shown++; if (c.classList.contains('match')) specific++; }
+   c.classList.toggle('capped', yes && shown > cap);
    container.append(c);
   });
-  return {shown, specific};
+  return {shown, specific, held: total > cap ? total - cap : 0};
  }
 
  function renderAnchors(state, county) {
@@ -115,7 +127,7 @@
   const list = $('anchor-list');
   list.replaceChildren();
   for (const a of data.anchors[state === 'OH' ? 'OH' : 'default']) {
-   if (stage !== 'all' && !a.stages.includes(stage)) continue;
+   if (stage && stage !== 'all' && !a.stages.includes(stage)) continue;
    const li = el('li'), parts = [];
    li.append(el('strong', {}, (spanish ? es.anchor_labels[a.label] : a.label) + ': '));
    for (const item of a.items) {
@@ -134,7 +146,7 @@
   if (state !== 'OH' || !county) return;
   const c = counties.get(county), wrap = el('div', {class: 'county-box'}), ul = el('ul');
   const d = es.dynamic;
-  wrap.append(el('h4', {}, spanish ? fill(d.county_heading, {county}) : county + ' County'));
+  wrap.append(el('h3', {}, spanish ? fill(d.county_heading, {county}) : county + ' County'));
   const row = (label, nodes) => { const li = el('li'); li.append(el('strong', {}, label + ': ')); nodes.forEach((n, i) => { if (i) li.append(' · '); li.append(n); }); ul.append(li); };
   const ddLabel = spanish ? d.county_dd : 'County board of DD';
   if (c.dd) {
@@ -163,6 +175,9 @@
   $('ohio-crisis').hidden = !ohio;
   if (!ohio) $('county').value = '';
   const county = $('county').value, needs = selectedNeeds();
+  // The list and the first calls appear once a choice has been made.
+  $('results').classList.toggle('chosen', stage !== '');
+  const staged = stage && stage !== 'all';
   document.querySelectorAll('.stage').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.stage === stage)));
   document.querySelectorAll('.quick-btn').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.quick === stage)));
   // The written-request letter appears when school-age evaluation is the next step.
@@ -174,22 +189,24 @@
   const where = ohio ? (county ? (spanish ? fill(d.county_where, {county}) : county + ' County, Ohio') : 'Ohio') : states[state];
   let text;
   if (spanish) {
-   const topic = stage === 'all' ? '' : fill(d.topic, {stage: stageName(stage)});
+   const topic = staged ? fill(d.topic, {stage: stageName(stage)}) : '';
    text = fill(main.shown === 1 ? d.showing_one : d.showing_many, {n: main.shown, topic, where});
    if (needs.length) {
     const names = needs.map(needShort).join(d.or);
     text += main.specific ? fill(d.need_match, {k: main.specific, names}) : fill(d.need_none, {names});
    }
   } else {
-   const topic = stage === 'all' ? '' : ' for ' + stageLabel.get(stage).toLowerCase();
-   text = 'Showing ' + main.shown + (main.shown === 1 ? ' program' : ' programs') + topic + ' in ' + where + '.';
+   const topic = staged ? ' for ' + stageLabel.get(stage).toLowerCase() : '';
+   text = main.shown + (main.shown === 1 ? ' program' : ' programs') + topic + ' in ' + where + '.';
    if (needs.length) {
     const names = needs.map(needShort).join(' or ');
     text += main.specific ? ' ' + main.specific + ' made for ' + names + ' are at the top; the rest help with any disability.' : ' None are only for ' + names + ', so these help with any disability.';
    }
   }
   $('result-status').textContent = text;
-  $('print-context').textContent = where + (stage === 'all' ? '' : ' · ' + stageLabel.get(stage)) + (needs.length ? ' · ' + needs.map(n => needName.get(n)).join(', ') : '');
+  $('show-all-wrap').hidden = !main.held;
+  $('show-all').textContent = spanish ? fill(d.show_all, {n: main.shown}) : 'Show all ' + main.shown + ' programs';
+  $('print-context').textContent = where + (staged ? ' · ' + stageLabel.get(stage) : '') + (needs.length ? ' · ' + needs.map(n => needName.get(n)).join(', ') : '');
   renderAnchors(state, county);
   $('cvso-link').href = 'https://guide.vethomeguard.org/?state=' + state + (ohio && county ? '&county=' + encodeURIComponent(county) : '');
   $('back-guide').href = 'ohio/index.html';
@@ -206,12 +223,36 @@
   });
  }
 
- // After a stage tap, bring the first calls and result count into view so the change is visible.
- function reveal() { if ($('anchors').scrollIntoView) $('anchors').scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block: 'start'}); }
- function openMilitary() { if (location.hash === '#military') $('military-details').open = true; }
+ // After a choice, bring the first calls and the list into view and move focus there, so the change is seen and heard.
+ function reveal() {
+  const r = $('results');
+  if (r.scrollIntoView) r.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block: 'start'});
+  if (r.focus) r.focus({preventScroll: true});
+ }
+ // A link that names a row, or something inside one, opens it. A link to one listing shows the list and opens that listing.
+ function openNamed() {
+  let id = '';
+  try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
+  const target = id && $(id);
+  if (!target) return;
+  const listing = target.classList.contains('resource');
+  if (listing) { if (!stage) stage = 'all'; showAll = true; apply(false); }
+  for (let n = target; n; n = n.parentElement) if (n.tagName === 'DETAILS') n.open = true;
+  if (listing) { const more = target.querySelector('details.more'); if (more) more.open = true; }
+  if (target.scrollIntoView) target.scrollIntoView();
+ }
+ // The first choice can also be a county or a need: that shows the list too.
+ function firstChoice() { if (stage) return false; stage = 'all'; return true; }
 
- document.querySelectorAll('.stage').forEach(b => b.addEventListener('click', () => { stage = b.dataset.stage; apply(); reveal(); }));
- document.querySelectorAll('.quick-btn').forEach(b => b.addEventListener('click', () => { stage = b.dataset.quick; apply(); reveal(); }));
+ document.querySelectorAll('.stage').forEach(b => b.addEventListener('click', () => { stage = b.dataset.stage; showAll = false; apply(); reveal(); }));
+ document.querySelectorAll('.quick-btn').forEach(b => b.addEventListener('click', () => { stage = b.dataset.quick; showAll = false; apply(); reveal(); }));
+ $('show-all').addEventListener('click', () => {
+  showAll = true; apply();
+  // Focus goes to the first listing that was just added, so a keyboard or screen reader user carries on from there.
+  const next = [...document.querySelectorAll('#cards .resource:not([hidden])')][CAP];
+  const stop = next && next.querySelector('a, summary');
+  if (stop) stop.focus();
+ });
  $('letter-text').addEventListener('input', () => { letterEdited = true; });
  $('letter-copy').addEventListener('click', async () => {
   const spanish = lang === 'es', box = $('letter-text');
@@ -219,11 +260,19 @@
   catch { box.focus(); box.select(); $('letter-status').textContent = spanish ? es.dynamic.letter_select : 'Select the letter text and copy it.'; }
  });
  $('state').addEventListener('change', () => apply());
- $('county').addEventListener('change', () => apply());
- document.querySelectorAll('input[name=need]').forEach(i => i.addEventListener('change', () => apply()));
- document.querySelectorAll('[data-open-military]').forEach(a => a.addEventListener('click', () => { $('military-details').open = true; }));
- window.addEventListener('hashchange', openMilitary);
+ $('county').addEventListener('change', () => { const first = $('county').value && firstChoice(); apply(); if (first) reveal(); });
+ document.querySelectorAll('input[name=need]').forEach(i => i.addEventListener('change', () => { const first = i.checked && firstChoice(); showAll = false; apply(); if (first) reveal(); }));
+ window.addEventListener('hashchange', openNamed);
+ // "Leave this site" replaces this page in the browser's history, so Back does not return here.
+ document.querySelectorAll('[data-exit]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); location.replace(a.href); }));
  $('print').addEventListener('click', () => window.print());
+ // A printed list shows each listing in full, then the page goes back to how it was.
+ window.addEventListener('beforeprint', () => {
+  document.querySelectorAll('#results .resource:not([hidden]) details.more:not([open]), #good-to-know:not([open])').forEach(d => { d.setAttribute('data-print-opened', ''); d.open = true; });
+ });
+ window.addEventListener('afterprint', () => {
+  document.querySelectorAll('details[data-print-opened]').forEach(d => { d.removeAttribute('data-print-opened'); d.open = false; });
+ });
  $('share').addEventListener('click', async () => {
   const url = location.href.split('#')[0];
   const spanish = lang === 'es';
@@ -234,6 +283,6 @@
  readParams();
  applyLang();
  renderAgencies();
- openMilitary();
  apply(false);
+ openNamed();
 })();

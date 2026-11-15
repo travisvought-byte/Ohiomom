@@ -2,14 +2,12 @@
  "review_status": "Machine-assisted draft, pending review by a native Spanish speaker. Covers the top of the page only; program listings stay in English.",
  "static": {
   "lang-toggle": "English",
-  "hero-eyebrow": "GUÍA PARA FAMILIAS · AUTISMO, TDAH Y OTRAS DISCAPACIDADES",
   "hero-title": "Ayuda para familias que crían a un niño con una discapacidad",
-  "hero-text": "Programas gratuitos y próximos pasos claros para familias de Ohio, según la edad de su hijo. Incluye programas estatales, ayuda nacional disponible en Ohio y contactos de su condado.",
-  "hero-button": "Buscar ayuda para mi hijo",
+  "hero-text": "Programas gratuitos y próximos pasos claros para familias de Ohio, según la edad de su hijo.",
   "urgent-title": "¿Necesita ayuda ahora mismo?",
   "urgent-text": "Si su hijo o alguien de su familia está en crisis, llame o envíe un mensaje de texto al <a href=\"tel:988\">988</a> a cualquier hora. Para hablar en español, marque 2. Si alguien está en peligro, llame al <a href=\"tel:911\">911</a>.",
   "ohio-crisis": "En Ohio, para cualquier persona de 20 años o menos, pida al 988 el servicio <strong>MRSS</strong>: ayuda gratuita en una crisis de su hijo. De lunes a viernes, de 8 a. m. a 8 p. m., un equipo suele llegar en menos de una hora. En otros horarios, un consejero ayuda por teléfono o video y un equipo lo visita al día siguiente.",
-  "finder-title": "Empiece aquí",
+  "crisis-more": "Ayuda en crisis para niños en Ohio",
   "finder-intro": "No se necesita un diagnóstico. Lo que elija no se guarda ni se envía. ¿Es nuevo en esto? <a href=\"#words\">Vea las palabras que escuchará</a> (en inglés).",
   "state-label": "Su estado",
   "county-label": "Su condado de Ohio (opcional)",
@@ -19,7 +17,6 @@
   "stage-all-desc": "Todas las edades y temas",
   "needs-summary": "Mostrar ayuda adicional para una necesidad específica <span class=\"small\">(opcional)</span>",
   "needs-note": "Los programas hechos para la necesidad que marque pasan al principio. Los programas que ayudan con cualquier discapacidad siguen en la lista.",
-  "see-list": "Ver la lista",
   "print": "Imprimir esta lista",
   "share": "Copiar el enlace",
   "results-title": "Programas y próximos pasos",
@@ -118,8 +115,8 @@
  },
  "dynamic": {
   "anchors_title": "Sus primeras llamadas en {state}",
-  "showing_one": "Mostrando {n} programa{topic} en {where}.",
-  "showing_many": "Mostrando {n} programas{topic} en {where}.",
+  "showing_one": "{n} programa{topic} en {where}.",
+  "showing_many": "{n} programas{topic} en {where}.",
   "topic": " para la etapa «{stage}»",
   "need_match": " {k} pensados para {names} aparecen primero; los demás ayudan con cualquier discapacidad.",
   "need_none": " Ninguno es solo para {names}, así que estos ayudan con cualquier discapacidad.",
@@ -136,6 +133,7 @@
   "letter": "Estimado/a director/a de educación especial:\n\nSoy el padre o la madre de [nombre de su hijo], que está en [grado] en [nombre de la escuela]. Le escribo para solicitar una evaluación para servicios de educación especial porque me preocupa [describa brevemente lo que nota].\n\nPor favor, envíeme el formulario de consentimiento y dígame cuáles son los próximos pasos.\n\nGracias,\n[Su nombre]\n[Teléfono o correo electrónico]",
   "letter_copied": "Carta copiada. Complete los espacios entre corchetes antes de enviarla.",
   "letter_select": "Seleccione el texto de la carta y cópielo.",
-  "county_dd_ask": "pregunte cómo solicitar servicios"
+  "county_dd_ask": "pregunte cómo solicitar servicios",
+  "show_all": "Mostrar los {n} programas"
  }
 }

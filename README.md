@@ -45,6 +45,7 @@ A mom arrives with one need. The pages show her the choice, then a short list, t
 - **Cards are short.** A card shows the name, one line (the first sentence of `what`), and the Call and Website buttons. The organization, the rest of the description, the next step, the sources and the checked date sit behind "More about this".
 - **The inner OhioMom pages work the same way.** County pages, `ohio/help/pregnancy-baby.html` and `ohio/wellbeing.html` are an index of closed rows; `ohio/help/bills.html` and `ohio/help/single-parent.html` are a handful of short cards. Searching a page opens the rows that match and puts the others away. `ohio/connect.html` and the area panel on `ohio/near-you.html` are rows by kind of group. `ohio/events.html` shows the next six events and a "Show all" button, and each event keeps its times, place, price and source behind "When, where and cost" (`ohio/assets/site.js`).
 - **Crisis numbers are never behind a tap.** `ohio/wellbeing.html` keeps three small phone cards in the open above its rows, the way the national front page does. Each one repeats a listing further down the same page. The "Leave this page quickly" link sits with them, in the open, because a domestic violence line is showing; on county pages it is inside the "Safety at home" row, which shows nothing until it is opened.
+- **The family guide asks before it lists.** `family-guide.html` opens with one question (how old is your child?) and six stages. Nothing is listed until a choice is made: a stage, a county, a need, or a link that names one listing. A choice shows the first calls for that stage and the first six programs as short cards, with a "Show all" button. Glossary, changes, rights, military programs, good-to-know notes and the shareable flyer are closed rows. It wears the OhioMom look (`ohio/assets/site.css`) with its own small stylesheet. Without JavaScript the whole list shows. `tests/family-guide.cjs` holds all of this.
 - A printed page opens everything.
 - `tests/ymt-pages.cjs` and `tests/test_ymt.py` fail the build if a listing appears on a front page, a need is open by default, or the short part of a card grows.
 
@@ -55,7 +56,7 @@ A mom arrives with one need. The pages show her the choice, then a short list, t
 - **Row headings are valid HTML.** The `<h2>` of a closed row is a direct child of its `<summary>`; a CSS grid lays out the icon, the heading, the one-line summary and the count.
 - **Text on buttons passes contrast.** White text on the pink (`--brand`) and teal buttons is at least 4.5:1.
 - **Keyboard and touch.** Rows, cards and buttons are native elements with a visible focus ring. "More about this" has a tap area a thumb can hit.
-- `tests/ymt-pages.cjs` and `tests/test_ymt.py` hold all of this. The pages were also run through axe (WCAG 2.2 A and AA rules) at phone and desktop widths on 2026-11-15. The family guide is the one page still to be brought up to this.
+- `tests/ymt-pages.cjs` and `tests/test_ymt.py` hold all of this. Every kind of page, the family guide included, was also run through axe (WCAG 2.2 A and AA rules) at phone and desktop widths on 2026-11-15 with no violations.
 
 ## Keeping it current
 
