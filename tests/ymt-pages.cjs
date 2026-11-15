@@ -178,6 +178,15 @@ for (const f of ['ohio/help/bills.html', 'ohio/help/single-parent.html']) {
     assert(a.textContent.includes(a.getAttribute('href').slice(4).slice(-4)), 'the number shown is the number dialed');
   }
   assert(d.querySelector('details.need.urgent#safe'), 'the crisis row keeps its address and its red edge');
+  // A domestic violence line is in the open here, so the way to leave the page quickly is in the open with it.
+  const exit = d.querySelector('[data-exit]');
+  assert(exit && !exit.closest('details'), 'wellbeing: the quick exit is not behind a tap');
+  assert(exit.closest('section').querySelector('.phonecard'), 'wellbeing: the quick exit sits with the phone cards');
+}
+// On a county page nothing about safety at home shows until that row is opened, and the row carries its own quick exit.
+for (const f of counties) {
+  const safety = staticDoc(f).querySelector('details.need.urgent');
+  assert(safety && safety.querySelector('[data-exit]'), `${f}: the safety row has a quick exit inside it`);
 }
 
 (async () => {
