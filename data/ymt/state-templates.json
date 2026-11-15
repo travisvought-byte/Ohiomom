@@ -1,0 +1,126 @@
+{
+ "note": "One record is made per state from each template. {state}, {slug} and {snap_slug} are filled in by scripts/lib.py. Edit this file, not the built pages.",
+ "templates": [
+  {
+   "id": "snap",
+   "section": "food-bills",
+   "name": "SNAP in {state}",
+   "org": "{state} SNAP agency, as listed by the U.S. Department of Agriculture",
+   "what": "SNAP helps households with low income buy groceries. This page links to {state}'s SNAP website and phone number and tells you how to apply.",
+   "how": "Open the {state} entry, then apply online or call the number it lists.",
+   "url": "https://www.fna.usda.gov/snap-directory-entry/{snap_slug}",
+   "sources": ["https://www.fna.usda.gov/snap/state-directory"]
+  },
+  {
+   "id": "wic",
+   "section": "food-bills",
+   "name": "WIC in {state}",
+   "org": "{state} WIC agency, through the U.S. Department of Agriculture",
+   "what": "Healthy foods, nutrition advice and breastfeeding support at no cost for women who are pregnant, recently pregnant or breastfeeding, and for babies and children under 5.",
+   "how": "On the apply page, choose {state} (or your Tribe) from the list. Then call or apply online with a WIC agency near you.",
+   "url": "https://www.fna.usda.gov/wic/apply",
+   "sources": ["https://www.fna.usda.gov/wic/apply"],
+   "also": ["pregnancy-baby"]
+  },
+  {
+   "id": "energy",
+   "section": "food-bills",
+   "name": "Help with energy bills in {state}",
+   "org": "Low Income Home Energy Assistance Program (LIHEAP)",
+   "what": "LIHEAP can help pay a share of heating and cooling bills. Each state runs its own program. Applying never costs a fee.",
+   "how": "Call the National Energy Assistance Referral line, weekdays 9 a.m. to 7 p.m. Eastern, and give your city, county and {state}.",
+   "url": "https://www.energyhelp.us/",
+   "sources": ["https://acf.gov/ocs/programs/liheap"],
+   "phone": "866-674-6327",
+   "phone_label": "NEAR hotline"
+  },
+  {
+   "id": "211",
+   "section": "food-bills",
+   "name": "Dial 211 in {state}",
+   "org": "211, United Way and partners",
+   "what": "A free line that connects you to local help with housing, food, utilities, child care and more.",
+   "how": "Dial 211, or search by ZIP code at 211.org. Say what you need and your county.",
+   "url": "https://www.211.org/",
+   "sources": ["https://www.211.org/"],
+   "phone": "211"
+  },
+  {
+   "id": "coverage",
+   "section": "pregnancy-baby",
+   "name": "Health coverage for your child in {state}",
+   "org": "Insure Kids Now, U.S. Department of Health and Human Services",
+   "what": "Medicaid and the Children's Health Insurance Program (CHIP) cover many children in families with low or moderate income. {state} sets its own rules.",
+   "how": "Open the coverage page, choose {state}, and follow the steps to apply.",
+   "url": "https://www.insurekidsnow.gov/coverage",
+   "sources": ["https://www.insurekidsnow.gov/"],
+   "phone": "877-543-7669",
+   "phone_label": "1-877-KIDS-NOW"
+  },
+  {
+   "id": "health-centers",
+   "section": "pregnancy-baby",
+   "name": "Low-cost prenatal care near you in {state}",
+   "org": "HRSA health centers, U.S. Department of Health and Human Services",
+   "what": "Health centers charge on a sliding fee scale, so you can get care even if you are uninsured or cannot pay.",
+   "how": "Search by ZIP code, call the center, and ask whether it provides prenatal care and what the sliding fee would be. Or call 1-800-311-BABY to find your area health department.",
+   "url": "https://findahealthcenter.hrsa.gov/",
+   "sources": ["https://www.hhs.gov/answers/health-care-assistance/index.html"],
+   "phone": "800-311-2229",
+   "phone_label": "1-800-311-BABY"
+  },
+  {
+   "id": "diapers",
+   "section": "pregnancy-baby",
+   "name": "Free diapers in {state}",
+   "org": "National Diaper Bank Network member banks",
+   "what": "The national directory lists member diaper banks by state and city.",
+   "how": "Find {state} in the directory and contact the bank nearest you to ask how to sign up. If none is close, dial 211 and ask about diaper help.",
+   "url": "https://nationaldiaperbanknetwork.org/member-directory/",
+   "sources": ["https://nationaldiaperbanknetwork.org/member-directory/"]
+  },
+  {
+   "id": "childcare",
+   "section": "single-parent",
+   "name": "Child care, child support and family help in {state}",
+   "org": "ChildCare.gov, U.S. Department of Health and Human Services",
+   "what": "The {state} page gathers links for finding licensed child care, help paying for it, child support, health coverage and more.",
+   "how": "Open the {state} page and use its link to find child care near you.",
+   "url": "https://www.childcare.gov/state-resources/{slug}",
+   "sources": ["https://www.childcare.gov/state-resources"]
+  },
+  {
+   "id": "head-start",
+   "section": "single-parent",
+   "name": "Head Start near you in {state}",
+   "org": "Office of Head Start, U.S. Department of Health and Human Services",
+   "what": "Free learning and development for children from birth to age 5 in eligible families. All programs welcome children with disabilities.",
+   "how": "Enter your city or ZIP code in the locator, then call the program listed and ask how to enroll.",
+   "url": "https://headstart.gov/center-locator",
+   "sources": ["https://headstart.gov/how-apply"],
+   "phone": "866-763-6481"
+  },
+  {
+   "id": "legal",
+   "section": "single-parent",
+   "name": "Free legal help in {state}",
+   "org": "LawHelp.org and the Legal Services Corporation",
+   "what": "Legal aid offices help people with low income with custody, divorce, housing and benefits at no cost. Who qualifies depends on the office.",
+   "how": "Use LawHelp.org to choose {state} and find guides, forms and local contacts.",
+   "url": "https://www.lawhelp.org/",
+   "sources": ["https://www.lawhelp.org/", "https://www.lsc.gov/about-lsc/what-legal-aid/get-legal-help"]
+  },
+  {
+   "id": "dv",
+   "section": "help-now",
+   "name": "Domestic violence help in {state}",
+   "org": "National Network to End Domestic Violence (NNEDV)",
+   "what": "{state} has a domestic violence coalition that knows the local shelters and programs. Shelter addresses are kept private for safety, so this site never lists them.",
+   "how": "Call the National Domestic Violence Hotline any hour, or open the list and choose your state's coalition.",
+   "url": "https://nnedv.org/get-involved/in-your-state-or-us-territory/",
+   "sources": ["https://nnedv.org/get-involved/in-your-state-or-us-territory/"],
+   "phone": "800-799-7233",
+   "phone_label": "National Domestic Violence Hotline"
+  }
+ ]
+}

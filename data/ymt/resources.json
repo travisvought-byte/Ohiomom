@@ -1,0 +1,680 @@
+{
+ "site": {
+  "name": "Yoga Mom Talk",
+  "domain": "yogamomtalk.com",
+  "tagline": "A place for moms to connect, with real help when you need it.",
+  "founder": "Deborah Vought",
+  "corrections_email": "travis@vethomeguard.org",
+  "reviewed_on": "2026-11-15",
+  "ohio_path": "ohio/index.html",
+  "ohio_yoga_path": "ohio/yoga.html",
+  "mobilitytalk_url": "https://mobilitytalk.org/",
+  "vhg_guide_url": "https://guide.vethomeguard.org/family-guide.html?state=US"
+ },
+ "sections": [
+  {
+   "id": "help-now",
+   "label": "Get help now",
+   "icon": "🆘",
+   "summary": "Safety, crisis support and urgent needs. All free, most open any hour."
+  },
+  {
+   "id": "food-bills",
+   "label": "Food, bills and housing",
+   "icon": "🧺",
+   "summary": "Groceries, WIC, energy bills and the one number that finds local help."
+  },
+  {
+   "id": "pregnancy-baby",
+   "label": "Pregnancy and new baby",
+   "icon": "🍼",
+   "summary": "Health coverage, nursing support, diapers and a safe place for baby to sleep."
+  },
+  {
+   "id": "kids-differently",
+   "label": "My child learns or grows differently",
+   "icon": "🧩",
+   "summary": "Autism, ADHD, delays and disabilities: free evaluations, school help, other parents and respite."
+  },
+  {
+   "id": "single-parent",
+   "label": "Parenting on my own",
+   "icon": "💛",
+   "summary": "Child care, Head Start, child support and free legal help."
+  },
+  {
+   "id": "take-care",
+   "label": "Take care of me",
+   "icon": "☕",
+   "summary": "Someone to talk to on the hard days, for you and for new moms."
+  },
+  {
+   "id": "military",
+   "label": "Military and veteran families",
+   "icon": "🎖️",
+   "summary": "Help built for service members, veterans and their families."
+  },
+  {
+   "id": "connect",
+   "label": "Meet other moms",
+   "icon": "🤝",
+   "page": "connect",
+   "summary": "Groups and communities where moms meet other moms."
+  }
+ ],
+ "attribution": "Disability and military-family listings are adapted from the family guide in the Veteran Resident Resource Guide, created by Travis Vought and shared by Veteran Home Guardians (CC BY 4.0).",
+ "resources": [
+  {
+   "id": "us-ndvh",
+   "section": "help-now",
+   "scope": "US",
+   "name": "National Domestic Violence Hotline",
+   "org": "National Domestic Violence Hotline",
+   "what": "Free, private support any hour of the day. An advocate can help you think through safety, shelter and next steps, whether or not you are ready to leave.",
+   "how": "Call, text or chat. You do not have to give your name.",
+   "url": "https://www.thehotline.org/",
+   "sources": [
+    "https://www.thehotline.org/"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone": "800-799-7233",
+   "phone_label": "1-800-799-SAFE",
+   "text": "Text START to 88788",
+   "urgent": true
+  },
+  {
+   "id": "us-988",
+   "section": "help-now",
+   "scope": "US",
+   "name": "988 Suicide & Crisis Lifeline",
+   "org": "988 Lifeline",
+   "what": "Free support for anyone in emotional distress or crisis, any hour. You do not have to be thinking about suicide to call.",
+   "how": "Call or text 988.",
+   "url": "https://988lifeline.org/",
+   "sources": [
+    "https://988lifeline.org/"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone": "988",
+   "urgent": true
+  },
+  {
+   "id": "us-childhelp",
+   "section": "help-now",
+   "scope": "US",
+   "name": "Childhelp National Child Abuse Hotline",
+   "org": "Childhelp",
+   "what": "Crisis counselors answer any hour. Call if you are worried about a child, or if you are afraid you might hurt yours.",
+   "how": "Call and say what is going on.",
+   "url": "https://www.childhelphotline.org/",
+   "sources": [
+    "https://www.childhelphotline.org/"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone": "800-422-4453",
+   "phone_label": "1-800-4-A-CHILD",
+   "urgent": true
+  },
+  {
+   "id": "us-dv-coalition",
+   "section": "help-now",
+   "scope": "US",
+   "name": "Find your state's domestic violence coalition",
+   "org": "National Network to End Domestic Violence (NNEDV)",
+   "what": "Every state and territory has a coalition that knows the local shelters and programs. They can point you to a safe place near you.",
+   "how": "Open the list, choose your state, and call the coalition or the hotline it lists. Shelter addresses are kept private for safety, so this site never lists them.",
+   "url": "https://nnedv.org/get-involved/in-your-state-or-us-territory/",
+   "sources": [
+    "https://nnedv.org/get-involved/in-your-state-or-us-territory/",
+    "https://nnedv.org/"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "us-211-help",
+   "section": "help-now",
+   "scope": "US",
+   "name": "Dial 211 for local help",
+   "org": "211, United Way and partners",
+   "what": "A free line that connects you to local help with housing, food, utilities, child care and more.",
+   "how": "Dial 211, or search by ZIP code at 211.org. Say what you need and your county.",
+   "url": "https://www.211.org/",
+   "sources": [
+    "https://www.211.org/"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone": "211",
+   "also": [
+    "food-bills"
+   ]
+  },
+  {
+   "id": "us-snap",
+   "section": "food-bills",
+   "scope": "US",
+   "name": "SNAP: help buying groceries",
+   "org": "U.S. Department of Agriculture, Food and Nutrition Service",
+   "what": "SNAP helps households with low income buy food. Each state runs its own program, so the website, phone number and rules depend on where you live.",
+   "how": "Open the state directory and choose your state. It links to your state's SNAP page and how to apply.",
+   "url": "https://www.fna.usda.gov/snap/state-directory",
+   "sources": [
+    "https://www.fna.usda.gov/snap/state-directory"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "us-wic",
+   "section": "food-bills",
+   "scope": "US",
+   "name": "WIC: food for pregnancy, babies and kids under 5",
+   "org": "U.S. Department of Agriculture, Food and Nutrition Service",
+   "what": "WIC gives healthy foods, nutrition advice, breastfeeding support and referrals at no cost. It is for women who are pregnant, recently pregnant or breastfeeding, and for babies and children under 5.",
+   "how": "Choose your state on the apply page, then call or apply online with a WIC agency near you. Bring ID for each person, proof of address, and proof you get SNAP, Medicaid or TANF, or proof of income.",
+   "url": "https://www.fna.usda.gov/wic/apply",
+   "sources": [
+    "https://www.fna.usda.gov/wic/apply",
+    "https://www.fna.usda.gov/wic/benefits"
+   ],
+   "reviewed_on": "2026-11-15",
+   "also": [
+    "pregnancy-baby"
+   ]
+  },
+  {
+   "id": "us-liheap",
+   "section": "food-bills",
+   "scope": "US",
+   "name": "Help with heating and cooling bills (LIHEAP)",
+   "org": "Low Income Home Energy Assistance Program, U.S. Department of Health and Human Services",
+   "what": "LIHEAP can help pay a share of your energy bills for households with low income. Rules and how to apply differ by state. Applying never costs a fee.",
+   "how": "Call the National Energy Assistance Referral line, weekdays 9 a.m. to 7 p.m. Eastern, or visit EnergyHelp.us. Give your city, county and state.",
+   "url": "https://www.energyhelp.us/",
+   "sources": [
+    "https://acf.gov/ocs/programs/liheap",
+    "https://liheapch.acf.gov/get_help.htm"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone": "866-674-6327",
+   "phone_label": "NEAR hotline"
+  },
+  {
+   "id": "us-food-bank",
+   "section": "food-bills",
+   "scope": "US",
+   "name": "Find a food bank near you",
+   "org": "Feeding America",
+   "what": "Food banks and their partner pantries give out groceries and meals for free. Your local food bank can also tell you about SNAP and WIC.",
+   "how": "Enter your ZIP code. Then contact the food bank for pantry locations and hours, since they change.",
+   "url": "https://www.feedingamerica.org/find-your-local-foodbank",
+   "sources": [
+    "https://www.feedingamerica.org/find-your-local-foodbank"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "us-health-centers",
+   "section": "pregnancy-baby",
+   "scope": "US",
+   "name": "Low-cost prenatal care at a community health center",
+   "org": "HRSA health centers, U.S. Department of Health and Human Services",
+   "what": "Health centers funded by HRSA charge on a sliding fee scale, so you can get care even if you are uninsured or cannot pay. Free or reduced-cost prenatal care may also be available through your area health department.",
+   "how": "Search by ZIP code on the HRSA site, call the center, and ask whether it provides prenatal care and what the sliding fee would be. Or call 1-800-311-BABY to find your area health department.",
+   "url": "https://findahealthcenter.hrsa.gov/",
+   "sources": [
+    "https://www.hhs.gov/answers/health-care-assistance/index.html"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone": "800-311-2229",
+   "phone_label": "1-800-311-BABY"
+  },
+  {
+   "id": "us-insure-kids",
+   "section": "pregnancy-baby",
+   "scope": "US",
+   "name": "Health coverage for your child: Medicaid and CHIP",
+   "org": "Insure Kids Now, U.S. Department of Health and Human Services",
+   "what": "Medicaid and the Children's Health Insurance Program (CHIP) cover many children in families with low or moderate income. Each state sets its own rules.",
+   "how": "Open the coverage page, choose your state, and follow the steps to apply. Questions can go to the national line.",
+   "url": "https://www.insurekidsnow.gov/coverage",
+   "sources": [
+    "https://www.insurekidsnow.gov/"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone": "877-543-7669",
+   "phone_label": "1-877-KIDS-NOW"
+  },
+  {
+   "id": "us-owh-breastfeeding",
+   "section": "pregnancy-baby",
+   "scope": "US",
+   "name": "Breastfeeding questions: free helpline",
+   "org": "Office on Women's Health, U.S. Department of Health and Human Services",
+   "what": "Breastfeeding peer counselors answer questions, help with common problems and point you to other help, in English or Spanish. It is an information line and does not give medical advice.",
+   "how": "Call Monday to Friday, 9 a.m. to 6 p.m. Eastern; it is closed on federal holidays. WIC also offers breastfeeding support.",
+   "url": "https://www.womenshealth.gov/node/1140",
+   "sources": [
+    "https://www.womenshealth.gov/node/1140",
+    "https://www.fna.usda.gov/wic/benefits"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone": "800-994-9662"
+  },
+  {
+   "id": "us-lll",
+   "section": "pregnancy-baby",
+   "scope": "US",
+   "name": "La Leche League: breastfeeding support from other parents",
+   "org": "La Leche League",
+   "what": "Meetings and one-to-one help led by trained volunteer Leaders, who have breastfed their own babies. A map shows groups and Leaders near you and online.",
+   "how": "Open the map, allow your location or search your area, and contact a Leader. Ask whether there is any cost.",
+   "url": "https://llli.org/get-help/",
+   "sources": [
+    "https://llli.org/get-help/"
+   ],
+   "reviewed_on": "2026-11-15",
+   "also": [
+    "connect"
+   ]
+  },
+  {
+   "id": "us-diaper-banks",
+   "section": "pregnancy-baby",
+   "scope": "US",
+   "name": "Free diapers from a diaper bank",
+   "org": "National Diaper Bank Network member banks",
+   "what": "Diaper banks collect and give out free diapers to families who struggle to afford them. The national directory lists member banks by state and city.",
+   "how": "Open the directory, find your state, and contact the bank nearest you to ask how to sign up. Rules differ by bank. If none is close, dial 211 and ask about diaper help.",
+   "url": "https://nationaldiaperbanknetwork.org/member-directory/",
+   "sources": [
+    "https://nationaldiaperbanknetwork.org/member-directory/"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "us-safe-sleep",
+   "section": "pregnancy-baby",
+   "scope": "US",
+   "name": "Safe sleep for your baby",
+   "org": "Safe to Sleep campaign, National Institutes of Health",
+   "what": "Put your baby to sleep on their back, on a firm, flat surface made for babies, with nothing soft in the sleep space. This lowers the risk of sleep-related death.",
+   "how": "Read the short guides, in English and Spanish, before the first night home.",
+   "url": "https://safetosleep.nichd.nih.gov/",
+   "sources": [
+    "https://safetosleep.nichd.nih.gov/"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "us-childcare",
+   "section": "single-parent",
+   "scope": "US",
+   "name": "Child care help, licensing and child support: your state's page",
+   "org": "ChildCare.gov, U.S. Department of Health and Human Services",
+   "what": "One page per state gathers links for finding licensed child care, help paying for it, child support, health coverage and more.",
+   "how": "Open the state list and choose your state. Use the link to your state's child care search to find providers near you.",
+   "url": "https://www.childcare.gov/state-resources",
+   "sources": [
+    "https://www.childcare.gov/state-resources"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "us-head-start",
+   "section": "single-parent",
+   "scope": "US",
+   "name": "Head Start and Early Head Start: free early learning",
+   "org": "Office of Head Start, U.S. Department of Health and Human Services",
+   "what": "Free learning and development for children from birth to age 5 in eligible families. Early Head Start serves babies and toddlers, and some programs also serve pregnant women. All programs welcome children with disabilities.",
+   "how": "Use the center locator, then call the program listed and ask how to enroll. If there is no space, ask to be added to the waiting list.",
+   "url": "https://headstart.gov/center-locator",
+   "sources": [
+    "https://headstart.gov/how-apply",
+    "https://acf.gov/ohs/apply-services"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone": "866-763-6481"
+  },
+  {
+   "id": "us-legal-aid",
+   "section": "single-parent",
+   "scope": "US",
+   "name": "Free legal help: custody, divorce, housing and benefits",
+   "org": "Legal Services Corporation and LawHelp.org",
+   "what": "Legal aid offices help people with low income with family law, eviction, benefits and more, at no cost. Rules about who qualifies depend on the office.",
+   "how": "Use the Legal Services Corporation finder to reach the program for your area. LawHelp.org also has state-by-state guides, forms and local contacts.",
+   "url": "https://www.lsc.gov/about-lsc/what-legal-aid/get-legal-help",
+   "sources": [
+    "https://www.lsc.gov/about-lsc/what-legal-aid/get-legal-help",
+    "https://www.lawhelp.org/"
+   ],
+   "reviewed_on": "2026-11-15",
+   "links": [
+    {
+     "label": "LawHelp.org",
+     "url": "https://www.lawhelp.org/"
+    }
+   ]
+  },
+  {
+   "id": "us-tlc-mama",
+   "section": "take-care",
+   "scope": "US",
+   "name": "National Maternal Mental Health Hotline",
+   "org": "Health Resources and Services Administration (HRSA)",
+   "what": "Free, private support for anyone who is pregnant or has had a baby and feels sad, anxious or overwhelmed. Counselors answer any hour, in English and Spanish.",
+   "how": "Call or text. You do not have to be in a crisis to reach out.",
+   "url": "https://mchb.hrsa.gov/programs-impact/national-maternal-mental-health-hotline",
+   "sources": [
+    "https://mchb.hrsa.gov/programs-impact/national-maternal-mental-health-hotline"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone": "833-852-6262",
+   "phone_label": "1-833-TLC-MAMA",
+   "urgent": true
+  },
+  {
+   "id": "us-psi",
+   "section": "take-care",
+   "scope": "US",
+   "name": "Postpartum Support International",
+   "org": "Postpartum Support International (PSI)",
+   "what": "PSI has Support Coordinators in every US state who can talk with you about postpartum depression, anxiety and other struggles around pregnancy and birth, and point you to local help.",
+   "how": "Call the HelpLine or open the PSI site and choose United States to find help in your area. This is not an emergency line. If you are in crisis, call or text 988.",
+   "url": "https://www.postpartum.net/get-help/",
+   "sources": [
+    "https://www.postpartum.net/get-help/locations/"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone": "800-944-4773",
+   "also": [
+    "connect"
+   ]
+  },
+  {
+   "id": "us-parent-helpline",
+   "section": "take-care",
+   "scope": "US",
+   "name": "National Parent & Youth Helpline",
+   "org": "Parents Anonymous",
+   "what": "Free, confidential emotional support for parents and caregivers when parenting feels like too much. Trained specialists answer by call, text or live chat any hour.",
+   "how": "Call, text or chat. You do not have to be in a crisis.",
+   "url": "https://nationalparentyouthhelpline.org/",
+   "sources": [
+    "https://parentsanonymous.org/helplines"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone": "855-427-2736",
+   "also": [
+    "single-parent",
+    "connect"
+   ]
+  },
+  {
+   "id": "us-samhsa",
+   "section": "take-care",
+   "scope": "US",
+   "name": "SAMHSA National Helpline: mental health and substance use",
+   "org": "Substance Abuse and Mental Health Services Administration",
+   "what": "Free, private referrals to treatment and support for mental health or substance use, any hour, every day of the year.",
+   "how": "Call and describe what you need. They can refer you to local services.",
+   "url": "https://www.samhsa.gov/find-help/national-helpline",
+   "sources": [
+    "https://www.samhsa.gov/find-help/national-helpline"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone": "800-662-4357",
+   "phone_label": "1-800-662-HELP"
+  },
+  {
+   "id": "us-momco",
+   "section": "connect",
+   "scope": "US",
+   "name": "MomCo (formerly MOPS): moms groups",
+   "org": "MomCo",
+   "what": "A nonprofit that gathers moms in small groups, in person and online. It began as Mothers of Preschoolers and has Christian roots, so ask a group how it runs before you go.",
+   "how": "Use Find a Group to see meetups near you or online. Ask whether membership or a fee is needed.",
+   "url": "https://www.themom.co/find-a-meetup",
+   "sources": [
+    "https://www.themom.co/home",
+    "https://www.themom.co/find-a-meetup"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "us-moms-club",
+   "section": "connect",
+   "scope": "US",
+   "name": "MOMS Club: local chapters for at-home moms",
+   "org": "International MOMS Club",
+   "what": "A nonprofit with local chapters for at-home mothers. Chapters plan playgroups, outings, moms' nights out and service projects.",
+   "how": "Open the chapter list and find the chapter for your area. Local chapters set their own dues, so ask before you join.",
+   "url": "https://momsclub.org/chapters/chapter-links/",
+   "sources": [
+    "https://www.momsclub.org/"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "us-mil-onesource",
+   "section": "military",
+   "scope": "US",
+   "name": "Military OneSource special needs consultations",
+   "org": "U.S. Department of Defense",
+   "what": "Free consultants help military families with special education, TRICARE, EFMP and local services. Retirees and honorably discharged members can use it for one year after leaving service.",
+   "how": "Call any time or start a chat to set up a phone or video meeting.",
+   "url": "https://www.militaryonesource.mil/benefits/special-needs-consultations/",
+   "sources": [
+    "https://www.militaryonesource.mil/benefits/special-needs-consultations/"
+   ],
+   "reviewed_on": "2026-11-08",
+   "phone": "800-342-9647"
+  },
+  {
+   "id": "us-mil-efmp",
+   "section": "military",
+   "scope": "US",
+   "name": "Exceptional Family Member Program (EFMP)",
+   "org": "Each military service branch",
+   "what": "Active duty families sign up a family member with special medical or school needs. This helps the military plan moves and support around those needs. Some TRICARE programs require it.",
+   "how": "Contact the EFMP office at your base, or call Military OneSource.",
+   "url": "https://militaryonesource.mil/efmp",
+   "sources": [
+    "https://militaryonesource.mil/efmp"
+   ],
+   "reviewed_on": "2026-11-08",
+   "phone": "800-342-9647"
+  },
+  {
+   "id": "us-va-champva",
+   "section": "military",
+   "scope": "US",
+   "name": "CHAMPVA health coverage for veterans' children",
+   "org": "U.S. Department of Veterans Affairs",
+   "what": "Health coverage for children of veterans rated permanently and totally disabled by a service-connected condition (or who died from one), if the family cannot get TRICARE. It usually ends at 18, or 23 for full-time students. A child who could not support themselves before 18 may stay covered.",
+   "how": "Check if you qualify and apply on VA.gov, or ask your county veterans service officer to help.",
+   "url": "https://www.va.gov/family-and-caregiver-benefits/health-and-disability/champva/",
+   "sources": [
+    "https://www.va.gov/family-and-caregiver-benefits/health-and-disability/champva/"
+   ],
+   "reviewed_on": "2026-11-08",
+   "phone": "800-733-8387"
+  },
+  {
+   "id": "us-vcl",
+   "section": "help-now",
+   "scope": "US",
+   "name": "Veterans Crisis Line",
+   "org": "U.S. Department of Veterans Affairs",
+   "what": "Free, confidential support any hour for veterans, service members and their families and friends. You do not have to be enrolled in VA health care.",
+   "how": "Dial 988 and press 1, text 838255, or chat on the website.",
+   "url": "https://www.veteranscrisisline.net/",
+   "sources": [
+    "https://www.veteranscrisisline.net/"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone": "988",
+   "phone_label": "Dial 988, then press 1",
+   "text": "Text 838255",
+   "urgent": true,
+   "also": [
+    "military"
+   ]
+  },
+  {
+   "id": "us-cdc-act-early",
+   "section": "kids-differently",
+   "scope": "US",
+   "name": "CDC milestone checklists and Milestone Tracker app",
+   "org": "Centers for Disease Control and Prevention",
+   "what": "Free checklists show what most children do at each age, from 2 months to 5 years. They come in English and Spanish, and there is a free phone app.",
+   "how": "Fill out the checklist for your child's age. Take it to your child's next doctor visit. You do not need a diagnosis to ask for help.",
+   "url": "https://www.cdc.gov/act-early/milestones/",
+   "sources": [
+    "https://www.cdc.gov/act-early/milestones/",
+    "https://www.cdc.gov/act-early/families/concerned.html"
+   ],
+   "reviewed_on": "2026-11-08",
+   "phone": "800-232-4636",
+   "phone_label": "CDC-INFO"
+  },
+  {
+   "id": "us-cdc-find-ei",
+   "section": "kids-differently",
+   "scope": "US",
+   "name": "Find your state's early intervention program",
+   "org": "Centers for Disease Control and Prevention",
+   "what": "Every state has free early intervention for children under 3 who are behind or have a disability. You can call yourself. You do not need a doctor's note.",
+   "how": "Look up your state's number and ask for a free evaluation. If your child is 3 or older, call your public school district instead.",
+   "url": "https://www.cdc.gov/FindEI",
+   "sources": [
+    "https://www.cdc.gov/act-early/families/concerned.html"
+   ],
+   "reviewed_on": "2026-11-08"
+  },
+  {
+   "id": "us-parent-center",
+   "section": "kids-differently",
+   "scope": "US",
+   "name": "Your state's Parent Training and Information Center",
+   "org": "Center for Parent Information and Resources",
+   "what": "Every state has a free parent center for families of children with any disability, from birth to age 26. Staff help with school plans, meetings and your rights.",
+   "how": "Find your state on the map. Call before your next school meeting.",
+   "url": "https://www.parentcenterhub.org/find-your-center/",
+   "sources": [
+    "https://www.parentcenterhub.org/find-your-center/"
+   ],
+   "reviewed_on": "2026-11-08"
+  },
+  {
+   "id": "us-family-voices",
+   "section": "kids-differently",
+   "scope": "US",
+   "name": "Family-to-Family Health Information Center",
+   "org": "Family Voices",
+   "what": "Parents who have been there help other families with doctors, insurance, Medicaid and disability services. There is one in every state.",
+   "how": "Find your state's center on the map and call or email them.",
+   "url": "https://familyvoices.org/sao/",
+   "sources": [
+    "https://familyvoices.org/sao/"
+   ],
+   "reviewed_on": "2026-11-08"
+  },
+  {
+   "id": "us-p2p-usa",
+   "section": "kids-differently",
+   "scope": "US",
+   "name": "Parent to Parent: get matched with another parent",
+   "org": "Parent to Parent USA",
+   "what": "A trained volunteer parent whose child has a similar disability calls you, listens and shares what helped them. It is free.",
+   "how": "Find your state's Parent to Parent program on the map and ask to be matched.",
+   "url": "https://www.p2pusa.org/parents/",
+   "sources": [
+    "https://www.p2pusa.org/parents/"
+   ],
+   "reviewed_on": "2026-11-08"
+  },
+  {
+   "id": "us-autism-society",
+   "section": "kids-differently",
+   "scope": "US",
+   "name": "Autism Society National Helpline",
+   "org": "Autism Society of America",
+   "what": "Trained staff help families find autism services, support groups and local chapters. This is not a crisis line.",
+   "how": "Call on a weekday or fill out the online form. Ask about the chapter in your state.",
+   "url": "https://autismsociety.org/helpline",
+   "sources": [
+    "https://autismsociety.org/helpline"
+   ],
+   "reviewed_on": "2026-11-08",
+   "phone": "800-328-8476",
+   "phone_label": "800-3-AUTISM, weekdays"
+  },
+  {
+   "id": "us-chadd-nrc",
+   "section": "kids-differently",
+   "scope": "US",
+   "name": "National Resource Center on ADHD helpline",
+   "org": "CHADD, funded by CDC",
+   "what": "A helpline answers questions about ADHD: diagnosis, treatment, school help and local support groups. Spanish speakers are available.",
+   "how": "Call the ADHD helpline, or use the parent toolkits on the website.",
+   "url": "https://chadd.org/nrc",
+   "sources": [
+    "https://www.cdc.gov/adhd/php/partner-toolkit/resources-for-families.html"
+   ],
+   "reviewed_on": "2026-11-08",
+   "phone": "866-200-8098",
+   "phone_label": "ADHD helpline"
+  },
+  {
+   "id": "us-arch-respite",
+   "section": "kids-differently",
+   "scope": "US",
+   "name": "National Respite Locator",
+   "org": "ARCH National Respite Network",
+   "what": "Respite gives family caregivers a short break while someone trained cares for your child. This search finds respite programs and ways to pay for them.",
+   "how": "Search by state. The list is not complete, so also ask your county or state disability office.",
+   "url": "https://archrespite.org/caregiver-resources/respitelocator/",
+   "sources": [
+    "https://archrespite.org/caregiver-resources/respitelocator/"
+   ],
+   "reviewed_on": "2026-11-08"
+  },
+  {
+   "id": "us-ssa-ssi-child",
+   "section": "kids-differently",
+   "scope": "US",
+   "name": "SSI for children with disabilities",
+   "org": "Social Security Administration",
+   "what": "Monthly payments for children with serious disabilities in families with low income and savings. In most states, SSI also means Medicaid. At 18, Social Security checks again using adult rules.",
+   "how": "Start online or call for an appointment. Have medical and school records ready.",
+   "url": "https://www.ssa.gov/benefits/disability/apply-child.html",
+   "sources": [
+    "https://www.ssa.gov/benefits/disability/apply-child.html",
+    "https://www.ssa.gov/ssi/text-child-ussi.htm"
+   ],
+   "reviewed_on": "2026-11-08",
+   "phone": "800-772-1213",
+   "phone_label": "TTY 800-325-0778"
+  },
+  {
+   "id": "us-nami-family",
+   "section": "kids-differently",
+   "scope": "US",
+   "name": "NAMI Basics and the NAMI HelpLine",
+   "org": "National Alliance on Mental Illness",
+   "what": "NAMI Basics is a free 6-week class for parents and caregivers of children and teens with mental health symptoms, taught by parents who have been there. It is offered in person or online. The HelpLine gives information and support. It is not a crisis line.",
+   "how": "Find a class through your local NAMI or take the online version. Call the HelpLine on weekdays.",
+   "url": "https://nami.org/Support-Education/Mental-Health-Education/NAMI-Basics",
+   "sources": [
+    "https://nami.org/Support-Education/Mental-Health-Education/NAMI-Basics",
+    "https://www.nami.org/?p=21485"
+   ],
+   "reviewed_on": "2026-11-08",
+   "phone": "800-950-6264",
+   "phone_label": "800-950-NAMI, weekdays",
+   "also": [
+    "take-care"
+   ]
+  }
+ ]
+}

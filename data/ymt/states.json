@@ -1,0 +1,1080 @@
+{
+ "reviewed_on": "2026-11-08",
+ "special_needs_sources": [
+  "https://www.ndrn.org/wp-content/uploads/2025/05/PA-CAP-LIST-Updated-5-5-2025.docx",
+  "https://www.cdc.gov/act-early/early-intervention/contact-information-by-state.html",
+  "https://www.parentcenterhub.org/?p=31647",
+  "https://www.parentcenterhub.org/find-your-center/"
+ ],
+ "parent_centers_note": "California and New York have several regional parent centers, so the guide links to the national map for them. Montana's and Illinois's centers changed recently; the national list may still show the old names.",
+ "states": [
+  {
+   "abbr": "AL",
+   "name": "Alabama",
+   "slug": "alabama",
+   "snap_slug": "alabama",
+   "early_intervention": {
+    "name": "Alabama's Early Intervention System",
+    "url": "https://www.rehab.alabama.gov/services/ei",
+    "phone": "800-543-3098"
+   },
+   "parent_center": {
+    "name": "Alabama Parent Education Center",
+    "url": "https://www.alabamaparentcenter.com/",
+    "phone": "334-567-2252"
+   },
+   "protection_advocacy": {
+    "name": "Alabama Disabilities Advocacy Program",
+    "url": "https://adap.ua.edu/",
+    "phone": "800-826-1675"
+   }
+  },
+  {
+   "abbr": "AK",
+   "name": "Alaska",
+   "slug": "alaska",
+   "snap_slug": "alaska",
+   "early_intervention": {
+    "name": "Alaska Early Intervention/Infant Learning Program",
+    "url": "https://health.alaska.gov/en/senior-and-disabilities-services/early-intervention-infant-learning/",
+    "phone": "877-477-3659"
+   },
+   "parent_center": {
+    "name": "Stone Soup Group",
+    "url": "https://www.stonesoupgroup.org/",
+    "phone": "907-561-3701"
+   },
+   "protection_advocacy": {
+    "name": "Disability Law Center of Alaska",
+    "url": "https://www.dlcak.org/",
+    "phone": "800-478-1234"
+   }
+  },
+  {
+   "abbr": "AZ",
+   "name": "Arizona",
+   "slug": "arizona",
+   "snap_slug": "arizona",
+   "early_intervention": {
+    "name": "Arizona Early Intervention Program (AzEIP)",
+    "url": "https://des.az.gov/azeip",
+    "phone": "888-592-0140"
+   },
+   "parent_center": {
+    "name": "Raising Special Kids",
+    "url": "https://www.raisingspecialkids.org/",
+    "phone": "602-242-4366"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Arizona",
+    "url": "https://www.azdisabilitylaw.org/",
+    "phone": "800-927-0992"
+   }
+  },
+  {
+   "abbr": "AR",
+   "name": "Arkansas",
+   "slug": "arkansas",
+   "snap_slug": "arkansas",
+   "early_intervention": {
+    "name": "First Connections",
+    "url": "https://www.firstconnectionsar.org/",
+    "phone": "800-643-8258"
+   },
+   "parent_center": {
+    "name": "The Center for Exceptional Families",
+    "url": "https://www.thecenterforexceptionalfamilies.org/",
+    "phone": "870-336-3012"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Arkansas",
+    "url": "https://www.disabilityrightsar.org/",
+    "phone": "800-482-1174"
+   }
+  },
+  {
+   "abbr": "CA",
+   "name": "California",
+   "slug": "california",
+   "snap_slug": "california",
+   "early_intervention": {
+    "name": "Early Start",
+    "url": "https://www.dds.ca.gov/services/early-start/",
+    "phone": "800-515-2229"
+   },
+   "parent_center": null,
+   "protection_advocacy": {
+    "name": "Disability Rights California",
+    "url": "https://www.disabilityrightsca.org/",
+    "phone": "800-776-5746"
+   }
+  },
+  {
+   "abbr": "CO",
+   "name": "Colorado",
+   "slug": "colorado",
+   "snap_slug": "colorado",
+   "early_intervention": {
+    "name": "Early Intervention Colorado",
+    "url": "https://dcfs.my.salesforce-sites.com/eicolorado/EI_Home?lang=en",
+    "phone": "888-777-4041"
+   },
+   "parent_center": {
+    "name": "PEAK Parent Center",
+    "url": "https://www.peakparent.org/",
+    "phone": "719-531-9400"
+   },
+   "protection_advocacy": {
+    "name": "Disability Law Colorado",
+    "url": "https://www.disabilitylawco.org/",
+    "phone": "800-288-1376"
+   }
+  },
+  {
+   "abbr": "CT",
+   "name": "Connecticut",
+   "slug": "connecticut",
+   "snap_slug": "connecticut",
+   "early_intervention": {
+    "name": "Birth to Three",
+    "url": "https://www.birth23.org/",
+    "phone": "800-505-7000"
+   },
+   "parent_center": {
+    "name": "Connecticut Parent Advocacy Center (CPAC)",
+    "url": "https://www.cpacinc.org/",
+    "phone": "860-739-3089"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Connecticut",
+    "url": "https://www.disrightsct.org/",
+    "phone": "800-842-7303"
+   }
+  },
+  {
+   "abbr": "DE",
+   "name": "Delaware",
+   "slug": "delaware",
+   "snap_slug": "delaware",
+   "early_intervention": {
+    "name": "Birth to Three",
+    "url": "https://www.b23de.org/",
+    "phone": "800-671-0050"
+   },
+   "parent_center": {
+    "name": "Parent Information Center of Delaware",
+    "url": "https://www.picofdel.org/",
+    "phone": "302-999-7394"
+   },
+   "protection_advocacy": {
+    "name": "Community Legal Aid Society, Inc.",
+    "url": "https://www.declasi.org/",
+    "phone": "302-575-0660"
+   }
+  },
+  {
+   "abbr": "DC",
+   "name": "District of Columbia",
+   "slug": "district-of-columbia",
+   "snap_slug": "district-columbia",
+   "early_intervention": {
+    "name": "Strong Start",
+    "url": "https://osse.dc.gov/service/strong-start-dc-early-intervention-program-dc-eip",
+    "phone": "202-727-3665"
+   },
+   "parent_center": {
+    "name": "Advocates for Justice and Education",
+    "url": "https://www.aje-dc.org/",
+    "phone": "202-678-8060"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights DC at University Legal Services",
+    "url": "https://www.uls-dc.org/",
+    "phone": "202-547-0198"
+   }
+  },
+  {
+   "abbr": "FL",
+   "name": "Florida",
+   "slug": "florida",
+   "snap_slug": "florida",
+   "early_intervention": {
+    "name": "Early Steps",
+    "url": "https://www.earlystepsdirectory.com/",
+    "phone": "800-218-0001"
+   },
+   "parent_center": {
+    "name": "Family Network on Disabilities",
+    "url": "https://fndusa.org/",
+    "phone": "800-825-5736"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Florida",
+    "url": "https://www.disabilityrightsflorida.org/",
+    "phone": "800-342-0823"
+   }
+  },
+  {
+   "abbr": "GA",
+   "name": "Georgia",
+   "slug": "georgia",
+   "snap_slug": "georgia",
+   "early_intervention": {
+    "name": "Babies Can't Wait",
+    "url": "https://dph.georgia.gov/Babies-Cant-Wait",
+    "phone": "800-229-2038"
+   },
+   "parent_center": {
+    "name": "Parent to Parent of Georgia",
+    "url": "https://www.p2pga.org/",
+    "phone": "770-451-5484"
+   },
+   "protection_advocacy": {
+    "name": "Georgia Advocacy Office",
+    "url": "https://www.thegao.org/",
+    "phone": "800-537-2329"
+   }
+  },
+  {
+   "abbr": "HI",
+   "name": "Hawaii",
+   "slug": "hawaii",
+   "snap_slug": "hawaii",
+   "early_intervention": {
+    "name": "Early Intervention Section",
+    "url": "https://health.hawaii.gov/eis/home/eiservices/",
+    "phone": "800-235-5477"
+   },
+   "parent_center": {
+    "name": "Leadership in Disabilities & Achievement of Hawaii",
+    "url": "https://www.ldahawaii.org/",
+    "phone": "808-536-9684"
+   },
+   "protection_advocacy": {
+    "name": "Hawaii Disability Rights Center",
+    "url": "https://www.hawaiidisabilityrights.org/",
+    "phone": "808-949-2922"
+   }
+  },
+  {
+   "abbr": "ID",
+   "name": "Idaho",
+   "slug": "idaho",
+   "snap_slug": "idaho",
+   "early_intervention": {
+    "name": "Infant Toddler Program",
+    "url": "https://healthandwelfare.idaho.gov/services-programs/children-families-older-adults/about-infant-toddler-program",
+    "phone": "800-926-2588"
+   },
+   "parent_center": {
+    "name": "Idaho Parents Unlimited",
+    "url": "https://ipulidaho.org/",
+    "phone": "208-342-5884"
+   },
+   "protection_advocacy": {
+    "name": "DisAbility Rights Idaho",
+    "url": "https://www.disabilityrightsidaho.org/",
+    "phone": "866-262-3462"
+   }
+  },
+  {
+   "abbr": "IL",
+   "name": "Illinois",
+   "slug": "illinois",
+   "snap_slug": "illinois",
+   "early_intervention": {
+    "name": "Illinois Early Intervention Program",
+    "url": "https://idec.illinois.gov/forparents/early-intervention.html",
+    "phone": "800-323-4769"
+   },
+   "parent_center": {
+    "name": "Family Matters Parent Training and Information Center",
+    "url": "https://www.fmptic.org/",
+    "phone": "866-436-7842"
+   },
+   "protection_advocacy": {
+    "name": "Equip for Equality",
+    "url": "https://www.equipforequality.org/",
+    "phone": "800-537-2632"
+   }
+  },
+  {
+   "abbr": "IN",
+   "name": "Indiana",
+   "slug": "indiana",
+   "snap_slug": "indiana",
+   "early_intervention": {
+    "name": "First Steps",
+    "url": "https://www.in.gov/fssa/ddars/bcds/",
+    "phone": "800-545-7763"
+   },
+   "parent_center": {
+    "name": "IN*SOURCE",
+    "url": "https://www.insource.org/",
+    "phone": "574-234-7101"
+   },
+   "protection_advocacy": {
+    "name": "Indiana Disability Rights",
+    "url": "https://www.indianadisabilityrights.org/",
+    "phone": "800-622-4845"
+   }
+  },
+  {
+   "abbr": "IA",
+   "name": "Iowa",
+   "slug": "iowa",
+   "snap_slug": "iowa",
+   "early_intervention": {
+    "name": "Early ACCESS",
+    "url": "https://www.iafamilysupportnetwork.org/families/early-access/",
+    "phone": "888-425-4371"
+   },
+   "parent_center": {
+    "name": "ASK Resource Center",
+    "url": "https://askresource.org/",
+    "phone": "515-243-1713"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Iowa",
+    "url": "https://www.driowa.org/",
+    "phone": "800-779-2502"
+   }
+  },
+  {
+   "abbr": "KS",
+   "name": "Kansas",
+   "slug": "kansas",
+   "snap_slug": "kansas",
+   "early_intervention": {
+    "name": "Infant Toddler Program",
+    "url": "https://www.ksits.org/",
+    "phone": "800-332-6262"
+   },
+   "parent_center": {
+    "name": "Families Together",
+    "url": "https://www.familiestogetherinc.org/",
+    "phone": "316-945-7747"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Center of Kansas",
+    "url": "https://www.drckansas.org/",
+    "phone": "877-776-1541"
+   }
+  },
+  {
+   "abbr": "KY",
+   "name": "Kentucky",
+   "slug": "kentucky",
+   "snap_slug": "kentucky",
+   "early_intervention": {
+    "name": "Kentucky Early Intervention System (KEIS)",
+    "url": "https://www.chfs.ky.gov/agencies/dph/dmch/ecdb/Pages/keis.aspx",
+    "phone": "877-417-8377"
+   },
+   "parent_center": {
+    "name": "Kentucky Special Parent Involvement Network (KY-SPIN)",
+    "url": "https://www.kyspin.com/",
+    "phone": "502-937-6894"
+   },
+   "protection_advocacy": {
+    "name": "Kentucky Protection and Advocacy",
+    "url": "https://www.kypa.net/",
+    "phone": "502-564-2967"
+   }
+  },
+  {
+   "abbr": "LA",
+   "name": "Louisiana",
+   "slug": "louisiana",
+   "snap_slug": "louisiana",
+   "early_intervention": {
+    "name": "Early Steps",
+    "url": "https://ldh.la.gov/page/215",
+    "phone": "866-327-5978"
+   },
+   "parent_center": {
+    "name": "Louisiana Parent Training and Information Center",
+    "url": "https://fhfjefferson.org/laptic",
+    "phone": "504-888-9111"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Louisiana",
+    "url": "https://www.disabilityrightsla.org/",
+    "phone": "800-960-7705"
+   }
+  },
+  {
+   "abbr": "ME",
+   "name": "Maine",
+   "slug": "maine",
+   "snap_slug": "maine",
+   "early_intervention": {
+    "name": "Child Development Services",
+    "url": "https://www.maine.gov/doe/learning/cds",
+    "phone": "877-770-8883"
+   },
+   "parent_center": {
+    "name": "Maine Parent Federation",
+    "url": "https://www.mpf.org/",
+    "phone": "207-588-1933"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Maine",
+    "url": "https://www.drme.org/",
+    "phone": "207-626-2774"
+   }
+  },
+  {
+   "abbr": "MD",
+   "name": "Maryland",
+   "slug": "maryland",
+   "snap_slug": "maryland",
+   "early_intervention": {
+    "name": "Maryland Infants and Toddlers Program",
+    "url": "https://marylandpublicschools.org/programs/Pages/Special-Education/MITP/singlepointentry.aspx",
+    "phone": "800-535-0182"
+   },
+   "parent_center": {
+    "name": "The Parents' Place of Maryland",
+    "url": "https://www.ppmd.org/",
+    "phone": "800-394-5694"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Maryland",
+    "url": "https://www.disabilityrightsmd.org/",
+    "phone": "800-233-7201"
+   }
+  },
+  {
+   "abbr": "MA",
+   "name": "Massachusetts",
+   "slug": "massachusetts",
+   "snap_slug": "massachusetts",
+   "early_intervention": {
+    "name": "Massachusetts Early Intervention",
+    "url": "https://www.mass.gov/orgs/early-intervention-division",
+    "phone": "800-905-8437"
+   },
+   "parent_center": {
+    "name": "Federation for Children with Special Needs",
+    "url": "https://fcsn.org/",
+    "phone": "800-331-0688"
+   },
+   "protection_advocacy": {
+    "name": "Disability Law Center",
+    "url": "https://www.dlc-ma.org/",
+    "phone": "800-872-9992"
+   }
+  },
+  {
+   "abbr": "MI",
+   "name": "Michigan",
+   "slug": "michigan",
+   "snap_slug": "michigan",
+   "early_intervention": {
+    "name": "Early On",
+    "url": "https://1800earlyon.org/",
+    "phone": "800-327-5966"
+   },
+   "parent_center": {
+    "name": "Michigan Alliance for Families",
+    "url": "https://www.michiganallianceforfamilies.org/",
+    "phone": "800-552-4821"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Michigan",
+    "url": "https://www.drmich.org/",
+    "phone": "800-288-5923"
+   }
+  },
+  {
+   "abbr": "MN",
+   "name": "Minnesota",
+   "slug": "minnesota",
+   "snap_slug": "minnesota",
+   "early_intervention": {
+    "name": "Help Me Grow",
+    "url": "https://helpmegrowmn.org/HMG/index.htm",
+    "phone": "866-693-4769"
+   },
+   "parent_center": {
+    "name": "PACER Center",
+    "url": "https://www.pacer.org/",
+    "phone": "952-838-9000"
+   },
+   "protection_advocacy": {
+    "name": "Minnesota Disability Law Center",
+    "url": "https://www.mylegalaid.org/",
+    "phone": "800-292-4150"
+   }
+  },
+  {
+   "abbr": "MS",
+   "name": "Mississippi",
+   "slug": "mississippi",
+   "snap_slug": "mississippi",
+   "early_intervention": {
+    "name": "First Steps",
+    "url": "https://msdh.ms.gov/msdhsite/_static/41,0,74.html",
+    "phone": "800-451-3903"
+   },
+   "parent_center": {
+    "name": "Mississippi Parent Training and Information Center",
+    "url": "https://www.mspti.org/",
+    "phone": "601-969-0601"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Mississippi",
+    "url": "https://www.drms.ms/",
+    "phone": "800-772-4057"
+   }
+  },
+  {
+   "abbr": "MO",
+   "name": "Missouri",
+   "slug": "missouri",
+   "snap_slug": "missouri",
+   "early_intervention": {
+    "name": "First Steps",
+    "url": "https://dese.mo.gov/childhood/early-intervention/first-steps",
+    "phone": "866-583-2392"
+   },
+   "parent_center": {
+    "name": "Missouri Parents Act (MPACT)",
+    "url": "https://www.missouriparentsact.org/",
+    "phone": "800-743-7634"
+   },
+   "protection_advocacy": {
+    "name": "Missouri Protection and Advocacy Services",
+    "url": "https://www.moadvocacy.org/",
+    "phone": "800-392-8667"
+   }
+  },
+  {
+   "abbr": "MT",
+   "name": "Montana",
+   "slug": "montana",
+   "snap_slug": "montana",
+   "early_intervention": {
+    "name": "Early Intervention Program",
+    "url": "https://dphhs.mt.gov/ecfsd/childcare/montanamilestones/index",
+    "phone": "406-444-5647"
+   },
+   "parent_center": {
+    "name": "Montana Empowerment Center",
+    "url": "https://www.mtempowermentcenter.org/",
+    "phone": "877-870-1190"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Montana",
+    "url": "https://www.disabilityrightsmt.org/",
+    "phone": "800-245-4743"
+   }
+  },
+  {
+   "abbr": "NE",
+   "name": "Nebraska",
+   "slug": "nebraska",
+   "snap_slug": "nebraska",
+   "early_intervention": {
+    "name": "Early Development Network",
+    "url": "https://edn.ne.gov/cms/families",
+    "phone": "888-806-6287"
+   },
+   "parent_center": {
+    "name": "PTI Nebraska",
+    "url": "https://www.pti-nebraska.org/",
+    "phone": "402-346-0525"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Nebraska",
+    "url": "https://www.disabilityrightsnebraska.org/",
+    "phone": "800-422-6691"
+   }
+  },
+  {
+   "abbr": "NV",
+   "name": "Nevada",
+   "slug": "nevada",
+   "snap_slug": "nevada",
+   "early_intervention": {
+    "name": "Early Intervention Services",
+    "url": "https://www.nevadaactearly.org/resources/parent-resources/referral-pathway/",
+    "phone": "800-522-0066"
+   },
+   "parent_center": {
+    "name": "Nevada PEP",
+    "url": "https://www.nvpep.org/",
+    "phone": "702-388-8899"
+   },
+   "protection_advocacy": {
+    "name": "Nevada Disability Advocacy & Law Center",
+    "url": "https://www.ndalc.org/",
+    "phone": "888-349-3843"
+   }
+  },
+  {
+   "abbr": "NH",
+   "name": "New Hampshire",
+   "slug": "new-hampshire",
+   "snap_slug": "new-hampshire",
+   "early_intervention": {
+    "name": "Family Centered Early Supports & Services",
+    "url": "https://www.dhhs.nh.gov/programs-services/disability-care/developmental-services/birth-3-family-centered-early-supports",
+    "phone": "603-271-5034"
+   },
+   "parent_center": {
+    "name": "Parent Information Center",
+    "url": "https://www.picnh.org/",
+    "phone": "603-224-7005"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Center New Hampshire",
+    "url": "https://www.drcnh.org/",
+    "phone": "800-834-1721"
+   }
+  },
+  {
+   "abbr": "NJ",
+   "name": "New Jersey",
+   "slug": "new-jersey",
+   "snap_slug": "new-jersey",
+   "early_intervention": {
+    "name": "New Jersey Early Intervention System",
+    "url": "https://nj.gov/health/fhs/eis/index.shtml",
+    "phone": "888-653-4463"
+   },
+   "parent_center": {
+    "name": "Statewide Parent Advocacy Network (SPAN)",
+    "url": "https://www.spanadvocacy.org/",
+    "phone": "973-642-8100"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights New Jersey",
+    "url": "https://www.drnj.org/",
+    "phone": "800-922-7233"
+   }
+  },
+  {
+   "abbr": "NM",
+   "name": "New Mexico",
+   "slug": "new-mexico",
+   "snap_slug": "new-mexico",
+   "early_intervention": {
+    "name": "Family Infant Toddler Program",
+    "url": "https://www.nmececd.org/fit-families/",
+    "phone": "877-696-1472"
+   },
+   "parent_center": {
+    "name": "Parents Reaching Out",
+    "url": "https://www.parentsreachingout.org/",
+    "phone": "505-247-0192"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights New Mexico",
+    "url": "https://www.drnm.org/",
+    "phone": "800-432-4682"
+   }
+  },
+  {
+   "abbr": "NY",
+   "name": "New York",
+   "slug": "new-york",
+   "snap_slug": "new-york",
+   "early_intervention": {
+    "name": "Early Intervention Program",
+    "url": "https://www.health.ny.gov/community/infants_children/early_intervention/",
+    "phone": "800-522-5006"
+   },
+   "parent_center": null,
+   "protection_advocacy": {
+    "name": "Disability Rights New York",
+    "url": "https://www.drny.org/",
+    "phone": "800-993-8982"
+   }
+  },
+  {
+   "abbr": "NC",
+   "name": "North Carolina",
+   "slug": "north-carolina",
+   "snap_slug": "north-carolina",
+   "early_intervention": {
+    "name": "Infant-Toddler Program",
+    "url": "https://www.ncdhhs.gov/itp-beearly",
+    "phone": "919-707-5520"
+   },
+   "parent_center": {
+    "name": "ECAC",
+    "url": "https://www.ecac-parentcenter.org/",
+    "phone": "704-892-1321"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights North Carolina",
+    "url": "https://www.disabilityrightsnc.org/",
+    "phone": "877-235-4210"
+   }
+  },
+  {
+   "abbr": "ND",
+   "name": "North Dakota",
+   "slug": "north-dakota",
+   "snap_slug": "north-dakota",
+   "early_intervention": {
+    "name": "Early Intervention Program",
+    "url": "https://www.hhs.nd.gov/early-childhood-services/early-intervention",
+    "phone": "800-755-8529"
+   },
+   "parent_center": {
+    "name": "Pathfinder Parent Center",
+    "url": "https://www.pathfinder-nd.org/",
+    "phone": "701-837-7500"
+   },
+   "protection_advocacy": {
+    "name": "North Dakota Protection & Advocacy Project",
+    "url": "https://www.ndpanda.org/",
+    "phone": "800-472-2670"
+   }
+  },
+  {
+   "abbr": "OH",
+   "name": "Ohio",
+   "slug": "ohio",
+   "snap_slug": "ohio",
+   "early_intervention": {
+    "name": "Help Me Grow Early Intervention",
+    "url": "https://ohioearlyintervention.org/",
+    "phone": "800-755-4769"
+   },
+   "parent_center": {
+    "name": "Ohio Coalition for the Education of Children with Disabilities (OCECD)",
+    "url": "https://www.ocecd.org/",
+    "phone": "844-382-5452"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Ohio",
+    "url": "https://www.disabilityrightsohio.org/",
+    "phone": "800-282-9181"
+   },
+   "local_site": {
+    "name": "OhioMom",
+    "path": "ohio/index.html",
+    "what": "The Ohio home of this project, with county offices, events and a full Ohio family guide."
+   }
+  },
+  {
+   "abbr": "OK",
+   "name": "Oklahoma",
+   "slug": "oklahoma",
+   "snap_slug": "oklahoma",
+   "early_intervention": {
+    "name": "SoonerStart",
+    "url": "https://oklahoma.gov/education/services/soonerstart.html",
+    "phone": "405-271-8333"
+   },
+   "parent_center": {
+    "name": "Oklahoma Parents Center",
+    "url": "https://www.oklahomaparentscenter.org/",
+    "phone": "877-553-4332"
+   },
+   "protection_advocacy": {
+    "name": "Oklahoma Disability Law Center",
+    "url": "https://www.okdlc.org/",
+    "phone": "800-880-7755"
+   }
+  },
+  {
+   "abbr": "OR",
+   "name": "Oregon",
+   "slug": "oregon",
+   "snap_slug": "oregon",
+   "early_intervention": {
+    "name": "Early Intervention and Early Childhood Special Education",
+    "url": "https://www.oregon.gov/ode/students-and-family/SpecialEducation/earlyintervention/Pages/default.aspx",
+    "phone": "503-947-5731"
+   },
+   "parent_center": {
+    "name": "FACT Oregon",
+    "url": "https://factoregon.org/",
+    "phone": "503-786-6082"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Oregon",
+    "url": "https://www.disabilityrightsoregon.org/",
+    "phone": "800-452-1694"
+   }
+  },
+  {
+   "abbr": "PA",
+   "name": "Pennsylvania",
+   "slug": "pennsylvania",
+   "snap_slug": "pennsylvania",
+   "early_intervention": {
+    "name": "Early Intervention",
+    "url": "https://www.pa.gov/agencies/education/programs-and-services/instruction/early-learning/early-intervention",
+    "phone": "800-692-7288"
+   },
+   "parent_center": {
+    "name": "PEAL Center",
+    "url": "https://www.pealcenter.org/",
+    "phone": "866-950-1040"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Pennsylvania",
+    "url": "https://www.disabilityrightspa.org/",
+    "phone": "800-692-7443"
+   }
+  },
+  {
+   "abbr": "RI",
+   "name": "Rhode Island",
+   "slug": "rhode-island",
+   "snap_slug": "rhode-island",
+   "early_intervention": {
+    "name": "Early Intervention Program",
+    "url": "https://www.eohhs.ri.gov/Consumer/FamilieswithChildren/EarlyIntervention.aspx",
+    "phone": "401-270-0101"
+   },
+   "parent_center": {
+    "name": "Rhode Island Parent Information Network (RIPIN)",
+    "url": "https://www.ripin.org/",
+    "phone": "401-270-0101"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Rhode Island",
+    "url": "https://www.drri.org/",
+    "phone": "800-733-5332"
+   }
+  },
+  {
+   "abbr": "SC",
+   "name": "South Carolina",
+   "slug": "south-carolina",
+   "snap_slug": "south-carolina",
+   "early_intervention": {
+    "name": "BabyNet",
+    "url": "https://www.scdhhs.gov/resources/programs-and-initiatives/babynet",
+    "phone": "877-621-0865"
+   },
+   "parent_center": {
+    "name": "Family Connection of South Carolina",
+    "url": "https://www.familyconnectionsc.org/",
+    "phone": "803-252-0914"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights South Carolina",
+    "url": "https://www.disabilityrightssc.org/",
+    "phone": "866-275-7273"
+   }
+  },
+  {
+   "abbr": "SD",
+   "name": "South Dakota",
+   "slug": "south-dakota",
+   "snap_slug": "south-dakota",
+   "early_intervention": {
+    "name": "Birth to Three",
+    "url": "https://doe.sd.gov/birthto3/",
+    "phone": "800-305-3064"
+   },
+   "parent_center": {
+    "name": "South Dakota Parent Connection",
+    "url": "https://www.sdparent.org/",
+    "phone": "605-361-3171"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights South Dakota",
+    "url": "https://www.drsdlaw.org/",
+    "phone": "800-658-4782"
+   }
+  },
+  {
+   "abbr": "TN",
+   "name": "Tennessee",
+   "slug": "tennessee",
+   "snap_slug": "tennessee",
+   "early_intervention": {
+    "name": "Tennessee Early Intervention System (TEIS)",
+    "url": "https://www.tn.gov/disability-and-aging/disability-aging-programs/teis.html",
+    "phone": "800-852-7157"
+   },
+   "parent_center": {
+    "name": "Support and Training for Exceptional Parents (STEP)",
+    "url": "https://www.tnstep.org/",
+    "phone": "423-639-0125"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Tennessee",
+    "url": "https://www.disabilityrightstn.org/",
+    "phone": "800-342-1660"
+   }
+  },
+  {
+   "abbr": "TX",
+   "name": "Texas",
+   "slug": "texas",
+   "snap_slug": "texas",
+   "early_intervention": {
+    "name": "Early Childhood Intervention (ECI)",
+    "url": "https://hhs.texas.gov/eci",
+    "phone": "877-787-8999"
+   },
+   "parent_center": {
+    "name": "Partners Resource Network",
+    "url": "https://prntexas.org/",
+    "phone": "800-866-4726"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Texas",
+    "url": "https://www.disabilityrightstx.org/",
+    "phone": "800-252-9108"
+   }
+  },
+  {
+   "abbr": "UT",
+   "name": "Utah",
+   "slug": "utah",
+   "snap_slug": "utah",
+   "early_intervention": {
+    "name": "Early Childhood Utah",
+    "url": "https://earlychildhood.utah.gov/",
+    "phone": "800-961-4226"
+   },
+   "parent_center": {
+    "name": "Utah Parent Center",
+    "url": "https://www.utahparentcenter.org/",
+    "phone": "801-272-1051"
+   },
+   "protection_advocacy": {
+    "name": "Disability Law Center",
+    "url": "https://www.disabilitylawcenter.org/",
+    "phone": "800-662-9080"
+   }
+  },
+  {
+   "abbr": "VT",
+   "name": "Vermont",
+   "slug": "vermont",
+   "snap_slug": "vermont",
+   "early_intervention": {
+    "name": "Early Intervention for Infants and Toddlers",
+    "url": "https://dcf.vermont.gov/services/cis/IDEA",
+    "phone": "800-649-2642"
+   },
+   "parent_center": {
+    "name": "Vermont Family Network",
+    "url": "https://www.vermontfamilynetwork.org/",
+    "phone": "802-876-5315"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Vermont",
+    "url": "https://www.disabilityrightsvt.org/",
+    "phone": "800-834-7890"
+   }
+  },
+  {
+   "abbr": "VA",
+   "name": "Virginia",
+   "slug": "virginia",
+   "snap_slug": "virginia",
+   "early_intervention": {
+    "name": "Infant & Toddler Connection of Virginia",
+    "url": "https://www.itcva.online/",
+    "phone": "800-234-1448"
+   },
+   "parent_center": {
+    "name": "Parent Educational Advocacy Training Center (PEATC)",
+    "url": "https://www.peatc.org/",
+    "phone": "703-923-0010"
+   },
+   "protection_advocacy": {
+    "name": "disAbility Law Center of Virginia",
+    "url": "https://www.dlcv.org/",
+    "phone": "800-552-3962"
+   }
+  },
+  {
+   "abbr": "WA",
+   "name": "Washington",
+   "slug": "washington",
+   "snap_slug": "washington",
+   "early_intervention": {
+    "name": "Early Support for Infants and Toddlers (ESIT)",
+    "url": "https://www.dcyf.wa.gov/services/child-development-supports/esit",
+    "phone": "800-322-2588"
+   },
+   "parent_center": {
+    "name": "PAVE",
+    "url": "https://www.wapave.org/",
+    "phone": "253-565-2266"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Washington",
+    "url": "https://www.disabilityrightswa.org/",
+    "phone": "800-562-2702"
+   }
+  },
+  {
+   "abbr": "WV",
+   "name": "West Virginia",
+   "slug": "west-virginia",
+   "snap_slug": "west-virginia",
+   "early_intervention": {
+    "name": "Birth to Three",
+    "url": "https://www.wvdhhr.org/birth23/families.asp",
+    "phone": "866-321-4728"
+   },
+   "parent_center": {
+    "name": "West Virginia Parent Training and Information",
+    "url": "https://www.wvpti.org/",
+    "phone": "304-624-1436"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights West Virginia",
+    "url": "https://www.drofwv.org/",
+    "phone": "800-950-5250"
+   }
+  },
+  {
+   "abbr": "WI",
+   "name": "Wisconsin",
+   "slug": "wisconsin",
+   "snap_slug": "wisconsin",
+   "early_intervention": {
+    "name": "Birth to 3 Program",
+    "url": "https://www.dhs.wisconsin.gov/birthto3/index.htm",
+    "phone": "800-642-7837"
+   },
+   "parent_center": {
+    "name": "Wisconsin FACETS",
+    "url": "https://www.wifacets.org/",
+    "phone": "414-374-4645"
+   },
+   "protection_advocacy": {
+    "name": "Disability Rights Wisconsin",
+    "url": "https://www.disabilityrightswi.org/",
+    "phone": "800-928-8778"
+   }
+  },
+  {
+   "abbr": "WY",
+   "name": "Wyoming",
+   "slug": "wyoming",
+   "snap_slug": "wyoming",
+   "early_intervention": {
+    "name": "Early Intervention and Education Program",
+    "url": "https://health.wyo.gov/behavioralhealth/early-intervention-education-program-eiep/",
+    "phone": "307-777-7115"
+   },
+   "parent_center": {
+    "name": "Parent Information Center",
+    "url": "https://www.wpic.org/",
+    "phone": "307-684-2277"
+   },
+   "protection_advocacy": {
+    "name": "Wyoming Protection & Advocacy System",
+    "url": "https://www.wypanda.com/",
+    "phone": "800-821-3091"
+   }
+  }
+ ]
+}
