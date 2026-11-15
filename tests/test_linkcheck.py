@@ -54,6 +54,7 @@ class SortingTests(unittest.TestCase):
             '/soft404': (200, {}, page('Page not found | State Department')),
             '/moved': (302, {'Location': other}, ''),
             '/same-site': (302, {'Location': '/ok'}, ''),
+            '/loop': (307, {'Location': '/loop'}, ''),
         })
         cls.turns_away = make_server({'*': (404, {}, 'not for robots')})
         cls.base = f'http://127.0.0.1:{cls.normal.server_port}'
@@ -81,6 +82,10 @@ class SortingTests(unittest.TestCase):
 
     def test_a_refusal_is_unchecked(self):
         self.assertEqual(self.pile(self.base + '/refused'), 'unchecked')
+
+    def test_a_redirect_that_never_settles_is_unchecked(self):
+        """La Leche League's site bounces a robot forever while the page loads in a browser."""
+        self.assertEqual(self.pile(self.base + '/loop'), 'unchecked')
 
     def test_a_parked_or_taken_over_address_is_broken_even_though_it_loads(self):
         self.assertEqual(self.pile(self.base + '/parked'), 'broken')

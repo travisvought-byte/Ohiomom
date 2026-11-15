@@ -34,14 +34,3 @@ jobs:
           else
             gh issue create --title "$TITLE ($(date +%B\ %Y))" --body-file report.md
           fi
-      # TRIAL ONLY (removed before merge): how does the checker sort addresses known to be bad or blocked?
-      - name: Trial probe
-        if: github.ref != 'refs/heads/main'
-        run: >
-          python3 scripts/linkcheck.py --probe
-          https://www.wvpti.org/ https://www.tnstep.org/ https://www.drnj.org/ https://www.indianadisabilityrights.org/
-          https://www.azdisabilitylaw.org/ https://llli.org/get-help/ "https://www.parentcenterhub.org/?p=31647"
-          https://www.mspti.org/ https://www.raisingspecialkids.org/ https://www.ksits.org/ https://www.driowa.org/
-          https://jfs.ohio.gov/child-support https://jfs.ohio.gov/ https://energyhelp.ohio.gov/ https://www.fna.usda.gov/wic/apply
-          https://msdh.ms.gov/msdhsite/_static/41,0,74.html https://www.ssa.gov/benefits/disability/apply-child.html
-          || true

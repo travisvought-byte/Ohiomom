@@ -97,6 +97,9 @@ class Checker:
                 if exc.code in REFUSED:
                     return 'unchecked', f'the site refused the robot (HTTP {exc.code})', url
                 last = f'HTTP {exc.code}'
+                if 300 <= exc.code < 400:
+                    # A redirect that never settles. Some sites do this to robots only.
+                    return 'unchecked', f'the site kept redirecting the robot ({last})', url
                 if exc.code < 500:
                     is_front = urllib.parse.urlsplit(url).path in ('', '/')
                     if exc.code in (404, 410) and (is_front or not self.front_page_loads(url)):

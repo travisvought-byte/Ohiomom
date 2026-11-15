@@ -39,7 +39,10 @@ Ohio site (OhioMom):
 ## Keeping it current
 
 - Every push runs both validations, both build checks, the Python tests and the family-guide test.
-- On the 3rd of each month the Ohio listings are requested automatically, and on the 4th the national ones. If any fail, an issue is opened naming them so a person can review. Either check can also be run by hand from the Actions tab.
+- On the 3rd of each month the Ohio listings are requested automatically, and on the 4th the national ones (`scripts/linkcheck.py` does the work for both). Either check can also be run by hand from the Actions tab; a run on a branch other than `main` is a trial and opens no issue.
+- A robot cannot settle every link, so each one is sorted: it loaded; it is **broken** (gone, failing, parked, taken over, or a page that says "not found"); it has **moved** (the address now forwards to a different website); or it **cannot be checked** (the site refuses robots). The last three open an issue, or add to the one already open, because a person has to look.
+- `data/link-checks.json` records each link a person opened in a real browser and found working, with the date. The checks skip those for 180 days and then ask again. Add or re-date an entry only after opening the link yourself.
+- A link that loads is not proof the listing is right. On November 15, 2026 two parent-center addresses loaded fine for the robot while one forwarded to a gambling site and the other was parked for sale; one phone number was simply wrong. Those were found by comparing every state record with the national lists it is sourced from: the NDRN member list (disability-rights agencies), the CDC early intervention contact list, and the Parent Center Hub. Repeat that comparison a couple of times a year.
 
 ## Safety standards
 
@@ -49,11 +52,11 @@ Ohio site (OhioMom):
 
 ## Still to settle
 
-- **Hosting.** Decided: Wix headless serves the whole site. Nothing deploys when a branch is merged; each release is uploaded to the Wix site by hand.
+- **Hosting.** Decided: Wix headless serves the whole site. Nothing deploys when a branch is merged; each release is uploaded to the Wix site by hand. Wix keeps each Ohio page without its `wix-site-script` tag and adds the tag back when it serves the page, so the stored copy of those pages is the repo copy minus that one tag. Wix also serves its own `sitemap.xml`, `robots.txt` and not-found page.
 - **Domains.** Decided (Nov 15, 2026): `www.yogamomtalk.com` is the primary domain and yogamomtalk.org redirects to it. Still open: ohiomom.org is not assigned, so every outside link to it is dead until it is connected again, including the Veteran Home Guardians guide's link and the QR code on the printed family guide flyer. No page on this site links or redirects to ohiomom.org any more (a test enforces it). Assigned as a redirecting domain, its old page links land on the same page here and the redirect pages carry them on to `/ohio/`, but its home page lands on the national home, because the visitor has already left ohiomom.org by the time the page loads and the home page check never runs. Sending the ohiomom.org home page straight to `/ohio/` needs a redirect hosted outside Wix.
 - **Corrections email.** The default is `travis@vethomeguard.org`; change it in `data/ymt/resources.json` and rebuild.
 - **Trademark.** The name is a decision for later. It is kept in one config value so a change is a rebuild.
-- **First link check.** Run the national link check once from the Actions tab. These links were not confirmed from the build environment: Safe to Sleep, Veterans Crisis Line, the HRSA maternal mental health hotline page, Childhelp, Legal Services Corporation and LawHelp.org.
+- **Phone numbers.** No number on the site has been dialed. They match the published sources named on each card, and the state records match the three national lists as of November 15, 2026. Ohio's energy assistance line (800-282-0880) is still printed by local agencies but no longer appears on the state's own pages since the program changed departments in April 2026; dial it once to confirm it still connects.
 - County-by-county Ohio pages beyond the four now published (Job and Family Services, board of developmental disabilities, housing front door, energy assistance provider).
 
 ## Credit and license
