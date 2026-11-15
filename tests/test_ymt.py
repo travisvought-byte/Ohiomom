@@ -162,6 +162,50 @@ class SiteTests(unittest.TestCase):
                 self.assertNotIn('Next step:', visible, f'{path}: the next step belongs in the details')
                 self.assertLessEqual(len(re.sub(r'<[^>]+>', '', visible)), 330, f'{path}: the short part of a card got long')
 
+    def test_exit_link_is_inside_the_page_header(self):
+        # Everything a screen reader meets is inside a landmark, the quick exit included.
+        for path in PAGES:
+            text = path.read_text(encoding='utf-8')
+            self.assertIn('<header class="top"><a class="exit" data-exit ', text, path)
+            self.assertEqual(text.count('<header'), 1, f'{path}: one banner')
+            self.assertEqual(text.count('<main'), 1, path)
+
+    def test_row_headings_sit_directly_in_the_summary(self):
+        # A heading inside a <span> is not valid HTML. The row heading is a child of <summary>.
+        for path in list(PAGES) + sorted((ROOT / 'ohio').rglob('*.html')):
+            text = path.read_text(encoding='utf-8')
+            self.assertNotIn('class="ntext"', text, path)
+            self.assertIsNone(re.search(r'<span[^>]*>\s*<h[1-6]', text), f'{path}: heading inside a span')
+        for script in ('ohio/assets/site.js', 'assets/ymt.js'):
+            self.assertNotIn('ntext', (ROOT / script).read_text(encoding='utf-8'), script)
+
+    def test_button_text_has_enough_contrast(self):
+        def lum(h):
+            r, g, b = (int(h[i:i + 2], 16) / 255 for i in (1, 3, 5))
+            f = lambda c: c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4
+            return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b)
+        for sheet in ('ohio/assets/site.css', 'assets/ymt.css'):
+            css = (ROOT / sheet).read_text(encoding='utf-8')
+            for name in ('brand', 'teal'):
+                m = re.search(r'--%s:(#[0-9a-fA-F]{6})' % name, css)
+                self.assertIsNotNone(m, f'{sheet}: --{name}')
+                ratio = 1.05 / (lum(m.group(1)) + 0.05)
+                self.assertGreaterEqual(ratio, 4.5, f'{sheet}: white text on --{name} {m.group(1)} is {ratio:.2f}:1')
+
+    def test_front_page_says_what_the_site_is(self):
+        text = (ROOT / 'index.html').read_text(encoding='utf-8')
+        title = re.search(r'<title>(.*?)</title>', text).group(1)
+        self.assertIn('Yoga Mom Talk', title)
+        self.assertGreater(len(title), 30, 'the title says more than the name')
+        import json
+        about = json.loads(re.search(r'<script type="application/ld\+json">(.*?)</script>', text).group(1))
+        self.assertEqual(about['@type'], 'WebSite')
+        self.assertEqual(about['url'], 'https://www.yogamomtalk.com/')
+        for path in PAGES:
+            desc = re.search(r'<meta name="description" content="([^"]*)"', path.read_text(encoding='utf-8'))
+            self.assertIsNotNone(desc, path)
+            self.assertLessEqual(len(desc.group(1)), 165, f'{path}: description is cut off in search results past about 160 characters')
+
     def test_sitemap_lists_every_page_but_404_and_stubs(self):
         sm = (ROOT / 'sitemap.xml').read_text(encoding='utf-8')
         locs = re.findall(r'<loc>([^<]+)</loc>', sm)

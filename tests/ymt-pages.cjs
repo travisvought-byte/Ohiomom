@@ -103,6 +103,9 @@ console.log('PASS front pages show no listings, needs open only when chosen, car
 // 6. The inner OhioMom pages follow the same rule: an index of closed rows, short cards, the rest when asked.
 const ohioScript = fs.readFileSync('ohio/assets/site.js', 'utf8');
 const ohioData = JSON.parse(fs.readFileSync('ohio/assets/data.json', 'utf8'));
+// The feedback script is a module; without its one export keyword it runs as a plain script here.
+const listenScript = fs.readFileSync('ohio/assets/listen.js', 'utf8').replace('export async function send', 'async function send');
+assert(!/^\s*(import|export)\s/m.test(listenScript));
 const tick = () => new Promise((r) => setTimeout(r, 0));
 // Every event is moved to today or later, so this test does not start failing as the real dates pass.
 function futureData() {
@@ -117,6 +120,7 @@ async function loadOhio(file, hash = '') {
   w.matchMedia = () => ({ matches: false });
   w.fetch = (url) => Promise.resolve({ json: () => Promise.resolve(/map\.json$/.test(url) ? JSON.parse(fs.readFileSync('ohio/assets/map.json', 'utf8')) : futureData()) });
   w.eval(ohioScript);
+  w.eval(listenScript);
   for (let i = 0; i < 6; i++) await tick();
   return { w, d: w.document };
 }
@@ -189,7 +193,42 @@ for (const f of counties) {
   assert(safety && safety.querySelector('[data-exit]'), `${f}: the safety row has a quick exit inside it`);
 }
 
+// 7. What a screen reader relies on: one banner, one main, nothing outside a landmark, headings that never skip a level,
+// and row headings that are direct children of their <summary> (a heading inside a <span> is not valid HTML).
+function checkStructure(d, file) {
+  assert.equal(all(d, 'body > header').length, 1, `${file}: one banner`);
+  assert.equal(all(d, 'header').length, 1, `${file}: no second header`);
+  assert.equal(all(d, 'main').length, 1, `${file}: one main`);
+  for (const el of d.body.children) {
+    const ok = ['HEADER', 'MAIN', 'FOOTER', 'SCRIPT'].includes(el.tagName) || el.matches('a.skip');
+    assert(ok, `${file}: <${el.tagName.toLowerCase()} class="${el.className}"> sits outside the page landmarks`);
+  }
+  let last = 0;
+  for (const h of all(d, 'h1, h2, h3, h4, h5, h6')) {
+    const level = +h.tagName[1];
+    assert(level <= last + 1, `${file}: "${h.textContent.trim().slice(0, 40)}" jumps from h${last} to h${level}`);
+    last = level;
+  }
+  for (const h of all(d, 'summary h2, summary h3')) assert.equal(h.parentElement.tagName, 'SUMMARY', `${file}: a row heading is a direct child of its summary`);
+  for (const sm of all(d, 'summary')) for (const c of sm.children) assert(!['DIV', 'P', 'UL', 'SECTION'].includes(c.tagName), `${file}: a block element inside a summary`);
+}
+const staticPages = ['index.html', 'help.html', 'connect.html', 'states.html', 'about.html', 'yoga.html', 'report.html', '404.html']
+  .concat(fs.readdirSync('states').filter((f) => f.endsWith('.html')).map((f) => 'states/' + f))
+  .concat(fs.readdirSync('ohio').filter((f) => f.endsWith('.html')).map((f) => 'ohio/' + f))
+  .concat(fs.readdirSync('ohio/help').filter((f) => f.endsWith('.html')).map((f) => 'ohio/help/' + f))
+  .concat(counties)
+  .filter((f) => !/http-equiv="refresh"/i.test(fs.readFileSync(f, 'utf8')));
+assert(staticPages.length > 70);
+for (const f of staticPages) checkStructure(staticDoc(f), f);
+console.log(`PASS structure: one banner, one main, landmarks and heading order on ${staticPages.length} pages`);
+
 (async () => {
+  // The pages that fill themselves in keep the same structure once they have.
+  for (const [f, hash] of [['ohio/events.html', ''], ['ohio/connect.html', ''], ['ohio/near-you.html', '#central']]) {
+    const { d } = await loadOhio(f, hash);
+    checkStructure(d, f + hash);
+    assert(d.querySelector('main > .helpful'), `${f}: the "did you find it" question is inside <main>`);
+  }
   // A county page: a link to a section opens that row; search opens the rows that match and puts the rest away.
   {
     const { w, d } = await loadOhio('ohio/counties/morrow.html', '#legal');
