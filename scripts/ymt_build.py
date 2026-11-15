@@ -100,7 +100,8 @@ def card(r, root='', compact_href=None):
     acts = []
     if r.get('phone'):
         acts.append(f'<a class="btn call" href="{tel(r["phone"])}">Call {esc(r["phone"])}</a>')
-    acts.append(f'<a class="btn" href="{esc(r["url"])}" rel="noopener">Website</a>')
+    if r.get('url'):
+        acts.append(f'<a class="btn" href="{esc(r["url"])}" rel="noopener">Website</a>')
     for link in r.get('links', []):
         acts.append(f'<a class="btn plain" href="{esc(link["url"])}" rel="noopener">{esc(link["label"])}</a>')
     out.append('<p class="actions">' + ''.join(acts) + '</p>')

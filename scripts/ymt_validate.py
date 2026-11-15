@@ -39,7 +39,10 @@ def main():
         for k in ('early_intervention', 'parent_center', 'protection_advocacy'):
             e = s.get(k)
             if e:
-                check_url(f"{s['abbr']}.{k}", e.get('url'), errors)
+                if e.get('url'):
+                    check_url(f"{s['abbr']}.{k}", e.get('url'), errors)
+                elif not e.get('phone'):
+                    errors.append(f"{s['abbr']}.{k}: needs a website or a phone number")
                 if e.get('phone') and not lib.PHONE.match(e['phone']):
                     errors.append(f"{s['abbr']}.{k}: bad phone {e['phone']}")
         if s.get('local_site'):
@@ -65,9 +68,10 @@ def main():
             errors.append(f'{rid}: phone must be NNN or NNN-NNN-NNNN')
         if r.get('urgent') and not r.get('phone'):
             errors.append(f'{rid}: urgent listings need a phone number')
-        if not r.get('url'):
-            errors.append(f'{rid}: missing url')
-        check_url(rid, r.get('url'), errors)
+        if r.get('url'):
+            check_url(rid, r.get('url'), errors)
+        elif not r.get('phone'):
+            errors.append(f'{rid}: needs a website or a phone number')
         for u in r.get('sources', []):
             check_url(rid, u, errors)
         for link in r.get('links', []):

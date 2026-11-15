@@ -1,25 +1,37 @@
 #!/usr/bin/env python3
-"""Request each listing's website; print a report and exit 1 if any fail."""
-import json, sys, urllib.request
+"""Request each Ohio listing's website and print a markdown report.
+
+Exit 1 when a person needs to look: a link is broken, now goes to a different website, or sits on
+a site that turns robots away and has not been opened in a browser recently. See linkcheck.py.
+"""
+import json
+import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import linkcheck  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[1]
-data = json.loads((ROOT / 'data' / 'resources.json').read_text(encoding='utf-8'))
-bad = []
-for r in data['resources']:
-    url = r.get('url')
-    if not url:
-        continue
-    try:
-        req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0 (OhioMom link check)'})
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            if resp.status >= 400:
-                bad.append((r, f'HTTP {resp.status}'))
-    except Exception as exc:  # report every failure; a person decides what it means
-        bad.append((r, str(exc)[:120]))
-if bad:
-    print('These listings did not load. Some sites block automated checks, so open each one before changing it.\n')
-    for r, why in bad:
-        print(f'- **{r["name"]}** (`{r["id"]}`): {r["url"]} — {why}')
-    sys.exit(1)
-print('All listing websites loaded.')
+
+
+def collect():
+    data = json.loads((ROOT / 'data' / 'resources.json').read_text(encoding='utf-8'))
+    used = {}
+    for r in data['resources']:
+        if r.get('url'):
+            used.setdefault(r['url'], set()).add(r['id'])
+    return used
+
+
+def main():
+    used = collect()
+    results = linkcheck.Checker().check_all(sorted(used))
+    text, needs_a_person = linkcheck.report(
+        results, used, linkcheck.load_ledger(),
+        fix_hint='Fix `data/resources.json` and the matching card on the Ohio pages.')
+    print(text)
+    sys.exit(1 if needs_a_person else 0)
+
+
+if __name__ == '__main__':
+    main()

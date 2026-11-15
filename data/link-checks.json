@@ -1,0 +1,281 @@
+{
+ "note": "Links that a person opened in a real browser and found working, with the date. The monthly link checks skip a link listed here when the site turns robots away, until the date is older than max_age_days. 'lands_on' records where an address forwards to; if it starts forwarding somewhere else, the check raises it again. Add or re-date an entry only after opening the link yourself.",
+ "max_age_days": 180,
+ "opened_in_browser": {
+  "https://benefits.ohio.gov/": {
+   "opened": "2026-11-15"
+  },
+  "https://des.az.gov/azeip": {
+   "opened": "2026-11-15"
+  },
+  "https://disabilityjustice.co/": {
+   "opened": "2026-11-15"
+  },
+  "https://disabilityrightsaz.org/": {
+   "opened": "2026-11-15"
+  },
+  "https://disabilityrightsiowa.org/": {
+   "opened": "2026-11-15"
+  },
+  "https://disabilityrightsnj.org/": {
+   "opened": "2026-11-15"
+  },
+  "https://drok.org/": {
+   "opened": "2026-11-15"
+  },
+  "https://encirclefamilies.org/": {
+   "opened": "2026-11-15"
+  },
+  "https://energyhelp.ohio.gov/": {
+   "opened": "2026-11-15",
+   "lands_on": "jfs.ohio.gov"
+  },
+  "https://fhfofgno.org/laptic": {
+   "opened": "2026-11-15"
+  },
+  "https://floridaearlysteps.com/": {
+   "opened": "2026-11-15"
+  },
+  "https://jfs.ohio.gov/child-support": {
+   "opened": "2026-11-15"
+  },
+  "https://liheapch.acf.gov/get_help.htm": {
+   "opened": "2026-11-15"
+  },
+  "https://llli.org/get-support/": {
+   "opened": "2026-11-15"
+  },
+  "https://mchb.hrsa.gov/programs-impact/national-maternal-mental-health-hotline": {
+   "opened": "2026-11-15"
+  },
+  "https://medicaid.ohio.gov/": {
+   "opened": "2026-11-15"
+  },
+  "https://militaryonesource.mil/efmp": {
+   "opened": "2026-11-15"
+  },
+  "https://msdh.ms.gov/ei": {
+   "opened": "2026-11-15"
+  },
+  "https://mylegalaid.org/disability-law-center/": {
+   "opened": "2026-11-15"
+  },
+  "https://odh.ohio.gov/wic": {
+   "opened": "2026-11-15"
+  },
+  "https://referral.mditp.org/": {
+   "opened": "2026-11-15"
+  },
+  "https://tnstep.info/": {
+   "opened": "2026-11-15"
+  },
+  "https://wvpti-inc.org/": {
+   "opened": "2026-11-15"
+  },
+  "https://www.cdc.gov/act-early/early-intervention/contact-information-by-state.html": {
+   "opened": "2026-11-15"
+  },
+  "https://www.dhhs.nh.gov/programs-services/disability-care/developmental-services/birth-3-family-centered-early-supports": {
+   "opened": "2026-11-15"
+  },
+  "https://www.droregon.org/": {
+   "opened": "2026-11-15"
+  },
+  "https://www.energyhelp.us/": {
+   "opened": "2026-11-15",
+   "lands_on": "liheapch.acf.gov"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/alabama": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/alaska": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/arizona": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/arkansas": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/california": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/colorado": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/connecticut": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/delaware": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/district-columbia": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/florida": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/georgia": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/hawaii": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/idaho": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/illinois": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/indiana": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/iowa": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/kansas": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/kentucky": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/louisiana": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/maine": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/maryland": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/massachusetts": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/michigan": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/minnesota": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/mississippi": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/missouri": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/montana": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/nebraska": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/nevada": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/new-hampshire": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/new-jersey": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/new-mexico": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/new-york": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/north-carolina": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/north-dakota": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/ohio": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/oklahoma": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/oregon": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/pennsylvania": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/rhode-island": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/south-carolina": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/south-dakota": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/tennessee": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/texas": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/utah": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/vermont": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/virginia": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/washington": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/west-virginia": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/wisconsin": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap-directory-entry/wyoming": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/snap/state-directory": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/wic/apply": {
+   "opened": "2026-11-15"
+  },
+  "https://www.fna.usda.gov/wic/benefits": {
+   "opened": "2026-11-15"
+  },
+  "https://www.hhs.gov/answers/health-care-assistance/index.html": {
+   "opened": "2026-11-15"
+  },
+  "https://www.in.gov/idr/": {
+   "opened": "2026-11-15"
+  },
+  "https://www.kdhe.ks.gov/677/Kansas-Early-Childhood-Developmental-Ser": {
+   "opened": "2026-11-15"
+  },
+  "https://www.mass.gov/orgs/early-intervention-division": {
+   "opened": "2026-11-15"
+  },
+  "https://www.missouriparentsact.org/": {
+   "opened": "2026-11-15"
+  },
+  "https://www.ndrn.org/about/ndrn-member-agencies/": {
+   "opened": "2026-11-15"
+  },
+  "https://www.parentcenterhub.org/find-your-center/": {
+   "opened": "2026-11-15"
+  },
+  "https://www.ssa.gov/ssi": {
+   "opened": "2026-11-15"
+  },
+  "https://www.ssa.gov/ssi/text-child-ussi.htm": {
+   "opened": "2026-11-15"
+  },
+  "https://www.tn.gov/disability-and-aging/disability-aging-programs/teis.html": {
+   "opened": "2026-11-15"
+  }
+ }
+}

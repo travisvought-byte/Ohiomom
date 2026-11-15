@@ -267,9 +267,9 @@
    "org": "La Leche League",
    "what": "Meetings and one-to-one help led by trained volunteer Leaders, who have breastfed their own babies. A map shows groups and Leaders near you and online.",
    "how": "Open the map, allow your location or search your area, and contact a Leader. Ask whether there is any cost.",
-   "url": "https://llli.org/get-help/",
+   "url": "https://llli.org/get-support/",
    "sources": [
-    "https://llli.org/get-help/"
+    "https://llli.org/get-support/"
    ],
    "reviewed_on": "2026-11-15",
    "also": [
@@ -647,12 +647,12 @@
    "org": "Social Security Administration",
    "what": "Monthly payments for children with serious disabilities in families with low income and savings. In most states, SSI also means Medicaid. At 18, Social Security checks again using adult rules.",
    "how": "Start online or call for an appointment. Have medical and school records ready.",
-   "url": "https://www.ssa.gov/benefits/disability/apply-child.html",
+   "url": "https://www.ssa.gov/ssi",
    "sources": [
-    "https://www.ssa.gov/benefits/disability/apply-child.html",
+    "https://www.ssa.gov/ssi",
     "https://www.ssa.gov/ssi/text-child-ussi.htm"
    ],
-   "reviewed_on": "2026-11-08",
+   "reviewed_on": "2026-11-15",
    "phone": "800-772-1213",
    "phone_label": "TTY 800-325-0778"
   },

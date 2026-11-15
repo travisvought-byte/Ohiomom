@@ -62,7 +62,11 @@ def state_records(state, data):
     def special(kind, entry, org, what, how):
         r = {'id': f"{state['abbr'].lower()}-{kind}", 'section': 'kids-differently',
              'scope': state['abbr'], 'name': entry['name'], 'org': org, 'what': what,
-             'how': how, 'url': entry['url'], 'sources': src, 'reviewed_on': srev}
+             'how': how, 'sources': src, 'reviewed_on': srev}
+        # A program's own website can go away while its phone line still works.
+        # Such an entry is listed by phone alone, with no Website button.
+        if entry.get('url'):
+            r['url'] = entry['url']
         if entry.get('phone'):
             r['phone'] = entry['phone']
         return r
