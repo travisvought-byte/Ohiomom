@@ -122,7 +122,25 @@ class SiteTests(unittest.TestCase):
         text = (ROOT / 'family-guide.html').read_text(encoding='utf-8')
         self.assertIn('<link rel="canonical" href="https://www.yogamomtalk.com/family-guide.html">', text)
         self.assertNotIn('href="./"', text)
-        self.assertIn('<a href="ohio/" id="back-guide">OhioMom</a>', text)
+        self.assertIn('<a href="ohio/index.html" id="back-guide">OhioMom</a>', text)
+
+    def test_no_link_to_a_bare_folder(self):
+        """Wix serves a folder address only at the site root: /ohio/ is a 404, /ohio/index.html loads."""
+        for path in ROOT.rglob('*.html'):
+            if 'node_modules' in path.parts:
+                continue
+            text = path.read_text(encoding='utf-8')
+            for href in re.findall(r'(?:href|url)="([^"#?]*/)"', text):
+                if href.startswith(('http://', 'https://')) and 'yogamomtalk.com' not in href:
+                    continue
+                self.assertIn(href, ('https://www.yogamomtalk.com/',), f'{path}: {href}')
+            self.assertNotRegex(text, r'location\.replace\(["\'][^"\']*/["\']', path)
+
+    def test_pages_do_not_claim_to_be_cookie_free(self):
+        for path in ROOT.rglob('*.html'):
+            if 'node_modules' in path.parts or 'templates' in path.parts:
+                continue
+            self.assertNotRegex(path.read_text(encoding='utf-8'), r'(?i)no (tracking, )?cookies|no third-party scripts', path)
 
     def test_sitemap_lists_every_page_but_404_and_stubs(self):
         sm = (ROOT / 'sitemap.xml').read_text(encoding='utf-8')
@@ -133,7 +151,7 @@ class SiteTests(unittest.TestCase):
         # minus 404, plus the ohio pages that are not pass-through pages, plus the family guide
         self.assertEqual(len(locs), len(PAGES) - 1 + len(ohio) + 1)
         self.assertNotIn('https://www.yogamomtalk.com/ohio/help/disability.html', locs)
-        self.assertIn('https://www.yogamomtalk.com/ohio/', locs)
+        self.assertIn('https://www.yogamomtalk.com/ohio/index.html', locs)
         self.assertIn('https://www.yogamomtalk.com/family-guide.html', locs)
         for loc in locs:
             self.assertNotIn('?', loc)
@@ -168,7 +186,7 @@ class SiteTests(unittest.TestCase):
 
     def test_ohiomom_domain_home_goes_to_ohio_landing(self):
         html = (ROOT / 'index.html').read_text(encoding='utf-8')
-        self.assertRegex(html, r'ohiomom.*location\.replace\("ohio/"')
+        self.assertRegex(html, r'ohiomom.*location\.replace\("ohio/index\.html"')
         for path in PAGES:
             if path.name != 'index.html' or path.parent != ROOT:
                 self.assertNotIn('ohiomom\\.org', path.read_text(encoding='utf-8'), f'{path}: only the home page redirects')

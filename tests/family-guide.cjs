@@ -20,7 +20,7 @@ for(const stage of data.stages){d.querySelector('[data-stage="'+stage.id+'"]').c
 assert.equal(load('?state=NY').$('state').value,'OH');
 assert(load('?lang=es').d.querySelector('h1').textContent.includes('familias'));
 assert(d.querySelector('a[href="https://guide.vethomeguard.org/family-guide.html?state=US"]'));
-assert.equal($('back-guide').getAttribute('href'),'ohio/');
+assert.equal($('back-guide').getAttribute('href'),'ohio/index.html');
 assert($('cvso-link').href.startsWith('https://guide.vethomeguard.org/'));
 assert(!html.includes('assets/analytics.js'));
 console.log('PASS Ohio-only scope, 88 county contacts, stages, Spanish and cross-site links');

@@ -29,7 +29,7 @@ TILES = [
 ]
 # ohiomom.org is one way into this site: its home page goes straight to the Ohio landing page.
 OHIO_REDIRECT = ('\n<script>if(/(^|\\.)ohiomom\\.org$/i.test(location.hostname)){'
-                 'location.replace("ohio/"+location.search+location.hash)}</script>')
+                 'location.replace("ohio/index.html"+location.search+location.hash)}</script>')
 STATE_SECTIONS = ['help-now', 'food-bills', 'pregnancy-baby', 'kids-differently', 'single-parent', 'take-care']
 
 
@@ -76,7 +76,7 @@ def page(data, path, title, desc, body, body_class='', head_extra=''):
 <footer class="foot">
 <p class="footnav">{foot}</p>
 <p>Founded by {esc(site['founder'])}. See something out of date, or know a group we should list? <a href="{root}report.html">Report a problem</a>.</p>
-<p class="small">In danger right now? Call 911. {esc(site['name'])} is an information directory, not an emergency service or a provider of legal, medical or financial advice. Contacts come from published official and organization sources and are not telephone-confirmed. No tracking, cookies or sign-up.</p>
+<p class="small">In danger right now? Call 911. {esc(site['name'])} is an information directory, not an emergency service or a provider of legal, medical or financial advice. Contacts come from published official and organization sources and are not telephone-confirmed. No sign-up or ads, and we add no tracking. Our web host, Wix, sets its own cookies.</p>
 <p class="small">Ohio mom? Visit <a href="{root}{esc(site['ohio_path'])}">OhioMom</a>. Mobility and disability resources: <a href="{esc(site['mobilitytalk_url'])}">Mobility Talk</a>.</p>
 </footer>
 <script src="{root}assets/ymt.js"></script>
@@ -136,7 +136,7 @@ def build_index(data):
 <section class="wrap" id="now"><h2>Need help right now?</h2><p>These lines are free and answer any hour. If you or your child are in danger, call 911.</p><div class="callrow">{calls}</div></section>
 <section class="wrap" id="state"><h2>Help in your state</h2><p>Food, child care, health coverage and disability help work differently in every state. Pick yours for the right offices and phone numbers.</p><div class="statepick"><div><label for="statepick">Your state</label><select id="statepick" data-state-pick>{options}</select></div><a class="btn" href="states.html">See all states</a></div>
 <div class="localbox"><strong>Ohio mom?</strong> <a href="{esc(site['ohio_path'])}">OhioMom</a> has county offices, local events and a full Ohio family guide.</div></section>
-<section class="wrap"><div class="steps"><h2>How this site works</h2><ul><li><strong>Free and private.</strong> No sign-up, no ads, no tracking, no cookies. A Leave this site button is on every page.</li><li><strong>Real sources.</strong> Every listing links to the official pages it came from and shows the date it was checked.</li><li><strong>Nobody pays to be listed.</strong> We list public programs, nonprofits and official locators, not private businesses.</li></ul><p><a href="about.html">More about how we choose and check listings</a></p></div></section>
+<section class="wrap"><div class="steps"><h2>How this site works</h2><ul><li><strong>Free and private.</strong> No sign-up and no ads, and we add no tracking of our own. Wix, the service that hosts this site, sets a few cookies of its own. A Leave this site button is on every page.</li><li><strong>Real sources.</strong> Every listing links to the official pages it came from and shows the date it was checked.</li><li><strong>Nobody pays to be listed.</strong> We list public programs, nonprofits and official locators, not private businesses.</li></ul><p><a href="about.html">More about how we choose and check listings</a></p></div></section>
 <section class="wrap cta"><h2>Yoga with Deborah</h2><p>{esc(site['name'])} was started by {esc(site['founder'])}, a yoga instructor and personal trainer. She takes private and small-group sessions.</p><p><a class="btn big" href="yoga.html">Learn more</a></p></section>'''
     return page(data, 'index.html', site['name'],
                 f"{site['tagline']} Free, private help for moms in all 50 states and DC: food, child care, health coverage, disability and crisis lines.",
@@ -225,7 +225,7 @@ def build_about(data):
 <p>It is an independent project. It is not affiliated with any podcast, show or organization named "Mom Talk".</p>
 <h2>How we choose listings</h2><ul><li>We list free or low-cost public programs, nonprofits and official locators. We do not list private businesses, and nobody pays to be listed.</li><li>Each listing links to the published sources it came from and shows the date it was checked.</li><li>Contacts come from official sources and are not confirmed by telephone. Phone numbers and websites change. If one is wrong, <a href="report.html">tell us</a>.</li><li>Every link is checked automatically each month, and a person reviews any that fail.</li><li>Domestic violence shelter addresses are never listed. We point to the hotline or state coalition that places people safely.</li></ul>
 <h2>What this site is not</h2><p>It is not an emergency service. If you or someone else is in danger, call 911. It does not give legal, medical or financial advice, and it cannot sign you up for anything.</p>
-<h2>Your privacy and safety</h2><ul><li>No tracking, no cookies, no ads, no sign-up, no forms, and no third-party scripts.</li><li>A <strong>Leave this site</strong> button is on every page. It takes you to a weather search and removes this page from your back button.</li><li>It cannot erase your browser history. If someone else may check your device, use a private or incognito window, or a device they cannot reach.</li><li>Sites we link to have their own privacy practices.</li></ul>
+<h2>Your privacy and safety</h2><ul><li>No ads, no sign-up and no forms, and we add no tracking or cookies of our own.</li><li>This site is hosted on Wix. Wix loads its own script and sets a few cookies on every page it hosts. We do not control those.</li><li>A <strong>Leave this site</strong> button is on every page. It takes you to a weather search and removes this page from your back button.</li><li>It cannot erase your browser history. If someone else may check your device, use a private or incognito window, or a device they cannot reach.</li><li>Sites we link to have their own privacy practices.</li></ul>
 <h2>Credit and license</h2><p>{esc(data["attribution"])} The data on this site is licensed CC BY 4.0 and the code is MIT. Listings describe third-party organizations from their published sources. The license covers the compilation and gives no rights in those organizations' names or marks.</p></div></section>'''
     return page(data, 'about.html', 'About', f'Who runs {site["name"]}, how listings are chosen and checked, and how your privacy and safety are protected.', body)
 
@@ -268,7 +268,8 @@ def build_all(data):
     pages += ohio + ['family-guide.html']
 
     def loc(p):
-        return '' if p == 'index.html' else 'ohio/' if p == 'ohio/index.html' else p
+        # Wix serves a folder address only at the site root, so every other page is named in full.
+        return '' if p == 'index.html' else p
     urls = ''.join(f'  <url><loc>https://{domain}/{loc(p)}</loc></url>\n' for p in sorted(set(pages)))
     files['sitemap.xml'] = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n'
     files['robots.txt'] = f'User-agent: *\nAllow: /\n\nSitemap: https://{domain}/sitemap.xml\n'
