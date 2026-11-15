@@ -284,15 +284,17 @@
    "section": "housing-bills",
    "scope": "OH",
    "name": "Help with heating and electric bills (HEAP)",
-   "org": "Ohio Department of Development",
+   "org": "Ohio Department of Job and Family Services",
    "what": "HEAP helps households at or below 175% of the federal poverty level pay utility bills. Crisis programs can help when you have a shutoff notice.",
-   "how": "Apply online, or call to be connected to your local energy assistance provider.",
+   "how": "Call to be connected to your local energy assistance provider, who can take your application by phone or in person. The state's online application works on a computer only, not on a phone or tablet.",
    "phone": "800-282-0880",
    "url": "https://energyhelp.ohio.gov/",
    "sources": [
-    "https://generic.cuyahogacounty.gov/programs/home-energy-assistance-program"
+    "https://jfs.ohio.gov/public-assistance/energy-and-community-assistance/home-energy-assistance-program-heap",
+    "https://jfs.ohio.gov/public-assistance/energy-and-community-assistance/apply-for-ohio-energy-assistance-programs",
+    "https://info4seniors.org/2026-summer-crisis-program-begins-july-1/"
    ],
-   "reviewed_on": "2026-11-13"
+   "reviewed_on": "2026-11-15"
   },
   {
    "id": "oh-benefits",
@@ -352,7 +354,7 @@
    "what": "Your county Child Support Enforcement Agency can establish paternity, set up a support order, collect payments and review an order when circumstances change.",
    "how": "Start on the state child support website or call the customer service line to reach your county agency.",
    "phone": "800-686-1556",
-   "url": "https://jfs.ohio.gov/child-support/welcome",
+   "url": "https://jfs.ohio.gov/child-support",
    "sources": [
     "https://dam.assets.ohio.gov/image/upload/jfs.ohio.gov/RELEASES/Child%20Support%20Awareness%20Month.pdf",
     "https://lickingcounty.gov/depts/csea/getting/default.htm"

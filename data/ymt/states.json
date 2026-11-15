@@ -1,9 +1,8 @@
 {
- "reviewed_on": "2026-11-08",
+ "reviewed_on": "2026-11-15",
  "special_needs_sources": [
-  "https://www.ndrn.org/wp-content/uploads/2025/05/PA-CAP-LIST-Updated-5-5-2025.docx",
+  "https://www.ndrn.org/about/ndrn-member-agencies/",
   "https://www.cdc.gov/act-early/early-intervention/contact-information-by-state.html",
-  "https://www.parentcenterhub.org/?p=31647",
   "https://www.parentcenterhub.org/find-your-center/"
  ],
  "parent_centers_note": "California and New York have several regional parent centers, so the guide links to the national map for them. Montana's and Illinois's centers changed recently; the national list may still show the old names.",
@@ -61,14 +60,14 @@
     "phone": "888-592-0140"
    },
    "parent_center": {
-    "name": "Raising Special Kids",
-    "url": "https://www.raisingspecialkids.org/",
+    "name": "Encircle Families (formerly Raising Special Kids)",
+    "url": "https://encirclefamilies.org/",
     "phone": "602-242-4366"
    },
    "protection_advocacy": {
     "name": "Disability Rights Arizona",
-    "url": "https://www.azdisabilitylaw.org/",
-    "phone": "800-927-0992"
+    "url": "https://disabilityrightsaz.org/",
+    "phone": "800-927-2260"
    }
   },
   {
@@ -125,8 +124,8 @@
     "phone": "719-531-9400"
    },
    "protection_advocacy": {
-    "name": "Disability Law Colorado",
-    "url": "https://www.disabilitylawco.org/",
+    "name": "Disability Justice (formerly Disability Law Colorado)",
+    "url": "https://disabilityjustice.co/",
     "phone": "800-288-1376"
    }
   },
@@ -315,7 +314,7 @@
    },
    "protection_advocacy": {
     "name": "Indiana Disability Rights",
-    "url": "https://www.indianadisabilityrights.org/",
+    "url": "https://www.in.gov/idr/",
     "phone": "800-622-4845"
    }
   },
@@ -336,7 +335,7 @@
    },
    "protection_advocacy": {
     "name": "Disability Rights Iowa",
-    "url": "https://www.driowa.org/",
+    "url": "https://disabilityrightsiowa.org/",
     "phone": "800-779-2502"
    }
   },
@@ -347,13 +346,13 @@
    "snap_slug": "kansas",
    "early_intervention": {
     "name": "Infant Toddler Program",
-    "url": "https://www.ksits.org/",
+    "url": "https://www.kdhe.ks.gov/677/Kansas-Early-Childhood-Developmental-Ser",
     "phone": "800-332-6262"
    },
    "parent_center": {
     "name": "Families Together",
     "url": "https://www.familiestogetherinc.org/",
-    "phone": "316-945-7747"
+    "phone": "800-264-6343"
    },
    "protection_advocacy": {
     "name": "Disability Rights Center of Kansas",
@@ -394,7 +393,7 @@
    },
    "parent_center": {
     "name": "Louisiana Parent Training and Information Center",
-    "url": "https://fhfjefferson.org/laptic",
+    "url": "https://fhfofgno.org/laptic",
     "phone": "504-888-9111"
    },
    "protection_advocacy": {
@@ -431,7 +430,7 @@
    "snap_slug": "maryland",
    "early_intervention": {
     "name": "Maryland Infants and Toddlers Program",
-    "url": "https://marylandpublicschools.org/programs/Pages/Special-Education/MITP/singlepointentry.aspx",
+    "url": "https://referral.mditp.org/",
     "phone": "800-535-0182"
    },
    "parent_center": {
@@ -504,7 +503,7 @@
    },
    "protection_advocacy": {
     "name": "Minnesota Disability Law Center",
-    "url": "https://www.mylegalaid.org/",
+    "url": "https://mylegalaid.org/disability-law-center/",
     "phone": "800-292-4150"
    }
   },
@@ -515,12 +514,11 @@
    "snap_slug": "mississippi",
    "early_intervention": {
     "name": "First Steps",
-    "url": "https://msdh.ms.gov/msdhsite/_static/41,0,74.html",
+    "url": "https://msdh.ms.gov/ei",
     "phone": "800-451-3903"
    },
    "parent_center": {
     "name": "Mississippi Parent Training and Information Center",
-    "url": "https://www.mspti.org/",
     "phone": "601-969-0601"
    },
    "protection_advocacy": {
@@ -651,7 +649,7 @@
    },
    "protection_advocacy": {
     "name": "Disability Rights New Jersey",
-    "url": "https://www.drnj.org/",
+    "url": "https://disabilityrightsnj.org/",
     "phone": "800-922-7233"
    }
   },
@@ -799,7 +797,7 @@
    },
    "protection_advocacy": {
     "name": "Disability Rights Oregon",
-    "url": "https://www.disabilityrightsoregon.org/",
+    "url": "https://www.droregon.org/",
     "phone": "800-452-1694"
    }
   },
@@ -898,8 +896,8 @@
     "phone": "800-852-7157"
    },
    "parent_center": {
-    "name": "Support and Training for Exceptional Parents (STEP)",
-    "url": "https://www.tnstep.org/",
+    "name": "TNSTEP (Support and Training for Exceptional Parents)",
+    "url": "https://tnstep.info/",
     "phone": "423-639-0125"
    },
    "protection_advocacy": {
@@ -1025,8 +1023,8 @@
    },
    "parent_center": {
     "name": "West Virginia Parent Training and Information",
-    "url": "https://www.wvpti.org/",
-    "phone": "304-624-1436"
+    "url": "https://wvpti-inc.org/",
+    "phone": "800-281-1436"
    },
    "protection_advocacy": {
     "name": "Disability Rights West Virginia",
