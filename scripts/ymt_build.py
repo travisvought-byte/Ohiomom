@@ -6,6 +6,7 @@
 
 Edit data or this script, never the built pages. The Ohio pages under ohio/ are separate source, not built here.
 """
+import re
 import sys
 import urllib.parse
 from html import escape as esc
@@ -31,6 +32,7 @@ TILES = [
 OHIO_REDIRECT = ('\n<script>if(/(^|\\.)ohiomom\\.org$/i.test(location.hostname)){'
                  'location.replace("ohio/index.html"+location.search+location.hash)}</script>')
 STATE_SECTIONS = ['help-now', 'food-bills', 'pregnancy-baby', 'kids-differently', 'single-parent', 'take-care']
+URGENT_LINES = ['us-ndvh', 'us-988', 'us-childhelp']
 
 
 def tel(p):
@@ -85,33 +87,81 @@ def page(data, path, title, desc, body, body_class='', head_extra=''):
 '''
 
 
-def card(r, root='', compact_href=None):
-    rid = esc(r['id'])
-    if compact_href:
-        return (f'<article class="card also" id="also-{rid}"><h3>{esc(r["name"])}</h3>'
-                f'<p class="note">Also useful here. <a href="{compact_href}">See the full listing</a>.</p></article>')
+ABBREVIATIONS = ('U.S.', 'a.m.', 'p.m.', 'e.g.', 'i.e.', 'St.', 'Dr.', 'Mr.', 'Mrs.', 'Ms.', 'vs.', 'No.', 'Inc.')
+
+
+def split_first(text):
+    """(first sentence, the rest). The first sentence is the one line a card shows before it is opened."""
+    for m in re.finditer(r'[.!?]["”)]?\s+', text):
+        head = text[:m.end()].rstrip()
+        if head.endswith(ABBREVIATIONS):
+            continue
+        nxt = text[m.end():m.end() + 1]
+        if nxt and (nxt.isupper() or nxt.isdigit() or nxt in '"“('):
+            return head, text[m.end():].strip()
+    return text.strip(), ''
+
+
+def card(r, root='', cid=None):
+    """A short card: the name, one line, and the buttons. Everything else waits behind "More about this"."""
+    rid = esc(cid or r['id'])
+    short, rest = split_first(r['what'])
     cls = 'card urgent' if r.get('urgent') else 'card'
-    out = [f'<article class="{cls}" id="{rid}"><h3>{esc(r["name"])}</h3><p class="org">{esc(r["org"])}</p>',
-           f'<p>{esc(r["what"])}</p><p>{esc(r["how"])}</p>']
+    out = [f'<article class="{cls}" id="{rid}"><h3>{esc(r["name"])}</h3><p class="short">{esc(short)}</p>']
     if r.get('text'):
         out.append(f'<p class="textline">{esc(r["text"])}</p>')
-    if r.get('phone') and r.get('phone_label'):
-        out.append(f'<p class="note">{esc(r["phone_label"])}</p>')
     acts = []
     if r.get('phone'):
         acts.append(f'<a class="btn call" href="{tel(r["phone"])}">Call {esc(r["phone"])}</a>')
     if r.get('url'):
         acts.append(f'<a class="btn" href="{esc(r["url"])}" rel="noopener">Website</a>')
-    for link in r.get('links', []):
-        acts.append(f'<a class="btn plain" href="{esc(link["url"])}" rel="noopener">{esc(link["label"])}</a>')
     out.append('<p class="actions">' + ''.join(acts) + '</p>')
+    more = [f'<p class="org">{esc(r["org"])}</p>']
+    if rest:
+        more.append(f'<p>{esc(rest)}</p>')
+    more.append(f'<p><strong>Next step:</strong> {esc(r["how"])}</p>')
+    if r.get('phone') and r.get('phone_label'):
+        more.append(f'<p class="note">Phone: {esc(r["phone_label"])}</p>')
+    if r.get('links'):
+        more.append('<p class="actions">' + ''.join(
+            f'<a class="btn plain" href="{esc(link["url"])}" rel="noopener">{esc(link["label"])}</a>' for link in r['links']) + '</p>')
     srcs = ' '.join(f'<a href="{esc(u)}" rel="noopener">{i}</a>' for i, u in enumerate(r['sources'], 1))
-    out.append(f'<p class="src">Checked {esc(lib.pretty_date(r["reviewed_on"]))}. Sources: {srcs}</p></article>')
+    more.append(f'<p class="src">Checked {esc(lib.pretty_date(r["reviewed_on"]))}. Sources: {srcs}</p>')
+    out.append(f'<details class="more"><summary>More about this<span class="sr">: {esc(r["name"])}</span></summary>{"".join(more)}</details></article>')
     return ''.join(out)
 
 
-def cards(records, root='', compact=None):
-    return '<div class="cards">' + ''.join(card(r, root, (compact or {}).get(r['id'])) for r in records) + '</div>'
+def cards(records, root='', prefix=None):
+    """prefix: {record id: card id} for a listing shown a second time on the same page."""
+    return '<div class="cards">' + ''.join(card(r, root, (prefix or {}).get(r['id'])) for r in records) + '</div>'
+
+
+def need(sec, records, root='', prefix=None):
+    """One need, closed until she asks for it: a row that opens to its short cards."""
+    n = len(records)
+    count = f'{n} option{"s" if n != 1 else ""}'
+    cls = 'need urgent' if sec['id'] == 'help-now' else 'need'
+    return (f'<details class="{cls}" id="{sec["id"]}"><summary><span class="ico" aria-hidden="true">{sec["icon"]}</span>'
+            f'<span class="ntext"><h2>{esc(sec["label"])}</h2><span class="nsum">{esc(sec["summary"])}</span></span>'
+            f'<span class="ncount">{count}</span></summary>{cards(records, root, prefix)}</details>')
+
+
+def needs(body):
+    return f'<section class="wrap needs" aria-label="What do you need?">{body}</section>'
+
+
+def urgent_strip(data, root=''):
+    """The three lines that must never be more than one tap away, as small phone cards."""
+    nat = {r['id']: r for r in data['resources']}
+    lines = [nat[i] for i in URGENT_LINES]
+    items = ''.join(
+        f'<li><a class="phonecard" href="{tel(r["phone"])}">Call {esc(r["phone"])}<small>{esc(r["chip"])}</small></a></li>' for r in lines)
+    texts = esc(nat['us-ndvh']['text'])
+    return (f'<section class="wrap now" id="now"><h2>Need help right now?</h2>'
+            f'<p class="quiet">Free, and answered any hour. If you or your child are in danger, call 911.</p>'
+            f'<ul class="phonecards">{items}</ul>'
+            f'<p class="quiet">Cannot talk out loud? {texts} for the domestic violence hotline, or text 988. '
+            f'<a href="{root}help.html#help-now">More ways to get help now</a></p></section>')
 
 
 def sec_map(data):
@@ -124,21 +174,17 @@ def hero(title, lede, extra='', cls='slim'):
 
 # ---------------------------------------------------------------- pages
 def build_index(data):
+    """The front page asks one question and shows no listings. Every listing is one choice away."""
     site = data['site']
-    tiles = ''.join(f'<a class="tile {c}" href="{h}"><span class="ico" aria-hidden="true">{i}</span><strong>{esc(t)}</strong><span>{esc(d)}</span></a>'
+    tiles = ''.join(f'<a class="tile {c}" href="{h}"><span class="ico" aria-hidden="true">{i}</span><span class="ttext"><strong>{esc(t)}</strong><span>{esc(d)}</span></span></a>'
                     for c, i, t, d, h in TILES)
-    urgent = [r for r in data['resources'] if r['id'] in ('us-ndvh', 'us-988', 'us-childhelp')]
-    calls = ''.join(
-        f'<div class="callbox"><h3>{esc(r["name"])}</h3><p>{esc(r["how"])}</p><p class="actions"><a class="btn call" href="{tel(r["phone"])}">Call {esc(r["phone"])}</a>'
-        + (f' <span class="textline">{esc(r["text"])}</span>' if r.get('text') else '') + '</p></div>' for r in urgent)
     options = '<option value="">Choose your state</option>' + ''.join(
         f'<option value="states/{s["abbr"].lower()}.html">{esc(s["name"])}</option>' for s in data['states'])
-    body = f'''{hero('Hi, mom. What do you need today?', 'A place for moms to connect, and a short list of real help for when things get hard. Free, private, no sign-up.', f'<div class="tiles">{tiles}</div>', 'home')}
-<section class="wrap" id="now"><h2>Need help right now?</h2><p>These lines are free and answer any hour. If you or your child are in danger, call 911.</p><div class="callrow">{calls}</div></section>
-<section class="wrap" id="state"><h2>Help in your state</h2><p>Food, child care, health coverage and disability help work differently in every state. Pick yours for the right offices and phone numbers.</p><div class="statepick"><div><label for="statepick">Your state</label><select id="statepick" data-state-pick>{options}</select></div><a class="btn" href="states.html">See all states</a></div>
-<div class="localbox"><strong>Ohio mom?</strong> <a href="{esc(site['ohio_path'])}">OhioMom</a> has county offices, local events and a full Ohio family guide.</div></section>
-<section class="wrap"><div class="steps"><h2>How this site works</h2><ul><li><strong>Free and private.</strong> No sign-up and no ads, and we add no tracking of our own. Wix, the service that hosts this site, sets a few cookies of its own. A Leave this site button is on every page.</li><li><strong>Real sources.</strong> Every listing links to the official pages it came from and shows the date it was checked.</li><li><strong>Nobody pays to be listed.</strong> We list public programs, nonprofits and official locators, not private businesses.</li></ul><p><a href="about.html">More about how we choose and check listings</a></p></div></section>
-<section class="wrap cta"><h2>Yoga with Deborah</h2><p>{esc(site['name'])} was started by {esc(site['founder'])}, a yoga instructor and personal trainer. She takes private and small-group sessions.</p><p><a class="btn big" href="yoga.html">Learn more</a></p></section>'''
+    pick = (f'<div class="statepick"><label for="statepick">Or start with your state</label>'
+            f'<select id="statepick" data-state-pick>{options}</select><a href="states.html">See all states</a></div>')
+    lede = 'Pick one. You will get a short list of who to call. Free, private, no sign-up.'
+    body = (hero('Hi, mom. What do you need today?', lede, f'<div class="tiles">{tiles}</div>{pick}', 'home')
+            + '\n' + urgent_strip(data))
     return page(data, 'index.html', site['name'],
                 f"{site['tagline']} Free, private help for moms in all 50 states and DC: food, child care, health coverage, disability and crisis lines.",
                 body, 'home', head_extra=OHIO_REDIRECT)
@@ -146,15 +192,17 @@ def build_index(data):
 
 def build_help(data):
     secs = [s for s in data['sections'] if not s.get('page')]
-    chips = '<ul class="chips">' + ''.join(f'<li><a href="#{s["id"]}">{s["icon"]} {esc(s["label"])}</a></li>' for s in secs) + '</ul>'
-    parts = []
+    rows = []
     for s in secs:
         primary = [r for r in data['resources'] if r['section'] == s['id']]
         also = [r for r in data['resources'] if s['id'] in r.get('also', [])]
-        compact = {r['id']: f"#{r['id']}" for r in also}
-        parts.append(f'<section class="group wrap" id="{s["id"]}"><h2>{s["icon"]} {esc(s["label"])}</h2><p class="quiet">{esc(s["summary"])}</p>{cards(primary + also, "", compact)}</section>')
-    banner = '<div class="banner"><strong>In danger right now? Call 911.</strong> The lines below are free. Domestic violence shelter addresses are never listed here for safety.</div>'
-    body = hero('Find help', 'Clear next steps and who to call. Pick what you need. These are national programs that work in every state. For your state\'s offices, <a href="states.html">choose your state</a>.', chips + banner) + ''.join(parts)
+        # A listing that belongs under two needs is shown under both, so nobody has to hunt for it.
+        prefix = {r['id']: f"{s['id']}--{r['id']}" for r in also}
+        rows.append(need(s, primary + also, '', prefix))
+    lede = ('Pick what you need. It opens a short list of who to call. These work in every state. '
+            'For your state\'s own offices, <a href="states.html">choose your state</a>.')
+    body = (hero('Find help', lede) + needs(''.join(rows))
+            + '<section class="wrap slim"><p>In danger right now? Call 911. Domestic violence shelter addresses are never listed here, for safety.</p></section>')
     return page(data, 'help.html', 'Find help for moms',
                 'Free national help for moms: crisis lines, food and bills, pregnancy and baby, kids who learn differently, single parents and military families.', body)
 
@@ -165,7 +213,7 @@ def build_connect(data):
     site = data['site']
     body = hero('Meet other moms', 'Moms groups, feeding groups and people who get it. Find one near you or online.') + f'''
 <section class="group wrap"><h2>Groups for moms</h2><p class="quiet">Local chapters and meetups run by volunteers. Groups differ, so ask how one runs before you go.</p>{cards(prim)}</section>
-<section class="group wrap"><h2>Support for the hard days</h2><p class="quiet">Feeding help and support lines from people who have been there.</p>{cards(also)}</section>
+<section class="group wrap"><h2>Support for the hard days</h2><p class="quiet">Feeding help and support lines from people who have been there.</p>{cards(also, '', {r['id']: 'connect--' + r['id'] for r in also})}</section>
 <section class="wrap"><div class="localbox"><strong>Ohio mom?</strong> <a href="{esc(site['ohio_path'])}">OhioMom</a> lists Ohio groups, meetups and events by region and county.</div></section>
 <section class="wrap cta"><h2>Run a group, or know a good one?</h2><p>If it is free or low cost and good for moms, we want to list it. Nobody pays to be listed here.</p><p><a class="btn big" href="report.html">Tell us about it</a></p></section>'''
     return page(data, 'connect.html', 'Meet other moms',
@@ -189,23 +237,18 @@ def build_state(data, s):
     by['help-now'] = [nat['us-ndvh'], nat['us-988'], nat['us-childhelp']] + by.get('help-now', [])
     by['take-care'] = [nat['us-tlc-mama'], nat['us-psi'], nat['us-parent-helpline']]
     order = {'food-bills': ['snap', 'wic', 'energy', '211'], 'pregnancy-baby': ['coverage', 'health-centers', 'diapers']}
-    parts = []
-    for sid in STATE_SECTIONS:
-        s_ = secs[sid]
-        items = by.get(sid, [])
-        parts.append(f'<section class="group wrap" id="{sid}"><h2>{s_["icon"]} {esc(s_["label"])}</h2>{cards(items, "../")}</section>')
+    rows = ''.join(need(secs[sid], by.get(sid, []), '../') for sid in STATE_SECTIONS)
     local = ''
     if s.get('local_site'):
         ls = s['local_site']
         local = f'<div class="localbox"><strong>Ohio mom?</strong> <a href="../{esc(ls["path"])}">{esc(ls["name"])}</a> is {esc(ls["what"][0].lower() + ls["what"][1:])}</div>'
-    chips = '<ul class="chips">' + ''.join(f'<li><a href="#{i}">{secs[i]["icon"]} {esc(secs[i]["label"])}</a></li>' for i in STATE_SECTIONS) + '</ul>'
     note = ''
     if not s.get('parent_center'):
-        note = f'<p class="note">{esc(data["states_meta"].get("parent_centers_note", ""))}</p>'
-    intro = (f'National hotlines work in every state. Below are the {esc(s["name"])} offices and locators to start with. '
+        note = f'<section class="wrap slim"><p class="note">{esc(data["states_meta"].get("parent_centers_note", ""))}</p></section>'
+    intro = (f'Pick what you need. It opens a short list of {esc(s["name"])} offices and national lines to start with. '
              f'<a href="../states.html">Choose another state</a>.')
-    body = hero(f'{esc(s["name"])}: help for moms', intro, chips + local, 'slim') + ''.join(parts) + \
-        f'<section class="wrap cta"><h2>Meet other moms</h2><p>Find a group near you or online.</p><p><a class="btn big" href="../connect.html">Meet moms</a></p></section>'
+    body = (hero(f'{esc(s["name"])}: help for moms', intro, local, 'slim') + needs(rows) + note
+            + '<section class="wrap slim"><p><strong>Meet other moms.</strong> Find a group near you or online. <a href="../connect.html">Meet moms</a></p></section>')
     return page(data, f'states/{s["abbr"].lower()}.html', f'{s["name"]}: help for moms',
                 f'Free help for moms in {s["name"]}: SNAP, WIC, child care, health coverage, disability services and domestic violence resources.',
                 body)

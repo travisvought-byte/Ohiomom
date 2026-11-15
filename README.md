@@ -36,6 +36,16 @@ Ohio site (OhioMom):
 - `python3 scripts/build.py` builds `family-guide.html` from `data/family-guide.json`, `data/family-counties.json` and `templates/family-guide.html`. The pages under `/ohio/` are static source.
 - `python3 scripts/validate.py` checks the Ohio data, and `npm test` checks the family guide.
 
+## How pages are laid out: a little first, the rest when asked
+
+A mom arrives with one need. The pages show her the choice, then a short list, then the details, in that order.
+
+- **Front pages show no listings.** `index.html` and `ohio/index.html` ask what she needs, offer six needs and a way to pick her state or area, and stop. The national front page also keeps three small phone cards for emergencies.
+- **Needs are closed rows.** On `help.html` and every state page each need is a `<details class="need">` that stays closed until she opens it. A link that names a need (`help.html#food-bills`) or a listing inside one opens it for her (`assets/ymt.js`).
+- **Cards are short.** A card shows the name, one line (the first sentence of `what`), and the Call and Website buttons. The organization, the rest of the description, the next step, the sources and the checked date sit behind "More about this".
+- A printed page opens everything.
+- `tests/ymt-pages.cjs` and `tests/test_ymt.py` fail the build if a listing appears on a front page, a need is open by default, or the short part of a card grows.
+
 ## Keeping it current
 
 - Every push runs both validations, both build checks, the Python tests and the family-guide test.
