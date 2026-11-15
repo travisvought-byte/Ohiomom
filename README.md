@@ -1,6 +1,6 @@
 # OhioMom
 
-Source for **OhioMom.org**, an Ohio resource hub for mothers and caregivers: clear next steps for safety, housing and bills, disability and neurodiversity, and single-parent support.
+Source for **OhioMom.org**, an Ohio resource hub for mothers and caregivers: clear next steps for safety, housing and bills, pregnancy and new baby, disability and neurodiversity, and single-parent support.
 
 ## How it works
 
