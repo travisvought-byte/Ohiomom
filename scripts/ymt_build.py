@@ -242,12 +242,9 @@ def build_state(data, s):
     if s.get('local_site'):
         ls = s['local_site']
         local = f'<div class="localbox"><strong>Ohio mom?</strong> <a href="../{esc(ls["path"])}">{esc(ls["name"])}</a> is {esc(ls["what"][0].lower() + ls["what"][1:])}</div>'
-    note = ''
-    if not s.get('parent_center'):
-        note = f'<section class="wrap slim"><p class="note">{esc(data["states_meta"].get("parent_centers_note", ""))}</p></section>'
     intro = (f'Pick what you need. It opens a short list of {esc(s["name"])} offices and national lines to start with. '
              f'<a href="../states.html">Choose another state</a>.')
-    body = (hero(f'{esc(s["name"])}: help for moms', intro, local, 'slim') + needs(rows) + note
+    body = (hero(f'{esc(s["name"])}: help for moms', intro, local, 'slim') + needs(rows)
             + '<section class="wrap slim"><p><strong>Meet other moms.</strong> Find a group near you or online. <a href="../connect.html">Meet moms</a></p></section>')
     return page(data, f'states/{s["abbr"].lower()}.html', f'{s["name"]}: help for moms',
                 f'Free help for moms in {s["name"]}: SNAP, WIC, child care, health coverage, disability services and domestic violence resources.',
