@@ -77,7 +77,9 @@ if (foot && !document.querySelector("[data-feedback]") && !document.getElementBy
   const box = document.createElement("section");
   box.className = "wrap helpful";
   box.innerHTML = '<p><span>Did you find what you came for?</span> <button type="button">Yes</button> <button type="button">Not yet</button></p>';
-  foot.parentNode.insertBefore(box, foot);
+  // Inside <main>, so the question is part of the page for a screen reader and not loose between landmarks.
+  const main = document.querySelector("main");
+  if (main) main.appendChild(box); else foot.parentNode.insertBefore(box, foot);
   const q = "Did you find what you came for?";
   box.addEventListener("click", async (e) => {
     const b = e.target.closest("button"); if (!b) return;

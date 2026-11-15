@@ -6,6 +6,7 @@
 
 Edit data or this script, never the built pages. The Ohio pages under ohio/ are separate source, not built here.
 """
+import json
 import re
 import sys
 import urllib.parse
@@ -48,7 +49,7 @@ def page(data, path, title, desc, body, body_class='', head_extra=''):
     site = data['site']
     root = '../' * path.count('/')
     url = f"https://{site['domain']}/" + ('' if path == 'index.html' else path)
-    full_title = title if title == site['name'] else f"{title} | {site['name']}"
+    full_title = title if title.startswith(site['name']) else f"{title} | {site['name']}"
     nav = ''.join(
         f'<a href="{root}{h}"' + (' aria-current="page"' if h == path else '') + f'>{esc(t)}</a>' for h, t in NAV)
     foot = ''.join(f'<a href="{root}{h}">{esc(t)}</a>' for h, t in FOOT)
@@ -70,8 +71,7 @@ def page(data, path, title, desc, body, body_class='', head_extra=''):
 </head>
 <body class="{esc(body_class)}">
 <a class="skip" href="#main">Skip to content</a>
-<a class="exit" data-exit href="{EXIT_URL}" rel="noreferrer">Leave this site</a>
-<header class="top"><a class="logo" href="{root}index.html">{logo_html(site['name'])}</a><nav class="mainnav" aria-label="Main">{nav}</nav></header>
+<header class="top"><a class="exit" data-exit href="{EXIT_URL}" rel="noreferrer">Leave this site</a><a class="logo" href="{root}index.html">{logo_html(site['name'])}</a><nav class="mainnav" aria-label="Main">{nav}</nav></header>
 <main id="main">
 {body}
 </main>
@@ -142,7 +142,7 @@ def need(sec, records, root='', prefix=None):
     count = f'{n} option{"s" if n != 1 else ""}'
     cls = 'need urgent' if sec['id'] == 'help-now' else 'need'
     return (f'<details class="{cls}" id="{sec["id"]}"><summary><span class="ico" aria-hidden="true">{sec["icon"]}</span>'
-            f'<span class="ntext"><h2>{esc(sec["label"])}</h2><span class="nsum">{esc(sec["summary"])}</span></span>'
+            f'<h2>{esc(sec["label"])}</h2><span class="nsum">{esc(sec["summary"])}</span>'
             f'<span class="ncount">{count}</span></summary>{cards(records, root, prefix)}</details>')
 
 
@@ -185,9 +185,14 @@ def build_index(data):
     lede = 'Pick one. You will get a short list of who to call. Free, private, no sign-up.'
     body = (hero('Hi, mom. What do you need today?', lede, f'<div class="tiles">{tiles}</div>{pick}', 'home')
             + '\n' + urgent_strip(data))
-    return page(data, 'index.html', site['name'],
-                f"{site['tagline']} Free, private help for moms in all 50 states and DC: food, child care, health coverage, disability and crisis lines.",
-                body, 'home', head_extra=OHIO_REDIRECT)
+    desc = f"{site['tagline']} Food, child care, health coverage, disability help and crisis lines in all 50 states."
+    about = {'@context': 'https://schema.org', '@type': 'WebSite', 'name': site['name'],
+             'url': f"https://{site['domain']}/", 'description': desc, 'inLanguage': 'en',
+             'publisher': {'@type': 'Organization', 'name': site['name'],
+                           'founder': {'@type': 'Person', 'name': site['founder']}}}
+    structured = '\n<script type="application/ld+json">' + json.dumps(about, ensure_ascii=False).replace('<', '\\u003c') + '</script>'
+    return page(data, 'index.html', f"{site['name']}: help for moms in all 50 states", desc,
+                body, 'home', head_extra=OHIO_REDIRECT + structured)
 
 
 def build_help(data):

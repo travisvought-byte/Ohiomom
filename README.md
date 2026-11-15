@@ -48,6 +48,15 @@ A mom arrives with one need. The pages show her the choice, then a short list, t
 - A printed page opens everything.
 - `tests/ymt-pages.cjs` and `tests/test_ymt.py` fail the build if a listing appears on a front page, a need is open by default, or the short part of a card grows.
 
+## Built so everyone can use it
+
+- **One banner, one main, nothing loose.** Every page has a single page header and a single `<main>`, and everything a visitor meets sits inside one of them, including the "Leave this site" button and the "Did you find what you came for?" question.
+- **Headings never skip a level.** Where a list of cards or events has no visible heading of its own, it has one for screen readers (`class="sr"`).
+- **Row headings are valid HTML.** The `<h2>` of a closed row is a direct child of its `<summary>`; a CSS grid lays out the icon, the heading, the one-line summary and the count.
+- **Text on buttons passes contrast.** White text on the pink (`--brand`) and teal buttons is at least 4.5:1.
+- **Keyboard and touch.** Rows, cards and buttons are native elements with a visible focus ring. "More about this" has a tap area a thumb can hit.
+- `tests/ymt-pages.cjs` and `tests/test_ymt.py` hold all of this. The pages were also run through axe (WCAG 2.2 A and AA rules) at phone and desktop widths on 2026-11-15. The family guide is the one page still to be brought up to this.
+
 ## Keeping it current
 
 - Every push runs both validations, both build checks, the Python tests and the family-guide test.
