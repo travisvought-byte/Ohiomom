@@ -114,8 +114,8 @@ class SiteTests(unittest.TestCase):
         self.assertEqual(len(locs), len(set(locs)))
         ohio = [p for p in (ROOT / 'ohio').rglob('*.html')]
         self.assertEqual(len(locs), len(PAGES) - 1 + len(ohio) + 1)  # minus 404, plus ohio pages and the family guide
-        self.assertIn('https://yogamomtalk.com/ohio/', locs)
-        self.assertIn('https://yogamomtalk.com/family-guide.html', locs)
+        self.assertIn('https://www.yogamomtalk.com/ohio/', locs)
+        self.assertIn('https://www.yogamomtalk.com/family-guide.html', locs)
         for loc in locs:
             self.assertNotIn('?', loc)
 

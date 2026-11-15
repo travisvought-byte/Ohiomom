@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yogamomtalk.com/sitemap.xml
+Sitemap: https://www.yogamomtalk.com/sitemap.xml
