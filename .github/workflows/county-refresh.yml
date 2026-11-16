@@ -1,0 +1,82 @@
+name: Monthly county data refresh
+# Downloads the six federal directories behind the county pages (HRSA health centers, Head Start, HUD housing
+# counselors, HUD public housing agencies, NCES school districts, LSC legal aid), checks every website address
+# on them again, rebuilds assets/us/ and the pages, and runs every check. When anything changed it opens a pull
+# request (or, if this repository does not let workflows open pull requests, an issue naming the branch).
+# Nothing goes live until that is merged and the site is published (README, "Publishing to Wix").
+# A run started by hand on another branch is a trial: it rebuilds and checks, and opens nothing.
+on:
+  schedule:
+    - cron: '41 10 5 * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+concurrency:
+  group: county-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install numpy openpyxl
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Download the federal directories (about 90 MB)
+        run: python3 scripts/county_data.py "$RUNNER_TEMP/src" --fetch --urls > "$RUNNER_TEMP/urls.txt"
+      - name: Check every website address again (about half an hour)
+        run: python3 scripts/county_links.py "$RUNNER_TEMP/src" --recheck
+      - name: Rebuild the county data and the pages
+        run: |
+          python3 scripts/county_data.py "$RUNNER_TEMP/src"
+          python3 scripts/ymt_build.py
+          python3 scripts/coverage.py | tee "$RUNNER_TEMP/coverage.txt"
+      - name: Every check the pull request would get
+        run: |
+          python3 scripts/validate.py
+          python3 scripts/build.py --check
+          python3 scripts/ymt_validate.py
+          python3 scripts/ymt_build.py --check
+          python3 scripts/prerender_ohio.py --check
+          python3 -m unittest discover tests
+          npm test
+      - name: Open a pull request when anything changed
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet; then
+            echo "Nothing changed." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          month="$(date +%B\ %Y)"
+          branch="data/county-refresh-$(date +%Y-%m)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add -A
+          git commit -m "Refresh the county pages from the federal directories ($month)"
+          git push --force origin "$branch"
+          {
+            echo "The monthly refresh of the county pages' federal data."
+            echo
+            echo "Every check ran in [this job](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}) and passed before this was opened. A pull request opened by a workflow does not start the usual checks by itself."
+            echo
+            echo '```'
+            cat "$RUNNER_TEMP/coverage.txt"
+            echo '```'
+            echo
+            echo "Merging does not publish. See README, \"Publishing to Wix\"."
+          } > "$RUNNER_TEMP/body.md"
+          cat "$RUNNER_TEMP/body.md" >> "$GITHUB_STEP_SUMMARY"
+          gh pr create --base main --head "$branch" --title "County data refresh ($month)" --body-file "$RUNNER_TEMP/body.md" \
+            || gh issue create --title "County data refresh ready to review: $branch ($month)" --body-file "$RUNNER_TEMP/body.md"
