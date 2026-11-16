@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Request every outside link on the Ohio pages and print a markdown report.
 
-The links come from three places: the statewide listings in data/resources.json, every link written
-into the pages under ohio/ (the county pages keep their listings there), and the moms groups in
-ohio/assets/data.json. Events are left out, because an event's page is expected to go away.
+The links come from four places: the statewide listings in data/resources.json, every link written
+into the pages under ohio/ (the county pages keep their listings there), the family guide (its links
+and the addresses in the data it carries), and the moms groups in ohio/assets/data.json. Events are
+left out, because an event's page is expected to go away.
 
 Exit 1 when a person needs to look: a link is broken, now goes to a different website, or sits on
 a site that turns robots away and has not been opened in a browser recently. See linkcheck.py.
@@ -19,6 +20,8 @@ import linkcheck  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 HREF = re.compile(r'<a\b[^>]*\bhref="(https://[^"]+)"')
+GUIDE_DATA = re.compile(r'<script id="family-data" type="application/json">(.*?)</script>', re.S)
+ADDRESS = re.compile(r'https://[^"\\\s<>]+')
 OWN_SITE = 'yogamomtalk.com'
 
 
@@ -34,6 +37,12 @@ def collect():
             url = html.unescape(url)
             if linkcheck.site_of(url) != OWN_SITE:
                 used.setdefault(url, set()).add(page.relative_to(ROOT).as_posix())
+    guide = (ROOT / 'family-guide.html').read_text(encoding='utf-8')
+    carried = GUIDE_DATA.search(guide)
+    for url in set(HREF.findall(guide)) | set(ADDRESS.findall(carried.group(1) if carried else '')):
+        url = html.unescape(url)
+        if linkcheck.site_of(url) != OWN_SITE:
+            used.setdefault(url, set()).add('family-guide.html')
     groups = json.loads((ROOT / 'ohio' / 'assets' / 'data.json').read_text(encoding='utf-8'))['groups']
     for g in groups:
         used.setdefault(g['url'], set()).add('group ' + g['id'])
@@ -45,7 +54,8 @@ def main():
     results = linkcheck.Checker().check_all(sorted(used))
     text, needs_a_person = linkcheck.report(
         results, used, linkcheck.load_ledger(),
-        fix_hint='Fix the card on the Ohio page named, and `data/resources.json` or `ohio/assets/data.json` if the listing is kept there.')
+        fix_hint='Fix the card on the Ohio page named, and `data/resources.json`, `ohio/assets/data.json` or `data/family-guide.json` '
+                 'if the listing is kept there.')
     print(text)
     sys.exit(1 if needs_a_person else 0)
 

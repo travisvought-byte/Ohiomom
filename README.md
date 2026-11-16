@@ -73,9 +73,10 @@ A mom arrives with one need. The pages show her the choice, then a short list, t
 ## Keeping it current
 
 - Every push runs both validations, both build checks, the Python tests and the family-guide test.
-- On the 3rd of each month every outside link on the Ohio pages is requested automatically (the statewide listings, every link written into a county page, and the moms groups), and on the 4th the national ones (`scripts/linkcheck.py` does the work for both). Either check can also be run by hand from the Actions tab; a run on a branch other than `main` is a trial and opens no issue.
+- On the 3rd of each month every outside link on the Ohio pages is requested automatically (the statewide listings, every link written into a county page, the family guide, and the moms groups), and on the 4th the national ones (`scripts/linkcheck.py` does the work for both). Either check can also be run by hand from the Actions tab; a run on a branch other than `main` is a trial and opens no issue.
 - A robot cannot settle every link, so each one is sorted: it loaded; it is **broken** (gone, failing, parked, taken over, or a page that says "not found"); it has **moved** (the address now forwards to a different website); or it **cannot be checked** (the site refuses robots). The last three open an issue, or add to the one already open, because a person has to look.
 - `data/link-checks.json` records each link a person opened in a real browser and found working, with the date. The checks skip those for 180 days and then ask again. Add or re-date an entry only after opening the link yourself.
+- A page that a search engine or a fetching tool still shows is not proof it is there. The first run of the wider Ohio check, on November 15, 2026, found six county and family-guide links that had died, one of them the family guide's link for finding a county board of developmental disabilities. Each was opened in a real browser before it was replaced.
 - A link that loads is not proof the listing is right. On November 15, 2026 two parent-center addresses loaded fine for the robot while one forwarded to a gambling site and the other was parked for sale; one phone number was simply wrong. Those were found by comparing every state record with the national lists it is sourced from: the NDRN member list (disability-rights agencies), the CDC early intervention contact list, and the Parent Center Hub. Repeat that comparison a couple of times a year.
 
 ## Safety standards
@@ -113,6 +114,8 @@ What is not yet proven: the calls are the ones in Wix's recipe for uploading a s
 - **Trademark.** The name is a decision for later. It is kept in one config value so a change is a rebuild.
 - **Phone numbers.** No number on the site has been dialed. They match the published sources named on each card, and the state records match the three national lists as of November 15, 2026. Ohio's energy assistance line (800-282-0880) is still printed by local agencies but no longer appears on the state's own pages since the program changed departments in April 2026; dial it once to confirm it still connects.
 - County-by-county Ohio pages beyond the four now published (Job and Family Services, board of developmental disabilities, housing front door, energy assistance provider).
+- **Knox County's website.** On November 15, 2026 the county's site (`co.knox.oh.us`, and `knoxcounty.oh.gov`) had an expired security certificate, so a browser warns visitors away from it. The three Knox County Job and Family Services cards carry a phone number and no Website button until that is fixed. Put the links back then: `https://co.knox.oh.us/jfs/` for Job and Family Services and children services, and `https://co.knox.oh.us/jfs/child-support/` for child support.
+- **Mount Carmel's moms group.** Its page was taken down, so the listing was removed from the moms groups on November 15, 2026. Add it back if the hospital publishes the group again.
 
 ## Credit and license
 
