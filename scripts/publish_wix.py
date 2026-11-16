@@ -7,6 +7,9 @@
 Environment:
     WIX_API_KEY      a Wix API key (GitHub secret). It is never printed.
     WIX_ACCOUNT_ID   the Wix account the key belongs to (GitHub secret).
+    WIX_TOKEN        instead of the two above: a login token from the Wix command line
+                     (`npx @wix/cli@latest token` after `npx @wix/cli@latest login`). It names its own account
+                     and is never printed.
     WIX_SITE_ID      optional. Without it the site is found by name among the account's headless sites.
 
 The calls are the ones in Wix's own recipe, "Upload a Website or HTML Files":
@@ -92,7 +95,9 @@ class WixError(Exception):
 
 def call(method, url, key, account, body=None, content_type=None):
     """One authenticated call. Returns (status, bytes). The key goes in the Authorization header only."""
-    headers = {'Authorization': key, 'wix-account-id': account, 'User-Agent': 'yogamomtalk-publish'}
+    headers = {'Authorization': key, 'User-Agent': 'yogamomtalk-publish'}
+    if account:   # an API key needs its account named; a login token carries its own
+        headers['wix-account-id'] = account
     if isinstance(body, (dict, list)):
         body, content_type = json.dumps(body).encode('utf-8'), 'application/json'
     if content_type:
@@ -148,7 +153,8 @@ def download(site, key, account):
 
 def drop(site, files, key, account):
     body, content_type = multipart(files)
-    url = f'{API}/headless-business-setup/v1/headless-business/{site}/drop?campaign=ci&agent=github-actions'
+    agent = 'github-actions' if os.environ.get('GITHUB_ACTIONS') else 'shell'
+    url = f'{API}/headless-business-setup/v1/headless-business/{site}/drop?campaign=ci&agent={agent}'
     status, payload = call('POST', url, key, account, body, content_type)
     if status != 200:
         raise explain(status, payload, 'Uploading')
@@ -178,8 +184,11 @@ def finish(lines, code=0):
 def main(argv):
     mode = 'publish' if '--publish' in argv else 'check'
     key, account = os.environ.get('WIX_API_KEY', '').strip(), os.environ.get('WIX_ACCOUNT_ID', '').strip()
+    token = os.environ.get('WIX_TOKEN', '').strip()
+    if token:
+        key, account = token, ''
     lines = [f'## Wix: {mode}']
-    if not key or not account:
+    if not key or not (account or token):
         lines.append('Not set up yet. Add the repository secrets `WIX_API_KEY` and `WIX_ACCOUNT_ID` '
                      '(README, "Publishing to Wix"). Nothing was read or changed.')
         return finish(lines)

@@ -52,8 +52,8 @@ Every county in the 50 states and D.C. has a page with local listings from three
 - **Rebuilding.** `python3 scripts/county_data.py SRC` writes `data/ymt/counties.json` and `assets/us/`, then `python3 scripts/ymt_build.py` rebuilds the pages (the state pickers come from `counties.json`). The listings carry the download date. The federal lists change often, so refresh every month or two.
 - **Connecticut** is listed by its nine planning regions, the county-equivalents the Census Bureau and HRSA have used since 2022. Head Start and the ZIP code file still use the old eight counties there, so those sites and ZIP codes are placed in a region by the nearest town.
 - **Privacy.** The page reads only this site's own files, with no cookies sent. The county is in the part of the address after `#`, which a browser never sends to the server. A typed ZIP code is matched inside the browser; the only request it causes is for the list of ZIP codes that start with the same digit.
-- **Why one page and not 3,144.** Wix hosts at most 2,000 files and 20 MB for a site, so the county layer is one page plus 61 data files (about 5 MB). The whole site is about 9.5 MB.
-- **How much is done.** `python3 scripts/coverage.py` reports it. On November 15, 2026: every county has a page (100%); 2,821 counties (89.7%, home to 99.1% of Americans) have at least one of the three kinds of listing inside the county; 2,969 (94.4%, 99.3% of people) have all three in or near the county; and 6 counties (0.2%, 1.1% of people) have a hand-checked local guide.
+- **Why one page and not 3,144.** Wix hosts at most 2,000 files and 20 MB for a site, so the county layer is one page plus 61 data files (about 5 MB). The whole site is about 9.5 MB. It is too big to publish through the Wix connector; it goes live with `scripts/publish_wix.py` (see "Publishing to Wix").
+- **How much is done.** `python3 scripts/coverage.py` reports it. On November 15, 2026: every county has a page (100%); 2,821 counties (89.7%, home to 99.1% of Americans) have at least one of the three kinds of listing inside the county; 2,969 (94.4%, 99.3% of people) have all three in or near the county; and 6 counties (0.2%, 1.1% of people) have a hand-checked local guide. All of it has been live since November 16, 2026.
 
 ## How pages are laid out: a little first, the rest when asked
 
@@ -107,7 +107,9 @@ A mom arrives with one need. The pages show her the choice, then a short list, t
 
 Merging a pull request does not change the live site by itself. There are two ways to publish.
 
-**By hand (what has been done so far).** The changed files are sent through the Wix connector, each one checked by fingerprint against the live copy before and after. This only works for changes small enough to pass through a conversation, so the county data in `assets/us/` (about 5 MB) can go live only from GitHub.
+**By hand, through the Wix connector.** The changed files are sent through the connector, each one checked by fingerprint against the live copy before and after. This only works for changes small enough to pass through a conversation, so it cannot carry the county data in `assets/us/` (about 5 MB).
+
+**From a shell, signed in with the Wix command line (how the county pages went live, November 16, 2026).** `npx @wix/cli@latest login` prints a link and a code; the owner of the Wix account opens the link, enters the code and approves. The command line needs Node 24 or newer. Then `WIX_TOKEN=$(npx @wix/cli@latest token) WIX_SITE_ID=84aafa61-13f9-4aac-b6f9-65bb88312105 python3 scripts/publish_wix.py --check`, and `--publish` to send. The token is short-lived and is never printed, and `npx @wix/cli@latest logout` ends the sign-in.
 
 **From GitHub (built, waiting for a key).** `.github/workflows/publish.yml` runs `scripts/publish_wix.py`:
 
