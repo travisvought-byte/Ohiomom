@@ -65,6 +65,9 @@ console.log('PASS Ohio housing page: three rows, phone cards, quick exit, no add
     assert(link && link.textContent === 'All resources', `${f}: the footer links to All resources`);
     const target = new URL(link.getAttribute('href'), 'https://example.org/' + f).pathname;
     assert.equal(target, '/ohio/all.html', f);
+    const about = staticDoc(f).querySelector('.footnav a[href$="about.html"]');
+    assert(about && about.textContent === 'About us', `${f}: the footer links to the About page`);
+    assert.equal(new URL(about.getAttribute('href'), 'https://example.org/' + f).pathname, '/ohio/about.html', f);
   }
   for (const f of fs.readdirSync('ohio/counties').filter((x) => x.endsWith('.html'))) {
     const d = staticDoc('ohio/counties/' + f);
