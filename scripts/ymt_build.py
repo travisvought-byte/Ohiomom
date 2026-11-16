@@ -15,10 +15,11 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import ymt_lib as lib  # noqa: E402
+from us_geo import STATE_FIPS  # noqa: E402
 
 ROOT = lib.ROOT
 EXIT_URL = 'https://www.google.com/search?q=weather'
-NAV = [('help.html', 'Find help'), ('connect.html', 'Meet moms'), ('states.html', 'By state')]
+NAV = [('help.html', 'Find help'), ('connect.html', 'Meet moms'), ('states.html', 'By state'), ('county.html', 'Near you')]
 FOOT = [('help.html', 'Find help'), ('connect.html', 'Meet moms'), ('states.html', 'By state'),
         ('about.html', 'About'), ('report.html', 'Report a problem')]
 TILES = [
@@ -76,7 +77,7 @@ def share_tags(image, alt, root=''):
 <link rel="apple-touch-icon" href="{root}assets/icon-180.png">'''
 
 
-def page(data, path, title, desc, body, body_class='', head_extra='', canonical=None):
+def page(data, path, title, desc, body, body_class='', head_extra='', canonical=None, scripts=''):
     site = data['site']
     root = '../' * path.count('/')
     url = f"https://{site['domain']}/" + ('' if (canonical or path) == 'index.html' else (canonical or path))
@@ -113,7 +114,7 @@ def page(data, path, title, desc, body, body_class='', head_extra='', canonical=
 <p class="small">In danger right now? Call 911. {esc(site['name'])} is an information directory, not an emergency service or a provider of legal, medical or financial advice. Contacts come from published official and organization sources and are not telephone-confirmed. No sign-up or ads, and we add no tracking. Our web host, Wix, sets its own cookies.</p>
 <p class="small">Ohio mom? Visit <a href="{root}{esc(site['ohio_path'])}">OhioMom</a>. Mobility and disability resources: <a href="{esc(site['mobilitytalk_url'])}">Mobility Talk</a>.</p>
 </footer>
-<script src="{root}assets/ymt.js"></script>
+<script src="{root}assets/ymt.js"></script>{scripts}
 </body>
 </html>
 '''
@@ -241,7 +242,8 @@ def build_index(data):
     options = '<option value="">Choose your state</option>' + ''.join(
         f'<option value="states/{s["abbr"].lower()}.html">{esc(s["name"])}</option>' for s in data['states'])
     pick = (f'<div class="statepick"><label for="statepick">Or start with your state</label>'
-            f'<select id="statepick" data-state-pick>{options}</select><a href="states.html">See all states</a></div>')
+            f'<select id="statepick" data-state-pick>{options}</select><a href="states.html">See all states</a>'
+            f'<a href="county.html">Find your county</a></div>')
     lede = 'Pick one. You will get a short list of who to call. Free, private, no sign-up.'
     body = (hero('Hi, mom. What do you need today?', lede, f'<div class="tiles">{tiles}</div>{pick}', 'home')
             + '\n' + urgent_strip(data))
@@ -298,7 +300,7 @@ def build_connect(data):
 
 def build_states_index(data):
     items = ''.join(f'<li><a href="states/{s["abbr"].lower()}.html">{esc(s["name"])}<small>{s["abbr"]}</small></a></li>' for s in data['states'])
-    body = hero('Help by state', 'All 50 states and the District of Columbia. Pick yours.') + f'<section class="wrap"><ul class="statelist">{items}</ul><p class="note">Looking for something national? See <a href="help.html">Find help</a>.</p></section>'
+    body = hero('Help by state', 'All 50 states and the District of Columbia. Pick yours.') + f'<section class="wrap"><ul class="statelist">{items}</ul><p class="note">Looking for help close to home? <a href="county.html">Find your county</a>. Looking for something national? See <a href="help.html">Find help</a>.</p></section>'
     return page(data, 'states.html', 'Help by state',
                 'Pick your state for SNAP, WIC, child care, health coverage, disability help and domestic violence resources.', body,
                 head_extra=structured_data(breadcrumbs(data, [('Help by state', 'states.html')])))
@@ -317,7 +319,7 @@ def build_state(data, s):
         local = f'<div class="localbox"><strong>Ohio mom?</strong> <a href="../{esc(ls["path"])}">{esc(ls["name"])}</a> is {esc(ls["what"][0].lower() + ls["what"][1:])}</div>'
     intro = (f'Pick what you need, or search every listing. Each choice opens {esc(s["name"])}\'s own offices first, then national lines. '
              f'<a href="../states.html">Choose another state</a>.')
-    body = (hero(f'{esc(s["name"])}: help for moms', intro, local, 'slim')
+    body = (hero(f'{esc(s["name"])}: help for moms', intro, county_pick(data, s) + local, 'slim')
             + finder(f'Search every {s["name"]} listing', 'shelter, rent, WIC, child care…') + needs(rows)
             + '<section class="wrap slim"><p><strong>Meet other moms.</strong> Find a group near you or online. <a href="../connect.html">Meet moms</a></p></section>')
     path = f'states/{s["abbr"].lower()}.html'
@@ -328,6 +330,68 @@ def build_state(data, s):
              'about': {'@type': 'State', 'name': s['name']}}
     trail = breadcrumbs(data, [('Help by state', 'states.html'), (s['name'], path)])
     return page(data, path, f'{s["name"]}: help for moms', desc, body, head_extra=structured_data(about, trail))
+
+
+def county_pick(data, s):
+    """Local listings for each county of the state, one choice away. The same picker the front page uses for states."""
+    counties = sorted((c for c in data['counties'] if c['state'] == s['abbr']), key=lambda c: c['name'])
+    if not counties:
+        return ''
+    if len(counties) == 1:
+        return f'<p class="countylink"><a href="../county.html#{counties[0]["fips"]}">Local listings for {esc(s["name"])}</a>: health centers, Head Start and housing counselors.</p>'
+    noun = {'LA': 'parish', 'AK': 'borough or area'}.get(s['abbr'], 'county')
+    options = f'<option value="">Choose your {noun}</option>' + ''.join(
+        f'<option value="../county.html#{c["fips"]}">{esc(c["name"])}</option>' for c in counties)
+    return (f'<div class="statepick"><label for="countypick">Local help in your {noun}</label>'
+            f'<select id="countypick" data-state-pick>{options}</select></div>')
+
+
+COUNTY_SOURCES = [
+    ('hrsa', 'Health centers', "the Health Resources and Services Administration's list of health center sites, also searchable in its",
+     [('https://findahealthcenter.hrsa.gov/', 'Find a Health Center tool'), ('https://data.hrsa.gov/data/download', 'data downloads')],
+     'School, mobile-van and residential sites are left out.'),
+    ('hs', 'Head Start', "the Office of Head Start's list of open program locations, also searchable in its",
+     [('https://headstart.gov/center-locator', 'center locator'), ('https://headstart.gov/how-apply', 'how to apply')],
+     'Locations with no phone number in the list are left out.'),
+    ('hud', 'Housing counselors', "HUD's list of approved housing counseling agencies, also on its",
+     [('https://www.hud.gov/i_want_to/talk_to_a_housing_counselor', 'housing counselor page'), ('https://data.hud.gov/housing_counseling.html', 'counselor search')],
+     'Counselors are matched to a county by the ZIP code of their office, and nearby ones are shown by distance.'),
+]
+
+
+def build_county(data):
+    """One page for every county. The listings are in assets/us/<state>.json and assets/county.js draws them."""
+    secs = sec_map(data)
+    options = '<option value="">Choose your state</option>' + ''.join(
+        f'<option value="{s["abbr"].lower()}" data-fips="{STATE_FIPS[s["abbr"]]}">{esc(s["name"])}</option>' for s in data['states'])
+    find = ('<div class="countyfind" data-county-find hidden>'
+            f'<div><label for="cstate">State</label><select id="cstate">{options}</select></div>'
+            '<div><label for="ccounty">County</label><select id="ccounty" disabled><option value="">Choose a state first</option></select></div>'
+            '<div><label for="zip">Or your ZIP code</label><input id="zip" type="search" inputmode="numeric" maxlength="5" '
+            'autocomplete="off" enterkeyhint="go" placeholder="5 digits"></div></div>'
+            '<p class="quiet" id="cmsg" role="status"></p>')
+    lede = 'Pick your county to see health centers, Head Start and housing counselors close to you. Free, private, no sign-up.'
+    hero_html = (f'<section class="hero slim"><div class="wrap"><h1 id="ctitle">Help near you</h1>'
+                 f'<p class="lede" id="clede">{esc(lede)}</p>{find}</div></section>')
+    fallback = ('<section class="wrap"><p>The local listings on this page need JavaScript, which seems to be off or still loading. '
+                'You can still <a href="states.html">choose your state</a> for its offices and help lines.</p></section>')
+    statehelp = ('<div hidden data-statehelp><ul>' + ''.join(
+        f'<li><a data-sec="{sid}" href="states.html">{esc(secs[sid]["label"])}</a></li>' for sid in STATE_SECTIONS) + '</ul></div>')
+    items = ''.join(
+        f'<li><strong>{esc(label)}:</strong> {esc(what)} '
+        + ' and '.join(f'<a data-src="{key}" href="{esc(u)}" rel="noopener">{esc(t)}</a>' for u, t in links)
+        + f'. {esc(note)}</li>' for key, label, what, links, note in COUNTY_SOURCES)
+    sources = (f'<section class="wrap slim" id="sources"><h2>Where these listings come from</h2><ul>{items}</ul>'
+               '<p class="note">Listings are copied from these federal lists by a program, not checked by phone, and the date of '
+               'the copy is on each one. A Website button appears only when that website loaded in our automatic check. '
+               'If something is wrong, <a href="report.html">tell us</a>.</p>'
+               '<p class="note">Nothing you type on this page is saved. A ZIP code is matched inside your browser, using a list '
+               'your browser downloads for the first digit of the code.</p></section>')
+    body = hero_html + f'\n<div id="county-app">{fallback}</div>' + statehelp + '\n' + urgent_strip(data) + '\n' + sources
+    return page(data, 'county.html', 'Help near you, by county',
+                'Health centers, Head Start and housing counselors in every U.S. county, from federal directories. Free, with no sign-up.',
+                body, head_extra=structured_data(breadcrumbs(data, [('Help near you, by county', 'county.html')])),
+                scripts='\n<script src="assets/county.js"></script>')
 
 
 def build_yoga(data):
@@ -382,7 +446,7 @@ def build_all(data):
     files = {
         'index.html': build_index(data), 'help.html': build_help(data), 'connect.html': build_connect(data),
         'states.html': build_states_index(data), 'yoga.html': build_yoga(data), 'about.html': build_about(data),
-        'report.html': build_report(data), '404.html': build_404(data),
+        'report.html': build_report(data), '404.html': build_404(data), 'county.html': build_county(data),
     }
     for s in data['states']:
         files[f'states/{s["abbr"].lower()}.html'] = build_state(data, s)
