@@ -198,11 +198,11 @@
    "reviewed_on": "2026-11-08"
   },
   {
-   "id": "oacb-family",
-   "title": "Contact your county board of DD (directory map)",
-   "url": "https://www.oacbdd.org/familyresources",
-   "publisher": "Ohio Association of County Boards of DD",
-   "reviewed_on": "2026-11-08"
+   "id": "dodd-county-board",
+   "title": "Find Your County Board",
+   "url": "https://dodd.ohio.gov/your-family/all-family-resources/4-find-your-county-board",
+   "publisher": "Ohio Department of Developmental Disabilities",
+   "reviewed_on": "2026-11-15"
   },
   {
    "id": "milestones-dodd",
@@ -1281,10 +1281,10 @@
    "name": "Your county board of developmental disabilities",
    "org": "Ohio's 88 county boards of DD",
    "what": "Your county board is where local services for developmental disabilities start. It decides who qualifies, assigns a helper to plan services, and runs Medicaid waivers and family support money.",
-   "how": "Find your county on the map, or call the state line and ask to be connected to your county.",
+   "how": "Choose your county from the list on the state's page, or call the state line and ask to be connected to your county.",
    "phone": "800-617-6733",
    "phone_label": "Ohio DODD referral line",
-   "url": "https://www.oacbdd.org/familyresources",
+   "url": "https://dodd.ohio.gov/your-family/all-family-resources/4-find-your-county-board",
    "stages": [
     "early",
     "school",
@@ -1297,7 +1297,7 @@
     "physical"
    ],
    "sources": [
-    "oacb-family",
+    "dodd-county-board",
     "milestones-dodd",
     "dodd-home"
    ]

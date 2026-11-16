@@ -155,7 +155,7 @@
    if (c.dd.ask) nodes.push(document.createTextNode(spanish ? d.county_dd_ask : 'ask how to apply for services'));
    row(ddLabel, nodes);
   }
-  else row(ddLabel, [link('https://www.oacbdd.org/familyresources', spanish ? fill(d.county_dd_map, {county}) : 'pick ' + county + ' County on the map'), link('tel:8006176733', '800-617-6733')]);
+  else row(ddLabel, [link('https://dodd.ohio.gov/your-family/all-family-resources/4-find-your-county-board', spanish ? fill(d.county_dd_map, {county}) : 'choose ' + county + ' County in the list'), link('tel:8006176733', '800-617-6733')]);
   row(spanish ? d.veteran_families : 'Veteran families', [link('https://guide.vethomeguard.org/?state=OH&county=' + encodeURIComponent(county), spanish ? fill(d.cvso, {county}) : county + ' County veterans service office')]);
   wrap.append(ul);
   box.append(wrap);
