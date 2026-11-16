@@ -338,7 +338,7 @@ def county_pick(data, s):
     if not counties:
         return ''
     if len(counties) == 1:
-        return f'<p class="countylink"><a href="../county.html#{counties[0]["fips"]}">Local listings for {esc(s["name"])}</a>: public housing, health centers, school districts and Head Start.</p>'
+        return f'<p class="countylink"><a href="../county.html#{counties[0]["fips"]}">Local listings for {esc(s["name"])}</a>: public housing, legal aid, health centers, school districts and Head Start.</p>'
     noun = {'LA': 'parish', 'AK': 'borough or area'}.get(s['abbr'], 'county')
     options = f'<option value="">Choose your {noun}</option>' + ''.join(
         f'<option value="../county.html#{c["fips"]}">{esc(c["name"])}</option>' for c in counties)
@@ -355,6 +355,11 @@ COUNTY_SOURCES = [  # in the order the rows appear on the page
     ('hud', 'Housing counselors', "HUD's list of approved housing counseling agencies, also on its {0} and {1}",
      [('https://www.hud.gov/i_want_to/talk_to_a_housing_counselor', 'housing counselor page'), ('https://data.hud.gov/housing_counseling.html', 'counselor search')],
      'Counselors are matched to a county by the ZIP code of their office, and nearby ones are shown by distance.'),
+    ('lg', 'Free legal help', "the Legal Services Corporation's list of the legal aid programs it funds and its map of the areas "
+     "they serve, also searchable in its {0}. What legal aid helps with is on its {1}",
+     [('https://www.lsc.gov/about-lsc/what-legal-aid/i-need-legal-help', 'legal aid finder'),
+      ('https://www.lsc.gov/about-lsc/what-legal-aid', 'page on what legal aid does')],
+     'A county is matched to the program whose service area holds it.'),
     ('hrsa', 'Health centers', "the Health Resources and Services Administration's list of health center sites, also searchable in its {0} and {1}",
      [('https://findahealthcenter.hrsa.gov/', 'Find a Health Center tool'), ('https://data.hrsa.gov/data/download', 'data downloads')],
      'School, mobile-van and residential sites are left out.'),
@@ -381,8 +386,8 @@ def build_county(data):
             '<div><label for="zip">Or your ZIP code</label><input id="zip" type="search" inputmode="numeric" maxlength="5" '
             'autocomplete="off" enterkeyhint="go" placeholder="5 digits"></div></div>'
             '<p class="quiet" id="cmsg" role="status"></p>')
-    lede = ('Pick your county to see where to apply for housing help, low-cost health care, free evaluations for your child '
-            'and Head Start close to you. Free, private, no sign-up.')
+    lede = ('Pick your county to see where to apply for housing help, free legal help, low-cost health care, free evaluations '
+            'for your child and Head Start close to you. Free, private, no sign-up.')
     hero_html = (f'<section class="hero slim"><div class="wrap"><h1 id="ctitle">Help near you</h1>'
                  f'<p class="lede" id="clede">{esc(lede)}</p>{find}</div></section>')
     fallback = ('<section class="wrap"><p>The local listings on this page need JavaScript, which seems to be off or still loading. '
@@ -410,7 +415,7 @@ def build_county(data):
                'your browser downloads for the first digit of the code.</p></section>')
     body = hero_html + f'\n<div id="county-app">{fallback}</div>' + statehelp + '\n' + urgent_strip(data) + '\n' + sources
     return page(data, 'county.html', 'Help near you, by county',
-                'Public housing, housing counselors, health centers, school districts and Head Start in every U.S. county, '
+                'Public housing, housing counselors, legal aid, health centers, school districts and Head Start in every U.S. county, '
                 'from federal directories. Free, with no sign-up.',
                 body, head_extra=structured_data(breadcrumbs(data, [('Help near you, by county', 'county.html')])),
                 scripts='\n<script src="assets/county.js"></script>')

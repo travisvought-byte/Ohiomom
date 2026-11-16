@@ -172,6 +172,27 @@ class CountyData(unittest.TestCase):
         self.assertEqual(SHARDS['GA']['sd'][next(i for i in SHARDS['GA']['c']['13121']['sd'] if 'Fulton' in SHARDS['GA']['sd'][i][0])][0],
                          'Fulton County Schools')
 
+    def test_every_county_has_its_legal_aid_program(self):
+        for st, shard in SHARDS.items():
+            used = set()
+            for fips, entry in shard['c'].items():
+                self.assertTrue(entry.get('lg'), f'{fips}: a legal aid program serves every county')
+                for sa in entry['lg']:
+                    self.assertRegex(sa, rf'^{st}-\d+$')
+                    self.assertIn(sa, shard['lg'])
+                    used.add(sa)
+            self.assertEqual(used, set(shard['lg']), st)
+            for sa, a in shard['lg'].items():
+                self.assertEqual(len(a), 4, a)
+                self.assertRegex(a[1], PHONE)
+                self.assertEqual(a[3], st)
+                if a[2]:
+                    self.assertIn(LEDGER.get(a[2]), SHOWN, a[2])
+        self.assertEqual(SHARDS['OH']['lg'][SHARDS['OH']['c']['39117']['lg'][0]][0], 'Legal Aid of Southeast and Central Ohio')
+        self.assertEqual(SHARDS['CA']['lg'][SHARDS['CA']['c']['06075']['lg'][0]][0], 'Bay Area Legal Aid',
+                         "San Francisco's middle point is offshore; its ZIP codes place it")
+        self.assertEqual(SHARDS['IL']['lg'][SHARDS['IL']['c']['17031']['lg'][0]][0], 'Legal Aid Chicago')
+
     def test_names_and_numbers_are_cleaned_carefully(self):
         self.assertEqual(cd.agency_name('The Housing Authority of the City of Westbroo', 'Westbrook'),
                          'The Housing Authority of the City of Westbrook')
@@ -264,7 +285,7 @@ class CountyPages(unittest.TestCase):
         self.assertEqual((zipbox[0]['type'], zipbox[0]['id']), ('search', 'zip'))
         self.assertNotIn('name', zipbox[0], 'nothing typed can be sent')
         srcs = [a['data-src'] for tag, a in t if tag == 'a' and a.get('data-src')]
-        self.assertEqual(sorted(srcs), ['hrsa', 'hrsa', 'hs', 'hs', 'hud', 'hud', 'pha', 'pha', 'sd', 'sd', 'sd'])
+        self.assertEqual(sorted(srcs), ['hrsa', 'hrsa', 'hs', 'hs', 'hud', 'hud', 'lg', 'lg', 'pha', 'pha', 'sd', 'sd', 'sd'])
 
     def test_every_state_page_leads_to_its_counties(self):
         for st in STATE_FIPS:

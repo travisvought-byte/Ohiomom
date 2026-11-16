@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the county layer from federal downloads.
 
-Every county and county-equivalent in the 50 states and D.C. (3,144 of them) gets local listings from five
+Every county and county-equivalent in the 50 states and D.C. (3,144 of them) gets local listings from six
 public federal directories, with no hand editing:
 
     HRSA Health Center Program sites       low-cost care, whether or not you have insurance
@@ -9,6 +9,7 @@ public federal directories, with no hand editing:
     HUD-approved housing counseling        rent, homelessness, mortgage trouble and budgeting
     HUD public housing agencies            where to apply for public housing and Housing Choice Vouchers
     NCES public school districts           where to ask for a free evaluation for a child from age 3
+    Legal Services Corporation programs    free civil legal help: custody, protection orders, eviction
 
     python3 scripts/county_data.py --fetch SRC    download the raw files into SRC (about 90 MB)
     python3 scripts/county_data.py SRC            build data/ymt/counties.json and assets/us/*.json from SRC
@@ -30,6 +31,7 @@ Shape of assets/us/<st>.json (short names keep the 3,144 counties small):
                     public housing homes, vouchers, state]
     c[fips].sd     [district id, ...] covering the most land first, or sdNear [[district id, miles], ...] when none does
     sd[id]         [name, street, city, zip, phone, website, state]
+    c[fips].lg     [legal aid service area, ...], usually one; lg[area] = [program name, phone, website, state]
     "Near" lists appear only when the county itself has none. assets/us/z<digit>.json maps a ZIP to its county.
 """
 import argparse
@@ -75,6 +77,12 @@ SOURCES = {
     'school-places.txt': ('https://nces.ed.gov/programs/edge/data/EDGE_GEOCODE_PUBLICSCH_2425.zip', 'EDGE_GEOCODE_PUBLICSCH_2425.TXT'),
     # Which counties each district's boundary covers, and how much land in each (https://nces.ed.gov/programs/edge/Geographic/RelationshipFiles).
     'district-counties.xlsx': ('https://nces.ed.gov/programs/edge/data/GRF25.zip', 'GRF25/grf25_lea_county.xlsx'),
+    # Legal Services Corporation: the legal aid programs it funds, and a map of their service areas. The map's file name
+    # carries a date; when LSC updates its map (https://www.lsc.gov/grants/our-grantees), take the new name from
+    # https://d29f85wyq8xezh.cloudfront.net/lsc-website/our-grantees-map/js/serviceAreasMap.js.
+    'lsc-programs.json': ('https://www.lsc.gov/themes/lsc/scripts/find-legal-aid-leaflet/Programs.json', None),
+    'lsc-areas.json': ('https://lt2v6wga3l.execute-api.us-east-1.amazonaws.com/default/lsc-data-api'
+                       '?key=lsc-website/our-grantees-map/LSC_basic_field_service_areas_08_17_2026.json', None),
 }
 HUD_URL = 'https://data.hud.gov/Housing_Counselor/search?AgencyName=&City=&State={st}&RowLimit=&Services=&Languages='
 
@@ -302,6 +310,7 @@ class Geo:
             if z not in best or area > best[z][1]:
                 best[z] = (county, area)
         points = {r['GEOID']: (float(r['INTPTLAT']), float(r['INTPTLONG'])) for r in tsv(src / '2023_Gaz_zcta_national.txt')}
+        self.zcta_points = points
         out = {}
         for z, (county, _) in best.items():
             if county[:2] == '09':                      # the old Connecticut counties no longer exist
@@ -310,6 +319,9 @@ class Geo:
                 county = self.ct_region(*points[z])
             if county in self.by_fips:
                 out[z] = county
+        self.county_zips = defaultdict(list)
+        for z, county in out.items():
+            self.county_zips[county].append(z)
         return out
 
     def from_name(self, state, county_name):
@@ -693,6 +705,104 @@ def tsv_raw(path):
             yield line.rstrip('\r\n').split('|')
 
 
+def topo_polygons(topo, layer, key):
+    """Polygons from a TopoJSON layer: {key value: [[outer ring, hole, ...], ...]}, each ring an array of lon, lat."""
+    sc, tr = topo['transform']['scale'], topo['transform']['translate']
+    arcs = []
+    for arc in topo['arcs']:
+        a = np.cumsum(np.array(arc, dtype=float), axis=0)
+        arcs.append(np.column_stack([a[:, 0] * sc[0] + tr[0], a[:, 1] * sc[1] + tr[1]]))
+
+    def ring(idx):
+        parts = []
+        for i in idx:
+            seg = arcs[i] if i >= 0 else arcs[~i][::-1]
+            parts.append(seg if not parts else seg[1:])
+        return np.vstack(parts)
+    out = {}
+    for g in topo['objects'][layer]['geometries']:
+        if g.get('type') not in ('Polygon', 'MultiPolygon'):
+            continue
+        polys = g['arcs'] if g['type'] == 'MultiPolygon' else [g['arcs']]
+        out[g['properties'][key]] = [[ring(r) for r in poly] for poly in polys]
+    return out
+
+
+def points_inside(polys, lons, lats):
+    """Which of the points fall inside any of the polygons (outer ring, less its holes). Ray casting, vectorized."""
+    lons, lats = np.asarray(lons, dtype=float), np.asarray(lats, dtype=float)
+    hit = np.zeros(len(lons), dtype=bool)
+    for poly in polys:
+        inside = None
+        for k, r in enumerate(poly):
+            x1, y1, x2, y2 = r[:-1, 0], r[:-1, 1], r[1:, 0], r[1:, 1]
+            c = np.zeros(len(lons), dtype=bool)
+            for j in range(0, len(lons), 2000):
+                px, py = lons[j:j + 2000, None], lats[j:j + 2000, None]
+                crosses = (y1 > py) != (y2 > py)
+                with np.errstate(divide='ignore', invalid='ignore'):
+                    xint = (x2 - x1) * (py - y1) / (y2 - y1) + x1
+                c[j:j + 2000] = np.count_nonzero(crosses & (px < xint), axis=1) % 2 == 1
+            inside = c if k == 0 else inside & ~c
+        hit |= inside
+    return hit
+
+
+def load_legal_aid(src, geo):
+    """The legal aid programs LSC funds, and for each county the program whose service area holds it."""
+    dropped = Counter()
+    programs = json.loads((src / 'lsc-programs.json').read_text(encoding='utf-8-sig'))
+    raw = json.loads((src / 'lsc-areas.json').read_text(encoding='utf-8'))
+    shapes = topo_polygons(raw.get('data', raw), 'service_areas', 'ServArea_1')
+    areas = {}
+    for p in programs:
+        sa = (p.get('Serv_Area_ID') or '').strip()
+        if not re.fullmatch(r'[A-Z]{2}-\d+', sa) or sa[:2] not in STATE_FIPS:
+            continue
+        if sa not in shapes:
+            dropped['no service area on the map'] += 1
+            continue
+        phone = phone10(p.get('Local_800')) or phone10(p.get('Phone'))
+        if not phone:
+            dropped['no phone'] += 1
+            continue
+        areas[sa] = {'id': sa, 'st': sa[:2], 'name': tidy_caps(p.get('R_Legalname') or ''), 'phone': phone,
+                     'web': clean_url(p.get('Web_URL'))}
+    by_state = defaultdict(list)
+    for sa in areas:
+        by_state[sa[:2]].append(sa)
+    counties = {}
+    for st, sas in by_state.items():
+        mine = [c for c in geo.counties if c['state'] == st]
+        lons, lats = np.array([c['lon'] for c in mine]), np.array([c['lat'] for c in mine])
+        found = defaultdict(list)
+        for sa in sas:
+            for i in np.nonzero(points_inside(shapes[sa], lons, lats))[0]:
+                found[mine[int(i)]['fips']].append(sa)
+        for c in mine:
+            chosen = found.get(c['fips'], [])
+            if not chosen and len(sas) == 1:
+                chosen = sas[:]
+            if not chosen:
+                # The middle of a coastal county can sit in the water (San Francisco's is offshore). Its ZIP codes decide.
+                zips = [geo.zcta_points[z] for z in geo.county_zips.get(c['fips'], []) if z in geo.zcta_points]
+                if zips:
+                    tally = Counter()
+                    for sa in sas:
+                        tally[sa] = int(np.count_nonzero(points_inside(shapes[sa], [x for _, x in zips], [y for y, _ in zips])))
+                    best, n = tally.most_common(1)[0]
+                    if n:
+                        chosen = [best]
+            if not chosen:
+                # Otherwise the service area with an edge nearest the middle of the county.
+                near = min(sas, key=lambda sa: min(float(np.min(miles_from(c['lat'], c['lon'], r[:, 1], r[:, 0])))
+                                                   for poly in shapes[sa] for r in poly))
+                chosen = [near]
+                dropped['placed by the nearest service area'] += 1
+            counties[c['fips']] = sorted(set(chosen))
+    return areas, counties, dropped
+
+
 # ------------------------------------------------------------------ assembling the shards
 def verified(url, ledger):
     """The address to link, if the link check saw it load: as written, or as plain http when only that worked."""
@@ -729,6 +839,7 @@ def build(src, ledger, asof):
     hud, hud_drop = load_hud(src, geo)
     phas, pha_drop = load_pha(src, geo)
     districts, sd_drop = load_districts(src, geo)
+    legal, legal_in, legal_drop = load_legal_aid(src, geo)
     pha_local = defaultdict(list)       # state: its agencies that are not statewide programs
     statewide = defaultdict(list)       # state: its statewide voucher programs
     for a in phas:
@@ -766,7 +877,7 @@ def build(src, ledger, asof):
     def hs_row(s, miles):
         return [s['name'], s['org'], s['street'], s['city'], s['zip'], s['phone'], s['types'], miles, s['st']]
 
-    shards = {st: {'v': 1, 'asof': asof, 'st': st, 'c': {}, 'hu': {}, 'ph': {}, 'sd': {}} for st in STATE_FIPS}
+    shards = {st: {'v': 1, 'asof': asof, 'st': st, 'c': {}, 'hu': {}, 'ph': {}, 'sd': {}, 'lg': {}} for st in STATE_FIPS}
     used_hud = defaultdict(set)
     used_pha, used_sd = defaultdict(dict), defaultdict(dict)
     for c in geo.counties:
@@ -841,6 +952,12 @@ def build(src, ledger, asof):
                 entry['sdNear'] = [[x['id'], m] for x, m in near]
                 for x, _ in near:
                     used_sd[c['state']][x['id']] = x
+        # Free legal help: the legal aid program whose service area holds the county.
+        if legal_in.get(c['fips']):
+            entry['lg'] = legal_in[c['fips']]
+            for sa in entry['lg']:
+                a = legal[sa]
+                shards[c['state']]['lg'][sa] = [a['name'], a['phone'], verified(a['web'], ledger), a['st']]
         shards[c['state']]['c'][c['fips']] = entry
     for st, agencies in used_pha.items():
         for i, a in sorted(agencies.items()):
@@ -855,7 +972,8 @@ def build(src, ledger, asof):
             shards[st]['hu'][i] = [a['name'], a['street'], a['city'], a['zip'], a['phone'], verified(a['web'], ledger),
                                    a['services'], a['methods'], a['languages'], a['st']]
     stats = {'hrsa': (len(hrsa), dict(hrsa_drop)), 'head_start': (len(hs), dict(hs_drop)), 'hud': (len(hud), dict(hud_drop)),
-             'public housing': (len(phas), dict(pha_drop)), 'school districts': (len(districts), dict(sd_drop))}
+             'public housing': (len(phas), dict(pha_drop)), 'school districts': (len(districts), dict(sd_drop)),
+             'legal aid': (len(legal), dict(legal_drop))}
     return geo, shards, stats
 
 
@@ -881,6 +999,7 @@ def candidate_urls(src):
     geo = Geo(src)
     urls = {s['web'] for s in load_hrsa(src, geo)[0]} | {a['web'] for a in load_hud(src, geo)[0]}
     urls |= {d['web'] for d in load_districts(src, geo)[0]}
+    urls |= {a['web'] for a in load_legal_aid(src, geo)[0].values()}
     return sorted(u for u in urls if u)
 
 
