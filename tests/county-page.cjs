@@ -60,7 +60,11 @@ function checkCards(d, label) {
     assert.equal(d.getElementById('ctitle').textContent, 'Morrow County, Ohio');
     assert.equal(d.title, 'Morrow County, Ohio: help for moms | Yoga Mom Talk');
     const rows = all(d, '#county-app details.need');
-    assert.deepEqual(rows.map((r) => r.id), ['county-pha', 'county-hud', 'county-health', 'county-schools', 'county-start', 'county-state']);
+    assert.deepEqual(rows.map((r) => r.id), ['county-pha', 'county-hud', 'county-legal', 'county-health', 'county-schools', 'county-start', 'county-state']);
+    const legal = all(d, '#county-legal article.card');
+    assert.equal(legal.length, 1);
+    assert.equal(legal[0].querySelector('h3').textContent, 'Legal Aid of Southeast and Central Ohio');
+    assert.match(legal[0].querySelector('.short').textContent, /custody, child support, protection from abuse and eviction/);
     assert(rows.every((r) => !r.open), 'rows stay closed until asked for');
     for (const r of rows) assert.equal(r.querySelector('summary h2').parentElement.tagName, 'SUMMARY');
     checkCards(d, 'Morrow');
@@ -113,7 +117,8 @@ function checkCards(d, label) {
       const fips = Object.keys(shard.c).sort((a, b) => shard.c[b].p - shard.c[a].p)[0];
       const { w, d } = load('#' + fips);
       await settle(w);
-      assert.equal(all(d, '#county-app details.need').length, 6, fips);
+      assert.equal(all(d, '#county-app details.need').length, 7, fips);
+      assert.equal(all(d, '#county-legal article.card').length >= 1, true, fips + ': every county has legal aid');
       checkCards(d, fips);
     }
   }

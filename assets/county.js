@@ -177,6 +177,16 @@
     return card('sd-' + id, d[0], short, d[4], d[5], more);
   }
 
+  // legal aid: [program name, phone, website, state]
+  function legalCard(sa, a, ctx) {
+    var short = 'Free legal help for people with low incomes, with problems such as custody, child support, protection from abuse and eviction.';
+    var more = [h('p', { 'class': 'org', text: 'Legal aid program funded by the Legal Services Corporation' }),
+      h('p', { text: 'It serves ' + ctx.county + ' and the rest of its area, and can tell you if another program is the one for you.' }),
+      h('p', {}, [h('strong', { text: 'Next step:' }), ' Call and say what is happening and any date you have to meet, such as a court date or the deadline on an eviction notice. If they cannot take your case, ask who can.']),
+      sourceLine('lg', ctx.asof)];
+    return card('lg-' + sa, a[0], short, a[1], a[2], more);
+  }
+
   // ---- a row: closed until asked for, like every need on the site
   function row(id, icon, label, sum, n, noun, body) {
     return h('details', { 'class': 'need', id: id }, [
@@ -260,6 +270,11 @@
       'Free or low-cost help with rent, eviction and mortgages', agencies.length, ['counselor', 'counselors'],
       agencies.length ? cardList(agencies, function (ref) { return hudCard(ref, shard.hu[ref[0]], ctx); }, function (ref) { var a = shard.hu[ref[0]]; return words([a[0], a[2]]); })
         : h('p', { 'class': 'quiet', text: 'No HUD-approved counselor is listed near ' + c.n + '. Call HUD at 800-569-4287 to be matched with one by phone.' })));
+    var legal = (c.lg || []).filter(function (sa) { return shard.lg && shard.lg[sa]; });
+    rows.push(row('county-legal', '⚖️', 'Free legal help',
+      'Legal aid that serves ' + c.n, legal.length, ['program', 'programs'],
+      legal.length ? cardList(legal, function (sa) { return legalCard(sa, shard.lg[sa], ctx); }, function (sa) { return words([shard.lg[sa][0]]); })
+        : h('p', { 'class': 'quiet', text: 'No legal aid program is listed for ' + c.n + '. Your state\'s legal help is in the last row.' })));
     rows.push(row('county-health', '🩺', 'Low-cost health care',
       c.health ? 'Health centers in ' + c.n : 'Nearest health centers, outside ' + c.n, health.length, ['place', 'places'],
       health.length ? cardList(health, function (r, i) { return healthCard(r, i, ctx); }, haystackOf([0, 1, 2, 3, 4]))
