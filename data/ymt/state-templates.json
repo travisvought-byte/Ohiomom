@@ -142,7 +142,7 @@
    "section": "housing",
    "name": "Women's shelters and advocates in {state}",
    "org": "WomensLaw.org",
-   "what": "A county-by-county list of domestic violence programs in {state}: hotlines, shelters, counseling and help with protection orders.",
+   "what": "A list of local domestic violence programs in {state}, by county. Many offer a 24-hour hotline, shelter, counseling and help with protection orders.",
    "how": "Find your county and call the program's hotline. If you cannot browse safely, call the National Domestic Violence Hotline at 800-799-7233.",
    "url": "https://www.womenslaw.org/find-help/{st}/advocates-and-shelters/local-programs",
    "sources": ["https://www.womenslaw.org/find-help/{st}/advocates-and-shelters/local-programs"]
