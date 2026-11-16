@@ -39,10 +39,15 @@ def pretty_date(iso):
     return f'{MONTHS[m - 1]} {d}, {y}'
 
 
-def _fill(text, state):
-    return (text.replace('{state}', state['name'])
-                .replace('{slug}', state['slug'])
-                .replace('{snap_slug}', state['snap_slug']))
+def _fill(value, state):
+    if isinstance(value, list):
+        return [_fill(v, state) for v in value]
+    if not isinstance(value, str):
+        return value
+    return (value.replace('{state}', state['name'])
+                 .replace('{slug}', state['slug'])
+                 .replace('{snap_slug}', state['snap_slug'])
+                 .replace('{st}', state['abbr'].lower()))
 
 
 def state_records(state, data):
@@ -51,7 +56,7 @@ def state_records(state, data):
     rev = data['site']['reviewed_on']
     out = []
     for t in data['templates']:
-        r = {k: (_fill(v, state) if isinstance(v, str) else v) for k, v in t.items()}
+        r = {k: _fill(v, state) for k, v in t.items()}
         r['id'] = f"{state['abbr'].lower()}-{t['id']}"
         r['scope'] = state['abbr']
         r['reviewed_on'] = rev

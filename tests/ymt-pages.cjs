@@ -12,8 +12,9 @@ const all = (d, sel) => [...d.querySelectorAll(sel)];
 {
   const { d } = load('index.html');
   assert.equal(all(d, '.card').length, 0, 'front page shows no listing cards');
-  assert.equal(all(d, '.hero .tile').length, 6, 'six needs to choose from');
+  assert.equal(all(d, '.hero .tile').length, 8, 'seven needs and "See everything"');
   assert.equal(all(d, 'main > section').length, 2, 'front page is the question and the help-now strip, nothing else');
+  assert(d.querySelector('.hero .tile[href="help.html#housing"]'), 'housing and shelter is a choice of its own');
   const phones = all(d, '.phonecard');
   assert.equal(phones.length, 3);
   for (const a of phones) assert.match(a.getAttribute('href'), /^tel:/);
@@ -55,8 +56,8 @@ function checkNeeds(file, count) {
   assert.equal(all(d, 'article.card').filter((c) => !c.closest('details.need')).length, 0, `${file}: no listing outside a need`);
   checkCards(d, file);
 }
-checkNeeds('help.html', 7);
-for (const f of fs.readdirSync('states').filter((f) => f.endsWith('.html'))) checkNeeds('states/' + f, 6);
+checkNeeds('help.html', 8);
+for (const f of fs.readdirSync('states').filter((f) => f.endsWith('.html'))) checkNeeds('states/' + f, 8);
 checkCards(load('connect.html').d, 'connect.html');
 
 // 4. Choosing a need on the front page opens that need, and only that one.
@@ -86,6 +87,61 @@ assert.equal(all(load('help.html').d, 'details[open]').length, 0);
   assert.equal(all(d, 'details:not([open])').length, 0);
   w.dispatchEvent(new w.Event('afterprint'));
   assert.deepEqual(all(d, 'details[open]').map((n) => n.id), ['food-bills']);
+}
+
+// 4b. Search and "Show everything": every listing can be reached from one box, and nothing leaves the page.
+{
+  const type = (w, d, text) => { const q = d.getElementById('q'); q.value = text; q.dispatchEvent(new w.Event('input')); };
+  const shown = (d) => all(d, 'article.card').filter((c) => !c.hidden && !c.closest('details.need').hidden);
+  const { w, d } = load('states/oh.html');
+  const finder = d.querySelector('[data-finder]');
+  assert(!finder.hidden, 'the script shows the search bar');
+  const total = new Set(all(d, 'article.card').map((c) => c.id.split('--').pop())).size;
+  assert.equal(d.querySelector('[data-count]').textContent, `${total} listings in 8 groups.`);
+  assert(total >= 44, 'a state page holds every listing for that state');
+  // A word opens the needs that hold a match and hides the rest.
+  type(w, d, 'shelter');
+  assert(shown(d).length >= 5, 'shelter finds several listings');
+  assert(shown(d).some((c) => c.id === 'us-find-shelter') && shown(d).some((c) => c.id === 'oh-shelters'));
+  for (const n of all(d, 'details.need')) assert.equal(n.open, !n.hidden, `${n.id}: open exactly when it holds a match`);
+  assert.match(d.querySelector('[data-count]').textContent, /^\d+ of \d+ listings match\.$/);
+  assert(d.querySelector('[data-show-all]').hidden, 'no "Show everything" while searching');
+  // Words match where a word starts: "rent" is not found inside "parent".
+  type(w, d, 'rent');
+  assert(!shown(d).some((c) => c.id === 'us-p2p-usa'), 'Parent to Parent is not a match for rent');
+  assert(shown(d).some((c) => c.id === 'oh-housing-hud'));
+  // Everyday words reach the listing that uses another word.
+  type(w, d, 'homeless');
+  assert(shown(d).some((c) => c.id === 'us-find-shelter'));
+  type(w, d, 'food stamps');
+  assert(shown(d).some((c) => c.id === 'oh-snap'));
+  type(w, d, 'daycare');
+  assert(shown(d).some((c) => c.id === 'oh-childcare'));
+  // Nothing found says so and points to a person.
+  type(w, d, 'qqqqzz');
+  assert.equal(shown(d).length, 0);
+  assert.match(d.querySelector('[data-count]').textContent, /Nothing matches.*211/);
+  // Clearing the box puts the page back: every listing there, every need closed.
+  type(w, d, '');
+  assert.equal(all(d, 'article.card').filter((c) => c.hidden).length, 0);
+  assert.equal(all(d, 'details.need').filter((n) => n.open || n.hidden).length, 0);
+  // "Show everything" opens every need, and closes them again.
+  const button = d.querySelector('[data-show-all]');
+  button.click();
+  assert.equal(all(d, 'details.need').filter((n) => !n.open).length, 0);
+  assert.equal(button.getAttribute('aria-pressed'), 'true');
+  assert.equal(button.textContent, 'Close all');
+  button.click();
+  assert.equal(all(d, 'details.need').filter((n) => n.open).length, 0);
+  // Two addresses do the same from a link: #everything and #q=word.
+  assert.equal(all(load('help.html', '#everything').d, 'details.need').filter((n) => !n.open).length, 0);
+  const linked = load('help.html', '#q=diapers');
+  assert.equal(linked.d.getElementById('q').value, 'diapers');
+  assert(shown(linked.d).some((c) => c.id === 'us-diaper-banks'));
+  // The script never talks to a server and never stores anything.
+  for (const banned of ['fetch(', 'XMLHttpRequest', 'sendBeacon', 'document.cookie', 'localStorage', 'sessionStorage']) assert(!script.includes(banned), banned);
+  // Without the script the search bar stays hidden, so there is never a box that does nothing.
+  assert(new JSDOM(fs.readFileSync('help.html', 'utf8')).window.document.querySelector('[data-finder]').hidden);
 }
 
 // 5. The OhioMom front page: the question, the six needs and the area picker. Events and the poll live on their own pages.
