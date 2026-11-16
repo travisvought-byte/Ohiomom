@@ -104,6 +104,90 @@ class CountyData(unittest.TestCase):
                 self.assertRegex(a[4], PHONE)
                 self.assertTrue(set(a[6]) <= set('RHDBP') and set(a[7]) <= set('FPVI'), a)
 
+    def test_public_housing_agencies_have_the_documented_shape(self):
+        for st, shard in SHARDS.items():
+            used = set()
+            for fips, entry in shard['c'].items():
+                refs = entry.get('pha', [])
+                hows = [r[2] for r in refs]
+                # Local agencies first, then nearby ones, then the state's own program.
+                self.assertEqual(hows, sorted(hows, key=lambda h: 'cnrs'.index(h) if h in 'rs' else 0), (fips, hows))
+                for code, miles, how in refs:
+                    self.assertIn(code, shard['ph'])
+                    self.assertIn(how, 'cnrs')
+                    self.assertTrue(isinstance(miles, int) and miles >= 0)
+                    if how == 'r':
+                        self.assertTrue(1 <= miles <= cd.PHA_FAR_MILES, (fips, code, miles))
+                    used.add(code)
+            self.assertEqual(used, set(shard['ph']), f'{st}: every agency in the file is shown somewhere')
+            for code, a in shard['ph'].items():
+                self.assertEqual(len(a), 9, a)
+                self.assertRegex(a[4], PHONE)
+                self.assertIn(a[5], 'CSP')
+                self.assertEqual(a[8], st)
+                self.assertFalse(re.fullmatch(r'[A-Z]{2}8\d\d', code), 'special-purpose programs are left out')
+                self.assertNotRegex(a[0], r'(?i)metropolitian|housng', 'typos in the federal list are fixed')
+        morrow = SHARDS['OH']['c']['39117']['pha']
+        self.assertEqual(SHARDS['OH']['ph'][morrow[0][0]][0], 'Morrow Metropolitan Housing Authority')
+        self.assertEqual(morrow[0][2], 'n', "Morrow's agency has its office in Knox County")
+        knox = {SHARDS['OH']['ph'][r[0]][0]: r[2] for r in SHARDS['OH']['c']['39083']['pha']}
+        self.assertEqual(knox['Knox Metropolitan Housing Authority'], 'c')
+        self.assertEqual(knox.get('Morrow Metropolitan Housing Authority'), 'r', "named for Morrow, so only nearby for Knox")
+        la = SHARDS['CA']['c']['06037']['pha']
+        self.assertEqual(SHARDS['CA']['ph'][la[0][0]][0], 'Housing Authority of the City of Los Angeles', 'the largest first')
+        self.assertTrue(all(r[2] == 's' for r in SHARDS['AK']['c']['02020']['pha']), "Alaska's one agency is statewide")
+
+    def test_school_districts_have_the_documented_shape(self):
+        for st, shard in SHARDS.items():
+            used = set()
+            for fips, entry in shard['c'].items():
+                self.assertFalse(entry.get('sd') and entry.get('sdNear'), fips)
+                for i in entry.get('sd', []):
+                    self.assertIn(i, shard['sd'])
+                    used.add(i)
+                for i, miles in entry.get('sdNear', []):
+                    self.assertIn(i, shard['sd'])
+                    self.assertTrue(1 <= miles <= cd.SD_NEAR_MILES)
+                    used.add(i)
+            self.assertEqual(used, set(shard['sd']), st)
+            for i, d in shard['sd'].items():
+                self.assertEqual(len(d), 7, d)
+                self.assertRegex(d[4], PHONE)
+                self.assertEqual(d[6], st)
+        no_district = [c['fips'] for c in COUNTIES
+                       if not SHARDS[c['state']]['c'][c['fips']].get('sd') and not SHARDS[c['state']]['c'][c['fips']].get('sdNear')]
+        self.assertEqual(no_district, [], 'every county has a school district to call')
+        names = [SHARDS['OH']['sd'][i][0] for i in SHARDS['OH']['c']['39117']['sd']]
+        # By boundary: the four districts based in Morrow County first, largest first, then the neighbours that
+        # reach into it (Buckeye Valley, Lexington, River Valley, Galion City).
+        self.assertEqual(names[:4], ['Highland Local', 'Northmor Local', 'Mount Gilead Exempted Village', 'Cardington-Lincoln Local'])
+        self.assertIn('River Valley Local', names)
+        delaware = [SHARDS['OH']['sd'][i][0] for i in SHARDS['OH']['c']['39041']['sd']]
+        self.assertIn('Highland Local', delaware, 'Highland reaches about 3 square miles into Delaware County')
+        anchorage = [SHARDS['AK']['sd'][i][0] for i in SHARDS['AK']['c']['02020']['sd']]
+        self.assertEqual(anchorage, ['Anchorage School District'], 'districts run from Anchorage serve other areas')
+        harris = {SHARDS['TX']['sd'][i][0] for i in SHARDS['TX']['c']['48201']['sd']}
+        self.assertIn('Houston ISD', harris)
+        self.assertNotIn('Brookesmith ISD', harris, 'a far-away virtual school does not put its district in Houston')
+        self.assertEqual(SHARDS['GA']['sd'][next(i for i in SHARDS['GA']['c']['13121']['sd'] if 'Fulton' in SHARDS['GA']['sd'][i][0])][0],
+                         'Fulton County Schools')
+
+    def test_names_and_numbers_are_cleaned_carefully(self):
+        self.assertEqual(cd.agency_name('The Housing Authority of the City of Westbroo', 'Westbrook'),
+                         'The Housing Authority of the City of Westbrook')
+        self.assertEqual(cd.agency_name('Indiana  Housing and Community Development Au', 'Indianapolis'),
+                         'Indiana Housing and Community Development Authority')
+        self.assertEqual(cd.agency_name('Housing Authority of the City of Gainesville', 'Gainesville'),
+                         'Housing Authority of the City of Gainesville', 'a whole name is left alone')
+        self.assertEqual(cd.phone10('(606)663-3300'), '606-663-3300', 'a real number may use only three digits')
+        for fake in ('000-000-0000', '999-999-9999', '419-555-0100', '212-012-3456'):
+            self.assertEqual(cd.phone10(fake), '', fake)
+        self.assertEqual(cd.smart_title('WINK-LOVING ISD'), 'Wink-Loving ISD')
+        self.assertTrue(cd.named_for({'name': 'Morrow County'}, {'name': 'Morrow Metropolitan Housing Authority'}))
+        self.assertTrue(cd.named_for({'name': 'San Mateo County'}, {'name': 'Housing Authority of the County of San Mateo'}))
+        self.assertFalse(cd.named_for({'name': 'Lake County'}, {'name': 'Lake Charles Housing Authority'}))
+        self.assertFalse(cd.named_for({'name': 'St. Louis city'}, {'name': 'St. Louis County Housing Authority'}))
+
     def test_a_near_list_only_when_the_county_has_none(self):
         for shard in SHARDS.values():
             for e in shard['c'].values():
@@ -112,6 +196,7 @@ class CountyData(unittest.TestCase):
 
     def test_every_website_button_passed_the_link_check(self):
         webs = [r[6] for _, _, _, r in rows('health') if r[6]] + [a[5] for s in SHARDS.values() for a in s['hu'].values() if a[5]]
+        webs += [d[5] for s in SHARDS.values() for d in s['sd'].values() if d[5]]
         self.assertGreater(len(webs), 2000)
         for u in webs:
             self.assertIn(LEDGER.get(u), SHOWN, u)
@@ -126,6 +211,10 @@ class CountyData(unittest.TestCase):
         for s in SHARDS.values():
             for a in s['hu'].values():
                 self.assertFalse(cd.sensitive(a[0], a[1], homes=False), a)
+            for a in s['ph'].values():
+                self.assertFalse(cd.sensitive(a[0], a[1], homes=False), a)
+            for d in s['sd'].values():
+                self.assertFalse(cd.sensitive(d[0], d[1]), d)
         self.assertTrue(cd.sensitive("Franklin Avenue Women's Shelter"))
         self.assertTrue(cd.sensitive('Domestic Violence Solutions', 'Anonymous'))
         self.assertFalse(cd.sensitive('PrimaryOne Health 3480 Refugee Road'))
@@ -150,8 +239,9 @@ class CountyData(unittest.TestCase):
         files = sorted(US.glob('*.json'))
         self.assertEqual(len(files), 61, '51 state files and 10 ZIP files')
         for p in files:
-            self.assertLess(p.stat().st_size, 700_000, p.name)
-        self.assertLess(sum(p.stat().st_size for p in files), 8_000_000, 'the whole site has to stay under 20 MB on Wix')
+            # Wix compresses these on the way to the phone, about five to one (California's travels as about 150 KB).
+            self.assertLess(p.stat().st_size, 1_000_000, p.name)
+        self.assertLess(sum(p.stat().st_size for p in files), 10_000_000, 'the whole site has to stay under 20 MB on Wix')
 
     def test_hand_built_county_pages_are_linked_from_their_county(self):
         guides = {e['pg'] for s in SHARDS.values() for e in s['c'].values() if 'pg' in e}
@@ -174,7 +264,7 @@ class CountyPages(unittest.TestCase):
         self.assertEqual((zipbox[0]['type'], zipbox[0]['id']), ('search', 'zip'))
         self.assertNotIn('name', zipbox[0], 'nothing typed can be sent')
         srcs = [a['data-src'] for tag, a in t if tag == 'a' and a.get('data-src')]
-        self.assertEqual(sorted(srcs), ['hrsa', 'hrsa', 'hs', 'hs', 'hud', 'hud'])
+        self.assertEqual(sorted(srcs), ['hrsa', 'hrsa', 'hs', 'hs', 'hud', 'hud', 'pha', 'pha', 'sd', 'sd', 'sd'])
 
     def test_every_state_page_leads_to_its_counties(self):
         for st in STATE_FIPS:

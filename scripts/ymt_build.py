@@ -338,7 +338,7 @@ def county_pick(data, s):
     if not counties:
         return ''
     if len(counties) == 1:
-        return f'<p class="countylink"><a href="../county.html#{counties[0]["fips"]}">Local listings for {esc(s["name"])}</a>: health centers, Head Start and housing counselors.</p>'
+        return f'<p class="countylink"><a href="../county.html#{counties[0]["fips"]}">Local listings for {esc(s["name"])}</a>: public housing, health centers, school districts and Head Start.</p>'
     noun = {'LA': 'parish', 'AK': 'borough or area'}.get(s['abbr'], 'county')
     options = f'<option value="">Choose your {noun}</option>' + ''.join(
         f'<option value="../county.html#{c["fips"]}">{esc(c["name"])}</option>' for c in counties)
@@ -346,16 +346,27 @@ def county_pick(data, s):
             f'<select id="countypick" data-state-pick>{options}</select></div>')
 
 
-COUNTY_SOURCES = [
-    ('hrsa', 'Health centers', "the Health Resources and Services Administration's list of health center sites, also searchable in its",
-     [('https://findahealthcenter.hrsa.gov/', 'Find a Health Center tool'), ('https://data.hrsa.gov/data/download', 'data downloads')],
-     'School, mobile-van and residential sites are left out.'),
-    ('hs', 'Head Start', "the Office of Head Start's list of open program locations, also searchable in its",
-     [('https://headstart.gov/center-locator', 'center locator'), ('https://headstart.gov/how-apply', 'how to apply')],
-     'Locations with no phone number in the list are left out.'),
-    ('hud', 'Housing counselors', "HUD's list of approved housing counseling agencies, also on its",
+COUNTY_SOURCES = [  # in the order the rows appear on the page
+    ('pha', 'Public housing and Section 8', "HUD's list of public housing agencies, from its {0}. How vouchers work is on HUD's {1}",
+     [('https://hudgis-hud.opendata.arcgis.com/datasets/HUD::public-housing-authorities-1', 'open data site'),
+      ('https://www.hud.gov/helping-americans/housing-choice-vouchers-tenants', 'Housing Choice Voucher page')],
+     "A county lists the agencies with their office there or named for it, then the nearest others in the state, then "
+     "the state's own voucher program where it has one. Programs a service provider runs for one group of people are left out."),
+    ('hud', 'Housing counselors', "HUD's list of approved housing counseling agencies, also on its {0} and {1}",
      [('https://www.hud.gov/i_want_to/talk_to_a_housing_counselor', 'housing counselor page'), ('https://data.hud.gov/housing_counseling.html', 'counselor search')],
      'Counselors are matched to a county by the ZIP code of their office, and nearby ones are shown by distance.'),
+    ('hrsa', 'Health centers', "the Health Resources and Services Administration's list of health center sites, also searchable in its {0} and {1}",
+     [('https://findahealthcenter.hrsa.gov/', 'Find a Health Center tool'), ('https://data.hrsa.gov/data/download', 'data downloads')],
+     'School, mobile-van and residential sites are left out.'),
+    ('sd', 'School districts', "the National Center for Education Statistics' list of public school districts, also searchable in "
+     "its {0}. What the row says about evaluations comes from the {1} and {2}",
+     [('https://nces.ed.gov/ccd/districtsearch/', 'district search'),
+      ('https://www.parentcenterhub.org/preschoolers/', 'Center for Parent Information and Resources page on preschool special education'),
+      ('https://www.law.cornell.edu/cfr/text/34/300.503', 'the federal rule on written notice')],
+     'A district is listed in each county its boundary covers. Charter schools and high-school-only districts are left out.'),
+    ('hs', 'Head Start', "the Office of Head Start's list of open program locations, also searchable in its {0} and {1}",
+     [('https://headstart.gov/center-locator', 'center locator'), ('https://headstart.gov/how-apply', 'how to apply')],
+     'Locations with no phone number in the list are left out.'),
 ]
 
 
@@ -370,17 +381,27 @@ def build_county(data):
             '<div><label for="zip">Or your ZIP code</label><input id="zip" type="search" inputmode="numeric" maxlength="5" '
             'autocomplete="off" enterkeyhint="go" placeholder="5 digits"></div></div>'
             '<p class="quiet" id="cmsg" role="status"></p>')
-    lede = 'Pick your county to see health centers, Head Start and housing counselors close to you. Free, private, no sign-up.'
+    lede = ('Pick your county to see where to apply for housing help, low-cost health care, free evaluations for your child '
+            'and Head Start close to you. Free, private, no sign-up.')
     hero_html = (f'<section class="hero slim"><div class="wrap"><h1 id="ctitle">Help near you</h1>'
                  f'<p class="lede" id="clede">{esc(lede)}</p>{find}</div></section>')
     fallback = ('<section class="wrap"><p>The local listings on this page need JavaScript, which seems to be off or still loading. '
                 'You can still <a href="states.html">choose your state</a> for its offices and help lines.</p></section>')
     statehelp = ('<div hidden data-statehelp><ul>' + ''.join(
         f'<li><a data-sec="{sid}" href="states.html">{esc(secs[sid]["label"])}</a></li>' for sid in STATE_SECTIONS) + '</ul></div>')
-    items = ''.join(
-        f'<li><strong>{esc(label)}:</strong> {esc(what)} '
-        + ' and '.join(f'<a data-src="{key}" href="{esc(u)}" rel="noopener">{esc(t)}</a>' for u, t in links)
-        + f'. {esc(note)}</li>' for key, label, what, links, note in COUNTY_SOURCES)
+    def sentence(key, template, links):
+        # {0}, {1}... in the template are the links, in order; their numbers on each card follow the same order.
+        parts = re.split(r'\{(\d)\}', template)
+        out = []
+        for i, part in enumerate(parts):
+            if i % 2:
+                u, t = links[int(part)]
+                out.append(f'<a data-src="{key}" href="{esc(u)}" rel="noopener">{esc(t)}</a>')
+            else:
+                out.append(esc(part))
+        return ''.join(out)
+    items = ''.join(f'<li><strong>{esc(label)}:</strong> {sentence(key, what, links)}. {esc(note)}</li>'
+                    for key, label, what, links, note in COUNTY_SOURCES)
     sources = (f'<section class="wrap slim" id="sources"><h2>Where these listings come from</h2><ul>{items}</ul>'
                '<p class="note">Listings are copied from these federal lists by a program, not checked by phone, and the date of '
                'the copy is on each one. A Website button appears only when that website loaded in our automatic check. '
@@ -389,7 +410,8 @@ def build_county(data):
                'your browser downloads for the first digit of the code.</p></section>')
     body = hero_html + f'\n<div id="county-app">{fallback}</div>' + statehelp + '\n' + urgent_strip(data) + '\n' + sources
     return page(data, 'county.html', 'Help near you, by county',
-                'Health centers, Head Start and housing counselors in every U.S. county, from federal directories. Free, with no sign-up.',
+                'Public housing, housing counselors, health centers, school districts and Head Start in every U.S. county, '
+                'from federal directories. Free, with no sign-up.',
                 body, head_extra=structured_data(breadcrumbs(data, [('Help near you, by county', 'county.html')])),
                 scripts='\n<script src="assets/county.js"></script>')
 

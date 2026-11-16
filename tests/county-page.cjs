@@ -60,10 +60,25 @@ function checkCards(d, label) {
     assert.equal(d.getElementById('ctitle').textContent, 'Morrow County, Ohio');
     assert.equal(d.title, 'Morrow County, Ohio: help for moms | Yoga Mom Talk');
     const rows = all(d, '#county-app details.need');
-    assert.deepEqual(rows.map((r) => r.id), ['county-health', 'county-start', 'county-hud', 'county-state']);
+    assert.deepEqual(rows.map((r) => r.id), ['county-pha', 'county-hud', 'county-health', 'county-schools', 'county-start', 'county-state']);
     assert(rows.every((r) => !r.open), 'rows stay closed until asked for');
     for (const r of rows) assert.equal(r.querySelector('summary h2').parentElement.tagName, 'SUMMARY');
     checkCards(d, 'Morrow');
+    // Public housing: Morrow's own agency first, said plainly to have its office in Mount Vernon, then the nearest others.
+    const pha = all(d, '#county-pha article.card');
+    assert.equal(pha[0].querySelector('h3').textContent, 'Morrow Metropolitan Housing Authority');
+    assert.match(pha[0].querySelector('.short').textContent, /^Named for Morrow County, with its office in Mount Vernon, OH\. Housing Choice Vouchers/);
+    for (const c of pha.slice(1)) assert.match(c.querySelector('.short').textContent, /^About \d+ miles away, in .*Ask whether it serves where you live\.$/);
+    assert.match(d.querySelector('#county-pha .nsum').textContent, /^Where to apply in Morrow County/);
+    // School districts: every district that reaches into Morrow County, the ones covering the most of it first,
+    // after a few lines on asking for an evaluation.
+    const schools = d.getElementById('county-schools');
+    assert.deepEqual(all(schools, 'article.card h3').map((h) => h.textContent).slice(0, 4),
+      ['Highland Local', 'Northmor Local', 'Mount Gilead Exempted Village', 'Cardington-Lincoln Local']);
+    assert.match(schools.querySelector('.rowbody p.quiet').textContent, /From age 3.*evaluation.*in writing/);
+    const ei = schools.querySelector('.rowbody p.quiet a');
+    assert.equal(ei.getAttribute('href'), 'states/oh.html#oh-ei');
+    assert(new JSDOM(fs.readFileSync('states/oh.html', 'utf8')).window.document.getElementById('oh-ei'), 'the early intervention card is there');
     const guide = d.querySelector('#county-app .localbox a');
     assert.equal(guide.getAttribute('href'), 'ohio/counties/morrow.html');
     assert(fs.existsSync('ohio/counties/morrow.html'));
@@ -87,6 +102,20 @@ function checkCards(d, label) {
     }
     assert.equal(all(d, 'form').length, 0);
     assert.equal(all(d, 'input[name]').length, 0, 'no field has a name, so nothing can be sent');
+  }
+
+  // 1b. Every state's counties load and draw, and no card breaks the card rules (a quick pass over one county per state).
+  {
+    const codes = fs.readdirSync('assets/us').filter((f) => /^[a-z]{2}\.json$/.test(f));
+    assert.equal(codes.length, 51);
+    for (const f of codes) {
+      const shard = JSON.parse(fs.readFileSync('assets/us/' + f, 'utf8'));
+      const fips = Object.keys(shard.c).sort((a, b) => shard.c[b].p - shard.c[a].p)[0];
+      const { w, d } = load('#' + fips);
+      await settle(w);
+      assert.equal(all(d, '#county-app details.need').length, 6, fips);
+      checkCards(d, fips);
+    }
   }
 
   // 2. A county with hundreds of listings shows a few, then more on request, and can be narrowed by town.
@@ -122,7 +151,24 @@ function checkCards(d, label) {
     const health = d.getElementById('county-health');
     assert.match(health.querySelector('.nsum').textContent, /^Nearest health centers, outside Loving County$/);
     for (const c of all(health, 'article.card')) assert.match(c.querySelector('.short').textContent, /^About \d+ miles? from the middle of Loving County\./);
+    const schools = d.getElementById('county-schools');
+    assert.match(schools.querySelector('.nsum').textContent, /^School districts in Loving County/);
+    assert.deepEqual(all(schools, 'article.card h3').map((h) => h.textContent), ['Wink-Loving ISD'], 'by boundary, not by where the office is');
+    const state = all(d, '#county-pha article.card').filter((c) => /^Statewide agency/.test(c.querySelector('.short').textContent));
+    assert.equal(state.length, 1, "Texas's statewide voucher program is offered too");
     checkCards(d, 'Loving');
+  }
+
+  // 3b. A Virginia city with no school district of its own shows the nearest, with the distance.
+  {
+    const { w, d } = load('#51600');
+    await settle(w);
+    const schools = d.getElementById('county-schools');
+    assert.match(schools.querySelector('.nsum').textContent, /^Nearest school districts, outside Fairfax City$/);
+    const first = schools.querySelector('article.card');
+    assert.equal(first.querySelector('h3').textContent, 'Fairfax County Public Schools');
+    assert.match(first.querySelector('.short').textContent, /^About \d+ miles? away, in .*Ask whether it serves where you live\.$/);
+    checkCards(d, 'Fairfax City');
   }
 
   // 4. A ZIP code is matched in the browser and opens its county. Nothing is sent but the request for a list.
