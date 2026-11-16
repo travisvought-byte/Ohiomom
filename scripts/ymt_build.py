@@ -45,6 +45,20 @@ def logo_html(name):
     return esc(' '.join(words[:-1])) + ' <span>' + esc(words[-1]) + '</span>'
 
 
+def share_tags(image, alt, root=''):
+    """What a phone, Facebook or a search engine shows for a shared link, and the icon in a browser tab.
+    `image` is a full address because the apps that read it do not follow relative ones."""
+    return f'''<meta property="og:image" content="{esc(image)}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{esc(alt)}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#fff9f3">
+<link rel="icon" href="{root}assets/icon-48.png" sizes="48x48" type="image/png">
+<link rel="icon" href="{root}assets/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{root}assets/icon-180.png">'''
+
+
 def page(data, path, title, desc, body, body_class='', head_extra=''):
     site = data['site']
     root = '../' * path.count('/')
@@ -67,6 +81,7 @@ def page(data, path, title, desc, body, body_class='', head_extra=''):
 <meta property="og:url" content="{esc(url)}">
 <meta property="og:title" content="{esc(full_title)}">
 <meta property="og:description" content="{esc(desc)}">
+{share_tags(f"https://{site['domain']}/assets/share.jpg", f"{site['name']}: help for moms in all 50 states. Free, with no sign-up and no ads.", root)}
 <link rel="stylesheet" href="{root}assets/ymt.css">{head_extra}
 </head>
 <body class="{esc(body_class)}">

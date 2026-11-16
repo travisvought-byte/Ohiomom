@@ -114,9 +114,10 @@ class PublishTests(unittest.TestCase):
         return code, out.getvalue()
 
     def test_what_counts_as_a_site_file(self):
-        for path in ('index.html', 'ohio/assets/site.css', 'js/wix/client.js', 'states/oh.html', 'robots.txt', 'family-guide.html'):
+        for path in ('index.html', 'ohio/assets/site.css', 'js/wix/client.js', 'states/oh.html', 'robots.txt', 'family-guide.html',
+                     'assets/share.jpg', 'ohio/assets/share.jpg', 'assets/icon-180.png', 'assets/icon.svg'):
             self.assertTrue(pw.is_site_file(path), path)
-        for path in ('README.md', 'LICENSE', 'scripts/build.py', 'tests/test_ymt.py', 'data/ymt/states.json', 'templates/family-guide.html',
+        for path in ('README.md', 'LICENSE', 'scripts/build.py', 'tests/test_ymt.py', 'data/ymt/states.json', 'templates/family-guide.html', 'templates/share-card.html', 'scripts/share_cards.py',
                      '.github/workflows/validate.yml', 'package.json', 'package-lock.json', '.nojekyll', '.gitattributes'):
             self.assertFalse(pw.is_site_file(path), path)
         self.assertIn('index.html', self.repo)

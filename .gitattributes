@@ -1,2 +1,5 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+# Pictures are stored byte for byte.
+*.jpg binary
+*.png binary
