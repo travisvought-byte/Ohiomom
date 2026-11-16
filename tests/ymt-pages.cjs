@@ -212,7 +212,7 @@ function checkStructure(d, file) {
   for (const h of all(d, 'summary h2, summary h3')) assert.equal(h.parentElement.tagName, 'SUMMARY', `${file}: a row heading is a direct child of its summary`);
   for (const sm of all(d, 'summary')) for (const c of sm.children) assert(!['DIV', 'P', 'UL', 'SECTION'].includes(c.tagName), `${file}: a block element inside a summary`);
 }
-const staticPages = ['index.html', 'help.html', 'connect.html', 'states.html', 'about.html', 'yoga.html', 'report.html', '404.html']
+const staticPages = ['index.html', 'help.html', 'connect.html', 'states.html', 'about.html', 'yoga.html', 'report.html', '404.html', 'family-guide.html']
   .concat(fs.readdirSync('states').filter((f) => f.endsWith('.html')).map((f) => 'states/' + f))
   .concat(fs.readdirSync('ohio').filter((f) => f.endsWith('.html')).map((f) => 'ohio/' + f))
   .concat(fs.readdirSync('ohio/help').filter((f) => f.endsWith('.html')).map((f) => 'ohio/help/' + f))

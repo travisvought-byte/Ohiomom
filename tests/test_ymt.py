@@ -122,7 +122,8 @@ class SiteTests(unittest.TestCase):
         text = (ROOT / 'family-guide.html').read_text(encoding='utf-8')
         self.assertIn('<link rel="canonical" href="https://www.yogamomtalk.com/family-guide.html">', text)
         self.assertNotIn('href="./"', text)
-        self.assertIn('<a href="ohio/index.html" id="back-guide">OhioMom</a>', text)
+        self.assertTrue('<a class="logo" href="ohio/index.html" id="back-guide">' in text, 'the logo goes home to OhioMom')
+        self.assertTrue('<link rel="stylesheet" href="ohio/assets/site.css">' in text, 'the guide wears the OhioMom look')
 
     def test_no_link_to_a_bare_folder(self):
         """Wix serves a folder address only at the site root: /ohio/ is a 404, /ohio/index.html loads."""

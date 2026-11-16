@@ -10,6 +10,8 @@ import re
 from datetime import date
 from pathlib import Path
 
+from ymt_build import split_first
+
 
 ROOT = Path(__file__).resolve().parents[1]
 STATES = json.loads((ROOT / 'data/states.json').read_text())
@@ -92,10 +94,15 @@ def ohio_counties():
 
 
 def card(r, sources, need_names):
-    phone = ''
+    """A short card: the name, one line, Call and Website. The rest waits behind "More about this"."""
+    short, rest = split_first(r['what'])
+    actions = ''
     if r['phone']:
-        label = f' <span class="small">({esc(r["phone_label"])})</span>' if r['phone_label'] else ''
-        phone = f'<p class="contact"><a href="{tel(r["phone"])}">{esc(r["phone"])}</a>{label}</p>'
+        label = f'<span class="note">{esc(r["phone_label"])}</span>' if r['phone_label'] else ''
+        actions += f'<a class="btn call" href="{tel(r["phone"])}">Call {esc(r["phone"])}</a>{label}'
+    if r['url']:
+        actions += (f'<a class="btn" href="{esc(r["url"])}" target="_blank" rel="noopener">Website'
+                    f'<span class="sr"> for {esc(r["name"])} (opens new tab)</span></a>')
     cites = ''.join(
         f'<li><a href="{esc(sources[s]["url"])}" target="_blank" rel="noopener">{esc(sources[s]["title"])}</a>'
         f' · {esc(sources[s]["publisher"])} · checked {esc(sources[s]["reviewed_on"])}</li>'
@@ -108,17 +115,20 @@ def card(r, sources, need_names):
             f'<li><a href="{esc(l["url"])}" target="_blank" rel="noopener">{esc(l["name"])}<span class="sr"> (opens new tab)</span></a>'
             f' <span class="small">{esc(l["place"])}</span> <a href="{tel(l["phone"])}">{esc(l["phone"])}</a></li>'
             for l in r['locations']) + '</ul>'
-    visit = (f'<p><a class="visit" href="{esc(r["url"])}" target="_blank" rel="noopener">Visit website<span class="sr"> for {esc(r["name"])}</span> (opens new tab)</a></p>'
-             if r['url'] else '')
     replaced = ' '.join(f'{k}:{v}' for k, v in r.get('state_replacements', {}).items())
+    # A listing with no number or site of its own (several hospitals, each with its own) says what opening it gives.
+    more = 'More about this' if actions else 'Locations and phone numbers'
     return (
-        f'<article class="resource" id="r-{esc(r["id"])}" data-id="{esc(r["id"])}" data-scope="{r["scope"]}"'
+        f'<article class="card resource" id="r-{esc(r["id"])}" data-id="{esc(r["id"])}" data-scope="{r["scope"]}"'
         f' data-stages="{" ".join(r["stages"])}" data-needs="{" ".join(r["needs"])}"'
         + (f' data-replaced="{esc(replaced)}"' if replaced else '') + '>'
-        f'<p class="eyebrow"><span class="scope scope-{r["scope"].lower()}">{SCOPES[r["scope"]]}</span> {esc(r["org"])}</p>'
-        f'<h3>{esc(r["name"])}</h3>{tag}<p>{esc(r["what"])}</p>'
-        f'<p class="next"><strong>Next step:</strong> {esc(r["how"])}</p>{phone}{places}{visit}'
-        f'<details class="more"><summary>Sources and corrections</summary><ul>{cites}</ul>'
+        f'<h3>{esc(r["name"])}</h3>{tag}<p class="short">{esc(short)}</p>'
+        + (f'<p class="actions">{actions}</p>' if actions else '')
+        + f'<details class="more"><summary>{more}<span class="sr">: {esc(r["name"])}</span></summary>'
+        f'<p class="org"><span class="scope scope-{r["scope"].lower()}">{SCOPES[r["scope"]]}</span> {esc(r["org"])}</p>'
+        + (f'<p>{esc(rest)}</p>' if rest else '')
+        + f'<p><strong>Next step:</strong> {esc(r["how"])}</p>{places}'
+        f'<p class="srchead">Sources</p><ul class="src">{cites}</ul>'
         f'<p><a class="report" data-report="{esc(r["id"])}" href="mailto:{CORRECTIONS}?subject='
         f'{esc("Family guide correction: " + r["id"])}">Report a problem with this listing</a></p></details></article>')
 
@@ -155,22 +165,18 @@ def spanish(data):
     return {k: es[k] for k in ('static', 'stages', 'needs', 'anchor_labels', 'anchor_text', 'dynamic')}
 
 
-def share_card(guide, place):
-    """A "Share this guide" card: the page's flyer thumbnail, a QR code to the page and download links.
-    Driven by data/flyers.json (the entry for this guide marked share_card). place is 'hero' or 'bottom'."""
+def share_body():
+    """What the "Share this guide" row opens to: the flyer thumbnail, a QR code to the page and download links."""
     f = {'id': 'family-guide-letter', 'height_in': 11, 'width_in': 8.5,
          'qr': 'flyers/src/qr-family-guide.svg'}
-    url = 'www.ohiomom.org/family-guide.html'
-    hid = 'share-title-' + place
-    return (f'<aside class="share-card share-{place}" aria-labelledby="{hid}">'
-            f'<h2 id="{hid}" data-i18n="share-title">Share this guide</h2>'
-            f'<p class="small" data-i18n="share-text">Scan the code to open it on a phone, or print the flyer for a waiting room, school or front desk.</p>'
+    url = 'www.yogamomtalk.com/family-guide.html'
+    return (f'<div class="share-body">'
             f'<div class="share-row"><a class="share-thumb" href="https://guide.vethomeguard.org/flyers/{f["id"]}.pdf"><img src="https://guide.vethomeguard.org/flyers/{f["id"]}-thumb.png" '
-            f'alt="Preview of the printable flyer" width="110" height="{round(110 * f["height_in"] / f["width_in"])}"></a>'
-            f'<img class="share-qr" src="https://guide.vethomeguard.org/{esc(f["qr"])}" alt="QR code that opens {esc(url)}" width="110" height="110"></div>'
+            f'alt="Preview of the printable flyer" width="110" height="{round(110 * f["height_in"] / f["width_in"])}" loading="lazy"></a>'
+            f'<img class="share-qr" src="https://guide.vethomeguard.org/{esc(f["qr"])}" alt="QR code that opens the family guide" width="110" height="110" loading="lazy"></div>'
             f'<p class="share-url">{esc(url)}</p>'
             f'<p class="share-links"><a href="https://guide.vethomeguard.org/flyers/{f["id"]}.pdf" download data-i18n="share-download">Download the flyer (PDF)</a>'
-            f'<a href="https://guide.vethomeguard.org/flyers.html" data-i18n="share-all">All printable flyers</a></p></aside>')
+            f'<a href="https://guide.vethomeguard.org/flyers.html" data-i18n="share-all">All printable flyers</a></p></div>')
 
 
 def outputs():
@@ -185,12 +191,13 @@ def outputs():
                             for c, n in STATES.items())
     county_options = '<option value="" data-i18n="county-none">Choose a county</option>' + ''.join(
         f'<option value="{esc(c["county"])}">{esc(c["county"])} County</option>' for c in counties)
-    stage_buttons = ('<button type="button" class="stage" data-stage="all" aria-pressed="true"><strong id="st-all" data-i18n="stage-all">Show everything</strong>'
-                     '<span data-i18n="stage-all-desc">All ages and topics</span></button>') + ''.join(
-        f'<button type="button" class="stage" data-stage="{s["id"]}" aria-pressed="false" aria-labelledby="st-{s["id"]}" aria-describedby="sd-{s["id"]}">'
-        f'<strong id="st-{s["id"]}" data-i18n-stage="{s["id"]}:label">{esc(s["label"])}</strong><span class="ages" data-i18n-stage="{s["id"]}:ages">{esc(s["ages"])}</span>'
-        f'<span class="desc" id="sd-{s["id"]}" data-i18n-stage="{s["id"]}:summary">{esc(s["summary"])}</span></button>'
-        for s in data['stages'])
+    stage_buttons = ''.join(
+        f'<button type="button" class="stage" data-stage="{s["id"]}" aria-pressed="false">'
+        f'<strong data-i18n-stage="{s["id"]}:label">{esc(s["label"])}</strong> <span class="ages" data-i18n-stage="{s["id"]}:ages">{esc(s["ages"])}</span>'
+        f'<span class="desc" data-i18n-stage="{s["id"]}:summary">{esc(s["summary"])}</span></button>'
+        for s in data['stages']) + (
+        '<button type="button" class="stage all" data-stage="all" aria-pressed="false"><strong data-i18n="stage-all">Show everything</strong>'
+        ' <span class="desc" data-i18n="stage-all-desc">All ages and topics</span></button>')
     need_boxes = ''.join(
         f'<label class="check"><input type="checkbox" name="need" value="{n["id"]}"> <span data-i18n-need="{n["id"]}">{esc(n["label"])}</span></label>'
         for n in data['needs'])
@@ -200,13 +207,15 @@ def outputs():
         + '</p></article>' for c in data['changes'])
     anchors = anchor_html('OH', data['protection_advocacy']['OH'])
     glossary = ''.join(f'<dt>{esc(g["term"])}</dt><dd>{esc(g["plain"])}</dd>' for g in data['glossary'])
+    terms = [g['term'] for g in data['glossary']]
+    words = f'{", ".join(terms[:3])} and {len(terms) - 3} more, in plain language.'
     page = (ROOT / 'templates/family-guide.html').read_text()
     for key, value in {
         '__STATES__': state_options, '__COUNTIES__': county_options, '__STAGES__': stage_buttons,
         '__NEEDS__': need_boxes, '__CARDS__': '\n'.join(cards), '__MILITARY__': '\n'.join(military),
         '__CHANGES__': changes, '__ANCHORS__': anchors, '__REVIEWED__': data['reviewed_on'],
         '__COUNT__': str(sum(1 for r in data['resources'] if r['scope'] != 'MIL' and 'OH' not in r.get('state_replacements', {}))), '__MILCOUNT__': str(len(military)), '__GLOSSARY__': glossary,
-        '__SHARE_HERO__': share_card('family-guide.html', 'hero'), '__SHARE_BOTTOM__': share_card('family-guide.html', 'bottom'),
+        '__SHARE__': share_body(), '__WORDS__': esc(words),
         '__DATA__': json.dumps(page_data, ensure_ascii=False).replace('<', '\\u003c'),
     }.items():
         assert key in page, key
