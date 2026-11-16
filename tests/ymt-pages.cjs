@@ -144,10 +144,11 @@ assert.equal(all(load('help.html').d, 'details[open]').length, 0);
   assert(new JSDOM(fs.readFileSync('help.html', 'utf8')).window.document.querySelector('[data-finder]').hidden);
 }
 
-// 5. The OhioMom front page: the question, the six needs and the area picker. Events and the poll live on their own pages.
+// 5. The OhioMom front page: the question, eight things to choose from, "See everything" and the area picker.
+// Events and the poll live on their own pages.
 {
   const d = new JSDOM(fs.readFileSync('ohio/index.html', 'utf8')).window.document;
-  assert.equal(all(d, '.hero .tile').length, 6);
+  assert.equal(all(d, '.hero .tile').length, 9);
   assert.equal(all(d, '[data-events], [data-poll], .card, .event').length, 0, 'no events, polls or listings on the OhioMom front page');
   assert(d.querySelector('#place') && d.querySelector('[data-region-buttons]'), 'area picker stays');
   const fold = d.querySelector('details.mapfold');
@@ -216,7 +217,7 @@ for (const f of counties) {
   assert(d.getElementById('q'), `${f}: search stays`);
   assert(!d.querySelector('nav[aria-label="Sections"]'), `${f}: the rows are the index, so there is no second one`);
 }
-for (const [f, rows] of [['ohio/help/pregnancy-baby.html', 3], ['ohio/wellbeing.html', 2]]) {
+for (const [f, rows] of [['ohio/help/pregnancy-baby.html', 3], ['ohio/wellbeing.html', 2], ['ohio/help/housing.html', 3]]) {
   const d = staticDoc(f);
   checkOhioRows(d, f, rows);
   checkOhioCards(d, f);

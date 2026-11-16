@@ -167,7 +167,7 @@ class SiteTests(unittest.TestCase):
 
     def test_front_pages_show_no_listings(self):
         """The front page asks what she needs. Listings appear only after she chooses."""
-        for rel, choices in (('index.html', 8), ('ohio/index.html', 6)):
+        for rel, choices in (('index.html', 8), ('ohio/index.html', 9)):
             text = (ROOT / rel).read_text(encoding='utf-8')
             self.assertNotIn('class="card', text, f'{rel}: a front page shows no listing cards')
             self.assertEqual(text.count('class="tile '), choices, f'{rel}: the needs to choose from')
@@ -286,7 +286,7 @@ class SiteTests(unittest.TestCase):
         expected = {path: 'assets/share.jpg' for path in PAGES}
         expected.update({path: 'ohio/assets/share.jpg' for path in ohio})
         expected[ROOT / 'family-guide.html'] = 'assets/share-family-guide.jpg'
-        self.assertEqual(len(expected), 59 + 17 + 1)
+        self.assertEqual(len(expected), 59 + 19 + 1)
         for path, picture in expected.items():
             p = parse(path)
             meta = {a.get('property') or a.get('name'): a.get('content') for t, a in p.tags if t == 'meta'}

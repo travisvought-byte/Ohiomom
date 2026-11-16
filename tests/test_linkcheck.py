@@ -152,8 +152,8 @@ class LedgerTests(unittest.TestCase):
         used = set()
         for r in lib.all_records(lib.load()):
             used.update(u for u in [r.get('url')] + list(r.get('sources', [])) if u)
-        ohio = json.loads((ROOT / 'data' / 'resources.json').read_text(encoding='utf-8'))
-        used.update(r['url'] for r in ohio['resources'] if r.get('url'))
+        import check_links
+        used.update(check_links.collect())
         for url, entry in led['opened_in_browser'].items():
             self.assertTrue(url.startswith('https://'), url)
             self.assertLessEqual(date.fromisoformat(entry['opened']), date.today(), url)

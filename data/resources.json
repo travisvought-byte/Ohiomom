@@ -13,9 +13,14 @@
    "summary": "Domestic violence, crisis support and protection orders."
   },
   {
+   "id": "housing",
+   "label": "Housing and shelter",
+   "summary": "A place to stay tonight, leaving an unsafe home, and help with rent or an eviction."
+  },
+  {
    "id": "housing-bills",
-   "label": "Housing and bills",
-   "summary": "Shelter, utilities, food and benefits."
+   "label": "Food and bills",
+   "summary": "Groceries, WIC, benefits and utility bills."
   },
   {
    "id": "pregnancy-baby",
@@ -253,31 +258,130 @@
    "section": "housing-bills",
    "scope": "OH",
    "name": "Ohio 211",
-   "org": "United Way / Ohio 211",
-   "what": "One number for local help with food, housing, utilities, health care and other needs. Open 24 hours a day.",
+   "org": "Ohio 211 and local United Ways",
+   "what": "One number for local help with shelter, rent, food and utility bills. Answered 24 hours a day. In 2026 the state and Ohio 211 set out to bring the line to all 88 counties. In most counties you can also text your ZIP code to 898211.",
    "how": "Dial 211 and say what you need and what county you are in.",
    "phone": "211",
-   "url": "https://ohiohome.org/housingresourceguide.aspx",
+   "url": "https://ohio211.org/",
    "sources": [
-    "https://ohiohome.org/housingresourceguide.aspx"
+    "https://www.hud.gov/states/ohio",
+    "https://www.unitedwaycleveland.org/211-is-expanding-to-reach-every-ohioan-with-100-statewide-coverage/",
+    "https://spectrumnews1.com/oh/columbus/news/2026/04/14/ohio-211-to-expand-to-all-88-counties-through-new-partnership"
    ],
-   "reviewed_on": "2026-11-13"
+   "reviewed_on": "2026-11-15"
   },
   {
    "id": "oh-cohhio",
-   "section": "housing-bills",
+   "section": "housing",
    "scope": "OH",
-   "name": "Find homeless services and shelter in your county",
+   "name": "Find shelter and homeless services in your county",
    "org": "Coalition on Homelessness and Housing in Ohio (COHHIO)",
-   "what": "Each Ohio county has one front door for shelter and housing help. COHHIO lists the right number to call for every county.",
-   "how": "Open the Ohio housing resource guide and choose your county. If you are fleeing abuse, call a domestic violence program first.",
+   "what": "Every Ohio county has one front door for shelter and housing help. This map shows who to call in yours. Pick your county to see the organizations, their phone numbers and their hours. You can narrow the list to help for veterans or for young people on their own.",
+   "how": "Open the guide, choose your county and call before you go. If you have children with you, say so: some help is only for families. If you are leaving abuse, call a domestic violence program first.",
    "phone": null,
-   "url": "https://ohiohome.org/housingresourceguide.aspx",
+   "url": "https://cohhio.org/resourceguide",
    "sources": [
-    "https://ohiohome.org/housingresourceguide.aspx",
-    "https://cohhio.org/about"
+    "https://cohhio.org/resourceguide"
    ],
-   "reviewed_on": "2026-11-13"
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "oh-shelter-lines",
+   "section": "housing",
+   "scope": "OH",
+   "name": "Shelter phone lines in Ohio's biggest counties",
+   "org": "Each county's homeless hotline",
+   "what": "In these counties one phone line places people into shelter. Call before you go anywhere. Columbus and Franklin County: 614-274-7000, 24 hours a day. Cleveland and Cuyahoga County: 216-674-6700, weekdays from 8 a.m. to 8 p.m.; at other times dial 211. Cincinnati and Hamilton County: 513-381-7233, weekdays from 9 to 5, with shorter hours on weekends. Akron and Summit County: 330-615-0577. Canton and Stark County: 330-452-4363.",
+   "how": "Call the line for the county you are in now. Anywhere else in Ohio, use COHHIO's county guide or dial 211.",
+   "url": "https://www.hud.gov/states/ohio",
+   "sources": [
+    "https://www.hud.gov/states/ohio",
+    "https://cohhio.org/resourceguide",
+    "https://recorder.franklincountyohio.gov/Resources/Housing-Resources",
+    "https://www.neoch.org/what-to-do-if-i-become-homeles",
+    "https://strategiestoendhomelessness.org/find-services/",
+    "https://www.uwstark.org/wp-content/uploads/2022/12/Stark-County-Community-Resource-Guide-printable-PDF-1.pdf",
+    "https://ideastream.org/community/2023-12-21/temporary-shelter-serves-growing-number-of-unhoused-women-in-canton"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "oh-eviction",
+   "section": "housing",
+   "scope": "OH",
+   "name": "Got an eviction notice? Start here",
+   "org": "Ohio Legal Help and Ohio legal aid",
+   "what": "What each paper means, what happens in court, and how to reach the free legal aid office for your county. A 3-day notice is the first step. If you have not moved out, your landlord can then file a case, and the court sets a hearing. Go to the hearing whether you plan to fight the eviction or to move.",
+   "how": "Call, or use Find Your Legal Aid on the website, as soon as you get a notice or court papers.",
+   "phone": "866-529-6446",
+   "phone_label": "1-866-LAW-OHIO",
+   "url": "https://www.ohiolegalhelp.org/topic/eviction",
+   "sources": [
+    "https://www.ohiolegalhelp.org/topic/eviction",
+    "https://www.supremecourt.ohio.gov/courts/services-to-courts/court-services/access-to-justice-resources/"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "oh-cohhio-infoline",
+   "section": "housing",
+   "scope": "OH",
+   "name": "Questions about your rights as a renter",
+   "org": "COHHIO Housing Information Line",
+   "what": "A free line for questions about repairs, deposits, eviction and your rights as a tenant in Ohio. You can also email rentinfo@cohhio.org. Calls and emails are usually answered within two business days. The line explains the law. It does not give out rent money, find you housing or act as your lawyer.",
+   "how": "Call or email with your question, and have your lease or notice in front of you.",
+   "phone": "888-485-7999",
+   "url": "https://cohhio.org/housing-information",
+   "sources": [
+    "https://cohhio.org/housing-information"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "oh-prc",
+   "section": "housing",
+   "scope": "OH",
+   "name": "Emergency help for families from your county (PRC)",
+   "org": "Ohio Department of Job and Family Services and county offices",
+   "what": "Short-term help in a crisis for parents with low incomes and for pregnant women, from your county Job and Family Services office. The program is called Prevention, Retention and Contingency. Each county writes its own plan, so what is covered differs. The state names shelter, help moving away from domestic violence, disaster help and car repairs as examples, and some counties include back rent or a deposit.",
+   "how": "Call your county Job and Family Services office and ask how to apply for PRC emergency help.",
+   "url": "https://dam.assets.ohio.gov/image/upload/jfs.ohio.gov/factsheets/PRC.pdf",
+   "sources": [
+    "https://dam.assets.ohio.gov/image/upload/jfs.ohio.gov/factsheets/PRC.pdf",
+    "https://hhs.cuyahogacounty.gov/programs/emergency-assistance-prevention-retention-and-contingency-program",
+    "https://cap4kids.org/columbus/housing/emergency-assistance"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "oh-caa",
+   "section": "housing",
+   "scope": "OH",
+   "name": "Your community action agency",
+   "org": "Ohio Association of Community Action Agencies",
+   "what": "Every Ohio county is served by one. It may have emergency help with rent or utility bills when money is available. HUD points Ohio renters who need help to their local community action agency. Programs and money differ by county and can run out during the year.",
+   "how": "Find your county's agency and call to ask what rent or utility help is open now.",
+   "url": "https://oacaa.org/find-an-agency/",
+   "sources": [
+    "https://www.hud.gov/states/ohio",
+    "https://www.ohiolegalhelp.org/topic/ohio-landlord-tenant-law"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "oh-housing-locator",
+   "section": "housing",
+   "scope": "OH",
+   "name": "Find an affordable rental (Ohio Housing Locator)",
+   "org": "Ohio Housing Finance Agency",
+   "what": "A free statewide search for affordable and accessible places to rent. Search by location, rent, number of bedrooms and accessibility features.",
+   "how": "Search your city or county, then contact the property directly. A listing does not promise an opening.",
+   "url": "https://www.ohiohousinglocator.org/",
+   "sources": [
+    "https://ohiohome.org/renters.aspx",
+    "https://ohiohome.org/housingresourceguide.aspx"
+   ],
+   "reviewed_on": "2026-11-15"
   },
   {
    "id": "oh-heap",
