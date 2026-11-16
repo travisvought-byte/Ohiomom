@@ -1,5 +1,6 @@
 name: Monthly link check
-# Requests every Ohio listing's website once a month. When a person needs to look
+# Requests every outside link on the Ohio pages once a month: the statewide listings, the county pages
+# and the moms groups. When a person needs to look
 # (a broken link, an address that now goes somewhere else, or a site that turns robots away
 # and has not been opened in a browser lately), it opens an issue naming the links, or adds
 # to the one already open, so a dead link is found by the site before a mother finds it.

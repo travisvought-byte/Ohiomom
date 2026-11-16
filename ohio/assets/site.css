@@ -191,3 +191,20 @@ body.county .brandline{font-weight:700;margin:0 0 .4rem}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (max-width:760px){.need>summary{padding:.75rem .8rem}.need>summary::after{margin-left:.7rem}.need .ncount{display:none}.need>.cards,.need>p,.need>.groups,.need>.events{margin-left:.7rem;margin-right:.7rem}.cards{grid-template-columns:1fr}}
 @media print{.need>summary::after,.more>summary::before{display:none}}
+/* All resources: every listing on one page, with a search box, a county and a need. */
+.dirtools{background:#fff;border:1.5px solid var(--line);border-radius:var(--r);padding:1rem 1.1rem .6rem;margin-top:1.4rem}
+.dirfields{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:0 1rem}
+.dirfields .field{margin:0 0 .7rem}
+.dirfields input,.dirfields select{width:100%}
+.dirtools .chips{margin-top:.3rem}
+.dirtools #found{font-weight:700;color:var(--ink);font-size:1rem;margin-bottom:.2rem}
+.dirgroup{margin-top:2.2rem}
+.dirgroup h2{display:flex;flex-wrap:wrap;align-items:baseline;gap:.2rem .7rem;font-size:clamp(1.3rem,3vw,1.6rem)}
+.dirgroup .ncount{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:.88rem;font-weight:400;color:var(--muted)}
+.linkbtn{font:inherit;background:none;border:0;padding:0;color:var(--teal);text-decoration:underline;cursor:pointer}
+.for-need{color:var(--muted);font-size:.88rem;margin:.1rem 0!important}
+.t7 .ico{background:#dcebff}
+.t8 .ico{background:#e3f3d9}
+.t9 .ico{background:#ffe6ef}
+@media (max-width:760px){.dirtools .chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:.45rem}.dirtools .chips button{flex:none;white-space:nowrap}}
+@media print{.dirtools{display:none}}
