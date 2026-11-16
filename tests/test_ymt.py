@@ -286,7 +286,7 @@ class SiteTests(unittest.TestCase):
         expected = {path: 'assets/share.jpg' for path in PAGES}
         expected.update({path: 'ohio/assets/share.jpg' for path in ohio})
         expected[ROOT / 'family-guide.html'] = 'assets/share-family-guide.jpg'
-        self.assertEqual(len(expected), 59 + 20 + 1)
+        self.assertEqual(len(expected), 59 + 22 + 1)
         for path, picture in expected.items():
             p = parse(path)
             meta = {a.get('property') or a.get('name'): a.get('content') for t, a in p.tags if t == 'meta'}
