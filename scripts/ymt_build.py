@@ -76,6 +76,20 @@ def share_tags(image, alt, root=''):
 <link rel="apple-touch-icon" href="{root}assets/icon-180.png">'''
 
 
+def structured_data(*items):
+    """A JSON-LD block for the page head. '<' is escaped so no listing text can close the script tag."""
+    graph = {'@context': 'https://schema.org', '@graph': list(items)} if len(items) > 1 else {'@context': 'https://schema.org', **items[0]}
+    return '\n<script type="application/ld+json">' + json.dumps(graph, ensure_ascii=False).replace('<', '\\u003c') + '</script>'
+
+
+def breadcrumbs(data, trail):
+    """Home, then each (name, path) step. Search engines can show this path under the page's result."""
+    base = f"https://{data['site']['domain']}/"
+    steps = [(data['site']['name'], '')] + trail
+    return {'@type': 'BreadcrumbList', 'itemListElement': [
+        {'@type': 'ListItem', 'position': i, 'name': name, 'item': base + path} for i, (name, path) in enumerate(steps, 1)]}
+
+
 def page(data, path, title, desc, body, body_class='', head_extra=''):
     site = data['site']
     root = '../' * path.count('/')
@@ -246,7 +260,7 @@ def build_index(data):
     body = (hero('Hi, mom. What do you need today?', lede, f'<div class="tiles">{tiles}</div>{pick}', 'home')
             + '\n' + urgent_strip(data))
     desc = f"{site['tagline']} Food, child care, health coverage, disability help and crisis lines in all 50 states."
-    about = {'@context': 'https://schema.org', '@type': 'WebSite', 'name': site['name'],
+    about = {'@context': 'https://schema.org', '@type': 'WebSite', '@id': f"https://{site['domain']}/#website", 'name': site['name'],
              'url': f"https://{site['domain']}/", 'description': desc, 'inLanguage': 'en',
              'publisher': {'@type': 'Organization', 'name': site['name'],
                            'founder': {'@type': 'Person', 'name': site['founder']}}}
@@ -264,7 +278,8 @@ def build_help(data):
     body = (hero('Find help', lede) + finder('Search every listing', 'shelter, rent, WIC, child care…') + needs(''.join(rows))
             + '<section class="wrap slim"><p>In danger right now? Call 911. Domestic violence shelter addresses are never listed here, for safety.</p></section>')
     return page(data, 'help.html', 'Find help for moms',
-                'Free national help for moms: crisis lines, housing and shelter, food and bills, pregnancy and baby, kids who learn differently and single parents.', body)
+                'Free national help for moms: crisis lines, housing and shelter, food and bills, pregnancy and baby, kids who learn differently and single parents.', body,
+                head_extra=structured_data(breadcrumbs(data, [('Find help', 'help.html')])))
 
 
 def build_connect(data):
@@ -277,14 +292,16 @@ def build_connect(data):
 <section class="wrap"><div class="localbox"><strong>Ohio mom?</strong> <a href="{esc(site['ohio_path'])}">OhioMom</a> lists Ohio groups, meetups and events by region and county.</div></section>
 <section class="wrap cta"><h2>Run a group, or know a good one?</h2><p>If it is free or low cost and good for moms, we want to list it. Nobody pays to be listed here.</p><p><a class="btn big" href="report.html">Tell us about it</a></p></section>'''
     return page(data, 'connect.html', 'Meet other moms',
-                'Moms groups, breastfeeding groups and support for the hard days, in person and online, across the U.S.', body)
+                'Moms groups, breastfeeding groups and support for the hard days, in person and online, across the U.S.', body,
+                head_extra=structured_data(breadcrumbs(data, [('Meet other moms', 'connect.html')])))
 
 
 def build_states_index(data):
     items = ''.join(f'<li><a href="states/{s["abbr"].lower()}.html">{esc(s["name"])}<small>{s["abbr"]}</small></a></li>' for s in data['states'])
     body = hero('Help by state', 'All 50 states and the District of Columbia. Pick yours.') + f'<section class="wrap"><ul class="statelist">{items}</ul><p class="note">Looking for something national? See <a href="help.html">Find help</a>.</p></section>'
     return page(data, 'states.html', 'Help by state',
-                'Pick your state for SNAP, WIC, child care, health coverage, disability help and domestic violence resources.', body)
+                'Pick your state for SNAP, WIC, child care, health coverage, disability help and domestic violence resources.', body,
+                head_extra=structured_data(breadcrumbs(data, [('Help by state', 'states.html')])))
 
 
 def build_state(data, s):
@@ -303,9 +320,14 @@ def build_state(data, s):
     body = (hero(f'{esc(s["name"])}: help for moms', intro, local, 'slim')
             + finder(f'Search every {s["name"]} listing', 'shelter, rent, WIC, child care…') + needs(rows)
             + '<section class="wrap slim"><p><strong>Meet other moms.</strong> Find a group near you or online. <a href="../connect.html">Meet moms</a></p></section>')
-    return page(data, f'states/{s["abbr"].lower()}.html', f'{s["name"]}: help for moms',
-                f'Free help for moms in {s["name"]}: housing and shelter, SNAP, WIC, child care, health coverage, disability services and domestic violence resources.',
-                body)
+    path = f'states/{s["abbr"].lower()}.html'
+    desc = f'Free help for moms in {s["name"]}: housing and shelter, SNAP, WIC, child care, health coverage, disability services and domestic violence resources.'
+    base = f"https://{data['site']['domain']}/"
+    about = {'@type': 'CollectionPage', '@id': base + path, 'url': base + path, 'name': f'{s["name"]}: help for moms',
+             'description': desc, 'inLanguage': 'en', 'isPartOf': {'@id': base + '#website'},
+             'about': {'@type': 'State', 'name': s['name']}}
+    trail = breadcrumbs(data, [('Help by state', 'states.html'), (s['name'], path)])
+    return page(data, path, f'{s["name"]}: help for moms', desc, body, head_extra=structured_data(about, trail))
 
 
 def build_yoga(data):
