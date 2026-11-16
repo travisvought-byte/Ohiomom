@@ -19,8 +19,14 @@
    "summary": "Safety, crisis support and urgent needs. All free, most open any hour."
   },
   {
+   "id": "housing",
+   "label": "Housing and shelter",
+   "icon": "🏠",
+   "summary": "A place to stay tonight, women's shelters, and help with rent, eviction and finding a home."
+  },
+  {
    "id": "food-bills",
-   "label": "Food, bills and housing",
+   "label": "Food and bills",
    "icon": "🧺",
    "summary": "Groceries, WIC, energy bills and the one number that finds local help."
   },
@@ -81,7 +87,10 @@
    "phone_label": "1-800-799-SAFE",
    "text": "Text START to 88788",
    "urgent": true,
-   "chip": "Domestic violence hotline"
+   "chip": "Domestic violence hotline",
+   "also": [
+    "housing"
+   ]
   },
   {
    "id": "us-988",
@@ -131,7 +140,10 @@
     "https://nnedv.org/get-involved/in-your-state-or-us-territory/",
     "https://nnedv.org/"
    ],
-   "reviewed_on": "2026-11-15"
+   "reviewed_on": "2026-11-15",
+   "also": [
+    "housing"
+   ]
   },
   {
    "id": "us-211-help",
@@ -148,8 +160,82 @@
    "reviewed_on": "2026-11-15",
    "phone": "211",
    "also": [
-    "food-bills"
+    "food-bills",
+    "housing"
    ]
+  },
+  {
+   "id": "us-find-shelter",
+   "section": "housing",
+   "scope": "US",
+   "name": "Find a shelter near you",
+   "org": "U.S. Department of Housing and Urban Development (HUD)",
+   "what": "A free search tool for people who need a place to stay. Type your city or ZIP code to see nearby shelters and their phone numbers. It also finds free meals, clothing and health clinics.",
+   "how": "Open the tool, enter where you are, and call a shelter before you go to ask about space. HUD lists these places but does not run them.",
+   "url": "https://www.hud.gov/findshelter",
+   "sources": [
+    "https://www.hud.gov/findshelter"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "us-ywca",
+   "section": "housing",
+   "scope": "US",
+   "name": "YWCA: shelter, housing and support for women",
+   "org": "YWCA USA",
+   "what": "YWCA has 194 local associations across the country. Many run domestic violence shelters and hotlines, housing for women and families, child care and job training. What each one offers depends on where you live.",
+   "how": "Find your local YWCA and call to ask what it offers near you.",
+   "url": "https://www.ywca.org/what-we-do/in-your-community",
+   "sources": [
+    "https://www.ywca.org/what-we-do/in-your-community"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "us-family-promise",
+   "section": "housing",
+   "scope": "US",
+   "name": "Family Promise: for families with children who have lost housing",
+   "org": "Family Promise",
+   "what": "Nearly 200 local groups in more than 40 states help families with children keep their housing, find shelter and move into a new home. Keeping the family together is a priority.",
+   "how": "Use the search to find the group nearest you and call its office. If there is none near you, dial 211.",
+   "url": "https://familypromise.org/get-help/",
+   "sources": [
+    "https://familypromise.org/get-help/",
+    "https://familypromise.org/faqs/"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "us-salvation-army",
+   "section": "housing",
+   "scope": "US",
+   "name": "The Salvation Army: shelter and help with rent",
+   "org": "The Salvation Army",
+   "what": "Emergency shelters, short-term housing and, in many places, one-time help with rent or a utility bill. Programs differ from place to place.",
+   "how": "Use the location search to find the center nearest you, then call to ask what help is open right now.",
+   "url": "https://salvationarmyusa.org/usn/provide-shelter/",
+   "sources": [
+    "https://salvationarmyusa.org/usn/provide-shelter/",
+    "https://salvationarmyusa.org/usn/emergency-shelters"
+   ],
+   "reviewed_on": "2026-11-15"
+  },
+  {
+   "id": "us-housing-counselor",
+   "section": "housing",
+   "scope": "US",
+   "name": "Talk to a housing counselor",
+   "org": "U.S. Department of Housing and Urban Development (HUD)",
+   "what": "Housing counseling agencies approved by HUD give free or low-cost advice on renting, eviction and foreclosure, and on what to do if you are about to lose your home.",
+   "how": "Call HUD's automated line to get counseling agencies near you, or search online.",
+   "url": "https://www.hud.gov/i_want_to/talk_to_a_housing_counselor",
+   "sources": [
+    "https://www.hud.gov/i_want_to/talk_to_a_housing_counselor"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone": "800-569-4287"
   },
   {
    "id": "us-snap",
@@ -356,6 +442,9 @@
      "label": "LawHelp.org",
      "url": "https://www.lawhelp.org/"
     }
+   ],
+   "also": [
+    "housing"
    ]
   },
   {
@@ -501,6 +590,25 @@
    ],
    "reviewed_on": "2026-11-08",
    "phone": "800-733-8387"
+  },
+  {
+   "id": "us-homeless-veterans",
+   "section": "military",
+   "scope": "US",
+   "name": "National Call Center for Homeless Veterans",
+   "org": "U.S. Department of Veterans Affairs",
+   "what": "Free, confidential help any hour for veterans who are homeless or about to lose their housing. Family members can call for a veteran.",
+   "how": "Call or chat online. A trained VA counselor connects you with housing help near you.",
+   "url": "https://www.va.gov/homeless/nationalcallcenter.asp",
+   "sources": [
+    "https://www.va.gov/homeless/nationalcallcenter.asp"
+   ],
+   "reviewed_on": "2026-11-15",
+   "phone": "877-424-3838",
+   "phone_label": "1-877-4AID-VET",
+   "also": [
+    "housing"
+   ]
   },
   {
    "id": "us-vcl",

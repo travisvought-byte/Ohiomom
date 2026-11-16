@@ -1,5 +1,5 @@
 {
- "note": "One record is made per state from each template. {state}, {slug} and {snap_slug} are filled in by scripts/lib.py. Edit this file, not the built pages.",
+ "note": "One record is made per state from each template. {state}, {slug}, {snap_slug} and {st} (the two-letter code in lower case) are filled in by scripts/ymt_lib.py. Edit this file, not the built pages.",
  "templates": [
   {
    "id": "snap",
@@ -43,7 +43,8 @@
    "how": "Dial 211, or search by ZIP code at 211.org. Say what you need and your county.",
    "url": "https://www.211.org/",
    "sources": ["https://www.211.org/"],
-   "phone": "211"
+   "phone": "211",
+   "also": ["help-now", "housing"]
   },
   {
    "id": "coverage",
@@ -108,7 +109,8 @@
    "what": "Legal aid offices help people with low income with custody, divorce, housing and benefits at no cost. Who qualifies depends on the office.",
    "how": "Use LawHelp.org to choose {state} and find guides, forms and local contacts.",
    "url": "https://www.lawhelp.org/",
-   "sources": ["https://www.lawhelp.org/", "https://www.lsc.gov/about-lsc/what-legal-aid/get-legal-help"]
+   "sources": ["https://www.lawhelp.org/", "https://www.lsc.gov/about-lsc/what-legal-aid/get-legal-help"],
+   "also": ["housing"]
   },
   {
    "id": "dv",
@@ -120,7 +122,30 @@
    "url": "https://nnedv.org/get-involved/in-your-state-or-us-territory/",
    "sources": ["https://nnedv.org/get-involved/in-your-state-or-us-territory/"],
    "phone": "800-799-7233",
-   "phone_label": "National Domestic Violence Hotline"
+   "phone_label": "National Domestic Violence Hotline",
+   "also": ["housing"]
+  },
+  {
+   "id": "housing-hud",
+   "section": "housing",
+   "name": "Rent help and public housing in {state}",
+   "org": "U.S. Department of Housing and Urban Development (HUD)",
+   "what": "HUD's page for {state}: where to turn if you are homeless or about to be, how to apply for public housing and rent vouchers (Section 8), and other help with rent.",
+   "how": "Open the {state} page and pick what you need. To find your local public housing agency by phone, call HUD at the number here.",
+   "url": "https://www.hud.gov/states/{slug}",
+   "sources": ["https://www.hud.gov/states/{slug}"],
+   "phone": "800-955-2232",
+   "phone_label": "HUD line that finds your local public housing agency"
+  },
+  {
+   "id": "shelters",
+   "section": "housing",
+   "name": "Women's shelters and advocates in {state}",
+   "org": "WomensLaw.org",
+   "what": "A list of local domestic violence programs in {state}, by county. Many offer a 24-hour hotline, shelter, counseling and help with protection orders.",
+   "how": "Find your county and call the program's hotline. If you cannot browse safely, call the National Domestic Violence Hotline at 800-799-7233.",
+   "url": "https://www.womenslaw.org/find-help/{st}/advocates-and-shelters/local-programs",
+   "sources": ["https://www.womenslaw.org/find-help/{st}/advocates-and-shelters/local-programs"]
   }
  ]
 }

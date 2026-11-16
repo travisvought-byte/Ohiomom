@@ -88,7 +88,12 @@ class SiteTests(unittest.TestCase):
                 if tag in ('script', 'link', 'img', 'iframe', 'source', 'video', 'audio', 'form', 'input'):
                     ref = a.get('src') or (a.get('href') if tag == 'link' else '') or ''
                     self.assertFalse(ref.startswith(('http://', 'https://', '//')), f'{path}: external <{tag}> {ref}')
-                    self.assertNotIn(tag, ('iframe', 'form', 'input'), f'{path}: unexpected <{tag}>')
+                    self.assertNotIn(tag, ('iframe', 'form'), f'{path}: unexpected <{tag}>')
+                    if tag == 'input':
+                        # The one field on these pages filters what is already on the page. With no form
+                        # around it and no name, a browser has nowhere to send what is typed.
+                        self.assertEqual((a.get('type'), a.get('id')), ('search', 'q'), f'{path}: unexpected <input>')
+                        self.assertNotIn('name', a, f'{path}: the search field must not have a name')
         js = (ROOT / 'assets' / 'ymt.js').read_text(encoding='utf-8')
         for banned in ('fetch(', 'XMLHttpRequest', 'sendBeacon', 'document.cookie', 'localStorage', 'sessionStorage', 'WebSocket'):
             self.assertNotIn(banned, js)
@@ -162,10 +167,10 @@ class SiteTests(unittest.TestCase):
 
     def test_front_pages_show_no_listings(self):
         """The front page asks what she needs. Listings appear only after she chooses."""
-        for rel in ('index.html', 'ohio/index.html'):
+        for rel, choices in (('index.html', 8), ('ohio/index.html', 6)):
             text = (ROOT / rel).read_text(encoding='utf-8')
             self.assertNotIn('class="card', text, f'{rel}: a front page shows no listing cards')
-            self.assertEqual(text.count('class="tile '), 6, f'{rel}: six needs to choose from')
+            self.assertEqual(text.count('class="tile '), choices, f'{rel}: the needs to choose from')
         home = (ROOT / 'index.html').read_text(encoding='utf-8')
         self.assertEqual(home.count('class="phonecard"'), 3)
 
@@ -223,6 +228,55 @@ class SiteTests(unittest.TestCase):
             desc = re.search(r'<meta name="description" content="([^"]*)"', path.read_text(encoding='utf-8'))
             self.assertIsNotNone(desc, path)
             self.assertLessEqual(len(desc.group(1)), 165, f'{path}: description is cut off in search results past about 160 characters')
+
+    def test_housing_and_shelter_is_its_own_need(self):
+        """A mom who needs a place to stay finds it by name on the front page, the help page and every state page."""
+        data = lib.load()
+        home = (ROOT / 'index.html').read_text(encoding='utf-8')
+        self.assertIn('href="help.html#housing"', home)
+        self.assertIn('Housing and shelter', home)
+        help_page = (ROOT / 'help.html').read_text(encoding='utf-8')
+        row = re.search(r'<details class="need" id="housing">(.*?)</details>(?=<details class="need|</section>)', help_page, re.S).group(1)
+        for rid in ('us-find-shelter', 'us-ywca', 'us-family-promise', 'us-salvation-army', 'us-housing-counselor'):
+            self.assertIn(f'id="{rid}"', row, rid)
+        self.assertIn('800-799-7233', row, 'the domestic violence hotline is shown under housing too')
+        for s in data['states']:
+            text = (ROOT / 'states' / f"{s['abbr'].lower()}.html").read_text(encoding='utf-8')
+            row = re.search(r'<details class="need" id="housing">(.*?)</details>(?=<details class="need|</section>)', text, re.S).group(1)
+            self.assertGreaterEqual(row.count('<article'), 10, s['name'])
+            self.assertIn(f"https://www.hud.gov/states/{s['slug']}", row, s['name'])
+            self.assertIn(f"https://www.womenslaw.org/find-help/{s['abbr'].lower()}/advocates-and-shelters/local-programs", row, s['name'])
+            self.assertIn(f"Women&#x27;s shelters and advocates in {s['name']}", row)
+        # Shelter addresses are never printed: housing listings carry phone numbers and websites only.
+        for r in lib.all_records(data):
+            if r['section'] == 'housing':
+                self.assertNotIn('address', r, r['id'])
+
+    def test_a_state_page_shows_every_listing_once_per_need(self):
+        """A state page is everything for that state: its own offices, then every national listing it has no version of."""
+        data = lib.load()
+        national = {r['id'] for r in data['resources'] if r['section'] != 'connect'}
+        for s in data['states']:
+            text = (ROOT / 'states' / f"{s['abbr'].lower()}.html").read_text(encoding='utf-8')
+            ids = re.findall(r'<article class="card[^"]*" id="([^"]+)">', text)
+            self.assertEqual(len(ids), len(set(ids)), s['name'])
+            shown = {i.split('--')[-1] for i in ids}
+            have = {i.split('-', 1)[1] for i in shown if not i.startswith('us-')}
+            missing = {n for n in national if n not in shown and ymt_build.REPLACED_BY_STATE.get(n) not in have}
+            self.assertFalse(missing, f"{s['name']}: national listings left off the state page")
+            doubled = {n for n in national if n in shown and ymt_build.REPLACED_BY_STATE.get(n) in have}
+            self.assertFalse(doubled, f"{s['name']}: shown twice, once national and once for the state")
+            self.assertGreaterEqual(len(shown), 44, s['name'])
+
+    def test_search_only_filters_the_page(self):
+        """The search box and "Show everything" are on the help page and every state page, and start hidden without the script."""
+        pages = [ROOT / 'help.html'] + sorted((ROOT / 'states').glob('*.html'))
+        for path in pages:
+            text = path.read_text(encoding='utf-8')
+            self.assertEqual(text.count('data-finder'), 1, path)
+            self.assertRegex(text, r'<section class="wrap finder" id="everything" data-finder hidden>', path)
+            self.assertIn('Nothing you type here is sent or saved.', text, path)
+        self.assertNotIn('data-finder', (ROOT / 'index.html').read_text(encoding='utf-8'))
 
     def test_every_page_has_a_share_picture_and_an_icon(self):
         """A shared link shows our own picture, served from our own site, and a browser tab shows our icon."""

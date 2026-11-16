@@ -23,17 +23,34 @@ FOOT = [('help.html', 'Find help'), ('connect.html', 'Meet moms'), ('states.html
         ('yoga.html', 'Yoga with Deborah'), ('about.html', 'About'), ('report.html', 'Report a problem')]
 TILES = [
     ('t1', '🤝', 'Meet other moms', 'Groups and communities near you and online.', 'connect.html'),
-    ('t2', '🧺', 'A hand with food, bills or housing', 'SNAP, WIC, energy bills and food banks.', 'help.html#food-bills'),
+    ('t7', '🏠', 'Housing and shelter', "A place to stay tonight, women's shelters, help with rent.", 'help.html#housing'),
+    ('t2', '🧺', 'A hand with food or bills', 'SNAP, WIC, energy bills and food banks.', 'help.html#food-bills'),
     ('t3', '🍼', "I'm pregnant or have a new baby", 'Health coverage, nursing help, diapers, safe sleep.', 'help.html#pregnancy-baby'),
     ('t4', '🧩', 'My child learns or grows differently', 'Autism, ADHD, delays, school help and other parents.', 'help.html#kids-differently'),
     ('t5', '💛', 'Parenting on my own', 'Child care, Head Start, child support and legal help.', 'help.html#single-parent'),
     ('t6', '☕', 'Take care of me', 'Someone to talk to on the hard days.', 'help.html#take-care'),
+    ('t8', '🔎', 'See everything', 'Every listing in one place, with a search box.', 'help.html#everything'),
 ]
 # ohiomom.org is one way into this site: its home page goes straight to the Ohio landing page.
 OHIO_REDIRECT = ('\n<script>if(/(^|\\.)ohiomom\\.org$/i.test(location.hostname)){'
                  'location.replace("ohio/index.html"+location.search+location.hash)}</script>')
-STATE_SECTIONS = ['help-now', 'food-bills', 'pregnancy-baby', 'kids-differently', 'single-parent', 'take-care']
+STATE_SECTIONS = ['help-now', 'housing', 'food-bills', 'pregnancy-baby', 'kids-differently', 'single-parent', 'take-care', 'military']
 URGENT_LINES = ['us-ndvh', 'us-988', 'us-childhelp']
+# A state page shows every national listing too, except the ones the state has its own version of.
+# National id: the state template (or state record) that takes its place.
+REPLACED_BY_STATE = {
+    'us-dv-coalition': 'dv', 'us-211-help': '211', 'us-snap': 'snap', 'us-wic': 'wic', 'us-liheap': 'energy',
+    'us-health-centers': 'health-centers', 'us-insure-kids': 'coverage', 'us-diaper-banks': 'diapers',
+    'us-childcare': 'childcare', 'us-head-start': 'head-start', 'us-legal-aid': 'legal',
+    'us-cdc-find-ei': 'ei', 'us-parent-center': 'pti',
+}
+# Within a need these come first, in this order: the most urgent door, then the local ones.
+# National listings are named by id, state listings by their template. The rest keep the order of the data files.
+FIRST = {
+    'help-now': ['us-ndvh', 'us-988', 'us-childhelp'],
+    'housing': ['us-find-shelter', 'shelters', 'us-ndvh', 'dv', 'us-dv-coalition', '211', 'us-211-help',
+                'housing-hud', 'us-housing-counselor'],
+}
 
 
 def tel(p):
@@ -165,6 +182,34 @@ def needs(body):
     return f'<section class="wrap needs" aria-label="What do you need?">{body}</section>'
 
 
+def kind(r):
+    """What a listing is, whichever state it is for: the national id, or the state template's id."""
+    return r['id'] if r['scope'] == 'US' else r['id'].split('-', 1)[1]
+
+
+def in_order(sid, records):
+    first = FIRST.get(sid, [])
+    return sorted(records, key=lambda r: first.index(kind(r)) if kind(r) in first else len(first))
+
+
+def row(sec, records, root=''):
+    """One need with everything that belongs under it. A listing filed under another need first is shown here as well."""
+    sid = sec['id']
+    primary = [r for r in records if r['section'] == sid]
+    also = [r for r in records if sid in r.get('also', [])]
+    prefix = {r['id']: f"{sid}--{r['id']}" for r in also}
+    return need(sec, in_order(sid, primary + also), root, prefix)
+
+
+def finder(what, hint):
+    """Search and "Show everything" for a page of needs. It only hides and shows what is already on the page."""
+    return (f'<section class="wrap finder" id="everything" data-finder hidden><label for="q">{esc(what)}</label>'
+            f'<div class="finderrow"><input id="q" type="search" placeholder="{esc(hint)}" autocomplete="off" enterkeyhint="search">'
+            f'<button type="button" class="btn" data-show-all aria-pressed="false">Show everything</button></div>'
+            f'<p class="quiet" data-count role="status"></p>'
+            f'<p class="quiet">Nothing you type here is sent or saved.</p></section>')
+
+
 def urgent_strip(data, root=''):
     """The three lines that must never be more than one tap away, as small phone cards."""
     nat = {r['id']: r for r in data['resources']}
@@ -212,19 +257,14 @@ def build_index(data):
 
 def build_help(data):
     secs = [s for s in data['sections'] if not s.get('page')]
-    rows = []
-    for s in secs:
-        primary = [r for r in data['resources'] if r['section'] == s['id']]
-        also = [r for r in data['resources'] if s['id'] in r.get('also', [])]
-        # A listing that belongs under two needs is shown under both, so nobody has to hunt for it.
-        prefix = {r['id']: f"{s['id']}--{r['id']}" for r in also}
-        rows.append(need(s, primary + also, '', prefix))
-    lede = ('Pick what you need. It opens a short list of who to call. These work in every state. '
+    # A listing that belongs under two needs is shown under both, so nobody has to hunt for it.
+    rows = [row(s, data['resources']) for s in secs]
+    lede = ('Pick what you need, or search every listing. These work in every state. '
             'For your state\'s own offices, <a href="states.html">choose your state</a>.')
-    body = (hero('Find help', lede) + needs(''.join(rows))
+    body = (hero('Find help', lede) + finder('Search every listing', 'shelter, rent, WIC, child care…') + needs(''.join(rows))
             + '<section class="wrap slim"><p>In danger right now? Call 911. Domestic violence shelter addresses are never listed here, for safety.</p></section>')
     return page(data, 'help.html', 'Find help for moms',
-                'Free national help for moms: crisis lines, food and bills, pregnancy and baby, kids who learn differently, single parents and military families.', body)
+                'Free national help for moms: crisis lines, housing and shelter, food and bills, pregnancy and baby, kids who learn differently and single parents.', body)
 
 
 def build_connect(data):
@@ -250,24 +290,21 @@ def build_states_index(data):
 def build_state(data, s):
     secs = sec_map(data)
     recs = lib.state_records(s, data)
-    by = {}
-    for r in recs:
-        by.setdefault(r['section'], []).append(r)
-    nat = {r['id']: r for r in data['resources']}
-    by['help-now'] = [nat['us-ndvh'], nat['us-988'], nat['us-childhelp']] + by.get('help-now', [])
-    by['take-care'] = [nat['us-tlc-mama'], nat['us-psi'], nat['us-parent-helpline']]
-    order = {'food-bills': ['snap', 'wic', 'energy', '211'], 'pregnancy-baby': ['coverage', 'health-centers', 'diapers']}
-    rows = ''.join(need(secs[sid], by.get(sid, []), '../') for sid in STATE_SECTIONS)
+    have = {kind(r) for r in recs}
+    # The state's own offices first, then every national listing the state does not already have its own version of.
+    everything = recs + [r for r in data['resources'] if REPLACED_BY_STATE.get(r['id']) not in have]
+    rows = ''.join(row(secs[sid], everything, '../') for sid in STATE_SECTIONS)
     local = ''
     if s.get('local_site'):
         ls = s['local_site']
         local = f'<div class="localbox"><strong>Ohio mom?</strong> <a href="../{esc(ls["path"])}">{esc(ls["name"])}</a> is {esc(ls["what"][0].lower() + ls["what"][1:])}</div>'
-    intro = (f'Pick what you need. It opens a short list of {esc(s["name"])} offices and national lines to start with. '
+    intro = (f'Pick what you need, or search every listing. Each choice opens {esc(s["name"])}\'s own offices first, then national lines. '
              f'<a href="../states.html">Choose another state</a>.')
-    body = (hero(f'{esc(s["name"])}: help for moms', intro, local, 'slim') + needs(rows)
+    body = (hero(f'{esc(s["name"])}: help for moms', intro, local, 'slim')
+            + finder(f'Search every {s["name"]} listing', 'shelter, rent, WIC, child care…') + needs(rows)
             + '<section class="wrap slim"><p><strong>Meet other moms.</strong> Find a group near you or online. <a href="../connect.html">Meet moms</a></p></section>')
     return page(data, f'states/{s["abbr"].lower()}.html', f'{s["name"]}: help for moms',
-                f'Free help for moms in {s["name"]}: SNAP, WIC, child care, health coverage, disability services and domestic violence resources.',
+                f'Free help for moms in {s["name"]}: housing and shelter, SNAP, WIC, child care, health coverage, disability services and domestic violence resources.',
                 body)
 
 
