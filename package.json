@@ -2,7 +2,7 @@
   "name": "ohiomom",
   "private": true,
   "scripts": {
-    "test": "node tests/family-guide.cjs && node tests/ymt-pages.cjs && node tests/ohio-directory.cjs"
+    "test": "node tests/family-guide.cjs && node tests/ymt-pages.cjs && node tests/ohio-directory.cjs && node tests/ohio-prerender.cjs"
   },
   "devDependencies": {
     "jsdom": "30.1.2"
