@@ -321,13 +321,30 @@ class SiteTests(unittest.TestCase):
         self.assertEqual(len(locs), len(set(locs)))
         ohio = [p for p in (ROOT / 'ohio').rglob('*.html')
                 if 'name="robots" content="noindex"' not in p.read_text(encoding='utf-8')]
-        # minus 404, plus the ohio pages that are not pass-through pages, plus the family guide
-        self.assertEqual(len(locs), len(PAGES) - 1 + len(ohio) + 1)
+        stubs = [p for p in PAGES if 'name="robots" content="noindex"' in p.read_text(encoding='utf-8')]
+        # minus 404 and the pages that only pass visitors on, plus the ohio pages that are not, plus the family guide
+        self.assertEqual(len(locs), len(PAGES) - 1 - len(stubs) + len(ohio) + 1)
+        self.assertNotIn('https://www.yogamomtalk.com/yoga.html', locs)
         self.assertNotIn('https://www.yogamomtalk.com/ohio/help/disability.html', locs)
         self.assertIn('https://www.yogamomtalk.com/ohio/index.html', locs)
         self.assertIn('https://www.yogamomtalk.com/family-guide.html', locs)
         for loc in locs:
             self.assertNotIn('?', loc)
+
+    def test_yoga_sessions_are_offered_on_ohio_pages_only(self):
+        """Deborah's sessions are in person in Ohio. National pages do not offer them; yoga.html passes visitors to OhioMom."""
+        dest = lib.load()['site']['ohio_yoga_path']
+        for path in PAGES:
+            text = path.read_text(encoding='utf-8')
+            if path.name == 'yoga.html':
+                self.assertIn('name="robots" content="noindex"', text)
+                self.assertIn(f'content="0; url={dest}"', text)
+                continue
+            self.assertNotIn('href="yoga.html"', text, path)
+            self.assertNotIn('href="../yoga.html"', text, path)
+            self.assertNotIn('Ask about a session', text, path)
+        self.assertIn('yoga sessions with Deborah', (ROOT / 'states' / 'oh.html').read_text(encoding='utf-8'))
+        self.assertTrue((ROOT / dest).exists())
 
     def test_state_pages_use_their_own_state(self):
         data = lib.load()

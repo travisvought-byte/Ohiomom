@@ -18,9 +18,9 @@ import ymt_lib as lib  # noqa: E402
 
 ROOT = lib.ROOT
 EXIT_URL = 'https://www.google.com/search?q=weather'
-NAV = [('help.html', 'Find help'), ('connect.html', 'Meet moms'), ('states.html', 'By state'), ('yoga.html', 'Yoga')]
+NAV = [('help.html', 'Find help'), ('connect.html', 'Meet moms'), ('states.html', 'By state')]
 FOOT = [('help.html', 'Find help'), ('connect.html', 'Meet moms'), ('states.html', 'By state'),
-        ('yoga.html', 'Yoga with Deborah'), ('about.html', 'About'), ('report.html', 'Report a problem')]
+        ('about.html', 'About'), ('report.html', 'Report a problem')]
 TILES = [
     ('t1', '🤝', 'Meet other moms', 'Groups and communities near you and online.', 'connect.html'),
     ('t7', '🏠', 'Housing and shelter', "A place to stay tonight, women's shelters, help with rent.", 'help.html#housing'),
@@ -76,10 +76,10 @@ def share_tags(image, alt, root=''):
 <link rel="apple-touch-icon" href="{root}assets/icon-180.png">'''
 
 
-def page(data, path, title, desc, body, body_class='', head_extra=''):
+def page(data, path, title, desc, body, body_class='', head_extra='', canonical=None):
     site = data['site']
     root = '../' * path.count('/')
-    url = f"https://{site['domain']}/" + ('' if path == 'index.html' else path)
+    url = f"https://{site['domain']}/" + ('' if (canonical or path) == 'index.html' else (canonical or path))
     full_title = title if title.startswith(site['name']) else f"{title} | {site['name']}"
     nav = ''.join(
         f'<a href="{root}{h}"' + (' aria-current="page"' if h == path else '') + f'>{esc(t)}</a>' for h, t in NAV)
@@ -309,11 +309,16 @@ def build_state(data, s):
 
 
 def build_yoga(data):
+    """Deborah's sessions are in person in Ohio, so they are offered on the OhioMom pages only.
+    This address stays so old links still work, and passes visitors straight on."""
     site = data['site']
-    body = hero('Yoga and training with Deborah', f'{esc(site["founder"])} started {esc(site["name"])}. She is also a yoga instructor and a personal trainer, and she takes private and small-group sessions.') + f'''
-<section class="wrap"><div class="steps"><h2>What she offers</h2><h3>Yoga sessions</h3><p>Private or small-group yoga. Come on your own or bring a couple of friends.</p><h3>Personal training</h3><p>One-on-one training built around where you are right now.</p><p>This is Deborah's own paid work. Ask for current rates when you write. Everything else on {esc(site["name"])} stays free, and no listing on this site is paid for.</p><p><a class="btn big" href="{esc(site["ohio_yoga_path"])}">Ask about a session</a></p><p class="note">The booking form is on the OhioMom pages, where Deborah's sessions are taken.</p></div></section>'''
-    return page(data, 'yoga.html', 'Yoga with Deborah',
-                f'Private and small-group yoga and personal training with {site["founder"]}, founder of {site["name"]}.', body)
+    dest = site['ohio_yoga_path']
+    head = (f'\n<meta name="robots" content="noindex">\n<meta http-equiv="refresh" content="0; url={esc(dest)}">'
+            f'\n<script>location.replace({json.dumps(dest)}+location.search+location.hash)</script>')
+    body = hero('Yoga with Deborah', 'Deborah\'s yoga and training sessions are in Ohio, so they are on the OhioMom pages.',
+                f'<p class="actions"><a class="btn big" href="{esc(dest)}">Go to yoga with Deborah</a></p>')
+    return page(data, 'yoga.html', 'Yoga with Deborah', f"{site['founder']}'s yoga and training sessions are in Ohio, on the OhioMom pages.",
+                body, head_extra=head, canonical=dest)
 
 
 def build_about(data):
@@ -360,7 +365,7 @@ def build_all(data):
     for s in data['states']:
         files[f'states/{s["abbr"].lower()}.html'] = build_state(data, s)
     domain = data['site']['domain']
-    pages = sorted(p for p in files if p != '404.html')
+    pages = sorted(p for p in files if p != '404.html' and 'name="robots" content="noindex"' not in files[p])
     # Pages that only pass the visitor on (marked noindex) stay out of the sitemap.
     ohio = sorted(str(p.relative_to(ROOT)) for p in (ROOT / 'ohio').rglob('*.html')
                   if 'name="robots" content="noindex"' not in p.read_text(encoding='utf-8'))
