@@ -72,10 +72,31 @@ A mom arrives with one need. The pages show her the choice, then a short list, t
 - The national pages carry no cookies, tracking, sign-up forms or third-party scripts of our own, and the report page uses a mail link only. Wix adds its own script and cookies to every page it serves, so the pages say that plainly and do not claim to be cookie-free.
 - Domestic violence shelter addresses are never listed. Listings point to the hotline or program that places people safely.
 
+## Publishing to Wix
+
+Merging a pull request does not change the live site by itself. There are two ways to publish.
+
+**By hand (what has been done so far).** The changed files are sent through the Wix connector, each one checked by fingerprint against the live copy before and after.
+
+**From GitHub (built, waiting for a key).** `.github/workflows/publish.yml` runs `scripts/publish_wix.py`:
+
+- **check** compares the live site with the repository and changes nothing.
+- **publish** sends the files, then reads the site back and compares again. It refuses to run if what is live is not the last upload, it never deletes a live file, and it only publishes from `main`.
+
+To switch it on:
+
+1. In Wix, generate an API key ([Wix's steps](https://dev.wix.com/docs/api-reference/articles/authentication/api-keys/generate-an-api-key)). Limit its site access to this site. Wix shows the key once, so keep the window open for step 2. Wix's steps also say where to find the account ID.
+2. In this repository on GitHub: Settings, Secrets and variables, Actions, New repository secret. Add `WIX_API_KEY` (the key) and `WIX_ACCOUNT_ID` (the account ID). `WIX_SITE_ID` is optional; without it the site is found by its name, OhioMom.
+3. Actions, "Publish to Wix", Run workflow, mode **check**. It should report that the live site matches the repository.
+
+What is not yet proven: the calls are the ones in Wix's recipe for uploading a site, and Wix says API keys are meant for automation such as GitHub Actions, but Wix's recipe shows these calls with a login token and does not say outright that they accept an API key. The first check run settles it and changes nothing either way. If Wix refuses the key, the run says so, and publishing stays by hand. Once a check and one publish have gone through, adding `push: branches: [main]` to the workflow makes every merge publish itself.
+
+`tests/test_publish.py` runs the script against a stand-in for Wix: the complete file set is sent, nothing live is deleted, a refused key or an unexpected live state stops everything, and the key is never printed.
+
 ## Still to settle
 
-- **Hosting.** Decided: Wix headless serves the whole site. Nothing deploys when a branch is merged; each release is uploaded to the Wix site by hand. Wix keeps each Ohio page without its `wix-site-script` tag and adds the tag back when it serves the page, so the stored copy of those pages is the repo copy minus that one tag. Wix also serves its own `sitemap.xml`, `robots.txt` and not-found page.
-- **Domains.** Decided (Nov 15, 2026): `www.yogamomtalk.com` is the primary domain and yogamomtalk.org redirects to it. Still open: ohiomom.org is not assigned, so every outside link to it is dead until it is connected again, including the Veteran Home Guardians guide's link and the QR code on the printed family guide flyer. No page on this site links or redirects to ohiomom.org any more (a test enforces it). Assigned as a redirecting domain, its old page links land on the same page here and the redirect pages carry them on to `/ohio/`, but its home page lands on the national home, because the visitor has already left ohiomom.org by the time the page loads and the home page check never runs. Sending the ohiomom.org home page straight to `/ohio/` needs a redirect hosted outside Wix.
+- **Hosting.** Decided: Wix headless serves the whole site. Wix keeps each Ohio page without its `wix-site-script` tag and adds the tag back when it serves the page, so the stored copy of those pages is the repo copy minus that one tag. Wix also serves its own `sitemap.xml` (it lists these pages), `robots.txt` and not-found page. Publishing is described under "Publishing to Wix" below; the automatic route is built but not switched on.
+- **Domains.** Decided (Nov 15, 2026): `www.yogamomtalk.com` is the primary domain, and yogamomtalk.org and ohiomom.org redirect to it. The redirect keeps the path (checked Nov 15, 2026): `ohiomom.org/family-guide.html` lands on the family guide, so the Veteran Home Guardians guide's link and the QR code on the printed flyer work. One thing does not: the ohiomom.org home page lands on the national home page and not on OhioMom, because the visitor has already left ohiomom.org by the time the page loads. Sending it straight to `/ohio/` needs a redirect rule for that one address in the domain settings. No page on this site links to ohiomom.org (a test enforces it).
 - **Corrections email.** The default is `travis@vethomeguard.org`; change it in `data/ymt/resources.json` and rebuild.
 - **Trademark.** The name is a decision for later. It is kept in one config value so a change is a rebuild.
 - **Phone numbers.** No number on the site has been dialed. They match the published sources named on each card, and the state records match the three national lists as of November 15, 2026. Ohio's energy assistance line (800-282-0880) is still printed by local agencies but no longer appears on the state's own pages since the program changed departments in April 2026; dial it once to confirm it still connects.
