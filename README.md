@@ -12,6 +12,8 @@ Yoga Mom Talk is independent and is not affiliated with any other "Mom Talk" sho
 | Path | What it is |
 | --- | --- |
 | `/` (`index.html`, `help.html`, `connect.html`, `states.html`, `states/xx.html`, `about.html`, `report.html`) | National Yoga Mom Talk pages, generated from `data/ymt/` |
+| `/county.html` | One page for every county and county-equivalent in the 50 states and D.C. (3,144). `county.html#39117` is Morrow County, Ohio (the county's FIPS code), `county.html#oh` lists Ohio's counties, and a ZIP code typed on the page finds its county. `assets/county.js` draws it from the files in `assets/us/` |
+| `/assets/us/` | The county data: one file per state (`oh.json`) and ten ZIP code files (`z4.json` holds every ZIP code that starts with 4), built by `scripts/county_data.py` |
 | `/yoga.html` | Passes visitors on to `/ohio/yoga.html`. Deborah's yoga and training sessions are in person in Ohio, so only the Ohio pages offer them (decided Nov 15, 2026); the national menu has no Yoga link |
 | `/ohio/` | OhioMom: the Ohio landing page, county pages, Ohio help pages, Wix forms and polls. Pages and their own `assets/` are self-contained here, except the site icon, which every page takes from `/assets/` |
 | `/family-guide.html` | The Ohio family guide. The path is fixed because the Veteran Home Guardians guide and the printed flyer's QR code point to `ohiomom.org/family-guide.html`. It stays Ohio-only. Its own links and canonical address use `www.yogamomtalk.com`, so the page works whether or not ohiomom.org is connected |
@@ -38,6 +40,20 @@ Ohio site (OhioMom):
 - `ohio/all.html` ("All resources") is not built ahead of time. Its script, `ohio/assets/all.js`, reads the other Ohio pages, the Ohio page of the national site, the family guide and the moms groups in the visitor's browser and lays every listing out once, so it cannot fall out of step with them. A new county page appears in it as soon as `ohio/assets/data.json` names the page.
 - `ohio/assets/places.json` lets that page turn a town or ZIP code into a county. `python3 scripts/ohio_places.py US.txt state_county_zip.json DATE` rebuilds it from two source files that are not kept here; the top of the script says where they come from and how the two are reconciled.
 - `python3 scripts/validate.py` checks the Ohio data. `npm test` checks the family guide, the page layouts, the Ohio housing page and the All resources page.
+
+## County pages, for every county
+
+Every county in the 50 states and D.C. has a page with local listings from three federal directories, and every state page has a picker that leads to them. Six Ohio counties also have a hand-checked guide under `ohio/counties/`, and their county page links to it.
+
+- **What a county page shows.** Four closed rows: low-cost health care (health center sites), Head Start and Early Head Start, HUD-approved housing counselors, and a row of links to the same needs on the state's own page. When a county has no health center or Head Start site of its own, the row shows the nearest three within 60 miles and says how far each is from the middle of the county; housing counselors are those in the county, then the nearest within 75 miles. A long list shows six cards, "Show more", and a box to narrow it by town or name. Cards have the same parts as every other card on the site, and the three crisis phone cards stay in the open below the rows.
+- **Where the listings come from.** Health centers: HRSA's Health Center Service Delivery and Look-Alike Sites file. Head Start: the Office of Head Start's daily list of service locations. Housing counselors: HUD's housing counselor list, state by state. Counties, populations and county centers: the Census Bureau's 2024 county estimates, 2023 Gazetteer files and 2020 ZIP code (ZCTA) to county file. `python3 scripts/county_data.py --fetch SRC` downloads all of them (about 25 MB, kept out of the repo); `SOURCES` at the top of the script has every address.
+- **What is left out, and why.** School-based, mobile-van, nursing-home, prison and administration-only health center sites (not places a mom can walk in); closed Head Start locations; any listing without a phone number; and any site, program or agency whose name or street says it is a shelter, a crisis or respite unit, a residential program, or a confidential location (`SENSITIVE` and `CARE_HOME` in the script, with a test). Domestic violence locations are never published, and a clinic inside a shelter serves the people staying there. HUD agencies with status `C` are left out; HUD does not publish what its status codes mean, and every `P` agency in the list names a parent agency.
+- **Website buttons only for websites that loaded.** `python3 scripts/county_links.py SRC` requests every website address the directories give (about 3,000) and keeps the answers in `data/county-links.json`. A card gets a Website button only when its site loaded, or turned the robot away while clearly being there; broken, parked, forwarded and unreachable sites keep their phone number and lose the button. On November 15, 2026, 2,446 of 2,962 addresses passed. `python3 scripts/county_links.py --shards` checks the linked ones again.
+- **Rebuilding.** `python3 scripts/county_data.py SRC` writes `data/ymt/counties.json` and `assets/us/`, then `python3 scripts/ymt_build.py` rebuilds the pages (the state pickers come from `counties.json`). The listings carry the download date. The federal lists change often, so refresh every month or two.
+- **Connecticut** is listed by its nine planning regions, the county-equivalents the Census Bureau and HRSA have used since 2022. Head Start and the ZIP code file still use the old eight counties there, so those sites and ZIP codes are placed in a region by the nearest town.
+- **Privacy.** The page reads only this site's own files, with no cookies sent. The county is in the part of the address after `#`, which a browser never sends to the server. A typed ZIP code is matched inside the browser; the only request it causes is for the list of ZIP codes that start with the same digit.
+- **Why one page and not 3,144.** Wix hosts at most 2,000 files and 20 MB for a site, so the county layer is one page plus 61 data files (about 5 MB). The whole site is about 9.5 MB.
+- **How much is done.** `python3 scripts/coverage.py` reports it. On November 15, 2026: every county has a page (100%); 2,821 counties (89.7%, home to 99.1% of Americans) have at least one of the three kinds of listing inside the county; 2,969 (94.4%, 99.3% of people) have all three in or near the county; and 6 counties (0.2%, 1.1% of people) have a hand-checked local guide.
 
 ## How pages are laid out: a little first, the rest when asked
 
@@ -91,7 +107,7 @@ A mom arrives with one need. The pages show her the choice, then a short list, t
 
 Merging a pull request does not change the live site by itself. There are two ways to publish.
 
-**By hand (what has been done so far).** The changed files are sent through the Wix connector, each one checked by fingerprint against the live copy before and after.
+**By hand (what has been done so far).** The changed files are sent through the Wix connector, each one checked by fingerprint against the live copy before and after. This only works for changes small enough to pass through a conversation, so the county data in `assets/us/` (about 5 MB) can go live only from GitHub.
 
 **From GitHub (built, waiting for a key).** `.github/workflows/publish.yml` runs `scripts/publish_wix.py`:
 

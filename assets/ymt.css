@@ -146,3 +146,21 @@ button.btn{font-family:inherit;cursor:pointer}
 .aboutphoto img{display:block;width:100%;height:auto;border-radius:var(--r);border:1.5px solid var(--line)}
 .aboutphoto figcaption{margin-top:.4rem;color:var(--muted);font-size:.88rem}
 .about>p,.about>ul{max-width:44rem}
+
+/* County pages: the state, county and ZIP choosers, and long lists that can be narrowed */
+.countyfind{display:flex;flex-wrap:wrap;gap:.7rem 1rem;align-items:flex-end;margin-top:1.3rem}
+.countyfind>div{display:flex;flex-direction:column;gap:.3rem;min-width:0}
+.countyfind label{font-weight:700}
+.countyfind input{font:inherit;color:var(--ink);background:#fff;border:1.5px solid #cbbfd0;border-radius:.8rem;padding:.65rem .8rem;width:9.5rem}
+.countyfind input:focus-visible,.rowfilter:focus-visible{outline:3px solid var(--teal);outline-offset:1px}
+#cmsg{margin:.5rem 0 0;min-height:1.2em}
+.need>.rowbody{padding:0 1rem 1rem}
+.rowfilter{font:inherit;color:var(--ink);background:#fff;border:1.5px solid #d9c9bb;border-radius:.8rem;padding:.55rem .8rem;width:100%;max-width:24rem;margin-top:.8rem}
+.rowbody>div>.btn{margin-top:.9rem}
+.statelinks{list-style:none;padding:0;margin:.6rem 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.5rem}
+.statelinks a{display:block;background:#fff;border:1.5px solid var(--line);border-radius:.8rem;padding:.55rem .85rem;text-decoration:none;color:var(--ink);font-weight:600}
+.statelinks a:hover,.statelinks a:focus-visible{border-color:var(--brand)}
+.countylink{margin-top:1rem}
+#sources li{margin:.35rem 0}
+@media (max-width:760px){.countyfind>div{flex:1 1 100%}.countyfind input{width:100%}}
+@media print{.countyfind,.rowfilter,.rowbody>div>.btn{display:none!important}}

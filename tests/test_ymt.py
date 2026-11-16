@@ -13,6 +13,8 @@ import ymt_lib as lib  # noqa: E402
 
 # Only the pages this build writes. The Ohio pages under ohio/ are separate source.
 PAGES = sorted(ROOT / rel for rel in ymt_build.build_all(lib.load()) if rel.endswith('.html'))
+COUNTY_CODES = {c['fips'] for c in lib.load()['counties']}
+STATE_CODES = {s['abbr'] for s in lib.load()['states']}
 EXIT_URL = 'https://www.google.com/search?q=weather'
 
 
@@ -90,9 +92,11 @@ class SiteTests(unittest.TestCase):
                     self.assertFalse(ref.startswith(('http://', 'https://', '//')), f'{path}: external <{tag}> {ref}')
                     self.assertNotIn(tag, ('iframe', 'form'), f'{path}: unexpected <{tag}>')
                     if tag == 'input':
-                        # The one field on these pages filters what is already on the page. With no form
-                        # around it and no name, a browser has nowhere to send what is typed.
-                        self.assertEqual((a.get('type'), a.get('id')), ('search', 'q'), f'{path}: unexpected <input>')
+                        # The one field on these pages filters what is already on the page (or, on the county page,
+                        # matches a ZIP code in the browser). With no form around it and no name, a browser has
+                        # nowhere to send what is typed.
+                        allowed = {('search', 'zip')} if path.name == 'county.html' else {('search', 'q')}
+                        self.assertIn((a.get('type'), a.get('id')), allowed, f'{path}: unexpected <input>')
                         self.assertNotIn('name', a, f'{path}: the search field must not have a name')
         js = (ROOT / 'assets' / 'ymt.js').read_text(encoding='utf-8')
         for banned in ('fetch(', 'XMLHttpRequest', 'sendBeacon', 'document.cookie', 'localStorage', 'sessionStorage', 'WebSocket'):
@@ -115,7 +119,10 @@ class SiteTests(unittest.TestCase):
                 else:
                     target = (path.parent / target_part).resolve()
                 self.assertTrue(target.exists(), f'{path}: broken link {href}')
-                if frag and target.suffix == '.html':
+                if frag and target_part and target.name == 'county.html' and target.parent == ROOT:
+                    # The county page reads a county's code, or a state's two letters, from the address.
+                    self.assertTrue(frag in COUNTY_CODES or frag.upper() in STATE_CODES, f'{path}: no county {href}')
+                elif frag and target.suffix == '.html':
                     self.assertIn(frag, ids.get(target, set()), f'{path}: missing anchor {href}')
 
     def test_phone_links_match_visible_numbers(self):
@@ -286,7 +293,7 @@ class SiteTests(unittest.TestCase):
         expected = {path: 'assets/share.jpg' for path in PAGES}
         expected.update({path: 'ohio/assets/share.jpg' for path in ohio})
         expected[ROOT / 'family-guide.html'] = 'assets/share-family-guide.jpg'
-        self.assertEqual(len(expected), 59 + 22 + 1)
+        self.assertEqual(len(expected), 60 + 22 + 1)
         for path, picture in expected.items():
             p = parse(path)
             meta = {a.get('property') or a.get('name'): a.get('content') for t, a in p.tags if t == 'meta'}

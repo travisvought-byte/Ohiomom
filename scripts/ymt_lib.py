@@ -31,6 +31,8 @@ def load():
         'states': states['states'],
         'states_meta': states,
         'templates': tmpl['templates'],
+        # Built by scripts/county_data.py from Census files: every county with its code, state and population.
+        'counties': read_json('counties.json') if (DATA / 'counties.json').exists() else [],
     }
 
 
