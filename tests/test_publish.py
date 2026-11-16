@@ -23,6 +23,7 @@ sys.path.insert(0, str(ROOT / 'scripts'))
 import publish_wix as pw  # noqa: E402
 
 KEY, ACCOUNT, SITE = 'test-key-not-real', 'account-1', 'site-1'
+TOKEN = 'test-login-token-not-real'
 TAG = b'<script id="wix-site-script" src="https://example.invalid/s.js" data-client-id="x" async></script>'
 
 
@@ -42,6 +43,9 @@ class FakeWix(BaseHTTPRequestHandler):
 
     def allowed(self):
         if self.headers.get('Authorization') == KEY and self.headers.get('wix-account-id') == ACCOUNT:
+            return True
+        # A login token from the Wix command line names its own account.
+        if self.headers.get('Authorization') == TOKEN and 'wix-account-id' not in self.headers:
             return True
         self.answer(403, {'message': 'PERMISSION_DENIED'})
         return False
@@ -105,8 +109,9 @@ class PublishTests(unittest.TestCase):
     def setUp(self):
         FakeWix.store, FakeWix.drops, FakeWix.live_ok = dict(self.repo), [], True
 
-    def run_main(self, mode, key=KEY, account=ACCOUNT, site=''):
-        env = {'WIX_API_KEY': key, 'WIX_ACCOUNT_ID': account, 'WIX_SITE_ID': site, 'NO_PROXY': '127.0.0.1', 'no_proxy': '127.0.0.1'}
+    def run_main(self, mode, key=KEY, account=ACCOUNT, site='', token=''):
+        env = {'WIX_API_KEY': key, 'WIX_ACCOUNT_ID': account, 'WIX_TOKEN': token, 'WIX_SITE_ID': site,
+               'NO_PROXY': '127.0.0.1', 'no_proxy': '127.0.0.1'}
         out = io.StringIO()
         with mock.patch.dict(os.environ, env, clear=False), contextlib.redirect_stdout(out):
             os.environ.pop('GITHUB_STEP_SUMMARY', None)
@@ -193,6 +198,14 @@ class PublishTests(unittest.TestCase):
         self.assertEqual(code, 1)
         self.assertIn('Checking what is live failed with HTTP 409', out)
         self.assertEqual(FakeWix.drops, [])
+
+    def test_a_login_token_works_without_a_key_and_is_not_printed(self):
+        FakeWix.store['index.html'] = b'old'
+        code, out = self.run_main('publish', key='', account='', token=TOKEN, site=SITE)
+        self.assertEqual(code, 0, out)
+        self.assertEqual(len(FakeWix.drops), 1)
+        self.assertEqual(FakeWix.store['index.html'], self.repo['index.html'])
+        self.assertNotIn(TOKEN, out)
 
     def test_site_id_can_be_given_instead_of_looked_up(self):
         code, out = self.run_main('check', site=SITE)
