@@ -6,9 +6,11 @@
 
 Three levels, from broadest to deepest:
     state page        a page for the state, with its own offices (51 of 51)
-    county page       a page for the county with listings from three federal directories (every county)
+    county page       a page for the county with listings from five federal directories (every county)
     local guide       a hand-checked page written for that county (ohio/counties/)
-"Local listings" means at least one listing from a federal directory is inside the county itself, not just nearby.
+"In the county" means the listing's office is inside the county itself (for a public housing agency, also one named for
+the county), not just nearby. The five kinds: health centers, Head Start, housing counselors, public housing agencies
+and school districts.
 """
 import json
 import sys
@@ -34,9 +36,11 @@ def report():
     for c in counties:
         e = shards[c['state']]['c'][c['fips']]
         inside = {'health': bool(e.get('health')), 'head_start': bool(e.get('headStart')),
-                  'hud': any(h[1] == 0 for h in e.get('hud', []))}
+                  'hud': any(h[1] == 0 for h in e.get('hud', [])),
+                  'pha': any(r[2] in ('c', 'n') for r in e.get('pha', [])), 'sd': bool(e.get('sd'))}
         near = {'health': inside['health'] or bool(e.get('healthNear')),
-                'head_start': inside['head_start'] or bool(e.get('headStartNear')), 'hud': bool(e.get('hud'))}
+                'head_start': inside['head_start'] or bool(e.get('headStartNear')), 'hud': bool(e.get('hud')),
+                'pha': bool(e.get('pha')), 'sd': inside['sd'] or bool(e.get('sdNear'))}
         rows.append((c, inside, near, 'pg' in e))
 
     def share(pred):
@@ -50,12 +54,16 @@ def report():
         'health_center_in_county': share(lambda i, n, g: i['health']),
         'head_start_in_county': share(lambda i, n, g: i['head_start']),
         'housing_counselor_in_county': share(lambda i, n, g: i['hud']),
+        'public_housing_for_county': share(lambda i, n, g: i['pha']),
+        'school_district_in_county': share(lambda i, n, g: i['sd']),
         'all_three_in_county': share(lambda i, n, g: i['health'] and i['head_start'] and i['hud']),
-        'something_in_county': share(lambda i, n, g: i['health'] or i['head_start'] or i['hud']),
+        'all_five_in_county': share(lambda i, n, g: all(i.values())),
+        'something_in_county': share(lambda i, n, g: any(i.values())),
         'health_center_in_or_near': share(lambda i, n, g: n['health']),
         'head_start_in_or_near': share(lambda i, n, g: n['head_start']),
         'all_three_in_or_near': share(lambda i, n, g: n['health'] and n['head_start'] and n['hud']),
-        'nothing_in_or_near': share(lambda i, n, g: not (n['health'] or n['head_start'] or n['hud'])),
+        'all_five_in_or_near': share(lambda i, n, g: all(n.values())),
+        'nothing_in_or_near': share(lambda i, n, g: not any(n.values())),
     }
     return out
 
@@ -71,12 +79,16 @@ def main():
              ('health_center_in_county', 'Health center in the county'),
              ('head_start_in_county', 'Head Start in the county'),
              ('housing_counselor_in_county', 'Housing counselor in the county'),
-             ('something_in_county', 'At least one of the three in the county'),
-             ('all_three_in_county', 'All three in the county'),
+             ('public_housing_for_county', 'Public housing agency in or named for it'),
+             ('school_district_in_county', 'School district in the county'),
+             ('something_in_county', 'At least one kind of listing in the county'),
+             ('all_three_in_county', 'Health, Head Start and counselor in it'),
+             ('all_five_in_county', 'All five kinds in the county'),
              ('health_center_in_or_near', 'Health center in or within 60 miles'),
              ('head_start_in_or_near', 'Head Start in or within 60 miles'),
-             ('all_three_in_or_near', 'All three in or near'),
-             ('nothing_in_or_near', 'None of the three in or near')]
+             ('all_three_in_or_near', 'Health, Head Start and counselor in or near'),
+             ('all_five_in_or_near', 'All five kinds in or near'),
+             ('nothing_in_or_near', 'Nothing in or near')]
     print(f"{'':44}{'counties':>9}{'of counties':>13}{'of people':>11}")
     for key, label in names:
         s = r[key]

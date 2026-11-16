@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Check the website addresses on the county pages, and keep the answers in data/county-links.json.
 
-A county page shows a Website button only for an address this check has seen load. The health center and
-housing counselor directories hold thousands of addresses, and some have lapsed or been taken over, so
-nothing is linked on trust.
+A county page shows a Website button only for an address this check has seen load. The health center,
+housing counselor and school district directories hold thousands of addresses, and some have lapsed or been
+taken over, so nothing is linked on trust.
 
     python3 scripts/county_links.py SRC             check every address county_data.py would link (SRC as there)
     python3 scripts/county_links.py SRC --recheck   check them all again, not only the new ones
@@ -62,6 +62,7 @@ def shard_urls():
             for row in entry.get('health', []) + entry.get('healthNear', []):
                 urls.add(row[6])
         urls.update(a[5] for a in shard['hu'].values())
+        urls.update(d[5] for d in shard.get('sd', {}).values())
     urls.discard('')
     return sorted(urls)
 

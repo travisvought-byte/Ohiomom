@@ -138,6 +138,45 @@
     return card('hud-' + ref[0], a[0], short, a[4], a[5], more);
   }
 
+  // agency: [name, street, city, zip, phone, programs, public housing homes, vouchers, state]; ref: [code, miles, how]
+  var PROGRAM = {
+    C: 'Public housing and Housing Choice Vouchers (Section 8).',
+    S: 'Housing Choice Vouchers (Section 8), which help pay rent to a private landlord.',
+    P: 'Public housing: apartments with rent based on your income.'
+  };
+  function thousands(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function phaCard(ref, a, ctx) {
+    var how = ref[2];
+    var short;
+    if (how === 's') {
+      short = 'Statewide agency, run from ' + a[2] + ', ' + a[8] + '. ' + PROGRAM[a[5]] + ' Ask whether it serves ' + ctx.county + '.';
+    } else if (how === 'r') {
+      short = 'About ' + count(ref[1], 'mile', 'miles') + ' away, in ' + a[2] + ', ' + a[8] + '. ' + PROGRAM[a[5]] + ' Ask whether it serves where you live.';
+    } else if (how === 'n') {
+      short = 'Named for ' + ctx.county + ', with its office in ' + a[2] + ', ' + a[8] + '. ' + PROGRAM[a[5]];
+    } else {
+      short = 'Office in ' + a[2] + ', ' + a[8] + '. ' + PROGRAM[a[5]];
+    }
+    var more = [h('p', { 'class': 'org', text: how === 's' ? 'State housing agency, funded by HUD' : 'Public housing agency, funded by HUD' }),
+      h('p', { text: place(a[1], a[2], a[8], a[3]) })];
+    var size = [];
+    if (a[6] > 0) { size.push('about ' + thousands(a[6]) + ' public housing ' + (a[6] === 1 ? 'home' : 'homes')); }
+    if (a[7] > 0) { size.push('about ' + thousands(a[7]) + (a[7] === 1 ? ' voucher' : ' vouchers')); }
+    if (size.length) { more.push(h('p', { text: 'By HUD\'s count, ' + size.join(' and ') + '.' })); }
+    more.push(h('p', {}, [h('strong', { text: 'Next step:' }), ' Call and ask whether the waiting list is open, how to apply, and whether they serve where you live. You can be on more than one agency\'s list. If you are homeless or escaping violence, ask whether that moves you up the list.']));
+    more.push(sourceLine('pha', ctx.asof));
+    return card('ph-' + ref[0], a[0], short, a[4], '', more);
+  }
+  // district: [name, street, city, zip, phone, website, state]
+  function districtCard(id, miles, d, ctx) {
+    var short = miles ? 'About ' + count(miles, 'mile', 'miles') + ' away, in ' + d[2] + ', ' + d[6] + '. Ask whether it serves where you live.'
+      : 'Public school district with its office in ' + d[2] + ', ' + d[6] + '. Ask for the special education office.';
+    var more = [h('p', { 'class': 'org', text: 'Public school district' }), h('p', { text: place(d[1], d[2], d[6], d[3]) }),
+      h('p', {}, [h('strong', { text: 'Next step:' }), ' Call and ask for the special education office, or preschool special education for a child under 5. Say you would like your child evaluated, then make the same request in writing, with the date, and keep a copy.']),
+      sourceLine('sd', ctx.asof)];
+    return card('sd-' + id, d[0], short, d[4], d[5], more);
+  }
+
   // ---- a row: closed until asked for, like every need on the site
   function row(id, icon, label, sum, n, noun, body) {
     return h('details', { 'class': 'need', id: id }, [
@@ -206,19 +245,38 @@
     var start = c.headStart || c.headStartNear || [];
     var hud = c.hud || [];
     var rows = [];
+    function words(list) { return list.join(' ').toLowerCase().replace(/[^a-z0-9]+/g, ' ') + ' '; }
+    // Where to apply for public housing and rent vouchers.
+    var pha = (c.pha || []).filter(function (ref) { return shard.ph && shard.ph[ref[0]]; });
+    var phaHere = pha.some(function (ref) { return ref[2] === 'c' || ref[2] === 'n'; });
+    var phaNear = pha.some(function (ref) { return ref[2] === 'r'; });
+    rows.push(row('county-pha', '🔑', 'Public housing and Section 8',
+      phaHere ? 'Where to apply in ' + c.n + ' for public housing and rent vouchers'
+        : (phaNear ? 'Nearest agencies, outside ' + c.n : 'Your state\'s agency for public housing and rent vouchers'), pha.length, ['agency', 'agencies'],
+      pha.length ? cardList(pha, function (ref) { return phaCard(ref, shard.ph[ref[0]], ctx); }, function (ref) { var a = shard.ph[ref[0]]; return words([a[0], a[2], a[3]]); })
+        : h('p', { 'class': 'quiet', text: 'No public housing agency is listed near ' + c.n + '. Call HUD at 800-955-2232 to find the one that serves you.' })));
+    var agencies = hud.filter(function (ref) { return shard.hu[ref[0]]; });
+    rows.push(row('county-hud', '🏠', 'Housing counselors',
+      'Free or low-cost help with rent, eviction and mortgages', agencies.length, ['counselor', 'counselors'],
+      agencies.length ? cardList(agencies, function (ref) { return hudCard(ref, shard.hu[ref[0]], ctx); }, function (ref) { var a = shard.hu[ref[0]]; return words([a[0], a[2]]); })
+        : h('p', { 'class': 'quiet', text: 'No HUD-approved counselor is listed near ' + c.n + '. Call HUD at 800-569-4287 to be matched with one by phone.' })));
     rows.push(row('county-health', '🩺', 'Low-cost health care',
       c.health ? 'Health centers in ' + c.n : 'Nearest health centers, outside ' + c.n, health.length, ['place', 'places'],
       health.length ? cardList(health, function (r, i) { return healthCard(r, i, ctx); }, haystackOf([0, 1, 2, 3, 4]))
         : h('p', { 'class': 'quiet', text: 'No health center is listed within 60 miles. Dial 211 and ask for a free or low-cost clinic.' })));
+    // Where to ask for a free evaluation for a child from age 3.
+    var sd = (c.sd || []).map(function (id) { return [id, 0]; }).concat(c.sdNear || []).filter(function (ref) { return shard.sd && shard.sd[ref[0]]; });
+    var intro = h('p', { 'class': 'quiet' }, ['From age 3, children can get special education free through the public schools, even before kindergarten. ',
+      'If you think your child has a delay or disability, call your school district and ask for an evaluation. If the district decides not to evaluate, it has to tell you why in writing. ',
+      'For a child under 3, ask ', h('a', { href: 'states/' + code + '.html#' + code + '-ei', text: 'early intervention in ' + stName }), ' instead.']);
+    rows.push(row('county-schools', '🧩', 'Free evaluation for your child',
+      c.sd ? 'School districts in ' + c.n + ', for children 3 and up' : 'Nearest school districts, outside ' + c.n, sd.length, ['district', 'districts'],
+      h('div', {}, [intro, sd.length ? cardList(sd, function (ref) { return districtCard(ref[0], ref[1], shard.sd[ref[0]], ctx); }, function (ref) { var d = shard.sd[ref[0]]; return words([d[0], d[2], d[3]]); })
+        : h('p', { 'class': 'quiet', text: 'No school district is listed for ' + c.n + '. Call your state\'s department of education and ask which district serves you.' })])));
     rows.push(row('county-start', '🧸', 'Head Start and Early Head Start',
       c.headStart ? 'Free early learning in ' + c.n : 'Nearest programs, outside ' + c.n, start.length, ['place', 'places'],
       start.length ? cardList(start, function (r, i) { return headStartCard(r, i, ctx); }, haystackOf([0, 1, 2, 3, 4]))
         : h('p', { 'class': 'quiet', text: 'No open Head Start location is listed within 60 miles. Dial 211 and ask about free child care and preschool.' })));
-    var agencies = hud.filter(function (ref) { return shard.hu[ref[0]]; });
-    rows.push(row('county-hud', '🏠', 'Housing counselors',
-      'Free or low-cost help with rent, eviction and mortgages', agencies.length, ['counselor', 'counselors'],
-      agencies.length ? cardList(agencies, function (ref) { return hudCard(ref, shard.hu[ref[0]], ctx); }, function (ref) { var a = shard.hu[ref[0]]; return (a[0] + ' ' + a[2]).toLowerCase().replace(/[^a-z0-9]+/g, ' ') + ' '; })
-        : h('p', { 'class': 'quiet', text: 'No HUD-approved counselor is listed near ' + c.n + '. Call HUD at 800-569-4287 to be matched with one by phone.' })));
     rows.push(row('county-state', '📍', 'Help across ' + stName, 'SNAP, WIC, child care, health coverage and more', null, null, stateHelp(code)));
     var out = h('section', { 'class': 'wrap needs', 'aria-label': 'Help in ' + nice }, rows);
     if (c.pg) {
