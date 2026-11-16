@@ -286,7 +286,7 @@ class SiteTests(unittest.TestCase):
         expected = {path: 'assets/share.jpg' for path in PAGES}
         expected.update({path: 'ohio/assets/share.jpg' for path in ohio})
         expected[ROOT / 'family-guide.html'] = 'assets/share-family-guide.jpg'
-        self.assertEqual(len(expected), 59 + 19 + 1)
+        self.assertEqual(len(expected), 59 + 20 + 1)
         for path, picture in expected.items():
             p = parse(path)
             meta = {a.get('property') or a.get('name'): a.get('content') for t, a in p.tags if t == 'meta'}
@@ -356,6 +356,31 @@ class SiteTests(unittest.TestCase):
                     'ohio/help/bills.html', 'ohio/assets/site.js', 'ohio/assets/data.json', 'family-guide.html',
                     'js/wix/form-store.js'):
             self.assertTrue((ROOT / rel).is_file(), rel)
+
+    def test_about_pages_say_who_runs_the_site_and_the_photo_is_clean(self):
+        """Both About pages show the same small photo, with words for it. The file is light and has no camera
+        data in it (no place, no device), because it is a family photo on a public page."""
+        photo = ROOT / 'assets' / 'about-us.jpg'
+        data = photo.read_bytes()
+        self.assertEqual(data[:2], b'\xff\xd8', 'the photo is a JPEG')
+        self.assertLess(len(data), 40000, 'a phone should not have to wait for a family photo')
+        i, markers = 2, []
+        while i < len(data) and data[i + 1] != 0xDA:  # up to the start of the picture data
+            markers.append(data[i + 1])
+            i += 2 + struct.unpack('>H', data[i + 2:i + 4])[0]
+        banned = [m for m in markers if 0xE1 <= m <= 0xEF or m == 0xFE]  # Exif, XMP, IPTC, other tags, comments
+        self.assertEqual(banned, [], 'the photo carries camera or location data')
+        width, height = picture_size(photo)
+        for rel, src in (('about.html', 'assets/about-us.jpg'), ('ohio/about.html', '../assets/about-us.jpg')):
+            path = ROOT / rel
+            imgs = [a for t, a in parse(path).tags if t == 'img']
+            self.assertEqual(len(imgs), 1, rel)
+            self.assertEqual(imgs[0]['src'], src, rel)
+            self.assertEqual((imgs[0]['width'], imgs[0]['height']), (str(width), str(height)), f'{rel}: the size is named, so the page does not jump')
+            self.assertGreater(len(imgs[0].get('alt', '')), 20, f'{rel}: the photo needs words for people who cannot see it')
+            text = path.read_text(encoding='utf-8')
+            self.assertIn('it is just the two of us', text, rel)
+            self.assertIn('<figcaption>Travis and Deborah</figcaption>', text, rel)
 
     def test_ohiomom_domain_home_goes_to_ohio_landing(self):
         html = (ROOT / 'index.html').read_text(encoding='utf-8')

@@ -208,3 +208,10 @@ body.county .brandline{font-weight:700;margin:0 0 .4rem}
 .t9 .ico{background:#ffe6ef}
 @media (max-width:760px){.dirtools .chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:.45rem}.dirtools .chips button{flex:none;white-space:nowrap}}
 @media print{.dirtools{display:none}}
+.aboutwho{display:flex;flex-wrap:wrap;gap:1.2rem 1.8rem;align-items:flex-start}
+.aboutwho>div{flex:1 1 18rem;min-width:0;max-width:44rem}
+.aboutwho h2{margin-top:0}
+.aboutphoto{margin:0;flex:0 0 13rem;width:13rem;max-width:100%}
+.aboutphoto img{display:block;width:100%;height:auto;border-radius:var(--r);border:1.5px solid var(--line)}
+.aboutphoto figcaption{margin-top:.4rem;color:var(--muted);font-size:.88rem}
+.about>p,.about>ul{max-width:44rem}

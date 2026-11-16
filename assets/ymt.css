@@ -139,3 +139,10 @@ select:focus-visible,a:focus-visible,button:focus-visible,summary:focus-visible{
 button.btn{font-family:inherit;cursor:pointer}
 .finder .quiet{margin:.35rem 0 0;font-size:.9rem}
 @media print{.finder{display:none!important}.exit,.mainnav,.statepick,.need>summary::after,.more>summary::before{display:none}.card{break-inside:avoid}.hero{background:none}}
+.aboutwho{display:flex;flex-wrap:wrap;gap:1.2rem 1.8rem;align-items:flex-start}
+.aboutwho>div{flex:1 1 18rem;min-width:0;max-width:44rem}
+.aboutwho h2{margin-top:0}
+.aboutphoto{margin:0;flex:0 0 13rem;width:13rem;max-width:100%}
+.aboutphoto img{display:block;width:100%;height:auto;border-radius:var(--r);border:1.5px solid var(--line)}
+.aboutphoto figcaption{margin-top:.4rem;color:var(--muted);font-size:.88rem}
+.about>p,.about>ul{max-width:44rem}
