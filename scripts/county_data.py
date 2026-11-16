@@ -35,7 +35,10 @@ import zipfile
 from collections import Counter, defaultdict
 from pathlib import Path
 
-import numpy as np
+try:
+    import numpy as np
+except ImportError:   # the tests read this module's rules without building anything, so they run without numpy
+    np = None
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from us_geo import FIPS_STATE, STATE_FIPS  # noqa: E402
@@ -202,6 +205,8 @@ class Geo:
     """The county list, a ZIP-to-county table, and a way to place a point in a Connecticut planning region."""
 
     def __init__(self, src):
+        if np is None:
+            sys.exit('Building the county data needs numpy: pip install numpy')
         gaz = {r['GEOID']: r for r in tsv(src / '2023_Gaz_counties_national.txt')}
         self.counties = []
         with open(src / 'co-est2024-alldata.csv', encoding='latin-1', newline='') as f:
