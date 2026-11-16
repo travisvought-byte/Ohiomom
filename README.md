@@ -11,13 +11,14 @@ Yoga Mom Talk is independent and is not affiliated with any other "Mom Talk" sho
 
 | Path | What it is |
 | --- | --- |
-| `/` (`index.html`, `help.html`, `connect.html`, `yoga.html`, `states.html`, `states/xx.html`, `about.html`, `report.html`) | National Yoga Mom Talk pages, generated from `data/ymt/` |
+| `/` (`index.html`, `help.html`, `connect.html`, `states.html`, `states/xx.html`, `about.html`, `report.html`) | National Yoga Mom Talk pages, generated from `data/ymt/` |
+| `/yoga.html` | Passes visitors on to `/ohio/yoga.html`. Deborah's yoga and training sessions are in person in Ohio, so only the Ohio pages offer them (decided Nov 15, 2026); the national menu has no Yoga link |
 | `/ohio/` | OhioMom: the Ohio landing page, county pages, Ohio help pages, Wix forms and polls. Pages and their own `assets/` are self-contained here, except the site icon, which every page takes from `/assets/` |
 | `/family-guide.html` | The Ohio family guide. The path is fixed because the Veteran Home Guardians guide and the printed flyer's QR code point to `ohiomom.org/family-guide.html`. It stays Ohio-only. Its own links and canonical address use `www.yogamomtalk.com`, so the page works whether or not ohiomom.org is connected |
 | `/js/wix/` | Wix form code. It stays at the site root because the Ohio pages import `/js/wix/form-store.js` |
 | Old Ohio URLs (`/events.html`, `/near-you.html`, `/counties.html`, `/listen.html`, `/wellbeing.html`, `/counties/*.html`, `/help/{bills,disability,pregnancy-baby,single-parent}.html`) | Small redirect pages that send people to the same page under `/ohio/` and keep the query string and fragment |
 
-The root `index.html`, `connect.html`, `help.html`, `report.html` and `yoga.html` are now the national pages. The earlier Ohio versions of those five are at `/ohio/`.
+The root `index.html`, `connect.html`, `help.html` and `report.html` are now the national pages, and `yoga.html` passes visitors to the Ohio one. The earlier Ohio versions of those five are at `/ohio/`.
 
 When the site is served from ohiomom.org, the home page sends visitors on to `/ohio/`, so ohiomom.org still lands on the Ohio page.
 
