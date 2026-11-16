@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Share card</title>
+<!-- The picture a phone or Facebook shows when someone shares a link. scripts/share_cards.py fills it in and photographs it at 1200 by 630. -->
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:1200px;height:630px;overflow:hidden}
+body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#2b2140;background:radial-gradient(circle at 88% 10%,#ffe08a88 0,#ffe08a00 38%),radial-gradient(circle at 4% 96%,#9fe0d688 0,#9fe0d600 40%),linear-gradient(135deg,#ffe3e8 0,#fff1dc 52%,#e2f6f1 100%)}
+.pad{position:absolute;inset:64px 76px}
+.logo,h1{font-family:"Iowan Old Style","Palatino Linotype",Palatino,"Bitstream Charter",Georgia,serif;font-weight:700}
+.logo{font-size:46px;letter-spacing:-.5px}
+.logo span{color:#cf2f5b}
+.logo i{font-style:normal;color:#ffcb52;font-size:26px;vertical-align:16px;margin-left:5px}
+h1{font-size:94px;line-height:1.04;letter-spacing:-1.5px;margin:44px 0 24px}
+p{font-size:32px;line-height:1.35;color:#554c68;margin:0;max-width:940px}
+.foot{position:absolute;left:0;bottom:0;display:flex;gap:14px;align-items:center;font-size:28px;font-weight:600}
+.pill{background:#fff;border:2px solid #f1e4d8;border-radius:40px;padding:10px 24px}
+.pill.teal{background:#12766f;border-color:#12766f;color:#fff}
+</style>
+</head>
+<body>
+<div class="pad">
+<div class="logo" id="logo"></div>
+<h1 id="headline"></h1>
+<p id="line"></p>
+<div class="foot"><span class="pill teal" id="first"></span><span class="pill" id="second"></span></div>
+</div>
+</body>
+</html>

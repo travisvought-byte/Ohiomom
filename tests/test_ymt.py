@@ -1,5 +1,6 @@
 """Safety and integrity tests for the national Yoga Mom Talk pages. Run: python3 -m unittest discover tests"""
 import re
+import struct
 import sys
 import unittest
 from html.parser import HTMLParser
@@ -33,6 +34,22 @@ def parse(path):
     p = Page()
     p.feed(path.read_text(encoding='utf-8'))
     return p
+
+
+def picture_size(path):
+    """(width, height) of a JPEG or PNG file, read from its own header."""
+    data = path.read_bytes()
+    if data[:8] == b'\x89PNG\r\n\x1a\n':
+        return struct.unpack('>II', data[16:24])
+    assert data[:2] == b'\xff\xd8', f'{path} is not a JPEG or PNG'
+    i = 2
+    while i < len(data):
+        assert data[i] == 0xFF, path
+        if data[i + 1] in (0xC0, 0xC1, 0xC2):
+            height, width = struct.unpack('>HH', data[i + 5:i + 9])
+            return width, height
+        i += 2 + struct.unpack('>H', data[i + 2:i + 4])[0]
+    raise AssertionError(f'{path}: no size found')
 
 
 class SiteTests(unittest.TestCase):
@@ -206,6 +223,43 @@ class SiteTests(unittest.TestCase):
             desc = re.search(r'<meta name="description" content="([^"]*)"', path.read_text(encoding='utf-8'))
             self.assertIsNotNone(desc, path)
             self.assertLessEqual(len(desc.group(1)), 165, f'{path}: description is cut off in search results past about 160 characters')
+
+    def test_every_page_has_a_share_picture_and_an_icon(self):
+        """A shared link shows our own picture, served from our own site, and a browser tab shows our icon."""
+        home = f"https://{lib.load()['site']['domain']}/"
+        ohio = [p for p in sorted((ROOT / 'ohio').rglob('*.html'))
+                if 'name="robots" content="noindex"' not in p.read_text(encoding='utf-8')]
+        expected = {path: 'assets/share.jpg' for path in PAGES}
+        expected.update({path: 'ohio/assets/share.jpg' for path in ohio})
+        expected[ROOT / 'family-guide.html'] = 'assets/share-family-guide.jpg'
+        self.assertEqual(len(expected), 59 + 17 + 1)
+        for path, picture in expected.items():
+            p = parse(path)
+            meta = {a.get('property') or a.get('name'): a.get('content') for t, a in p.tags if t == 'meta'}
+            self.assertEqual(meta.get('og:image'), home + picture, f'{path}: the picture must be a full address on our own site')
+            self.assertEqual((meta.get('og:image:width'), meta.get('og:image:height')), ('1200', '630'), path)
+            self.assertGreater(len(meta.get('og:image:alt') or ''), 20, f'{path}: the picture needs words for people who cannot see it')
+            self.assertEqual(meta.get('twitter:card'), 'summary_large_image', path)
+            links = [a for t, a in p.tags if t == 'link' and a.get('rel') in ('icon', 'apple-touch-icon')]
+            self.assertEqual(sorted(a['rel'] for a in links), ['apple-touch-icon', 'icon', 'icon'], path)
+            for a in links:
+                href = a['href']
+                target = ROOT / href.lstrip('/') if href.startswith('/') else (path.parent / href).resolve()
+                self.assertTrue(target.is_file(), f'{path}: {href} does not exist')
+                self.assertEqual(target.parent, ROOT / 'assets', path)
+        for picture in set(expected.values()):
+            self.assertEqual(picture_size(ROOT / picture), (1200, 630), picture)
+            self.assertLess((ROOT / picture).stat().st_size, 200_000, f'{picture}: keep it light for phones')
+        self.assertEqual(picture_size(ROOT / 'assets/icon-180.png'), (180, 180))
+        self.assertEqual(picture_size(ROOT / 'assets/icon-48.png'), (48, 48))
+        self.assertIn('viewBox="0 0 64 64"', (ROOT / 'assets/icon.svg').read_text(encoding='utf-8'))
+
+    def test_share_cards_only_say_what_the_site_says(self):
+        """The cards are pictures, so their words are checked here against the promise printed on the pages."""
+        cards = (ROOT / 'scripts/share_cards.py').read_text(encoding='utf-8')
+        self.assertIn("'Free. No sign-up, no ads.'", cards)
+        self.assertIn('No sign-up or ads', (ROOT / 'index.html').read_text(encoding='utf-8'))
+        self.assertNotIn('yogamomtalk.com/ohio', cards, 'that address is a folder, and Wix does not serve folders')
 
     def test_sitemap_lists_every_page_but_404_and_stubs(self):
         sm = (ROOT / 'sitemap.xml').read_text(encoding='utf-8')

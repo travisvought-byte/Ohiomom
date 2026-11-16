@@ -12,7 +12,7 @@ Yoga Mom Talk is independent and is not affiliated with any other "Mom Talk" sho
 | Path | What it is |
 | --- | --- |
 | `/` (`index.html`, `help.html`, `connect.html`, `yoga.html`, `states.html`, `states/xx.html`, `about.html`, `report.html`) | National Yoga Mom Talk pages, generated from `data/ymt/` |
-| `/ohio/` | OhioMom: the Ohio landing page, county pages, Ohio help pages, Wix forms and polls. Pages and their own `assets/` are self-contained here |
+| `/ohio/` | OhioMom: the Ohio landing page, county pages, Ohio help pages, Wix forms and polls. Pages and their own `assets/` are self-contained here, except the site icon, which every page takes from `/assets/` |
 | `/family-guide.html` | The Ohio family guide. The path is fixed because the Veteran Home Guardians guide and the printed flyer's QR code point to `ohiomom.org/family-guide.html`. It stays Ohio-only. Its own links and canonical address use `www.yogamomtalk.com`, so the page works whether or not ohiomom.org is connected |
 | `/js/wix/` | Wix form code. It stays at the site root because the Ohio pages import `/js/wix/form-store.js` |
 | Old Ohio URLs (`/events.html`, `/near-you.html`, `/counties.html`, `/listen.html`, `/wellbeing.html`, `/counties/*.html`, `/help/{bills,disability,pregnancy-baby,single-parent}.html`) | Small redirect pages that send people to the same page under `/ohio/` and keep the query string and fragment |
@@ -57,6 +57,13 @@ A mom arrives with one need. The pages show her the choice, then a short list, t
 - **Text on buttons passes contrast.** White text on the pink (`--brand`) and teal buttons is at least 4.5:1.
 - **Keyboard and touch.** Rows, cards and buttons are native elements with a visible focus ring. "More about this" has a tap area a thumb can hit.
 - `tests/ymt-pages.cjs` and `tests/test_ymt.py` hold all of this. Every kind of page, the family guide included, was also run through axe (WCAG 2.2 A and AA rules) at phone and desktop widths on 2026-11-15 with no violations.
+
+## When someone shares a link
+
+- **A picture goes with it.** Every page names a 1200 by 630 picture (`og:image`) that a phone, Facebook or a group chat shows beside a shared link: `assets/share.jpg` for Yoga Mom Talk, `ohio/assets/share.jpg` for OhioMom and `assets/share-family-guide.jpg` for the family guide. The address is always the full `https://www.yogamomtalk.com/...` one, because those apps do not follow relative addresses.
+- **The tab and the home screen show our icon.** `assets/icon.svg` is the drawing; `assets/icon-48.png` and `assets/icon-180.png` are the same drawing for browsers and iPhones that want a fixed size.
+- **The pictures are made, not edited.** `scripts/share_cards.py` fills in `templates/share-card.html` and photographs it. It is not part of the build; run it only to change a card, look at the result, and commit the pictures. Words on a card are a promise in a picture, so they must stay true of the site ("Free. No sign-up, no ads."). `tests/test_ymt.py` checks that every page names a picture that exists and has the right size.
+- An app that already showed an old preview keeps it for a while. Facebook's Sharing Debugger and a new message thread on a phone both fetch the current one.
 
 ## Keeping it current
 
