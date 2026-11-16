@@ -76,20 +76,6 @@ def share_tags(image, alt, root=''):
 <link rel="apple-touch-icon" href="{root}assets/icon-180.png">'''
 
 
-def structured_data(*items):
-    """A JSON-LD block for the page head. '<' is escaped so no listing text can close the script tag."""
-    graph = {'@context': 'https://schema.org', '@graph': list(items)} if len(items) > 1 else {'@context': 'https://schema.org', **items[0]}
-    return '\n<script type="application/ld+json">' + json.dumps(graph, ensure_ascii=False).replace('<', '\\u003c') + '</script>'
-
-
-def breadcrumbs(data, trail):
-    """Home, then each (name, path) step. Search engines can show this path under the page's result."""
-    base = f"https://{data['site']['domain']}/"
-    steps = [(data['site']['name'], '')] + trail
-    return {'@type': 'BreadcrumbList', 'itemListElement': [
-        {'@type': 'ListItem', 'position': i, 'name': name, 'item': base + path} for i, (name, path) in enumerate(steps, 1)]}
-
-
 def page(data, path, title, desc, body, body_class='', head_extra=''):
     site = data['site']
     root = '../' * path.count('/')
@@ -267,6 +253,20 @@ def build_index(data):
     structured = '\n<script type="application/ld+json">' + json.dumps(about, ensure_ascii=False).replace('<', '\\u003c') + '</script>'
     return page(data, 'index.html', f"{site['name']}: help for moms in all 50 states", desc,
                 body, 'home', head_extra=OHIO_REDIRECT + structured)
+
+
+def structured_data(*items):
+    """A JSON-LD block for the page head. '<' is escaped so no listing text can close the script tag."""
+    graph = {'@context': 'https://schema.org', '@graph': list(items)} if len(items) > 1 else {'@context': 'https://schema.org', **items[0]}
+    return '\n<script type="application/ld+json">' + json.dumps(graph, ensure_ascii=False).replace('<', '\\u003c') + '</script>'
+
+
+def breadcrumbs(data, trail):
+    """Home, then each (name, path) step. Search engines can show this path under the page's result."""
+    base = f"https://{data['site']['domain']}/"
+    steps = [(data['site']['name'], '')] + trail
+    return {'@type': 'BreadcrumbList', 'itemListElement': [
+        {'@type': 'ListItem', 'position': i, 'name': name, 'item': base + path} for i, (name, path) in enumerate(steps, 1)]}
 
 
 def build_help(data):
