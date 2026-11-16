@@ -1,0 +1,41 @@
+name: Publish to Wix
+
+# Run by hand from the Actions tab. "check" only compares the live site with the repository and changes
+# nothing. "publish" sends the files, then reads the site back and compares again.
+# It does not run on its own yet: see README, "Publishing to Wix", for the two steps that turn that on.
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'check = compare only. publish = send the files.'
+        type: choice
+        options: [check, publish]
+        default: check
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-to-wix
+  cancel-in-progress: false
+
+jobs:
+  wix:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - name: Publish only from main
+        if: inputs.mode == 'publish' && github.ref != 'refs/heads/main'
+        run: |
+          echo "Publishing is only done from main. This run is on $GITHUB_REF." >> "$GITHUB_STEP_SUMMARY"
+          exit 1
+      - name: The pages in the repository match their data
+        run: |
+          python3 scripts/build.py --check
+          python3 scripts/ymt_build.py --check
+      - name: Check or publish
+        env:
+          WIX_API_KEY: ${{ secrets.WIX_API_KEY }}
+          WIX_ACCOUNT_ID: ${{ secrets.WIX_ACCOUNT_ID }}
+          WIX_SITE_ID: ${{ secrets.WIX_SITE_ID }}
+        run: python3 scripts/publish_wix.py --${{ inputs.mode }}
