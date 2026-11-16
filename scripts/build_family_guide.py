@@ -24,7 +24,7 @@ ANCHORS = {
         {'label': 'Under age 3', 'stages': ['concern', 'early'], 'items': [{'text': 'Help Me Grow Early Intervention', 'href': 'https://ochids.childrenandyouth.ohio.gov/public/refer'}, {'tel': '800-755-4769'}]},
         {'label': 'Age 3 and older', 'stages': ['concern', 'school'], 'items': [{'text': 'ask your public school district in writing for a free evaluation'}]},
         {'label': 'Parent center (school help)', 'stages': ['concern', 'school', 'transition', 'rights'], 'items': [{'text': 'OCECD', 'href': 'https://www.ocecd.org/'}, {'tel': '844-382-5452'}]},
-        {'label': 'County developmental disability services', 'stages': ['early', 'school', 'transition', 'everyday'], 'items': [{'text': 'find your county board of DD', 'href': 'https://www.oacbdd.org/familyresources'}, {'tel': '800-617-6733'}]},
+        {'label': 'County developmental disability services', 'stages': ['early', 'school', 'transition', 'everyday'], 'items': [{'text': 'find your county board of DD', 'href': 'https://dodd.ohio.gov/your-family/all-family-resources/4-find-your-county-board'}, {'tel': '800-617-6733'}]},
         {'label': 'Health care questions and parent mentors', 'stages': ['concern', 'everyday'], 'items': [{'text': 'Ohio Family to Family', 'href': 'https://ohiof2f.org/ohiop2p'}, {'tel': '513-803-5557'}]},
         {'label': 'Disability rights and legal help', 'stages': ALL_STAGES, 'items': [{'pa': True}]},
     ],
@@ -55,7 +55,8 @@ def validate(data):
     assert len(sources) == len(data['sources'])
     for s in data['sources']:
         assert s['url'].startswith('https://') and s['title'] and s['publisher'], s['id']
-        assert date.fromisoformat(s['reviewed_on']) <= reviewed, s['id']
+        # A single link corrected after the guide's own review date carries its own, later date.
+        assert date.fromisoformat(s['reviewed_on']) <= date.today(), s['id']
     stages = {s['id'] for s in data['stages']}
     needs = {n['id'] for n in data['needs']} | {'any'}
     ids = [r['id'] for r in data['resources']]

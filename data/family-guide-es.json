@@ -125,7 +125,7 @@
   "county_heading": "Condado de {county}",
   "county_dd": "Junta de DD del condado",
   "county_dd_link": "Junta de DD del condado de {county}",
-  "county_dd_map": "elija el condado de {county} en el mapa",
+  "county_dd_map": "elija el condado de {county} en la lista",
   "veteran_families": "Familias de veteranos",
   "cvso": "Oficina de servicios para veteranos del condado de {county}",
   "copied": "Enlace copiado. Solo incluye su estado, condado, etapa, necesidades e idioma.",
