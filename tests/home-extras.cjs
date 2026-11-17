@@ -5,7 +5,7 @@ const all = (d, sel) => [...d.querySelectorAll(sel)];
 const py = (code) => execFileSync('python3', ['-c', 'import sys; sys.path.insert(0, "scripts"); import home_extras as e\n' + code], { encoding: 'utf8' });
 
 // A batch of three jokes, built by the same code that builds the pages.
-const front = (dates) => py(`jokes = {d: "Joke for " + d + "." for d in ${JSON.stringify(dates)}}\nprint(e.joke_section(jokes, "jokes.html") + e.joke_scripts(jokes))`);
+const front = (dates) => py(`jokes = {d: "Joke for " + d + "." for d in ${JSON.stringify(dates)}}\nprint(e.joke_bubble(jokes, "jokes.html") + e.joke_scripts(jokes))`);
 const listing = (dates) => py(`jokes = {d: "Joke for " + d + "." for d in ${JSON.stringify(dates)}}\nprint(e.joke_list(jokes) + e.joke_scripts(jokes))`);
 const BATCH = ['2030-03-30', '2030-03-31', '2030-04-01'];
 
@@ -39,10 +39,10 @@ const shown = (d) => (d.getElementById('joke').hidden ? null : d.getElementById(
   // A day with no joke of its own keeps the one before it.
   const gap = front(['2030-03-30', '2030-04-01']);
   assert.equal(shown(on('2030-03-31', gap)), 'Joke for 2030-03-30.');
-  // The box is a heading, the joke and a link to the list, and it starts hidden.
+  // The bubble is a heading, the joke and a link to the list, and it starts hidden.
   const d = new JSDOM(body).window.document;
   const box = d.getElementById('joke');
-  assert(box.hidden && box.matches('section.wrap.smile'), 'hidden until the script has a joke for today');
+  assert(box.hidden && box.matches('div.saying'), 'hidden until the script has a joke for today');
   assert.equal(box.querySelector('h2').textContent, 'Mom joke of the day');
   assert.equal(box.querySelector('a').getAttribute('href'), 'jokes.html');
   assert.equal(all(box, '.card, .tile, form, input, button, img').length, 0, 'the joke is words and one link');
@@ -62,11 +62,11 @@ const shown = (d) => (d.getElementById('joke').hidden ? null : d.getElementById(
   assert.equal(all(new JSDOM(body).window.document, '#joke-list li').filter((li) => !li.hidden).length, 0, 'every row waits for the script');
 }
 
-// 3. The pages as built: the picture is beside the question and hidden from screen readers; the joke box is there
-// only once a batch is approved, and then it comes last, after the numbers a mom may need right now.
+// 3. The pages as built: the picture is beside the question and hidden from screen readers; the joke is in the picture
+// card, as the mom's speech bubble straight above the drawing, once a batch is approved.
 {
   const approved = JSON.parse(fs.readFileSync('data/jokes.json', 'utf8')).jokes.filter((j) => j.approved === true);
-  for (const [file, after] of [['index.html', '#now'], ['ohio/index.html', '.near']]) {
+  for (const file of ['index.html', 'ohio/index.html']) {
     const d = new JSDOM(fs.readFileSync(file, 'utf8')).window.document;
     const art = all(d, 'svg.scene');
     assert.equal(art.length, 1, `${file}: one picture`);
@@ -77,16 +77,19 @@ const shown = (d) => (d.getElementById('joke').hidden ? null : d.getElementById(
     assert.equal(top.firstElementChild.className, 'herotext', `${file}: the question is first in reading order`);
     assert(top.querySelector('.herotext > h1') && top.querySelector('.herotext > .lede'), `${file}: the question and its line`);
     assert(top.nextElementSibling.matches('.tiles'), `${file}: the choices follow at once`);
-    const sections = all(d, 'main > section');
+    assert.equal(all(d, 'main > section').length, 2, `${file}: the joke adds no section of its own`);
     const box = d.getElementById('joke');
     if (approved.length) {
-      assert(box && box.hidden, `${file}: the joke box is there and waits for the script`);
-      assert.equal(sections[sections.length - 1], box, `${file}: the joke comes last`);
-      assert(box.previousElementSibling.matches(after), `${file}: the joke follows ${after}`);
+      assert(box && box.hidden, `${file}: the joke bubble is there and waits for the script`);
+      assert.equal(box.parentElement, art[0].parentElement, `${file}: the joke is in the picture card`);
+      assert.equal(box.nextElementSibling, art[0], `${file}: the bubble sits straight above the drawing`);
+      assert(!box.closest('[aria-hidden]'), `${file}: screen readers read the joke; only the drawing is hidden from them`);
+      assert.equal(box.querySelector('h2').textContent, 'Mom joke of the day');
+      assert(fs.existsSync(require('node:path').join(require('node:path').dirname(file), box.querySelector('a').getAttribute('href'))), `${file}: the list of earlier jokes is where the link says`);
       assert.equal(Object.keys(JSON.parse(d.getElementById('jokes-data').textContent)).length, approved.length);
     } else {
-      assert(!box && !d.getElementById('jokes-data'), `${file}: no joke box until a batch is approved`);
+      assert(!box && !d.getElementById('jokes-data'), `${file}: no joke bubble until a batch is approved`);
     }
   }
 }
-console.log('PASS front-page picture is decoration beside the question; the joke follows the visitor\'s date, repeats when a batch runs out, and waits for approval');
+console.log('PASS front-page picture is decoration beside the question; the joke is the mom\'s speech bubble in it, follows the visitor\'s date, repeats when a batch runs out, and waits for approval');

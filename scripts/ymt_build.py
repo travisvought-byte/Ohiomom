@@ -237,7 +237,7 @@ def hero(title, lede, extra='', cls='slim'):
 # ---------------------------------------------------------------- pages
 def build_index(data):
     """The front page asks one question and shows no listings. Every listing is one choice away.
-    Beside the question is the picture, and after the help-now strip the joke of the day (scripts/home_extras.py)."""
+    Beside the question is the picture, with the joke of the day in a speech bubble in it (scripts/home_extras.py)."""
     site = data['site']
     jokes = extras.approved_jokes()
     tiles = ''.join(f'<a class="tile {c}" href="{h}"><span class="ico" aria-hidden="true">{i}</span><span class="ttext"><strong>{esc(t)}</strong><span>{esc(d)}</span></span></a>'
@@ -249,10 +249,9 @@ def build_index(data):
             f'<a href="county.html">Find your county</a></div>')
     lede = 'Pick one. You will get a short list of who to call. Free, private, no sign-up.'
     top = (f'<div class="herotop"><div class="herotext"><h1>Hi, mom. What do you need today?</h1>'
-           f'<p class="lede">{lede}</p></div>{extras.scene_block()}</div>')
-    joke = extras.joke_section(jokes, 'jokes.html')
+           f'<p class="lede">{lede}</p></div>{extras.scene_block(False, jokes, "jokes.html")}</div>')
     body = (f'<section class="hero home"><div class="wrap">{top}<div class="tiles">{tiles}</div>{pick}</div></section>'
-            + '\n' + urgent_strip(data) + ('\n' + joke if joke else ''))
+            + '\n' + urgent_strip(data))
     desc = f"{site['tagline']} Food, child care, health coverage, disability help and crisis lines in all 50 states."
     about = {'@context': 'https://schema.org', '@type': 'WebSite', '@id': f"https://{site['domain']}/#website", 'name': site['name'],
              'url': f"https://{site['domain']}/", 'description': desc, 'inLanguage': 'en',

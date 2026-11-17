@@ -27,13 +27,15 @@ def batch(n=3, start='2030-01-01', approved=True):
 
 class PictureTests(unittest.TestCase):
     def test_each_front_page_has_the_picture_beside_its_headline(self):
+        jokes = extras.approved_jokes()
         for rel, ohio in FRONT.items():
             text = read(rel)
             self.assertEqual(text.count('<svg class="scene"'), 1, rel)
-            self.assertIn(extras.scene_block(ohio), text, f'{rel}: the picture on the page is the one the script draws')
+            card = extras.scene_block(ohio, jokes, '../jokes.html' if ohio else 'jokes.html')
+            self.assertIn(card, text, f'{rel}: the picture card on the page is the one the script makes')
             hero = text[text.index('<section class="hero home">'):text.index('<div class="tiles">')]
             self.assertRegex(hero, r'<div class="herotop"><div class="herotext"><h1>[^<]+</h1><p class="lede">[^<]+</p></div>', rel)
-            self.assertIn('<div class="scenebox"><svg class="scene"', hero, f'{rel}: the picture sits in the hero, after the question')
+            self.assertIn(card, hero, f'{rel}: the picture card sits in the hero, after the question')
             self.assertLess(text.index('<h1>'), text.index('<svg class="scene"'), f'{rel}: the question is read first')
 
     def test_the_picture_is_decoration(self):
@@ -55,7 +57,7 @@ class PictureTests(unittest.TestCase):
         self.assertIn('class="sc-bird"', ohio)
         self.assertIn(extras.OHIO, ohio)
         self.assertEqual(national.count('class="sc-b '), 4, 'four things the child says')
-        for words in ('>Mom?<', '>MOM!<', '>Hi.<'):
+        for words in ('>Ha ha!<', '>Again!<', '>AGAIN!<', '>Please?<'):
             self.assertIn(words, national)
 
     def test_both_stylesheets_carry_the_rules_from_the_template(self):
@@ -77,7 +79,7 @@ class PictureTests(unittest.TestCase):
 
     def test_the_picture_holds_still_when_the_visitor_asks(self):
         self.assertIn('@media (prefers-reduced-motion:reduce){.scene *{animation:none!important}.sc-b1{opacity:1}}', TEMPLATE)
-        self.assertIn('@media print{.scenebox,.smile{display:none}}', TEMPLATE)
+        self.assertIn('@media print{.scenebox{display:none}}', TEMPLATE)
         self.assertNotIn('url(', TEMPLATE, 'the rules load nothing')
         self.assertNotIn('@import', TEMPLATE)
 
@@ -127,28 +129,35 @@ class JokeTests(unittest.TestCase):
                     self.assertNotIn(part, page, f'{rel}: nothing about jokes until a batch is approved')
             self.assertFalse((ROOT / 'jokes.html').exists(), 'no jokes page until a batch is approved')
             return
-        self.assertIn(extras.joke_section(jokes, 'jokes.html'), home)
-        self.assertIn(extras.joke_section(jokes, '../jokes.html'), ohio)
+        self.assertIn(extras.joke_bubble(jokes, 'jokes.html'), home)
+        self.assertIn(extras.joke_bubble(jokes, '../jokes.html'), ohio)
         listing = read('jokes.html')
         for page in (home, ohio, listing):
             self.assertEqual(page.count(extras.joke_scripts(jokes)), 1)
             self.assertEqual(page.count('id="jokes-data"'), 1)
         self.assertEqual(listing.count('<li data-date="'), len(jokes))
-        self.assertLess(home.index('id="now"'), home.index('id="joke"'), 'the help-now numbers come before the joke')
+        for rel, page in (('index.html', home), ('ohio/index.html', ohio)):
+            # The joke is in the picture, at the top: the mom's speech bubble, straight above the drawing, before the choices.
+            self.assertEqual(page.count('id="joke"'), 1, rel)
+            self.assertIn('<div class="scenebox"><div class="saying" id="joke" hidden>', page, rel)
+            self.assertIn('</div><svg class="scene"', page, f'{rel}: the bubble sits straight above the drawing')
+            self.assertLess(page.index('id="joke"'), page.index('<div class="tiles">'), f'{rel}: the joke is met before the choices')
         self.assertIn('<url><loc>https://www.yogamomtalk.com/jokes.html</loc></url>', read('sitemap.xml'))
 
     def test_no_joke_block_without_an_approved_batch(self):
-        self.assertEqual(extras.joke_section({}, 'jokes.html'), '')
+        self.assertEqual(extras.joke_bubble({}, 'jokes.html'), '')
         self.assertEqual(extras.joke_scripts({}), '')
+        self.assertEqual(extras.scene_block(True), f'<div class="scenebox">{extras.scene_svg(True)}</div>', 'the picture alone')
 
     def test_the_joke_block_starts_hidden_and_points_to_the_list(self):
         jokes = extras.approved_jokes(batch())
-        section = extras.joke_section(jokes, '../jokes.html')
-        self.assertTrue(section.startswith('<section class="wrap smile" id="joke" hidden>'), 'no empty box when the script does not run')
+        section = extras.joke_bubble(jokes, '../jokes.html')
+        self.assertTrue(section.startswith('<div class="saying" id="joke" hidden>'), 'no empty bubble when the script does not run')
         self.assertIn('<h2>Mom joke of the day</h2>', section)
         self.assertIn('<p class="joketext" id="joke-text"></p>', section)
         self.assertIn('<a href="../jokes.html">Earlier jokes</a>', section)
         self.assertNotIn('Joke number', section, 'the joke itself is filled in by the script, for the visitor\'s own date')
+        self.assertNotIn('aria-hidden', section, 'the joke is for everyone, so screen readers read it; only the drawing is hidden from them')
         rows = extras.joke_list(jokes)
         self.assertEqual(re.findall(r'<li data-date="([^"]+)" hidden>', rows), ['2030-01-03', '2030-01-02', '2030-01-01'])
         self.assertIn('<small>January 3, 2030</small>Joke number 3.', rows)
