@@ -47,6 +47,7 @@ jobs:
           python3 scripts/ymt_validate.py
           python3 scripts/ymt_build.py --check
           python3 scripts/prerender_ohio.py --check
+          python3 scripts/home_extras.py --check
           python3 -m unittest discover tests
           npm test
       - name: Open a pull request when anything changed

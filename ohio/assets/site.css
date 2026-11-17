@@ -215,3 +215,52 @@ body.county .brandline{font-weight:700;margin:0 0 .4rem}
 .aboutphoto img{display:block;width:100%;height:auto;border-radius:var(--r);border:1.5px solid var(--line)}
 .aboutphoto figcaption{margin-top:.4rem;color:var(--muted);font-size:.88rem}
 .about>p,.about>ul{max-width:44rem}
+/* home-extras:start. Front-page picture and joke of the day. Copied from templates/home-extras.css by scripts/home_extras.py; edit the template. */
+.herotop{display:flex;align-items:center;gap:1rem 2.2rem}
+.herotext{flex:1 1 0;min-width:0}
+.herotext .lede{text-wrap:balance}
+.scenebox{flex:0 0 auto;width:min(24rem,44%);line-height:0;border:2px solid #fff;border-radius:1.4rem;overflow:hidden;box-shadow:0 12px 26px -16px #6b3f5b99}
+.scene{display:block;width:100%;height:auto}
+.scene text{font:700 16px system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;text-anchor:middle}
+.sc-mom{transform-origin:257px 170px;animation:sc-mom 14s ease-in-out infinite}
+.sc-kid{animation:sc-kid 14s ease-in-out infinite}
+.sc-wave{transform-origin:374px 143px;animation:sc-wave 14s ease-in-out infinite}
+.sc-lid{animation:sc-lid 14s step-end infinite}
+.sc-eye{opacity:0;animation:sc-eye 14s step-end infinite}
+.sc-b{opacity:0;transform-box:fill-box;transform-origin:26% 100%}
+.sc-b1{animation:sc-b1 14s ease-out infinite}
+.sc-b2{animation:sc-b2 14s ease-out infinite}
+.sc-b3{animation:sc-b3 14s ease-out infinite}
+.sc-b4{animation:sc-b4 14s ease-out infinite}
+.sc-heart{opacity:0;animation:sc-heart 14s ease-out infinite}
+.sc-mom,.sc-kid,.sc-wave,.sc-lid,.sc-eye,.sc-b,.sc-heart{animation-delay:-1.4s}
+.sc-steam{opacity:0;animation:sc-steam 3.6s ease-out infinite}
+.sc-cloud{animation:sc-cloud 26s ease-in-out infinite}
+.sc-leaf{transform-origin:489px 150px;animation:sc-leaf 6s ease-in-out infinite}
+.sc-bird{transform-origin:46px 98px;animation:sc-bird 7s ease-in-out infinite}
+@keyframes sc-mom{0%,48%,64%,100%{transform:rotate(0)}14%{transform:rotate(.8deg)}32%{transform:rotate(-.8deg)}52%{transform:rotate(-4deg)}55%{transform:rotate(3.5deg)}58%{transform:rotate(-2.5deg)}61%{transform:rotate(1.5deg)}}
+@keyframes sc-kid{0%,20%,25%,34%,39%,48%,52%,56%,100%{transform:translateY(0)}22.5%{transform:translateY(-3px)}36.5%{transform:translateY(-4px)}50%{transform:translateY(-9px)}54%{transform:translateY(-5px)}}
+@keyframes sc-wave{0%,20%,25%,34%,39%,48%,58%,100%{transform:rotate(0)}22.5%,36.5%{transform:rotate(18deg)}50%,54%{transform:rotate(34deg)}52%,56%{transform:rotate(14deg)}}
+@keyframes sc-lid{0%,53%,88%,100%{opacity:1}54%,87%{opacity:0}}
+@keyframes sc-eye{0%,53%,88%,100%{opacity:0}54%,87%{opacity:1}}
+@keyframes sc-b1{0%,20%{opacity:0;transform:scale(.5)}22%,29%{opacity:1;transform:scale(1)}31%,100%{opacity:0;transform:scale(1)}}
+@keyframes sc-b2{0%,34%{opacity:0;transform:scale(.5)}36%,43%{opacity:1;transform:scale(1)}45%,100%{opacity:0;transform:scale(1)}}
+@keyframes sc-b3{0%,48%{opacity:0;transform:scale(.5)}50%{opacity:1;transform:scale(1.12)}51.5%,60%{opacity:1;transform:scale(1)}62%,100%{opacity:0;transform:scale(1)}}
+@keyframes sc-b4{0%,67%{opacity:0;transform:scale(.5)}69%,84%{opacity:1;transform:scale(1)}86%,100%{opacity:0;transform:scale(1)}}
+@keyframes sc-heart{0%,70%{opacity:0;transform:translateY(0)}74%,84%{opacity:1}92%,100%{opacity:0;transform:translateY(-9px)}}
+@keyframes sc-steam{0%{opacity:0;transform:translateY(0)}25%{opacity:.9}100%{opacity:0;transform:translateY(-16px)}}
+@keyframes sc-cloud{0%,100%{transform:translateX(0)}50%{transform:translateX(16px)}}
+@keyframes sc-leaf{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2.5deg)}}
+@keyframes sc-bird{0%,40%,50%,100%{transform:translateY(0)}45%{transform:translateY(-3.5px)}}
+.smile{margin-top:2.2rem!important}
+.jokecard{max-width:44rem;background:#fff;border:1.5px solid var(--line);border-left:6px solid var(--sun);border-radius:var(--r);padding:.9rem 1.2rem .7rem}
+.jokecard h2{font-size:clamp(1.15rem,2.6vw,1.35rem);margin:0}
+.joketext{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:clamp(1.2rem,3vw,1.45rem);line-height:1.35;margin:.35rem 0 .45rem}
+.jokecard .quiet{margin:0}
+.jokelist{list-style:none;padding:0;margin:1.2rem 0 0;max-width:44rem}
+.jokelist li{padding:.85rem 0;border-bottom:1.5px solid var(--line);font-size:1.1rem}
+.jokelist small{display:block;color:var(--muted);font-size:.85rem}
+@media (max-width:760px){.hero.home{padding-top:1.2rem}.herotop{flex-direction:column;align-items:stretch;gap:.8rem}.scenebox{order:-1;width:100%;max-width:26rem}}
+@media (prefers-reduced-motion:reduce){.scene *{animation:none!important}.sc-b1{opacity:1}}
+@media print{.scenebox,.smile{display:none}}
+/* home-extras:end */
