@@ -14,6 +14,7 @@ from html import escape as esc
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import home_extras as extras  # noqa: E402
 import ymt_lib as lib  # noqa: E402
 from us_geo import STATE_FIPS  # noqa: E402
 
@@ -235,8 +236,10 @@ def hero(title, lede, extra='', cls='slim'):
 
 # ---------------------------------------------------------------- pages
 def build_index(data):
-    """The front page asks one question and shows no listings. Every listing is one choice away."""
+    """The front page asks one question and shows no listings. Every listing is one choice away.
+    Beside the question is the picture, and after the help-now strip the joke of the day (scripts/home_extras.py)."""
     site = data['site']
+    jokes = extras.approved_jokes()
     tiles = ''.join(f'<a class="tile {c}" href="{h}"><span class="ico" aria-hidden="true">{i}</span><span class="ttext"><strong>{esc(t)}</strong><span>{esc(d)}</span></span></a>'
                     for c, i, t, d, h in TILES)
     options = '<option value="">Choose your state</option>' + ''.join(
@@ -245,8 +248,11 @@ def build_index(data):
             f'<select id="statepick" data-state-pick>{options}</select><a href="states.html">See all states</a>'
             f'<a href="county.html">Find your county</a></div>')
     lede = 'Pick one. You will get a short list of who to call. Free, private, no sign-up.'
-    body = (hero('Hi, mom. What do you need today?', lede, f'<div class="tiles">{tiles}</div>{pick}', 'home')
-            + '\n' + urgent_strip(data))
+    top = (f'<div class="herotop"><div class="herotext"><h1>Hi, mom. What do you need today?</h1>'
+           f'<p class="lede">{lede}</p></div>{extras.scene_block()}</div>')
+    joke = extras.joke_section(jokes, 'jokes.html')
+    body = (f'<section class="hero home"><div class="wrap">{top}<div class="tiles">{tiles}</div>{pick}</div></section>'
+            + '\n' + urgent_strip(data) + ('\n' + joke if joke else ''))
     desc = f"{site['tagline']} Food, child care, health coverage, disability help and crisis lines in all 50 states."
     about = {'@context': 'https://schema.org', '@type': 'WebSite', '@id': f"https://{site['domain']}/#website", 'name': site['name'],
              'url': f"https://{site['domain']}/", 'description': desc, 'inLanguage': 'en',
@@ -254,7 +260,18 @@ def build_index(data):
                            'founder': {'@type': 'Person', 'name': site['founder']}}}
     structured = '\n<script type="application/ld+json">' + json.dumps(about, ensure_ascii=False).replace('<', '\\u003c') + '</script>'
     return page(data, 'index.html', f"{site['name']}: help for moms in all 50 states", desc,
-                body, 'home', head_extra=OHIO_REDIRECT + structured)
+                body, 'home', head_extra=OHIO_REDIRECT + structured,
+                scripts='\n' + extras.joke_scripts(jokes) if jokes else '')
+
+
+def build_jokes(data, jokes):
+    """The running list of the jokes of the day: the ones that have already run, newest first."""
+    lede = ('One mom joke a day, for the days that need one. Today\'s is on the <a href="index.html">home page</a>. '
+            'The ones that already ran are below, newest first.')
+    body = hero('Mom joke of the day', lede) + f'\n<section class="wrap">{extras.joke_list(jokes)}</section>'
+    return page(data, 'jokes.html', 'Mom joke of the day', 'A mom joke every day, and the ones that already ran.', body,
+                head_extra=structured_data(breadcrumbs(data, [('Mom joke of the day', 'jokes.html')])),
+                scripts='\n' + extras.joke_scripts(jokes))
 
 
 def structured_data(*items):
@@ -477,6 +494,9 @@ def build_all(data):
     }
     for s in data['states']:
         files[f'states/{s["abbr"].lower()}.html'] = build_state(data, s)
+    jokes = extras.approved_jokes()
+    if jokes:  # no page until the owner has approved a batch
+        files['jokes.html'] = build_jokes(data, jokes)
     domain = data['site']['domain']
     pages = sorted(p for p in files if p != '404.html' and 'name="robots" content="noindex"' not in files[p])
     # Pages that only pass the visitor on (marked noindex) stay out of the sitemap.

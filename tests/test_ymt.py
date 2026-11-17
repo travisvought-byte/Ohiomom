@@ -8,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
+import home_extras  # noqa: E402
 import ymt_build  # noqa: E402
 import ymt_lib as lib  # noqa: E402
 
@@ -293,7 +294,8 @@ class SiteTests(unittest.TestCase):
         expected = {path: 'assets/share.jpg' for path in PAGES}
         expected.update({path: 'ohio/assets/share.jpg' for path in ohio})
         expected[ROOT / 'family-guide.html'] = 'assets/share-family-guide.jpg'
-        self.assertEqual(len(expected), 60 + 22 + 1)
+        # 60 national pages, and the list of earlier jokes once a batch of jokes is approved; 22 Ohio pages; the family guide
+        self.assertEqual(len(expected), 60 + (1 if home_extras.approved_jokes() else 0) + 22 + 1)
         for path, picture in expected.items():
             p = parse(path)
             meta = {a.get('property') or a.get('name'): a.get('content') for t, a in p.tags if t == 'meta'}
