@@ -7,15 +7,13 @@ function load(file, hash = '') {
   return { w: dom.window, d: dom.window.document };
 }
 const all = (d, sel) => [...d.querySelectorAll(sel)];
-// Once the owner has approved a batch of jokes, each front page ends with the joke of the day (tests/home-extras.cjs).
-const jokeRow = JSON.parse(fs.readFileSync('data/jokes.json', 'utf8')).jokes.some((j) => j.approved === true) ? 1 : 0;
 
 // 1. The front page asks one question and shows no listings.
 {
   const { d } = load('index.html');
   assert.equal(all(d, '.card').length, 0, 'front page shows no listing cards');
   assert.equal(all(d, '.hero .tile').length, 8, 'seven needs and "See everything"');
-  assert.equal(all(d, 'main > section').length, 2 + jokeRow, 'front page is the question, the help-now strip and the joke of the day, nothing else');
+  assert.equal(all(d, 'main > section').length, 2, 'front page is the question and the help-now strip, nothing else (the picture and its joke are inside the question)');
   assert(all(d, 'main > section')[1].matches('#now'), 'the help-now strip comes straight after the question');
   assert(d.querySelector('.hero .tile[href="help.html#housing"]'), 'housing and shelter is a choice of its own');
   const phones = all(d, '.phonecard');
@@ -156,7 +154,7 @@ assert.equal(all(load('help.html').d, 'details[open]').length, 0);
   assert(d.querySelector('#place') && d.querySelector('[data-region-buttons]'), 'area picker stays');
   const fold = d.querySelector('details.mapfold');
   assert(fold && !fold.open && fold.querySelector('#map'), 'the map opens on request');
-  assert.equal(all(d, 'main > section').length, 2 + jokeRow);
+  assert.equal(all(d, 'main > section').length, 2);
 }
 console.log('PASS front pages show no listings, needs open only when chosen, cards fold their details');
 

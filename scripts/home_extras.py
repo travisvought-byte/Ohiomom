@@ -3,16 +3,19 @@
 
 Both front pages carry the same two extras, drawn here so they cannot drift apart:
 
-- **The picture.** A mom holds tree pose on her mat while her child says "Mom? Mom? MOM!" until she opens one
-  eye, and then says "Hi." It is inline SVG, moved by CSS. The rules are in templates/home-extras.css, and this
+- **The picture.** A mom holds tree pose on her mat and tells the joke of the day; her child laughs, asks for it
+  "Again! AGAIN!" until she opens one eye, and then says "Please?" It is inline SVG, moved by CSS. The rules are in templates/home-extras.css, and this
   script copies them to the end of assets/ymt.css and ohio/assets/site.css, between marker comments, so the two
   sites cannot drift apart: edit the template, never the copies. The picture is decoration, so it is hidden
   from screen readers, and it holds still for visitors whose device asks for reduced motion. The OhioMom
   picture is the same room with a cardinal at the window and Ohio on the wall.
-- **The joke of the day.** data/jokes.json holds one joke for each date. Only jokes marked `approved` are ever
-  written into a page; the owner approves each batch before it runs. The page carries the approved jokes and a
-  few lines of script that show the one for the visitor's own date, so the joke changes at midnight on her
-  clock and nothing is sent anywhere. When a batch runs out the list starts over, one a day, until new jokes
+- **The joke of the day.** It is in the picture: a speech bubble over the mom's head, at the top of the page,
+  so it is the first thing a visitor meets (the owner's call, November 17, 2026: it should disarm people as
+  they arrive). data/jokes.json holds one joke for each date. Only jokes marked `approved` are ever written
+  into a page; the owner approves each batch before it runs. The page carries the approved jokes and a few
+  lines of script that show the one for the visitor's own date, so the joke changes at midnight on her clock
+  and nothing is sent anywhere. The bubble is HTML, not part of the drawing, so the words wrap, can be read
+  aloud by a screen reader, and can be selected. When a batch runs out the list starts over, one a day, until new jokes
   are approved. jokes.html is the running list of the ones that have already run.
 
 The national front page (index.html) and jokes.html are built by scripts/ymt_build.py, which calls the
@@ -158,16 +161,17 @@ def scene_svg(ohio=False):
              f'<circle cx="378.5" cy="126.5" r="1.6" fill="{LEGS}"/><circle cx="385.5" cy="126.5" r="1.6" fill="{LEGS}"/>'
              f'<path d="M379 131.5q3 2.6 6 0" fill="none" stroke="{LEGS}" stroke-width="1.6" stroke-linecap="round"/>'
              f'<circle cx="375.5" cy="130" r="2.2" fill="{blush}" opacity=".7"/><circle cx="389" cy="130" r="2.2" fill="{blush}" opacity=".7"/></g>')
-    # what she says, and how it ends
+    # what her child says to the joke, and how it ends
     p.append(heart(326, 126, 1.5, BRAND, 'sc-heart'))
-    p.append(bubble(1, 'Mom?', 66, 32, 16) + bubble(2, 'Mom?', 76, 36, 19) + bubble(3, 'MOM!', 92, 42, 24, BRAND)
-             + bubble(4, 'Hi.', 56, 34, 18))
+    p.append(bubble(1, 'Ha ha!', 74, 32, 16) + bubble(2, 'Again!', 86, 36, 19) + bubble(3, 'AGAIN!', 108, 40, 22, BRAND)
+             + bubble(4, 'Please?', 92, 34, 18))
     p.append('</svg>')
     return ''.join(p)
 
 
-def scene_block(ohio=False):
-    return f'<div class="scenebox">{scene_svg(ohio)}</div>'
+def scene_block(ohio=False, jokes=None, list_href='jokes.html'):
+    """The picture card for a front page: the joke of the day in a speech bubble, then the drawing under it."""
+    return f'<div class="scenebox">{joke_bubble(jokes or {}, list_href)}{scene_svg(ohio)}</div>'
 
 
 # ---------------------------------------------------------------- the joke of the day
@@ -234,12 +238,13 @@ def jokes_data(jokes):
     return '<script type="application/json" id="jokes-data">' + json.dumps(jokes, ensure_ascii=False, sort_keys=True).replace('<', '\\u003c') + '</script>'
 
 
-def joke_section(jokes, list_href):
-    """The joke of the day for a front page: hidden until the script has a joke for today. Nothing at all with no approved jokes."""
+def joke_bubble(jokes, list_href):
+    """The joke of the day as the mom's speech bubble, for the top of the picture card. It is hidden until the script
+    has a joke for today, so there is never an empty bubble. Nothing at all with no approved jokes."""
     if not jokes:
         return ''
-    return ('<section class="wrap smile" id="joke" hidden><div class="jokecard"><h2>Mom joke of the day</h2>'
-            f'<p class="joketext" id="joke-text"></p><p class="quiet"><a href="{esc(list_href)}">Earlier jokes</a></p></div></section>')
+    return ('<div class="saying" id="joke" hidden><div class="sayinghead"><h2>Mom joke of the day</h2>'
+            f'<a href="{esc(list_href)}">Earlier jokes</a></div><p class="joketext" id="joke-text"></p></div>')
 
 
 def joke_scripts(jokes):
@@ -273,7 +278,7 @@ MARK = re.compile(r'<!--home-extras:(?P<name>[a-z]+)-->(?P<body>.*?)<!--/home-ex
 
 
 def ohio_blocks(jokes):
-    return {'scene': scene_block(ohio=True), 'joke': joke_section(jokes, '../jokes.html'), 'jokescript': joke_scripts(jokes)}
+    return {'scene': scene_block(True, jokes, '../jokes.html'), 'jokescript': joke_scripts(jokes)}
 
 
 def render_ohio(text, jokes):
