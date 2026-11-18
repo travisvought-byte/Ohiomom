@@ -83,6 +83,23 @@ CASTS = (('delilah',), ('ephraim', 'atlas'), ('genevieve',), ('atlas', 'delilah'
          ('atlas',), ('ephraim', 'genevieve'), ('delilah', 'ephraim', 'genevieve', 'atlas'), ('genevieve', 'atlas'),
          ('ephraim', 'delilah'))
 
+# What each child can be doing. The first is what is drawn before the script runs. A story can say what a child
+# is doing (`do` in data/jokes.json); otherwise each child's activities take turns down the list.
+ACTS = {
+    'delilah': ('again', 'copy', 'juice'),      # wants the joke again; copies her mother's pose; a juice box
+    'ephraim': ('book', 'cube', 'music'),       # nose in a book; a puzzle cube; headphones on, hands in his pocket
+    'genevieve': ('arms', 'cat', 'sketch'),     # arms crossed; a little black stuffed cat; a sketchbook
+    'atlas': ('plant', 'box', 'blanket'),       # behind the plant; in a cardboard box; under a blanket
+}
+
+# When a story may show. Most show any time. A seasonal one shows only in its season, and the late-night ones
+# only after bedtime, by the visitor's own clock: (what is compared, from, to), month*100+day or the hour.
+WHENS = {
+    'thanksgiving': ('d', 1115, 1130),
+    'winter': ('d', 1201, 1231),
+    'night': ('h', 21, 4),
+}
+
 # ---------------------------------------------------------------- her sweaters
 # Deborah has a sweater for every joke. name: (wool, pattern color, collar and hem, pattern).
 SWEATERS = {
@@ -96,7 +113,15 @@ SWEATERS = {
     'plum': ('#3b2e5a', '#f47aa5', '#2b2140', 'band'),
     'mint': ('#bfe8d9', '#ffffff', '#93d1bd', 'stripes'),
     'berry': ('#cf2f5b', '#fff1e6', '#a9244a', 'dots'),
+    # these come out only in their season, or after bedtime
+    'pumpkin': ('#f08a3c', '#fff1e6', '#c96a24', 'leaf'),
+    'cranberry': ('#9e2b3a', '#ffcb52', '#7a1f2c', 'leaf'),
+    'evergreen': ('#2f8a5f', '#ffcb52', '#1f6b47', 'tree'),
+    'snowy': ('#3a6fb0', '#ffffff', '#2b558a', 'snow'),
+    'midnight': ('#4b4870', '#ffd9e4', '#3a3760', 'moon'),
 }
+SEASON_SWEATERS = {'thanksgiving': ('pumpkin', 'cranberry'), 'winter': ('evergreen', 'snowy'), 'night': ('midnight',)}
+EVERYDAY_SWEATERS = [name for name in SWEATERS if not any(name in v for v in SEASON_SWEATERS.values())]
 FIRST_SWEATER = 'heart'  # the one drawn in the page, before the script has picked a joke
 
 # ---------------------------------------------------------------- her poses
@@ -242,6 +267,12 @@ def kid(name, drawn, cast):
     return f'<g data-kid="{name}" transform="translate({KID_X[name]} 0)"{hidden}>{drawn}</g>'
 
 
+def act(name, which, drawn):
+    """One of the things a child can be doing. The first of them shows until the script picks."""
+    hidden = '' if which == ACTS[name][0] else ' display="none"'
+    return f'<g data-act="{name}.{which}"{hidden}>{drawn}</g>'
+
+
 def face(y, gap, mouth, r=1.6):
     """Two eyes and a mouth."""
     return (f'<circle cx="{num(-gap)}" cy="{num(y)}" r="{r}" fill="{INK}"/><circle cx="{num(gap)}" cy="{num(y)}" r="{r}" fill="{INK}"/>'
@@ -254,54 +285,77 @@ def cheeks(y, gap, r=2.4):
 
 
 def delilah(cast):
-    """Delilah, the smallest: hands on her hips, one eyebrow up. She is the one who wants the joke again,
-    as the child in the first picture did, until her mother opens one eye."""
+    """Delilah, the smallest: a tutu, red boots, a bow. She wants the joke again until her mother opens one eye;
+    or she copies the pose, arms up; or she has a juice box."""
     boots, top = '#e0453a', '#8a63d2'
-    body = (f'<g class="sc-kid"><path d="M-7 163v10M7 163v10" stroke="{boots}" stroke-width="8.5" stroke-linecap="round"/>'
+    arm = f'fill="none" stroke="{SKIN}" stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round"'
+    legs = (f'<path d="M-7 163v10M7 163v10" stroke="{boots}" stroke-width="8.5" stroke-linecap="round"/>'
             f'<ellipse cx="-8.5" cy="176.2" rx="6.3" ry="3.2" fill="{boots}"/><ellipse cx="8.5" cy="176.2" rx="6.3" ry="3.2" fill="{boots}"/>'
-            '<ellipse cx="0" cy="160" rx="19.5" ry="6.5" fill="#f9c5d5"/><ellipse cx="0" cy="157.5" rx="16.5" ry="5" fill="#f497b6"/>'
-            f'<path d="M-12 142L-23.5 149.5L-13.5 156M12 142L23.5 149.5L13.5 156" fill="none" stroke="{SKIN}" stroke-width="5.4" '
-            'stroke-linecap="round" stroke-linejoin="round"/>'
-            f'<rect x="-13.5" y="135" width="27" height="24" rx="10.5" fill="{top}"/>'
-            f'<circle cx="-12.5" cy="141" r="4.6" fill="{top}"/><circle cx="12.5" cy="141" r="4.6" fill="{top}"/>'
-            + heart(0, 147, .75, '#fff')
-            + f'<path d="M0 113q-5.5-7.5-9.5-6M0 113q.2-8.5 1-10M0 113q5.5-7.5 9.5-6" fill="none" stroke="{GOLD_BROWN}" '
+            '<ellipse cx="0" cy="160" rx="19.5" ry="6.5" fill="#f9c5d5"/><ellipse cx="0" cy="157.5" rx="16.5" ry="5" fill="#f497b6"/>')
+    arms = (act('delilah', 'again', f'<path d="M-12 142L-23.5 149.5L-13.5 156M12 142L23.5 149.5L13.5 156" {arm}/>')
+            + act('delilah', 'copy', f'<path d="M-12 141L-17 122L-3 104M12 141L17 122L3 104" {arm}/>')
+            + act('delilah', 'juice', f'<path d="M-12 142L-23.5 149.5L-13.5 156M12 142L21 136L15 128" {arm}/>'))
+    torso = (f'<rect x="-13.5" y="135" width="27" height="24" rx="10.5" fill="{top}"/>'
+             f'<circle cx="-12.5" cy="141" r="4.6" fill="{top}"/><circle cx="12.5" cy="141" r="4.6" fill="{top}"/>'
+             + heart(0, 147, .75, '#fff'))
+    head = (f'<path d="M0 113q-5.5-7.5-9.5-6M0 113q.2-8.5 1-10M0 113q5.5-7.5 9.5-6" fill="none" stroke="{GOLD_BROWN}" '
             'stroke-width="2.8" stroke-linecap="round"/>'
             f'<ellipse cx="0" cy="123.5" rx="12.8" ry="11.8" fill="{SKIN}"/>'
             f'<path d="M-12.8 123.5a12.8 11.8 0 0 1 25.6 0c-3-5-8-7-12.8-7s-9.8 2-12.8 7z" fill="{GOLD_BROWN}"/>'
             f'<circle cx="0" cy="112.8" r="2.8" fill="{BRAND}"/>'
             + cheeks(129.3, 8.6, 2.8) + face(125.2, 5, 'M-3.6 130.6q4.2 2.4 7.6-1.1')
-            + f'<path d="M-8.3 120.4l5 .5M3.2 119.9l5.2-2" fill="none" stroke="{INK}" stroke-width="1.3" stroke-linecap="round"/></g>')
-    said = (says(1, -12, 64, 74, 30, 3, 'Ha ha!') + says(2, -12, 60, 86, 34, 3, 'Again!', 19)
-            + says(3, -12, 58, 104, 38, 3, 'AGAIN!', 22, BRAND) + says(4, -12, 62, 92, 32, 3, 'Please?', 18)
-            + heart(-46, 128, 1.5, BRAND, 'sc-heart'))
+            + f'<path d="M-8.3 120.4l5 .5M3.2 119.9l5.2-2" fill="none" stroke="{INK}" stroke-width="1.3" stroke-linecap="round"/>')
+    box = act('delilah', 'juice', '<rect x="11" y="119" width="9" height="12" rx="1.5" fill="#7cc576"/>'
+              '<rect x="12.5" y="122" width="6" height="5" rx="1" fill="#fff"/>'
+              '<path d="M18 119l2.5-6" stroke="#f497b6" stroke-width="1.6" stroke-linecap="round"/>')
+    body = f'<g class="sc-kid">{legs}{arms}{torso}{head}{box}</g>'
+    said = act('delilah', 'again', says(1, -12, 64, 74, 30, 3, 'Ha ha!') + says(2, -12, 60, 86, 34, 3, 'Again!', 19)
+               + says(3, -12, 58, 104, 38, 3, 'AGAIN!', 22, BRAND) + says(4, -12, 62, 92, 32, 3, 'Please?', 18)
+               + heart(-46, 128, 1.5, BRAND, 'sc-heart'))
     return kid('delilah', body + said, cast)
 
 
 def atlas(cast):
-    """Atlas: blond hair down over his ears, a big smile. He hides behind the plant, which does not cover
-    him, and leans out now and then to wave."""
+    """Atlas: blond hair down over his ears, a big smile, and somewhere to hide. Behind the plant, which does not
+    cover him, leaning out to wave; in a cardboard box, popping up; or under a blanket, with his feet out."""
     shirt, shorts = '#f2743a', '#3b4a7a'
-    body = ('<g class="sc-peek">'
-            f'<path d="M-5 158V174M5 158V174" stroke="{SKIN}" stroke-width="5.2" stroke-linecap="round"/>'
-            f'<ellipse cx="-6" cy="177" rx="5.4" ry="2.9" fill="{TEAL}"/><ellipse cx="6" cy="177" rx="5.4" ry="2.9" fill="{TEAL}"/>'
-            f'<path d="M-5 150V159M5 150V159" stroke="{shorts}" stroke-width="7.6" stroke-linecap="round"/>'
-            f'<path class="sc-hi" d="M-9 127L-19 114" stroke="{SKIN}" stroke-width="4.8" stroke-linecap="round"/>'
-            f'<path d="M9 127L16 140" stroke="{SKIN}" stroke-width="4.8" stroke-linecap="round"/>'
-            f'<rect x="-10.5" y="121" width="21" height="31" rx="7.5" fill="{shirt}"/><rect x="-10.5" y="133" width="21" height="4.5" fill="#ffd9a0"/>'
-            f'<circle cx="0" cy="109.5" r="11.5" fill="{SKIN}"/>'
-            f'<path d="M-12.5 110a12.5 12.5 0 0 1 25 0v7.5q-1.8 2.2-3.8.3l-.4-6.6q-3.2-6.2-8.3-6.2t-8.3 6.2l-.4 6.6q-2 1.9-3.8-.3z" fill="{LIGHT_BLONDE}"/>'
-            + cheeks(115, 7.8)
-            + f'<circle cx="-4.6" cy="110.8" r="1.6" fill="{INK}"/><circle cx="4.6" cy="110.8" r="1.6" fill="{INK}"/>'
-            f'<path d="M-5.2 114.6q5.2 6.8 10.4 0z" fill="{INK}"/></g>')
-    return kid('atlas', body + heart(-26, 104, 1.2, BRAND, 'sc-heart'), cast)
+    hair = (f'<path d="M-12.5 110a12.5 12.5 0 0 1 25 0v7.5q-1.8 2.2-3.8.3l-.4-6.6q-3.2-6.2-8.3-6.2t-8.3 6.2l-.4 6.6q-2 1.9-3.8-.3z" '
+            f'fill="{LIGHT_BLONDE}"/>')
+    grin = (f'<circle cx="-4.6" cy="110.8" r="1.6" fill="{INK}"/><circle cx="4.6" cy="110.8" r="1.6" fill="{INK}"/>'
+            f'<path d="M-5.2 114.6q5.2 6.8 10.4 0z" fill="{INK}"/>')
+    plant = ('<g class="sc-peek">'
+             f'<path d="M-5 158V174M5 158V174" stroke="{SKIN}" stroke-width="5.2" stroke-linecap="round"/>'
+             f'<ellipse cx="-6" cy="177" rx="5.4" ry="2.9" fill="{TEAL}"/><ellipse cx="6" cy="177" rx="5.4" ry="2.9" fill="{TEAL}"/>'
+             f'<path d="M-5 150V159M5 150V159" stroke="{shorts}" stroke-width="7.6" stroke-linecap="round"/>'
+             f'<path class="sc-hi" d="M-9 127L-19 114" stroke="{SKIN}" stroke-width="4.8" stroke-linecap="round"/>'
+             f'<path d="M9 127L16 140" stroke="{SKIN}" stroke-width="4.8" stroke-linecap="round"/>'
+             f'<rect x="-10.5" y="121" width="21" height="31" rx="7.5" fill="{shirt}"/><rect x="-10.5" y="133" width="21" height="4.5" fill="#ffd9a0"/>'
+             f'<circle cx="0" cy="109.5" r="11.5" fill="{SKIN}"/>{hair}' + cheeks(115, 7.8) + grin + '</g>'
+             + heart(-26, 104, 1.2, BRAND, 'sc-heart'))
+    # in the box: his head pops up over the rim now and then
+    box = ('<g transform="translate(-6 27)"><g class="sc-pop">'
+           f'<circle cx="0" cy="109.5" r="11.5" fill="{SKIN}"/>{hair}' + cheeks(115, 7.8) + grin
+           + f'<path d="M-11 124L-15 113M11 124L15 113" stroke="{SKIN}" stroke-width="4.6" stroke-linecap="round"/></g></g>'
+           '<path d="M-26 150L-20 141H8L14 150Z" fill="#b57a45"/>'
+           '<rect x="-24" y="150" width="36" height="28" rx="2" fill="#c8935a"/>'
+           '<path d="M-24 158H12" stroke="#b57a45" stroke-width="1.4"/>' + heart(-6, 166, .7, '#fff1e6'))
+    # under the blanket: a lump with feet out one end, and it giggles
+    blanket = ('<g class="sc-kid">'
+               f'<ellipse cx="13" cy="175.5" rx="4" ry="3" fill="{SKIN}"/><ellipse cx="15" cy="170.5" rx="4" ry="3" fill="{SKIN}"/>'
+               '<path d="M-30 179Q-29 150-8 147Q12 146 14 179Z" fill="#7fb8f0"/>'
+               '<path d="M-24 172h8M-20 162h8M-6 168h8M-2 156h8" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".8"/>'
+               f'<path d="M-15 178q-2-6-8-6" fill="none" stroke="{LIGHT_BLONDE}" stroke-width="3" stroke-linecap="round"/></g>')
+    return kid('atlas', act('atlas', 'plant', plant) + act('atlas', 'box', box) + act('atlas', 'blanket', blanket), cast)
 
 
 def genevieve(cast):
     """Genevieve, dressed like the heroine of a gothic anime: black dress, striped sleeves and tights, big
-    boots, cat ears, hair over one eye. She stands with her arms crossed and does not laugh. Once, near the
-    end, she almost does."""
+    boots, cat ears, hair over one eye. She does not laugh; once, near the end, she almost does. Her arms are
+    crossed, or she holds a little black stuffed cat, or she is drawing in a sketchbook."""
     stripes = f'stroke="{VIOLET}" stroke-width="5" stroke-dasharray="2.6 3.4"'
+    sleeve = lambda d, d2: (f'<g fill="none" stroke-linejoin="round"><path d="{d}" stroke="{INK}" stroke-width="5" stroke-linecap="round"/>'
+                            f'<path d="{d2}" {stripes}/></g>')
+    hand = lambda x, y: f'<circle cx="{x}" cy="{y}" r="2.5" fill="{SKIN}"/>'
     body = (f'<path d="M-5 144V168M5 144V168" stroke="{INK}" stroke-width="5"/><path d="M-5 146V168M5 146V168" {stripes}/>'
             f'<path d="M-5 167v6M5 167v6" stroke="{NIGHT}" stroke-width="8" stroke-linecap="round"/>'
             f'<rect x="-11.5" y="172.5" width="11" height="6" rx="2.2" fill="{NIGHT}"/><rect x=".5" y="172.5" width="11" height="6" rx="2.2" fill="{NIGHT}"/>'
@@ -309,37 +363,56 @@ def genevieve(cast):
             f'<rect x="-2.8" y="101" width="5.6" height="7" fill="{SKIN}"/><path d="M-2.8 104.3h5.6" stroke="{NIGHT}" stroke-width="1.7"/>'
             f'<path d="M-8.5 107.5Q0 104 8.5 107.5L14.5 145Q0 150-14.5 145Z" fill="{NIGHT}"/>'
             '<path d="M-6.5 106.3q3.4 3.6 6.5 0q3.1 3.6 6.5 0q-6.5-2.8-13 0z" fill="#fff"/>'
-            f'<path d="M-13.8 141.5Q0 146.3 13.8 141.5" fill="none" stroke="{VIOLET}" stroke-width="1.6" stroke-dasharray="1.5 2.3"/>'
-            f'<g fill="none" stroke-linejoin="round"><path d="M-8 110L-12 121L6 119.5M8 110L12 121L-6 122.5" stroke="{INK}" stroke-width="5" stroke-linecap="round"/>'
-            f'<path d="M-8 110L-12 121L3 119.8M8 110L12 121L-3 122.3" {stripes}/></g>'
-            f'<circle cx="6.5" cy="119.5" r="2.5" fill="{SKIN}"/><circle cx="-6.5" cy="122.5" r="2.5" fill="{SKIN}"/>'
-            f'<circle cx="0" cy="93.5" r="11.5" fill="{SKIN}"/>'
+            f'<path d="M-13.8 141.5Q0 146.3 13.8 141.5" fill="none" stroke="{VIOLET}" stroke-width="1.6" stroke-dasharray="1.5 2.3"/>')
+    arms = act('genevieve', 'arms', sleeve('M-8 110L-12 121L6 119.5M8 110L12 121L-6 122.5', 'M-8 110L-12 121L3 119.8M8 110L12 121L-3 122.3')
+               + hand(6.5, 119.5) + hand(-6.5, 122.5))
+    cat = act('genevieve', 'cat', sleeve('M-8 110L-12 121L-6 127M8 110L12 121L6 127', 'M-8 110L-12 121L-8 125M8 110L12 121L8 125')
+              + f'<ellipse cx="0" cy="128" rx="7.5" ry="6.5" fill="{INK}"/><circle cx="0" cy="119" r="5.6" fill="{INK}"/>'
+              f'<path d="M-5 116l-.5-5 3.6 2.6zM5 116l.5-5-3.6 2.6z" fill="{INK}"/>'
+              f'<circle cx="-2.1" cy="119" r="1.1" fill="{SUN}"/><circle cx="2.1" cy="119" r="1.1" fill="{SUN}"/>'
+              + hand(-6.5, 127) + hand(6.5, 127))
+    sketch = act('genevieve', 'sketch', sleeve('M-8 110L-12 122L-7 128M8 110L12 120L4 124', 'M-8 110L-12 122L-9 126M8 110L12 120L7 122.5')
+                 + '<path d="M-11 125L9 121L11 131L-9 135Z" fill="#fff" stroke="#d9d3e6" stroke-width=".8"/>'
+                 f'<path d="M-6 130q3-4 6-1t6-3" fill="none" stroke="{VIOLET}" stroke-width="1.3" stroke-linecap="round"/>'
+                 f'<path d="M4 124l5-7" stroke="{NIGHT}" stroke-width="1.8" stroke-linecap="round"/>'
+                 + hand(-7, 128) + hand(4, 124))
+    head = (f'<circle cx="0" cy="93.5" r="11.5" fill="{SKIN}"/>'
             f'<path d="M-11.4 96.5a11.8 11.8 0 0 1 23.2-3q-2.8-5.2-7.3-7.2q-3.5 8.5-15.9 10.2z" fill="{DARK_BLONDE}"/>'
             f'<path d="M-10 86l1.5-9.5 6.5 5.7zM10 86l-1.5-9.5-6.5 5.7z" fill="{NIGHT}"/>'
             f'<circle cx="5" cy="95.8" r="1.7" fill="{INK}"/><path d="M6.3 94.5l2.3-1.4" stroke="{INK}" stroke-width="1.1" stroke-linecap="round"/>'
             f'<g fill="none" stroke="{INK}" stroke-width="1.5" stroke-linecap="round"><path class="sc-flat" d="M-1.5 100.8h5.5"/>'
             '<path class="sc-grin" opacity="0" d="M-1.5 100.3q2.8 2.1 5.5 0"/></g>')
-    return kid('genevieve', body, cast)
+    return kid('genevieve', body + arms + cat + sketch + head, cast)
 
 
 def ephraim(cast):
-    """Ephraim, the tallest of the four: brown hair, a hoodie, and his nose in a book. He looks up once."""
+    """Ephraim, the tallest of the four: brown hair, a hoodie. His nose is in a book, or he is turning a puzzle
+    cube, or he has headphones on and his hands in his pocket. He looks up once."""
     hoodie, shade, jeans, cover = '#8f9bb3', '#76839d', '#3f5f8a', '#1f7f73'
+    arm = f'fill="none" stroke="{shade}" stroke-width="5.2" stroke-linecap="round" stroke-linejoin="round"'
+    hand = lambda x, y: f'<circle cx="{x}" cy="{y}" r="2.5" fill="{SKIN}"/>'
     body = (f'<path d="M-4.5 124L-5.5 173.5M4.5 124L5.5 173.5" stroke="{jeans}" stroke-width="6.2" stroke-linecap="round"/>'
             '<ellipse cx="-7" cy="177" rx="6.6" ry="3" fill="#fff"/><ellipse cx="7" cy="177" rx="6.6" ry="3" fill="#fff"/>'
             f'<rect x="-3" y="79" width="6" height="8" fill="{SKIN}"/>'
             f'<rect x="-10.5" y="83.5" width="21" height="44" rx="7.5" fill="{hoodie}"/>'
             f'<path d="M-8.5 88q8.5-7 17 0" fill="none" stroke="{shade}" stroke-width="3.4" stroke-linecap="round"/>'
-            f'<rect x="-7.5" y="113" width="15" height="9" rx="3.5" fill="{shade}"/>'
-            f'<path d="M-10 89L-15.5 102L-9.5 108.5M10 89L15.5 102L9.5 108.5" fill="none" stroke="{shade}" stroke-width="5.2" '
-            'stroke-linecap="round" stroke-linejoin="round"/>'
-            f'<path d="M-11 96.5L0 98.5L11 96.5V109L0 111L-11 109Z" fill="{cover}"/>'
-            '<path d="M-9.8 95.5L-.6 97.3V109L-9.8 107.2ZM9.8 95.5L.6 97.3V109L9.8 107.2Z" fill="#fff"/>'
-            f'<circle cx="-10.3" cy="108.3" r="2.5" fill="{SKIN}"/><circle cx="10.3" cy="108.3" r="2.5" fill="{SKIN}"/>'
-            f'<g class="sc-look"><circle cx="0" cy="71.5" r="11" fill="{SKIN}"/>'
+            f'<rect x="-7.5" y="113" width="15" height="9" rx="3.5" fill="{shade}"/>')
+    book = act('ephraim', 'book', f'<path d="M-10 89L-15.5 102L-9.5 108.5M10 89L15.5 102L9.5 108.5" {arm}/>'
+               f'<path d="M-11 96.5L0 98.5L11 96.5V109L0 111L-11 109Z" fill="{cover}"/>'
+               '<path d="M-9.8 95.5L-.6 97.3V109L-9.8 107.2ZM9.8 95.5L.6 97.3V109L9.8 107.2Z" fill="#fff"/>'
+               + hand(-10.3, 108.3) + hand(10.3, 108.3))
+    tiles = ''.join(f'<rect x="{-5.4 + 3.6 * (i % 3)}" y="{98.6 + 3.6 * (i // 3)}" width="3.2" height="3.2" rx=".6" fill="{c}"/>'
+                    for i, c in enumerate(('#e0453a', '#fff', '#ffcb52', '#2a9d8f', '#e0453a', '#3a6fb0', '#fff', '#f08a3c', '#2a9d8f')))
+    cube = act('ephraim', 'cube', f'<path d="M-10 89L-15 101L-6.5 104M10 89L15 101L6.5 104" {arm}/>'
+               f'<rect x="-5.8" y="98.2" width="11.6" height="11.6" rx="1.6" fill="{INK}"/>{tiles}' + hand(-6.5, 104) + hand(6.5, 104))
+    music = act('ephraim', 'music', f'<path d="M-10 89L-13 104L-5 116M10 89L13 104L5 116" {arm}/>'
+                f'<path d="M-2 113V100" stroke="{INK}" stroke-width="1" fill="none"/>')
+    phones = act('ephraim', 'music', f'<path d="M-11.8 72A11.8 11.8 0 0 1 11.8 72" fill="none" stroke="{INK}" stroke-width="2.4"/>'
+                 f'<rect x="-14.5" y="69" width="5" height="9" rx="2.4" fill="{BRAND}"/><rect x="9.5" y="69" width="5" height="9" rx="2.4" fill="{BRAND}"/>')
+    head = (f'<g class="sc-look"><circle cx="0" cy="71.5" r="11" fill="{SKIN}"/>'
             f'<path d="M-12.3 72.3a12.3 12.3 0 0 1 24.6 0v4.1q-1.7 1.6-3.4.2q.2-4.8-1.6-7.4q-7.3 3.3-14.6 0q-1.8 2.6-1.6 7.4q-1.7 1.4-3.4-.2z" fill="{BROWN}"/>'
-            + face(75.2, 4.3, 'M-2.6 79.3q2.8 1.5 5.2 0', 1.5) + '</g>')
-    return kid('ephraim', body, cast)
+            + face(75.2, 4.3, 'M-2.6 79.3q2.8 1.5 5.2 0', 1.5) + phones + '</g>')
+    return kid('ephraim', body + book + cube + music + head, cast)
 
 
 def star(x, y, outer, inner):
@@ -368,6 +441,13 @@ def top_half():
         'rainbow': (f'<g fill="none" stroke-width="3"><path d="M251.5 101.5a10.5 10.5 0 0 1 21 0" stroke="{BRAND}"/>'
                     f'<path d="M254.5 101.5a7.5 7.5 0 0 1 15 0" stroke="{SUN}"/><path d="M257.5 101.5a4.5 4.5 0 0 1 9 0" stroke="#2a9d8f"/></g>'),
         'star': f'<path d="{star(262, 94, 8.5, 3.6)}" fill="{accent}" data-fill="1"/>',
+        'leaf': (f'<path d="M262 84C270 88 271 98 262 104C253 98 254 88 262 84Z" fill="{accent}" data-fill="1"/>'
+                 f'<path d="M262 87V106" stroke="{accent}" data-stroke="1" stroke-width="1.4"/>'),
+        'tree': (f'<path d="M262 83L270 95H266L272 104H252L258 95H254Z" fill="{accent}" data-fill="1"/>'
+                 f'<path d="M262 80.5h.01M254 91h.01M270 99h.01" stroke="{accent}" data-stroke="1" stroke-width="3.4" stroke-linecap="round"/>'),
+        'snow': (f'<path d="M262 86V102M255 90L269 98M255 98L269 90M249 86h.01M275 88h.01M250 103h.01M274 104h.01" '
+                 f'stroke="{accent}" data-stroke="1" stroke-width="2" stroke-linecap="round"/>'),
+        'moon': f'<path d="M265 85A9 9 0 1 0 270 101A7 7 0 1 1 265 85Z" fill="{accent}" data-fill="1"/>',
     }
     worn = ''.join(f'<g data-pat="{name}"{"" if name == first else " display=\"none\""}>{drawn}</g>' for name, drawn in patterns.items())
     return (f'<g data-top><path class="sc-pony" d="M266 43C278 37.5 286.5 45.5 284.5 58C283.3 66 280 71.5 276.5 74.5C278 66 277 58 271 51.5Z" fill="{BLONDE}"/>'
@@ -389,7 +469,11 @@ def deborah():
     behind = ''.join(limbs(pose, False) for pose in POSES)
     before = ''.join(limbs(pose, True) for pose in POSES)
     wrap = '<g fill="none" stroke-linecap="round" stroke-linejoin="round">'
-    return f'<g class="sc-mom" data-mom>{wrap}{behind}</g>{top_half()}{wrap}{before}</g></g>'
+    late = ('<g data-when="night" display="none"><path d="M289 153.5L298 149.5" stroke="#f3efe6" stroke-width="2.2" stroke-linecap="round"/>'
+            '<circle cx="298.6" cy="149.2" r="1.3" fill="#f08a3c"/>'
+            + ''.join(f'<circle class="sc-steam" cx="{x}" cy="144" r="{r}" fill="#e7e3f3" style="animation-delay:{d}s"/>'
+                      for x, r, d in ((299, 2.4, 0), (301, 2, -1.2), (298, 2.2, -2.4))) + '</g>')
+    return f'<g class="sc-mom" data-mom>{wrap}{behind}</g>{top_half()}{wrap}{before}</g>{late}</g>'
 
 
 def scene_svg(ohio=False, cast=('delilah',)):
@@ -401,7 +485,9 @@ def scene_svg(ohio=False, cast=('delilah',)):
          '<linearGradient id="sc-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9e0fa"/>'
          '<stop offset="1" stop-color="#eef8ff"/></linearGradient>'
          '<clipPath id="sc-pane"><rect x="30" y="24" width="84" height="74" rx="5"/></clipPath>'
-         f'<clipPath id="sc-knit"><path d="{KNIT}"/></clipPath></defs>',
+         f'<clipPath id="sc-knit"><path d="{KNIT}"/></clipPath>'
+         '<radialGradient id="sc-lamp"><stop offset="0" stop-color="#ffe3b0" stop-opacity=".42"/>'
+         '<stop offset="1" stop-color="#ffe3b0" stop-opacity="0"/></radialGradient></defs>',
          # the room
          '<rect width="520" height="228" fill="url(#sc-wall)"/><rect y="172" width="520" height="56" fill="#f6dcc0"/>'
          '<rect y="169" width="520" height="4" fill="#fff"/>']
@@ -417,10 +503,26 @@ def scene_svg(ohio=False, cast=('delilah',)):
              f'<circle cx="94" cy="44" r="19" fill="{SUN}" opacity=".28"/><circle cx="94" cy="44" r="12" fill="{SUN}"/>'
              '<g class="sc-cloud" fill="#fff"><circle cx="46" cy="47" r="6.5"/><circle cx="55" cy="43" r="8.5"/>'
              '<circle cx="65" cy="47" r="6"/><rect x="42" y="46" width="27" height="7.5" rx="3.7"/></g>'
-             f'<path d="M30 98V86Q50 72 72 83T114 78V98Z" fill="#9fd6a4"/>{bird}</g>'
+             f'<path d="M30 98V86Q50 72 72 83T114 78V98Z" fill="#9fd6a4"/>{bird}'
+             '<g data-when="winter" display="none"><path d="M30 98V86Q50 72 72 83T114 78V98Z" fill="#f4f8fb"/>'
+             '<path d="M40 34h.01M58 60h.01M84 30h.01M100 62h.01M50 72h.01M110 40h.01M66 38h.01" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></g>'
+             '<g data-when="night" display="none"><rect x="30" y="24" width="84" height="74" fill="#1f2350"/>'
+             '<path d="M92 34A11 11 0 1 0 103 52A8.5 8.5 0 1 1 92 34Z" fill="#fff3c4"/>'
+             '<path d="M42 36h.01M60 30h.01M52 52h.01M76 44h.01M110 66h.01" stroke="#fff" stroke-width="2" stroke-linecap="round"/>'
+             '<path d="M30 98V86Q50 72 72 83T114 78V98Z" fill="#2c4a46"/></g></g>'
              '<path d="M72 24V98M30 61H114" stroke="#fff" stroke-width="4"/>'
              '<rect x="18" y="101" width="108" height="8" rx="4" fill="#fff"/>'
              '<rect x="22" y="109" width="100" height="2.5" rx="1.2" fill="#b7d9d1"/>')
+    # in season: a pumpkin on the sill; lights along the top of the window
+    p.append('<g data-when="thanksgiving" display="none"><ellipse cx="44" cy="94" rx="10" ry="7.5" fill="#f08a3c"/>'
+             '<path d="M40 87.5Q38 94 40 100.5M48 87.5Q50 94 48 100.5" fill="none" stroke="#d9732a" stroke-width="1.4"/>'
+             '<path d="M44 87V82" stroke="#5c7a3a" stroke-width="2.4" stroke-linecap="round"/>'
+             '<path d="M44 84q5-4 8-1" fill="none" stroke="#5c7a3a" stroke-width="1.4" stroke-linecap="round"/>'
+             '<ellipse cx="62" cy="97" rx="6" ry="4.5" fill="#ffcb52"/><path d="M62 92.5V90" stroke="#5c7a3a" stroke-width="2" stroke-linecap="round"/></g>'
+             '<g data-when="winter" display="none"><path d="M20 20Q46 30 72 20T124 20" fill="none" stroke="#2b2140" stroke-width="1.2"/>'
+             + ''.join(f'<circle cx="{x}" cy="{y}" r="2.6" fill="{c}"/>' for x, y, c in
+                       ((28, 23.2, '#e0453a'), (40, 25.6, SUN), (52, 25.6, '#2a9d8f'), (64, 23, '#3a6fb0'), (80, 22.4, '#e0453a'),
+                        (92, 25.4, SUN), (104, 25.4, '#2a9d8f'), (116, 22.6, '#3a6fb0'))) + '</g>')
     # on the wall: a lotus, or Ohio with a heart
     p.append('<rect x="303" y="18" width="50" height="50" rx="6" fill="#fff"/>'
              '<rect x="308" y="23" width="40" height="40" rx="3" fill="#fff1e6"/>')
@@ -444,13 +546,6 @@ def scene_svg(ohio=False, cast=('delilah',)):
     p.append('<ellipse cx="266" cy="183" rx="104" ry="5" fill="#8a5a3a" opacity=".13"/>'
              '<rect x="174" y="170" width="184" height="11" rx="5.5" fill="#2a9d8f"/>'
              '<rect x="176" y="171.5" width="180" height="3" rx="1.5" fill="#5cc3b5"/>')
-    # the family: the two big kids by the window, Deborah on her mat, the two little ones by the plant
-    p.append(genevieve(cast) + ephraim(cast) + deborah() + delilah(cast) + atlas(cast))
-    # the plant in the corner, in front of Atlas
-    p.append('<g class="sc-leaf"><path d="M489 150C486 128 474 117 461 113C464 131 473 144 489 150Z" fill="#3f9b6e"/>'
-             '<path d="M489 150C492 127 503 116 516 112C512 131 504 144 489 150Z" fill="#2f8a5f"/>'
-             '<path d="M489 150C481 133 483 112 489 97C496 112 497 133 489 150Z" fill="#58b386"/></g>'
-             '<path d="M474 152h30l-4 26h-22z" fill="#d9825b"/><rect x="471" y="147" width="36" height="8" rx="3.5" fill="#e79a72"/>')
     # toys on the floor: a tower of blocks by the stool, the bunny by the plant
     p.append('<rect x="72" y="167" width="14" height="14" rx="3" fill="#b9a6ef"/>'
              '<rect x="72.5" y="153" width="14" height="14" rx="3" fill="#f6b5c6"/>'
@@ -461,6 +556,21 @@ def scene_svg(ohio=False, cast=('delilah',)):
              '<ellipse cx="411" cy="156" rx="1" ry="4" transform="rotate(-10 411 155.5)" fill="#f6b5c6"/>'
              '<ellipse cx="417" cy="156" rx="1" ry="4" transform="rotate(10 417 155.5)" fill="#f6b5c6"/>'
              f'<circle cx="412" cy="164" r=".9" fill="{INK}"/><circle cx="416" cy="164" r=".9" fill="{INK}"/>')
+    # after bedtime the room is dark around her; only her lamp is on
+    p.append('<g data-when="night" display="none"><rect width="520" height="228" fill="#1d1a3f" opacity=".5"/>'
+             '<ellipse cx="266" cy="138" rx="110" ry="80" fill="url(#sc-lamp)"/></g>')
+    # the family: the two big kids by the window, Deborah on her mat, the two little ones by the plant
+    p.append(genevieve(cast) + ephraim(cast) + deborah() + delilah(cast) + atlas(cast))
+    # the plant in the corner, in front of Atlas
+    p.append('<g class="sc-leaf"><path d="M489 150C486 128 474 117 461 113C464 131 473 144 489 150Z" fill="#3f9b6e"/>'
+             '<path d="M489 150C492 127 503 116 516 112C512 131 504 144 489 150Z" fill="#2f8a5f"/>'
+             '<path d="M489 150C481 133 483 112 489 97C496 112 497 133 489 150Z" fill="#58b386"/></g>'
+             '<path d="M474 152h30l-4 26h-22z" fill="#d9825b"/><rect x="471" y="147" width="36" height="8" rx="3.5" fill="#e79a72"/>')
+    # and at night the plant is in the dark too
+    p.append('<g data-when="night" display="none"><path d="M489 150C486 128 474 117 461 113C464 131 473 144 489 150Z" fill="#2a4a4a"/>'
+             '<path d="M489 150C492 127 503 116 516 112C512 131 504 144 489 150Z" fill="#244444"/>'
+             '<path d="M489 150C481 133 483 112 489 97C496 112 497 133 489 150Z" fill="#335656"/>'
+             '<path d="M474 152h30l-4 26h-22z" fill="#5e4a58"/><rect x="471" y="147" width="36" height="8" rx="3.5" fill="#6b5462"/></g>')
     p.append('</svg>')
     return ''.join(p)
 
@@ -547,7 +657,20 @@ def check_jokes(data):
             errors.append(f'{where}: pose is one of {", ".join(POSES)}')
         if j.get('sweater') is not None and j['sweater'] not in SWEATERS:
             errors.append(f'{where}: sweater is one of {", ".join(SWEATERS)}')
-        extra = set(j) - {'text', 'approved', 'cast', 'pose', 'sweater'}
+        when = j.get('when')
+        if when is not None and when not in WHENS:
+            errors.append(f'{where}: when is one of {", ".join(WHENS)}')
+        sweater = j.get('sweater')
+        if sweater in SWEATERS and sweater not in (SEASON_SWEATERS.get(when) or EVERYDAY_SWEATERS):
+            errors.append(f'{where}: the {sweater} sweater does not go with this story\'s season')
+        if when == 'night' and (j.get('cast') != [] or j.get('pose', 'easy') != 'easy'):
+            errors.append(f'{where}: after bedtime the children are asleep (cast is []) and she sits in easy pose')
+        do = j.get('do')
+        if do is not None and (not isinstance(do, dict) or any(k not in ACTS or v not in ACTS[k] for k, v in do.items())):
+            errors.append(f'{where}: do says what a child is doing, one of ' + '; '.join(f'{k}: {", ".join(v)}' for k, v in ACTS.items()))
+        elif do and any(k not in (cast or []) for k in do):
+            errors.append(f'{where}: do names a child who is not in the cast')
+        extra = set(j) - {'text', 'approved', 'cast', 'pose', 'sweater', 'do', 'when'}
         if extra:
             errors.append(f'{where}: {", ".join(sorted(extra))} is not something a joke has')
     texts = [j.get('text') for j in data.get('jokes', [])]
@@ -560,16 +683,22 @@ def check_jokes(data):
 def take_turns(jokes, key, names):
     """Each joke's `key` (its pose or its sweater): its own if it names one, otherwise the next in turn.
     A turn is skipped if the two jokes before or the two after already have it, so the list never has her in the
-    same pose, or the same sweater, twice in three unless the jokes themselves ask for it."""
-    out, turn = [], 0
+    same pose, or the same sweater, twice in three unless the jokes themselves ask for it.
+    `names` can be a function of the joke, for lists that depend on the story (the seasonal sweaters)."""
+    pick = names if callable(names) else (lambda j: names)
+    out, turns = [], {}
     for i, j in enumerate(jokes):
         mine = j.get(key)
         if not mine:
+            options = list(pick(j))
+            turn = turns.get(tuple(options), 0)
             near = out[-2:] + [later.get(key) for later in jokes[i + 1:i + 3]]
-            while names[turn % len(names)] in near:
+            for _ in range(len(options)):
+                if options[turn % len(options)] not in near:
+                    break
                 turn += 1
-            mine = names[turn % len(names)]
-            turn += 1
+            mine = options[turn % len(options)]
+            turns[tuple(options)] = turn + 1
         out.append(mine)
     return out
 
@@ -586,7 +715,9 @@ def looks(data=None):
     children are around). Whatever it leaves out takes its turn. A joke about "my youngest" names Delilah as its
     cast, so she is the one in the room; the joke itself never says so."""
     jokes = (read_jokes() if data is None else data)['jokes']
-    poses, sweaters = take_turns(jokes, 'pose', list(POSES)), take_turns(jokes, 'sweater', list(SWEATERS))
+    poses = take_turns(jokes, 'pose', lambda j: ['easy'] if j.get('when') == 'night' else list(POSES))
+    sweaters = take_turns(jokes, 'sweater', lambda j: SEASON_SWEATERS.get(j.get('when')) or EVERYDAY_SWEATERS)
+    doing = {k: 0 for k in ACTS}
     out, turn, before = [], 0, None
     for i, j in enumerate(jokes):
         cast = j.get('cast')
@@ -597,7 +728,15 @@ def looks(data=None):
                 turn += 1
             cast, turn = CASTS[turn % len(CASTS)], turn + 1
         before = tuple(cast)
-        out.append((poses[i], sweaters[i], before, caption(poses[i])))
+        acts = []
+        for k in KIDS:  # each child's activity: what the story says, or the next in turn for that child
+            mine = (j.get('do') or {}).get(k)
+            if not mine:
+                mine = ACTS[k][doing[k] % len(ACTS[k])]
+                if k in cast:
+                    doing[k] += 1
+            acts.append(f'{k}.{mine}')
+        out.append((poses[i], sweaters[i], before, caption(poses[i]), tuple(acts), j.get('when') or ''))
     return out
 
 
@@ -616,7 +755,8 @@ def scene_data(joke_looks):
     return {
         'p': {name: [top_move(name), f'{num(spec["foot"][0])}px {num(spec["foot"][1])}px', bubble_tail(name)] for name, spec in POSES.items()},
         'w': {name: list(sweater) for name, sweater in SWEATERS.items()},
-        'd': ['|'.join((pose, sweater, ' '.join(cast), words)) for pose, sweater, cast, words in joke_looks],
+        'd': ['|'.join((pose, sweater, ' '.join(cast), words, ' '.join(acts), when)) for pose, sweater, cast, words, acts, when in joke_looks],
+        's': {name: list(spec) for name, spec in WHENS.items()},
     }
 
 
@@ -625,7 +765,7 @@ def scene_data(joke_looks):
 # It does nothing on a page with no picture, or for a joke the page has no picture for.
 DRESS = ('function(D,p){var S=D.getElementById("scene-data"),B=D.getElementById("scene");if(!S||!B||p==null)return;'
          'S=JSON.parse(S.textContent);var v=(S.d[p]||"").split("|"),P=S.p[v[0]],W=S.w[v[1]];if(!P||!W)return;'
-         'var c=" "+v[2]+" ",'
+         'var c=" "+v[2]+" ",A=" "+(v[4]||"")+" ",'
          'q=function(s,g){var a=B.querySelectorAll(s),i;for(i=0;i<a.length;i++)g(a[i],a[i].getAttribute(s.slice(1,-1)))},'
          'o=function(e,y){e.setAttribute("display",y?"inline":"none")};'
          'q("[data-pose]",function(e,a){o(e,a==v[0])});'
@@ -633,6 +773,8 @@ DRESS = ('function(D,p){var S=D.getElementById("scene-data"),B=D.getElementById(
          'q("[data-mom]",function(e){e.style.transformOrigin=P[1]});'
          'q("[data-kid]",function(e,a){o(e,c.indexOf(" "+a+" ")>=0)});'
          'q("[data-pat]",function(e,a){o(e,a==W[3])});'
+         'q("[data-act]",function(e,a){if(A.length>2)o(e,A.indexOf(" "+a+" ")>=0)});'
+         'q("[data-when]",function(e,a){o(e,a==(v[5]||""))});'
          'q("[data-fill]",function(e,a){e.setAttribute("fill",W[a])});'
          'q("[data-stroke]",function(e,a){e.setAttribute("stroke",W[a])});'
          'B.style.setProperty("--tail",P[2]);'
@@ -643,12 +785,19 @@ DRESS = ('function(D,p){var S=D.getElementById("scene-data"),B=D.getElementById(
 # stops the turning (the reader has taken over), the button in the bubble stops and starts it, and a device set
 # to reduce motion never starts it. A joke too long for the room the bubble keeps is set a little smaller, so
 # the page below never moves when the joke changes. Each joke brings its picture, and the two fade in together
-# (not on a device set to reduce motion). Nothing is sent or stored.
+# (not on a device set to reduce motion). A seasonal story is in the turn only in its season, and a late-night
+# one only after bedtime, by the visitor's clock; when one is, the card opens on it. Nothing is sent or stored.
 JOKE_SCRIPT = ('<script>(function(){var D=document,d=D.getElementById("jokes-data"),b=D.getElementById("joke"),t=D.getElementById("joke-text");'
                'if(!d||!b||!t)return;var J=JSON.parse(d.textContent),n=J.length,o=[],i,r,x,at=0,timer=0,dress=' + DRESS + ','
                'still=!!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches),'
                'fade=function(e){if(e&&e.animate&&!still)e.animate([{opacity:.2},{opacity:1}],{duration:450,easing:"ease-out"})};if(!n)return;'
-               'for(i=0;i<n;i++)o[i]=i;for(i=n-1;i>0;i--){r=Math.floor(Math.random()*(i+1));x=o[i];o[i]=o[r];o[r]=x}'
+               'var Z=D.getElementById("scene-data"),S=Z?JSON.parse(Z.textContent):{},now=new Date(),'
+               'md=(now.getMonth()+1)*100+now.getDate(),hr=now.getHours(),'
+               'w=function(k){return((S.d||[])[k]||"").split("|")[5]||""},'
+               'ok=function(k){var e=w(k),s=(S.s||{})[e],y;if(!e)return 1;if(!s)return 0;y=s[0]=="h"?hr:md;return s[1]<=s[2]?y>=s[1]&&y<=s[2]:y>=s[1]||y<=s[2]};'
+               'for(i=0;i<n;i++)if(ok(i))o.push(i);n=o.length;if(!n)return;'
+               'for(i=n-1;i>0;i--){r=Math.floor(Math.random()*(i+1));x=o[i];o[i]=o[r];o[r]=x}'
+               'for(i=0;i<n;i++)if(w(o[i])){x=o[i];o[i]=o[0];o[0]=x;break}'
                'function show(k,first){at=(k%n+n)%n;t.textContent=J[o[at]];b.hidden=false;t.style.fontSize="";'
                'var c=window.getComputedStyle?getComputedStyle(t):null,h=c?parseFloat(c.minHeight)||0:0,f=c?parseFloat(c.fontSize)||0:0,z=100;'
                'while(h&&f&&t.scrollHeight>h+1&&z>72){z-=4;t.style.fontSize=f*z/100+"px"}'
