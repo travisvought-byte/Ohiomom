@@ -27,8 +27,12 @@
    "approved": true
   },
   {
-   "text": "Downward dog was going great until the actual dog joined in.",
-   "approved": true
+   "text": "Downward dog was going great until somebody decided I was a tunnel.",
+   "approved": true,
+   "cast": [
+    "delilah",
+    "atlas"
+   ]
   },
   {
    "text": "Laundry is the only workout where the weights multiply while you rest.",
@@ -41,7 +45,16 @@
   {
    "text": "Yoga has warrior one, two and three. Moms have warrior four: “Who drew on the wall?”",
    "approved": true,
-   "pose": "warrior2"
+   "pose": "warrior2",
+   "do": {
+    "genevieve": "sketch"
+   },
+   "cast": [
+    "delilah",
+    "ephraim",
+    "genevieve",
+    "atlas"
+   ]
   },
   {
    "text": "I asked for five minutes of peace. I got it, in installments.",
@@ -175,7 +188,10 @@
    "approved": true,
    "cast": [
     "atlas"
-   ]
+   ],
+   "do": {
+    "atlas": "plant"
+   }
   },
   {
    "text": "People ask how I stay so calm. I’m not calm. I’m in warrior two and I can’t feel my legs.",
@@ -209,7 +225,10 @@
    "approved": true,
    "cast": [
     "delilah"
-   ]
+   ],
+   "do": {
+    "delilah": "again"
+   }
   },
   {
    "text": "Yoga says to let go of what no longer serves you. I started with folding the fitted sheet.",
@@ -252,7 +271,7 @@
    "pose": "easy"
   },
   {
-   "text": "I rolled out my mat. Within a minute there were three kids and a stuffed rabbit on it. I was not one of them.",
+   "text": "I rolled out my mat. Within a minute there were three kids and a stuffed rabbit on it. I got the corner.",
    "approved": true,
    "cast": [
     "delilah",
@@ -296,8 +315,11 @@
    ]
   },
   {
-   "text": "Someone asked how many sweaters I own. I said, “Enough.” That was not true. There is no such number.",
-   "approved": true
+   "text": "I bought a new sweater for me. By Friday it had a juice stain, two stickers and a small person inside it.",
+   "approved": true,
+   "cast": [
+    "delilah"
+   ]
   },
   {
    "text": "Star pose is arms wide, legs wide, taking up all the room you can. My youngest does it in the middle of my bed at 2 a.m.",
@@ -309,11 +331,19 @@
   },
   {
    "text": "I started a gratitude journal. Day one: “Everyone is asleep.”",
-   "approved": true
+   "approved": true,
+   "when": "night",
+   "cast": []
   },
   {
    "text": "My mat says “non-slip.” It has clearly never met a juice box.",
-   "approved": true
+   "approved": true,
+   "cast": [
+    "delilah"
+   ],
+   "do": {
+    "delilah": "juice"
+   }
   },
   {
    "text": "Big-toe pose is about reaching for something just out of your grasp. I trained for it with the TV remote.",
@@ -336,7 +366,7 @@
    "pose": "tree"
   },
   {
-   "text": "Somebody in this house can solve a puzzle cube in under a minute. Nobody in this house can find the other shoe.",
+   "text": "Somebody in this house can solve a puzzle cube in under a minute. Nobody in this house can close a cabinet door.",
    "approved": true,
    "cast": [
     "ephraim",
@@ -421,7 +451,7 @@
    "pose": "mountain"
   },
   {
-   "text": "Yoga teaches patience. So does asking a reader “Yes or no?” and waiting for the end of the chapter.",
+   "text": "Yoga teaches patience. So does asking a teenager a yes-or-no question while he is reading.",
    "approved": true,
    "cast": [
     "ephraim",
@@ -432,7 +462,7 @@
    }
   },
   {
-   "text": "Thanksgiving tip: do yoga before the big meal, and you can call the second plate restorative.",
+   "text": "Thanksgiving tip: slow, deep breaths before the big meal. After the big meal, any breathing at all is the goal.",
    "approved": true,
    "when": "thanksgiving",
    "sweater": "pumpkin"
@@ -519,7 +549,7 @@
    ]
   },
   {
-   "text": "In December my tree pose has competition. The other tree has lights.",
+   "text": "Tree pose tip: fix your eyes on one spot that doesn’t move. In December nothing in this house holds still. Everything blinks.",
    "approved": true,
    "when": "winter",
    "pose": "tree",
@@ -537,7 +567,7 @@
    }
   },
   {
-   "text": "My oldest made a list of who is getting what. It has a column for prices and a column for “Mom, approximately.”",
+   "text": "My oldest made a spreadsheet of everyone’s Christmas presents. Under my name it says “TBD.”",
    "approved": true,
    "when": "winter",
    "cast": [
@@ -546,13 +576,13 @@
    ]
   },
   {
-   "text": "I wear a holiday sweater every day in December. My family calls it a phase. It is in its twelfth year.",
+   "text": "Never wear a light-up sweater to yoga. Someone small will spend the whole class looking for the switch.",
    "approved": true,
    "when": "winter",
    "sweater": "snowy",
    "cast": [
-    "ephraim",
-    "genevieve"
+    "delilah",
+    "atlas"
    ]
   },
   {
@@ -590,7 +620,7 @@
    "cast": []
   },
   {
-   "text": "After bedtime I practice a pose called lying very still so nobody hears me. It is advanced.",
+   "text": "After bedtime I practice a pose called sitting very still so nobody hears me. It is advanced.",
    "approved": true,
    "when": "night",
    "cast": []

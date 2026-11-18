@@ -402,6 +402,8 @@ class StoryTests(unittest.TestCase):
                 self.assertIn(sweater, extras.SEASON_SWEATERS[when], 'a seasonal story wears a sweater of its season')
             else:
                 self.assertIn(sweater, extras.EVERYDAY_SWEATERS, 'and an everyday one never does')
+            if 'delilah.copy' in acts and 'delilah' in cast:
+                self.assertIn(pose, extras.COPY_POSES, 'she copies her mother only when there are arms up to copy')
             if when == 'night':
                 self.assertEqual((cast, pose), ((), 'easy'), 'after bedtime the children are asleep')
             self.assertIn(pose, extras.POSES)
@@ -512,6 +514,8 @@ class SeasonTests(unittest.TestCase):
         self.assertIn('asleep', problems(when='night', cast=[], pose='tree'))
         self.assertIn('do says', problems(cast=['atlas'], do={'atlas': 'skydiving'}))
         self.assertIn('not in the cast', problems(cast=['atlas'], do={'delilah': 'juice'}))
+        self.assertIn('arms up', problems(cast=['delilah'], do={'delilah': 'copy'}, pose='goddess'))
+        self.assertEqual(problems(cast=['delilah'], do={'delilah': 'copy'}, pose='tree'), '')
 
     def test_every_activity_and_season_is_in_a_story(self):
         told = extras.approved_looks()
