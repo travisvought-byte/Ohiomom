@@ -1,47 +1,45 @@
 #!/usr/bin/env python3
-"""The picture and the joke of the day on the two front pages.
+"""The picture and Deborah's jokes on the two front pages.
 
-Both front pages carry the same two extras, drawn here so they cannot drift apart:
+Both front pages carry the same card, drawn here so the two cannot drift apart:
 
 - **The picture.** It is the family whose site this is (the owner's call, November 17, 2026). Deborah is on her
-  mat, tall and blond, in pink leggings, trying to get through the joke of the day. Her children are around,
-  each doing his or her own thing; nobody is there to answer the joke. Who they are is shown by what they do
-  and never said. It changes every day: she works on a different pose (POSES) in a different sweater (SWEATERS),
-  and different children are around (KIDS, CASTS). The site does not name the children, and nothing else about
-  them is written here: no ages, schools or places, and nothing about their health. It is inline SVG, moved by CSS. The rules are in templates/home-extras.css, and this script copies them to
-  the end of assets/ymt.css and ohio/assets/site.css, between marker comments, so the two sites cannot drift
-  apart: edit the template, never the copies. The picture is decoration, so it is hidden from screen readers,
-  and it holds still for visitors whose device asks for reduced motion. The OhioMom picture is the same room
-  with a cardinal at the window and Ohio on the wall.
-- **The joke of the day.** It is in the picture: Deborah's speech bubble, at the top of the page, so it is the
-  first thing a visitor meets (the owner's call, November 17, 2026: it should disarm people as they arrive).
-  data/jokes.json holds one joke for each date. Only jokes marked `approved` are ever written into a page; the
-  owner approves each batch before it runs. The page carries the approved jokes and a few lines of script that
-  show the one for the visitor's own date, so the joke changes at midnight on her clock and nothing is sent
-  anywhere. The bubble is HTML, not part of the drawing, so the words wrap, can be read aloud by a screen
-  reader, and can be selected. When a batch runs out the list starts over, one a day, until new jokes are
-  approved. jokes.html is the running list of the ones that have already run.
-- **The caption.** Under the drawing, one line says what Deborah is working on today. It is HTML too, for the
-  same reasons.
+  mat, tall and blond, in pink leggings, trying to get through a joke. Her children are around, each doing his
+  or her own thing; nobody is there to answer the joke. Who they are is shown by what they do and never said.
+  She works on different poses (POSES) in different sweaters (SWEATERS), and different children are around
+  (KIDS, CASTS). The site does not name the children, and nothing else about them is written here: no ages,
+  schools or places, and nothing about their health. It is inline SVG, moved by CSS. The rules are in
+  templates/home-extras.css, and this script copies them to the end of assets/ymt.css and
+  ohio/assets/site.css, between marker comments, so the two sites cannot drift apart: edit the template, never
+  the copies. The picture is decoration, so it is hidden from screen readers, and it holds still for visitors
+  whose device asks for reduced motion. The OhioMom picture is the same room with a cardinal at the window and
+  Ohio on the wall.
+- **The jokes.** One shows in the picture: Deborah's speech bubble, at the top of the page, so it is the first
+  thing a visitor meets (the owner's call, November 17, 2026: it should disarm people as they arrive).
+  data/jokes.json holds them. Only jokes marked `approved` are ever written into a page.
+- **Each joke with its picture is one little story, and they take turns** (the owner's call, November 17, 2026;
+  the card first showed one joke a day). The page carries all the approved jokes. Its script shuffles them,
+  shows one, and turns to another about once a minute; a visitor can flip back and on, and stop and start the
+  turning. Nothing is sent or stored. The bubble and the line under it are HTML, not part of the drawing, so the
+  words wrap, can be read aloud by a screen reader, and can be selected. The bubble keeps room for the longest
+  joke, so nothing below it moves when the joke changes. jokes.html lists them all.
+- **The caption.** Along the floor of the drawing, between the buttons that flip, one line says what Deborah is
+  working on.
 
-How a day gets its picture: every pose's arms and legs, every sweater pattern and all four children are in the
-drawing, and all but one set are switched off. The same script that shows the day's joke switches on the day's
-set, by setting attributes on the drawing. What it needs (the poses, the sweaters, and each day's choice) is in
+How a joke gets its picture: every pose's arms and legs, every sweater pattern and all four children are in the
+drawing, and all but one set are switched off. The same script that shows a joke switches on that joke's set,
+by setting attributes on the drawing. What it needs (the poses, the sweaters, and each joke's choice) is in
 the page beside the jokes, not in the stylesheet, so a stylesheet a browser kept from last month cannot dress
-her wrong. With scripts off the page shows the first pose, the first sweater and the first child.
+her wrong. With scripts off the page shows the first pose, the first sweater and one child, and no joke.
 
 The national front page (index.html) and jokes.html are built by scripts/ymt_build.py, which calls the
 functions here. The OhioMom front page (ohio/index.html) is static source, so this script writes the same
 blocks into it between marker comments, the way scripts/prerender_ohio.py does for the events.
 
-    python3 scripts/home_extras.py                    write the blocks into ohio/index.html and the rules into both stylesheets
-    python3 scripts/home_extras.py --check            check data/jokes.json, and fail if a page or stylesheet is out of step
-    python3 scripts/home_extras.py --approve          mark the waiting jokes approved (after the owner has approved the batch)
-    python3 scripts/home_extras.py --approve --start 2026-12-18
-                                                      the same, and run them from that day; approved jokes that had
-                                                      that day or a later one follow after them
+    python3 scripts/home_extras.py              write the blocks into ohio/index.html and the rules into both stylesheets
+    python3 scripts/home_extras.py --check      check data/jokes.json, and fail if a page or stylesheet is out of step
+    python3 scripts/home_extras.py --approve    mark the waiting jokes approved (scripts/joke_preview.py shows them first)
 """
-import datetime
 import json
 import math
 import re
@@ -54,10 +52,9 @@ JOKES = ROOT / 'data' / 'jokes.json'
 OHIO_HOME = ROOT / 'ohio' / 'index.html'
 STYLE = ROOT / 'templates' / 'home-extras.css'
 SHEETS = ('assets/ymt.css', 'ohio/assets/site.css')
-MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
-          'August', 'September', 'October', 'November', 'December']
 JOKE_MAX = 220  # characters: a joke is a line or two, never a story
-JOKE_HEADING = 'Deborah’s joke of the day'  # the heading of the speech bubble: the jokes are hers
+JOKE_HEADING = 'Deborah’s jokes'  # the heading of the speech bubble: the jokes are hers
+TURN_SECONDS = 56  # the card turns to another joke this often: four times round the picture's 14-second loop
 
 INK, SKIN, BLUSH = '#2b2140', '#f3c7a6', '#ee8fa0'
 BRAND, TEAL, SUN = '#cf2f5b', '#12766f', '#ffcb52'
@@ -76,18 +73,18 @@ OHIO = ('M.1 2.4L8.8 2.1L10.8 3L12 3.9L13.5 4.4L15.9 4.6L18.5 4L20.1 4L22.7 2.2L
 # her four children. The children are simply around, each doing his or her own thing while she tries to get
 # through her joke: nobody is there to answer it. Who they are is shown by what they do, never said (the owner's
 # call the same day). Each child stands in the same place every time, so nothing ever overlaps.
-# The site does not name them: the names below only say who is in a day's picture. Nothing else about the
+# The site does not name them: the names below only say who is in a joke's picture. Nothing else about the
 # children is written anywhere in this repository: no ages, schools or places, and nothing about their health.
 KIDS = ('delilah', 'ephraim', 'genevieve', 'atlas')
 KID_NAMES = {'delilah': 'Delilah', 'ephraim': 'Ephraim', 'genevieve': 'Genevieve', 'atlas': 'Atlas'}
 KID_X = {'genevieve': 106, 'ephraim': 150, 'delilah': 380, 'atlas': 452}  # where each one stands
-# Who is around on a day whose joke does not say: these take turns, so the room is never the same two days running.
+# Who is around when a joke does not say: these take turns down the list, never the same children twice running.
 CASTS = (('delilah',), ('ephraim', 'atlas'), ('genevieve',), ('atlas', 'delilah'), ('ephraim',), ('genevieve', 'delilah'),
          ('atlas',), ('ephraim', 'genevieve'), ('delilah', 'ephraim', 'genevieve', 'atlas'), ('genevieve', 'atlas'),
          ('ephraim', 'delilah'))
 
 # ---------------------------------------------------------------- her sweaters
-# Deborah wears a different sweater every day. name: (wool, pattern color, collar and hem, pattern).
+# Deborah has a sweater for every joke. name: (wool, pattern color, collar and hem, pattern).
 SWEATERS = {
     'heart': ('#ffd9e4', '#cf2f5b', '#f7b3c8', 'heart'),
     'candy': ('#f47aa5', '#ffffff', '#d95486', 'stripes'),
@@ -100,10 +97,10 @@ SWEATERS = {
     'mint': ('#bfe8d9', '#ffffff', '#93d1bd', 'stripes'),
     'berry': ('#cf2f5b', '#fff1e6', '#a9244a', 'dots'),
 }
-FIRST_SWEATER = 'heart'  # the one drawn in the page, before the script has picked the day's
+FIRST_SWEATER = 'heart'  # the one drawn in the page, before the script has picked a joke
 
 # ---------------------------------------------------------------- her poses
-# Deborah works on a different pose every day. She is drawn once from the hips up (her "top half"), and each
+# Deborah is always working on a pose. She is drawn once from the hips up (her "top half"), and each
 # pose moves that into place and draws its own arms and legs. All of them face the visitor, so one face works
 # for every pose. Points are in the picture's own units; her left is the visitor's right.
 HIP = (262, 113)                          # the middle of her hips when she stands straight
@@ -151,7 +148,7 @@ POSES = {
                    feet=(((211, 89.5), (209, 82.5)), ((263.5, 167.5), (273.5, 167.5))),
                    arms=(((231, 80), (213, 84)), ((286, 97), (275, 109))), front='b'),
 }
-FIRST_POSE = 'tree'  # the one drawn in the page, before the script has picked the day's
+FIRST_POSE = 'tree'  # the one drawn in the page, before the script has picked a joke
 
 
 def num(v):
@@ -240,7 +237,7 @@ def says(n, x, y, width, height, tail, text, size=16, fill=INK):
 
 
 def kid(name, drawn, cast):
-    """One child, drawn about x = 0 and moved to where he or she stands. Switched off unless in the day's cast."""
+    """One child, drawn about x = 0 and moved to where he or she stands. Switched off unless in the cast."""
     hidden = '' if name in cast else ' display="none"'
     return f'<g data-kid="{name}" transform="translate({KID_X[name]} 0)"{hidden}>{drawn}</g>'
 
@@ -397,8 +394,8 @@ def deborah():
 
 def scene_svg(ohio=False, cast=('delilah',)):
     """The front-page picture. `ohio` adds the cardinal at the window and Ohio on the wall. `cast` is who is
-    drawn showing before the script has picked the day's children."""
-    p = ['<svg class="scene" viewBox="0 10 520 196" aria-hidden="true" focusable="false">'
+    drawn showing before the script has picked a joke."""
+    p = ['<svg class="scene" viewBox="0 10 520 216" aria-hidden="true" focusable="false">'
          '<defs><linearGradient id="sc-wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6f5f0"/>'
          '<stop offset="1" stop-color="#d2ebe5"/></linearGradient>'
          '<linearGradient id="sc-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9e0fa"/>'
@@ -406,7 +403,7 @@ def scene_svg(ohio=False, cast=('delilah',)):
          '<clipPath id="sc-pane"><rect x="30" y="24" width="84" height="74" rx="5"/></clipPath>'
          f'<clipPath id="sc-knit"><path d="{KNIT}"/></clipPath></defs>',
          # the room
-         '<rect width="520" height="220" fill="url(#sc-wall)"/><rect y="172" width="520" height="48" fill="#f6dcc0"/>'
+         '<rect width="520" height="228" fill="url(#sc-wall)"/><rect y="172" width="520" height="56" fill="#f6dcc0"/>'
          '<rect y="169" width="520" height="4" fill="#fff"/>']
     # the window: morning sky, a hill, a cloud that drifts (and in Ohio, a cardinal)
     bird = ''
@@ -454,79 +451,95 @@ def scene_svg(ohio=False, cast=('delilah',)):
              '<path d="M489 150C492 127 503 116 516 112C512 131 504 144 489 150Z" fill="#2f8a5f"/>'
              '<path d="M489 150C481 133 483 112 489 97C496 112 497 133 489 150Z" fill="#58b386"/></g>'
              '<path d="M474 152h30l-4 26h-22z" fill="#d9825b"/><rect x="471" y="147" width="36" height="8" rx="3.5" fill="#e79a72"/>')
-    # on the floor in front: blocks and the bunny
-    p.append('<rect x="414" y="186" width="14" height="14" rx="3" fill="#b9a6ef"/>'
-             '<rect x="428.5" y="186" width="14" height="14" rx="3" fill="#f6b5c6"/>'
-             f'<rect x="421" y="172" width="14" height="14" rx="3" fill="{SUN}"/>'
-             '<g fill="#fff"><ellipse cx="399" cy="193" rx="7.5" ry="6.5"/><circle cx="399" cy="183" r="5.5"/>'
-             '<ellipse cx="396" cy="174" rx="2.4" ry="6.5" transform="rotate(-10 396 174)"/>'
-             '<ellipse cx="402" cy="174" rx="2.4" ry="6.5" transform="rotate(10 402 174)"/></g>'
-             '<ellipse cx="396" cy="174.5" rx="1" ry="4" transform="rotate(-10 396 174)" fill="#f6b5c6"/>'
-             '<ellipse cx="402" cy="174.5" rx="1" ry="4" transform="rotate(10 402 174)" fill="#f6b5c6"/>'
-             f'<circle cx="397" cy="182.5" r=".9" fill="{INK}"/><circle cx="401" cy="182.5" r=".9" fill="{INK}"/>')
+    # toys on the floor: a tower of blocks by the stool, the bunny by the plant
+    p.append('<rect x="72" y="167" width="14" height="14" rx="3" fill="#b9a6ef"/>'
+             '<rect x="72.5" y="153" width="14" height="14" rx="3" fill="#f6b5c6"/>'
+             f'<rect x="71.5" y="139" width="14" height="14" rx="3" fill="{SUN}"/>'
+             '<g fill="#fff"><ellipse cx="414" cy="174.5" rx="7.5" ry="6.5"/><circle cx="414" cy="164.5" r="5.5"/>'
+             '<ellipse cx="411" cy="155.5" rx="2.4" ry="6.5" transform="rotate(-10 411 155.5)"/>'
+             '<ellipse cx="417" cy="155.5" rx="2.4" ry="6.5" transform="rotate(10 417 155.5)"/></g>'
+             '<ellipse cx="411" cy="156" rx="1" ry="4" transform="rotate(-10 411 155.5)" fill="#f6b5c6"/>'
+             '<ellipse cx="417" cy="156" rx="1" ry="4" transform="rotate(10 417 155.5)" fill="#f6b5c6"/>'
+             f'<circle cx="412" cy="164" r=".9" fill="{INK}"/><circle cx="416" cy="164" r=".9" fill="{INK}"/>')
     p.append('</svg>')
     return ''.join(p)
 
 
-CAPTION_STYLE = 'margin:0;padding:.4rem .9rem .5rem;background:#fff;color:#655c78;font-size:.82rem;line-height:1.35'
+# ---------------------------------------------------------------- the card: joke, picture, and the way to flip
+def icon(*paths):
+    """A small picture for a button. It carries its own size, so it shows right whatever the stylesheet."""
+    return '<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false">' + ''.join(paths) + '</svg>'
 
 
-def caption_line(jokes):
-    """Under the drawing: what Deborah is working on today. The script fills it in, so it
-    starts hidden, and with no approved jokes there is no script and no line. Its look is written on the line
-    itself, not in the stylesheet, so it looks right even beside a stylesheet a browser kept from before it existed."""
-    return f'<p class="scenecap" id="scene-cap" style="{CAPTION_STYLE}" hidden></p>' if jokes else ''
+STROKE = 'fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"'
+ICON_BACK = icon(f'<path d="M9 2L4 7l5 5" {STROKE}/>')
+ICON_NEXT = icon(f'<path d="M5 2l5 5-5 5" {STROKE}/>')
+# Two pictures in one button: the bars show while the jokes are turning, the triangle when they have stopped.
+ICON_PAUSE = icon('<path data-icon="pause" d="M3 2.5h3v9H3zM8 2.5h3v9H8z" fill="currentColor"/>',
+                  '<path data-icon="play" display="none" d="M4 2.2v9.6L11.5 7z" fill="currentColor"/>')
+
+
+def joke_bubble(jokes, list_href):
+    """The joke as Deborah's speech bubble, for the top of the picture card: the heading, a button that stops
+    and starts the turning, a link to all the jokes, and the joke. It is hidden until the script has put a joke
+    in it, so there is never an empty bubble. Nothing at all with no approved jokes."""
+    if not jokes:
+        return ''
+    return (f'<div class="saying" id="joke" hidden><div class="sayinghead"><h2>{JOKE_HEADING}</h2>'
+            f'<button type="button" class="pp" id="joke-pause" aria-label="Pause the jokes">{ICON_PAUSE}</button>'
+            f'<a href="{esc(list_href)}">All jokes</a></div><p class="joketext" id="joke-text"></p></div>')
+
+
+# The bar lies along the floor of the drawing. Where it lies is written on the bar itself, not in the stylesheet,
+# so it stays put even beside a stylesheet a browser kept from before the bar existed.
+BAR_STYLE = 'position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center'
+
+
+def flip_bar(jokes):
+    """Along the floor of the drawing: Back, what Deborah is working on, Next. The script fills in the words and
+    shows the bar, so with scripts off, or with no approved jokes, the picture stands alone."""
+    if not jokes:
+        return ''
+    return (f'<div class="flipbar" id="scene-foot" style="{BAR_STYLE}" hidden>'
+            f'<button type="button" id="joke-prev" aria-label="Previous joke">{ICON_BACK}</button>'
+            '<p class="scenecap" id="scene-cap"></p>'
+            f'<button type="button" id="joke-next" aria-label="Next joke">{ICON_NEXT}</button></div>')
 
 
 def scene_block(ohio=False, jokes=None, list_href='jokes.html'):
-    """The picture card for a front page: the joke of the day in a speech bubble, the drawing under it, and
-    under that a line that says what Deborah is working on today."""
-    jokes = jokes or {}
-    return f'<div class="scenebox" id="scene">{joke_bubble(jokes, list_href)}{scene_svg(ohio)}{caption_line(jokes)}</div>'
+    """The picture card for a front page: the joke in a speech bubble, the drawing under it, and along the
+    floor of the drawing the buttons that flip to another joke, with what Deborah is working on between them."""
+    jokes = jokes or []
+    return (f'<div class="scenebox" id="scene" style="position:relative">{joke_bubble(jokes, list_href)}'
+            f'{scene_svg(ohio)}{flip_bar(jokes)}</div>')
 
 
-# ---------------------------------------------------------------- the joke of the day
+# ---------------------------------------------------------------- the jokes
 def read_jokes():
     return json.loads(JOKES.read_text(encoding='utf-8'))
 
 
 def approved_jokes(data=None):
-    """{ISO date: joke} for the jokes the owner has approved. An unapproved joke is never written into a page."""
+    """The jokes the owner has approved, in the order they are on file. An unapproved joke is never written into a page."""
     data = read_jokes() if data is None else data
-    return {j['date']: j['text'] for j in data['jokes'] if j.get('approved') is True}
-
-
-def long_date(iso):
-    y, m, d = (int(x) for x in iso.split('-'))
-    return f'{MONTHS[m - 1]} {d}, {y}'
+    return [j['text'] for j in data['jokes'] if j.get('approved') is True]
 
 
 def check_jokes(data):
     """Problems with data/jokes.json, as a list of sentences."""
-    errors, seen, last = [], set(), None
+    errors = []
     for i, j in enumerate(data.get('jokes', []), 1):
         where = f'joke {i}'
-        try:
-            day = datetime.date.fromisoformat(j.get('date', ''))
-        except ValueError:
-            errors.append(f'{where}: bad date')
-            continue
-        if j['date'] in seen:
-            errors.append(f'{where}: {j["date"]} is used twice')
-        seen.add(j['date'])
-        if last and day != last + datetime.timedelta(days=1):
-            errors.append(f'{where}: {j["date"]} does not follow {last.isoformat()}; a batch runs one day after another')
-        last = day
         text = j.get('text')
         if not isinstance(text, str) or not text.strip() or text != text.strip():
             errors.append(f'{where}: the joke is empty or has stray spaces')
         elif len(text) > JOKE_MAX:
             errors.append(f'{where}: {len(text)} characters; keep a joke under {JOKE_MAX}')
-        elif '<' in text or '>' in text:
+        elif '<' in text or '>' in text or '|' in text:
             errors.append(f'{where}: plain words only, no markup')
         if not isinstance(j.get('approved'), bool):
             errors.append(f'{where}: approved must be true or false')
-        # The picture for the day: who is around, her pose, her sweater. All optional: what a joke leaves out takes its turn.
+        # The picture that goes with it: who is around, her pose, her sweater. All optional: what a joke leaves out takes its turn.
         cast = j.get('cast')
         if cast is not None and (not isinstance(cast, list) or len(set(cast)) != len(cast) or any(k not in KIDS for k in cast)):
             errors.append(f'{where}: cast is a list of {", ".join(KIDS)}, each once (an empty list is Deborah alone)')
@@ -534,17 +547,20 @@ def check_jokes(data):
             errors.append(f'{where}: pose is one of {", ".join(POSES)}')
         if j.get('sweater') is not None and j['sweater'] not in SWEATERS:
             errors.append(f'{where}: sweater is one of {", ".join(SWEATERS)}')
+        extra = set(j) - {'text', 'approved', 'cast', 'pose', 'sweater'}
+        if extra:
+            errors.append(f'{where}: {", ".join(sorted(extra))} is not something a joke has')
     texts = [j.get('text') for j in data.get('jokes', [])]
     if len(set(texts)) != len(texts):
         errors.append('the same joke is listed twice')
     return errors
 
 
-# ---------------------------------------------------------------- the picture for each day
+# ---------------------------------------------------------------- the picture that goes with each joke
 def take_turns(jokes, key, names):
     """Each joke's `key` (its pose or its sweater): its own if it names one, otherwise the next in turn.
-    A turn is skipped if the two days before or the two days after already have it, so she is never in the
-    same pose, or the same sweater, twice in three days unless the jokes themselves ask for it."""
+    A turn is skipped if the two jokes before or the two after already have it, so the list never has her in the
+    same pose, or the same sweater, twice in three unless the jokes themselves ask for it."""
     out, turn = [], 0
     for i, j in enumerate(jokes):
         mine = j.get(key)
@@ -559,54 +575,55 @@ def take_turns(jokes, key, names):
 
 
 def caption(pose):
-    """The line under the drawing: what Deborah is working on today. It says nothing about the children:
+    """The line along the floor of the drawing: what Deborah is working on. It says nothing about the children:
     they are in the picture, and that is enough."""
-    return f'Today Deborah is working on {POSES[pose]["name"]}.'
+    return f'Deborah is working on {POSES[pose]["name"]}.'
 
 
 def looks(data=None):
-    """{ISO date: (pose, sweater, cast, caption)} for every joke on file: what the picture shows that day.
-    A joke can name its pose, its sweater and its cast (which children are around). Whatever it leaves out
-    takes its turn. A joke about "my youngest" names Delilah as its cast, so she is the one in the room; the
-    joke itself never says so."""
+    """One (pose, sweater, cast, caption) for every joke on file, in order: the picture that goes with it.
+    Joke and picture together are one little story. A joke can name its pose, its sweater and its cast (which
+    children are around). Whatever it leaves out takes its turn. A joke about "my youngest" names Delilah as its
+    cast, so she is the one in the room; the joke itself never says so."""
     jokes = (read_jokes() if data is None else data)['jokes']
     poses, sweaters = take_turns(jokes, 'pose', list(POSES)), take_turns(jokes, 'sweater', list(SWEATERS))
-    out, turn, before = {}, 0, None
+    out, turn, before = [], 0, None
     for i, j in enumerate(jokes):
         cast = j.get('cast')
         if cast is None:
             after = jokes[i + 1].get('cast') if i + 1 < len(jokes) else None
             near = (before, tuple(after) if after is not None else None)
-            while CASTS[turn % len(CASTS)] in near:  # not the same children two days running
+            while CASTS[turn % len(CASTS)] in near:  # not the same children twice running
                 turn += 1
             cast, turn = CASTS[turn % len(CASTS)], turn + 1
         before = tuple(cast)
-        out[j['date']] = (poses[i], sweaters[i], before, caption(poses[i]))
+        out.append((poses[i], sweaters[i], before, caption(poses[i])))
     return out
 
 
 def approved_looks(data=None):
-    """The picture for each approved joke's day. Like the jokes, nothing about an unapproved day reaches a page."""
+    """The picture for each approved joke, in the same order as approved_jokes. Like the jokes, nothing about
+    an unapproved one reaches a page."""
     data = read_jokes() if data is None else data
-    approved, every = approved_jokes(data), looks(data)
-    return {date: every[date] for date in approved}
+    return [look for j, look in zip(data['jokes'], looks(data)) if j.get('approved') is True]
 
 
-def scene_data(day_looks):
-    """What the page's script needs to dress the picture for a day: every pose (how her top half moves, the point
-    she wobbles about, where the joke bubble's tail points), every sweater, and each day's pose, sweater, children
-    and caption. It is all in the page, so a stylesheet a browser kept from last month cannot put it out of step."""
+def scene_data(joke_looks):
+    """What the page's script needs to dress the picture for a joke: every pose (how her top half moves, the point
+    she wobbles about, where the joke bubble's tail points), every sweater, and each joke's pose, sweater, children
+    and caption, in the jokes' order. It is all in the page, so a stylesheet a browser kept from last month cannot
+    put it out of step."""
     return {
         'p': {name: [top_move(name), f'{num(spec["foot"][0])}px {num(spec["foot"][1])}px', bubble_tail(name)] for name, spec in POSES.items()},
         'w': {name: list(sweater) for name, sweater in SWEATERS.items()},
-        'd': {date: '|'.join((pose, sweater, ' '.join(cast), words)) for date, (pose, sweater, cast, words) in day_looks.items()},
+        'd': ['|'.join((pose, sweater, ' '.join(cast), words)) for pose, sweater, cast, words in joke_looks],
     }
 
 
-# Dresses the picture for the day whose key is `p`: the pose, the sweater, which children are around, and the
-# caption. It only sets attributes on the drawing, so it can run again for another day.
-# It does nothing on a page with no picture, or for a day the page has no picture for.
-DRESS = ('function(D,p){var S=D.getElementById("scene-data"),B=D.getElementById("scene");if(!S||!B||!p)return;'
+# Dresses the picture for joke number `p`: the pose, the sweater, which children are around, and the caption.
+# It only sets attributes on the drawing, so it can run again for another joke.
+# It does nothing on a page with no picture, or for a joke the page has no picture for.
+DRESS = ('function(D,p){var S=D.getElementById("scene-data"),B=D.getElementById("scene");if(!S||!B||p==null)return;'
          'S=JSON.parse(S.textContent);var v=(S.d[p]||"").split("|"),P=S.p[v[0]],W=S.w[v[1]];if(!P||!W)return;'
          'var c=" "+v[2]+" ",'
          'q=function(s,g){var a=B.querySelectorAll(s),i;for(i=0;i<a.length;i++)g(a[i],a[i].getAttribute(s.slice(1,-1)))},'
@@ -619,20 +636,32 @@ DRESS = ('function(D,p){var S=D.getElementById("scene-data"),B=D.getElementById(
          'q("[data-fill]",function(e,a){e.setAttribute("fill",W[a])});'
          'q("[data-stroke]",function(e,a){e.setAttribute("stroke",W[a])});'
          'B.style.setProperty("--tail",P[2]);'
-         'var C=D.getElementById("scene-cap");if(C&&v[3]){C.textContent=v[3];C.hidden=false}}')
+         'var C=D.getElementById("scene-cap");if(C&&v[3])C.textContent=v[3]}')
 
-# Shows the joke for the visitor's own date; on jokes.html, shows the ones that have already run.
-# If today has no joke of its own, the latest earlier one stays up; once the batch has run out the list starts over.
-# On a front page it then dresses the picture for that same day. Nothing is sent or stored.
-JOKE_SCRIPT = ('<script>(function(){var D=document,j=JSON.parse(D.getElementById("jokes-data").textContent),k=Object.keys(j).sort(),'
-               'd=new Date(),t=d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2),p=null,i;'
-               'function n(s){var a=s.split("-");return Math.round(Date.UTC(+a[0],a[1]-1,+a[2])/864e5)}'
-               'if(k.length&&t>k[k.length-1]){p=k[(n(t)-n(k[k.length-1])-1)%k.length]}'
-               'else{for(i=0;i<k.length;i++)if(k[i]<=t)p=k[i]}'
-               'var b=D.getElementById("joke");if(b&&p){D.getElementById("joke-text").textContent=j[p];b.hidden=false}'
-               'var r=D.querySelectorAll("#joke-list li"),s=0;for(i=0;i<r.length;i++)if(r[i].getAttribute("data-date")<=t){r[i].hidden=false;s++}'
-               'var e=D.getElementById("joke-none");if(e&&!s)e.hidden=false;'
-               '(' + DRESS + ')(D,p)})();</script>')
+# The card's script. It shuffles the jokes and shows the first, so each visit starts on a different one; turns
+# to the next every TURN_SECONDS while the page is in view; and flips back or on when asked. Flipping by hand
+# stops the turning (the reader has taken over), the button in the bubble stops and starts it, and a device set
+# to reduce motion never starts it. A joke too long for the room the bubble keeps is set a little smaller, so
+# the page below never moves when the joke changes. Each joke brings its picture, and the two fade in together
+# (not on a device set to reduce motion). Nothing is sent or stored.
+JOKE_SCRIPT = ('<script>(function(){var D=document,d=D.getElementById("jokes-data"),b=D.getElementById("joke"),t=D.getElementById("joke-text");'
+               'if(!d||!b||!t)return;var J=JSON.parse(d.textContent),n=J.length,o=[],i,r,x,at=0,timer=0,dress=' + DRESS + ','
+               'still=!!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches),'
+               'fade=function(e){if(e&&e.animate&&!still)e.animate([{opacity:.2},{opacity:1}],{duration:450,easing:"ease-out"})};if(!n)return;'
+               'for(i=0;i<n;i++)o[i]=i;for(i=n-1;i>0;i--){r=Math.floor(Math.random()*(i+1));x=o[i];o[i]=o[r];o[r]=x}'
+               'function show(k,first){at=(k%n+n)%n;t.textContent=J[o[at]];b.hidden=false;t.style.fontSize="";'
+               'var c=window.getComputedStyle?getComputedStyle(t):null,h=c?parseFloat(c.minHeight)||0:0,f=c?parseFloat(c.fontSize)||0:0,z=100;'
+               'while(h&&f&&t.scrollHeight>h+1&&z>72){z-=4;t.style.fontSize=f*z/100+"px"}'
+               'dress(D,o[at]);if(!first){fade(t);fade(D.querySelector("#scene svg"))}}'
+               'function run(on){if(timer){clearInterval(timer);timer=0}'
+               'if(on){t.removeAttribute("aria-live");timer=setInterval(function(){if(!D.hidden)show(at+1)},' + str(TURN_SECONDS * 1000) + ')}'
+               'var p=D.getElementById("joke-pause"),a,i;if(!p)return;p.setAttribute("aria-label",on?"Pause the jokes":"Play the jokes");'
+               'a=p.querySelectorAll("[data-icon]");for(i=0;i<a.length;i++)a[i].setAttribute("display",(a[i].getAttribute("data-icon")=="pause")==on?"inline":"none")}'
+               'function flip(s){run(false);t.setAttribute("aria-live","polite");show(at+s)}'
+               'function on(id,g){var e=D.getElementById(id);if(e)e.onclick=g}'
+               'on("joke-prev",function(){flip(-1)});on("joke-next",function(){flip(1)});on("joke-pause",function(){run(!timer)});'
+               'var q=D.getElementById("scene-foot");if(q)q.hidden=false;'
+               'show(0,1);run(!still)})();</script>')
 
 
 def as_data(name, value):
@@ -642,46 +671,37 @@ def as_data(name, value):
 
 def jokes_data(jokes):
     """The approved jokes as a data block in the page."""
-    return as_data('jokes-data', jokes)
+    return as_data('jokes-data', list(jokes))
 
 
-def joke_bubble(jokes, list_href):
-    """The joke of the day as Deborah's speech bubble, for the top of the picture card. It is hidden until the script
-    has a joke for today, so there is never an empty bubble. Nothing at all with no approved jokes."""
+def joke_scripts(jokes, joke_looks):
+    """The data and the one script for a front page: the jokes, the picture that goes with each, and the script
+    that shows one and turns to the next."""
     if not jokes:
         return ''
-    return (f'<div class="saying" id="joke" hidden><div class="sayinghead"><h2>{JOKE_HEADING}</h2>'
-            f'<a href="{esc(list_href)}">Earlier<span> jokes</span></a></div><p class="joketext" id="joke-text"></p></div>')
-
-
-def joke_scripts(jokes, day_looks=None):
-    """The data and the one script for a page with jokes. A front page passes `day_looks` too, and the same
-    script then dresses its picture; the list of earlier jokes has no picture and leaves it out."""
-    if not jokes:
-        return ''
-    scene = as_data('scene-data', scene_data({d: day_looks[d] for d in jokes})) if day_looks else ''
-    return jokes_data(jokes) + scene + JOKE_SCRIPT
+    if len(joke_looks) != len(jokes):
+        raise SystemExit('every joke needs its picture: the two lists are not the same length')
+    return jokes_data(jokes) + as_data('scene-data', scene_data(joke_looks)) + JOKE_SCRIPT
 
 
 def joke_list(jokes):
-    """The running list for jokes.html, newest first. A joke stays hidden until its day."""
-    rows = ''.join(f'<li data-date="{d}" hidden><small>{long_date(d)}</small>{esc(jokes[d])}</li>' for d in sorted(jokes, reverse=True))
-    return (f'<ul class="jokelist" id="joke-list">{rows}</ul>'
-            '<p class="quiet" id="joke-none" hidden>No jokes have run yet. Come back tomorrow.</p>')
+    """Every approved joke, for jokes.html. Plain words in a list: the page needs no script."""
+    return '<ol class="jokelist">' + ''.join(f'<li>{esc(text)}</li>' for text in jokes) + '</ol>'
 
 
 # ---------------------------------------------------------------- the rules that move the picture
-CSS_START = '/* home-extras:start. Front-page picture and joke of the day. Copied from templates/home-extras.css by scripts/home_extras.py; edit the template. */'
+CSS_OPEN = '/* home-extras:start'  # how the block begins, whatever the rest of its first line says
+CSS_START = CSS_OPEN + '. Front-page picture and jokes. Copied from templates/home-extras.css by scripts/home_extras.py; edit the template. */'
 CSS_END = '/* home-extras:end */'
 
 
 def render_sheet(text):
     """The stylesheet with the current rules at its end, between the two marker comments."""
     block = CSS_START + '\n' + STYLE.read_text(encoding='utf-8').rstrip('\n') + '\n' + CSS_END + '\n'
-    if CSS_START in text:
-        if text.count(CSS_START) != 1 or text.count(CSS_END) != 1 or not text.endswith(CSS_END + '\n'):
+    if CSS_OPEN in text:
+        if text.count(CSS_OPEN) != 1 or text.count(CSS_END) != 1 or not text.endswith(CSS_END + '\n'):
             raise SystemExit('a stylesheet needs exactly one home-extras block, at its end')
-        text = text[:text.index(CSS_START)]
+        text = text[:text.index(CSS_OPEN)]
     return text + block
 
 
@@ -689,53 +709,40 @@ def render_sheet(text):
 MARK = re.compile(r'<!--home-extras:(?P<name>[a-z]+)-->(?P<body>.*?)<!--/home-extras-->', re.S)
 
 
-def ohio_blocks(jokes, day_looks=None):
-    return {'scene': scene_block(True, jokes, '../jokes.html'), 'jokescript': joke_scripts(jokes, day_looks)}
+def ohio_blocks(jokes, joke_looks):
+    return {'scene': scene_block(True, jokes, '../jokes.html'), 'jokescript': joke_scripts(jokes, joke_looks)}
 
 
-def render_ohio(text, jokes, day_looks=None):
-    blocks = ohio_blocks(jokes, day_looks)
+def render_ohio(text, jokes, joke_looks):
+    blocks = ohio_blocks(jokes, joke_looks)
     found = [m.group('name') for m in MARK.finditer(text)]
     if sorted(found) != sorted(blocks):
         raise SystemExit(f'ohio/index.html: expected one marker each for {sorted(blocks)}, found {found}')
     return MARK.sub(lambda m: f'<!--home-extras:{m.group("name")}-->{blocks[m.group("name")]}<!--/home-extras-->', text)
 
 
-def approve(start=None):
-    """Mark the waiting jokes approved. With `start`, they run from that day: jokes dated before it keep their
-    days, and approved jokes that had that day or a later one move back to follow the new ones, in order."""
+def approve():
+    """Mark the waiting jokes approved."""
     data = read_jokes()
-    jokes = data['jokes']
-    new = [j for j in jokes if j.get('approved') is not True]
+    new = [j for j in data['jokes'] if j.get('approved') is not True]
     if not new:
         raise SystemExit('Every joke on file is already approved.')
-    if start:
-        day = datetime.date.fromisoformat(start)
-        old = [j for j in jokes if j.get('approved') is True]
-        kept, moved = [j for j in old if j['date'] < start], [j for j in old if j['date'] >= start]
-        if kept and datetime.date.fromisoformat(kept[-1]['date']) + datetime.timedelta(days=1) != day:
-            raise SystemExit(f'{start} would leave a gap after {kept[-1]["date"]}; a batch runs one day after another.')
-        for j in new + moved:
-            j['date'] = day.isoformat()
-            day += datetime.timedelta(days=1)
-        data['jokes'] = jokes = kept + new + moved
     for j in new:
         j['approved'] = True
     JOKES.write_text(json.dumps(data, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
-    print(f'Approved {len(new)} jokes, {new[0]["date"]} to {new[-1]["date"]}; the list now runs to {jokes[-1]["date"]}. '
-          'Now run scripts/ymt_build.py and scripts/home_extras.py.')
+    print(f'Approved {len(new)} jokes; {len(data["jokes"])} are now in the turn. Now run scripts/ymt_build.py and scripts/home_extras.py.')
 
 
 def main():
     if '--approve' in sys.argv:
-        approve(sys.argv[sys.argv.index('--start') + 1] if '--start' in sys.argv else None)
+        approve()
         return
     data = read_jokes()
     errors = check_jokes(data)
     if errors:
         raise SystemExit('data/jokes.json:\n' + '\n'.join(errors))
-    jokes, day_looks = approved_jokes(data), approved_looks(data)
-    targets = {OHIO_HOME: lambda text: render_ohio(text, jokes, day_looks)}
+    jokes, joke_looks = approved_jokes(data), approved_looks(data)
+    targets = {OHIO_HOME: lambda text: render_ohio(text, jokes, joke_looks)}
     targets.update({ROOT / rel: render_sheet for rel in SHEETS})
     stale = []
     for path, render in targets.items():

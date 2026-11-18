@@ -4,11 +4,17 @@
 .scenebox{flex:0 0 auto;width:min(26rem,46%);background:#e6f5f0;border:2px solid #fff;border-radius:1.4rem;overflow:hidden;box-shadow:0 12px 26px -16px #6b3f5b99}
 .saying{position:relative;z-index:1;margin:.7rem .7rem 0;padding:.5rem .85rem .65rem;background:#fff;border-radius:1rem;box-shadow:0 6px 12px -10px #6b3f5b}
 .saying::after{content:"";position:absolute;left:var(--tail,50%);bottom:-.7rem;margin-left:-.55rem;border-left:.55rem solid transparent;border-right:.55rem solid transparent;border-top:.75rem solid #fff}
-.sayinghead{display:flex;align-items:center;justify-content:space-between;gap:.6rem}
-.saying h2{font:700 .78rem/1.3 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:.05em;text-transform:uppercase;color:var(--brand);margin:0}
-.sayinghead a{flex:none;font-size:.82rem;padding:.3rem 0 .3rem .4rem}
-.joketext{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:clamp(1.1rem,2.7vw,1.25rem);line-height:1.3;margin:.1rem 0 0;color:var(--ink)}
+.sayinghead{display:flex;align-items:center;gap:.45rem}
+.saying h2{font:700 .78rem/1.3 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:.05em;text-transform:uppercase;color:var(--brand);margin:0 auto 0 0}
+.sayinghead a{flex:none;font-size:.82rem;padding:.3rem 0 .3rem .15rem}
+.pp,.flipbar button{flex:none;display:grid;place-items:center;width:1.75rem;height:1.75rem;padding:0;border:0;border-radius:50%;background:var(--soft);color:var(--ink);font:inherit;cursor:pointer}
+@media (hover:hover){.pp:hover,.flipbar button:hover{background:#ffe1ea}}
+.pp:focus-visible,.flipbar button:focus-visible{outline:3px solid #7fb8f0;outline-offset:2px}
+.joketext{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:clamp(1.1rem,2.7vw,1.25rem);line-height:1.3;margin:.1rem 0 0;color:var(--ink);min-height:calc(5.2*clamp(1.1rem,2.7vw,1.25rem));display:flex;align-items:center}
 .scene{display:block;width:100%;height:auto}
+.flipbar{gap:.4rem;padding:0 .4rem .2rem}
+.flipbar button{background:#fff;box-shadow:0 1px 4px #6b3f5b44}
+.scenecap{flex:1;min-width:0;margin:0;text-align:center;font-size:clamp(.6rem,5.15vw - .4rem,.78rem);line-height:1.2;color:var(--ink)}
 .scene text{font:700 16px system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;text-anchor:middle}
 .sc-mom{transform-origin:256.5px 168px;animation:sc-mom 14s ease-in-out infinite}
 .sc-pony{transform-origin:268px 44px;animation:sc-pony 5s ease-in-out infinite}
@@ -50,10 +56,9 @@
 @keyframes sc-cloud{0%,100%{transform:translateX(0)}50%{transform:translateX(16px)}}
 @keyframes sc-leaf{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2.5deg)}}
 @keyframes sc-bird{0%,40%,50%,100%{transform:translateY(0)}45%{transform:translateY(-3.5px)}}
-.jokelist{list-style:none;padding:0;margin:1.2rem 0 0;max-width:44rem}
-.jokelist li{padding:.85rem 0;border-bottom:1.5px solid var(--line);font-size:1.1rem}
-.jokelist small{display:block;color:var(--muted);font-size:.85rem}
+.jokelist{padding:0 0 0 1.6rem;margin:1.2rem 0 0;max-width:44rem}
+.jokelist li{padding:.75rem 0 .75rem .2rem;border-bottom:1.5px solid var(--line);font-size:1.1rem}
+.jokelist li::marker{color:var(--muted);font-size:.85rem}
 @media (max-width:760px){.hero.home{padding-top:1.2rem}.herotop{flex-direction:column;align-items:stretch;gap:.8rem}.scenebox{order:-1;width:100%;max-width:26rem}}
-@media (max-width:400px){.sayinghead a span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}
 @media (prefers-reduced-motion:reduce){.scene *{animation:none!important}.sc-b1{opacity:1}}
 @media print{.scenebox{display:none}}
