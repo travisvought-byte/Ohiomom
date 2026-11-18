@@ -1,6 +1,6 @@
-"""The picture and the joke of the day on the two front pages. Run: python3 -m unittest discover tests"""
-import datetime
+"""The picture and Deborah's jokes on the two front pages. Run: python3 -m unittest discover tests"""
 import json
+import math
 import re
 import sys
 import tempfile
@@ -10,6 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 import home_extras as extras  # noqa: E402
+import joke_preview as preview  # noqa: E402
 
 FRONT = {'index.html': False, 'ohio/index.html': True}  # page: is it the OhioMom one
 TEMPLATE = (ROOT / 'templates' / 'home-extras.css').read_text(encoding='utf-8')
@@ -19,10 +20,17 @@ def read(rel):
     return (ROOT / rel).read_text(encoding='utf-8')
 
 
-def batch(n=3, start='2030-01-01', approved=True):
-    day = datetime.date.fromisoformat(start)
-    return {'jokes': [{'date': (day + datetime.timedelta(days=i)).isoformat(), 'text': f'Joke number {i + 1}.', 'approved': approved}
-                      for i in range(n)]}
+def batch(n=3, approved=True):
+    return {'jokes': [{'text': f'Joke number {i + 1}.', 'approved': approved} for i in range(n)]}
+
+
+def shown(svg, attribute):
+    """The names in `attribute` (data-pose, data-kid, ...) whose groups are not switched off in the drawing as written."""
+    return [name for name, off in re.findall(r'<g %s="([a-z0-9]+)"[^>]*?( display="none")?>' % attribute, svg) if not off]
+
+
+def every(svg, attribute):
+    return re.findall(r'<g %s="([a-z0-9]+)"' % attribute, svg)
 
 
 class PictureTests(unittest.TestCase):
@@ -42,7 +50,8 @@ class PictureTests(unittest.TestCase):
         """It says nothing a visitor needs, so screen readers skip it and the keyboard never lands in it."""
         for ohio in (False, True):
             svg = extras.scene_svg(ohio)
-            self.assertTrue(svg.startswith('<svg class="scene" viewBox="0 10 520 196" aria-hidden="true" focusable="false">'))
+            self.assertTrue(svg.startswith('<svg class="scene" viewBox="0 10 520 216" aria-hidden="true" focusable="false">'),
+                            'the floor is deep enough for the buttons that flip and the line between them')
             for banned in ('<a ', 'href', 'tabindex', '<title', 'onclick', '<script', '<image', 'http'):
                 self.assertNotIn(banned, svg, banned)
             ids = re.findall(r'\bid="([^"]+)"', svg)
@@ -56,9 +65,114 @@ class PictureTests(unittest.TestCase):
         self.assertNotIn(extras.OHIO, national)
         self.assertIn('class="sc-bird"', ohio)
         self.assertIn(extras.OHIO, ohio)
-        self.assertEqual(national.count('class="sc-b '), 4, 'four things the child says')
-        for words in ('>Ha ha!<', '>Again!<', '>AGAIN!<', '>Please?<'):
-            self.assertIn(words, national)
+        rest = lambda svg: svg[svg.index('<ellipse cx="266" cy="183"'):]  # from her mat on: the family, the plant, the toys
+        self.assertEqual(rest(national), rest(ohio), 'the same family in both rooms')
+
+    def test_the_family_is_in_the_picture(self):
+        """Deborah and her four children. Each child is drawn once and stands in a place of his or her own."""
+        svg = extras.scene_svg()
+        self.assertEqual(svg.count('data-mom'), 1)
+        self.assertEqual(svg.count('data-top'), 1, 'her top half is drawn once and every pose moves it')
+        self.assertEqual(sorted(every(svg, 'data-kid')), sorted(extras.KIDS))
+        self.assertEqual(set(extras.KID_X), set(extras.KIDS))
+        self.assertEqual(set(extras.KID_NAMES), set(extras.KIDS))
+        places = sorted(extras.KID_X.values())
+        self.assertTrue(all(b - a >= 40 for a, b in zip(places, places[1:])), 'the children stand apart from each other')
+        self.assertTrue(all(x < 174 - 20 or x > 358 + 20 for x in places), 'and off her mat')
+        # Before the script runs, the page shows Deborah with the first child.
+        self.assertEqual(shown(svg, 'data-kid'), ['delilah'])
+        both = extras.scene_svg(cast=('atlas', 'ephraim'))
+        self.assertEqual(sorted(shown(both, 'data-kid')), ['atlas', 'ephraim'])
+        self.assertEqual(shown(extras.scene_svg(cast=()), 'data-kid'), [], 'Deborah can have the mat to herself')
+
+    def test_the_children_are_around_not_on_stage(self):
+        """They do their own things while she tries to get through her joke (the owner's call, November 17, 2026).
+        Nobody is there to answer it: no child has lines about the joke. Only the smallest speaks, and what she
+        says is what the child in the first picture said."""
+        svg = extras.scene_svg()
+        kids = {}
+        ends = sorted(svg.index(f'<g data-kid="{name}"') for name in extras.KIDS) + [svg.index('<g class="sc-leaf">')]
+        for name in extras.KIDS:
+            start = svg.index(f'<g data-kid="{name}"')
+            kids[name] = svg[start:min(e for e in ends if e > start)]
+        self.assertEqual(re.findall(r'<text[^>]*>([^<]*)</text>', svg), ['Ha ha!', 'Again!', 'AGAIN!', 'Please?'])
+        self.assertEqual(kids['delilah'].count('class="sc-b '), 4)
+        for name in ('ephraim', 'genevieve', 'atlas'):
+            self.assertNotIn('<text', kids[name], f'{name} says nothing')
+            self.assertNotIn('sc-b', kids[name])
+        self.assertNotIn('data-say', svg, 'nobody is picked to speak')
+        self.assertNotIn('data-say', extras.DRESS)
+        # What each one is doing is in the drawing, and it moves.
+        self.assertIn('class="sc-look"', kids['ephraim'], 'he looks up from his book')
+        self.assertIn('class="sc-grin"', kids['genevieve'], 'she almost laughs')
+        self.assertIn('class="sc-peek"', kids['atlas'], 'he leans out from behind the plant')
+        self.assertIn('class="sc-hi"', kids['atlas'])
+        self.assertIn('class="sc-kid"', kids['delilah'])
+        self.assertLess(svg.index('<g data-kid="atlas"'), svg.index('<g class="sc-leaf">'), 'the plant is drawn in front of him')
+        # Who is around takes turns: every child comes round, alone and in company, and never the same lot twice running.
+        for group in extras.CASTS:
+            self.assertTrue(group and set(group) <= set(extras.KIDS) and len(set(group)) == len(group), group)
+        self.assertEqual(len(set(extras.CASTS)), len(extras.CASTS))
+        for name in extras.KIDS:
+            self.assertIn((name,), extras.CASTS, f'{name} has turns alone with her')
+            self.assertGreaterEqual(sum(name in group for group in extras.CASTS), 4, name)
+        self.assertIn(tuple(extras.KIDS), extras.CASTS, 'and sometimes everybody is there')
+
+    def test_the_picture_names_nobody(self):
+        """The drawing is hidden from screen readers, so no name is in it. The caption names Deborah and nobody else."""
+        svg = extras.scene_svg(True)
+        for name in list(extras.KID_NAMES.values()) + ['Deborah', 'Vought']:
+            self.assertNotIn(name, svg, name)
+        for name in extras.KID_NAMES.values():
+            self.assertRegex(name, r'^[A-Z][a-z]+$', 'a first name')
+        for pose in extras.POSES:
+            words = extras.caption(pose)
+            self.assertIn('Deborah', words)
+            for name in extras.KID_NAMES.values():
+                self.assertNotIn(name, words)
+
+    def test_every_pose_is_drawn_and_only_one_shows(self):
+        svg = extras.scene_svg()
+        self.assertEqual(set(every(svg, 'data-pose')), set(extras.POSES), 'each pose has its arms and legs in the drawing')
+        self.assertEqual(set(shown(svg, 'data-pose')), {extras.FIRST_POSE}, 'only the first pose shows before the script runs')
+        self.assertEqual(extras.top_move(extras.FIRST_POSE), '', 'the first pose leaves her top half where it is drawn')
+        self.assertGreaterEqual(len(extras.POSES), 7, 'enough that the same pose does not keep coming round')
+        names = [spec['name'] for spec in extras.POSES.values()]
+        self.assertEqual(len(set(names)), len(names))
+        for pose, spec in extras.POSES.items():
+            right, down, _ = spec['top']
+            for i in (0, 1):
+                elbow, hand = spec['arms'][i]
+                arm = math.dist(extras.placed(extras.SHOULDERS[i], spec['top']), elbow) + math.dist(elbow, hand)
+                self.assertTrue(30 <= arm <= 62, f'{pose}: an arm {arm:.0f} long is not her arm')
+                knee, ankle = spec['legs'][i]
+                leg = math.dist((extras.HIPS[i][0] + right, extras.HIPS[i][1] + down), knee) + math.dist(knee, ankle)
+                self.assertTrue(45 <= leg <= 65, f'{pose}: a leg {leg:.0f} long is not her leg')
+            points = [pt for limb in spec['arms'] + spec['legs'] + spec['feet'] for pt in limb] + [extras.placed(extras.HEAD, spec['top'])]
+            self.assertTrue(all(200 <= x <= 330 for x, _ in points), f'{pose}: she stays between the children')
+            self.assertTrue(all(26 <= y <= 170 for _, y in points), f'{pose}: she stays under the joke and on her mat')
+            self.assertTrue(set(spec['front']) <= set('Lab'), pose)
+            self.assertTrue(174 <= spec['foot'][0] <= 358, f'{pose}: she wobbles about a point on her mat')
+            self.assertRegex(extras.bubble_tail(pose), r'^[3-6]\d%$', f'{pose}: the tail of the joke points at her')
+
+    def test_every_sweater_can_be_worn(self):
+        svg = extras.scene_svg()
+        patterns = set(every(svg, 'data-pat'))
+        self.assertGreaterEqual(len(extras.SWEATERS), 7, 'enough that the same sweater does not keep coming round')
+        self.assertEqual(len(set(extras.SWEATERS.values())), len(extras.SWEATERS), 'no two alike')
+        for name, (wool, accent, trim, pattern) in extras.SWEATERS.items():
+            for color in (wool, accent, trim):
+                self.assertRegex(color, r'^#[0-9a-f]{6}$', name)
+            self.assertNotEqual(wool, accent, name)
+            self.assertNotEqual(wool, extras.SKIN, f'{name}: a sweater the color of her skin looks like no sweater')
+            self.assertTrue(pattern == 'plain' or pattern in patterns, f'{name}: {pattern} is not drawn')
+        first = extras.SWEATERS[extras.FIRST_SWEATER]
+        self.assertEqual(shown(svg, 'data-pat'), [first[3]], 'only the first sweater\'s pattern shows before the script runs')
+        # The script recolors by these marks: 0 the wool, 1 the pattern, 2 the collar and hem.
+        for mark, color in re.findall(r'(?:fill|stroke)="(#[0-9a-f]{6})" data-(?:fill|stroke)="([012])"', svg):
+            self.assertEqual(mark, first[int(color)])
+        self.assertEqual(set(re.findall(r'data-(?:fill|stroke)="(\d)"', svg)), {'0', '1', '2'})
+        self.assertIn(f'stroke="{extras.LEGGINGS}"', svg, 'pink leggings whatever the sweater')
 
     def test_both_stylesheets_carry_the_rules_from_the_template(self):
         for rel in extras.SHEETS:
@@ -67,9 +181,16 @@ class PictureTests(unittest.TestCase):
             block = css[css.index(extras.CSS_START) + len(extras.CSS_START) + 1:css.index(extras.CSS_END)]
             self.assertEqual(block, TEMPLATE, rel)
             self.assertTrue(css.endswith(extras.CSS_END + '\n'), rel)
+        # A stylesheet from before, whose block began with other words, gets today's block in its place, not a second one.
+        old = 'body{margin:0}\n' + extras.CSS_OPEN + '. What the first line used to say. */\n.gone{color:red}\n' + extras.CSS_END + '\n'
+        new = extras.render_sheet(old)
+        self.assertEqual(new, 'body{margin:0}\n' + extras.CSS_START + '\n' + TEMPLATE + extras.CSS_END + '\n')
+        self.assertEqual(extras.render_sheet(new), new)
+        with self.assertRaises(SystemExit, msg='two blocks, or one that is not at the end, is refused'):
+            extras.render_sheet(new + 'p{margin:0}\n')
 
     def test_every_moving_part_has_its_rule(self):
-        used = set(re.findall(r'\bsc-[a-z0-9]+', extras.scene_svg(True))) - {'sc-wall', 'sc-sky', 'sc-pane'}
+        used = set(re.findall(r'\bsc-[a-z0-9]+', extras.scene_svg(True))) - {'sc-wall', 'sc-sky', 'sc-pane', 'sc-knit'}
         for cls in sorted(used):
             self.assertRegex(TEMPLATE, r'\.%s[{,]' % re.escape(cls), f'{cls} is in the picture but has no rule')
         named = set(re.findall(r'animation:(sc-[a-z0-9]+) ', TEMPLATE))
@@ -96,99 +217,322 @@ class JokeTests(unittest.TestCase):
             change(data['jokes'])
             return ' '.join(extras.check_jokes(data))
         self.assertEqual(extras.check_jokes(batch()), [])
-        self.assertIn('bad date', problems(lambda j: j[1].update(date='soon')))
-        self.assertIn('used twice', problems(lambda j: j[1].update(date=j[0]['date'])))
-        self.assertIn('does not follow', problems(lambda j: j[2].update(date='2030-01-09')))
         self.assertIn('empty', problems(lambda j: j[0].update(text=' ')))
         self.assertIn('characters', problems(lambda j: j[0].update(text='ha ' * 100 + 'ha')))
         self.assertIn('no markup', problems(lambda j: j[0].update(text='A <b>bold</b> joke.')))
+        self.assertIn('no markup', problems(lambda j: j[0].update(text='One | two.')), 'the page splits a picture on this mark')
         self.assertIn('true or false', problems(lambda j: j[0].update(approved='yes')))
         self.assertIn('listed twice', problems(lambda j: j[1].update(text=j[0]['text'])))
+        # Jokes take turns now, so a joke has no day of its own.
+        self.assertIn('date is not something a joke has', problems(lambda j: j[0].update(date='2030-01-01')))
+        # Who is in the picture, her pose and her sweater are optional, and checked when given.
+        self.assertEqual(problems(lambda j: j[0].update(cast=['atlas', 'delilah'], pose='tree', sweater='plum')), '')
+        self.assertEqual(problems(lambda j: j[0].update(cast=[])), '', 'Deborah alone')
+        self.assertIn('cast is a list', problems(lambda j: j[0].update(cast=['the dog'])))
+        self.assertIn('cast is a list', problems(lambda j: j[0].update(cast=['atlas', 'atlas'])))
+        self.assertIn('cast is a list', problems(lambda j: j[0].update(cast='atlas')))
+        self.assertIn('pose is one of', problems(lambda j: j[0].update(pose='handstand')))
+        self.assertIn('sweater is one of', problems(lambda j: j[0].update(sweater='tuxedo')))
 
     def test_only_approved_jokes_are_ever_published(self):
         data = batch()
         data['jokes'][1]['approved'] = False
-        self.assertEqual(sorted(extras.approved_jokes(data)), ['2030-01-01', '2030-01-03'])
-        self.assertEqual(extras.approved_jokes(batch(approved=False)), {})
+        self.assertEqual(extras.approved_jokes(data), ['Joke number 1.', 'Joke number 3.'])
+        self.assertEqual(extras.approved_jokes(batch(approved=False)), [])
         real = extras.read_jokes()
         pages = [read(rel) for rel in FRONT] + ([read('jokes.html')] if (ROOT / 'jokes.html').exists() else [])
         for j in real['jokes']:
+            if j['approved'] is True:
+                continue
             for page in pages:
-                if j['approved'] is True:
-                    continue
                 self.assertNotIn(j['text'], page, 'a joke the owner has not approved is in a page')
                 self.assertNotIn(json.dumps(j['text'], ensure_ascii=False), page)
+        # The same holds for the picture: a joke's pose, sweater, children and caption wait for its approval.
+        data = batch()
+        data['jokes'][1].update(approved=False, pose='goddess', sweater='plum', cast=['atlas'])
+        self.assertEqual(len(extras.approved_looks(data)), 2)
+        self.assertNotIn('goddess|plum|atlas', ' '.join(extras.scene_data(extras.approved_looks(data))['d']))
+        self.assertEqual(extras.approved_looks(batch(approved=False)), [])
 
     def test_the_pages_match_the_jokes_on_file(self):
-        jokes = extras.approved_jokes()
+        jokes, joke_looks = extras.approved_jokes(), extras.approved_looks()
         home, ohio = read('index.html'), read('ohio/index.html')
-        self.assertEqual(extras.render_ohio(ohio, jokes), ohio, 'run python3 scripts/home_extras.py')
+        self.assertEqual(extras.render_ohio(ohio, jokes, joke_looks), ohio, 'run python3 scripts/home_extras.py')
         if not jokes:
             for rel, page in (('index.html', home), ('ohio/index.html', ohio)):
-                for part in ('id="joke"', 'jokes-data', 'jokes.html'):
-                    self.assertNotIn(part, page, f'{rel}: nothing about jokes until a batch is approved')
-            self.assertFalse((ROOT / 'jokes.html').exists(), 'no jokes page until a batch is approved')
+                for part in ('id="joke"', 'jokes-data', 'id="scene-data"', 'scene-cap', 'scene-foot', 'jokes.html'):
+                    self.assertNotIn(part, page, f'{rel}: nothing about jokes until some are approved')
+            self.assertFalse((ROOT / 'jokes.html').exists(), 'no jokes page until some are approved')
             return
         self.assertIn(extras.joke_bubble(jokes, 'jokes.html'), home)
         self.assertIn(extras.joke_bubble(jokes, '../jokes.html'), ohio)
+        # The list page is plain words: every joke once, in the order on file, and no script.
         listing = read('jokes.html')
-        for page in (home, ohio, listing):
-            self.assertEqual(page.count(extras.joke_scripts(jokes)), 1)
-            self.assertEqual(page.count('id="jokes-data"'), 1)
-        self.assertEqual(listing.count('<li data-date="'), len(jokes))
+        self.assertEqual(listing.count(extras.joke_list(jokes)), 1)
+        self.assertEqual(listing.count('<li>'), len(jokes))
+        for part in ('id="jokes-data"', 'id="scene-data"', extras.JOKE_SCRIPT, '<svg class="scene"'):
+            self.assertNotIn(part, listing, 'the list has no picture to dress and nothing to turn')
         for rel, page in (('index.html', home), ('ohio/index.html', ohio)):
-            # The joke is in the picture, at the top: the mom's speech bubble, straight above the drawing, before the choices.
+            self.assertEqual(page.count('id="jokes-data"'), 1, rel)
+            self.assertEqual(page.count(extras.JOKE_SCRIPT), 1, f'{rel}: one script on the page')
+            # The joke is in the picture, at the top: Deborah's speech bubble, straight above the drawing, before the choices.
             self.assertEqual(page.count('id="joke"'), 1, rel)
-            self.assertIn('<div class="scenebox"><div class="saying" id="joke" hidden>', page, rel)
+            self.assertIn('<div class="scenebox" id="scene" style="position:relative"><div class="saying" id="joke" hidden>', page, rel)
             self.assertIn('</div><svg class="scene"', page, f'{rel}: the bubble sits straight above the drawing')
             self.assertLess(page.index('id="joke"'), page.index('<div class="tiles">'), f'{rel}: the joke is met before the choices')
+            # Every joke brings its picture, and the same script shows both.
+            self.assertEqual(page.count(extras.joke_scripts(jokes, joke_looks)), 1, rel)
+            self.assertIn('</svg>' + extras.flip_bar(jokes) + '</div>', page, f'{rel}: the buttons that flip lie along the floor of the drawing')
+            block = page[page.index('id="jokes-data">') + len('id="jokes-data">'):]
+            self.assertEqual(json.loads(block[:block.index('</script>')]), jokes, f'{rel}: the approved jokes, in the order on file')
+            block = page[page.index('id="scene-data">') + len('id="scene-data">'):]
+            scene = json.loads(block[:block.index('</script>')])
+            self.assertEqual(len(scene['d']), len(jokes), f'{rel}: a picture for each joke')
         self.assertIn('<url><loc>https://www.yogamomtalk.com/jokes.html</loc></url>', read('sitemap.xml'))
 
-    def test_no_joke_block_without_an_approved_batch(self):
-        self.assertEqual(extras.joke_bubble({}, 'jokes.html'), '')
-        self.assertEqual(extras.joke_scripts({}), '')
-        self.assertEqual(extras.scene_block(True), f'<div class="scenebox">{extras.scene_svg(True)}</div>', 'the picture alone')
+    def test_no_joke_block_without_an_approved_joke(self):
+        self.assertEqual(extras.joke_bubble([], 'jokes.html'), '')
+        self.assertEqual(extras.flip_bar([]), '')
+        self.assertEqual(extras.joke_scripts([], []), '')
+        self.assertEqual(extras.scene_block(True), f'<div class="scenebox" id="scene" style="position:relative">{extras.scene_svg(True)}</div>',
+                         'the picture alone: no bubble, no buttons, no caption')
+        with self.assertRaises(SystemExit, msg='a joke with no picture, or a picture with no joke, is refused'):
+            extras.joke_scripts(['One.', 'Two.'], extras.approved_looks(batch(1)))
 
-    def test_the_joke_block_starts_hidden_and_points_to_the_list(self):
+    def test_the_card_starts_hidden_and_has_its_buttons(self):
         jokes = extras.approved_jokes(batch())
-        section = extras.joke_bubble(jokes, '../jokes.html')
-        self.assertTrue(section.startswith('<div class="saying" id="joke" hidden>'), 'no empty bubble when the script does not run')
-        self.assertIn('<h2>Mom joke of the day</h2>', section)
-        self.assertIn('<p class="joketext" id="joke-text"></p>', section)
-        self.assertIn('<a href="../jokes.html">Earlier jokes</a>', section)
-        self.assertNotIn('Joke number', section, 'the joke itself is filled in by the script, for the visitor\'s own date')
-        self.assertNotIn('aria-hidden', section, 'the joke is for everyone, so screen readers read it; only the drawing is hidden from them')
-        rows = extras.joke_list(jokes)
-        self.assertEqual(re.findall(r'<li data-date="([^"]+)" hidden>', rows), ['2030-01-03', '2030-01-02', '2030-01-01'])
-        self.assertIn('<small>January 3, 2030</small>Joke number 3.', rows)
-        self.assertIn('id="joke-none" hidden', rows)
+        bubble = extras.joke_bubble(jokes, '../jokes.html')
+        self.assertTrue(bubble.startswith('<div class="saying" id="joke" hidden>'), 'no empty bubble when the script does not run')
+        self.assertIn('<h2>Deborah’s jokes</h2>', bubble, 'the jokes are hers, and the heading says so')
+        self.assertIn('<p class="joketext" id="joke-text"></p>', bubble)
+        self.assertIn('<a href="../jokes.html">All jokes</a>', bubble)
+        self.assertNotIn('Joke number', bubble, 'the joke itself is put in by the script')
+        self.assertNotIn('aria-live', bubble, 'a joke that turns by itself is not read out over whatever a screen reader is saying')
+        # A thing that changes by itself can be stopped: the button is in the bubble, beside the heading.
+        self.assertRegex(bubble, r'<button type="button" class="pp" id="joke-pause" aria-label="Pause the jokes"><svg [^>]*aria-hidden="true"')
+        self.assertEqual(bubble.count('data-icon="pause"'), 1)
+        self.assertIn('data-icon="play" display="none"', bubble, 'the play picture waits its turn')
+        bar = extras.flip_bar(jokes)
+        self.assertTrue(bar.startswith('<div class="flipbar" id="scene-foot" style="position:absolute;'), 'where it lies is on the bar itself')
+        self.assertIn(' hidden>', bar[:bar.index('>') + 1], 'the buttons do nothing without the script, so they wait for it')
+        self.assertRegex(bar, r'<button type="button" id="joke-prev" aria-label="Previous joke"><svg [^>]*aria-hidden="true"')
+        self.assertRegex(bar, r'<button type="button" id="joke-next" aria-label="Next joke"><svg [^>]*aria-hidden="true"')
+        self.assertLess(bar.index('id="joke-prev"'), bar.index('id="scene-cap"'))
+        self.assertLess(bar.index('id="scene-cap"'), bar.index('id="joke-next"'), 'Back, what she is working on, Next')
+        for part in (bubble, bar):
+            self.assertNotIn('aria-hidden="true"', re.sub(r'<svg [^>]*>.*?</svg>', '', part), 'only the little pictures in the buttons are hidden from screen readers')
+            self.assertEqual(len(re.findall(r'<svg ', part)), len(re.findall(r'<svg width="14" height="14" ', part)), 'each carries its own size')
+        card = extras.scene_block(False, jokes, 'jokes.html')
+        self.assertEqual(card.count('<button '), 3)
+        self.assertEqual(card.count('type="button"'), 3, 'none of them can send a form')
+        self.assertEqual(extras.joke_list(jokes), '<ol class="jokelist"><li>Joke number 1.</li><li>Joke number 2.</li><li>Joke number 3.</li></ol>')
 
     def test_a_joke_cannot_break_out_of_the_page(self):
-        nasty = {'2030-01-01': 'Ha</script><script>alert(1)</script> & "quotes"'}
+        nasty = ['Ha</script><script>alert(1)</script> & "quotes"']
         block = extras.jokes_data(nasty)
         self.assertEqual(block.count('</script>'), 1)
         self.assertEqual(json.loads(block[block.index('>') + 1:block.rindex('<')]), nasty)
         self.assertNotIn('<script>', extras.joke_list(nasty))
+        self.assertIn('&lt;/script&gt;', extras.joke_list(nasty))
 
     def test_the_joke_script_sends_and_stores_nothing(self):
-        for banned in ('fetch(', 'XMLHttpRequest', 'sendBeacon', 'document.cookie', 'localStorage', 'sessionStorage',
-                       'WebSocket', 'http', 'innerHTML', 'eval('):
+        for banned in ('fetch(', 'XMLHttpRequest', 'sendBeacon', 'document.cookie', 'cookie', 'localStorage', 'sessionStorage',
+                       'WebSocket', 'http', 'innerHTML', 'outerHTML', 'insertAdjacent', 'document.write', 'eval(', 'Function(',
+                       'createElement', 'location', 'navigator', 'Date', 'setTimeout'):
             self.assertNotIn(banned, extras.JOKE_SCRIPT, banned)
         self.assertIn('textContent', extras.JOKE_SCRIPT)
+        self.assertIn(extras.DRESS, extras.JOKE_SCRIPT, 'the same few lines dress the picture')
+        self.assertEqual(extras.JOKE_SCRIPT.count('<script>'), 1)
 
-    def test_approving_marks_every_joke_and_can_move_the_batch(self):
+    def test_the_jokes_take_turns_about_once_a_minute(self):
+        """The owner's call, November 17, 2026: a random one, and a new one every minute or so."""
+        self.assertTrue(45 <= extras.TURN_SECONDS <= 75, 'about a minute')
+        self.assertEqual(extras.TURN_SECONDS % 14, 0, 'a whole number of the picture\'s 14-second loops, so a turn never cuts a gag in half')
+        self.assertIn('animation:sc-mom 14s ', TEMPLATE)
+        self.assertEqual(extras.JOKE_SCRIPT.count(f'setInterval(function(){{if(!D.hidden)show(at+1)}},{extras.TURN_SECONDS * 1000})'), 1,
+                         'one timer, and it waits while the page is not in view')
+        self.assertIn('Math.random()', extras.JOKE_SCRIPT, 'the order is shuffled on every visit')
+        self.assertIn('prefers-reduced-motion: reduce', extras.JOKE_SCRIPT, 'a device that asks for less motion is not given a card that changes by itself')
+        # The bubble keeps room for the longest joke, so nothing under the card moves when the joke changes.
+        self.assertRegex(TEMPLATE, r'\.joketext\{[^}]*min-height:calc\(5\.2\*clamp\(')
+
+    def approving(self, data):
+        """The joke file after `approve`, run on a copy."""
         with tempfile.TemporaryDirectory() as tmp:
             path = Path(tmp) / 'jokes.json'
-            path.write_text(json.dumps(batch(approved=False)), encoding='utf-8')
+            path.write_text(json.dumps(data), encoding='utf-8')
             real, extras.JOKES = extras.JOKES, path
             try:
-                extras.approve('2031-03-30')
-                data = extras.read_jokes()
+                extras.approve()
+                return extras.read_jokes()
             finally:
                 extras.JOKES = real
-        self.assertEqual([j['date'] for j in data['jokes']], ['2031-03-30', '2031-03-31', '2031-04-01'])
-        self.assertTrue(all(j['approved'] is True for j in data['jokes']))
-        self.assertEqual(extras.check_jokes(data), [])
+
+    def test_approving_marks_every_waiting_joke(self):
+        data = batch(4)
+        data['jokes'][1]['approved'] = data['jokes'][3]['approved'] = False
+        data['jokes'][3]['cast'] = ['atlas']
+        after = self.approving(data)
+        self.assertEqual([j['text'] for j in after['jokes']], [j['text'] for j in data['jokes']], 'nothing moves')
+        self.assertTrue(all(j['approved'] is True for j in after['jokes']))
+        self.assertEqual(after['jokes'][3]['cast'], ['atlas'], 'a joke keeps its picture')
+        self.assertEqual(extras.check_jokes(after), [])
+        with self.assertRaises(SystemExit, msg='nothing is waiting'):
+            self.approving(batch())
+
+
+class StoryTests(unittest.TestCase):
+    """A joke and its picture are one little story: her pose, her sweater, which children are around, and the caption."""
+
+    def test_every_joke_on_file_has_its_picture(self):
+        data = extras.read_jokes()
+        joke_looks = extras.looks(data)
+        self.assertEqual(len(joke_looks), len(data['jokes']))
+        for j, (pose, sweater, cast, words) in zip(data['jokes'], joke_looks):
+            self.assertIn(pose, extras.POSES)
+            self.assertIn(sweater, extras.SWEATERS)
+            self.assertTrue(set(cast) <= set(extras.KIDS))
+            self.assertEqual((j.get('pose') or pose, j.get('sweater') or sweater), (pose, sweater), 'what a joke names, it gets')
+            if 'cast' in j:
+                self.assertEqual(list(cast), j['cast'])
+            self.assertEqual(words, f'Deborah is working on {extras.POSES[pose]["name"]}.')
+            self.assertNotIn('|', words + ''.join(cast), 'the page keeps a picture as one line split on this mark')
+
+    def test_there_are_plenty_of_stories_and_everyone_is_in_some(self):
+        """The owner asked for about thirty little stories to flip through (November 17, 2026)."""
+        data = extras.read_jokes()
+        told = [(j, look) for j, look in zip(data['jokes'], extras.looks(data)) if j['approved'] is True]
+        self.assertGreaterEqual(len(told), 30)
+        for kid in extras.KIDS:
+            self.assertGreaterEqual(sum(kid in look[2] for _, look in told), 8, f'{kid} is around in plenty of them')
+        self.assertGreaterEqual(sum(not look[2] for _, look in told) + sum(len(look[2]) == 1 for _, look in told), 10, 'some are quiet')
+        self.assertEqual({look[0] for _, look in told}, set(extras.POSES), 'every pose is in a story')
+        self.assertEqual({look[1] for _, look in told}, set(extras.SWEATERS), 'and every sweater')
+        # The site does not print the children's names: a joke says "my son" or "my youngest".
+        for j in data['jokes']:
+            for name in extras.KID_NAMES.values():
+                self.assertNotIn(name, j['text'], 'the jokes name no child')
+
+    def test_poses_and_sweaters_take_turns(self):
+        joke_looks = extras.looks(batch(40))
+        for part, names in ((0, extras.POSES), (1, extras.SWEATERS)):
+            worn = [look[part] for look in joke_looks]
+            self.assertEqual(set(worn), set(names), 'all of them come round')
+            for gap in (1, 2):
+                self.assertTrue(all(a != b for a, b in zip(worn, worn[gap:])), 'never the same twice in three')
+        around = [look[2] for look in joke_looks]
+        self.assertEqual(around[:len(extras.CASTS)], list(extras.CASTS), 'with no cast named, who is around takes turns')
+        self.assertTrue(all(a != b for a, b in zip(around, around[1:])), 'never the same children twice running')
+        # A joke that names who is around gets them, and the jokes on either side step aside.
+        named = batch(5)
+        named['jokes'][1]['cast'] = list(extras.CASTS[0])
+        named['jokes'][3]['cast'] = list(extras.CASTS[2])
+        around = [look[2] for look in extras.looks(named)]
+        self.assertEqual((around[1], around[3]), (extras.CASTS[0], extras.CASTS[2]))
+        self.assertTrue(all(a != b for a, b in zip(around, around[1:])), around)
+        # A joke that names its pose gets it, and the jokes around it step aside.
+        data = batch(6)
+        data['jokes'][2]['pose'] = 'tree'
+        data['jokes'][3]['sweater'] = extras.FIRST_SWEATER
+        worn = extras.looks(data)
+        self.assertEqual(worn[2][0], 'tree')
+        self.assertEqual(worn[3][1], extras.FIRST_SWEATER)
+        for part in (0, 1):
+            names = [look[part] for look in worn]
+            for gap in (1, 2):
+                self.assertTrue(all(a != b for a, b in zip(names, names[gap:])), names)
+
+    def test_the_caption_is_about_deborah(self):
+        """One short line: what she is working on. The children are in the picture, and that is enough."""
+        self.assertEqual(extras.caption('tree'), 'Deborah is working on tree pose.')
+        self.assertEqual(extras.caption('warrior2'), 'Deborah is working on warrior two.')
+        for pose in extras.POSES:
+            self.assertLessEqual(len(extras.caption(pose)), 36, 'one line between the two buttons, on a phone')
+            self.assertNotIn('oday', extras.caption(pose), 'the jokes take turns now, so no line speaks of today')
+        self.assertRegex(TEMPLATE, r'\.scenecap\{[^}]*font-size:clamp\([^)]*vw[^)]*\)', 'and on a narrow phone the line is set smaller, not broken in two')
+        data = batch(3)
+        data['jokes'][0]['cast'] = ['genevieve', 'atlas']
+        for pose, _, _, words in extras.looks(data):
+            self.assertEqual(words, extras.caption(pose), 'whoever is around')
+
+    def test_the_page_gets_what_the_script_needs(self):
+        data = batch(3)
+        data['jokes'][1].update(cast=['atlas', 'genevieve'], pose='triangle', sweater='plum')
+        scene = extras.scene_data(extras.approved_looks(data))
+        self.assertEqual(set(scene), {'p', 'w', 'd'})
+        self.assertEqual(set(scene['p']), set(extras.POSES))
+        self.assertEqual(set(scene['w']), set(extras.SWEATERS))
+        self.assertEqual(len(scene['d']), 3)
+        self.assertEqual(scene['d'][1], 'triangle|plum|atlas genevieve|Deborah is working on triangle pose.')
+        self.assertEqual(scene['p']['tree'], ['', '256.5px 168px', '50%'])
+        self.assertEqual(scene['p']['triangle'][0], 'translate(8 4)rotate(-58 262 113)')
+        self.assertEqual(scene['w']['plum'], list(extras.SWEATERS['plum']))
+        for move, foot, tail in scene['p'].values():
+            self.assertRegex(move, r'^(translate\(-?[\d.]+ -?[\d.]+\))?(rotate\(-?[\d.]+ 262 113\))?$')
+            self.assertRegex(foot, r'^[\d.]+px [\d.]+px$')
+        block = extras.joke_scripts(extras.approved_jokes(data), extras.approved_looks(data))
+        self.assertEqual(block.count('<script'), 3, 'the jokes, the picture, and one script')
+        self.assertEqual(block.count('<script>'), 1)
+        self.assertLess(block.index('id="jokes-data"'), block.index('id="scene-data"'))
+
+
+class PreviewTests(unittest.TestCase):
+    """The page the owner looks at (scripts/joke_preview.py). It shows the picture card as the site draws it, for
+    every joke on file, and it can hold jokes nobody has approved, so it stays out of the site."""
+
+    def test_it_shows_every_joke_with_the_site_s_own_picture(self):
+        data = batch(4)
+        for j in data['jokes'][2:]:
+            j['approved'] = False
+        data['jokes'][3]['cast'] = ['atlas', 'genevieve']
+        html = preview.page(data)
+        self.assertTrue(html.startswith('<!DOCTYPE html>'))
+        order = ['Joke number 3.', 'Joke number 4.', 'Joke number 1.', 'Joke number 2.']  # the waiting jokes come first
+        for i, text in enumerate(order):
+            self.assertEqual(html.count(f'data-joke="{i}"'), 1)
+            self.assertIn(f'data-joke="{i}" aria-current="false">{text}<span class="who">', html)
+        self.assertIn(extras.scene_block(False, order, '#'), html, 'the card the front pages show')
+        self.assertIn(extras.DRESS, html, 'dressed by the front pages\' own lines of script')
+        self.assertIn(TEMPLATE, html, 'and moved by the same rules')
+        self.assertIn('Waiting for your OK (2)', html)
+        self.assertIn('In the turn on the site (2)', html)
+        self.assertIn('Atlas, Genevieve · ', html, 'each joke says who is in its picture')
+        self.assertEqual(html.count('data-try="pose"'), len(extras.POSES), 'and any pose, sweater or child can be tried')
+        self.assertEqual(html.count('data-try="sweater"'), len(extras.SWEATERS))
+        self.assertEqual(html.count('data-try="kid"'), len(extras.KIDS))
+        self.assertIn('Preview. Not the site.', html)
+        self.assertIn('<meta name="robots" content="noindex">', html)
+        self.assertNotIn('setInterval', html, 'the preview does not turn by itself')
+
+    def test_it_is_one_file_that_loads_nothing(self):
+        html = preview.page(batch(3, approved=False))
+        for banned in (' src=', '<link', '@import', 'http', 'fetch(', 'XMLHttpRequest', 'localStorage', 'document.cookie', '<iframe', '<img'):
+            self.assertNotIn(banned, html, banned)
+        self.assertTrue(all(ref.startswith('#sc-') for ref in re.findall(r'url\(([^)]*)\)', html)), 'only the drawing\'s own gradients and clips')
+        self.assertEqual(html.count('<script>'), 1)
+        self.assertNotIn('Waiting for your OK', preview.page(batch(2)), 'no heading for a list with nothing in it')
+        self.assertNotIn('In the turn on the site', html)
+
+    def test_it_is_never_written_into_the_repository(self):
+        for inside in (ROOT / 'preview.html', ROOT / 'ohio' / 'preview.html', ROOT):
+            real, sys.argv = sys.argv, ['joke_preview.py', str(inside)]
+            try:
+                with self.assertRaises(SystemExit):
+                    preview.main()
+            finally:
+                sys.argv = real
+        self.assertFalse((ROOT / 'preview.html').exists())
+        self.assertFalse((ROOT / 'ohio' / 'preview.html').exists())
+        with tempfile.TemporaryDirectory() as tmp:
+            real, sys.argv = sys.argv, ['joke_preview.py', str(Path(tmp) / 'preview.html')]
+            try:
+                preview.main()
+            finally:
+                sys.argv = real
+            written = (Path(tmp) / 'preview.html').read_text(encoding='utf-8')
+        self.assertEqual(written, preview.page())
+        for j in extras.read_jokes()['jokes']:
+            self.assertIn(j['text'].replace('&', '&amp;'), written)
 
 
 if __name__ == '__main__':

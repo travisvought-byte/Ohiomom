@@ -238,7 +238,7 @@ def hero(title, lede, extra='', cls='slim'):
 # ---------------------------------------------------------------- pages
 def build_index(data):
     """The front page asks one question and shows no listings. Every listing is one choice away.
-    Beside the question is the picture, with the joke of the day in a speech bubble in it (scripts/home_extras.py)."""
+    Beside the question is the picture, with one of Deborah's jokes in a speech bubble in it (scripts/home_extras.py)."""
     site = data['site']
     jokes = extras.approved_jokes()
     tiles = ''.join(f'<a class="tile {c}" href="{h}"><span class="ico" aria-hidden="true">{i}</span><span class="ttext"><strong>{esc(t)}</strong><span>{esc(d)}</span></span></a>'
@@ -261,17 +261,16 @@ def build_index(data):
     structured = '\n<script type="application/ld+json">' + json.dumps(about, ensure_ascii=False).replace('<', '\\u003c') + '</script>'
     return page(data, 'index.html', f"{site['name']}: help for moms in all 50 states", desc,
                 body, 'home', head_extra=OHIO_REDIRECT + structured,
-                scripts='\n' + extras.joke_scripts(jokes) if jokes else '')
+                scripts='\n' + extras.joke_scripts(jokes, extras.approved_looks()) if jokes else '')
 
 
 def build_jokes(data, jokes):
-    """The running list of the jokes of the day: the ones that have already run, newest first."""
-    lede = ('One mom joke a day, for the days that need one. Today\'s is on the <a href="index.html">home page</a>. '
-            'The ones that already ran are below, newest first.')
-    body = hero('Mom joke of the day', lede) + f'\n<section class="wrap">{extras.joke_list(jokes)}</section>'
-    return page(data, 'jokes.html', 'Mom joke of the day', 'A mom joke every day, and the ones that already ran.', body,
-                head_extra=structured_data(breadcrumbs(data, [('Mom joke of the day', 'jokes.html')])),
-                scripts='\n' + extras.joke_scripts(jokes))
+    """Every one of Deborah's jokes on one page. They take turns in the picture on the home page."""
+    lede = ('For the days that need one. They take turns at the top of the <a href="index.html">home page</a>, '
+            'a new one every minute. Here they all are.')
+    body = hero('Deborah’s mom jokes', lede) + f'\n<section class="wrap">{extras.joke_list(jokes)}</section>'
+    return page(data, 'jokes.html', 'Mom jokes', 'Mom jokes from Deborah, who started Yoga Mom Talk: yoga, sweaters and a house with kids in it.', body,
+                head_extra=structured_data(breadcrumbs(data, [('Mom jokes', 'jokes.html')])))
 
 
 def structured_data(*items):

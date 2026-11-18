@@ -1,155 +1,327 @@
 {
- "schema_version": 1,
- "purpose": "Joke of the day for the Yoga Mom Talk and OhioMom front pages. Only jokes with approved true are published; the owner approves each batch before it runs.",
+ "schema_version": 3,
+ "purpose": "Deborah's jokes for the Yoga Mom Talk and OhioMom front pages, each with the picture that goes with it. The card shows one at random and turns to another every minute; a visitor can flip through them. Only jokes with approved true are published. cast lists the children who are around in the picture (an empty list is Deborah alone); pose and sweater are optional too. Whatever a joke leaves out takes its turn.",
  "jokes": [
   {
-   "date": "2026-11-17",
    "text": "I headed out to yoga and said “namaste.” My toddler said, “No, mama stay.” She won.",
-   "approved": true
+   "approved": true,
+   "cast": [
+    "delilah"
+   ]
   },
   {
-   "date": "2026-11-18",
    "text": "My favorite yoga pose is child’s pose. My child’s favorite is climbing on my back while I do it.",
    "approved": true
   },
   {
-   "date": "2026-11-19",
    "text": "Mom coffee comes in three temperatures: hot, cold, and found in the microwave at bedtime.",
    "approved": true
   },
   {
-   "date": "2026-11-20",
    "text": "Why are moms so good at balance poses? Years of carrying a kid, a bag and a conversation at the same time.",
-   "approved": true
+   "approved": true,
+   "pose": "tree"
   },
   {
-   "date": "2026-11-21",
    "text": "Bedtime is at 8. Requests for water, one more story and the meaning of life begin at 8:01.",
    "approved": true
   },
   {
-   "date": "2026-11-22",
    "text": "Downward dog was going great until the actual dog joined in.",
    "approved": true
   },
   {
-   "date": "2026-11-23",
    "text": "Laundry is the only workout where the weights multiply while you rest.",
    "approved": true
   },
   {
-   "date": "2026-11-24",
    "text": "My kid can’t hear “shoes on” from two feet away, but can hear a snack wrapper from the next county.",
    "approved": true
   },
   {
-   "date": "2026-11-25",
    "text": "Yoga has warrior one, two and three. Moms have warrior four: “Who drew on the wall?”",
-   "approved": true
+   "approved": true,
+   "pose": "warrior2"
   },
   {
-   "date": "2026-11-26",
    "text": "I asked for five minutes of peace. I got it, in installments.",
    "approved": true
   },
   {
-   "date": "2026-11-27",
    "text": "Motherhood is finding a rock in the washer and knowing exactly whose pocket it came from.",
    "approved": true
   },
   {
-   "date": "2026-11-28",
    "text": "Savasana: lie still, eyes closed, do nothing. I have been practicing it at 6 a.m. for years. It’s called pretending to be asleep.",
-   "approved": true
+   "approved": true,
+   "pose": "easy"
   },
   {
-   "date": "2026-11-29",
    "text": "My toddler’s favorite food is whatever is on my plate.",
-   "approved": true
+   "approved": true,
+   "cast": [
+    "delilah"
+   ]
   },
   {
-   "date": "2026-11-30",
    "text": "Tree pose is easy. Try it with a kid hanging off each branch.",
-   "approved": true
+   "approved": true,
+   "cast": [
+    "delilah",
+    "atlas"
+   ],
+   "pose": "tree"
   },
   {
-   "date": "2026-12-01",
    "text": "Deep breath in. Deep breath out. Repeat until the shoes are on.",
    "approved": true
   },
   {
-   "date": "2026-12-02",
    "text": "Nothing in the world is quieter than a toddler who has just found the markers.",
-   "approved": true
+   "approved": true,
+   "cast": [
+    "delilah"
+   ]
   },
   {
-   "date": "2026-12-03",
    "text": "Meditation is sitting quietly and noticing your thoughts. All of mine are, “Did I switch the laundry?”",
-   "approved": true
+   "approved": true,
+   "pose": "easy"
   },
   {
-   "date": "2026-12-04",
    "text": "I finally found my inner peace. It was under the couch with the missing sock.",
    "approved": true
   },
   {
-   "date": "2026-12-05",
    "text": "My yoga class said to bring a block. I brought forty. They were already in my bag, next to one tiny shoe and a banana.",
    "approved": true
   },
   {
-   "date": "2026-12-06",
    "text": "I can’t remember why I walked into this room, but I know every word of a cartoon theme song from three years ago.",
    "approved": true
   },
   {
-   "date": "2026-12-07",
    "text": "“Happy baby” is a real yoga pose. Keeping a baby happy at 3 a.m. is a much more advanced practice.",
    "approved": true
   },
   {
-   "date": "2026-12-08",
    "text": "“Because I said so” is just mom for “trust the process.”",
    "approved": true
   },
   {
-   "date": "2026-12-09",
    "text": "My stretching routine: reaching under the car seat for a snack that fell in 2022.",
    "approved": true
   },
   {
-   "date": "2026-12-10",
    "text": "Mom math: to be somewhere by 9, start getting everyone ready at 7 and arrive at 9:20.",
    "approved": true
   },
   {
-   "date": "2026-12-11",
    "text": "Mountain pose: stand tall and still. Also known as waiting for someone to find the other shoe.",
-   "approved": true
+   "approved": true,
+   "pose": "mountain"
   },
   {
-   "date": "2026-12-12",
    "text": "I don’t need an alarm clock. I have a small person who announces the sunrise.",
-   "approved": true
+   "approved": true,
+   "cast": [
+    "delilah"
+   ]
   },
   {
-   "date": "2026-12-13",
    "text": "The floor is lava. The couch is a boat. I am, apparently, the snack bar.",
    "approved": true
   },
   {
-   "date": "2026-12-14",
    "text": "Yoga taught me to see the light in everyone. Motherhood taught me to see the light in the hallway that somebody left on.",
    "approved": true
   },
   {
-   "date": "2026-12-15",
    "text": "A toddler’s “I do it myself” adds eleven minutes and a lot of pride.",
+   "approved": true,
+   "cast": [
+    "delilah"
+   ]
+  },
+  {
+   "text": "Every load of laundry goes in with twelve socks and comes out with eleven. I have stopped asking questions.",
    "approved": true
   },
   {
-   "date": "2026-12-16",
-   "text": "Every load of laundry goes in with twelve socks and comes out with eleven. I have stopped asking questions.",
+   "text": "My toddler saw me in tree pose and did the only sensible thing to do with a tree. She climbed it.",
+   "approved": true,
+   "cast": [
+    "delilah"
+   ],
+   "pose": "tree"
+  },
+  {
+   "text": "I tried to tell a joke at dinner. I got as far as “So a mom walks into a…” before somebody needed ketchup.",
+   "approved": true
+  },
+  {
+   "text": "I said, “Five more minutes.” My oldest said, “Your average is twenty-two.” He had a chart.",
+   "approved": true,
+   "cast": [
+    "ephraim"
+   ]
+  },
+  {
+   "text": "I own a sweater for every mood. Today’s mood is “this one was clean.”",
+   "approved": true
+  },
+  {
+   "text": "I counted to ten and went looking for my son. The plant was giggling.",
+   "approved": true,
+   "cast": [
+    "atlas"
+   ]
+  },
+  {
+   "text": "People ask how I stay so calm. I’m not calm. I’m in warrior two and I can’t feel my legs.",
+   "approved": true,
+   "pose": "warrior2"
+  },
+  {
+   "text": "I asked my daughter which shirt she wanted. She said, “The black one.” I held up nine.",
+   "approved": true,
+   "cast": [
+    "genevieve"
+   ]
+  },
+  {
+   "text": "I told my kids I needed ten minutes for yoga. They heard, “Please bring me every question you have ever had.”",
+   "approved": true,
+   "cast": [
+    "delilah",
+    "ephraim",
+    "genevieve",
+    "atlas"
+   ]
+  },
+  {
+   "text": "Mountain pose: stand tall, be still, be the mountain. Nobody asks a mountain for a snack. I envy mountains.",
+   "approved": true,
+   "pose": "mountain"
+  },
+  {
+   "text": "I asked my youngest to use her inside voice. She shouted, “I AM.”",
+   "approved": true,
+   "cast": [
+    "delilah"
+   ]
+  },
+  {
+   "text": "Yoga says to let go of what no longer serves you. I started with folding the fitted sheet.",
+   "approved": true
+  },
+  {
+   "text": "I asked my teenager what he wanted for dinner. He said, “Yes.”",
+   "approved": true,
+   "cast": [
+    "ephraim"
+   ]
+  },
+  {
+   "text": "Triangle pose: one hand to the floor, one to the sky. I found a puzzle piece down there. It’s been missing since August.",
+   "approved": true,
+   "pose": "triangle"
+  },
+  {
+   "text": "I moved the cookies to the top shelf. My son moved a chair.",
+   "approved": true,
+   "cast": [
+    "atlas"
+   ]
+  },
+  {
+   "text": "I do yoga for flexibility. So far the most flexible thing in this house is bedtime.",
+   "approved": true
+  },
+  {
+   "text": "I put on a pink sweater, pink leggings and pink socks. My daughter looked me over and said, “You missed a spot.”",
+   "approved": true,
+   "cast": [
+    "genevieve"
+   ],
+   "sweater": "bubblegum"
+  },
+  {
+   "text": "Easy pose is the one where you sit on the floor. It’s called easy because getting back up is the hard part.",
+   "approved": true,
+   "pose": "easy"
+  },
+  {
+   "text": "I rolled out my mat. Within a minute there were three kids and a stuffed rabbit on it. I was not one of them.",
+   "approved": true,
+   "cast": [
+    "delilah",
+    "genevieve",
+    "atlas"
+   ]
+  },
+  {
+   "text": "I gave my toddler two choices for breakfast. She picked a third one, which I had not offered and do not have.",
+   "approved": true,
+   "cast": [
+    "delilah"
+   ]
+  },
+  {
+   "text": "Goddess pose makes me feel powerful. Then somebody hands me a cheese stick to open and I remember my real job.",
+   "approved": true,
+   "pose": "goddess"
+  },
+  {
+   "text": "Breathe in for four. Hold for four. Out for four. Answer “What’s for dinner?” Repeat.",
+   "approved": true
+  },
+  {
+   "text": "I bought my son new shoes. By the time I found the receipt, they didn’t fit.",
+   "approved": true,
+   "cast": [
+    "ephraim"
+   ]
+  },
+  {
+   "text": "Crescent moon is a side bend. I use it to look around the corner and see what just went quiet.",
+   "approved": true,
+   "pose": "crescent"
+  },
+  {
+   "text": "I told my daughter her outfit was cute. She was crushed. She had been going for “haunting.”",
+   "approved": true,
+   "cast": [
+    "genevieve"
+   ]
+  },
+  {
+   "text": "Someone asked how many sweaters I own. I said, “Enough.” That was not true. There is no such number.",
+   "approved": true
+  },
+  {
+   "text": "Star pose is arms wide, legs wide, taking up all the room you can. My youngest does it in the middle of my bed at 2 a.m.",
+   "approved": true,
+   "cast": [
+    "delilah"
+   ],
+   "pose": "star"
+  },
+  {
+   "text": "I started a gratitude journal. Day one: “Everyone is asleep.”",
+   "approved": true
+  },
+  {
+   "text": "My mat says “non-slip.” It has clearly never met a juice box.",
+   "approved": true
+  },
+  {
+   "text": "Big-toe pose is about reaching for something just out of your grasp. I trained for it with the TV remote.",
+   "approved": true,
+   "pose": "bigtoe"
+  },
+  {
+   "text": "I wear pink so my kids can find me in a crowd. Mostly they use it to see me coming.",
    "approved": true
   }
  ]
