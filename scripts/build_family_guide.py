@@ -10,7 +10,6 @@ import re
 from datetime import date
 from pathlib import Path
 
-from help_now import add_help
 from ymt_build import split_first
 
 
@@ -224,8 +223,7 @@ def outputs():
         page = page.replace(key, value)
     keys = set(re.findall(r'data-i18n="([^"]+)"', page))
     assert keys | {'lang-toggle', 'es-note'} == set(page_data['es']['static']), keys ^ set(page_data['es']['static'])
-    # The same help block every other page carries, directly above the footer (scripts/help_now.py).
-    return {'family-guide.html': add_help(page, 'family-guide.html')}
+    return {'family-guide.html': page}
 
 
 if __name__ == '__main__':

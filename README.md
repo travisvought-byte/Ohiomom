@@ -123,10 +123,6 @@ Both front pages carry two things that are not help listings, added November 17,
 - The national pages carry no cookies, tracking, sign-up forms or third-party scripts of our own, and the report page uses a mail link only. Wix adds its own script and cookies to every page it serves, so the pages say that plainly and do not claim to be cookie-free.
 - Domestic violence shelter addresses are never listed. Listings point to the hotline or program that places people safely.
 
-## Help on every page
-
-Every page a visitor reads, on Yoga Mom Talk and on OhioMom, carries one short "Need help now?" block directly above its footer: 988 (call or text; veterans press 1), 211 then 6 for homeless services, HUD's Find Shelter tool, and the National Call Center for Homeless Veterans (1-877-424-3838). Owner direction, November 17, 2026. `scripts/help_now.py` holds the wording, the sources and the date they were read. `scripts/ymt_build.py` adds the block to the national pages, `scripts/build_family_guide.py` to the family guide, and `python3 scripts/help_now.py` to the static OhioMom pages (`--check` fails if any page is missing it). It is always one line of its own, directly above the footer line, so a page's live copy can be changed the same way. Pages that only pass the visitor on do not carry it. It is a labeled region of its own, which the page tests accept as a landmark. `tests/test_help_now.py` checks every page.
-
 ## Publishing to Wix
 
 Merging a pull request does not change the live site by itself. There are two ways to publish.

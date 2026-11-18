@@ -258,9 +258,7 @@ function checkStructure(d, file) {
   assert.equal(all(d, 'header').length, 1, `${file}: no second header`);
   assert.equal(all(d, 'main').length, 1, `${file}: one main`);
   for (const el of d.body.children) {
-    // The help block is a landmark of its own: a labeled <aside> (a complementary region), directly above the footer.
-    const help = el.matches('aside.help-now[aria-label]') && el.nextElementSibling && el.nextElementSibling.tagName === 'FOOTER';
-    const ok = ['HEADER', 'MAIN', 'FOOTER', 'SCRIPT'].includes(el.tagName) || el.matches('a.skip') || help;
+    const ok = ['HEADER', 'MAIN', 'FOOTER', 'SCRIPT'].includes(el.tagName) || el.matches('a.skip');
     assert(ok, `${file}: <${el.tagName.toLowerCase()} class="${el.className}"> sits outside the page landmarks`);
   }
   let last = 0;
