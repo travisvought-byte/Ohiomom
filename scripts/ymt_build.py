@@ -14,6 +14,7 @@ from html import escape as esc
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import help_now  # noqa: E402
 import home_extras as extras  # noqa: E402
 import ymt_lib as lib  # noqa: E402
 from us_geo import STATE_FIPS  # noqa: E402
@@ -509,6 +510,11 @@ def build_all(data):
     urls = ''.join(f'  <url><loc>https://{domain}/{loc(p)}</loc></url>\n' for p in sorted(set(pages)))
     files['sitemap.xml'] = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n'
     files['robots.txt'] = f'User-agent: *\nAllow: /\n\nSitemap: https://{domain}/sitemap.xml\n'
+    # Suicide and homelessness help on its own line directly above the footer of every page a visitor reads
+    # (scripts/help_now.py). Pages that only pass the visitor on stay as they are.
+    for rel, content in files.items():
+        if help_now.wants_help(rel, content):
+            files[rel] = help_now.add_help(content, rel)
     return files
 
 

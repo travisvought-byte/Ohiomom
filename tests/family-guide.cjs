@@ -133,7 +133,10 @@ console.log('PASS Ohio-only scope, 88 county contacts, stages and cross-site lin
   assert(all('#share-guide img').every((i) => i.getAttribute('loading') === 'lazy'), 'the flyer and QR images load only when the row is opened');
   assert.equal(all('body > header').length, 1);
   assert.equal(all('header, main').length, 2);
-  for (const el of d.body.children) assert(['HEADER', 'MAIN', 'FOOTER', 'SCRIPT'].includes(el.tagName) || el.matches('a.skip'), `<${el.tagName}> outside the landmarks`);
+  // The help block is a landmark of its own: a labeled <aside> (a complementary region), directly above the footer.
+  const isHelp = (el) => el.matches('aside.help-now[aria-label]') && el.nextElementSibling && el.nextElementSibling.tagName === 'FOOTER';
+  for (const el of d.body.children) assert(['HEADER', 'MAIN', 'FOOTER', 'SCRIPT'].includes(el.tagName) || el.matches('a.skip') || isHelp(el), `<${el.tagName}> outside the landmarks`);
+  assert.equal(all('body > aside.help-now').length, 1, 'one help block, directly above the footer');
   let last = 0;
   for (const h of all('h1, h2, h3, h4, h5, h6')) { const n = +h.tagName[1]; assert(n <= last + 1, `"${h.textContent.trim().slice(0, 40)}" jumps from h${last} to h${n}`); last = n; }
   for (const b of all('.stage, .quick-btn')) assert(!b.hasAttribute('aria-labelledby') && !b.hasAttribute('aria-describedby'), 'a button is named by its own text');
