@@ -190,7 +190,7 @@ class PictureTests(unittest.TestCase):
             extras.render_sheet(new + 'p{margin:0}\n')
 
     def test_every_moving_part_has_its_rule(self):
-        used = set(re.findall(r'\bsc-[a-z0-9]+', extras.scene_svg(True))) - {'sc-wall', 'sc-sky', 'sc-pane', 'sc-knit'}
+        used = set(re.findall(r'\bsc-[a-z0-9]+', extras.scene_svg(True))) - {'sc-wall', 'sc-sky', 'sc-pane', 'sc-knit', 'sc-lamp'}
         for cls in sorted(used):
             self.assertRegex(TEMPLATE, r'\.%s[{,]' % re.escape(cls), f'{cls} is in the picture but has no rule')
         named = set(re.findall(r'animation:(sc-[a-z0-9]+) ', TEMPLATE))
@@ -338,11 +338,13 @@ class JokeTests(unittest.TestCase):
     def test_the_joke_script_sends_and_stores_nothing(self):
         for banned in ('fetch(', 'XMLHttpRequest', 'sendBeacon', 'document.cookie', 'cookie', 'localStorage', 'sessionStorage',
                        'WebSocket', 'http', 'innerHTML', 'outerHTML', 'insertAdjacent', 'document.write', 'eval(', 'Function(',
-                       'createElement', 'location', 'navigator', 'Date', 'setTimeout'):
+                       'createElement', 'location', 'navigator', 'setTimeout', 'Date.parse', 'toLocale', 'getTimezone'):
             self.assertNotIn(banned, extras.JOKE_SCRIPT, banned)
         self.assertIn('textContent', extras.JOKE_SCRIPT)
         self.assertIn(extras.DRESS, extras.JOKE_SCRIPT, 'the same few lines dress the picture')
         self.assertEqual(extras.JOKE_SCRIPT.count('<script>'), 1)
+        # It reads the visitor's clock (for the seasonal and late-night stories) and nothing else about them.
+        self.assertEqual(extras.JOKE_SCRIPT.count('new Date()'), 1)
 
     def test_the_jokes_take_turns_about_once_a_minute(self):
         """The owner's call, November 17, 2026: a random one, and a new one every minute or so."""
@@ -388,7 +390,20 @@ class StoryTests(unittest.TestCase):
         data = extras.read_jokes()
         joke_looks = extras.looks(data)
         self.assertEqual(len(joke_looks), len(data['jokes']))
-        for j, (pose, sweater, cast, words) in zip(data['jokes'], joke_looks):
+        for j, (pose, sweater, cast, words, acts, when) in zip(data['jokes'], joke_looks):
+            self.assertEqual([a.split('.')[0] for a in acts], list(extras.KIDS), 'something to do for every child')
+            for a in acts:
+                kid, what = a.split('.')
+                self.assertIn(what, extras.ACTS[kid])
+                if kid in (j.get('do') or {}):
+                    self.assertEqual(what, j['do'][kid], 'what a story says a child is doing, it gets')
+            self.assertEqual(when, j.get('when') or '')
+            if when:
+                self.assertIn(sweater, extras.SEASON_SWEATERS[when], 'a seasonal story wears a sweater of its season')
+            else:
+                self.assertIn(sweater, extras.EVERYDAY_SWEATERS, 'and an everyday one never does')
+            if when == 'night':
+                self.assertEqual((cast, pose), ((), 'easy'), 'after bedtime the children are asleep')
             self.assertIn(pose, extras.POSES)
             self.assertIn(sweater, extras.SWEATERS)
             self.assertTrue(set(cast) <= set(extras.KIDS))
@@ -415,7 +430,7 @@ class StoryTests(unittest.TestCase):
 
     def test_poses_and_sweaters_take_turns(self):
         joke_looks = extras.looks(batch(40))
-        for part, names in ((0, extras.POSES), (1, extras.SWEATERS)):
+        for part, names in ((0, extras.POSES), (1, extras.EVERYDAY_SWEATERS)):
             worn = [look[part] for look in joke_looks]
             self.assertEqual(set(worn), set(names), 'all of them come round')
             for gap in (1, 2):
@@ -452,18 +467,20 @@ class StoryTests(unittest.TestCase):
         self.assertRegex(TEMPLATE, r'\.scenecap\{[^}]*font-size:clamp\([^)]*vw[^)]*\)', 'and on a narrow phone the line is set smaller, not broken in two')
         data = batch(3)
         data['jokes'][0]['cast'] = ['genevieve', 'atlas']
-        for pose, _, _, words in extras.looks(data):
+        for pose, _, _, words, _, _ in extras.looks(data):
             self.assertEqual(words, extras.caption(pose), 'whoever is around')
 
     def test_the_page_gets_what_the_script_needs(self):
         data = batch(3)
         data['jokes'][1].update(cast=['atlas', 'genevieve'], pose='triangle', sweater='plum')
         scene = extras.scene_data(extras.approved_looks(data))
-        self.assertEqual(set(scene), {'p', 'w', 'd'})
+        self.assertEqual(set(scene), {'p', 'w', 'd', 's'})
+        self.assertEqual(scene['s'], {k: list(v) for k, v in extras.WHENS.items()})
         self.assertEqual(set(scene['p']), set(extras.POSES))
         self.assertEqual(set(scene['w']), set(extras.SWEATERS))
         self.assertEqual(len(scene['d']), 3)
-        self.assertEqual(scene['d'][1], 'triangle|plum|atlas genevieve|Deborah is working on triangle pose.')
+        self.assertTrue(scene['d'][1].startswith('triangle|plum|atlas genevieve|Deborah is working on triangle pose.|delilah.'))
+        self.assertEqual(scene['d'][1].count('|'), 5, 'pose, sweater, children, caption, what each child is doing, and when')
         self.assertEqual(scene['p']['tree'], ['', '256.5px 168px', '50%'])
         self.assertEqual(scene['p']['triangle'][0], 'translate(8 4)rotate(-58 262 113)')
         self.assertEqual(scene['w']['plum'], list(extras.SWEATERS['plum']))
@@ -474,6 +491,52 @@ class StoryTests(unittest.TestCase):
         self.assertEqual(block.count('<script'), 3, 'the jokes, the picture, and one script')
         self.assertEqual(block.count('<script>'), 1)
         self.assertLess(block.index('id="jokes-data"'), block.index('id="scene-data"'))
+
+
+class SeasonTests(unittest.TestCase):
+    """The owner's call, November 18, 2026: the children do different things, holiday stories come out in their season,
+    and there are late-night stories for after the children are in bed."""
+
+    def test_the_check_holds_the_season_rules(self):
+        def problems(**change):
+            data = batch(1)
+            data['jokes'][0].update(change)
+            return ' '.join(extras.check_jokes(data))
+        self.assertEqual(problems(when='winter', sweater='snowy', cast=['atlas'], do={'atlas': 'box'}), '')
+        self.assertEqual(problems(when='night', cast=[], pose='easy'), '')
+        self.assertIn('when is one of', problems(when='easter'))
+        self.assertIn('does not go with', problems(sweater='pumpkin'), 'a pumpkin sweater stays in its season')
+        self.assertIn('does not go with', problems(when='thanksgiving', sweater='heart'))
+        self.assertIn('asleep', problems(when='night', cast=['delilah']), 'nobody is up after bedtime but her')
+        self.assertIn('asleep', problems(when='night'), 'a late-night story says so: an empty cast')
+        self.assertIn('asleep', problems(when='night', cast=[], pose='tree'))
+        self.assertIn('do says', problems(cast=['atlas'], do={'atlas': 'skydiving'}))
+        self.assertIn('not in the cast', problems(cast=['atlas'], do={'delilah': 'juice'}))
+
+    def test_every_activity_and_season_is_in_a_story(self):
+        told = extras.approved_looks()
+        acts = {a for look in told for a in look[4] if a.split('.')[0] in look[2]}
+        self.assertEqual(acts, {f'{k}.{a}' for k, v in extras.ACTS.items() for a in v}, 'every child does each of his or her things in some story')
+        self.assertEqual({look[5] for look in told}, {''} | set(extras.WHENS))
+        self.assertEqual({look[1] for look in told}, set(extras.SWEATERS))
+        for when in extras.WHENS:
+            self.assertGreaterEqual(sum(look[5] == when for look in told), 5, f'enough {when} stories to flip through')
+
+    def test_the_picture_has_every_activity_and_season(self):
+        svg = extras.scene_svg(True)
+        for k, v in extras.ACTS.items():
+            for a in v:
+                tag = re.search(r'<g data-act="%s\.%s"( display="none")?>' % (k, a), svg)
+                self.assertTrue(tag, f'{k} {a}')
+                self.assertEqual(bool(tag.group(1)), a != v[0], 'the first is drawn showing, the others wait')
+        for when in extras.WHENS:
+            self.assertIn(f'data-when="{when}" display="none"', svg, f'{when} is drawn, and hidden until its story')
+        self.assertNotRegex(svg, r'data-when="[a-z]+"(?! display="none")', 'nothing seasonal shows before the script picks')
+
+    def test_the_seasons_are_the_right_days(self):
+        self.assertEqual(extras.WHENS['thanksgiving'], ('d', 1115, 1130))
+        self.assertEqual(extras.WHENS['winter'], ('d', 1201, 1231))
+        self.assertEqual(extras.WHENS['night'], ('h', 21, 4), 'nine at night to five in the morning')
 
 
 class PreviewTests(unittest.TestCase):
@@ -496,7 +559,7 @@ class PreviewTests(unittest.TestCase):
         self.assertIn(TEMPLATE, html, 'and moved by the same rules')
         self.assertIn('Waiting for your OK (2)', html)
         self.assertIn('In the turn on the site (2)', html)
-        self.assertIn('Atlas, Genevieve · ', html, 'each joke says who is in its picture')
+        self.assertRegex(html, r'Atlas \([a-z]+\), Genevieve \([a-z]+\) · ', 'each joke says who is in its picture and what they are doing')
         self.assertEqual(html.count('data-try="pose"'), len(extras.POSES), 'and any pose, sweater or child can be tried')
         self.assertEqual(html.count('data-try="sweater"'), len(extras.SWEATERS))
         self.assertEqual(html.count('data-try="kid"'), len(extras.KIDS))

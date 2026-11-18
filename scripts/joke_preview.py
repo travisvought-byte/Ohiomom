@@ -61,7 +61,8 @@ store=D.getElementById("scene-data"),scene=JSON.parse(store.textContent),n=jokes
 $=function(id){return D.getElementById(id)},all=function(s){return Array.prototype.slice.call(D.querySelectorAll(s))};
 function press(){var v=(mine||scene.d[at<0?n:at]).split("|");
   all("[data-try]").forEach(function(b){var k=b.getAttribute("data-try"),name=b.getAttribute("data-name");
-    b.setAttribute("aria-pressed",k=="kid"?(" "+v[2]+" ").indexOf(" "+name+" ")>=0:v[k=="pose"?0:1]==name)})}
+    b.setAttribute("aria-pressed",k=="kid"?(" "+v[2]+" ").indexOf(" "+name+" ")>=0:k=="act"?(" "+v[4]+" ").indexOf(" "+name+" ")>=0:
+      k=="when"?(v[5]||"")==name:v[k=="pose"?0:1]==name)})}
 function show(key,words,label){$("joke-text").textContent=words;$("joke").hidden=false;$("scene-foot").hidden=false;dress(D,key);
   $("where").textContent=label;all(".list button").forEach(function(b){b.setAttribute("aria-current",+b.getAttribute("data-joke")==key)});press()}
 function joke(i){at=i;mine=null;var w=%(waiting)d;show(i,jokes[i],i<w?"Waiting: "+(i+1)+" of "+w:"In the turn: "+(i-w+1)+" of "+(n-w))}
@@ -73,15 +74,18 @@ $("joke-next").onclick=function(){joke(at<n-1?at+1:0)};
 $("all").onclick=everyone;
 all(".list button").forEach(function(b){b.onclick=function(){joke(+b.getAttribute("data-joke"))}});
 all("[data-try]").forEach(function(b){b.onclick=function(){var k=b.getAttribute("data-try"),name=b.getAttribute("data-name");
-  tried(function(v){if(k=="pose")v[0]=name;else if(k=="sweater")v[1]=name;else{var c=v[2]?v[2].split(" "):[],i=c.indexOf(name);i<0?c.push(name):c.splice(i,1);v[2]=c.join(" ")}})}});
+  tried(function(v){if(k=="pose")v[0]=name;else if(k=="sweater")v[1]=name;else if(k=="when")v[5]=name;
+    else if(k=="act"){v[4]=(v[4]||"").split(" ").map(function(a){return a.split(".")[0]==name.split(".")[0]?name:a}).join(" ")}else{var c=v[2]?v[2].split(" "):[],i=c.indexOf(name);i<0?c.push(name):c.splice(i,1);v[2]=c.join(" ")}})}});
 everyone()})();'''
 
 
 def who(look):
     """One line under a joke in the list: who is around in its picture, her pose and her sweater."""
-    pose, sweater, cast, _ = look
-    kids = ', '.join(extras.KID_NAMES[k] for k in cast) or 'Deborah alone'
-    return f'{kids} · {extras.POSES[pose]["name"]} · {sweater} sweater'
+    pose, sweater, cast, _, acts, when = look
+    doing = dict(a.split('.') for a in acts)
+    kids = ', '.join(f'{extras.KID_NAMES[k]} ({doing[k]})' for k in cast) or 'Deborah alone'
+    season = {'thanksgiving': ' · Thanksgiving only', 'winter': ' · December only', 'night': ' · after bedtime only'}.get(when, '')
+    return f'{kids} · {extras.POSES[pose]["name"]} · {sweater} sweater{season}'
 
 
 def chips(kind, names, labels):
@@ -102,7 +106,7 @@ def page(data=None):
     jokes = [j['text'] for j, _ in order]
     scene = extras.scene_data([look for _, look in order])
     scene['d'].append('|'.join(('mountain', extras.FIRST_SWEATER, ' '.join(extras.KIDS),
-                                'Genevieve, Ephraim, Delilah and Atlas.')))
+                                'Genevieve, Ephraim, Delilah and Atlas.', ' '.join(f'{k}.{v[0]}' for k, v in extras.ACTS.items()), '')))
     scene['names'] = {name: spec['name'] for name, spec in extras.POSES.items()}
 
     def rows(batch, first):
@@ -139,6 +143,8 @@ def page(data=None):
 <p class="quiet">Who is around</p>{chips('kid', extras.KIDS, extras.KID_NAMES)}
 <p class="quiet">Her pose</p>{chips('pose', extras.POSES, {n: s['name'] for n, s in extras.POSES.items()})}
 <p class="quiet">Her sweater</p>{chips('sweater', extras.SWEATERS, {n: n for n in extras.SWEATERS})}
+<p class="quiet">What they are doing</p>{chips('act', [f'{k}.{a}' for k, v in extras.ACTS.items() for a in v], {f'{k}.{a}': f'{extras.KID_NAMES[k]}: {a}' for k, v in extras.ACTS.items() for a in v})}
+<p class="quiet">When</p>{chips('when', ['', *extras.WHENS], {'': 'any time', 'thanksgiving': 'Thanksgiving', 'winter': 'December', 'night': 'after bedtime'})}
 <div class="chips"><button type="button" id="all">Show the whole family again</button></div>
 {wait_head}
 {done_head}

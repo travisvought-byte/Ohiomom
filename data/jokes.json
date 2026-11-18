@@ -1,6 +1,6 @@
 {
- "schema_version": 3,
- "purpose": "Deborah's jokes for the Yoga Mom Talk and OhioMom front pages, each with the picture that goes with it. The card shows one at random and turns to another every minute; a visitor can flip through them. Only jokes with approved true are published. cast lists the children who are around in the picture (an empty list is Deborah alone); pose and sweater are optional too. Whatever a joke leaves out takes its turn.",
+ "schema_version": 4,
+ "purpose": "Deborah's jokes for the Yoga Mom Talk and OhioMom front pages, each with the picture that goes with it. The card shows one at random and turns to another every minute; a visitor can flip through them. Only jokes with approved true are published. cast lists the children who are around in the picture (an empty list is Deborah alone); pose and sweater are optional too. Whatever a joke leaves out takes its turn. do says what a child is doing (otherwise each child's activities take turns). when is thanksgiving, winter or night: such a story is in the turn only in its season, or only after bedtime, by the visitor's clock.",
  "jokes": [
   {
    "text": "I headed out to yoga and said “namaste.” My toddler said, “No, mama stay.” She won.",
@@ -323,6 +323,289 @@
   {
    "text": "I wear pink so my kids can find me in a crowd. Mostly they use it to see me coming.",
    "approved": true
+  },
+  {
+   "text": "My toddler copies every pose I do. She is better at all of them, and she has never once paid for a class.",
+   "approved": true,
+   "cast": [
+    "delilah"
+   ],
+   "do": {
+    "delilah": "copy"
+   },
+   "pose": "tree"
+  },
+  {
+   "text": "Somebody in this house can solve a puzzle cube in under a minute. Nobody in this house can find the other shoe.",
+   "approved": true,
+   "cast": [
+    "ephraim",
+    "atlas"
+   ],
+   "do": {
+    "ephraim": "cube"
+   }
+  },
+  {
+   "text": "My son wears headphones all day. I once said “Dinner’s ready” at a normal volume. He was at the table in four seconds.",
+   "approved": true,
+   "cast": [
+    "ephraim"
+   ],
+   "do": {
+    "ephraim": "music"
+   }
+  },
+  {
+   "text": "I found my daughter’s stuffed cat wearing a tiny black cape. I asked about it. She said, “He has a past.”",
+   "approved": true,
+   "cast": [
+    "genevieve"
+   ],
+   "do": {
+    "genevieve": "cat"
+   }
+  },
+  {
+   "text": "My daughter showed me her drawing. I said, “Is that our house?” She said, “It was.”",
+   "approved": true,
+   "cast": [
+    "genevieve",
+    "delilah"
+   ],
+   "do": {
+    "genevieve": "sketch"
+   }
+  },
+  {
+   "text": "A blender came in a box. The blender went back. The box stayed. It has a resident now.",
+   "approved": true,
+   "cast": [
+    "atlas"
+   ],
+   "do": {
+    "atlas": "box"
+   }
+  },
+  {
+   "text": "There is a lump under the blanket on the floor. It giggles when I sit near it. I have decided not to ask.",
+   "approved": true,
+   "cast": [
+    "atlas",
+    "delilah"
+   ],
+   "do": {
+    "atlas": "blanket"
+   }
+  },
+  {
+   "text": "My toddler and I both had juice for breakfast. Only one of us is wearing it.",
+   "approved": true,
+   "cast": [
+    "delilah"
+   ],
+   "do": {
+    "delilah": "juice"
+   }
+  },
+  {
+   "text": "Every pose I try, a small person tries beside me. Mine is called mountain. Hers is called mountain, but louder.",
+   "approved": true,
+   "cast": [
+    "delilah",
+    "genevieve"
+   ],
+   "do": {
+    "delilah": "copy"
+   },
+   "pose": "mountain"
+  },
+  {
+   "text": "Yoga teaches patience. So does asking a reader “Yes or no?” and waiting for the end of the chapter.",
+   "approved": true,
+   "cast": [
+    "ephraim",
+    "genevieve"
+   ],
+   "do": {
+    "ephraim": "book"
+   }
+  },
+  {
+   "text": "Thanksgiving tip: do yoga before the big meal, and you can call the second plate restorative.",
+   "approved": true,
+   "when": "thanksgiving",
+   "sweater": "pumpkin"
+  },
+  {
+   "text": "I asked everyone what they were thankful for. My youngest said, “Pie.” Then, to be fair, “More pie.”",
+   "approved": true,
+   "when": "thanksgiving",
+   "cast": [
+    "delilah",
+    "ephraim"
+   ]
+  },
+  {
+   "text": "My oldest offered to carve the turkey. He came back with a protractor.",
+   "approved": true,
+   "when": "thanksgiving",
+   "cast": [
+    "ephraim",
+    "atlas"
+   ]
+  },
+  {
+   "text": "My daughter wants a black tablecloth for Thanksgiving. She says the dinner needs “more drama.” Have you met our family?",
+   "approved": true,
+   "when": "thanksgiving",
+   "cast": [
+    "genevieve"
+   ]
+  },
+  {
+   "text": "Every year I promise not to overeat. Every year I end up in a pose I call reclining stuffing.",
+   "approved": true,
+   "when": "thanksgiving",
+   "pose": "easy"
+  },
+  {
+   "text": "We played hide-and-seek after dinner. Nobody found one of them until dessert, when he found the pie first.",
+   "approved": true,
+   "when": "thanksgiving",
+   "cast": [
+    "atlas",
+    "genevieve"
+   ],
+   "do": {
+    "atlas": "box"
+   }
+  },
+  {
+   "text": "I don’t cook the turkey. I supervise it, from warrior two.",
+   "approved": true,
+   "when": "thanksgiving",
+   "pose": "warrior2",
+   "cast": [
+    "delilah",
+    "ephraim",
+    "genevieve",
+    "atlas"
+   ]
+  },
+  {
+   "text": "My gratitude list: my mat, my coffee, and the four minutes nobody needed me. Short list. Great minutes.",
+   "approved": true,
+   "when": "thanksgiving",
+   "cast": [
+    "delilah"
+   ]
+  },
+  {
+   "text": "We put up the tree. Within an hour the bottom third had no ornaments. They are all in one small person’s pockets.",
+   "approved": true,
+   "when": "winter",
+   "cast": [
+    "delilah",
+    "atlas"
+   ]
+  },
+  {
+   "text": "My daughter asked for a black Christmas tree. I said no. Then I saw one in the store, and honestly, she has a point.",
+   "approved": true,
+   "when": "winter",
+   "cast": [
+    "genevieve"
+   ]
+  },
+  {
+   "text": "In December my tree pose has competition. The other tree has lights.",
+   "approved": true,
+   "when": "winter",
+   "pose": "tree",
+   "sweater": "evergreen"
+  },
+  {
+   "text": "I wrapped every present this year. Then I found my son inside one of the boxes.",
+   "approved": true,
+   "when": "winter",
+   "cast": [
+    "atlas"
+   ],
+   "do": {
+    "atlas": "box"
+   }
+  },
+  {
+   "text": "My oldest made a list of who is getting what. It has a column for prices and a column for “Mom, approximately.”",
+   "approved": true,
+   "when": "winter",
+   "cast": [
+    "ephraim",
+    "delilah"
+   ]
+  },
+  {
+   "text": "I wear a holiday sweater every day in December. My family calls it a phase. It is in its twelfth year.",
+   "approved": true,
+   "when": "winter",
+   "sweater": "snowy",
+   "cast": [
+    "ephraim",
+    "genevieve"
+   ]
+  },
+  {
+   "text": "My youngest wrote her letter to Santa. It says AGAIN in purple crayon. Santa will have to work that one out.",
+   "approved": true,
+   "when": "winter",
+   "cast": [
+    "delilah"
+   ],
+   "do": {
+    "delilah": "again"
+   }
+  },
+  {
+   "text": "Snow day. Four kids, one mat, zero yoga. Excellent cardio, though.",
+   "approved": true,
+   "when": "winter",
+   "cast": [
+    "delilah",
+    "ephraim",
+    "genevieve",
+    "atlas"
+   ]
+  },
+  {
+   "text": "Midnight yoga is my favorite class. Nobody asks for a snack. Nobody asks anything. The house just breathes.",
+   "approved": true,
+   "when": "night",
+   "cast": []
+  },
+  {
+   "text": "The kids are asleep. I’m on my mat with a little something that helps me unwind and is, I should mention, legal in Ohio.",
+   "approved": true,
+   "when": "night",
+   "cast": []
+  },
+  {
+   "text": "After bedtime I practice a pose called lying very still so nobody hears me. It is advanced.",
+   "approved": true,
+   "when": "night",
+   "cast": []
+  },
+  {
+   "text": "My late-night routine: lights low, mat out, one small thing to help me relax, and a firm rule against the group chat.",
+   "approved": true,
+   "when": "night",
+   "cast": []
+  },
+  {
+   "text": "Is it a midnight snack if you don’t remember getting up for it? Asking for a mom on her mat.",
+   "approved": true,
+   "when": "night",
+   "cast": []
   }
  ]
 }
