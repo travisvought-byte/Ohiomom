@@ -260,7 +260,7 @@ def build_index(data):
     structured = '\n<script type="application/ld+json">' + json.dumps(about, ensure_ascii=False).replace('<', '\\u003c') + '</script>'
     return page(data, 'index.html', f"{site['name']}: help for moms in all 50 states", desc,
                 body, 'home', head_extra=OHIO_REDIRECT + structured,
-                scripts='\n' + extras.joke_scripts(jokes) if jokes else '')
+                scripts='\n' + extras.joke_scripts(jokes, extras.approved_looks()) if jokes else '')
 
 
 def build_jokes(data, jokes):

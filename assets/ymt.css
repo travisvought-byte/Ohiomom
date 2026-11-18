@@ -170,16 +170,20 @@ button.btn{font-family:inherit;cursor:pointer}
 .herotext .lede{text-wrap:balance}
 .scenebox{flex:0 0 auto;width:min(26rem,46%);background:#e6f5f0;border:2px solid #fff;border-radius:1.4rem;overflow:hidden;box-shadow:0 12px 26px -16px #6b3f5b99}
 .saying{position:relative;z-index:1;margin:.7rem .7rem 0;padding:.5rem .85rem .65rem;background:#fff;border-radius:1rem;box-shadow:0 6px 12px -10px #6b3f5b}
-.saying::after{content:"";position:absolute;left:50%;bottom:-.7rem;margin-left:-.55rem;border-left:.55rem solid transparent;border-right:.55rem solid transparent;border-top:.75rem solid #fff}
+.saying::after{content:"";position:absolute;left:var(--tail,50%);bottom:-.7rem;margin-left:-.55rem;border-left:.55rem solid transparent;border-right:.55rem solid transparent;border-top:.75rem solid #fff}
 .sayinghead{display:flex;align-items:center;justify-content:space-between;gap:.6rem}
 .saying h2{font:700 .78rem/1.3 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;letter-spacing:.05em;text-transform:uppercase;color:var(--brand);margin:0}
 .sayinghead a{flex:none;font-size:.82rem;padding:.3rem 0 .3rem .4rem}
 .joketext{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:clamp(1.1rem,2.7vw,1.25rem);line-height:1.3;margin:.1rem 0 0;color:var(--ink)}
 .scene{display:block;width:100%;height:auto}
 .scene text{font:700 16px system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;text-anchor:middle}
-.sc-mom{transform-origin:257px 170px;animation:sc-mom 14s ease-in-out infinite}
+.sc-mom{transform-origin:256.5px 168px;animation:sc-mom 14s ease-in-out infinite}
+.sc-pony{transform-origin:268px 44px;animation:sc-pony 5s ease-in-out infinite}
 .sc-kid{animation:sc-kid 14s ease-in-out infinite}
-.sc-wave{transform-origin:374px 143px;animation:sc-wave 14s ease-in-out infinite}
+.sc-peek{animation:sc-peek 14s ease-in-out infinite}
+.sc-hi{transform-origin:-9px 127px;animation:sc-hi 14s ease-in-out infinite}
+.sc-flat{animation:sc-flat 14s step-end infinite}
+.sc-grin{opacity:0;animation:sc-grin 14s step-end infinite}
 .sc-lid{animation:sc-lid 14s step-end infinite}
 .sc-eye{opacity:0;animation:sc-eye 14s step-end infinite}
 .sc-b{opacity:0;transform-box:fill-box;transform-origin:26% 100%}
@@ -188,16 +192,20 @@ button.btn{font-family:inherit;cursor:pointer}
 .sc-b3{animation:sc-b3 14s ease-out infinite}
 .sc-b4{animation:sc-b4 14s ease-out infinite}
 .sc-heart{opacity:0;animation:sc-heart 14s ease-out infinite}
-.sc-mom,.sc-kid,.sc-wave,.sc-lid,.sc-eye,.sc-b,.sc-heart{animation-delay:-1.4s}
+.sc-mom,.sc-kid,.sc-peek,.sc-hi,.sc-flat,.sc-grin,.sc-lid,.sc-eye,.sc-b,.sc-heart{animation-delay:-1.4s}
 .sc-steam{opacity:0;animation:sc-steam 3.6s ease-out infinite}
 .sc-cloud{animation:sc-cloud 26s ease-in-out infinite}
 .sc-leaf{transform-origin:489px 150px;animation:sc-leaf 6s ease-in-out infinite}
 .sc-bird{transform-origin:46px 98px;animation:sc-bird 7s ease-in-out infinite}
 @keyframes sc-mom{0%,48%,64%,100%{transform:rotate(0)}14%{transform:rotate(.8deg)}32%{transform:rotate(-.8deg)}52%{transform:rotate(-4deg)}55%{transform:rotate(3.5deg)}58%{transform:rotate(-2.5deg)}61%{transform:rotate(1.5deg)}}
 @keyframes sc-kid{0%,20%,25%,34%,39%,48%,52%,56%,100%{transform:translateY(0)}22.5%{transform:translateY(-3px)}36.5%{transform:translateY(-4px)}50%{transform:translateY(-9px)}54%{transform:translateY(-5px)}}
-@keyframes sc-wave{0%,20%,25%,34%,39%,48%,58%,100%{transform:rotate(0)}22.5%,36.5%{transform:rotate(18deg)}50%,54%{transform:rotate(34deg)}52%,56%{transform:rotate(14deg)}}
+@keyframes sc-pony{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(4deg)}}
+@keyframes sc-peek{0%,18%,31%,34%,45%,48%,63%,66%,90%,100%{transform:translateX(22px)}21%,29%,36%,43%,50%,61%,69%,87%{transform:translateX(0)}52%,56%{transform:translate(0,-7px)}54%,58%{transform:translate(0,0)}}
+@keyframes sc-hi{0%,20%,29%,35%,43%,49%,62%,68%,88%,100%{transform:rotate(0)}22%,26%,37%,41%,51%,55%,59%,72%,80%{transform:rotate(-16deg)}24%,39%,53%,57%,76%,84%{transform:rotate(12deg)}}
 @keyframes sc-lid{0%,53%,88%,100%{opacity:1}54%,87%{opacity:0}}
 @keyframes sc-eye{0%,53%,88%,100%{opacity:0}54%,87%{opacity:1}}
+@keyframes sc-flat{0%,68%,87%,100%{opacity:1}69%,86%{opacity:0}}
+@keyframes sc-grin{0%,68%,87%,100%{opacity:0}69%,86%{opacity:1}}
 @keyframes sc-b1{0%,20%{opacity:0;transform:scale(.5)}22%,29%{opacity:1;transform:scale(1)}31%,100%{opacity:0;transform:scale(1)}}
 @keyframes sc-b2{0%,34%{opacity:0;transform:scale(.5)}36%,43%{opacity:1;transform:scale(1)}45%,100%{opacity:0;transform:scale(1)}}
 @keyframes sc-b3{0%,48%{opacity:0;transform:scale(.5)}50%{opacity:1;transform:scale(1.12)}51.5%,60%{opacity:1;transform:scale(1)}62%,100%{opacity:0;transform:scale(1)}}
@@ -211,6 +219,7 @@ button.btn{font-family:inherit;cursor:pointer}
 .jokelist li{padding:.85rem 0;border-bottom:1.5px solid var(--line);font-size:1.1rem}
 .jokelist small{display:block;color:var(--muted);font-size:.85rem}
 @media (max-width:760px){.hero.home{padding-top:1.2rem}.herotop{flex-direction:column;align-items:stretch;gap:.8rem}.scenebox{order:-1;width:100%;max-width:26rem}}
+@media (max-width:400px){.sayinghead a span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}
 @media (prefers-reduced-motion:reduce){.scene *{animation:none!important}.sc-b1{opacity:1}}
 @media print{.scenebox{display:none}}
 /* home-extras:end */

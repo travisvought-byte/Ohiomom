@@ -3,20 +3,32 @@
 
 Both front pages carry the same two extras, drawn here so they cannot drift apart:
 
-- **The picture.** A mom holds tree pose on her mat and tells the joke of the day; her child laughs, asks for it
-  "Again! AGAIN!" until she opens one eye, and then says "Please?" It is inline SVG, moved by CSS. The rules are in templates/home-extras.css, and this
-  script copies them to the end of assets/ymt.css and ohio/assets/site.css, between marker comments, so the two
-  sites cannot drift apart: edit the template, never the copies. The picture is decoration, so it is hidden
-  from screen readers, and it holds still for visitors whose device asks for reduced motion. The OhioMom
-  picture is the same room with a cardinal at the window and Ohio on the wall.
-- **The joke of the day.** It is in the picture: a speech bubble over the mom's head, at the top of the page,
-  so it is the first thing a visitor meets (the owner's call, November 17, 2026: it should disarm people as
-  they arrive). data/jokes.json holds one joke for each date. Only jokes marked `approved` are ever written
-  into a page; the owner approves each batch before it runs. The page carries the approved jokes and a few
-  lines of script that show the one for the visitor's own date, so the joke changes at midnight on her clock
-  and nothing is sent anywhere. The bubble is HTML, not part of the drawing, so the words wrap, can be read
-  aloud by a screen reader, and can be selected. When a batch runs out the list starts over, one a day, until new jokes
-  are approved. jokes.html is the running list of the ones that have already run.
+- **The picture.** It is the family whose site this is (the owner's call, November 17, 2026). Deborah is on her
+  mat, tall and blond, in pink leggings, telling the joke of the day; her children answer it, each in his or her
+  own way, until she wobbles and opens one eye. It changes every day: she works on a different pose (POSES) in a
+  different sweater (SWEATERS), and the day's joke says which of the four children are in it (KIDS). The children
+  go by first name only: no exact ages, schools or places, and nothing about their health, here or in a joke.
+  It is inline SVG, moved by CSS. The rules are in templates/home-extras.css, and this script copies them to
+  the end of assets/ymt.css and ohio/assets/site.css, between marker comments, so the two sites cannot drift
+  apart: edit the template, never the copies. The picture is decoration, so it is hidden from screen readers,
+  and it holds still for visitors whose device asks for reduced motion. The OhioMom picture is the same room
+  with a cardinal at the window and Ohio on the wall.
+- **The joke of the day.** It is in the picture: Deborah's speech bubble, at the top of the page, so it is the
+  first thing a visitor meets (the owner's call, November 17, 2026: it should disarm people as they arrive).
+  data/jokes.json holds one joke for each date. Only jokes marked `approved` are ever written into a page; the
+  owner approves each batch before it runs. The page carries the approved jokes and a few lines of script that
+  show the one for the visitor's own date, so the joke changes at midnight on her clock and nothing is sent
+  anywhere. The bubble is HTML, not part of the drawing, so the words wrap, can be read aloud by a screen
+  reader, and can be selected. When a batch runs out the list starts over, one a day, until new jokes are
+  approved. jokes.html is the running list of the ones that have already run.
+- **The caption.** Under the drawing, one line says what Deborah is working on today and who is with her. It
+  is HTML too, for the same reasons.
+
+How a day gets its picture: every pose's arms and legs, every sweater pattern and all four children are in the
+drawing, and all but one set are switched off. The same script that shows the day's joke switches on the day's
+set, by setting attributes on the drawing. What it needs (the poses, the sweaters, and each day's choice) is in
+the page beside the jokes, not in the stylesheet, so a stylesheet a browser kept from last month cannot dress
+her wrong. With scripts off the page shows the first pose, the first sweater and the first child.
 
 The national front page (index.html) and jokes.html are built by scripts/ymt_build.py, which calls the
 functions here. The OhioMom front page (ohio/index.html) is static source, so this script writes the same
@@ -24,12 +36,14 @@ blocks into it between marker comments, the way scripts/prerender_ohio.py does f
 
     python3 scripts/home_extras.py                    write the blocks into ohio/index.html and the rules into both stylesheets
     python3 scripts/home_extras.py --check            check data/jokes.json, and fail if a page or stylesheet is out of step
-    python3 scripts/home_extras.py --approve          mark every joke approved (after the owner has approved the batch)
+    python3 scripts/home_extras.py --approve          mark the waiting jokes approved (after the owner has approved the batch)
     python3 scripts/home_extras.py --approve --start 2026-12-18
-                                                      the same, and re-date the batch to start on that day
+                                                      the same, and run them from that day; approved jokes that had
+                                                      that day or a later one follow after them
 """
 import datetime
 import json
+import math
 import re
 import sys
 from html import escape as esc
@@ -43,14 +57,166 @@ SHEETS = ('assets/ymt.css', 'ohio/assets/site.css')
 MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July',
           'August', 'September', 'October', 'November', 'December']
 JOKE_MAX = 220  # characters: a joke is a line or two, never a story
+JOKE_HEADING = 'Deborah’s joke of the day'  # the heading of the speech bubble: the jokes are hers
 
-INK, LEGS, SKIN, HAIR = '#2b2140', '#3b2e5a', '#e4b08a', '#4a2f27'
+INK, SKIN, BLUSH = '#2b2140', '#f3c7a6', '#ee8fa0'
 BRAND, TEAL, SUN = '#cf2f5b', '#12766f', '#ffcb52'
+LEGGINGS = '#e2557f'  # Deborah likes pink
+# Hair: Deborah, then Ephraim, Genevieve, Atlas and Delilah.
+BLONDE, BROWN, DARK_BLONDE, LIGHT_BLONDE, GOLD_BROWN = '#f2cb5c', '#6b4428', '#b89a5e', '#f7dc7c', '#d9a65a'
+NIGHT, VIOLET = '#1d1826', '#9b6fe0'  # Genevieve's black, and the stripes on her sleeves and tights
 HEART = 'M0-1.5C-1.5-4.5-6-3.5-5 .5C-4.2 3 0 6 0 6S4.2 3 5 .5C6-3.5 1.5-4.5 0-1.5Z'
 # Ohio's outline, 27.7 wide by 30 tall, from the state's corner and river coordinates.
 OHIO = ('M.1 2.4L8.8 2.1L10.8 3L12 3.9L13.5 4.4L15.9 4.6L18.5 4L20.1 4L22.7 2.2L24.9 1.1L27.7 0L27.7 11.3L26.8 13.1'
         'L27.1 14.1L26.3 16.1L25.4 19.6L24 21.1L21.7 21.7L20.7 23L19.7 25.5L18 24.9L16.9 26.8L15.3 30L14.4 30L13.8 29'
         'L11.7 27.4L9.8 28.5L7.8 27.7L5.9 27.1L3.5 25.5L2 24.3L0 24.2Z')
+
+# ---------------------------------------------------------------- who is in the picture
+# The picture is the family whose site this is (the owner's call, November 17, 2026): Deborah on her mat and
+# her four children. Each child stands in the same place every time, so nothing ever overlaps; a day's joke
+# says which of them are in that day's picture. First names only: no exact ages, schools or places, and nothing
+# about their health, anywhere in this repository.
+KIDS = ('delilah', 'ephraim', 'genevieve', 'atlas')  # also the order they take turns in when a joke names no one
+KID_NAMES = {'delilah': 'Delilah', 'ephraim': 'Ephraim', 'genevieve': 'Genevieve', 'atlas': 'Atlas'}
+KID_X = {'genevieve': 106, 'ephraim': 150, 'delilah': 380, 'atlas': 452}  # where each one stands
+# What the caption says a child is doing, on a day when that child is the only one in the picture.
+# Each child goes through his or her own lines in order.
+KID_LINES = {
+    'delilah': ('Delilah is supervising.', 'Delilah has notes.', 'Delilah is in charge, as usual.', 'Delilah wants a turn.'),
+    'ephraim': ('Ephraim is keeping score.', 'Ephraim is counting her breaths.', 'Ephraim is timing her.', 'Ephraim gives it a seven.'),
+    'genevieve': ('Genevieve is not impressed.', 'Genevieve pretends not to watch.', 'Genevieve has seen better.',
+                  'Genevieve is here under protest.'),
+    'atlas': ('Atlas is hiding behind the plant.', 'Atlas is behind the plant again.', 'Atlas is hiding. Nobody tell her.',
+              'Atlas thinks nobody can see him.'),
+}
+
+# ---------------------------------------------------------------- her sweaters
+# Deborah wears a different sweater every day. name: (wool, pattern color, collar and hem, pattern).
+SWEATERS = {
+    'heart': ('#ffd9e4', '#cf2f5b', '#f7b3c8', 'heart'),
+    'candy': ('#f47aa5', '#ffffff', '#d95486', 'stripes'),
+    'lilac': ('#b9a6ef', '#ffffff', '#9a84de', 'dots'),
+    'teal': ('#2a9d8f', '#fff1e6', '#1f7f73', 'zigzag'),
+    'sunny': ('#ffcb52', '#ffffff', '#e9ac2b', 'star'),
+    'rainbow': ('#9fd0f2', '#ffffff', '#78b6e0', 'rainbow'),
+    'bubblegum': ('#ff9ebd', '#ffffff', '#f47aa5', 'plain'),
+    'plum': ('#3b2e5a', '#f47aa5', '#2b2140', 'band'),
+    'mint': ('#bfe8d9', '#ffffff', '#93d1bd', 'stripes'),
+    'berry': ('#cf2f5b', '#fff1e6', '#a9244a', 'dots'),
+}
+FIRST_SWEATER = 'heart'  # the one drawn in the page, before the script has picked the day's
+
+# ---------------------------------------------------------------- her poses
+# Deborah works on a different pose every day. She is drawn once from the hips up (her "top half"), and each
+# pose moves that into place and draws its own arms and legs. All of them face the visitor, so one face works
+# for every pose. Points are in the picture's own units; her left is the visitor's right.
+HIP = (262, 113)                          # the middle of her hips when she stands straight
+SHOULDERS = ((251.5, 80), (272.5, 80))    # where her sleeves start, on the visitor's left and right
+HIPS = ((256.5, 112), (267.5, 112))       # where her legs start
+HEAD = (262, 54)
+# name: what the caption calls it; top: how her top half moves (right, down, degrees clockwise about her hips);
+# foot: the point she wobbles about; legs and arms: knee then ankle, elbow then hand, visitor's left first;
+# feet: one short line each; front: what is drawn in front of her top half (L legs, a left arm, b right arm).
+POSES = {
+    'tree': dict(name='tree pose', top=(0, 0, 0), foot=(256.5, 168),
+                 legs=(((256.5, 140), (256.5, 163)), ((293, 126), (264, 141))),
+                 feet=(((252, 167.5), (262, 167.5)), ((264.5, 141.5), (261, 146.5))),
+                 arms=(((244, 58), (262, 36)), ((280, 58), (262, 36))), front=''),
+    'mountain': dict(name='mountain pose', top=(0, 0, 0), foot=(262, 168),
+                     legs=(((256, 140), (255.5, 163)), ((268, 140), (268.5, 163))),
+                     feet=(((251, 167.5), (259, 167.5)), ((265, 167.5), (273, 167.5))),
+                     arms=(((247, 57), (246, 35)), ((277, 57), (278, 35))), front=''),
+    'warrior2': dict(name='warrior two', top=(5, 12, 0), foot=(263, 168),
+                     legs=(((244, 144), (227, 163)), ((298, 133), (300, 163))),
+                     feet=(((229, 167.5), (219, 167.5)), ((297, 167.5), (308, 167.5))),
+                     arms=(((234, 92), (213, 92)), ((300, 92), (321, 92))), front=''),
+    'goddess': dict(name='goddess pose', top=(0, 15, 0), foot=(262, 168),
+                    legs=(((234, 136), (232, 163)), ((290, 136), (292, 163))),
+                    feet=(((236, 167.5), (225, 167.5)), ((288, 167.5), (299, 167.5))),
+                    arms=(((231, 95), (231, 74)), ((293, 95), (293, 74))), front=''),
+    'star': dict(name='star pose', top=(0, 3, 0), foot=(262, 168),
+                 legs=(((244, 139), (232, 163)), ((280, 139), (292, 163))),
+                 feet=(((235, 167.5), (225, 167.5)), ((289, 167.5), (299, 167.5))),
+                 arms=(((230, 77), (209, 71)), ((294, 77), (315, 71))), front=''),
+    'triangle': dict(name='triangle pose', top=(8, 4, -58), foot=(270, 168),
+                     legs=(((250, 140), (236, 163)), ((290, 140), (304, 163))),
+                     feet=(((239, 167.5), (228, 167.5)), ((301, 167.5), (311, 167.5))),
+                     arms=(((236, 130), (239, 150)), ((247.6, 68), (247.6, 46))), front='a'),
+    'crescent': dict(name='crescent moon', top=(-6, 0, 18), foot=(256, 168),
+                     legs=(((250, 140), (249.5, 163)), ((262, 140), (262.5, 163))),
+                     feet=(((245, 167.5), (253, 167.5)), ((259, 167.5), (267, 167.5))),
+                     arms=(((262, 54), (291, 37)), ((291, 64), (293, 38))), front=''),
+    'easy': dict(name='easy pose', top=(0, 44, 0), foot=(262, 168),
+                 legs=(((234, 160), (270, 166)), ((290, 160), (254, 166))),
+                 feet=(((270, 166), (273, 166)), ((254, 166), (251, 166))),
+                 arms=(((243, 141), (236, 155)), ((281, 141), (288, 155))), front='Lab'),
+    'bigtoe': dict(name='big-toe pose', top=(0, 0, 0), foot=(268, 168),
+                   legs=(((233, 101), (212, 90)), ((268, 140), (268, 163))),
+                   feet=(((211, 89.5), (209, 82.5)), ((263.5, 167.5), (273.5, 167.5))),
+                   arms=(((231, 80), (213, 84)), ((286, 97), (275, 109))), front='b'),
+}
+FIRST_POSE = 'tree'  # the one drawn in the page, before the script has picked the day's
+
+
+def num(v):
+    """A number, written as short as it goes."""
+    s = f'{v:.1f}'
+    s = s[:-2] if s.endswith('.0') else s
+    return '0' if s == '-0' else s
+
+
+def line(*points):
+    return 'M' + 'L'.join(f'{num(x)} {num(y)}' for x, y in points)
+
+
+def placed(point, top):
+    """Where a point of her top half is once the pose has moved it."""
+    right, down, degrees = top
+    x, y, a = point[0] - HIP[0], point[1] - HIP[1], math.radians(degrees)
+    return (HIP[0] + right + x * math.cos(a) - y * math.sin(a), HIP[1] + down + x * math.sin(a) + y * math.cos(a))
+
+
+def top_move(pose):
+    """The pose's move of her top half, as an SVG transform. Empty when she stands straight."""
+    right, down, degrees = POSES[pose]['top']
+    move = f'translate({num(right)} {num(down)})' if right or down else ''
+    turn = f'rotate({num(degrees)} {num(HIP[0])} {num(HIP[1])})' if degrees else ''
+    return move + turn
+
+
+def bubble_tail(pose):
+    """How far across the picture her head is, so the tail of the joke bubble can point at her."""
+    return f'{round(placed(HEAD, POSES[pose]["top"])[0] / 5.2)}%'
+
+
+def short_of(a, b, by):
+    """The point `by` units before b on the way from a."""
+    length = math.hypot(b[0] - a[0], b[1] - a[1])
+    return (b[0] - (b[0] - a[0]) * by / length, b[1] - (b[1] - a[1]) * by / length)
+
+
+def limbs(pose, front):
+    """Her arms and legs for one pose: the ones that go in front of her top half, or the ones behind it."""
+    spec, wool = POSES[pose], SWEATERS[FIRST_SWEATER][0]
+    right, down, _ = spec['top']
+    out = []
+    if ('L' in spec['front']) == front:
+        legs = ''.join(line((HIPS[i][0] + right, HIPS[i][1] + down), *spec['legs'][i]) for i in (0, 1))
+        out.append(f'<path d="{legs}" stroke="{LEGGINGS}" stroke-width="10"/>'
+                   f'<path d="{"".join(line(*f) for f in spec["feet"])}" stroke="{SKIN}" stroke-width="5.5"/>')
+    arms = [i for i, letter in enumerate('ab') if (letter in spec['front']) == front]
+    if arms:
+        sleeves, hands = '', ''
+        for i in arms:
+            elbow, hand = spec['arms'][i]
+            sleeves += line(placed(SHOULDERS[i], spec['top']), elbow, short_of(elbow, hand, 3.5))
+            hands += f'M{num(hand[0])} {num(hand[1])}h.01'
+        out.append(f'<path d="{sleeves}" stroke="{wool}" data-stroke="0" stroke-width="7.4"/>'
+                   f'<path d="{hands}" stroke="{SKIN}" stroke-width="7.6"/>')
+    if not out:
+        return ''
+    hidden = '' if pose == FIRST_POSE else ' display="none"'
+    return f'<g data-pose="{pose}"{hidden}>{"".join(out)}</g>'
 
 
 # ---------------------------------------------------------------- the picture
@@ -60,24 +226,203 @@ def heart(x, y, size, fill, cls=''):
     return f'<g transform="translate({x} {y}) scale({size})"><path{c} d="{HEART}" fill="{fill}"/></g>'
 
 
-def bubble(n, text, width, height, size, fill=INK):
-    """One thing the child says: a white bubble above her, with a tail that points down to her. Each has its moment in the loop."""
-    x, bottom, r = 372, 100, 12
-    y = bottom - height
-    return (f'<g class="sc-b sc-b{n}"><path d="M{x} {y + r}a{r} {r} 0 0 1 {r}-{r}h{width - 2 * r}a{r} {r} 0 0 1 {r} {r}v{height - 2 * r}'
-            f'a{r} {r} 0 0 1-{r} {r}h{-(width - 2 * r - 22)}l-10 11-2-11h-10a{r} {r} 0 0 1-{r}-{r}z" fill="#fff"/>'
-            f'<text x="{x + width / 2:g}" y="{y + height / 2 + size * .36:.1f}" font-size="{size}" fill="{fill}">{esc(text)}</text></g>')
+def bubble(n, x, y, width, height, tail, inside):
+    """One thing a child says: a white bubble with a tail that points down at `tail`. Each has its moment in the loop.
+    It grows out of its tail, so the tail's place along the bubble is also where it grows from."""
+    r, bottom = 12, y + height
+    grow = round(100 * (tail - x) / width)
+    return (f'<g class="sc-b sc-b{n}" style="transform-origin:{grow}% 100%"><path d="M{num(x + r)} {num(y)}h{num(width - 2 * r)}'
+            f'a{r} {r} 0 0 1 {r} {r}v{num(height - 2 * r)}a{r} {r} 0 0 1-{r} {r}H{num(tail + 7)}L{num(tail)} {num(bottom + 9)}'
+            f'L{num(tail - 5)} {num(bottom)}H{num(x + r)}a{r} {r} 0 0 1-{r}-{r}v-{num(height - 2 * r)}a{r} {r} 0 0 1 {r}-{r}z" fill="#fff"/>'
+            f'{inside}</g>')
 
 
-def scene_svg(ohio=False):
-    """The front-page picture. `ohio` adds the cardinal at the window and Ohio on the wall."""
-    blush = '#ee8fa0'
+def says(n, x, y, width, height, tail, text, size=16, fill=INK):
+    words = (f'<text x="{num(x + width / 2)}" y="{num(y + height / 2 + size * .36)}" style="font-size:{size}px" '
+             f'fill="{fill}">{esc(text)}</text>')
+    return bubble(n, x, y, width, height, tail, words)
+
+
+def says_hearts(n, x, y, width, height, tail, count):
+    """Atlas says it with hearts."""
+    middle, gap = x + width / 2, 15
+    hearts = ''.join(heart(num(middle + gap * (i - (count - 1) / 2)), num(y + height / 2 - .5), 1.15, BRAND) for i in range(count))
+    return bubble(n, x, y, width, height, tail, hearts)
+
+
+def kid(name, body, said, cast):
+    """One child, drawn about x = 0 and moved to where she stands. `said` shows only on a day when the joke is hers."""
+    hidden = '' if name in cast else ' display="none"'
+    quiet = '' if cast and cast[0] == name else ' display="none"'
+    return (f'<g data-kid="{name}" transform="translate({KID_X[name]} 0)"{hidden}>{body}'
+            f'<g data-say="{name}"{quiet}>{said}</g></g>')
+
+
+def face(y, gap, mouth, r=1.6):
+    """Two eyes and a mouth."""
+    return (f'<circle cx="{num(-gap)}" cy="{num(y)}" r="{r}" fill="{INK}"/><circle cx="{num(gap)}" cy="{num(y)}" r="{r}" fill="{INK}"/>'
+            f'<path d="{mouth}" fill="none" stroke="{INK}" stroke-width="1.5" stroke-linecap="round"/>')
+
+
+def cheeks(y, gap, r=2.4):
+    return (f'<circle cx="{num(-gap)}" cy="{num(y)}" r="{r}" fill="{BLUSH}" opacity=".7"/>'
+            f'<circle cx="{num(gap)}" cy="{num(y)}" r="{r}" fill="{BLUSH}" opacity=".7"/>')
+
+
+def delilah(cast):
+    """Delilah, the smallest: hands on her hips, one eyebrow up. She is in charge."""
+    boots, top = '#e0453a', '#8a63d2'
+    body = (f'<g class="sc-kid"><path d="M-7 163v10M7 163v10" stroke="{boots}" stroke-width="8.5" stroke-linecap="round"/>'
+            f'<ellipse cx="-8.5" cy="176.2" rx="6.3" ry="3.2" fill="{boots}"/><ellipse cx="8.5" cy="176.2" rx="6.3" ry="3.2" fill="{boots}"/>'
+            '<ellipse cx="0" cy="160" rx="19.5" ry="6.5" fill="#f9c5d5"/><ellipse cx="0" cy="157.5" rx="16.5" ry="5" fill="#f497b6"/>'
+            f'<path d="M-12 142L-23.5 149.5L-13.5 156M12 142L23.5 149.5L13.5 156" fill="none" stroke="{SKIN}" stroke-width="5.4" '
+            'stroke-linecap="round" stroke-linejoin="round"/>'
+            f'<rect x="-13.5" y="135" width="27" height="24" rx="10.5" fill="{top}"/>'
+            f'<circle cx="-12.5" cy="141" r="4.6" fill="{top}"/><circle cx="12.5" cy="141" r="4.6" fill="{top}"/>'
+            + heart(0, 147, .75, '#fff')
+            + f'<path d="M0 113q-5.5-7.5-9.5-6M0 113q.2-8.5 1-10M0 113q5.5-7.5 9.5-6" fill="none" stroke="{GOLD_BROWN}" '
+            'stroke-width="2.8" stroke-linecap="round"/>'
+            f'<ellipse cx="0" cy="123.5" rx="12.8" ry="11.8" fill="{SKIN}"/>'
+            f'<path d="M-12.8 123.5a12.8 11.8 0 0 1 25.6 0c-3-5-8-7-12.8-7s-9.8 2-12.8 7z" fill="{GOLD_BROWN}"/>'
+            f'<circle cx="0" cy="112.8" r="2.8" fill="{BRAND}"/>'
+            + cheeks(129.3, 8.6, 2.8) + face(125.2, 5, 'M-3.6 130.6q4.2 2.4 7.6-1.1')
+            + f'<path d="M-8.3 120.4l5 .5M3.2 119.9l5.2-2" fill="none" stroke="{INK}" stroke-width="1.3" stroke-linecap="round"/></g>')
+    said = (says(1, -12, 64, 74, 30, 3, 'Ha ha!') + says(2, -12, 62, 80, 32, 3, 'Again!', 18)
+            + says(3, -12, 60, 104, 34, 3, 'AGAIN. NOW.', 15, BRAND) + says(4, -12, 62, 88, 32, 3, 'Please?', 18)
+            + heart(-46, 128, 1.5, BRAND, 'sc-heart'))
+    return kid('delilah', body, said, cast)
+
+
+def atlas(cast):
+    """Atlas: blond hair down over his ears, a big smile. He hides behind the plant, which does not cover
+    him, and leans out to wave. His bubbles hold hearts."""
+    shirt, shorts = '#f2743a', '#3b4a7a'
+    body = ('<g class="sc-peek">'
+            f'<path d="M-5 158V174M5 158V174" stroke="{SKIN}" stroke-width="5.2" stroke-linecap="round"/>'
+            f'<ellipse cx="-6" cy="177" rx="5.4" ry="2.9" fill="{TEAL}"/><ellipse cx="6" cy="177" rx="5.4" ry="2.9" fill="{TEAL}"/>'
+            f'<path d="M-5 150V159M5 150V159" stroke="{shorts}" stroke-width="7.6" stroke-linecap="round"/>'
+            f'<path class="sc-hi" d="M-9 127L-19 114" stroke="{SKIN}" stroke-width="4.8" stroke-linecap="round"/>'
+            f'<path d="M9 127L16 140" stroke="{SKIN}" stroke-width="4.8" stroke-linecap="round"/>'
+            f'<rect x="-10.5" y="121" width="21" height="31" rx="7.5" fill="{shirt}"/><rect x="-10.5" y="133" width="21" height="4.5" fill="#ffd9a0"/>'
+            f'<circle cx="0" cy="109.5" r="11.5" fill="{SKIN}"/>'
+            f'<path d="M-12.5 110a12.5 12.5 0 0 1 25 0v7.5q-1.8 2.2-3.8.3l-.4-6.6q-3.2-6.2-8.3-6.2t-8.3 6.2l-.4 6.6q-2 1.9-3.8-.3z" fill="{LIGHT_BLONDE}"/>'
+            + cheeks(115, 7.8)
+            + f'<circle cx="-4.6" cy="110.8" r="1.6" fill="{INK}"/><circle cx="4.6" cy="110.8" r="1.6" fill="{INK}"/>'
+            f'<path d="M-5.2 114.6q5.2 6.8 10.4 0z" fill="{INK}"/></g>')
+    said = (says_hearts(1, -52, 60, 40, 30, -10, 1) + says_hearts(2, -62, 60, 56, 30, -10, 2)
+            + says_hearts(3, -76, 58, 72, 32, -10, 3) + says_hearts(4, -62, 60, 56, 30, -10, 2)
+            + heart(-40, 122, 1.5, BRAND, 'sc-heart'))
+    return kid('atlas', body, said, cast)
+
+
+def genevieve(cast):
+    """Genevieve, dressed like the heroine of a gothic anime: black dress, striped sleeves and tights, big
+    boots, cat ears, hair over one eye. She does not laugh. On her own days she almost does."""
+    stripes = f'stroke="{VIOLET}" stroke-width="5" stroke-dasharray="2.6 3.4"'
+    body = (f'<path d="M-5 144V168M5 144V168" stroke="{INK}" stroke-width="5"/><path d="M-5 146V168M5 146V168" {stripes}/>'
+            f'<path d="M-5 167v6M5 167v6" stroke="{NIGHT}" stroke-width="8" stroke-linecap="round"/>'
+            f'<rect x="-11.5" y="172.5" width="11" height="6" rx="2.2" fill="{NIGHT}"/><rect x=".5" y="172.5" width="11" height="6" rx="2.2" fill="{NIGHT}"/>'
+            f'<path d="M-12.5 94a12.5 12.5 0 0 1 25 0L14.5 110q-14.5 4-29 0z" fill="{DARK_BLONDE}"/>'
+            f'<rect x="-2.8" y="101" width="5.6" height="7" fill="{SKIN}"/><path d="M-2.8 104.3h5.6" stroke="{NIGHT}" stroke-width="1.7"/>'
+            f'<path d="M-8.5 107.5Q0 104 8.5 107.5L14.5 145Q0 150-14.5 145Z" fill="{NIGHT}"/>'
+            '<path d="M-6.5 106.3q3.4 3.6 6.5 0q3.1 3.6 6.5 0q-6.5-2.8-13 0z" fill="#fff"/>'
+            f'<path d="M-13.8 141.5Q0 146.3 13.8 141.5" fill="none" stroke="{VIOLET}" stroke-width="1.6" stroke-dasharray="1.5 2.3"/>'
+            f'<g fill="none" stroke-linejoin="round"><path d="M-8 110L-12 121L6 119.5M8 110L12 121L-6 122.5" stroke="{INK}" stroke-width="5" stroke-linecap="round"/>'
+            f'<path d="M-8 110L-12 121L3 119.8M8 110L12 121L-3 122.3" {stripes}/></g>'
+            f'<circle cx="6.5" cy="119.5" r="2.5" fill="{SKIN}"/><circle cx="-6.5" cy="122.5" r="2.5" fill="{SKIN}"/>'
+            f'<circle cx="0" cy="93.5" r="11.5" fill="{SKIN}"/>'
+            f'<path d="M-11.4 96.5a11.8 11.8 0 0 1 23.2-3q-2.8-5.2-7.3-7.2q-3.5 8.5-15.9 10.2z" fill="{DARK_BLONDE}"/>'
+            f'<path d="M-10 86l1.5-9.5 6.5 5.7zM10 86l-1.5-9.5-6.5 5.7z" fill="{NIGHT}"/>'
+            f'<circle cx="5" cy="95.8" r="1.7" fill="{INK}"/><path d="M6.3 94.5l2.3-1.4" stroke="{INK}" stroke-width="1.1" stroke-linecap="round"/>'
+            f'<g fill="none" stroke="{INK}" stroke-width="1.5" stroke-linecap="round"><path class="sc-flat" d="M-1.5 100.8h5.5"/>'
+            '<path class="sc-grin" opacity="0" d="M-1.5 100.3q2.8 2.1 5.5 0"/></g>')
+    said = (says(1, -72, 38, 62, 30, -2, 'Mom.') + says(2, -72, 38, 90, 30, -2, 'Mom, no.')
+            + says(3, -72, 36, 74, 32, -2, 'MOM.', 19, BRAND) + says(4, -72, 38, 72, 30, -2, '…heh.')
+            + heart(24, 84, 1.3, BRAND, 'sc-heart'))
+    return kid('genevieve', body, said, cast)
+
+
+def ephraim(cast):
+    """Ephraim, the tallest of the four: brown hair, hands in his hoodie pocket. He likes math, so he keeps score."""
+    hoodie, shade, jeans = '#8f9bb3', '#76839d', '#3f5f8a'
+    body = (f'<path d="M-4.5 124L-5.5 173.5M4.5 124L5.5 173.5" stroke="{jeans}" stroke-width="6.2" stroke-linecap="round"/>'
+            '<ellipse cx="-7" cy="177" rx="6.6" ry="3" fill="#fff"/><ellipse cx="7" cy="177" rx="6.6" ry="3" fill="#fff"/>'
+            f'<rect x="-3" y="79" width="6" height="8" fill="{SKIN}"/>'
+            f'<rect x="-10.5" y="83.5" width="21" height="44" rx="7.5" fill="{hoodie}"/>'
+            f'<path d="M-8.5 88q8.5-7 17 0" fill="none" stroke="{shade}" stroke-width="3.4" stroke-linecap="round"/>'
+            f'<rect x="-7.5" y="111" width="15" height="10" rx="3.5" fill="{shade}"/>'
+            '<path d="M-4.5 98h9M-2 98v6.5M2 98q-.3 5.3 1.7 6.5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>'
+            f'<path d="M-10 89L-14.8 106.5L-6 115.5M10 89L14.8 106.5L6 115.5" fill="none" stroke="{shade}" stroke-width="5.2" '
+            'stroke-linecap="round" stroke-linejoin="round"/>'
+            f'<circle cx="0" cy="71.5" r="11" fill="{SKIN}"/>'
+            f'<path d="M-12.3 72.3a12.3 12.3 0 0 1 24.6 0v4.1q-1.7 1.6-3.4.2q.2-4.8-1.6-7.4q-7.3 3.3-14.6 0q-1.8 2.6-1.6 7.4q-1.7 1.4-3.4-.2z" fill="{BROWN}"/>'
+            + face(74, 4.3, 'M-3 78.8q3.6 2 6.6-.7', 1.5))
+    said = (says(1, -14, 20, 52, 30, 3, 'Ha.') + says(2, -14, 20, 98, 30, 3, '6 out of 10.', 14)
+            + says(3, -14, 18, 78, 32, 3, 'OK. 8!', 18, BRAND) + says(4, -14, 20, 86, 30, 3, 'Fine. 10.')
+            + heart(38, 96, 1.4, BRAND, 'sc-heart'))
+    return kid('ephraim', body, said, cast)
+
+
+def star(x, y, outer, inner):
+    """A five-pointed star as a path."""
+    points = []
+    for i in range(10):
+        r, a = (outer, inner)[i % 2], math.radians(36 * i - 90)
+        points.append((x + r * math.cos(a), y + r * math.sin(a)))
+    return line(*points) + 'Z'
+
+
+KNIT = 'M249 82.5Q249.5 76 256.5 75H267.5Q274.5 76 275 82.5L277 112Q262 117 247 112Z'  # the body of her sweater
+
+
+def top_half():
+    """Deborah from the hips up, standing straight: today's sweater, her blond ponytail, her eyes closed."""
+    wool, accent, trim, first = SWEATERS[FIRST_SWEATER]
+    patterns = {
+        'heart': f'<path transform="translate(262 94) scale(1.5)" d="{HEART}" fill="{accent}" data-fill="1"/>',
+        'stripes': f'<path d="M240 86h44M240 95h44M240 104h44" stroke="{accent}" data-stroke="1" stroke-width="4"/>',
+        'dots': (f'<path d="M254 85h.01M262 83h.01M270 85h.01M258 93h.01M266 93h.01M252 101h.01M262 102h.01M272 101h.01" '
+                 f'stroke="{accent}" data-stroke="1" stroke-width="4.4" stroke-linecap="round"/>'),
+        'zigzag': (f'<path d="M245 97l4.3-7 4.3 7 4.2-7 4.2 7 4.2-7 4.2 7 4.3-7 4.3 7" fill="none" stroke="{accent}" data-stroke="1" '
+                   'stroke-width="2.6" stroke-linejoin="round"/>'),
+        'band': f'<path d="M240 93.5h44" stroke="{accent}" data-stroke="1" stroke-width="11"/>',
+        'rainbow': (f'<g fill="none" stroke-width="3"><path d="M251.5 101.5a10.5 10.5 0 0 1 21 0" stroke="{BRAND}"/>'
+                    f'<path d="M254.5 101.5a7.5 7.5 0 0 1 15 0" stroke="{SUN}"/><path d="M257.5 101.5a4.5 4.5 0 0 1 9 0" stroke="#2a9d8f"/></g>'),
+        'star': f'<path d="{star(262, 94, 8.5, 3.6)}" fill="{accent}" data-fill="1"/>',
+    }
+    worn = ''.join(f'<g data-pat="{name}"{"" if name == first else " display=\"none\""}>{drawn}</g>' for name, drawn in patterns.items())
+    return (f'<g data-top><path class="sc-pony" d="M266 43C278 37.5 286.5 45.5 284.5 58C283.3 66 280 71.5 276.5 74.5C278 66 277 58 271 51.5Z" fill="{BLONDE}"/>'
+            f'<rect x="258.5" y="63" width="7" height="14" fill="{SKIN}"/>'
+            f'<path d="{KNIT}" fill="{wool}" data-fill="0"/><g clip-path="url(#sc-knit)">{worn}'
+            f'<path d="M247 107.5Q262 112.5 277 107.5V118H247Z" fill="{trim}" data-fill="2"/></g>'
+            f'<path d="M256.5 75.5Q262 80.5 267.5 75.5" fill="none" stroke="{trim}" data-stroke="2" stroke-width="3" stroke-linecap="round"/>'
+            f'<circle cx="262" cy="54" r="12" fill="{SKIN}"/>'
+            f'<path d="M249.7 54.5a12.3 12.3 0 0 1 24.6 0c-2-6.6-6.6-9-12.3-9s-10.3 2.4-12.3 9z" fill="{BLONDE}"/>'
+            f'<circle cx="268" cy="43.3" r="3.3" fill="{BRAND}"/>'
+            f'<g fill="none" stroke="{INK}" stroke-width="1.7" stroke-linecap="round"><path d="M254.8 55.5q2.6 2.4 5.2 0"/>'
+            '<path class="sc-lid" d="M264 55.5q2.6 2.4 5.2 0"/><path d="M257.5 61q4.5 3.2 9 0"/></g>'
+            f'<circle class="sc-eye" cx="266.6" cy="55.3" r="2" fill="{INK}"/>'
+            f'<circle cx="253" cy="59.5" r="2.5" fill="{BLUSH}" opacity=".7"/><circle cx="271" cy="59.5" r="2.5" fill="{BLUSH}" opacity=".7"/></g>')
+
+
+def deborah():
+    """Deborah on her mat: tall, blond, in pink leggings, with every pose's arms and legs (one set shows)."""
+    behind = ''.join(limbs(pose, False) for pose in POSES)
+    before = ''.join(limbs(pose, True) for pose in POSES)
+    wrap = '<g fill="none" stroke-linecap="round" stroke-linejoin="round">'
+    return f'<g class="sc-mom" data-mom>{wrap}{behind}</g>{top_half()}{wrap}{before}</g></g>'
+
+
+def scene_svg(ohio=False, cast=('delilah',)):
+    """The front-page picture. `ohio` adds the cardinal at the window and Ohio on the wall. `cast` is who is
+    drawn showing before the script has picked the day's children; the first of them is the one who speaks."""
     p = ['<svg class="scene" viewBox="0 10 520 196" aria-hidden="true" focusable="false">'
          '<defs><linearGradient id="sc-wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6f5f0"/>'
          '<stop offset="1" stop-color="#d2ebe5"/></linearGradient>'
          '<linearGradient id="sc-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b9e0fa"/>'
          '<stop offset="1" stop-color="#eef8ff"/></linearGradient>'
-         '<clipPath id="sc-pane"><rect x="30" y="24" width="84" height="74" rx="5"/></clipPath></defs>',
+         '<clipPath id="sc-pane"><rect x="30" y="24" width="84" height="74" rx="5"/></clipPath>'
+         f'<clipPath id="sc-knit"><path d="{KNIT}"/></clipPath></defs>',
          # the room
          '<rect width="520" height="220" fill="url(#sc-wall)"/><rect y="172" width="520" height="48" fill="#f6dcc0"/>'
          '<rect y="169" width="520" height="4" fill="#fff"/>']
@@ -98,80 +443,64 @@ def scene_svg(ohio=False):
              '<rect x="18" y="101" width="108" height="8" rx="4" fill="#fff"/>'
              '<rect x="22" y="109" width="100" height="2.5" rx="1.2" fill="#b7d9d1"/>')
     # on the wall: a lotus, or Ohio with a heart
-    p.append('<rect x="303" y="24" width="50" height="58" rx="6" fill="#fff"/>'
-             '<rect x="308" y="29" width="40" height="48" rx="3" fill="#fff1e6"/>')
+    p.append('<rect x="303" y="18" width="50" height="50" rx="6" fill="#fff"/>'
+             '<rect x="308" y="23" width="40" height="40" rx="3" fill="#fff1e6"/>')
     if ohio:
-        p.append(f'<path transform="translate(314.5 38)" d="{OHIO}" fill="{BRAND}"/>' + heart(327.5, 52, .8, '#fff'))
+        p.append(f'<path transform="translate(314.5 28)" d="{OHIO}" fill="{BRAND}"/>' + heart(327.5, 42, .8, '#fff'))
     else:
         petal = 'M0-13C5.5-7 5.5 1 0 6C-5.5 1-5.5-7 0-13Z'
-        p.append('<g transform="translate(328 58)">'
+        p.append('<g transform="translate(328 47)">'
                  + ''.join(f'<path d="{petal}" transform="rotate({a} 0 6)" fill="{c}"/>'
                            for a, c in ((-64, '#f6b5c6'), (64, '#f6b5c6'), (-32, '#e9799a'), (32, '#e9799a'), (0, BRAND)))
                  + '</g>')
-    # a stool with her coffee, going cold
+    # under the window: a stool with her coffee, going cold
     steam = ''.join(f'<circle class="sc-steam" cx="{x}" cy="118" r="{r}" style="animation-delay:{d}s"/>'
-                    for x, r, d in ((150, 3.2, 0), (154, 2.6, -1.2), (151.5, 3, -2.4)))
-    p.append('<path d="M140 172L144 147M166 172L162 147" stroke="#b97c4d" stroke-width="4" stroke-linecap="round"/>'
-             '<rect x="134" y="141" width="38" height="7" rx="3.5" fill="#d39a67"/>'
-             '<path d="M161 128q8 0 8 5.5t-8 5.5" fill="none" stroke="#fff" stroke-width="3.2"/>'
-             '<rect x="143" y="123" width="19" height="18" rx="4" fill="#fff"/>' + heart(152.5, 131.5, .62, BRAND)
+                    for x, r, d in ((46, 3.2, 0), (50, 2.6, -1.2), (47.5, 3, -2.4)))
+    p.append('<path d="M36 172L40 147M62 172L58 147" stroke="#b97c4d" stroke-width="4" stroke-linecap="round"/>'
+             '<rect x="30" y="141" width="38" height="7" rx="3.5" fill="#d39a67"/>'
+             '<path d="M57 128q8 0 8 5.5t-8 5.5" fill="none" stroke="#fff" stroke-width="3.2"/>'
+             '<rect x="39" y="123" width="19" height="18" rx="4" fill="#fff"/>' + heart(48.5, 131.5, .62, BRAND)
              + f'<g fill="#fff">{steam}</g>')
-    # a plant in the corner
+    # her mat
+    p.append('<ellipse cx="266" cy="183" rx="104" ry="5" fill="#8a5a3a" opacity=".13"/>'
+             '<rect x="174" y="170" width="184" height="11" rx="5.5" fill="#2a9d8f"/>'
+             '<rect x="176" y="171.5" width="180" height="3" rx="1.5" fill="#5cc3b5"/>')
+    # the family: the two big kids by the window, Deborah on her mat, the two little ones by the plant
+    p.append(genevieve(cast) + ephraim(cast) + deborah() + delilah(cast) + atlas(cast))
+    # the plant in the corner, in front of Atlas
     p.append('<g class="sc-leaf"><path d="M489 150C486 128 474 117 461 113C464 131 473 144 489 150Z" fill="#3f9b6e"/>'
              '<path d="M489 150C492 127 503 116 516 112C512 131 504 144 489 150Z" fill="#2f8a5f"/>'
              '<path d="M489 150C481 133 483 112 489 97C496 112 497 133 489 150Z" fill="#58b386"/></g>'
              '<path d="M474 152h30l-4 26h-22z" fill="#d9825b"/><rect x="471" y="147" width="36" height="8" rx="3.5" fill="#e79a72"/>')
-    # the mat, her blocks and the bunny
-    p.append('<ellipse cx="266" cy="183" rx="104" ry="5" fill="#8a5a3a" opacity=".13"/>'
-             '<rect x="174" y="170" width="184" height="11" rx="5.5" fill="#2a9d8f"/>'
-             '<rect x="176" y="171.5" width="180" height="3" rx="1.5" fill="#5cc3b5"/>'
-             '<rect x="428" y="164" width="15" height="15" rx="3" fill="#b9a6ef"/>'
-             '<rect x="443.5" y="164" width="15" height="15" rx="3" fill="#f6b5c6"/>'
-             f'<rect x="435.5" y="149" width="15" height="15" rx="3" fill="{SUN}"/>'
-             '<g fill="#fff"><ellipse cx="409" cy="174" rx="7.5" ry="6.5"/><circle cx="409" cy="164" r="5.5"/>'
-             '<ellipse cx="406" cy="155" rx="2.4" ry="6.5" transform="rotate(-10 406 155)"/>'
-             '<ellipse cx="412" cy="155" rx="2.4" ry="6.5" transform="rotate(10 412 155)"/></g>'
-             '<ellipse cx="406" cy="155.5" rx="1" ry="4" transform="rotate(-10 406 155)" fill="#f6b5c6"/>'
-             '<ellipse cx="412" cy="155.5" rx="1" ry="4" transform="rotate(10 412 155)" fill="#f6b5c6"/>'
-             f'<circle cx="407" cy="163.5" r=".9" fill="{INK}"/><circle cx="411" cy="163.5" r=".9" fill="{INK}"/>')
-    # mom, in tree pose, eyes closed
-    p.append(f'<g class="sc-mom"><path d="M257 124V165" stroke="{LEGS}" stroke-width="11" stroke-linecap="round"/>'
-             f'<path d="M254 168h10" stroke="{SKIN}" stroke-width="5.5" stroke-linecap="round"/>'
-             f'<path d="M267 124L295 137L264 148" fill="none" stroke="{LEGS}" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>'
-             f'<path d="M264 148l-3 4" stroke="{SKIN}" stroke-width="5.5" stroke-linecap="round"/>'
-             f'<path d="M250.5 117h23v9a11.5 11.5 0 0 1-23 0z" fill="{LEGS}"/>'
-             f'<path d="M254 92L245 65L262 43M270 92L279 65L262 43" fill="none" stroke="{SKIN}" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/>'
-             f'<path d="M251 122Q249 103 252 90Q262 84 272 90Q275 103 273 122Z" fill="{BRAND}"/>'
-             f'<rect x="258.5" y="79" width="7" height="10" rx="3" fill="{SKIN}"/>'
-             f'<circle cx="262" cy="57.5" r="6.5" fill="{HAIR}"/><circle cx="262" cy="71" r="12.5" fill="{SKIN}"/>'
-             f'<path d="M249.5 71a12.5 12.5 0 0 1 25 0c-2-6-6-8.5-12.5-8.5s-10.5 2.5-12.5 8.5z" fill="{HAIR}"/>'
-             f'<g fill="none" stroke="{LEGS}" stroke-width="1.7" stroke-linecap="round"><path d="M254.8 72.5q2.6 2.4 5.2 0"/>'
-             '<path class="sc-lid" d="M264 72.5q2.6 2.4 5.2 0"/><path d="M257.5 78q4.5 3.2 9 0"/></g>'
-             f'<circle class="sc-eye" cx="266.6" cy="72.3" r="2" fill="{LEGS}"/>'
-             f'<circle cx="253" cy="76.5" r="2.5" fill="{blush}" opacity=".7"/><circle cx="271" cy="76.5" r="2.5" fill="{blush}" opacity=".7"/></g>')
-    # her child, looking up at her
-    p.append(f'<g class="sc-kid"><path d="M379 160V176M389 160V176" stroke="{TEAL}" stroke-width="6.5" stroke-linecap="round"/>'
-             f'<ellipse cx="377.5" cy="178" rx="5" ry="2.8" fill="{BRAND}"/><ellipse cx="390.5" cy="178" rx="5" ry="2.8" fill="{BRAND}"/>'
-             f'<path d="M394 144L401 156" stroke="{SKIN}" stroke-width="5" stroke-linecap="round"/>'
-             f'<path class="sc-wave" d="M374 143L363 132" stroke="{SKIN}" stroke-width="5" stroke-linecap="round"/>'
-             f'<rect x="373" y="137" width="22" height="27" rx="8" fill="{SUN}"/>'
-             f'<circle cx="384" cy="125" r="12" fill="{SKIN}"/>'
-             f'<path d="M372 125a12 12 0 0 1 24 0c-3-5.5-8-7.5-12-7.5s-9 2-12 7.5z" fill="{HAIR}"/>'
-             f'<path d="M385 113.5q.5-6 6-6.5" fill="none" stroke="{HAIR}" stroke-width="2.6" stroke-linecap="round"/>'
-             f'<circle cx="378.5" cy="126.5" r="1.6" fill="{LEGS}"/><circle cx="385.5" cy="126.5" r="1.6" fill="{LEGS}"/>'
-             f'<path d="M379 131.5q3 2.6 6 0" fill="none" stroke="{LEGS}" stroke-width="1.6" stroke-linecap="round"/>'
-             f'<circle cx="375.5" cy="130" r="2.2" fill="{blush}" opacity=".7"/><circle cx="389" cy="130" r="2.2" fill="{blush}" opacity=".7"/></g>')
-    # what her child says to the joke, and how it ends
-    p.append(heart(326, 126, 1.5, BRAND, 'sc-heart'))
-    p.append(bubble(1, 'Ha ha!', 74, 32, 16) + bubble(2, 'Again!', 86, 36, 19) + bubble(3, 'AGAIN!', 108, 40, 22, BRAND)
-             + bubble(4, 'Please?', 92, 34, 18))
+    # on the floor in front: blocks and the bunny
+    p.append('<rect x="414" y="186" width="14" height="14" rx="3" fill="#b9a6ef"/>'
+             '<rect x="428.5" y="186" width="14" height="14" rx="3" fill="#f6b5c6"/>'
+             f'<rect x="421" y="172" width="14" height="14" rx="3" fill="{SUN}"/>'
+             '<g fill="#fff"><ellipse cx="399" cy="193" rx="7.5" ry="6.5"/><circle cx="399" cy="183" r="5.5"/>'
+             '<ellipse cx="396" cy="174" rx="2.4" ry="6.5" transform="rotate(-10 396 174)"/>'
+             '<ellipse cx="402" cy="174" rx="2.4" ry="6.5" transform="rotate(10 402 174)"/></g>'
+             '<ellipse cx="396" cy="174.5" rx="1" ry="4" transform="rotate(-10 396 174)" fill="#f6b5c6"/>'
+             '<ellipse cx="402" cy="174.5" rx="1" ry="4" transform="rotate(10 402 174)" fill="#f6b5c6"/>'
+             f'<circle cx="397" cy="182.5" r=".9" fill="{INK}"/><circle cx="401" cy="182.5" r=".9" fill="{INK}"/>')
     p.append('</svg>')
     return ''.join(p)
 
 
+CAPTION_STYLE = 'margin:0;padding:.4rem .9rem .5rem;background:#fff;color:#655c78;font-size:.86rem;line-height:1.35'
+
+
+def caption_line(jokes):
+    """Under the drawing: what Deborah is working on today and who is with her. The script fills it in, so it
+    starts hidden, and with no approved jokes there is no script and no line. Its look is written on the line
+    itself, not in the stylesheet, so it looks right even beside a stylesheet a browser kept from before it existed."""
+    return f'<p class="scenecap" id="scene-cap" style="{CAPTION_STYLE}" hidden></p>' if jokes else ''
+
+
 def scene_block(ohio=False, jokes=None, list_href='jokes.html'):
-    """The picture card for a front page: the joke of the day in a speech bubble, then the drawing under it."""
-    return f'<div class="scenebox">{joke_bubble(jokes or {}, list_href)}{scene_svg(ohio)}</div>'
+    """The picture card for a front page: the joke of the day in a speech bubble, the drawing under it, and
+    under that a line that says what Deborah is working on today and who is with her."""
+    jokes = jokes or {}
+    return f'<div class="scenebox" id="scene">{joke_bubble(jokes, list_href)}{scene_svg(ohio)}{caption_line(jokes)}</div>'
 
 
 # ---------------------------------------------------------------- the joke of the day
@@ -215,40 +544,147 @@ def check_jokes(data):
             errors.append(f'{where}: plain words only, no markup')
         if not isinstance(j.get('approved'), bool):
             errors.append(f'{where}: approved must be true or false')
+        # The picture for the day. All three are optional: what a joke leaves out takes its turn.
+        cast = j.get('cast')
+        if cast is not None and (not isinstance(cast, list) or len(set(cast)) != len(cast) or any(k not in KIDS for k in cast)):
+            errors.append(f'{where}: cast is a list of {", ".join(KIDS)}, each once (an empty list is Deborah alone)')
+        if j.get('pose') is not None and j['pose'] not in POSES:
+            errors.append(f'{where}: pose is one of {", ".join(POSES)}')
+        if j.get('sweater') is not None and j['sweater'] not in SWEATERS:
+            errors.append(f'{where}: sweater is one of {", ".join(SWEATERS)}')
     texts = [j.get('text') for j in data.get('jokes', [])]
     if len(set(texts)) != len(texts):
         errors.append('the same joke is listed twice')
     return errors
 
 
+# ---------------------------------------------------------------- the picture for each day
+def take_turns(jokes, key, names):
+    """Each joke's `key` (its pose or its sweater): its own if it names one, otherwise the next in turn.
+    A turn is skipped if the two days before or the two days after already have it, so she is never in the
+    same pose, or the same sweater, twice in three days unless the jokes themselves ask for it."""
+    out, turn = [], 0
+    for i, j in enumerate(jokes):
+        mine = j.get(key)
+        if not mine:
+            near = out[-2:] + [later.get(key) for later in jokes[i + 1:i + 3]]
+            while names[turn % len(names)] in near:
+                turn += 1
+            mine = names[turn % len(names)]
+            turn += 1
+        out.append(mine)
+    return out
+
+
+def caption(pose, cast, turn=0):
+    """The line under the drawing: what Deborah is working on today, and who is with her. A child who is in
+    the picture alone gets a line of his or her own (`turn` picks which). It is kept short: two lines on a phone."""
+    words = f'Today Deborah is working on {POSES[pose]["name"]}'
+    names = [KID_NAMES[k] for k in cast]
+    if len(names) == 1:
+        lines = KID_LINES[cast[0]]
+        return f'{words}. {lines[turn % len(lines)]}'
+    if len(names) == len(KIDS):
+        return f'{words}, with all four kids.'
+    if names:
+        return f'{words}, with {", ".join(names[:-1])} and {names[-1]}.'
+    return words + '.'
+
+
+def looks(data=None):
+    """{ISO date: (pose, sweater, cast, caption)} for every joke on file: what the picture shows that day.
+    A joke can name its pose, its sweater and its cast (which children are in the picture; the first one named
+    is the one who answers the joke). Whatever it leaves out takes its turn."""
+    jokes = (read_jokes() if data is None else data)['jokes']
+    poses, sweaters = take_turns(jokes, 'pose', list(POSES)), take_turns(jokes, 'sweater', list(SWEATERS))
+    out, turn, alone = {}, 0, dict.fromkeys(KIDS, 0)
+    for i, j in enumerate(jokes):
+        cast = j.get('cast')
+        if cast is None:
+            cast, turn = [KIDS[turn % len(KIDS)]], turn + 1
+        out[j['date']] = (poses[i], sweaters[i], tuple(cast), caption(poses[i], cast, alone[cast[0]] if len(cast) == 1 else 0))
+        if len(cast) == 1:
+            alone[cast[0]] += 1
+    return out
+
+
+def approved_looks(data=None):
+    """The picture for each approved joke's day. Like the jokes, nothing about an unapproved day reaches a page."""
+    data = read_jokes() if data is None else data
+    approved, every = approved_jokes(data), looks(data)
+    return {date: every[date] for date in approved}
+
+
+def scene_data(day_looks):
+    """What the page's script needs to dress the picture for a day: every pose (how her top half moves, the point
+    she wobbles about, where the joke bubble's tail points), every sweater, and each day's pose, sweater, children
+    and caption. It is all in the page, so a stylesheet a browser kept from last month cannot put it out of step."""
+    return {
+        'p': {name: [top_move(name), f'{num(spec["foot"][0])}px {num(spec["foot"][1])}px', bubble_tail(name)] for name, spec in POSES.items()},
+        'w': {name: list(sweater) for name, sweater in SWEATERS.items()},
+        'd': {date: '|'.join((pose, sweater, ' '.join(cast), words)) for date, (pose, sweater, cast, words) in day_looks.items()},
+    }
+
+
+# Dresses the picture for the day whose key is `p`: the pose, the sweater, which children are in it, which of
+# them speaks, and the caption. It only sets attributes on the drawing, so it can run again for another day.
+# It does nothing on a page with no picture, or for a day the page has no picture for.
+DRESS = ('function(D,p){var S=D.getElementById("scene-data"),B=D.getElementById("scene");if(!S||!B||!p)return;'
+         'S=JSON.parse(S.textContent);var v=(S.d[p]||"").split("|"),P=S.p[v[0]],W=S.w[v[1]];if(!P||!W)return;'
+         'var c=" "+v[2]+" ",f=v[2].split(" ")[0],'
+         'q=function(s,g){var a=B.querySelectorAll(s),i;for(i=0;i<a.length;i++)g(a[i],a[i].getAttribute(s.slice(1,-1)))},'
+         'o=function(e,y){e.setAttribute("display",y?"inline":"none")};'
+         'q("[data-pose]",function(e,a){o(e,a==v[0])});'
+         'q("[data-top]",function(e){e.setAttribute("transform",P[0])});'
+         'q("[data-mom]",function(e){e.style.transformOrigin=P[1]});'
+         'q("[data-kid]",function(e,a){o(e,c.indexOf(" "+a+" ")>=0)});'
+         'q("[data-say]",function(e,a){o(e,a==f)});'
+         'q("[data-pat]",function(e,a){o(e,a==W[3])});'
+         'q("[data-fill]",function(e,a){e.setAttribute("fill",W[a])});'
+         'q("[data-stroke]",function(e,a){e.setAttribute("stroke",W[a])});'
+         'B.style.setProperty("--tail",P[2]);'
+         'var C=D.getElementById("scene-cap");if(C&&v[3]){C.textContent=v[3];C.hidden=false}}')
+
 # Shows the joke for the visitor's own date; on jokes.html, shows the ones that have already run.
 # If today has no joke of its own, the latest earlier one stays up; once the batch has run out the list starts over.
-JOKE_SCRIPT = ('<script>(function(){var j=JSON.parse(document.getElementById("jokes-data").textContent),k=Object.keys(j).sort(),'
+# On a front page it then dresses the picture for that same day. Nothing is sent or stored.
+JOKE_SCRIPT = ('<script>(function(){var D=document,j=JSON.parse(D.getElementById("jokes-data").textContent),k=Object.keys(j).sort(),'
                'd=new Date(),t=d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2),p=null,i;'
                'function n(s){var a=s.split("-");return Math.round(Date.UTC(+a[0],a[1]-1,+a[2])/864e5)}'
                'if(k.length&&t>k[k.length-1]){p=k[(n(t)-n(k[k.length-1])-1)%k.length]}'
                'else{for(i=0;i<k.length;i++)if(k[i]<=t)p=k[i]}'
-               'var b=document.getElementById("joke");if(b&&p){document.getElementById("joke-text").textContent=j[p];b.hidden=false}'
-               'var r=document.querySelectorAll("#joke-list li"),s=0;for(i=0;i<r.length;i++)if(r[i].getAttribute("data-date")<=t){r[i].hidden=false;s++}'
-               'var e=document.getElementById("joke-none");if(e&&!s)e.hidden=false})();</script>')
+               'var b=D.getElementById("joke");if(b&&p){D.getElementById("joke-text").textContent=j[p];b.hidden=false}'
+               'var r=D.querySelectorAll("#joke-list li"),s=0;for(i=0;i<r.length;i++)if(r[i].getAttribute("data-date")<=t){r[i].hidden=false;s++}'
+               'var e=D.getElementById("joke-none");if(e&&!s)e.hidden=false;'
+               '(' + DRESS + ')(D,p)})();</script>')
+
+
+def as_data(name, value):
+    """A value as a data block in the page. '<' is escaped so nothing in it can close the script tag."""
+    return f'<script type="application/json" id="{name}">' + json.dumps(value, ensure_ascii=False, sort_keys=True).replace('<', '\\u003c') + '</script>'
 
 
 def jokes_data(jokes):
-    """The approved jokes as a data block in the page. '<' is escaped so no joke can close the script tag."""
-    return '<script type="application/json" id="jokes-data">' + json.dumps(jokes, ensure_ascii=False, sort_keys=True).replace('<', '\\u003c') + '</script>'
+    """The approved jokes as a data block in the page."""
+    return as_data('jokes-data', jokes)
 
 
 def joke_bubble(jokes, list_href):
-    """The joke of the day as the mom's speech bubble, for the top of the picture card. It is hidden until the script
+    """The joke of the day as Deborah's speech bubble, for the top of the picture card. It is hidden until the script
     has a joke for today, so there is never an empty bubble. Nothing at all with no approved jokes."""
     if not jokes:
         return ''
-    return ('<div class="saying" id="joke" hidden><div class="sayinghead"><h2>Mom joke of the day</h2>'
-            f'<a href="{esc(list_href)}">Earlier jokes</a></div><p class="joketext" id="joke-text"></p></div>')
+    return (f'<div class="saying" id="joke" hidden><div class="sayinghead"><h2>{JOKE_HEADING}</h2>'
+            f'<a href="{esc(list_href)}">Earlier<span> jokes</span></a></div><p class="joketext" id="joke-text"></p></div>')
 
 
-def joke_scripts(jokes):
-    return (jokes_data(jokes) + JOKE_SCRIPT) if jokes else ''
+def joke_scripts(jokes, day_looks=None):
+    """The data and the one script for a page with jokes. A front page passes `day_looks` too, and the same
+    script then dresses its picture; the list of earlier jokes has no picture and leaves it out."""
+    if not jokes:
+        return ''
+    scene = as_data('scene-data', scene_data({d: day_looks[d] for d in jokes})) if day_looks else ''
+    return jokes_data(jokes) + scene + JOKE_SCRIPT
 
 
 def joke_list(jokes):
@@ -277,12 +713,12 @@ def render_sheet(text):
 MARK = re.compile(r'<!--home-extras:(?P<name>[a-z]+)-->(?P<body>.*?)<!--/home-extras-->', re.S)
 
 
-def ohio_blocks(jokes):
-    return {'scene': scene_block(True, jokes, '../jokes.html'), 'jokescript': joke_scripts(jokes)}
+def ohio_blocks(jokes, day_looks=None):
+    return {'scene': scene_block(True, jokes, '../jokes.html'), 'jokescript': joke_scripts(jokes, day_looks)}
 
 
-def render_ohio(text, jokes):
-    blocks = ohio_blocks(jokes)
+def render_ohio(text, jokes, day_looks=None):
+    blocks = ohio_blocks(jokes, day_looks)
     found = [m.group('name') for m in MARK.finditer(text)]
     if sorted(found) != sorted(blocks):
         raise SystemExit(f'ohio/index.html: expected one marker each for {sorted(blocks)}, found {found}')
@@ -290,15 +726,27 @@ def render_ohio(text, jokes):
 
 
 def approve(start=None):
+    """Mark the waiting jokes approved. With `start`, they run from that day: jokes dated before it keep their
+    days, and approved jokes that had that day or a later one move back to follow the new ones, in order."""
     data = read_jokes()
-    day = datetime.date.fromisoformat(start) if start else None
-    for j in data['jokes']:
-        j['approved'] = True
-        if day:
+    jokes = data['jokes']
+    new = [j for j in jokes if j.get('approved') is not True]
+    if not new:
+        raise SystemExit('Every joke on file is already approved.')
+    if start:
+        day = datetime.date.fromisoformat(start)
+        old = [j for j in jokes if j.get('approved') is True]
+        kept, moved = [j for j in old if j['date'] < start], [j for j in old if j['date'] >= start]
+        if kept and datetime.date.fromisoformat(kept[-1]['date']) + datetime.timedelta(days=1) != day:
+            raise SystemExit(f'{start} would leave a gap after {kept[-1]["date"]}; a batch runs one day after another.')
+        for j in new + moved:
             j['date'] = day.isoformat()
             day += datetime.timedelta(days=1)
+        data['jokes'] = jokes = kept + new + moved
+    for j in new:
+        j['approved'] = True
     JOKES.write_text(json.dumps(data, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
-    print(f'Approved {len(data["jokes"])} jokes, {data["jokes"][0]["date"]} to {data["jokes"][-1]["date"]}. '
+    print(f'Approved {len(new)} jokes, {new[0]["date"]} to {new[-1]["date"]}; the list now runs to {jokes[-1]["date"]}. '
           'Now run scripts/ymt_build.py and scripts/home_extras.py.')
 
 
@@ -310,8 +758,8 @@ def main():
     errors = check_jokes(data)
     if errors:
         raise SystemExit('data/jokes.json:\n' + '\n'.join(errors))
-    jokes = approved_jokes(data)
-    targets = {OHIO_HOME: lambda text: render_ohio(text, jokes)}
+    jokes, day_looks = approved_jokes(data), approved_looks(data)
+    targets = {OHIO_HOME: lambda text: render_ohio(text, jokes, day_looks)}
     targets.update({ROOT / rel: render_sheet for rel in SHEETS})
     stale = []
     for path, render in targets.items():
