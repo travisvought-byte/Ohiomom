@@ -1,5 +1,5 @@
 // The joke of the day changes on the visitor's own clock, the picture changes with it (Deborah's pose and sweater,
-// and which of her children are in it), and the picture stays out of the way.
+// and which of her children are around), and the picture stays out of the way.
 // Run: node tests/home-extras.cjs
 const assert = require('node:assert/strict'), fs = require('node:fs'), { execFileSync } = require('node:child_process'), { JSDOM } = require('jsdom');
 const all = (d, sel) => [...d.querySelectorAll(sel)];
@@ -118,7 +118,7 @@ const seen = (d, attr) => all(d, `svg.scene [${attr}]`).filter((el) => el.getAtt
   }
 }
 
-// 4. The picture is dressed for the day: Deborah's pose and sweater, which children are in it, who speaks, the caption.
+// 4. The picture is dressed for the day: Deborah's pose and sweater, which children are around, and the caption.
 {
   const days = [
     { date: '2030-03-30', cast: ['atlas', 'ephraim'], pose: 'triangle', sweater: 'plum' },
@@ -134,8 +134,7 @@ print(e.scene_block(False, jokes, "jokes.html") + e.joke_scripts(jokes, looks))`
   const strokes = (d, mark) => [...new Set(all(d, `svg.scene [data-stroke="${mark}"]`).map((el) => el.getAttribute('stroke')))];
   const check = (d, day, label) => {
     const [wool, accent, trim, pattern] = tables.sweaters[day.sweater];
-    assert.deepEqual(seen(d, 'data-kid').sort(), [...day.cast].sort(), `${label}: the children in the picture`);
-    assert.deepEqual(seen(d, 'data-say'), day.cast.slice(0, 1), `${label}: only the first child named has the bubbles`);
+    assert.deepEqual(seen(d, 'data-kid').sort(), [...day.cast].sort(), `${label}: the children who are around`);
     assert.deepEqual([...new Set(seen(d, 'data-pose'))], [day.pose], `${label}: her arms and legs for this pose and no other`);
     assert.equal(d.querySelector('svg.scene [data-top]').getAttribute('transform') || '', tables.poses[day.pose], `${label}: her top half is moved for the pose`);
     assert.deepEqual(seen(d, 'data-pat'), pattern === 'plain' ? [] : [pattern], `${label}: the sweater's pattern`);
@@ -151,7 +150,7 @@ print(e.scene_block(False, jokes, "jokes.html") + e.joke_scripts(jokes, looks))`
   // Then each day has its own.
   d = on('2030-03-30', body);
   check(d, days[0], 'day one');
-  assert.equal(d.getElementById('scene-cap').textContent, 'Today Deborah is working on triangle pose, with Atlas and Ephraim.');
+  assert.equal(d.getElementById('scene-cap').textContent, 'Today Deborah is working on triangle pose.', 'the caption is about Deborah, whoever is around');
   assert(!d.getElementById('scene-cap').hidden);
   assert.match(d.getElementById('scene').style.getPropertyValue('--tail'), /^\d\d%$/, 'the tail of the joke bubble follows her head');
   d = on('2030-03-31', body);
@@ -159,7 +158,7 @@ print(e.scene_block(False, jokes, "jokes.html") + e.joke_scripts(jokes, looks))`
   assert.equal(d.getElementById('scene-cap').textContent, 'Today Deborah is working on easy pose.', 'Deborah alone');
   d = on('2030-04-01', body);
   check(d, days[2], 'day three');
-  assert.equal(d.getElementById('scene-cap').textContent, 'Today Deborah is working on warrior two. Genevieve is not impressed.');
+  assert.equal(d.getElementById('scene-cap').textContent, 'Today Deborah is working on warrior two.');
   // When the batch has run out the pictures come round again with their jokes.
   d = on('2030-04-02', body);
   check(d, days[0], 'the day after the batch');
@@ -199,7 +198,6 @@ print(jp.page({"jokes": [{"date": d, "text": "Joke for " + d + ".", "approved": 
   assert.equal(shown(d), 'Joke for 2030-04-01.');
   assert.equal(where(), 'Waiting: 1 of 2');
   assert.deepEqual(seen(d, 'data-kid').sort(), ['atlas', 'genevieve']);
-  assert.deepEqual(seen(d, 'data-say'), ['atlas']);
   assert.equal(d.querySelector('.list button[aria-current="true"]').getAttribute('data-day'), '2030-04-01');
   tap('#next');
   assert.equal(shown(d), 'Joke for 2030-04-02.');

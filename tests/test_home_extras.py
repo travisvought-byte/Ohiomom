@@ -71,46 +71,67 @@ class PictureTests(unittest.TestCase):
         self.assertEqual(rest(national), rest(ohio), 'the same family in both rooms')
 
     def test_the_family_is_in_the_picture(self):
-        """Deborah and her four children. Each child is drawn once, stands in a place of his or her own, and
-        has four things to say; only the child the joke belongs to says them."""
+        """Deborah and her four children. Each child is drawn once and stands in a place of his or her own."""
         svg = extras.scene_svg()
         self.assertEqual(svg.count('data-mom'), 1)
         self.assertEqual(svg.count('data-top'), 1, 'her top half is drawn once and every pose moves it')
         self.assertEqual(sorted(every(svg, 'data-kid')), sorted(extras.KIDS))
-        self.assertEqual(sorted(every(svg, 'data-say')), sorted(extras.KIDS))
         self.assertEqual(set(extras.KID_X), set(extras.KIDS))
         self.assertEqual(set(extras.KID_NAMES), set(extras.KIDS))
-        self.assertEqual(set(extras.KID_LINES), set(extras.KIDS))
         places = sorted(extras.KID_X.values())
         self.assertTrue(all(b - a >= 40 for a, b in zip(places, places[1:])), 'the children stand apart from each other')
         self.assertTrue(all(x < 174 - 20 or x > 358 + 20 for x in places), 'and off her mat')
-        self.assertEqual(svg.count('class="sc-b '), 4 * len(extras.KIDS), 'four bubbles for each child')
-        for words in ('>Ha ha!<', '>Again!<', '>AGAIN. NOW.<', '>Please?<', '>6 out of 10.<', '>Fine. 10.<', '>MOM.<', '>…heh.<'):
-            self.assertEqual(svg.count(words), 1, words)
-        self.assertEqual(svg.count('class="sc-heart"'), len(extras.KIDS), 'each child ends on a heart')
-        # Before the script runs, the page shows Deborah with the first child, who has the bubbles.
+        # Before the script runs, the page shows Deborah with the first child.
         self.assertEqual(shown(svg, 'data-kid'), ['delilah'])
-        self.assertEqual(shown(svg, 'data-say'), ['delilah'])
         both = extras.scene_svg(cast=('atlas', 'ephraim'))
         self.assertEqual(sorted(shown(both, 'data-kid')), ['atlas', 'ephraim'])
-        self.assertEqual(shown(both, 'data-say'), ['atlas'], 'the first one named answers the joke')
-        alone = extras.scene_svg(cast=())
-        self.assertEqual(shown(alone, 'data-kid') + shown(alone, 'data-say'), [], 'Deborah can have the mat to herself')
+        self.assertEqual(shown(extras.scene_svg(cast=()), 'data-kid'), [], 'Deborah can have the mat to herself')
+
+    def test_the_children_are_around_not_on_stage(self):
+        """They do their own things while she tries to get through her joke (the owner's call, November 17, 2026).
+        Nobody is there to answer it: no child has lines about the joke. Only the smallest speaks, and what she
+        says is what the child in the first picture said."""
+        svg = extras.scene_svg()
+        kids = {}
+        ends = sorted(svg.index(f'<g data-kid="{name}"') for name in extras.KIDS) + [svg.index('<g class="sc-leaf">')]
+        for name in extras.KIDS:
+            start = svg.index(f'<g data-kid="{name}"')
+            kids[name] = svg[start:min(e for e in ends if e > start)]
+        self.assertEqual(re.findall(r'<text[^>]*>([^<]*)</text>', svg), ['Ha ha!', 'Again!', 'AGAIN!', 'Please?'])
+        self.assertEqual(kids['delilah'].count('class="sc-b '), 4)
+        for name in ('ephraim', 'genevieve', 'atlas'):
+            self.assertNotIn('<text', kids[name], f'{name} says nothing')
+            self.assertNotIn('sc-b', kids[name])
+        self.assertNotIn('data-say', svg, 'nobody is picked to speak')
+        self.assertNotIn('data-say', extras.DRESS)
+        # What each one is doing is in the drawing, and it moves.
+        self.assertIn('class="sc-look"', kids['ephraim'], 'he looks up from his book')
+        self.assertIn('class="sc-grin"', kids['genevieve'], 'she almost laughs')
+        self.assertIn('class="sc-peek"', kids['atlas'], 'he leans out from behind the plant')
+        self.assertIn('class="sc-hi"', kids['atlas'])
+        self.assertIn('class="sc-kid"', kids['delilah'])
+        self.assertLess(svg.index('<g data-kid="atlas"'), svg.index('<g class="sc-leaf">'), 'the plant is drawn in front of him')
+        # Who is around takes turns: every child comes round, alone and in company, and never the same lot twice running.
+        for group in extras.CASTS:
+            self.assertTrue(group and set(group) <= set(extras.KIDS) and len(set(group)) == len(group), group)
+        self.assertEqual(len(set(extras.CASTS)), len(extras.CASTS))
+        for name in extras.KIDS:
+            self.assertIn((name,), extras.CASTS, f'{name} has days alone with her')
+            self.assertGreaterEqual(sum(name in group for group in extras.CASTS), 4, name)
+        self.assertIn(tuple(extras.KIDS), extras.CASTS, 'and some days everybody is there')
 
     def test_the_picture_names_nobody(self):
-        """The drawing is hidden from screen readers, so no name is in it; names are in the caption and the jokes.
-        The children go by first name only, everywhere."""
+        """The drawing is hidden from screen readers, so no name is in it. The caption names Deborah and nobody else."""
         svg = extras.scene_svg(True)
         for name in list(extras.KID_NAMES.values()) + ['Deborah', 'Vought']:
             self.assertNotIn(name, svg, name)
         for name in extras.KID_NAMES.values():
             self.assertRegex(name, r'^[A-Z][a-z]+$', 'a first name')
-        said = [line for lines in extras.KID_LINES.values() for line in lines]
-        for kid, lines in extras.KID_LINES.items():
-            self.assertGreaterEqual(len(lines), 3)
-            for line in lines:
-                self.assertTrue(line.startswith(extras.KID_NAMES[kid] + ' ') and line.endswith('.'), line)
-        self.assertEqual(len(set(said)), len(said))
+        for pose in extras.POSES:
+            words = extras.caption(pose)
+            self.assertIn('Deborah', words)
+            for name in extras.KID_NAMES.values():
+                self.assertNotIn(name, words)
 
     def test_every_pose_is_drawn_and_only_one_shows(self):
         svg = extras.scene_svg()
@@ -363,11 +384,8 @@ class DayTests(unittest.TestCase):
             self.assertEqual((j.get('pose') or pose, j.get('sweater') or sweater), (pose, sweater), 'what a joke names, it gets')
             if 'cast' in j:
                 self.assertEqual(list(cast), j['cast'])
-            self.assertRegex(words, '^Today Deborah is working on ' + re.escape(extras.POSES[pose]['name']) + '[.,]')
+            self.assertEqual(words, f'Today Deborah is working on {extras.POSES[pose]["name"]}.')
             self.assertNotIn('|', words + ''.join(cast), 'the page keeps a day as one line split on this mark')
-            for kid in extras.KIDS:  # a child the caption names is in the picture
-                if extras.KID_NAMES[kid] in words:
-                    self.assertIn(kid, cast, words)
         # Every child the words of a joke name is in that day's picture.
         for j in data['jokes']:
             for kid in extras.KIDS:
@@ -381,8 +399,16 @@ class DayTests(unittest.TestCase):
             self.assertEqual(set(worn), set(names), 'all of them come round')
             for gap in (1, 2):
                 self.assertTrue(all(a != b for a, b in zip(worn, worn[gap:])), 'never the same twice in three days')
-        self.assertEqual([look[2] for look in day_looks[:5]], [('delilah',), ('ephraim',), ('genevieve',), ('atlas',), ('delilah',)],
-                         'with no cast named, the children take turns')
+        around = [look[2] for look in day_looks]
+        self.assertEqual(around[:len(extras.CASTS)], list(extras.CASTS), 'with no cast named, who is around takes turns')
+        self.assertTrue(all(a != b for a, b in zip(around, around[1:])), 'never the same children two days running')
+        # A joke that names who is around gets them, and the days on either side step aside.
+        named = batch(5)
+        named['jokes'][1]['cast'] = list(extras.CASTS[0])
+        named['jokes'][3]['cast'] = list(extras.CASTS[2])
+        around = [look[2] for look in extras.looks(named).values()]
+        self.assertEqual((around[1], around[3]), (extras.CASTS[0], extras.CASTS[2]))
+        self.assertTrue(all(a != b for a, b in zip(around, around[1:])), around)
         # A joke that names its pose gets it, and the days around it step aside.
         data = batch(6)
         data['jokes'][2]['pose'] = 'tree'
@@ -395,26 +421,16 @@ class DayTests(unittest.TestCase):
             for gap in (1, 2):
                 self.assertTrue(all(a != b for a, b in zip(names, names[gap:])), names)
 
-    def test_the_caption_says_who_is_there(self):
-        self.assertEqual(extras.caption('tree', []), 'Today Deborah is working on tree pose.')
-        self.assertEqual(extras.caption('tree', ['delilah']), 'Today Deborah is working on tree pose. Delilah is supervising.')
-        self.assertEqual(extras.caption('tree', ['delilah'], 1), 'Today Deborah is working on tree pose. Delilah has notes.')
-        self.assertEqual(extras.caption('warrior2', ['atlas', 'ephraim']), 'Today Deborah is working on warrior two, with Atlas and Ephraim.')
-        self.assertEqual(extras.caption('easy', ['atlas', 'ephraim', 'delilah']),
-                         'Today Deborah is working on easy pose, with Atlas, Ephraim and Delilah.')
-        self.assertEqual(extras.caption('star', list(extras.KIDS)), 'Today Deborah is working on star pose, with all four kids.')
-        # On a phone the caption is two lines at most, so the choices below it stay where they are: about 80 letters.
-        casts = [[k] for k in extras.KIDS] + [['genevieve', 'ephraim'], ['genevieve', 'ephraim', 'delilah'], list(extras.KIDS), []]
+    def test_the_caption_is_about_deborah(self):
+        """One short line: what she is working on today. The children are in the picture, and that is enough."""
+        self.assertEqual(extras.caption('tree'), 'Today Deborah is working on tree pose.')
+        self.assertEqual(extras.caption('warrior2'), 'Today Deborah is working on warrior two.')
         for pose in extras.POSES:
-            for cast in casts:
-                for turn in range(4):
-                    self.assertLessEqual(len(extras.caption(pose, cast, turn)), 80, extras.caption(pose, cast, turn))
-        data = batch(9)
-        for j in data['jokes']:
-            j['cast'] = ['genevieve']
-        lines = [look[3].split('. ', 1)[1] for look in extras.looks(data).values()]
-        self.assertEqual(lines[:len(extras.KID_LINES['genevieve'])], list(extras.KID_LINES['genevieve']), 'a child goes through her own lines in order')
-        self.assertEqual(lines[len(extras.KID_LINES['genevieve'])], lines[0], 'and then starts over')
+            self.assertLessEqual(len(extras.caption(pose)), 44, 'one line on a phone')
+        data = batch(3)
+        data['jokes'][0]['cast'] = ['genevieve', 'atlas']
+        for pose, _, _, words in extras.looks(data).values():
+            self.assertEqual(words, extras.caption(pose), 'whoever is around')
 
     def test_the_page_gets_what_the_script_needs(self):
         data = batch(3)
@@ -423,7 +439,7 @@ class DayTests(unittest.TestCase):
         self.assertEqual(set(scene), {'p', 'w', 'd'})
         self.assertEqual(set(scene['p']), set(extras.POSES))
         self.assertEqual(set(scene['w']), set(extras.SWEATERS))
-        self.assertEqual(scene['d']['2030-01-02'], 'triangle|plum|atlas genevieve|Today Deborah is working on triangle pose, with Atlas and Genevieve.')
+        self.assertEqual(scene['d']['2030-01-02'], 'triangle|plum|atlas genevieve|Today Deborah is working on triangle pose.')
         self.assertEqual(scene['p']['tree'], ['', '256.5px 168px', '50%'])
         self.assertEqual(scene['p']['triangle'][0], 'translate(8 4)rotate(-58 262 113)')
         self.assertEqual(scene['w']['plum'], list(extras.SWEATERS['plum']))

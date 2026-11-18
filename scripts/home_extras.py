@@ -4,11 +4,11 @@
 Both front pages carry the same two extras, drawn here so they cannot drift apart:
 
 - **The picture.** It is the family whose site this is (the owner's call, November 17, 2026). Deborah is on her
-  mat, tall and blond, in pink leggings, telling the joke of the day; her children answer it, each in his or her
-  own way, until she wobbles and opens one eye. It changes every day: she works on a different pose (POSES) in a
-  different sweater (SWEATERS), and the day's joke says which of the four children are in it (KIDS). The children
-  go by first name only: no exact ages, schools or places, and nothing about their health, here or in a joke.
-  It is inline SVG, moved by CSS. The rules are in templates/home-extras.css, and this script copies them to
+  mat, tall and blond, in pink leggings, trying to get through the joke of the day. Her children are around,
+  each doing his or her own thing; nobody is there to answer the joke. Who they are is shown by what they do
+  and never said. It changes every day: she works on a different pose (POSES) in a different sweater (SWEATERS),
+  and different children are around (KIDS, CASTS). The site does not name the children, and nothing else about
+  them is written here: no ages, schools or places, and nothing about their health. It is inline SVG, moved by CSS. The rules are in templates/home-extras.css, and this script copies them to
   the end of assets/ymt.css and ohio/assets/site.css, between marker comments, so the two sites cannot drift
   apart: edit the template, never the copies. The picture is decoration, so it is hidden from screen readers,
   and it holds still for visitors whose device asks for reduced motion. The OhioMom picture is the same room
@@ -21,8 +21,8 @@ Both front pages carry the same two extras, drawn here so they cannot drift apar
   anywhere. The bubble is HTML, not part of the drawing, so the words wrap, can be read aloud by a screen
   reader, and can be selected. When a batch runs out the list starts over, one a day, until new jokes are
   approved. jokes.html is the running list of the ones that have already run.
-- **The caption.** Under the drawing, one line says what Deborah is working on today and who is with her. It
-  is HTML too, for the same reasons.
+- **The caption.** Under the drawing, one line says what Deborah is working on today. It is HTML too, for the
+  same reasons.
 
 How a day gets its picture: every pose's arms and legs, every sweater pattern and all four children are in the
 drawing, and all but one set are switched off. The same script that shows the day's joke switches on the day's
@@ -73,22 +73,18 @@ OHIO = ('M.1 2.4L8.8 2.1L10.8 3L12 3.9L13.5 4.4L15.9 4.6L18.5 4L20.1 4L22.7 2.2L
 
 # ---------------------------------------------------------------- who is in the picture
 # The picture is the family whose site this is (the owner's call, November 17, 2026): Deborah on her mat and
-# her four children. Each child stands in the same place every time, so nothing ever overlaps; a day's joke
-# says which of them are in that day's picture. First names only: no exact ages, schools or places, and nothing
-# about their health, anywhere in this repository.
-KIDS = ('delilah', 'ephraim', 'genevieve', 'atlas')  # also the order they take turns in when a joke names no one
+# her four children. The children are simply around, each doing his or her own thing while she tries to get
+# through her joke: nobody is there to answer it. Who they are is shown by what they do, never said (the owner's
+# call the same day). Each child stands in the same place every time, so nothing ever overlaps.
+# The site does not name them: the names below only say who is in a day's picture. Nothing else about the
+# children is written anywhere in this repository: no ages, schools or places, and nothing about their health.
+KIDS = ('delilah', 'ephraim', 'genevieve', 'atlas')
 KID_NAMES = {'delilah': 'Delilah', 'ephraim': 'Ephraim', 'genevieve': 'Genevieve', 'atlas': 'Atlas'}
 KID_X = {'genevieve': 106, 'ephraim': 150, 'delilah': 380, 'atlas': 452}  # where each one stands
-# What the caption says a child is doing, on a day when that child is the only one in the picture.
-# Each child goes through his or her own lines in order.
-KID_LINES = {
-    'delilah': ('Delilah is supervising.', 'Delilah has notes.', 'Delilah is in charge, as usual.', 'Delilah wants a turn.'),
-    'ephraim': ('Ephraim is keeping score.', 'Ephraim is counting her breaths.', 'Ephraim is timing her.', 'Ephraim gives it a seven.'),
-    'genevieve': ('Genevieve is not impressed.', 'Genevieve pretends not to watch.', 'Genevieve has seen better.',
-                  'Genevieve is here under protest.'),
-    'atlas': ('Atlas is hiding behind the plant.', 'Atlas is behind the plant again.', 'Atlas is hiding. Nobody tell her.',
-              'Atlas thinks nobody can see him.'),
-}
+# Who is around on a day whose joke does not say: these take turns, so the room is never the same two days running.
+CASTS = (('delilah',), ('ephraim', 'atlas'), ('genevieve',), ('atlas', 'delilah'), ('ephraim',), ('genevieve', 'delilah'),
+         ('atlas',), ('ephraim', 'genevieve'), ('delilah', 'ephraim', 'genevieve', 'atlas'), ('genevieve', 'atlas'),
+         ('ephraim', 'delilah'))
 
 # ---------------------------------------------------------------- her sweaters
 # Deborah wears a different sweater every day. name: (wool, pattern color, collar and hem, pattern).
@@ -243,19 +239,10 @@ def says(n, x, y, width, height, tail, text, size=16, fill=INK):
     return bubble(n, x, y, width, height, tail, words)
 
 
-def says_hearts(n, x, y, width, height, tail, count):
-    """Atlas says it with hearts."""
-    middle, gap = x + width / 2, 15
-    hearts = ''.join(heart(num(middle + gap * (i - (count - 1) / 2)), num(y + height / 2 - .5), 1.15, BRAND) for i in range(count))
-    return bubble(n, x, y, width, height, tail, hearts)
-
-
-def kid(name, body, said, cast):
-    """One child, drawn about x = 0 and moved to where she stands. `said` shows only on a day when the joke is hers."""
+def kid(name, drawn, cast):
+    """One child, drawn about x = 0 and moved to where he or she stands. Switched off unless in the day's cast."""
     hidden = '' if name in cast else ' display="none"'
-    quiet = '' if cast and cast[0] == name else ' display="none"'
-    return (f'<g data-kid="{name}" transform="translate({KID_X[name]} 0)"{hidden}>{body}'
-            f'<g data-say="{name}"{quiet}>{said}</g></g>')
+    return f'<g data-kid="{name}" transform="translate({KID_X[name]} 0)"{hidden}>{drawn}</g>'
 
 
 def face(y, gap, mouth, r=1.6):
@@ -270,7 +257,8 @@ def cheeks(y, gap, r=2.4):
 
 
 def delilah(cast):
-    """Delilah, the smallest: hands on her hips, one eyebrow up. She is in charge."""
+    """Delilah, the smallest: hands on her hips, one eyebrow up. She is the one who wants the joke again,
+    as the child in the first picture did, until her mother opens one eye."""
     boots, top = '#e0453a', '#8a63d2'
     body = (f'<g class="sc-kid"><path d="M-7 163v10M7 163v10" stroke="{boots}" stroke-width="8.5" stroke-linecap="round"/>'
             f'<ellipse cx="-8.5" cy="176.2" rx="6.3" ry="3.2" fill="{boots}"/><ellipse cx="8.5" cy="176.2" rx="6.3" ry="3.2" fill="{boots}"/>'
@@ -287,15 +275,15 @@ def delilah(cast):
             f'<circle cx="0" cy="112.8" r="2.8" fill="{BRAND}"/>'
             + cheeks(129.3, 8.6, 2.8) + face(125.2, 5, 'M-3.6 130.6q4.2 2.4 7.6-1.1')
             + f'<path d="M-8.3 120.4l5 .5M3.2 119.9l5.2-2" fill="none" stroke="{INK}" stroke-width="1.3" stroke-linecap="round"/></g>')
-    said = (says(1, -12, 64, 74, 30, 3, 'Ha ha!') + says(2, -12, 62, 80, 32, 3, 'Again!', 18)
-            + says(3, -12, 60, 104, 34, 3, 'AGAIN. NOW.', 15, BRAND) + says(4, -12, 62, 88, 32, 3, 'Please?', 18)
+    said = (says(1, -12, 64, 74, 30, 3, 'Ha ha!') + says(2, -12, 60, 86, 34, 3, 'Again!', 19)
+            + says(3, -12, 58, 104, 38, 3, 'AGAIN!', 22, BRAND) + says(4, -12, 62, 92, 32, 3, 'Please?', 18)
             + heart(-46, 128, 1.5, BRAND, 'sc-heart'))
-    return kid('delilah', body, said, cast)
+    return kid('delilah', body + said, cast)
 
 
 def atlas(cast):
     """Atlas: blond hair down over his ears, a big smile. He hides behind the plant, which does not cover
-    him, and leans out to wave. His bubbles hold hearts."""
+    him, and leans out now and then to wave."""
     shirt, shorts = '#f2743a', '#3b4a7a'
     body = ('<g class="sc-peek">'
             f'<path d="M-5 158V174M5 158V174" stroke="{SKIN}" stroke-width="5.2" stroke-linecap="round"/>'
@@ -309,15 +297,13 @@ def atlas(cast):
             + cheeks(115, 7.8)
             + f'<circle cx="-4.6" cy="110.8" r="1.6" fill="{INK}"/><circle cx="4.6" cy="110.8" r="1.6" fill="{INK}"/>'
             f'<path d="M-5.2 114.6q5.2 6.8 10.4 0z" fill="{INK}"/></g>')
-    said = (says_hearts(1, -52, 60, 40, 30, -10, 1) + says_hearts(2, -62, 60, 56, 30, -10, 2)
-            + says_hearts(3, -76, 58, 72, 32, -10, 3) + says_hearts(4, -62, 60, 56, 30, -10, 2)
-            + heart(-40, 122, 1.5, BRAND, 'sc-heart'))
-    return kid('atlas', body, said, cast)
+    return kid('atlas', body + heart(-26, 104, 1.2, BRAND, 'sc-heart'), cast)
 
 
 def genevieve(cast):
     """Genevieve, dressed like the heroine of a gothic anime: black dress, striped sleeves and tights, big
-    boots, cat ears, hair over one eye. She does not laugh. On her own days she almost does."""
+    boots, cat ears, hair over one eye. She stands with her arms crossed and does not laugh. Once, near the
+    end, she almost does."""
     stripes = f'stroke="{VIOLET}" stroke-width="5" stroke-dasharray="2.6 3.4"'
     body = (f'<path d="M-5 144V168M5 144V168" stroke="{INK}" stroke-width="5"/><path d="M-5 146V168M5 146V168" {stripes}/>'
             f'<path d="M-5 167v6M5 167v6" stroke="{NIGHT}" stroke-width="8" stroke-linecap="round"/>'
@@ -336,31 +322,27 @@ def genevieve(cast):
             f'<circle cx="5" cy="95.8" r="1.7" fill="{INK}"/><path d="M6.3 94.5l2.3-1.4" stroke="{INK}" stroke-width="1.1" stroke-linecap="round"/>'
             f'<g fill="none" stroke="{INK}" stroke-width="1.5" stroke-linecap="round"><path class="sc-flat" d="M-1.5 100.8h5.5"/>'
             '<path class="sc-grin" opacity="0" d="M-1.5 100.3q2.8 2.1 5.5 0"/></g>')
-    said = (says(1, -72, 38, 62, 30, -2, 'Mom.') + says(2, -72, 38, 90, 30, -2, 'Mom, no.')
-            + says(3, -72, 36, 74, 32, -2, 'MOM.', 19, BRAND) + says(4, -72, 38, 72, 30, -2, '…heh.')
-            + heart(24, 84, 1.3, BRAND, 'sc-heart'))
-    return kid('genevieve', body, said, cast)
+    return kid('genevieve', body, cast)
 
 
 def ephraim(cast):
-    """Ephraim, the tallest of the four: brown hair, hands in his hoodie pocket. He likes math, so he keeps score."""
-    hoodie, shade, jeans = '#8f9bb3', '#76839d', '#3f5f8a'
+    """Ephraim, the tallest of the four: brown hair, a hoodie, and his nose in a book. He looks up once."""
+    hoodie, shade, jeans, cover = '#8f9bb3', '#76839d', '#3f5f8a', '#1f7f73'
     body = (f'<path d="M-4.5 124L-5.5 173.5M4.5 124L5.5 173.5" stroke="{jeans}" stroke-width="6.2" stroke-linecap="round"/>'
             '<ellipse cx="-7" cy="177" rx="6.6" ry="3" fill="#fff"/><ellipse cx="7" cy="177" rx="6.6" ry="3" fill="#fff"/>'
             f'<rect x="-3" y="79" width="6" height="8" fill="{SKIN}"/>'
             f'<rect x="-10.5" y="83.5" width="21" height="44" rx="7.5" fill="{hoodie}"/>'
             f'<path d="M-8.5 88q8.5-7 17 0" fill="none" stroke="{shade}" stroke-width="3.4" stroke-linecap="round"/>'
-            f'<rect x="-7.5" y="111" width="15" height="10" rx="3.5" fill="{shade}"/>'
-            '<path d="M-4.5 98h9M-2 98v6.5M2 98q-.3 5.3 1.7 6.5" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>'
-            f'<path d="M-10 89L-14.8 106.5L-6 115.5M10 89L14.8 106.5L6 115.5" fill="none" stroke="{shade}" stroke-width="5.2" '
+            f'<rect x="-7.5" y="113" width="15" height="9" rx="3.5" fill="{shade}"/>'
+            f'<path d="M-10 89L-15.5 102L-9.5 108.5M10 89L15.5 102L9.5 108.5" fill="none" stroke="{shade}" stroke-width="5.2" '
             'stroke-linecap="round" stroke-linejoin="round"/>'
-            f'<circle cx="0" cy="71.5" r="11" fill="{SKIN}"/>'
+            f'<path d="M-11 96.5L0 98.5L11 96.5V109L0 111L-11 109Z" fill="{cover}"/>'
+            '<path d="M-9.8 95.5L-.6 97.3V109L-9.8 107.2ZM9.8 95.5L.6 97.3V109L9.8 107.2Z" fill="#fff"/>'
+            f'<circle cx="-10.3" cy="108.3" r="2.5" fill="{SKIN}"/><circle cx="10.3" cy="108.3" r="2.5" fill="{SKIN}"/>'
+            f'<g class="sc-look"><circle cx="0" cy="71.5" r="11" fill="{SKIN}"/>'
             f'<path d="M-12.3 72.3a12.3 12.3 0 0 1 24.6 0v4.1q-1.7 1.6-3.4.2q.2-4.8-1.6-7.4q-7.3 3.3-14.6 0q-1.8 2.6-1.6 7.4q-1.7 1.4-3.4-.2z" fill="{BROWN}"/>'
-            + face(74, 4.3, 'M-3 78.8q3.6 2 6.6-.7', 1.5))
-    said = (says(1, -14, 20, 52, 30, 3, 'Ha.') + says(2, -14, 20, 98, 30, 3, '6 out of 10.', 14)
-            + says(3, -14, 18, 78, 32, 3, 'OK. 8!', 18, BRAND) + says(4, -14, 20, 86, 30, 3, 'Fine. 10.')
-            + heart(38, 96, 1.4, BRAND, 'sc-heart'))
-    return kid('ephraim', body, said, cast)
+            + face(75.2, 4.3, 'M-2.6 79.3q2.8 1.5 5.2 0', 1.5) + '</g>')
+    return kid('ephraim', body, cast)
 
 
 def star(x, y, outer, inner):
@@ -415,7 +397,7 @@ def deborah():
 
 def scene_svg(ohio=False, cast=('delilah',)):
     """The front-page picture. `ohio` adds the cardinal at the window and Ohio on the wall. `cast` is who is
-    drawn showing before the script has picked the day's children; the first of them is the one who speaks."""
+    drawn showing before the script has picked the day's children."""
     p = ['<svg class="scene" viewBox="0 10 520 196" aria-hidden="true" focusable="false">'
          '<defs><linearGradient id="sc-wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6f5f0"/>'
          '<stop offset="1" stop-color="#d2ebe5"/></linearGradient>'
@@ -486,11 +468,11 @@ def scene_svg(ohio=False, cast=('delilah',)):
     return ''.join(p)
 
 
-CAPTION_STYLE = 'margin:0;padding:.4rem .9rem .5rem;background:#fff;color:#655c78;font-size:.86rem;line-height:1.35'
+CAPTION_STYLE = 'margin:0;padding:.4rem .9rem .5rem;background:#fff;color:#655c78;font-size:.82rem;line-height:1.35'
 
 
 def caption_line(jokes):
-    """Under the drawing: what Deborah is working on today and who is with her. The script fills it in, so it
+    """Under the drawing: what Deborah is working on today. The script fills it in, so it
     starts hidden, and with no approved jokes there is no script and no line. Its look is written on the line
     itself, not in the stylesheet, so it looks right even beside a stylesheet a browser kept from before it existed."""
     return f'<p class="scenecap" id="scene-cap" style="{CAPTION_STYLE}" hidden></p>' if jokes else ''
@@ -498,7 +480,7 @@ def caption_line(jokes):
 
 def scene_block(ohio=False, jokes=None, list_href='jokes.html'):
     """The picture card for a front page: the joke of the day in a speech bubble, the drawing under it, and
-    under that a line that says what Deborah is working on today and who is with her."""
+    under that a line that says what Deborah is working on today."""
     jokes = jokes or {}
     return f'<div class="scenebox" id="scene">{joke_bubble(jokes, list_href)}{scene_svg(ohio)}{caption_line(jokes)}</div>'
 
@@ -544,7 +526,7 @@ def check_jokes(data):
             errors.append(f'{where}: plain words only, no markup')
         if not isinstance(j.get('approved'), bool):
             errors.append(f'{where}: approved must be true or false')
-        # The picture for the day. All three are optional: what a joke leaves out takes its turn.
+        # The picture for the day: who is around, her pose, her sweater. All optional: what a joke leaves out takes its turn.
         cast = j.get('cast')
         if cast is not None and (not isinstance(cast, list) or len(set(cast)) != len(cast) or any(k not in KIDS for k in cast)):
             errors.append(f'{where}: cast is a list of {", ".join(KIDS)}, each once (an empty list is Deborah alone)')
@@ -576,35 +558,30 @@ def take_turns(jokes, key, names):
     return out
 
 
-def caption(pose, cast, turn=0):
-    """The line under the drawing: what Deborah is working on today, and who is with her. A child who is in
-    the picture alone gets a line of his or her own (`turn` picks which). It is kept short: two lines on a phone."""
-    words = f'Today Deborah is working on {POSES[pose]["name"]}'
-    names = [KID_NAMES[k] for k in cast]
-    if len(names) == 1:
-        lines = KID_LINES[cast[0]]
-        return f'{words}. {lines[turn % len(lines)]}'
-    if len(names) == len(KIDS):
-        return f'{words}, with all four kids.'
-    if names:
-        return f'{words}, with {", ".join(names[:-1])} and {names[-1]}.'
-    return words + '.'
+def caption(pose):
+    """The line under the drawing: what Deborah is working on today. It says nothing about the children:
+    they are in the picture, and that is enough."""
+    return f'Today Deborah is working on {POSES[pose]["name"]}.'
 
 
 def looks(data=None):
     """{ISO date: (pose, sweater, cast, caption)} for every joke on file: what the picture shows that day.
-    A joke can name its pose, its sweater and its cast (which children are in the picture; the first one named
-    is the one who answers the joke). Whatever it leaves out takes its turn."""
+    A joke can name its pose, its sweater and its cast (which children are around). Whatever it leaves out
+    takes its turn. A joke about "my youngest" names Delilah as its cast, so she is the one in the room; the
+    joke itself never says so."""
     jokes = (read_jokes() if data is None else data)['jokes']
     poses, sweaters = take_turns(jokes, 'pose', list(POSES)), take_turns(jokes, 'sweater', list(SWEATERS))
-    out, turn, alone = {}, 0, dict.fromkeys(KIDS, 0)
+    out, turn, before = {}, 0, None
     for i, j in enumerate(jokes):
         cast = j.get('cast')
         if cast is None:
-            cast, turn = [KIDS[turn % len(KIDS)]], turn + 1
-        out[j['date']] = (poses[i], sweaters[i], tuple(cast), caption(poses[i], cast, alone[cast[0]] if len(cast) == 1 else 0))
-        if len(cast) == 1:
-            alone[cast[0]] += 1
+            after = jokes[i + 1].get('cast') if i + 1 < len(jokes) else None
+            near = (before, tuple(after) if after is not None else None)
+            while CASTS[turn % len(CASTS)] in near:  # not the same children two days running
+                turn += 1
+            cast, turn = CASTS[turn % len(CASTS)], turn + 1
+        before = tuple(cast)
+        out[j['date']] = (poses[i], sweaters[i], before, caption(poses[i]))
     return out
 
 
@@ -626,19 +603,18 @@ def scene_data(day_looks):
     }
 
 
-# Dresses the picture for the day whose key is `p`: the pose, the sweater, which children are in it, which of
-# them speaks, and the caption. It only sets attributes on the drawing, so it can run again for another day.
+# Dresses the picture for the day whose key is `p`: the pose, the sweater, which children are around, and the
+# caption. It only sets attributes on the drawing, so it can run again for another day.
 # It does nothing on a page with no picture, or for a day the page has no picture for.
 DRESS = ('function(D,p){var S=D.getElementById("scene-data"),B=D.getElementById("scene");if(!S||!B||!p)return;'
          'S=JSON.parse(S.textContent);var v=(S.d[p]||"").split("|"),P=S.p[v[0]],W=S.w[v[1]];if(!P||!W)return;'
-         'var c=" "+v[2]+" ",f=v[2].split(" ")[0],'
+         'var c=" "+v[2]+" ",'
          'q=function(s,g){var a=B.querySelectorAll(s),i;for(i=0;i<a.length;i++)g(a[i],a[i].getAttribute(s.slice(1,-1)))},'
          'o=function(e,y){e.setAttribute("display",y?"inline":"none")};'
          'q("[data-pose]",function(e,a){o(e,a==v[0])});'
          'q("[data-top]",function(e){e.setAttribute("transform",P[0])});'
          'q("[data-mom]",function(e){e.style.transformOrigin=P[1]});'
          'q("[data-kid]",function(e,a){o(e,c.indexOf(" "+a+" ")>=0)});'
-         'q("[data-say]",function(e,a){o(e,a==f)});'
          'q("[data-pat]",function(e,a){o(e,a==W[3])});'
          'q("[data-fill]",function(e,a){e.setAttribute("fill",W[a])});'
          'q("[data-stroke]",function(e,a){e.setAttribute("stroke",W[a])});'

@@ -15,6 +15,7 @@
 .sc-kid{animation:sc-kid 14s ease-in-out infinite}
 .sc-peek{animation:sc-peek 14s ease-in-out infinite}
 .sc-hi{transform-origin:-9px 127px;animation:sc-hi 14s ease-in-out infinite}
+.sc-look{transform-origin:0 82px;animation:sc-look 14s ease-in-out infinite}
 .sc-flat{animation:sc-flat 14s step-end infinite}
 .sc-grin{opacity:0;animation:sc-grin 14s step-end infinite}
 .sc-lid{animation:sc-lid 14s step-end infinite}
@@ -25,7 +26,7 @@
 .sc-b3{animation:sc-b3 14s ease-out infinite}
 .sc-b4{animation:sc-b4 14s ease-out infinite}
 .sc-heart{opacity:0;animation:sc-heart 14s ease-out infinite}
-.sc-mom,.sc-kid,.sc-peek,.sc-hi,.sc-flat,.sc-grin,.sc-lid,.sc-eye,.sc-b,.sc-heart{animation-delay:-1.4s}
+.sc-mom,.sc-kid,.sc-peek,.sc-hi,.sc-look,.sc-flat,.sc-grin,.sc-lid,.sc-eye,.sc-b,.sc-heart{animation-delay:-1.4s}
 .sc-steam{opacity:0;animation:sc-steam 3.6s ease-out infinite}
 .sc-cloud{animation:sc-cloud 26s ease-in-out infinite}
 .sc-leaf{transform-origin:489px 150px;animation:sc-leaf 6s ease-in-out infinite}
@@ -37,6 +38,7 @@
 @keyframes sc-hi{0%,20%,29%,35%,43%,49%,62%,68%,88%,100%{transform:rotate(0)}22%,26%,37%,41%,51%,55%,59%,72%,80%{transform:rotate(-16deg)}24%,39%,53%,57%,76%,84%{transform:rotate(12deg)}}
 @keyframes sc-lid{0%,53%,88%,100%{opacity:1}54%,87%{opacity:0}}
 @keyframes sc-eye{0%,53%,88%,100%{opacity:0}54%,87%{opacity:1}}
+@keyframes sc-look{0%,50%,66%,100%{transform:rotate(0)}54%,62%{transform:rotate(7deg) translateY(-1px)}}
 @keyframes sc-flat{0%,68%,87%,100%{opacity:1}69%,86%{opacity:0}}
 @keyframes sc-grin{0%,68%,87%,100%{opacity:0}69%,86%{opacity:1}}
 @keyframes sc-b1{0%,20%{opacity:0;transform:scale(.5)}22%,29%{opacity:1;transform:scale(1)}31%,100%{opacity:0;transform:scale(1)}}
