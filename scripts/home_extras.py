@@ -92,6 +92,9 @@ ACTS = {
     'atlas': ('plant', 'box', 'blanket'),       # behind the plant; in a cardboard box; under a blanket
 }
 
+# She copies her mother with her arms up, so she only does it when her mother's arms are up too.
+COPY_POSES = ('tree', 'mountain')
+
 # When a story may show. Most show any time. A seasonal one shows only in its season, and the late-night ones
 # only after bedtime, by the visitor's own clock: (what is compared, from, to), month*100+day or the hour.
 WHENS = {
@@ -670,6 +673,8 @@ def check_jokes(data):
             errors.append(f'{where}: do says what a child is doing, one of ' + '; '.join(f'{k}: {", ".join(v)}' for k, v in ACTS.items()))
         elif do and any(k not in (cast or []) for k in do):
             errors.append(f'{where}: do names a child who is not in the cast')
+        elif do and do.get('delilah') == 'copy' and j.get('pose') not in COPY_POSES:
+            errors.append(f'{where}: copying her mother needs a pose with arms up: pose is one of {", ".join(COPY_POSES)}')
         extra = set(j) - {'text', 'approved', 'cast', 'pose', 'sweater', 'do', 'when'}
         if extra:
             errors.append(f'{where}: {", ".join(sorted(extra))} is not something a joke has')
@@ -733,6 +738,9 @@ def looks(data=None):
             mine = (j.get('do') or {}).get(k)
             if not mine:
                 mine = ACTS[k][doing[k] % len(ACTS[k])]
+                if k == 'delilah' and mine == 'copy' and poses[i] not in COPY_POSES:
+                    doing[k] += 1  # nothing to copy in this pose: on to her next thing
+                    mine = ACTS[k][doing[k] % len(ACTS[k])]
                 if k in cast:
                     doing[k] += 1
             acts.append(f'{k}.{mine}')
