@@ -531,6 +531,209 @@
    ]
   },
   {
+   "code": "JM",
+   "slug": "jamaica",
+   "name": "Jamaica",
+   "flag": "🇯🇲",
+   "emergency": {
+    "number": "119",
+    "label": "Police. For an ambulance or the fire service, dial 110",
+    "source": "https://jis.gov.jm/keep-emergency-numbers-close-says-jfb/"
+   },
+   "resources": [
+    {
+     "id": "jamaica-woman-inc",
+     "section": "help-now",
+     "name": "Woman Inc. Crisis Centre Hotline",
+     "org": "Woman Inc.",
+     "what": "A 24-hour hotline for women facing domestic violence, rape, incest or sexual harassment. Trained volunteers answer, and it can help a woman leaving an abusive partner find emergency shelter.",
+     "how": "Call any hour. Counselling in person is by appointment or walk-in on weekdays in Kingston and Montego Bay.",
+     "phone": "876-929-2997",
+     "dial": "8769292997",
+     "urgent": true,
+     "chip": "Family violence line",
+     "sources": [
+      "https://findahelpline.com/organizations/woman-inc-crisis-centre-hotline",
+      "https://ncdip.moh.gov.jm/injuries-contribute-to-non-communicable-disease/intentional-injury/"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "jamaica-new-life",
+     "section": "help-now",
+     "name": "Mental Health and Suicide Prevention Helpline (888-NEW-LIFE)",
+     "org": "Ministry of Health and Wellness",
+     "what": "The Ministry of Health's free helpline for anyone in Jamaica who is struggling, in crisis or thinking about suicide. Psychologists give first counselling and refer callers on for more help.",
+     "how": "Call 888-NEW-LIFE (888-639-5433). It is toll-free.",
+     "url": "https://www.moh.gov.jm/",
+     "phone": "888-639-5433",
+     "dial": "8886395433",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://jis.gov.jm/prioritise-your-mental-health/",
+      "https://www.moh.gov.jm/health-ministry-boosts-community-mental-health-care/"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "jamaica-211",
+     "section": "kids-differently",
+     "name": "211 child abuse reporting line",
+     "org": "Child Protection and Family Services Agency",
+     "what": "A free 24-hour line for children, and for any adult worried that a child is being abused or neglected. Trained officers answer and pass the report to the right agency.",
+     "how": "Dial 211 from any phone. You can also send a WhatsApp or text to 876-878-2882.",
+     "phone": "211",
+     "dial": "211",
+     "text": "WhatsApp or text 876-878-2882",
+     "sources": [
+      "https://jis.gov.jm/2-1-1-hotline-to-report-child-abuse-is-now-active/",
+      "https://jis.gov.jm/cpfsa-received-13531-reports-in-2023-24/"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "help-now"
+     ]
+    }
+   ]
+  },
+  {
+   "code": "KE",
+   "slug": "kenya",
+   "name": "Kenya",
+   "flag": "🇰🇪",
+   "emergency": {
+    "number": "999",
+    "label": "Police, fire and ambulance. 112 also works from a mobile",
+    "source": "https://en.wikipedia.org/wiki/List_of_emergency_telephone_numbers"
+   },
+   "resources": [
+    {
+     "id": "kenya-1195",
+     "section": "help-now",
+     "name": "National GBV Helpline 1195",
+     "org": "Healthcare Assistance Kenya, with the State Department for Gender",
+     "what": "Kenya's free national line for anyone facing sexual, physical, emotional or financial abuse at home. Counsellors answer any hour and connect callers to medical care, legal aid and safe places to stay.",
+     "how": "Dial 1195 from any phone. Family, friends or neighbours can call for someone else.",
+     "url": "https://migecah.go.ke/node/336",
+     "phone": "1195",
+     "dial": "1195",
+     "urgent": true,
+     "chip": "Family violence line",
+     "sources": [
+      "https://migecah.go.ke/node/336",
+      "https://africa.unwomen.org/en/stories/news/2024/10/kenyas-national-toll-free-helpline-1195-a-lifeline-for-gender-based-violence-survivors"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "kenya-red-cross-1199",
+     "section": "help-now",
+     "name": "Kenya Red Cross 1199",
+     "org": "Kenya Red Cross Society",
+     "what": "A free 24-hour line run by the Kenya Red Cross. Its counsellors give emotional and psychosocial support to people in distress.",
+     "how": "Dial 1199. If it does not connect, call the Red Cross on +254 703 037 000.",
+     "url": "https://www.redcross.or.ke/",
+     "phone": "1199",
+     "dial": "1199",
+     "urgent": true,
+     "chip": "Someone to talk to",
+     "sources": [
+      "https://lifeline-international.com/?p=3351",
+      "https://pscentre.org/?p=39214"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "kenya-116",
+     "section": "kids-differently",
+     "name": "National Child Helpline 116",
+     "org": "Department of Children Services with Childline Kenya",
+     "what": "A free 24-hour line for children, and for adults worried about a child. It offers counselling and can arrange rescue, safe shelter, medical care and legal help.",
+     "how": "Dial 116, or send a WhatsApp to 0722 116 116.",
+     "url": "https://www.childlinekenya.co.ke/",
+     "phone": "116",
+     "dial": "116",
+     "text": "WhatsApp 0722 116 116",
+     "sources": [
+      "https://socialprotection.go.ke/node/234",
+      "https://childhelplineinternational.org/kenya-childline-kenya/"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "help-now"
+     ]
+    }
+   ]
+  },
+  {
+   "code": "MX",
+   "slug": "mexico",
+   "name": "Mexico",
+   "flag": "🇲🇽",
+   "emergency": {
+    "number": "911",
+    "label": "Police, fire and medical emergencies across the country",
+    "source": "https://www.gob.mx/cms/uploads/attachment/file/831549/Reporte_Yo_AYUDO_al_9-1-1.pdf"
+   },
+   "resources": [
+    {
+     "id": "mexico-linea-de-la-vida",
+     "section": "help-now",
+     "name": "Línea de la Vida",
+     "org": "Comisión Nacional de Salud Mental y Adicciones (CONASAMA)",
+     "what": "Mexico's free national line for emotional support, run by the health ministry. Trained professionals answer any hour about crisis, thoughts of suicide, violence, and alcohol or drug use.",
+     "how": "Call 800 911 2000 from any phone in Mexico. The line is in Spanish.",
+     "url": "https://www.gob.mx/conasama/articulos/linea-de-la-vida-800-911-2000",
+     "phone": "800 911 2000",
+     "dial": "8009112000",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://www.gob.mx/conasama/articulos/linea-de-la-vida-800-911-2000",
+      "https://findahelpline.com/organizations/linea-de-la-vida"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "mexico-rnr",
+     "section": "help-now",
+     "name": "Red Nacional de Refugios helpline",
+     "org": "Red Nacional de Refugios",
+     "what": "A national network of shelters for women and their children escaping violence. Its helpline gives support and can help find a safe place to stay anywhere in Mexico.",
+     "how": "Call 800 822 4460. Shelter addresses are kept private for safety.",
+     "url": "https://rednacionalderefugios.org.mx/",
+     "phone": "800 822 4460",
+     "dial": "8008224460",
+     "urgent": true,
+     "chip": "Women's shelters",
+     "sources": [
+      "https://humantraffickinghotline.org/es/node/13890",
+      "https://findahelpline.com/organizations/red-nacional-de-refugios-rnr-linea-de-ayuda-national-shelter-network-helpline"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "housing"
+     ]
+    }
+   ]
+  },
+  {
    "code": "NZ",
    "slug": "new-zealand",
    "name": "New Zealand",
@@ -614,6 +817,88 @@
      ],
      "also": [
       "single-parent"
+     ],
+     "reviewed_on": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "code": "NG",
+   "slug": "nigeria",
+   "name": "Nigeria",
+   "flag": "🇳🇬",
+   "emergency": {
+    "number": "112",
+    "label": "National emergency number, free from any network",
+    "source": "https://technologytimes.ng/nigeria-adopts-112-as-national-emergency-number/"
+   },
+   "resources": [
+    {
+     "id": "nigeria-warif",
+     "section": "help-now",
+     "name": "WARIF 24-hour helpline",
+     "org": "Women at Risk International Foundation (WARIF)",
+     "what": "A free, confidential 24-hour line for women and girls who have faced rape, sexual violence or trafficking, reaching callers across Nigeria.",
+     "how": "Call 0800 921 0009. Shelter addresses are kept private; ask the helpline if you need a safe place.",
+     "url": "https://warifng.org/",
+     "phone": "0800 921 0009",
+     "dial": "08009210009",
+     "urgent": true,
+     "chip": "Women's helpline",
+     "sources": [
+      "https://warifng.org/?p=6323",
+      "https://warifng.org/services/health/"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "nigeria-she-writes-woman",
+     "section": "take-care",
+     "name": "She Writes Woman helpline",
+     "org": "She Writes Woman",
+     "what": "A free mental health line answered at any hour by trained counsellors. Callers do not need airtime.",
+     "how": "Call 0800 800 2000.",
+     "phone": "0800 800 2000",
+     "dial": "08008002000",
+     "sources": [
+      "https://nigeriahealthwatch.com/articles/press-release/0800-800-2000-she-writes-woman-mental-health-initiative-launches-toll-free-mental-health-helpline/",
+      "https://nigeriahealthwatch.com/articles/torchlight/she-writes-woman-giving-mental-health-a-voice-in-nigeria/"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "help-now"
+     ]
+    },
+    {
+     "id": "nigeria-lagos-dsva",
+     "section": "help-now",
+     "name": "Lagos State DSVA helpline",
+     "org": "Lagos State Domestic and Sexual Violence Agency",
+     "what": "For people in Lagos State facing domestic violence, sexual assault or abuse. The agency coordinates legal, medical, emergency and counselling help.",
+     "how": "Call 0800 0333 333 any hour, or dial *6820# to report.",
+     "phone": "0800 0333 333",
+     "dial": "08000333333",
+     "sources": [
+      "https://www.politicaleconomistng.com/200535-2",
+      "https://findahelpline.com/organizations/lagos-state-domestic-and-sexual-violence-agency"
+     ],
+     "reviewed_on": "2026-11-19"
+    },
+    {
+     "id": "nigeria-cece-yara",
+     "section": "kids-differently",
+     "name": "Cece Yara Child Helpline",
+     "org": "Cece Yara Foundation",
+     "what": "A free 24-hour helpline for children and parents, run by staff trained to talk with children. It focuses on child sexual abuse and gives free legal, medical and therapy help.",
+     "how": "Call 0800 800 8001.",
+     "phone": "0800 800 8001",
+     "dial": "08008008001",
+     "sources": [
+      "https://findahelpline.com/organizations/the-cece-yara-24-hour-child-helpline",
+      "https://childhelplineinternational.org/nigeria-cece-yara-child-helpline/?amp=1"
      ],
      "reviewed_on": "2026-11-19"
     }
