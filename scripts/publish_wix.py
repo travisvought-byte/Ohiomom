@@ -93,11 +93,13 @@ class WixError(Exception):
     pass
 
 
-def call(method, url, key, account, body=None, content_type=None):
+def call(method, url, key, account, body=None, content_type=None, site=None):
     """One authenticated call. Returns (status, bytes). The key goes in the Authorization header only."""
     headers = {'Authorization': key, 'User-Agent': 'yogamomtalk-publish'}
     if account:   # an API key needs its account named; a login token carries its own
         headers['wix-account-id'] = account
+        if site:  # Wix grants an API key's site permissions (such as OAuth Apps) only when the site is named too
+            headers['wix-site-id'] = site
     if isinstance(body, (dict, list)):
         body, content_type = json.dumps(body).encode('utf-8'), 'application/json'
     if content_type:
@@ -137,14 +139,14 @@ def find_site(key, account):
 
 def live_is_last_upload(site, key, account):
     """Wix answers 200 here only when what is live is the last static upload. Anything else must not be overwritten."""
-    status, payload = call('GET', f'{API}/headless-business-setup/v1/headless-business/{site}/files', key, account)
+    status, payload = call('GET', f'{API}/headless-business-setup/v1/headless-business/{site}/files', key, account, site=site)
     if status != 200:
         raise explain(status, payload, 'Checking what is live')
     return len(json.loads(payload).get('files', []))
 
 
 def download(site, key, account):
-    status, payload = call('GET', f'{DOWNLOAD}/_api/wixstro-deployments/v1/instant-sites/{site}/download.zip', key, account)
+    status, payload = call('GET', f'{DOWNLOAD}/_api/wixstro-deployments/v1/instant-sites/{site}/download.zip', key, account, site=site)
     if status != 200:
         raise explain(status, payload, 'Downloading the live files')
     with zipfile.ZipFile(io.BytesIO(payload)) as archive:
@@ -155,7 +157,7 @@ def drop(site, files, key, account):
     body, content_type = multipart(files)
     agent = 'github-actions' if os.environ.get('GITHUB_ACTIONS') else 'shell'
     url = f'{API}/headless-business-setup/v1/headless-business/{site}/drop?campaign=ci&agent={agent}'
-    status, payload = call('POST', url, key, account, body, content_type)
+    status, payload = call('POST', url, key, account, body, content_type, site=site)
     if status != 200:
         raise explain(status, payload, 'Uploading')
     return json.loads(payload)

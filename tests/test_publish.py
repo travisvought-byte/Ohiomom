@@ -43,6 +43,10 @@ class FakeWix(BaseHTTPRequestHandler):
 
     def allowed(self):
         if self.headers.get('Authorization') == KEY and self.headers.get('wix-account-id') == ACCOUNT:
+            # Calls about the site must name it, or Wix leaves out the key's site permissions.
+            if SITE in self.path and self.headers.get('wix-site-id') != SITE:
+                self.answer(403, {'message': "PERMISSION_DENIED: permission 'OAUTH_APP.APP_CREATE' denied"})
+                return False
             return True
         # A login token from the Wix command line names its own account.
         if self.headers.get('Authorization') == TOKEN and 'wix-account-id' not in self.headers:
