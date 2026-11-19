@@ -23,21 +23,21 @@ CARDS = {
         'headline': 'Help for moms<br>in all 50 states',
         'line': 'Find help, meet other moms, and see what your state offers. Plain words, real phone numbers.',
         'first': 'www.yogamomtalk.com',
-        'second': 'Free. No sign-up, no ads.',
+        'second': 'Free. No sign-up.',
     },
     'ohio/assets/share.jpg': {
         'logo': 'Ohio<span>Mom</span>' + HEART,
         'headline': 'Find your people,<br>close to home',
         'line': 'Meet other moms, find family events near you, and get help with the hard stuff.',
         'first': 'For moms all over Ohio',
-        'second': 'Free. No sign-up, no ads.',
+        'second': 'Free. No sign-up.',
     },
     'assets/share-family-guide.jpg': {
         'logo': 'Ohio<span>Mom</span>' + HEART,
         'headline': 'Family guide:<br>autism, ADHD and more',
         'line': "Free programs and clear next steps for Ohio families, sorted by your child's age. No diagnosis needed.",
         'first': 'For Ohio families',
-        'second': 'Free. No sign-up, no ads.',
+        'second': 'Free. No sign-up.',
     },
 }
 FILL = '''(card) => { for (const [id, html] of Object.entries(card)) document.getElementById(id).innerHTML = html;

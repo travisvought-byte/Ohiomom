@@ -33,6 +33,8 @@ def load():
         'templates': tmpl['templates'],
         # Built by scripts/county_data.py from Census files: every county with its code, state and population.
         'counties': read_json('counties.json') if (DATA / 'counties.json').exists() else [],
+        # The ads for the ad slots (scripts/ads.py). The list is empty until an ad is sold.
+        'ads': json.loads((ROOT / 'data' / 'ads.json').read_text(encoding='utf-8')).get('ads', []) if (ROOT / 'data' / 'ads.json').exists() else [],
     }
 
 

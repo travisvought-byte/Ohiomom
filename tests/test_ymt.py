@@ -59,7 +59,7 @@ class SiteTests(unittest.TestCase):
     def test_expected_pages_exist(self):
         data = lib.load()
         names = {str(p.relative_to(ROOT)) for p in PAGES}
-        for n in ('index.html', 'help.html', 'connect.html', 'states.html', 'yoga.html', 'about.html', 'report.html', '404.html'):
+        for n in ('index.html', 'help.html', 'connect.html', 'states.html', 'yoga.html', 'about.html', 'privacy.html', 'report.html', '404.html'):
             self.assertIn(n, names)
         for s in data['states']:
             self.assertIn(f"states/{s['abbr'].lower()}.html", names)
@@ -294,8 +294,8 @@ class SiteTests(unittest.TestCase):
         expected = {path: 'assets/share.jpg' for path in PAGES}
         expected.update({path: 'ohio/assets/share.jpg' for path in ohio})
         expected[ROOT / 'family-guide.html'] = 'assets/share-family-guide.jpg'
-        # 60 national pages, and the list of earlier jokes once a batch of jokes is approved; 22 Ohio pages; the family guide
-        self.assertEqual(len(expected), 60 + (1 if home_extras.approved_jokes() else 0) + 22 + 1)
+        # 61 national pages, and the list of earlier jokes once a batch of jokes is approved; 22 Ohio pages; the family guide
+        self.assertEqual(len(expected), 61 + (1 if home_extras.approved_jokes() else 0) + 22 + 1)
         for path, picture in expected.items():
             p = parse(path)
             meta = {a.get('property') or a.get('name'): a.get('content') for t, a in p.tags if t == 'meta'}
@@ -320,8 +320,10 @@ class SiteTests(unittest.TestCase):
     def test_share_cards_only_say_what_the_site_says(self):
         """The cards are pictures, so their words are checked here against the promise printed on the pages."""
         cards = (ROOT / 'scripts/share_cards.py').read_text(encoding='utf-8')
-        self.assertIn("'Free. No sign-up, no ads.'", cards)
-        self.assertIn('No sign-up or ads', (ROOT / 'index.html').read_text(encoding='utf-8'))
+        # The site may carry ads (the owners' decision, November 19, 2026), so no card promises there are none.
+        self.assertEqual(cards.count("'second': 'Free. No sign-up.'"), 3)
+        self.assertNotRegex(cards, r'(?i)no ads')
+        self.assertIn('Free, with no sign-up.', (ROOT / 'index.html').read_text(encoding='utf-8'))
         self.assertNotIn('yogamomtalk.com/ohio', cards, 'that address is a folder, and Wix does not serve folders')
 
     def test_sitemap_lists_every_page_but_404_and_stubs(self):

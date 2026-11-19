@@ -5,6 +5,7 @@ from datetime import date
 from pathlib import Path
 
 sys.path.insert(0, __import__('os').path.dirname(__file__))
+import ads  # noqa: E402
 import ymt_lib as lib  # noqa: E402
 
 
@@ -88,6 +89,12 @@ def main():
                 errors.append(f'{rid}: reviewed_on is in the future')
         except ValueError:
             errors.append(f'{rid}: bad reviewed_on')
+
+    errors += [f'data/ads.json: {e}' for e in ads.check(data['ads'])]
+    on = ads.today()
+    for ad in data['ads']:
+        if isinstance(ad, dict) and ad.get('end') and str(ad['end']) < on:
+            print(f"note: the ad for {ad.get('sponsor')} ended on {ad['end']}; take it out of data/ads.json")
 
     if errors:
         print('\n'.join(errors))
