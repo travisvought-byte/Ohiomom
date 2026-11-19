@@ -14,6 +14,7 @@ from html import escape as esc
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import ads  # noqa: E402
 import home_extras as extras  # noqa: E402
 import ymt_lib as lib  # noqa: E402
 from us_geo import STATE_FIPS  # noqa: E402
@@ -22,7 +23,7 @@ ROOT = lib.ROOT
 EXIT_URL = 'https://www.google.com/search?q=weather'
 NAV = [('help.html', 'Find help'), ('connect.html', 'Meet moms'), ('states.html', 'By state'), ('county.html', 'Near you')]
 FOOT = [('help.html', 'Find help'), ('connect.html', 'Meet moms'), ('states.html', 'By state'),
-        ('about.html', 'About'), ('report.html', 'Report a problem')]
+        ('about.html', 'About'), ('about.html#advertise', 'Advertise'), ('privacy.html', 'Privacy'), ('report.html', 'Report a problem')]
 TILES = [
     ('t1', '🤝', 'Meet other moms', 'Groups and communities near you and online.', 'connect.html'),
     ('t7', '🏠', 'Housing and shelter', "A place to stay tonight, women's shelters, help with rent.", 'help.html#housing'),
@@ -78,9 +79,19 @@ def share_tags(image, alt, root=''):
 <link rel="apple-touch-icon" href="{root}assets/icon-180.png">'''
 
 
-def page(data, path, title, desc, body, body_class='', head_extra='', canonical=None, scripts=''):
+def running_ads(data):
+    """The ads that run on the day of the build (data['today'] stands in for it in the tests)."""
+    return ads.active(data.get('ads', []), data.get('today') or ads.today())
+
+
+def page(data, path, title, desc, body, body_class='', head_extra='', canonical=None, scripts='', slots=()):
+    """slots: the ad slots this page takes, the most specific first (scripts/ads.py). A page with none never shows an ad,
+    and a page whose slots no running ad names has no ad markup at all. The ad comes last in <main>, after the page's own content."""
     site = data['site']
     root = '../' * path.count('/')
+    ad = ads.aside(ads.pick(running_ads(data), slots), root) if slots else ''
+    if ad:
+        body = body + '\n' + ad
     url = f"https://{site['domain']}/" + ('' if (canonical or path) == 'index.html' else (canonical or path))
     full_title = title if title.startswith(site['name']) else f"{title} | {site['name']}"
     nav = ''.join(
@@ -100,7 +111,7 @@ def page(data, path, title, desc, body, body_class='', head_extra='', canonical=
 <meta property="og:url" content="{esc(url)}">
 <meta property="og:title" content="{esc(full_title)}">
 <meta property="og:description" content="{esc(desc)}">
-{share_tags(f"https://{site['domain']}/assets/share.jpg", f"{site['name']}: help for moms in all 50 states. Free, with no sign-up and no ads.", root)}
+{share_tags(f"https://{site['domain']}/assets/share.jpg", f"{site['name']}: help for moms in all 50 states. Free, with no sign-up.", root)}
 <link rel="stylesheet" href="{root}assets/ymt.css">{head_extra}
 </head>
 <body class="{esc(body_class)}">
@@ -112,7 +123,7 @@ def page(data, path, title, desc, body, body_class='', head_extra='', canonical=
 <footer class="foot">
 <p class="footnav">{foot}</p>
 <p>Founded by {esc(site['founder'])}. See something out of date, or know a group we should list? <a href="{root}report.html">Report a problem</a>.</p>
-<p class="small">In danger right now? Call 911. {esc(site['name'])} is an information directory, not an emergency service or a provider of legal, medical or financial advice. Contacts come from published official and organization sources and are not telephone-confirmed. No sign-up or ads, and we add no tracking. Our web host, Wix, sets its own cookies.</p>
+<p class="small">In danger right now? Call 911. {esc(site['name'])} is an information directory, not an emergency service or a provider of legal, medical or financial advice. Contacts come from published official and organization sources and are not telephone-confirmed. No sign-up, and we add no tracking of our own. Our web host, Wix, sets its own cookies, and any ad is labeled Advertisement. See <a href="{root}privacy.html">Privacy</a>.</p>
 <p class="small">Ohio mom? Visit <a href="{root}{esc(site['ohio_path'])}">OhioMom</a>. Mobility and disability resources: <a href="{esc(site['mobilitytalk_url'])}">Mobility Talk</a>.</p>
 </footer>
 <script src="{root}assets/ymt.js"></script>{scripts}
@@ -259,7 +270,7 @@ def build_index(data):
                            'founder': {'@type': 'Person', 'name': site['founder']}}}
     structured = '\n<script type="application/ld+json">' + json.dumps(about, ensure_ascii=False).replace('<', '\\u003c') + '</script>'
     return page(data, 'index.html', f"{site['name']}: help for moms in all 50 states", desc,
-                body, 'home', head_extra=OHIO_REDIRECT + structured,
+                body, 'home', head_extra=OHIO_REDIRECT + structured, slots=('home',),
                 scripts='\n' + extras.joke_scripts(jokes, extras.approved_looks()) if jokes else '')
 
 
@@ -296,7 +307,7 @@ def build_help(data):
             + '<section class="wrap slim"><p>In danger right now? Call 911. Domestic violence shelter addresses are never listed here, for safety.</p></section>')
     return page(data, 'help.html', 'Find help for moms',
                 'Free national help for moms: crisis lines, housing and shelter, food and bills, pregnancy and baby, kids who learn differently and single parents.', body,
-                head_extra=structured_data(breadcrumbs(data, [('Find help', 'help.html')])))
+                head_extra=structured_data(breadcrumbs(data, [('Find help', 'help.html')])), slots=('topic-help', 'topic'))
 
 
 def build_connect(data):
@@ -310,7 +321,7 @@ def build_connect(data):
 <section class="wrap cta"><h2>Run a group, or know a good one?</h2><p>If it is free or low cost and good for moms, we want to list it. Nobody pays to be listed here.</p><p><a class="btn big" href="report.html">Tell us about it</a></p></section>'''
     return page(data, 'connect.html', 'Meet other moms',
                 'Moms groups, breastfeeding groups and support for the hard days, in person and online, across the U.S.', body,
-                head_extra=structured_data(breadcrumbs(data, [('Meet other moms', 'connect.html')])))
+                head_extra=structured_data(breadcrumbs(data, [('Meet other moms', 'connect.html')])), slots=('topic-connect', 'topic'))
 
 
 def build_states_index(data):
@@ -344,7 +355,8 @@ def build_state(data, s):
              'description': desc, 'inLanguage': 'en', 'isPartOf': {'@id': base + '#website'},
              'about': {'@type': 'State', 'name': s['name']}}
     trail = breadcrumbs(data, [('Help by state', 'states.html'), (s['name'], path)])
-    return page(data, path, f'{s["name"]}: help for moms', desc, body, head_extra=structured_data(about, trail))
+    return page(data, path, f'{s["name"]}: help for moms', desc, body, head_extra=structured_data(about, trail),
+                slots=(f'state-{s["abbr"].lower()}', 'state'))
 
 
 def county_pick(data, s):
@@ -433,7 +445,7 @@ def build_county(data):
                 'Public housing, housing counselors, legal aid, health centers, school districts and Head Start in every U.S. county, '
                 'from federal directories. Free, with no sign-up.',
                 body, head_extra=structured_data(breadcrumbs(data, [('Help near you, by county', 'county.html')])),
-                scripts='\n<script src="assets/county.js"></script>')
+                scripts='\n<script src="assets/county.js"></script>', slots=('county',))
 
 
 def build_yoga(data):
@@ -457,9 +469,58 @@ def build_about(data):
 <p>It is an independent project. It is not affiliated with any podcast, show or organization named "Mom Talk".</p></div></div>
 <h2>How we choose listings</h2><ul><li>We list free or low-cost public programs, nonprofits and official locators. We do not list private businesses, and nobody pays to be listed.</li><li>Each listing links to the published sources it came from and shows the date it was checked.</li><li>Contacts come from official sources and are not confirmed by telephone. Phone numbers and websites change. If one is wrong, <a href="report.html">tell us</a>.</li><li>Every link is checked automatically each month, and a person reviews any that fail.</li><li>Domestic violence shelter addresses are never listed. We point to the hotline or state coalition that places people safely.</li></ul>
 <h2>What this site is not</h2><p>It is not an emergency service. If you or someone else is in danger, call 911. It does not give legal, medical or financial advice, and it cannot sign you up for anything.</p>
-<h2>Your privacy and safety</h2><ul><li>No ads, no sign-up and no forms, and we add no tracking or cookies of our own.</li><li>This site is hosted on Wix. Wix loads its own script and sets a few cookies on every page it hosts. We do not control those.</li><li>A <strong>Leave this site</strong> button is on every page. It takes you to a weather search and removes this page from your back button.</li><li>It cannot erase your browser history. If someone else may check your device, use a private or incognito window, or a device they cannot reach.</li><li>Sites we link to have their own privacy practices.</li></ul>
+{advertise(site)}
+<h2>Your privacy and safety</h2><ul><li>There is no sign-up, and the Yoga Mom Talk pages have no forms. The OhioMom pages have a few short forms for reports and questions; our <a href="privacy.html">Privacy page</a> says what they send.</li><li>We add no tracking or visit counter of our own.</li><li>The site may show ads. Each one is labeled Advertisement and kept apart from the listings. An ad network, if we use one, may set its own cookies; the <a href="privacy.html#ads">Privacy page</a> says how to turn off personalized ads.</li><li>This site is hosted on Wix. Wix loads its own script and sets a few cookies on every page it hosts. We do not control those.</li><li>A <strong>Leave this site</strong> button is on every page. It takes you to a weather search and removes this page from your back button.</li><li>It cannot erase your browser history. If someone else may check your device, use a private or incognito window, or a device they cannot reach.</li><li>Sites we link to have their own privacy practices.</li></ul>
 <h2>Credit and license</h2><p>{esc(data["attribution"])} The data on this site is licensed CC BY 4.0 and the code is MIT. Listings describe third-party organizations from their published sources. The license covers the compilation and gives no rights in those organizations' names or marks.</p></div></section>'''
     return page(data, 'about.html', 'About', f'Who runs {site["name"]}, how listings are chosen and checked, and how your privacy and safety are protected.', body)
+
+
+def mail_href(site, subject, body=''):
+    href = f'mailto:{site["corrections_email"]}?subject={urllib.parse.quote(subject)}'
+    return href + (f'&body={urllib.parse.quote(body)}' if body else '')
+
+
+def advertise(site):
+    """Who may advertise and on what terms. Ads pay for the site; they never touch the listings."""
+    href = mail_href(site, f'Advertising on {site["name"]}', 'Who we are:\nWhat we would like to show:\nOur website:\n')
+    return (f'<h2 id="advertise">Advertise with us</h2><p>{esc(site["name"])} and OhioMom may carry a few ads to help keep the site free. '
+            'We welcome businesses and groups that serve families: family and parenting services, maternal and baby health, '
+            'yoga and wellness, child care, and the like.</p><ul>'
+            '<li>Every ad is labeled Advertisement and kept apart from the resource listings and the help lines.</li>'
+            '<li>An ad never changes what is listed, what a listing says or the order listings are in. Nobody can pay to be listed.</li>'
+            '<li>Ads are never placed inside a crisis or help-now section, and never on our pages for a place to stay tonight or for taking care of yourself.</li>'
+            '<li>We review every ad before it runs. We turn down ads that are misleading, and anything aimed at people in crisis.</li></ul>'
+            f'<p>To ask about advertising, <a href="{esc(href)}">email us</a> '
+            f'at <strong>{esc(site["corrections_email"])}</strong>. Tell us who you are and what you would like to show.</p>')
+
+
+PRIVACY_UPDATED = '2026-11-19'
+
+
+def build_privacy(data):
+    """What the site collects, plainly. Keep it true: change it in the same commit as anything it describes."""
+    site = data['site']
+    name = esc(site['name'])
+    email = esc(site['corrections_email'])
+    updated = lib.pretty_date(PRIVACY_UPDATED)
+    lede = (f'What this site collects, what it does not, and the choices you have. '
+            f'Last updated <time datetime="{PRIVACY_UPDATED}">{updated}</time>.')
+    body = hero('Privacy', lede) + f'''
+<section class="wrap"><div class="steps">
+<p>This page covers {name} at {esc(site["domain"])}, including the OhioMom pages and the Ohio family guide. It is run by Travis and Deborah Vought.</p>
+<h2 id="hosting">Who hosts the site</h2><p>The site is hosted on Wix. Wix loads its own script on every page it serves and sets a few cookies of its own. We do not control those. Wix's own privacy policy says what Wix collects.</p>
+<h2 id="counting">Visit counting</h2><p>We do not run a visit counter or analytics of our own. Wix may keep its own statistics for the sites it hosts.</p>
+<h2 id="device">What stays on your device</h2><ul><li>Apart from Wix's own cookies, the {name} pages store nothing on your device. Nothing you type in a search box or ZIP code box is sent or saved.</li><li>The OhioMom pages remember the area you pick, and which quick polls you have answered, in this browser only.</li><li>The <strong>Leave this site</strong> button takes you to a weather search. It cannot erase your browser history.</li></ul>
+<h2 id="forms">Sign-up and forms</h2><ul><li>There is no sign-up and no account.</li><li>The {name} pages have no forms. The Report a problem page opens your own email app, and nothing is sent until you send it from there.</li><li>The OhioMom pages have a few short forms: Report a problem, the message box and quick polls on Talk to us, and a question at the bottom of some pages, "Did you find what you came for?" What you send goes to our account on Wix, and we read it there. With a poll answer, a message or that question we also receive the page you were on and, if you picked one, your Ohio area. We ask for an email address only if you want a reply. Sending one saves an anonymous visitor ID in your browser so Wix can deliver it.</li><li>Please leave out private details about your situation. These forms are not watched for emergencies.</li></ul>
+<h2 id="ads">Advertising</h2><p>This site may show ads. Every ad is labeled "Advertisement" and kept apart from the resource listings. If we use an ad network such as Google AdSense, it and its partners may use cookies to show ads based on your visits to this and other sites. You can turn off personalized ads at <a href="https://adssettings.google.com" rel="noopener">https://adssettings.google.com</a> and learn more at <a href="https://policies.google.com/technologies/ads" rel="noopener">https://policies.google.com/technologies/ads</a>, or opt out of many networks at <a href="https://optout.aboutads.info" rel="noopener">https://optout.aboutads.info</a>.</p><p>An ad never changes what is listed or the order of the listings. How we take ads is on the <a href="about.html#advertise">About page</a>.</p>
+<h2 id="selling">We do not sell your information</h2><p>We do not sell personal information.</p>
+<h2 id="children">Children</h2><p>This site is for parents and caregivers. It is not directed to children under 13, and we do not knowingly collect information from them.</p>
+<h2 id="links">Other sites</h2><p>Listings and ads link to other websites. Those sites have their own privacy practices.</p>
+<h2 id="contact">Questions</h2><p>Write to <a href="{esc(mail_href(site, f"{site['name']}: privacy question"))}">{email}</a>, or use <a href="report.html">Report a problem</a>. If this page changes, the date at the top changes with it.</p>
+</div></section>'''
+    return page(data, 'privacy.html', 'Privacy',
+                f'What {site["name"]} collects and what it does not: hosting on Wix, no sign-up, the OhioMom forms, and how ads and ad cookies work.', body,
+                head_extra=structured_data(breadcrumbs(data, [('Privacy', 'privacy.html')])))
 
 
 def build_report(data):
@@ -481,7 +542,7 @@ def build_404(data):
                 .replace('href="index.html"', 'href="/index.html"').replace('href="help.html', 'href="/help.html')
                 .replace('href="connect.html', 'href="/connect.html').replace('href="states.html', 'href="/states.html')
                 .replace('href="yoga.html', 'href="/yoga.html').replace('href="about.html', 'href="/about.html')
-                .replace('href="report.html', 'href="/report.html'))
+                .replace('href="report.html', 'href="/report.html').replace('href="privacy.html', 'href="/privacy.html'))
 
 
 def build_all(data):
@@ -489,6 +550,7 @@ def build_all(data):
         'index.html': build_index(data), 'help.html': build_help(data), 'connect.html': build_connect(data),
         'states.html': build_states_index(data), 'yoga.html': build_yoga(data), 'about.html': build_about(data),
         'report.html': build_report(data), '404.html': build_404(data), 'county.html': build_county(data),
+        'privacy.html': build_privacy(data),
     }
     for s in data['states']:
         files[f'states/{s["abbr"].lower()}.html'] = build_state(data, s)
@@ -511,10 +573,26 @@ def build_all(data):
     return files
 
 
+def ohio_ad_files(data):
+    """The OhioMom pages that may carry an ad, with this build's ad (or none) last in <main>. The rest of each page is
+    hand-kept source and is left as it is (scripts/ads.py)."""
+    running = running_ads(data)
+    out = {}
+    for rel, slots in ads.ohio_pages().items():
+        text = (ROOT / rel).read_text(encoding='utf-8')
+        out[rel] = ads.place(text, ads.pick(running, slots), '../' * rel.count('/'))
+    return out
+
+
 def main():
     check = '--check' in sys.argv
     data = lib.load()
+    problems = ads.check(data['ads'])
+    if problems:
+        print('data/ads.json:\n' + '\n'.join(problems))
+        sys.exit(1)
     files = build_all(data)
+    files.update(ohio_ad_files(data))
     stale = []
     for rel, content in files.items():
         p = ROOT / rel

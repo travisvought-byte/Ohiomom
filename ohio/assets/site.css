@@ -216,6 +216,14 @@ body.county .brandline{font-weight:700;margin:0 0 .4rem}
 .aboutphoto img{display:block;width:100%;height:auto;border-radius:var(--r);border:1.5px solid var(--line)}
 .aboutphoto figcaption{margin-top:.4rem;color:var(--muted);font-size:.88rem}
 .about>p,.about>ul{max-width:44rem}
+/* Ad slots (scripts/ads.py): grey and dashed, with their own label, so an ad never looks like a listing card. */
+.ad-slot{width:calc(100% - 2.5rem);max-width:40rem;margin:2.5rem auto 0;padding:.85rem 1.1rem;border:1.5px dashed #a79db6;border-radius:.6rem;background:#f4f2f7;color:var(--ink);font-size:.95rem}
+.ad-slot p{margin:.2rem 0}
+.ad-slot .ad-label{margin:0 0 .45rem;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ad-slot .ad-body{display:flex;gap:.9rem;align-items:center}
+.ad-slot img{flex:none;width:6.5rem;max-width:30%;height:auto;border-radius:.35rem}
+.ad-slot .ad-sponsor{font-weight:700}
+@media print{.ad-slot{display:none}}
 /* home-extras:start. Front-page picture and jokes. Copied from templates/home-extras.css by scripts/home_extras.py; edit the template. */
 .herotop{display:flex;align-items:center;gap:1rem 2.2rem}
 .herotext{flex:1 1 0;min-width:0}
