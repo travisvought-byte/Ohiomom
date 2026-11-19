@@ -11,7 +11,7 @@ const strip = (s) => s.replace(/<!--prerender:[^>]*-->|<!--\/prerender-->/g, '')
 const tick = () => new Promise((r) => setTimeout(r, 0));
 
 (async () => {
-  const blocks = { 'ohio/events.html': ['[data-events="all"]', '[data-groups="calendar"]'], 'ohio/connect.html': ['[data-groups="sections"]'] };
+  const blocks = { 'ohio/events.html': ['[data-events="all"]', '[data-groups="calendar"]'], 'ohio/connect.html': ['[data-groups="sections"]'], 'ohio/holidays.html': ['[data-events="holiday"]'] };
   for (const [file, selectors] of Object.entries(blocks)) {
     const src = fs.readFileSync(file, 'utf8');
     const asOf = (src.match(/<!--prerender:[a-z-]+ as of (\d{4}-\d{2}-\d{2})-->/) || [])[1];

@@ -149,7 +149,7 @@ assert.equal(all(load('help.html').d, 'details[open]').length, 0);
 // Events and the poll live on their own pages.
 {
   const d = new JSDOM(fs.readFileSync('ohio/index.html', 'utf8')).window.document;
-  assert.equal(all(d, '.hero .tile').length, 9);
+  assert.equal(all(d, '.hero .tile').length, 10, 'eight needs, the holiday page and "See everything"');
   assert.equal(all(d, '[data-events], [data-poll], .card, .event').length, 0, 'no events, polls or listings on the OhioMom front page');
   assert(d.querySelector('#place') && d.querySelector('[data-region-buttons]'), 'area picker stays');
   const fold = d.querySelector('details.mapfold');
