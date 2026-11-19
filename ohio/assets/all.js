@@ -20,12 +20,12 @@
   // first one read is the one shown. The second part is the need a listing gets when its row does not say.
   var SOURCES = [
     ['help/bills.html', 'food'], ['help/pregnancy-baby.html', 'baby'], ['help/single-parent.html', 'parent'],
-    ['wellbeing.html', 'care'], ['help/housing.html', 'housing'], ['../family-guide.html', 'kids'], ['../states/oh.html', '']
+    ['wellbeing.html', 'care'], ['help/housing.html', 'housing'], ['holidays.html', 'holiday'], ['../family-guide.html', 'kids'], ['../states/oh.html', '']
   ];
   var NEEDS = [
     ['housing', 'Housing and shelter'], ['safety', 'Safety and crisis lines'], ['food', 'Food and bills'],
     ['baby', 'Pregnancy and new baby'], ['kids', 'My child learns or grows differently'], ['parent', 'Parenting on my own'],
-    ['care', 'Take care of me'], ['military', 'Military and veteran families'], ['groups', 'Meet other moms']
+    ['care', 'Take care of me'], ['military', 'Military and veteran families'], ['holiday', 'Holiday help'], ['groups', 'Meet other moms']
   ];
   // The need for each row and section name used on the pages above and on the county pages.
   var NEED_OF = {
@@ -34,7 +34,7 @@
     'pregnancy-baby': 'baby', health: 'baby', early: 'baby kids',
     'kids-differently': 'kids', disability: 'kids', dd: 'kids', fcfc: 'kids',
     'single-parent': 'parent', 'child-support': 'parent', legal: 'parent housing',
-    'take-care': 'care', wellbeing: 'care', military: 'military'
+    'take-care': 'care', wellbeing: 'care', military: 'military', holiday: 'holiday'
   };
   // The Ohio page of the national site repeats these in a general form. OhioMom has its own, fuller listing for each.
   var OHIO_HAS_ITS_OWN = ['oh-snap', 'oh-wic', 'oh-energy', 'oh-211', 'oh-coverage', 'oh-health-centers', 'oh-diapers',
