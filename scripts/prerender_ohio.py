@@ -38,6 +38,9 @@ TARGETS = {
     'ohio/connect.html': [
         ('<div class="groups" data-groups="sections">', 'groups-sections'),
     ],
+    'ohio/holidays.html': [
+        ('<div class="events" data-events="holiday">', 'events-holiday'),
+    ],
 }
 
 
@@ -98,8 +101,8 @@ class Site:
             f'</details></div></article>'
         )
 
-    def upcoming(self, today):
-        live = [e for e in self.d['events'] if (e.get('end') or e['start']) >= today]
+    def upcoming(self, today, holiday=False):
+        live = [e for e in self.d['events'] if (e.get('end') or e['start']) >= today and (e.get('holiday') or not holiday)]
         return sorted(live, key=lambda e: (max(e['start'], today), 1 if e.get('end') else 0))
 
     def group(self, g):
@@ -129,6 +132,12 @@ class Site:
             events = self.upcoming(today)
             if not events:
                 return '<p class="pending">Nothing listed for Ohio right now. <a href="report.html">Tell us about an event</a>.</p>'
+            return ''.join(self.event(e, today) for e in events)
+        if name == 'events-holiday':
+            events = self.upcoming(today, holiday=True)
+            if not events:
+                return ('<p class="pending">Nothing listed for Ohio right now. <a href="report.html">Tell us about an event</a>, '
+                        'or <a href="events.html">see all of Ohio</a>.</p>')
             return ''.join(self.event(e, today) for e in events)
         if name == 'groups-calendar':
             cal = [g for g in self.groups_of('calendar') if g['region'] != 'all']

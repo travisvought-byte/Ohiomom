@@ -206,6 +206,7 @@ body.county .brandline{font-weight:700;margin:0 0 .4rem}
 .t7 .ico{background:#dcebff}
 .t8 .ico{background:#e3f3d9}
 .t9 .ico{background:#ffe6ef}
+.t10 .ico{background:#e2f4e4}
 @media (max-width:760px){.dirtools .chips{flex-wrap:nowrap;overflow-x:auto;padding-bottom:.45rem}.dirtools .chips button{flex:none;white-space:nowrap}}
 @media print{.dirtools{display:none}}
 .aboutwho{display:flex;flex-wrap:wrap;gap:1.2rem 1.8rem;align-items:flex-start}
