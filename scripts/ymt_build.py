@@ -21,7 +21,8 @@ from us_geo import STATE_FIPS  # noqa: E402
 
 ROOT = lib.ROOT
 EXIT_URL = 'https://www.google.com/search?q=weather'
-NAV = [('help.html', 'Find help'), ('connect.html', 'Meet moms'), ('states.html', 'By state'), ('county.html', 'Near you')]
+NAV = [('help.html', 'Find help'), ('connect.html', 'Meet moms'), ('states.html', 'By state'), ('county.html', 'Near you'),
+       ('world.html', 'Worldwide')]
 FOOT = [('help.html', 'Find help'), ('connect.html', 'Meet moms'), ('states.html', 'By state'),
         ('about.html', 'About'), ('about.html#advertise', 'Advertise'), ('privacy.html', 'Privacy'), ('report.html', 'Report a problem')]
 TILES = [
@@ -58,6 +59,11 @@ FIRST = {
 
 def tel(p):
     return lib.tel_href(p)
+
+
+def dial_href(r):
+    """A listing outside the U.S. carries the digits to dial ('dial'); a U.S. listing is dialed from its phone."""
+    return 'tel:' + r['dial'] if r.get('dial') else tel(r['phone'])
 
 
 def logo_html(name):
@@ -123,7 +129,7 @@ def page(data, path, title, desc, body, body_class='', head_extra='', canonical=
 <footer class="foot">
 <p class="footnav">{foot}</p>
 <p>Founded by {esc(site['founder'])}. See something out of date, or know a group we should list? <a href="{root}report.html">Report a problem</a>.</p>
-<p class="small">In danger right now? Call 911. {esc(site['name'])} is an information directory, not an emergency service or a provider of legal, medical or financial advice. Contacts come from published official and organization sources and are not telephone-confirmed. No sign-up, and we add no tracking of our own. Our web host, Wix, sets its own cookies, and any ad is labeled Advertisement. See <a href="{root}privacy.html">Privacy</a>.</p>
+<p class="small">In danger right now? Call 911. {esc(site['name'])} is an information directory, not an emergency service or a provider of legal, medical or financial advice. Contacts come from published official and organization sources and are not telephone-confirmed. No sign-up. We count visits without cookies, and nothing you type is sent. Our web host, Wix, sets its own cookies, and any ad is labeled Advertisement. See <a href="{root}privacy.html">Privacy</a>.</p>
 <p class="small">Ohio mom? Visit <a href="{root}{esc(site['ohio_path'])}">OhioMom</a>. Mobility and disability resources: <a href="{esc(site['mobilitytalk_url'])}">Mobility Talk</a>.</p>
 </footer>
 <script src="{root}assets/ymt.js"></script>{scripts}
@@ -157,7 +163,7 @@ def card(r, root='', cid=None):
         out.append(f'<p class="textline">{esc(r["text"])}</p>')
     acts = []
     if r.get('phone'):
-        acts.append(f'<a class="btn call" href="{tel(r["phone"])}">Call {esc(r["phone"])}</a>')
+        acts.append(f'<a class="btn call" href="{dial_href(r)}">Call {esc(r["phone"])}</a>')
     if r.get('url'):
         acts.append(f'<a class="btn" href="{esc(r["url"])}" rel="noopener">Website</a>')
     out.append('<p class="actions">' + ''.join(acts) + '</p>')
@@ -257,7 +263,7 @@ def build_index(data):
         f'<option value="states/{s["abbr"].lower()}.html">{esc(s["name"])}</option>' for s in data['states'])
     pick = (f'<div class="statepick"><label for="statepick">Or start with your state</label>'
             f'<select id="statepick" data-state-pick>{options}</select><a href="states.html">See all states</a>'
-            f'<a href="county.html">Find your county</a></div>')
+            f'<a href="county.html">Find your county</a><a href="world.html">Outside the U.S.?</a></div>')
     lede = 'Pick one. You will get a short list of who to call. Free, private, no sign-up.'
     top = (f'<div class="herotop"><div class="herotext"><h1>Hi, mom. What do you need today?</h1>'
            f'<p class="lede">{lede}</p></div>{extras.scene_block(False, jokes, "jokes.html")}</div>')
@@ -357,6 +363,100 @@ def build_state(data, s):
     trail = breadcrumbs(data, [('Help by state', 'states.html'), (s['name'], path)])
     return page(data, path, f'{s["name"]}: help for moms', desc, body, head_extra=structured_data(about, trail),
                 slots=(f'state-{s["abbr"].lower()}', 'state'))
+
+
+# ---------------------------------------------------------------- outside the U.S.
+WORLD_SECTIONS = ['help-now', 'housing', 'food-bills', 'pregnancy-baby', 'kids-differently', 'single-parent', 'take-care', 'connect']
+
+
+def country_pick(world, root=''):
+    options = '<option value="">Choose your country</option>' + ''.join(
+        f'<option value="{root}countries/{c["slug"]}.html">{esc(c["name"])}</option>' for c in world['countries'])
+    return (f'<div class="statepick"><label for="countrypick">Start with your country</label>'
+            f'<select id="countrypick" data-state-pick>{options}</select><a href="{root}world.html">All countries</a></div>')
+
+
+# The U.S. summaries name U.S. programs (WIC, Head Start), so the pages outside the U.S. say it their own way.
+WORLD_SUMMARIES = {
+    'help-now': 'Safety, crisis support and urgent needs. Free, and most lines are open any hour.',
+    'housing': 'A safe place to stay, and help leaving an unsafe home.',
+    'food-bills': 'Family payments, child benefits and one number that finds local help.',
+    'pregnancy-baby': 'Breastfeeding help, maternity benefits and support with a new baby.',
+    'kids-differently': 'Help lines for children, and for parents worried about a child.',
+    'single-parent': 'Parenting alone, separating, and families split across borders.',
+    'take-care': 'Someone to talk to on the hard days, in pregnancy and after.',
+    'connect': 'Groups where moms meet other moms, near you or online.',
+}
+
+
+def world_rows(data, records, root=''):
+    """Only the needs that have something in them, each closed until she opens it."""
+    secs = {sid: dict(sec, summary=WORLD_SUMMARIES.get(sid, sec['summary'])) for sid, sec in sec_map(data).items()}
+    out = ''
+    for sid in WORLD_SECTIONS:
+        if any(r['section'] == sid or sid in r.get('also', []) for r in records):
+            out += row(secs[sid], records, root)
+    return out
+
+
+def emergency_card(c):
+    e = c['emergency']
+    return (f'<li><a class="phonecard" href="tel:{esc(e["number"])}">Call {esc(e["number"])}'
+            f'<small>Emergency in {esc(c["name"])}: {esc(e["label"])}</small></a></li>')
+
+
+def build_world(data):
+    world = data['world']
+    items = ''.join(f'<li><a href="countries/{c["slug"]}.html"><span aria-hidden="true">{c["flag"]}</span> {esc(c["name"])}'
+                    f'<small>Emergency {esc(c["emergency"]["number"])}</small></a></li>' for c in world['countries'])
+    lede = ('Help for moms wherever you live. Pick your country for its own crisis lines, family payments and support, '
+            'or use the help below, which works in any country. Free, private, no sign-up.')
+    body = (hero('Help for moms, anywhere in the world', lede, country_pick(world))
+            + '<section class="wrap now" id="now"><h2>In danger right now?</h2>'
+            '<p class="quiet">Call your country\'s emergency number. Here are the numbers for the countries we cover so far.</p>'
+            f'<ul class="phonecards">{"".join(emergency_card(c) for c in world["countries"])}</ul></section>'
+            + finder('Search help that works in any country', 'helpline, breastfeeding, custody…')
+            + needs(world_rows(data, world['worldwide']))
+            + f'<section class="wrap"><h2>Countries</h2><ul class="statelist">{items}</ul>'
+            '<p class="note">More countries are on the way. Living in the U.S.? <a href="states.html">Choose your state</a>. '
+            'Know a free service for moms in your country? <a href="report.html">Tell us</a>.</p></section>')
+    desc = ('Free help for moms outside the U.S.: crisis and domestic violence lines, family payments, breastfeeding and '
+            'postpartum support, country by country.')
+    base = f"https://{data['site']['domain']}/"
+    about = {'@type': 'CollectionPage', '@id': base + 'world.html', 'url': base + 'world.html', 'name': 'Help for moms, anywhere in the world',
+             'description': desc, 'inLanguage': 'en', 'isPartOf': {'@id': base + '#website'}}
+    return page(data, 'world.html', 'Help for moms around the world', desc, body,
+                head_extra=structured_data(about, breadcrumbs(data, [('Worldwide', 'world.html')])), slots=('topic-help', 'topic'))
+
+
+def build_country(data, c):
+    world = data['world']
+    mine = [dict(r, scope=c['code']) for r in c['resources']]
+    everything = mine + world['worldwide']
+    urgent = [r for r in mine if r.get('urgent') and r.get('phone')]
+    cards_now = emergency_card(c) + ''.join(
+        f'<li><a class="phonecard" href="{dial_href(r)}">Call {esc(r["phone"])}<small>{esc(r.get("chip") or r["name"])}</small></a></li>'
+        for r in urgent)
+    intro = (f'Pick what you need, or search every listing. Each choice shows {esc(c["name"])}\'s own services first, '
+             f'then help that works in any country. <a href="../world.html">Choose another country</a>.')
+    body = (hero(f'<span aria-hidden="true">{c["flag"]}</span> {esc(c["name"])}: help for moms', intro, '', 'slim')
+            + f'<section class="wrap now" id="now"><h2>Need help right now?</h2>'
+            f'<p class="quiet">If you or your child are in danger, call {esc(c["emergency"]["number"])}.</p>'
+            f'<ul class="phonecards">{cards_now}</ul></section>'
+            + finder(f'Search every {c["name"]} listing', 'helpline, benefit, breastfeeding…')
+            + needs(world_rows(data, everything, '../'))
+            + '<section class="wrap slim"><p>Numbers are free to call unless the listing says otherwise. Shelter addresses are never listed here, for safety. '
+            'See something out of date? <a href="../report.html">Tell us</a>.</p></section>')
+    path = f'countries/{c["slug"]}.html'
+    desc = (f'Free help for moms in {c["name"]}: the emergency number, domestic violence and crisis lines, family payments, '
+            'breastfeeding and postpartum support.')
+    base = f"https://{data['site']['domain']}/"
+    about = {'@type': 'CollectionPage', '@id': base + path, 'url': base + path, 'name': f'{c["name"]}: help for moms',
+             'description': desc, 'inLanguage': 'en', 'isPartOf': {'@id': base + '#website'},
+             'about': {'@type': 'Country', 'name': c['name']}}
+    trail = breadcrumbs(data, [('Worldwide', 'world.html'), (c['name'], path)])
+    return page(data, path, f'{c["name"]}: help for moms', desc, body, head_extra=structured_data(about, trail),
+                slots=(f'country-{c["code"].lower()}', 'country'))
 
 
 def county_pick(data, s):
@@ -470,7 +570,7 @@ def build_about(data):
 <h2>How we choose listings</h2><ul><li>We list free or low-cost public programs, nonprofits and official locators. We do not list private businesses, and nobody pays to be listed.</li><li>Each listing links to the published sources it came from and shows the date it was checked.</li><li>Contacts come from official sources and are not confirmed by telephone. Phone numbers and websites change. If one is wrong, <a href="report.html">tell us</a>.</li><li>Every link is checked automatically each month, and a person reviews any that fail.</li><li>Domestic violence shelter addresses are never listed. We point to the hotline or state coalition that places people safely.</li></ul>
 <h2>What this site is not</h2><p>It is not an emergency service. If you or someone else is in danger, call 911. It does not give legal, medical or financial advice, and it cannot sign you up for anything.</p>
 {advertise(site)}
-<h2>Your privacy and safety</h2><ul><li>There is no sign-up, and the Yoga Mom Talk pages have no forms. The OhioMom pages have a few short forms for reports and questions; our <a href="privacy.html">Privacy page</a> says what they send.</li><li>We add no tracking or visit counter of our own.</li><li>The site may show ads. Each one is labeled Advertisement and kept apart from the listings. An ad network, if we use one, may set its own cookies; the <a href="privacy.html#ads">Privacy page</a> says how to turn off personalized ads.</li><li>This site is hosted on Wix. Wix loads its own script and sets a few cookies on every page it hosts. We do not control those.</li><li>A <strong>Leave this site</strong> button is on every page. It takes you to a weather search and removes this page from your back button.</li><li>It cannot erase your browser history. If someone else may check your device, use a private or incognito window, or a device they cannot reach.</li><li>Sites we link to have their own privacy practices.</li></ul>
+<h2>Your privacy and safety</h2><ul><li>There is no sign-up, and the Yoga Mom Talk pages have no forms. The OhioMom pages have a few short forms for reports and questions; our <a href="privacy.html">Privacy page</a> says what they send.</li><li>We count visits with GoatCounter, which does not use cookies and does not record who you are. Nothing you type in a search or ZIP code box is sent.</li><li>The site may show ads. Each one is labeled Advertisement and kept apart from the listings. An ad network, if we use one, may set its own cookies; the <a href="privacy.html#ads">Privacy page</a> says how to turn off personalized ads.</li><li>This site is hosted on Wix. Wix loads its own script and sets a few cookies on every page it hosts. We do not control those.</li><li>A <strong>Leave this site</strong> button is on every page. It takes you to a weather search and removes this page from your back button.</li><li>It cannot erase your browser history. If someone else may check your device, use a private or incognito window, or a device they cannot reach.</li><li>Sites we link to have their own privacy practices.</li></ul>
 <h2>Credit and license</h2><p>{esc(data["attribution"])} The data on this site is licensed CC BY 4.0 and the code is MIT. Listings describe third-party organizations from their published sources. The license covers the compilation and gives no rights in those organizations' names or marks.</p></div></section>'''
     return page(data, 'about.html', 'About', f'Who runs {site["name"]}, how listings are chosen and checked, and how your privacy and safety are protected.', body)
 
@@ -509,7 +609,7 @@ def build_privacy(data):
 <section class="wrap"><div class="steps">
 <p>This page covers {name} at {esc(site["domain"])}, including the OhioMom pages and the Ohio family guide. It is run by Travis and Deborah Vought.</p>
 <h2 id="hosting">Who hosts the site</h2><p>The site is hosted on Wix. Wix loads its own script on every page it serves and sets a few cookies of its own. We do not control those. Wix's own privacy policy says what Wix collects.</p>
-<h2 id="counting">Visit counting</h2><p>We do not run a visit counter or analytics of our own. Wix may keep its own statistics for the sites it hosts.</p>
+<h2 id="counting">Visit counting</h2><p>We count visits with GoatCounter, a visit counter that does not use cookies and does not record who you are. For each page view it receives the address of the page (never a search or ZIP code you typed), the site that linked you here, your browser type, screen size and country. We use the totals to see which pages help people. Wix may also keep its own statistics for the sites it hosts.</p>
 <h2 id="device">What stays on your device</h2><ul><li>Apart from Wix's own cookies, the {name} pages store nothing on your device. Nothing you type in a search box or ZIP code box is sent or saved.</li><li>The OhioMom pages remember the area you pick, and which quick polls you have answered, in this browser only.</li><li>The <strong>Leave this site</strong> button takes you to a weather search. It cannot erase your browser history.</li></ul>
 <h2 id="forms">Sign-up and forms</h2><ul><li>There is no sign-up and no account.</li><li>The {name} pages have no forms. The Report a problem page opens your own email app, and nothing is sent until you send it from there.</li><li>The OhioMom pages have a few short forms: Report a problem, the message box and quick polls on Talk to us, and a question at the bottom of some pages, "Did you find what you came for?" What you send goes to our account on Wix, and we read it there. With a poll answer, a message or that question we also receive the page you were on and, if you picked one, your Ohio area. We ask for an email address only if you want a reply. Sending one saves an anonymous visitor ID in your browser so Wix can deliver it.</li><li>Please leave out private details about your situation. These forms are not watched for emergencies.</li></ul>
 <h2 id="ads">Advertising</h2><p>This site may show ads. Every ad is labeled "Advertisement" and kept apart from the resource listings. If we use an ad network such as Google AdSense, it and its partners may use cookies to show ads based on your visits to this and other sites. You can turn off personalized ads at <a href="https://adssettings.google.com" rel="noopener">https://adssettings.google.com</a> and learn more at <a href="https://policies.google.com/technologies/ads" rel="noopener">https://policies.google.com/technologies/ads</a>, or opt out of many networks at <a href="https://optout.aboutads.info" rel="noopener">https://optout.aboutads.info</a>.</p><p>An ad never changes what is listed or the order of the listings. How we take ads is on the <a href="about.html#advertise">About page</a>.</p>
@@ -554,6 +654,10 @@ def build_all(data):
     }
     for s in data['states']:
         files[f'states/{s["abbr"].lower()}.html'] = build_state(data, s)
+    if data.get('world', {}).get('countries'):
+        files['world.html'] = build_world(data)
+        for c in data['world']['countries']:
+            files[f'countries/{c["slug"]}.html'] = build_country(data, c)
     jokes = extras.approved_jokes()
     if jokes:  # no page until the owner has approved a batch
         files['jokes.html'] = build_jokes(data, jokes)

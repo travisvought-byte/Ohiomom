@@ -25,6 +25,7 @@ ad and the rest share one:
     topic-help, topic         help.html
     topic-connect, topic      connect.html
     state-oh, state           states/oh.html (any state's two letters)
+    country-gb, country       countries/united-kingdom.html (any country's two letters; world.html takes topic-help, topic)
     county                    county.html (one page for every U.S. county)
     ohio-home                 ohio/index.html
     ohio-county-morrow, ohio-county      ohio/counties/morrow.html (any Ohio county page)
@@ -41,7 +42,7 @@ from zoneinfo import ZoneInfo
 ROOT = Path(__file__).resolve().parents[1]
 ADS = ROOT / 'data' / 'ads.json'
 FIELDS = {'slot', 'sponsor', 'text', 'url', 'image', 'alt', 'start', 'end', 'note'}
-SLOT = re.compile(r'^(home|topic|topic-help|topic-connect|state|state-[a-z]{2}|county|ohio-home|ohio-county|ohio-county-[a-z-]+'
+SLOT = re.compile(r'^(home|topic|topic-help|topic-connect|state|state-[a-z]{2}|country|country-[a-z]{2}|county|ohio-home|ohio-county|ohio-county-[a-z-]+'
                   r'|ohio-topic|ohio-topic-(bills|pregnancy-baby|single-parent|connect))$')
 # OhioMom pages that may carry an ad, with the slots each takes in order. Pages not named here never do.
 OHIO_TOPICS = ('help/bills', 'help/pregnancy-baby', 'help/single-parent', 'connect')

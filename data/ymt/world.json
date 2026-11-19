@@ -1,0 +1,877 @@
+{
+ "note": "Help for moms outside the United States, built into world.html and countries/<slug>.html by scripts/ymt_build.py. Every listing needs a source it was checked against and the date. 'phone' is printed as the country writes it; 'dial' is the digits a phone in that country dials (or a full +country number for a line called from abroad). Never list a shelter address. Added November 19, 2026 at the owner's request: Yoga Mom Talk as a worldwide resource for moms.",
+ "worldwide": [
+  {
+   "id": "world-findahelpline",
+   "section": "help-now",
+   "scope": "WORLD",
+   "name": "Find A Helpline",
+   "org": "ThroughLine",
+   "what": "A free directory of crisis and support lines in more than 130 countries. Pick your country and what you want to talk about, and it shows lines you can call, text or chat with.",
+   "how": "Choose your country on the site. Most lines are free and many are open any hour.",
+   "url": "https://findahelpline.com/",
+   "sources": [
+    "https://findahelpline.com/",
+    "https://findahelpline.com/about"
+   ],
+   "reviewed_on": "2026-11-19",
+   "also": [
+    "take-care"
+   ]
+  },
+  {
+   "id": "world-child-helplines",
+   "section": "help-now",
+   "scope": "WORLD",
+   "name": "Find your country's child helpline",
+   "org": "Child Helpline International",
+   "what": "A list of the free child helplines in each country, run by the global network of child helplines. Parents and caregivers can call them about a child too.",
+   "how": "Open the list and choose your region, then your country.",
+   "url": "https://childhelplineinternational.org/helplines/",
+   "sources": [
+    "https://childhelplineinternational.org/helplines/"
+   ],
+   "reviewed_on": "2026-11-19",
+   "also": [
+    "kids-differently"
+   ]
+  },
+  {
+   "id": "world-psi",
+   "section": "take-care",
+   "scope": "WORLD",
+   "name": "Postpartum Support International",
+   "org": "Postpartum Support International",
+   "what": "Help for depression, anxiety and other struggles during pregnancy and after a baby. It has more than 250 volunteer support coordinators around the world and free online support groups.",
+   "how": "Open the support map and choose your country to find a coordinator, a crisis line and groups near you.",
+   "url": "https://www.postpartum.net/get-help/locations/",
+   "sources": [
+    "https://www.postpartum.net/get-help/locations/",
+    "https://www.postpartum.net/postpartum-support-is-an-international-resource-for-mothers-and-families/"
+   ],
+   "reviewed_on": "2026-11-19",
+   "also": [
+    "pregnancy-baby",
+    "connect"
+   ]
+  },
+  {
+   "id": "world-lll",
+   "section": "pregnancy-baby",
+   "scope": "WORLD",
+   "name": "La Leche League breastfeeding support",
+   "org": "La Leche League International",
+   "what": "Free breastfeeding help from volunteer leaders who have nursed their own babies, in more than 80 countries. Meetings are free and children are welcome.",
+   "how": "Go to the website and find a leader or group in your country or language.",
+   "url": "https://llli.org/",
+   "sources": [
+    "https://llli.org/about/our-story/",
+    "https://laleche.org.uk/get-support/support-in-languages-other-than-english/"
+   ],
+   "reviewed_on": "2026-11-19",
+   "also": [
+    "connect"
+   ]
+  },
+  {
+   "id": "world-iss",
+   "section": "single-parent",
+   "scope": "WORLD",
+   "name": "International Social Service",
+   "org": "International Social Service",
+   "what": "Help when a family is split across borders: custody and contact disputes between countries, family mediation and child protection. It works through partner offices in more than 120 countries.",
+   "how": "Contact the ISS office in your country through the global network's website.",
+   "url": "https://iss-ssi.org/cross-border-casework/",
+   "sources": [
+    "https://iss-ssi.org/cross-border-casework/",
+    "https://assets.hcch.net/docs/5e509fcc-0cd1-4d55-b239-0fd1df2d0c27.pdf"
+   ],
+   "reviewed_on": "2026-11-19"
+  },
+  {
+   "id": "world-us-citizens",
+   "section": "help-now",
+   "scope": "WORLD",
+   "name": "U.S. citizens abroad: emergency help",
+   "org": "U.S. Department of State",
+   "what": "For American moms living or traveling outside the U.S. The State Department helps U.S. citizens abroad with emergencies, including crime, arrest, lost passports and a parent taking a child across a border.",
+   "how": "Contact the nearest U.S. embassy, or call any hour. From the U.S. and Canada, call 1-888-407-4747.",
+   "url": "https://travel.state.gov/helpabroad",
+   "phone": "+1 202-501-4444",
+   "dial": "+12025014444",
+   "phone_label": "From outside the U.S. and Canada, any hour",
+   "sources": [
+    "https://travel.state.gov/helpabroad",
+    "https://www.usa.gov/emergency-assistance-abroad"
+   ],
+   "reviewed_on": "2026-11-19",
+   "also": [
+    "single-parent"
+   ]
+  }
+ ],
+ "countries": [
+  {
+   "code": "AU",
+   "slug": "australia",
+   "name": "Australia",
+   "flag": "🇦🇺",
+   "emergency": {
+    "number": "000",
+    "label": "Police, fire and ambulance",
+    "source": "https://1800respect.org.au/calling-1800respect"
+   },
+   "resources": [
+    {
+     "id": "australia-1800respect",
+     "section": "help-now",
+     "name": "1800RESPECT",
+     "org": "1800RESPECT",
+     "what": "Australia's national counselling and support line for domestic, family and sexual violence. Free, confidential and open any hour, with free interpreters.",
+     "how": "Call, text 0458 737 732, or chat on the website. You can also call for someone you are worried about.",
+     "url": "https://www.1800respect.org.au/",
+     "phone": "1800 737 732",
+     "dial": "1800737732",
+     "text": "Text 0458 737 732",
+     "urgent": true,
+     "chip": "Family violence line",
+     "sources": [
+      "https://1800respect.org.au/calling-1800respect",
+      "https://www.healthdirect.gov.au/partners/1800respect"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "australia-lifeline",
+     "section": "help-now",
+     "name": "Lifeline crisis support",
+     "org": "Lifeline Australia",
+     "what": "Free, confidential crisis support any hour for anyone in Australia who feels overwhelmed, is in emotional distress or is thinking about suicide.",
+     "how": "Call, text 0477 13 11 14, or chat online. Through TIS on 131 450 you can ask for Lifeline in your language.",
+     "url": "https://www.lifeline.org.au/crisis-support/",
+     "phone": "13 11 14",
+     "dial": "131114",
+     "text": "Text 0477 13 11 14",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://www.lifeline.org.au/crisis-support/",
+      "https://www.lifeline.org.au/get-help/services/crisis-support"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "australia-panda",
+     "section": "take-care",
+     "name": "PANDA perinatal mental health helpline",
+     "org": "Perinatal Anxiety & Depression Australia",
+     "what": "Free counselling and support from a national helpline for new and expecting parents affected by anxiety, depression or postnatal psychosis, or finding it hard to become a parent.",
+     "how": "Call during opening hours (they are on PANDA's website). The helpline works in many languages.",
+     "url": "https://www.panda.org.au/",
+     "phone": "1300 726 306",
+     "dial": "1300726306",
+     "sources": [
+      "https://www.panda.org.au/english",
+      "https://www.panda.org.au/"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "pregnancy-baby"
+     ]
+    },
+    {
+     "id": "australia-aba",
+     "section": "pregnancy-baby",
+     "name": "National Breastfeeding Helpline",
+     "org": "Australian Breastfeeding Association",
+     "what": "Free breastfeeding help any hour from trained volunteer counsellors, all mums who have breastfed. The line is funded by the Australian Government.",
+     "how": "Call 1800 mum 2 mum. For an interpreter, call TIS on 131 450 and ask them to call the helpline.",
+     "url": "https://www.breastfeeding.asn.au/",
+     "phone": "1800 686 268",
+     "dial": "1800686268",
+     "sources": [
+      "https://www.breastfeeding.asn.au/node/272",
+      "https://www.healthdirect.gov.au/partners/australian-breastfeeding-association"
+     ],
+     "reviewed_on": "2026-11-19"
+    },
+    {
+     "id": "australia-pbb",
+     "section": "pregnancy-baby",
+     "name": "Pregnancy, Birth and Baby",
+     "org": "Healthdirect Australia",
+     "what": "A free information and support line for pregnancy, birth and the first years of parenting, funded by the Australian Government.",
+     "how": "Call, or use the video call option on the website.",
+     "url": "https://www.pregnancybirthbaby.org.au/",
+     "phone": "1800 882 436",
+     "dial": "1800882436",
+     "sources": [
+      "https://www.pregnancybirthbaby.org.au/partners/australian-breastfeeding-association"
+     ],
+     "reviewed_on": "2026-11-19"
+    },
+    {
+     "id": "australia-ftb",
+     "section": "food-bills",
+     "name": "Family Tax Benefit",
+     "org": "Services Australia",
+     "what": "A two-part payment that helps with the cost of raising children. Part B is for single parents, grandparent carers and some couples with one main income.",
+     "how": "Check who can get it on the Services Australia website, then claim online through myGov with Centrelink linked.",
+     "url": "https://www.servicesaustralia.gov.au/who-can-get-family-tax-benefit",
+     "sources": [
+      "https://www.servicesaustralia.gov.au/who-can-get-family-tax-benefit",
+      "https://my.gov.au/en/services/raising-kids/growing-up/payments-if-you-re-raising-a-child/family-tax-benefit"
+     ],
+     "also": [
+      "single-parent"
+     ],
+     "reviewed_on": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "code": "CA",
+   "slug": "canada",
+   "name": "Canada",
+   "flag": "🇨🇦",
+   "emergency": {
+    "number": "911",
+    "label": "Police, fire and ambulance",
+    "source": "https://centraleasthealthline.ca/printService.aspx?id=164216"
+   },
+   "resources": [
+    {
+     "id": "canada-988",
+     "section": "help-now",
+     "name": "9-8-8 Suicide Crisis Helpline",
+     "org": "9-8-8 Suicide Crisis Helpline",
+     "what": "Call or text 9-8-8 any hour, anywhere in Canada, if you are thinking about suicide or are worried about someone. Free, in English and French.",
+     "how": "Call or text 988. If 988 does not work on your phone, call 1-833-456-4566.",
+     "url": "https://988.ca/",
+     "phone": "988",
+     "dial": "988",
+     "text": "Text 988",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://pe.211.ca/result/988-suicide-crisis-helpline--87590905",
+      "https://info-bhn.cioc.ca/record/SIM0071?Number=0"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "canada-sheltersafe",
+     "section": "help-now",
+     "name": "ShelterSafe: find a women's shelter",
+     "org": "Women's Shelters Canada",
+     "what": "A map of shelters and transition houses for women and children leaving violence. Click your area to get the nearest shelter's 24-hour crisis number.",
+     "how": "Open the map and choose your area. You do not have to stay at a shelter to get help such as safety planning.",
+     "url": "https://sheltersafe.ca/",
+     "sources": [
+      "https://sheltersafe.ca/about/",
+      "https://halton.cioc.ca/record/IMP0077?Number=2"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "canada-khp",
+     "section": "help-now",
+     "name": "Kids Help Phone",
+     "org": "Kids Help Phone",
+     "what": "Free, confidential support any hour for children, teens and young adults across Canada, by phone, text or chat, in English and French.",
+     "how": "Your child can call, or text CONNECT to 686868. Interpreters are available in many languages.",
+     "url": "https://kidshelpphone.ca/",
+     "phone": "1-800-668-6868",
+     "dial": "18006686868",
+     "text": "Text CONNECT to 686868",
+     "sources": [
+      "https://kidshelpphone.ca/story",
+      "https://youth.hipinfo.ca/record/MET6983?Number=147"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "kids-differently"
+     ]
+    },
+    {
+     "id": "canada-211",
+     "section": "food-bills",
+     "name": "211 Canada",
+     "org": "United Way Centraide Canada",
+     "what": "One free number for community and government help near you: food, housing, money, health and more. Open any hour, in more than 150 languages.",
+     "how": "Dial 2-1-1, or search 211.ca or the 211 app.",
+     "url": "https://211.ca/",
+     "phone": "211",
+     "dial": "211",
+     "sources": [
+      "https://211.ca",
+      "https://www.unitedway.ca/211-2/"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "canada-ccb",
+     "section": "food-bills",
+     "name": "Canada child benefit",
+     "org": "Canada Revenue Agency",
+     "what": "A tax-free monthly payment if you live with and care for a child under 18. The amount depends on family income and the number and ages of your children.",
+     "how": "Apply when your baby is born or a child comes to live with you. You can apply when you register the birth, online through My Account, or with form RC66.",
+     "url": "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/who-apply.html",
+     "sources": [
+      "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit/who-apply.html",
+      "https://www.canada.ca/en/revenue-agency/services/child-family-benefits/canada-child-benefit-overview/canada-child-benefit-apply.html"
+     ],
+     "also": [
+      "single-parent"
+     ],
+     "reviewed_on": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "code": "IN",
+   "slug": "india",
+   "name": "India",
+   "flag": "🇮🇳",
+   "emergency": {
+    "number": "112",
+    "label": "Police, fire and ambulance",
+    "source": "https://pib.gov.in/PressReleasePage.aspx?PRID=1933794"
+   },
+   "resources": [
+    {
+     "id": "india-181",
+     "section": "help-now",
+     "name": "Women Helpline 181",
+     "org": "Ministry of Women and Child Development",
+     "what": "A free helpline for women facing violence or distress, open any hour. It links you to the police, a One Stop Centre, a hospital or legal help.",
+     "how": "Dial 181 from any phone.",
+     "url": "https://missionshakti.wcd.gov.in/",
+     "phone": "181",
+     "dial": "181",
+     "urgent": true,
+     "chip": "Women helpline",
+     "sources": [
+      "https://pib.gov.in/FactsheetDetails.aspx?Id=149109",
+      "https://www.publicservicesmap.in/schemes/women-helpline--whl-181?lang=en"
+     ],
+     "reviewed_on": "2026-11-19"
+    },
+    {
+     "id": "india-osc",
+     "section": "housing",
+     "name": "Sakhi One Stop Centres",
+     "org": "Ministry of Women and Child Development",
+     "what": "A centre in each district for women affected by violence, with medical help, legal help, police help, counselling and a short stay in a safe place, all under one roof.",
+     "how": "Call 181 and ask for your district's One Stop Centre, or find it on the Mission Shakti website.",
+     "url": "https://missionshakti.wcd.gov.in/",
+     "sources": [
+      "https://wcd.delhi.gov.in/sites/default/files/WCD/generic_multiple_files/mission_shakti.pdf"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "help-now"
+     ]
+    },
+    {
+     "id": "india-telemanas",
+     "section": "help-now",
+     "name": "Tele-MANAS mental health helpline",
+     "org": "Ministry of Health and Family Welfare",
+     "what": "Free mental health support by phone any hour, from the national tele-mental health programme, in many Indian languages.",
+     "how": "Dial 14416, or 1-800-891-4416.",
+     "phone": "14416",
+     "dial": "14416",
+     "urgent": true,
+     "chip": "Mental health line",
+     "sources": [
+      "https://pib.gov.in/PressReleasePage.aspx?PRID=2022057",
+      "https://dghs.mohfw.gov.in/national-mental-health-programme.php"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "india-1098",
+     "section": "help-now",
+     "name": "Child Helpline 1098",
+     "org": "Ministry of Women and Child Development",
+     "what": "A free emergency line for children who need care and protection, now linked with the national emergency number 112.",
+     "how": "Dial 1098 for a child in danger or distress.",
+     "phone": "1098",
+     "dial": "1098",
+     "sources": [
+      "https://pib.gov.in/PressReleasePage.aspx?PRID=1933794",
+      "https://rsdebate.nic.in/bitstream/123456789/753617/1/PQ_266_11122024_S173_p38_p39.pdf"
+     ],
+     "reviewed_on": "2026-11-19"
+    },
+    {
+     "id": "india-pmmvy",
+     "section": "pregnancy-baby",
+     "name": "Pradhan Mantri Matru Vandana Yojana",
+     "org": "Ministry of Women and Child Development",
+     "what": "A maternity cash benefit paid to pregnant women and new mothers, ₹5,000 for the first living child, sent to her bank account.",
+     "how": "Apply at your Anganwadi centre or online on the PMMVY portal with your Aadhaar and bank details.",
+     "url": "https://pmmvy.wcd.gov.in/",
+     "sources": [
+      "https://myscheme.gov.in/schemes/pmmvy",
+      "https://nanded.gov.in/?p=36021"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "food-bills"
+     ]
+    }
+   ]
+  },
+  {
+   "code": "IE",
+   "slug": "ireland",
+   "name": "Ireland",
+   "flag": "🇮🇪",
+   "emergency": {
+    "number": "112",
+    "label": "Police, fire and ambulance (999 works too). Free from any phone",
+    "source": "https://www.gov.ie/en/service/89da6-how-to-contact-emergency-services-in-ireland"
+   },
+   "resources": [
+    {
+     "id": "ireland-womensaid",
+     "section": "help-now",
+     "name": "Women's Aid National Freephone Helpline",
+     "org": "Women's Aid",
+     "what": "Free, confidential support any hour for women facing domestic abuse, including coercive control and stalking. It can refer you to refuges and local services, with interpreters in many languages.",
+     "how": "Call any time. If you cannot speak when you call, they will still listen.",
+     "url": "https://www.womensaid.ie/get-help/talk-to-us/",
+     "phone": "1800 341 900",
+     "dial": "1800341900",
+     "urgent": true,
+     "chip": "Domestic abuse line",
+     "sources": [
+      "https://www.womensaid.ie/get-help/talk-to-us/",
+      "https://womensaid.ie/"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "ireland-samaritans",
+     "section": "help-now",
+     "name": "Samaritans",
+     "org": "Samaritans Ireland",
+     "what": "Someone to talk to, free, any time of day or night, whatever you are going through. You do not have to be suicidal to call.",
+     "how": "Call 116 123 from any phone.",
+     "url": "https://www.samaritans.org/",
+     "phone": "116 123",
+     "dial": "116123",
+     "urgent": true,
+     "chip": "Someone to talk to",
+     "sources": [
+      "https://www.samaritans.org/how-we-can-help-you/contact",
+      "https://www.samaritans.org/how-we-can-help/write-an-email/"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "ireland-askonefamily",
+     "section": "single-parent",
+     "name": "askonefamily helpline",
+     "org": "One Family",
+     "what": "Information and a listening ear for people parenting alone, sharing parenting or separating: welfare, money, family law, housing, childcare and parenting.",
+     "how": "Call Monday to Friday, 10am to 3pm. If nobody is free, they take your details and call you back.",
+     "url": "https://onefamily.ie/information-service-helpline",
+     "phone": "01 662 9212",
+     "dial": "016629212",
+     "sources": [
+      "https://onefamily.ie/information-service-helpline",
+      "https://onefamily.ie/?p=1167"
+     ],
+     "reviewed_on": "2026-11-19"
+    },
+    {
+     "id": "ireland-child-benefit",
+     "section": "food-bills",
+     "name": "Child Benefit",
+     "org": "Department of Social Protection",
+     "what": "A monthly payment of €140 for each child, whatever your income. For babies born from December 2024 a Newborn Baby Grant of €280 comes with the first payment.",
+     "how": "If your baby is born in Ireland, a claim starts when you register the birth. Otherwise use form CB1 or MyWelfare.ie within 12 months.",
+     "url": "https://www.gov.ie/cb",
+     "sources": [
+      "https://www.gov.ie/cb",
+      "https://www.gov.ie/en/department-of-social-protection/press-releases/almost-50000-families-received-newborn-baby-grants"
+     ],
+     "also": [
+      "single-parent"
+     ],
+     "reviewed_on": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "code": "NZ",
+   "slug": "new-zealand",
+   "name": "New Zealand",
+   "flag": "🇳🇿",
+   "emergency": {
+    "number": "111",
+    "label": "Police, fire and ambulance",
+    "source": "https://womensrefuge.org.nz/?p=6165"
+   },
+   "resources": [
+    {
+     "id": "new-zealand-refuge",
+     "section": "help-now",
+     "name": "Women's Refuge crisis line",
+     "org": "National Collective of Women's Refuges",
+     "what": "Free information, advice and crisis help about family violence, any hour, from anywhere in New Zealand. Refuges run safe houses in every region.",
+     "how": "Call 0800 REFUGE. Do not let the person hurting you know you are thinking of leaving.",
+     "url": "https://womensrefuge.org.nz/",
+     "phone": "0800 733 843",
+     "dial": "0800733843",
+     "urgent": true,
+     "chip": "Family violence line",
+     "sources": [
+      "https://womensrefuge.org.nz/?p=1148",
+      "https://www.areyouok.org.nz/get-support/family-violence-services/"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "new-zealand-1737",
+     "section": "help-now",
+     "name": "1737, Need to talk?",
+     "org": "Whakarongorau Aotearoa",
+     "what": "Free call or text any hour to talk with a trained counsellor, or with a peer support worker, about feeling down, anxious or overwhelmed.",
+     "how": "Call or text 1737.",
+     "url": "https://1737.org.nz/",
+     "phone": "1737",
+     "dial": "1737",
+     "text": "Text 1737",
+     "urgent": true,
+     "chip": "Need to talk",
+     "sources": [
+      "https://healthpoint.co.nz/mental-health-addictions/mental-health/1737-need-to-talk/print",
+      "https://findahelpline.com/organizations/1737-need-to-talk"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "new-zealand-plunketline",
+     "section": "pregnancy-baby",
+     "name": "PlunketLine",
+     "org": "Whānau Āwhina Plunket",
+     "what": "Free parenting and child health advice from a registered nurse any hour, for children up to five. Free from mobiles too, and you do not need to be a Plunket client.",
+     "how": "Call any time. Ask for an interpreter if you need one. Breastfeeding and sleep video support can be booked through the line.",
+     "url": "https://www.plunket.org.nz/plunket/what-we-offer/plunketline/",
+     "phone": "0800 933 922",
+     "dial": "0800933922",
+     "sources": [
+      "https://www.plunket.org.nz/plunket/what-we-offer/plunketline/",
+      "https://www.kidshealth.org.nz/plunketline-0800-933-922"
+     ],
+     "reviewed_on": "2026-11-19"
+    },
+    {
+     "id": "new-zealand-wff",
+     "section": "food-bills",
+     "name": "Working for Families",
+     "org": "Inland Revenue",
+     "what": "Payments to help with the cost of raising children 18 and under, based on family income. Best Start is part of it for babies.",
+     "how": "Check whether you qualify with the IRD calculator, then register in myIR or with the online form.",
+     "url": "https://www.ird.govt.nz/working-for-families",
+     "sources": [
+      "https://ird.govt.nz/working-for-families/what-it-is/overview",
+      "https://www.ird.govt.nz/working-for-families/apply/register"
+     ],
+     "also": [
+      "single-parent"
+     ],
+     "reviewed_on": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "code": "PH",
+   "slug": "philippines",
+   "name": "Philippines",
+   "flag": "🇵🇭",
+   "emergency": {
+    "number": "911",
+    "label": "Police, fire, medical and rescue",
+    "source": "https://newsinfo.inquirer.net/996682/eo-makes-911-countrys-emergency-hotline-number"
+   },
+   "resources": [
+    {
+     "id": "philippines-ncmh",
+     "section": "help-now",
+     "name": "NCMH Crisis Hotline",
+     "org": "National Center for Mental Health",
+     "what": "The government's mental health crisis line, open any hour, for anyone in emotional distress or thinking about suicide.",
+     "how": "Dial 1553 toll-free from a landline. From a mobile, call 0919 057 1553 (Smart/TNT) or 0917 899 8727 (Globe/TM).",
+     "phone": "1553",
+     "dial": "1553",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://thelance.letran.edu.ph/Home/ReadMore/6374",
+      "https://www.who.int/philippines/news/detail/10-09-2020-doh-and-who-promote-holistic-mental-health-wellness-in-light-of-world-suicide-prevention-day"
+     ],
+     "also": [
+      "take-care"
+     ],
+     "reviewed_on": "2026-11-19"
+    },
+    {
+     "id": "philippines-solo-parent",
+     "section": "single-parent",
+     "name": "Solo Parent ID",
+     "org": "City or Municipal Social Welfare and Development Office",
+     "what": "Under the Expanded Solo Parents Welfare Act, a solo parent can get an ID that unlocks benefits such as leave, discounts and priority for some programs.",
+     "how": "Apply at your city or municipal social welfare office (or Solo Parent Office). The ID is renewed every year.",
+     "url": "https://www.dswd.gov.ph/",
+     "sources": [
+      "https://mb.com.ph/2025/4/24/spouses-of-of-ws-may-avail-of-benefits-privileges-for-solo-parents-dswd",
+      "https://mb.com.ph/2026/02/19/not-all-solo-parents-qualify-under-expanded-law-dswd"
+     ],
+     "reviewed_on": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "code": "ZA",
+   "slug": "south-africa",
+   "name": "South Africa",
+   "flag": "🇿🇦",
+   "emergency": {
+    "number": "10111",
+    "label": "Police. From a cellphone, 112. Ambulance, 10177",
+    "source": "https://www.westerncape.gov.za/local-government/know-who-you-can-call-emergency"
+   },
+   "resources": [
+    {
+     "id": "south-africa-gbvcc",
+     "section": "help-now",
+     "name": "GBV Command Centre",
+     "org": "Department of Social Development",
+     "what": "A 24-hour line staffed by social workers who give counselling and support to people facing gender-based violence, and can send a local social worker.",
+     "how": "Call toll-free, or dial *120*7867# from any cellphone to have them call you back.",
+     "phone": "0800 428 428",
+     "dial": "0800428428",
+     "urgent": true,
+     "chip": "Gender-based violence line",
+     "sources": [
+      "https://www.sanews.gov.za/node/78885",
+      "https://stateofthenation.gov.za/endGBVF"
+     ],
+     "reviewed_on": "2026-11-19"
+    },
+    {
+     "id": "south-africa-sadag",
+     "section": "help-now",
+     "name": "Suicide Crisis Helpline",
+     "org": "South African Depression and Anxiety Group",
+     "what": "A toll-free crisis line, open any hour, for anyone thinking about suicide or worried about someone.",
+     "how": "Call toll-free from any network.",
+     "url": "https://www.sadag.org/",
+     "phone": "0800 567 567",
+     "dial": "0800567567",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://www.ewn.co.za/2025/09/10/what-it-takes-to-be-at-the-coalface-of-a-suicide-crisis-helpline",
+      "https://www.citizen.co.za/business/mental-health-support-group-in-south-africa-spends-r150k-per-month-on-suicide-helpline/"
+     ],
+     "also": [
+      "take-care"
+     ],
+     "reviewed_on": "2026-11-19"
+    },
+    {
+     "id": "south-africa-childline",
+     "section": "help-now",
+     "name": "Childline South Africa",
+     "org": "Childline South Africa",
+     "what": "A free helpline any hour for children, and for adults worried about a child.",
+     "how": "Dial 116, free from all networks.",
+     "url": "https://www.childlinesa.org.za/",
+     "phone": "116",
+     "dial": "116",
+     "sources": [
+      "https://www.vukuzenzele.gov.za/gender-based-violence-0",
+      "https://help.unhcr.org/southafrica/get-help/children/"
+     ],
+     "reviewed_on": "2026-11-19"
+    },
+    {
+     "id": "south-africa-csg",
+     "section": "food-bills",
+     "name": "Child Support Grant",
+     "org": "South African Social Security Agency (SASSA)",
+     "what": "A monthly grant for the primary caregiver of a child under 18 in a low-income household.",
+     "how": "Apply free at your nearest SASSA office. Bring your ID and the child's birth certificate.",
+     "url": "https://www.sassa.gov.za/",
+     "sources": [
+      "https://www.westerncape.gov.za/service/sassa-child-support-grant",
+      "https://legal-aid.co.za/2018/09/26/child-support-grant/"
+     ],
+     "also": [
+      "single-parent"
+     ],
+     "reviewed_on": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "code": "GB",
+   "slug": "united-kingdom",
+   "name": "United Kingdom",
+   "flag": "🇬🇧",
+   "emergency": {
+    "number": "999",
+    "label": "Police, fire and ambulance",
+    "source": "https://nationaldahelpline.org.uk"
+   },
+   "resources": [
+    {
+     "id": "united-kingdom-ndah",
+     "section": "help-now",
+     "name": "National Domestic Abuse Helpline",
+     "org": "Refuge",
+     "what": "Free, confidential support any hour, every day of the year, from trained women advisers, in many languages. They can help with safety planning and finding a refuge.",
+     "how": "Call any time, or use the live chat on the helpline's website.",
+     "url": "https://nationaldahelpline.org.uk/",
+     "phone": "0808 2000 247",
+     "dial": "08082000247",
+     "urgent": true,
+     "chip": "Domestic abuse line",
+     "sources": [
+      "https://nationaldahelpline.org.uk",
+      "https://refuge.org.uk/i-need-help-now/how-we-can-help-you/national-domestic-abuse-helpline/"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "united-kingdom-samaritans",
+     "section": "help-now",
+     "name": "Samaritans",
+     "org": "Samaritans",
+     "what": "Someone to talk to, free, any time of day or night, from any phone. You do not have to be suicidal to call.",
+     "how": "Call 116 123.",
+     "url": "https://www.samaritans.org/",
+     "phone": "116 123",
+     "dial": "116123",
+     "urgent": true,
+     "chip": "Someone to talk to",
+     "sources": [
+      "https://www.samaritans.org/how-we-can-help-you/contact",
+      "https://samaritans.org/how-we-can-help/contact-samaritan/talk-us-phone/"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "united-kingdom-pandas",
+     "section": "take-care",
+     "name": "PANDAS Foundation helpline",
+     "org": "PANDAS Foundation",
+     "what": "Free support for parents struggling with their mental health in pregnancy and after birth, and for the people around them.",
+     "how": "Call Monday to Friday, 10am to 5pm, or book a call back on the website.",
+     "url": "https://pandasfoundation.org.uk/",
+     "phone": "0808 1961 776",
+     "dial": "08081961776",
+     "sources": [
+      "https://www.essex.gov.uk/find-support-services-children-and-their-families/pandas-foundation",
+      "https://pandasfoundation.org.uk/?p=33"
+     ],
+     "reviewed_on": "2026-11-19",
+     "also": [
+      "pregnancy-baby"
+     ]
+    },
+    {
+     "id": "united-kingdom-nbh",
+     "section": "pregnancy-baby",
+     "name": "National Breastfeeding Helpline",
+     "org": "Breastfeeding Network and Association of Breastfeeding Mothers",
+     "what": "Breastfeeding support any hour, every day, from trained volunteers who have breastfed. Help in Welsh and Polish is on the same number.",
+     "how": "Call any time. Calls cost the same as a call to a number starting 01 or 02.",
+     "url": "https://www.nationalbreastfeedinghelpline.org.uk/",
+     "phone": "0300 100 0212",
+     "dial": "03001000212",
+     "sources": [
+      "https://www.nationalbreastfeedinghelpline.org.uk/?p=573",
+      "https://www.breastfeedingnetwork.org.uk/contact-us/helplines/"
+     ],
+     "reviewed_on": "2026-11-19"
+    },
+    {
+     "id": "united-kingdom-gingerbread",
+     "section": "single-parent",
+     "name": "Gingerbread Single Parent Helpline",
+     "org": "Gingerbread",
+     "what": "Free advice for single parents in England and Wales on money, benefits, child maintenance, work, housing and separation.",
+     "how": "Call or use the webchat on the website. In Scotland, One Parent Families Scotland runs the Lone Parent Helpline on 0808 801 0323.",
+     "url": "https://www.gingerbread.org.uk/",
+     "phone": "0808 802 0925",
+     "dial": "08088020925",
+     "sources": [
+      "https://www.gingerbread.org.uk/UC-landingpage",
+      "https://www.disabilityscot.org.uk/organisation/gingerbread/"
+     ],
+     "reviewed_on": "2026-11-19"
+    },
+    {
+     "id": "united-kingdom-child-benefit",
+     "section": "food-bills",
+     "name": "Child Benefit",
+     "org": "HM Revenue and Customs",
+     "what": "A regular payment for each child you are responsible for. Only one person can claim for a child.",
+     "how": "Claim online or in the HMRC app from 48 hours after you register the birth. A claim can be backdated up to 3 months.",
+     "url": "https://www.gov.uk/child-benefit/how-to-claim",
+     "sources": [
+      "https://gov.uk/child-benefit/how-to-claim",
+      "https://www.citizensadvice.org.uk/benefits/child-benefit/help-with-your-child-benefit-claim/how-to-claim-child-benefit/"
+     ],
+     "also": [
+      "single-parent"
+     ],
+     "reviewed_on": "2026-11-19"
+    }
+   ]
+  }
+ ]
+}

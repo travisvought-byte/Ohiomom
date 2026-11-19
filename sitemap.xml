@@ -2,6 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.yogamomtalk.com/about.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/connect.html</loc></url>
+  <url><loc>https://www.yogamomtalk.com/countries/australia.html</loc></url>
+  <url><loc>https://www.yogamomtalk.com/countries/canada.html</loc></url>
+  <url><loc>https://www.yogamomtalk.com/countries/india.html</loc></url>
+  <url><loc>https://www.yogamomtalk.com/countries/ireland.html</loc></url>
+  <url><loc>https://www.yogamomtalk.com/countries/new-zealand.html</loc></url>
+  <url><loc>https://www.yogamomtalk.com/countries/philippines.html</loc></url>
+  <url><loc>https://www.yogamomtalk.com/countries/south-africa.html</loc></url>
+  <url><loc>https://www.yogamomtalk.com/countries/united-kingdom.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/county.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/family-guide.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/help.html</loc></url>
@@ -84,4 +92,5 @@
   <url><loc>https://www.yogamomtalk.com/states/wi.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/states/wv.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/states/wy.html</loc></url>
+  <url><loc>https://www.yogamomtalk.com/world.html</loc></url>
 </urlset>

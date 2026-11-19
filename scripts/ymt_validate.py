@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Check the data before anything is published. Exit 1 on any problem."""
+import re
 import sys
 from datetime import date
 from pathlib import Path
@@ -90,6 +91,45 @@ def main():
         except ValueError:
             errors.append(f'{rid}: bad reviewed_on')
 
+    # Outside the U.S. (data/ymt/world.json): each listing needs a source, a date, and digits that a phone can dial.
+    world = data.get('world', {})
+    dial = re.compile(r'^\+?\d{3,15}$')
+    codes = set()
+    for c in world.get('countries', []):
+        for key in ('code', 'slug', 'name', 'flag'):
+            if not c.get(key):
+                errors.append(f'world {c.get("code", "?")}: missing {key}')
+        if c.get('code') in codes:
+            errors.append(f'world {c["code"]}: duplicate country')
+        codes.add(c.get('code'))
+        e = c.get('emergency') or {}
+        if not dial.match(e.get('number', '')) or not e.get('label'):
+            errors.append(f'world {c.get("code")}: emergency needs a number and a label')
+        check_url(f'world {c.get("code")} emergency', e.get('source'), errors)
+    listings = list(world.get('worldwide', [])) + [dict(r, scope=c['code']) for c in world.get('countries', []) for r in c['resources']]
+    for r in listings:
+        rid = r.get('id', '?')
+        for key in lib.REQUIRED:
+            if not r.get(key):
+                errors.append(f'{rid}: missing {key}')
+        if rid in seen:
+            errors.append(f'{rid}: duplicate id')
+        seen.add(rid)
+        if r.get('section') not in sections or any(a not in sections for a in r.get('also', [])):
+            errors.append(f'{rid}: unknown section')
+        if r.get('phone') and not dial.match(r.get('dial', '')):
+            errors.append(f'{rid}: a phone number needs "dial", the digits to call')
+        if r.get('urgent') and not r.get('phone'):
+            errors.append(f'{rid}: urgent listings need a phone number')
+        if not r.get('url') and not r.get('phone'):
+            errors.append(f'{rid}: needs a website or a phone number')
+        for u in [r.get('url')] * bool(r.get('url')) + r.get('sources', []):
+            check_url(rid, u, errors)
+        try:
+            if date.fromisoformat(r.get('reviewed_on', '')) > date.today():
+                errors.append(f'{rid}: reviewed_on is in the future')
+        except ValueError:
+            errors.append(f'{rid}: bad reviewed_on')
     errors += [f'data/ads.json: {e}' for e in ads.check(data['ads'])]
     on = ads.today()
     for ad in data['ads']:

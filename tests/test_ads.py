@@ -54,7 +54,7 @@ class PrivacyTests(unittest.TestCase):
         text = (ROOT / 'privacy.html').read_text(encoding='utf-8')
         self.assertIn('<h1>Privacy</h1>', text)
         self.assertIn('<time datetime="2026-11-19">November 19, 2026</time>', text)
-        for words in ('hosted on Wix', 'We do not run a visit counter', 'There is no sign-up',
+        for words in ('hosted on Wix', 'We count visits with GoatCounter', 'does not use cookies', 'never a search or ZIP code', 'There is no sign-up',
                       'Every ad is labeled "Advertisement" and kept apart from the resource listings',
                       'Google AdSense', 'https://adssettings.google.com', 'https://policies.google.com/technologies/ads',
                       'https://optout.aboutads.info', 'We do not sell personal information',
@@ -93,15 +93,28 @@ class PrivacyTests(unittest.TestCase):
         self.assertIn('mailto:' + DATA['site']['corrections_email'], about)
         self.assertNotRegex(about, r'\$\d|per month|a month|pricing', 'no prices on the page')
         self.assertIn('href="privacy.html"', about)
-        self.assertIn('We add no tracking or visit counter of our own.', about)
+        self.assertIn('We count visits with GoatCounter, which does not use cookies', about)
         ohio = (ROOT / 'ohio' / 'about.html').read_text(encoding='utf-8')
         self.assertIn('href="../about.html#advertise"', ohio)
         self.assertIn('href="../privacy.html"', ohio)
 
-    def test_we_add_no_counter_so_the_privacy_page_can_say_so(self):
-        """If a visit counter is ever added, the Privacy page must be changed in the same commit."""
+    def test_the_one_visit_counter_is_the_one_the_privacy_page_describes(self):
+        """GoatCounter (added November 19, 2026 at the owner's request) is the only counter. It is loaded by the three shared
+        scripts, the same lines in each; it sends only the page's path, with no query string; no page loads a counter or ad
+        network of its own. If a counter or an ad network changes, the Privacy page changes in the same commit."""
+        scripts = ['assets/ymt.js', 'ohio/assets/site.js', 'assets/family-guide.js']
+        blocks = []
+        for rel in scripts:
+            text = (ROOT / rel).read_text(encoding='utf-8')
+            m = re.search(r'\n// Visit counter \(GoatCounter.*\n', text, re.S)
+            self.assertIsNotNone(m, rel)
+            blocks.append(m.group(0))
+            self.assertIn("p.replace(/\\?.*$/,'')", m.group(0), rel)
+            self.assertNotRegex(text, r'(?i)googletagmanager|google-analytics|gtag\(|adsbygoogle', rel)
+        self.assertEqual(len(set(blocks)), 1, 'the counter lines must be the same in all three scripts')
         for path in site_pages():
-            self.assertNotRegex(path.read_text(encoding='utf-8'), r'(?i)goatcounter|googletagmanager|google-analytics|gtag\(|adsbygoogle', path)
+            text = path.read_text(encoding='utf-8')
+            self.assertNotRegex(text, r'(?i)gc\.zgo\.at|googletagmanager|google-analytics|gtag\(|adsbygoogle', path)
 
 
 class AdSlotTests(unittest.TestCase):
