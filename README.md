@@ -144,8 +144,19 @@ Added November 19, 2026 at the owner's request: Yoga Mom Talk as a resource for 
 ## Safety standards
 
 - A fixed "Leave this site" button is on every national page. It jumps to an everyday page and does not erase browser history; the About page says so.
-- The national pages carry no cookies, sign-up forms or third-party scripts of our own, apart from the visit counter (below), and the report page uses a mail link only. Wix adds its own script and cookies to every page it serves, so the pages say that plainly and do not claim to be cookie-free.
+- The national pages carry no cookies, sign-up forms or third-party scripts of our own, apart from the visit counter (below), and the report page uses a mail link only. GitHub Pages logs visitors' internet addresses for security, and the OhioMom pages load Wix's script for their forms, which may set cookies; the pages and the Privacy page say so plainly and do not claim to be cookie-free.
 - Domestic violence shelter addresses are never listed. Listings point to the hotline or program that places people safely.
+
+## Hosting on GitHub Pages
+
+The owner chose on November 20, 2026 to serve the site from GitHub Pages, like travisvought.com. GitHub Pages already builds `main` on every merge (the "pages build and deployment" run). Once www.yogamomtalk.com points at GitHub, every merge is live a minute later and nothing needs publishing.
+
+- **What stays on Wix.** The OhioMom forms and quick polls (Report a problem, Talk to us, "Did you find what you came for?") are Wix Forms. The pages fetch them straight from Wix's servers with the site's headless client ID, from any web address, so they keep working. `tests/wix-forms-offsite.cjs` (workflow "Check Wix forms off Wix hosting") serves the site from a plain web server and checks in a real browser that the report form arrives from Wix; nothing is submitted. It passed on November 20, 2026. Keep the OhioMom site and its plan on Wix: the forms, their answers and the client ID live there.
+- **The Wix script tag.** The 23 Ohio pages keep their `wix-site-script` tag; GitHub serves it as written.
+- **Size.** Wix's 20 MB and 2,000-file limits no longer apply; GitHub Pages allows a 1 GB site.
+- **What the owner does once.** Settings, Pages: custom domain `www.yogamomtalk.com`, Save (GitHub adds a `CNAME` file to `main`). Then in Wix, Domains, yogamomtalk.com, Manage DNS Records: four A records on the root to 185.199.108.153, 185.199.109.153, 185.199.110.153 and 185.199.111.153 (delete the old A records), and a `www` CNAME to `travisvought-byte.github.io` (delete the old one). When the certificate is ready, tick Enforce HTTPS in Settings, Pages. GitHub then sends yogamomtalk.com to www.yogamomtalk.com by itself.
+- **The other addresses.** ohiomom.org, ohiomom.com and yogamomtalk.org forward through Wix to the OhioMom site's primary domain. Wix warns that unassigning the primary domain disconnects them, so leave yogamomtalk.com assigned in Wix and change only its records. After the switch, open each one once to confirm it still lands on www.yogamomtalk.com.
+- **Publishing to Wix** (below) is no longer needed once the records point at GitHub, and running it would only update the old copy on Wix.
 
 ## Publishing to Wix
 
@@ -172,7 +183,7 @@ What is not yet proven: the calls are the ones in Wix's recipe for uploading a s
 
 ## Still to settle
 
-- **Hosting.** Decided: Wix headless serves the whole site. Wix keeps each Ohio page without its `wix-site-script` tag and adds the tag back when it serves the page, so the stored copy of those pages is the repo copy minus that one tag. Wix also serves its own `sitemap.xml` (it lists these pages), `robots.txt` and not-found page. Publishing is described under "Publishing to Wix" below; the automatic route is built but not switched on.
+- **Hosting.** Moving to GitHub Pages (owner's choice, November 20, 2026); see "Hosting on GitHub Pages". Until the domain's records point at GitHub, Wix still serves the copy last published there.
 - **Domains.** Decided (Nov 15, 2026): `www.yogamomtalk.com` is the primary domain, and yogamomtalk.org and ohiomom.org redirect to it. The redirect keeps the path (checked Nov 15, 2026): `ohiomom.org/family-guide.html` lands on the family guide, so the Veteran Home Guardians guide's link and the QR code on the printed flyer work. One thing does not: the ohiomom.org home page lands on the national home page and not on OhioMom, because the visitor has already left ohiomom.org by the time the page loads. Sending it straight to `/ohio/` needs a redirect rule for that one address in the domain settings. No page on this site links to ohiomom.org (a test enforces it).
 - **Corrections email.** The default is `travis@vethomeguard.org`; change it in `data/ymt/resources.json` and rebuild.
 - **Trademark.** The name is a decision for later. It is kept in one config value so a change is a rebuild.

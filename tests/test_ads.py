@@ -54,7 +54,7 @@ class PrivacyTests(unittest.TestCase):
         text = (ROOT / 'privacy.html').read_text(encoding='utf-8')
         self.assertIn('<h1>Privacy</h1>', text)
         self.assertIn('<time datetime="2026-11-20">November 20, 2026</time>', text)
-        for words in ('hosted on Wix', 'We count visits with GoatCounter', 'does not use cookies', 'never a search or ZIP code', 'Your internet address itself is not stored', 'There is no sign-up',
+        for words in ('hosted on GitHub Pages', 'We count visits with GoatCounter', 'does not use cookies', 'never a search or ZIP code', 'Your internet address itself is not stored', 'There is no sign-up',
                       'Every ad is labeled "Advertisement" and kept apart from the resource listings',
                       'Google AdSense', 'https://adssettings.google.com', 'https://policies.google.com/technologies/ads',
                       'https://optout.aboutads.info', 'We do not sell personal information',
