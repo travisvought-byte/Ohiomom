@@ -1,0 +1,21 @@
+name: Check Wix forms off Wix hosting
+# Serves the site from a plain web server (not Wix) and checks in a real browser that the
+# OhioMom forms still load from Wix. Nothing is submitted. Run it after any change to js/wix/.
+on:
+  workflow_dispatch:
+  push:
+    branches: [claude/project-thread-wlt7hh]
+    paths: ['.github/workflows/wix-forms-check.yml', 'tests/wix-forms-offsite.cjs', 'js/wix/**']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm install --no-save playwright@1.56.1 && npx playwright install --with-deps chromium
+      - run: python3 -m http.server 8080 --bind 127.0.0.1 >/dev/null 2>&1 &
+      - run: sleep 2 && node tests/wix-forms-offsite.cjs
