@@ -53,8 +53,8 @@ class PrivacyTests(unittest.TestCase):
     def test_privacy_page_exists_and_says_what_it_must(self):
         text = (ROOT / 'privacy.html').read_text(encoding='utf-8')
         self.assertIn('<h1>Privacy</h1>', text)
-        self.assertIn('<time datetime="2026-11-19">November 19, 2026</time>', text)
-        for words in ('hosted on Wix', 'We count visits with GoatCounter', 'does not use cookies', 'never a search or ZIP code', 'There is no sign-up',
+        self.assertIn('<time datetime="2026-11-20">November 20, 2026</time>', text)
+        for words in ('hosted on Wix', 'We count visits with GoatCounter', 'does not use cookies', 'never a search or ZIP code', 'Your internet address itself is not stored', 'There is no sign-up',
                       'Every ad is labeled "Advertisement" and kept apart from the resource listings',
                       'Google AdSense', 'https://adssettings.google.com', 'https://policies.google.com/technologies/ads',
                       'https://optout.aboutads.info', 'We do not sell personal information',
@@ -110,11 +110,21 @@ class PrivacyTests(unittest.TestCase):
             self.assertIsNotNone(m, rel)
             blocks.append(m.group(0))
             self.assertIn("p.replace(/\\?.*$/,'')", m.group(0), rel)
+            self.assertIn('return u.origin+u.pathname;', m.group(0), rel)
+            self.assertEqual(m.group(0).count('gc.zgo.at'), 1, rel)
             self.assertNotRegex(text, r'(?i)googletagmanager|google-analytics|gtag\(|adsbygoogle', rel)
         self.assertEqual(len(set(blocks)), 1, 'the counter lines must be the same in all three scripts')
         for path in site_pages():
             text = path.read_text(encoding='utf-8')
             self.assertNotRegex(text, r'(?i)gc\.zgo\.at|googletagmanager|google-analytics|gtag\(|adsbygoogle', path)
+
+    def test_every_page_carries_the_visit_counter(self):
+        """Every page a visitor can land on loads one of the three shared scripts that hold the counter, so every visit
+        is counted once. The small redirect pages are left out on purpose: they send the visitor straight on, and the
+        page they land on counts the visit."""
+        for path in site_pages():
+            text = path.read_text(encoding='utf-8')
+            self.assertRegex(text, r'<script src="(?:/|(?:\.\./)*)(?:assets/ymt\.js|assets/site\.js|assets/family-guide\.js)"', path)
 
 
 class AdSlotTests(unittest.TestCase):

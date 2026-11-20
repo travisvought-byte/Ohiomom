@@ -6,5 +6,6 @@
 // Visit counter (GoatCounter, added November 19, 2026 at the owner's request). It sets no cookie and does not record
 // who the visitor is. It sends only the page's path, never a search, ZIP code or anything typed (those stay in the
 // page or after the #, which is not sent). The path carries the site name so these pages stay apart from the owner's
-// other sites on the same counter. The same lines are in assets/ymt.js, ohio/assets/site.js and assets/family-guide.js.
-(function(){if(window.ymtCountLoaded)return;window.ymtCountLoaded=true;var h=location.hostname.replace(/^www\./,'');window.goatcounter={path:function(p){return '/'+h+p.replace(/\?.*$/,'');}};var s=document.createElement('script');s.async=true;s.src='https://gc.zgo.at/count.js';s.setAttribute('data-goatcounter','https://travisvought.goatcounter.com/count');document.head.appendChild(s);})();
+// other sites on the same counter. The referring address is cut to its site and path, as on the owner's other sites.
+// The same lines are in assets/ymt.js, ohio/assets/site.js and assets/family-guide.js.
+(function(){if(window.ymtCountLoaded)return;window.ymtCountLoaded=true;var h=location.hostname.replace(/^www\./,'');window.goatcounter={path:function(p){return '/'+h+p.replace(/\?.*$/,'');},referrer:function(){try{var u=new URL(document.referrer);return u.origin+u.pathname;}catch(e){return '';}}};var s=document.createElement('script');s.async=true;s.src='https://gc.zgo.at/count.js';s.setAttribute('data-goatcounter','https://travisvought.goatcounter.com/count');document.head.appendChild(s);})();
