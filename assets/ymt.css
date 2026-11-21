@@ -111,6 +111,23 @@ select:focus-visible,a:focus-visible,button:focus-visible,summary:focus-visible{
 .statelist small{color:var(--muted);font-weight:400;margin-left:.3rem}
 @media (max-width:760px){.statelist{grid-template-columns:1fr 1fr;gap:.45rem}.statelist a{padding:.5rem .7rem;height:100%}.statelist small{display:none}}
 
+/* Tappable maps: the world map (world.html) and the state tiles (states.html). Plain SVG and links, no script */
+.worldmap{display:block;width:100%;height:auto;max-width:62rem;margin:1rem auto 0}
+.worldmap path,.worldmap circle{stroke:var(--bg);stroke-width:.7;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.worldmap .land path{fill:#ddd5dc}
+.worldmap .covered path,.worldmap .covered circle{fill:var(--brand);cursor:pointer}
+.worldmap .covered circle{stroke-width:1.5}
+.worldmap a:hover path,.worldmap a:hover circle,.worldmap a:focus-visible path,.worldmap a:focus-visible circle{fill:#8f1f40}
+.worldmap a:focus-visible{outline:none}
+.worldmap a:focus-visible path,.worldmap a:focus-visible circle{stroke:var(--ink);stroke-width:2.5}
+.usgrid{display:grid;grid-template-columns:repeat(11,minmax(0,1fr));gap:.3rem;max-width:40rem;margin:1.2rem auto 0;padding:0;list-style:none}
+.usgrid a{position:relative;display:flex;align-items:center;justify-content:center;aspect-ratio:1;background:var(--brand);color:#fff;font-weight:700;font-size:clamp(.7rem,2.4vw,1rem);text-decoration:none;border-radius:.45rem}
+.usgrid a:hover,.usgrid a:focus-visible{background:#8f1f40}
+.maplist{margin-top:1.2rem}
+.maplist>summary{cursor:pointer;color:var(--teal);font-weight:700;padding:.4rem 0}
+@media (max-width:420px){.usgrid{gap:.18rem}.usgrid a{border-radius:.3rem}}
+@media print{.worldmap,.usgrid{display:none}.maplist>summary{display:none}}
+
 /* CTA band */
 .cta{background:linear-gradient(135deg,#ffe3e8,#fff1dc);border-radius:1.6rem;padding:1.8rem 1.6rem!important;text-align:center}
 .cta p{max-width:40rem;margin-left:auto;margin-right:auto}
