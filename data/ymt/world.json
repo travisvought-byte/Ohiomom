@@ -1278,6 +1278,109 @@
    ]
   },
   {
+   "code": "CZ",
+   "slug": "czech-republic",
+   "name": "Czech Republic",
+   "flag": "🇨🇿",
+   "emergency": {
+    "number": "112",
+    "label": "Single European emergency number. Also 155 for an ambulance, 158 for the police, 150 for the fire service. Free, any hour",
+    "source": "https://portal.gov.cz/sluzby-vs/tisnove-volani-S2824"
+   },
+   "resources": [
+    {
+     "id": "czech-116016",
+     "section": "help-now",
+     "name": "Linka 116 016",
+     "org": "Line for victims of violence against women, listed on the government's Portál občana",
+     "what": "A free line for victims of violence against women, open any hour.",
+     "how": "Call 116 016. In danger right now, call 112 or 158.",
+     "url": "https://portal.gov.cz/informace/116-numbers--harmonised-services-of-social-value-INF-415",
+     "phone": "116 016",
+     "dial": "116016",
+     "urgent": true,
+     "chip": "Violence against women line",
+     "sources": [
+      "https://portal.gov.cz/informace/116-numbers--harmonised-services-of-social-value-INF-415"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "czech-116006",
+     "section": "help-now",
+     "name": "Linka pomoci obětem 116 006",
+     "org": "Bílý kruh bezpečí",
+     "what": "Immediate help, any hour, for victims of domestic violence and other crimes, for the people close to them and for witnesses. Calls are free and discreet.",
+     "how": "Call 116 006.",
+     "url": "https://www.116006.cz/jsem-obeti-domaciho-nasili/",
+     "phone": "116 006",
+     "dial": "116006",
+     "urgent": true,
+     "chip": "Victim support line",
+     "sources": [
+      "https://www.116006.cz/jsem-obeti-domaciho-nasili/",
+      "https://portal.gov.cz/informace/116-numbers--harmonised-services-of-social-value-INF-415"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "czech-116123",
+     "section": "help-now",
+     "name": "Linka první psychické pomoci 116 123",
+     "org": "First psychological aid line, listed on the government's Portál občana",
+     "what": "A free line for first psychological help, open any hour.",
+     "how": "Call 116 123.",
+     "url": "https://portal.gov.cz/informace/116-numbers--harmonised-services-of-social-value-INF-415",
+     "phone": "116 123",
+     "dial": "116123",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://portal.gov.cz/informace/116-numbers--harmonised-services-of-social-value-INF-415"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "czech-linka-bezpeci",
+     "section": "help-now",
+     "name": "Linka bezpečí 116 111",
+     "org": "Linka bezpečí",
+     "what": "A free line, open any hour, for children and students up to 26. You do not have to give your name.",
+     "how": "Call 116 111. Chat is open daily 9am to 1pm and 3pm to 7pm, or email pomoc@linkabezpeci.cz. Parents and other adults worried about a child can call Rodičovská linka, run by the same organisation, on 606 021 021: Monday to Thursday 9am to 9pm, Friday 9am to 5pm (normal call charges).",
+     "url": "https://www.linkabezpeci.cz/pomoc",
+     "phone": "116 111",
+     "dial": "116111",
+     "urgent": true,
+     "chip": "Child helpline",
+     "sources": [
+      "https://www.linkabezpeci.cz/pomoc",
+      "https://www.rodicovskalinka.cz/jak-fungujeme"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "czech-porodne",
+     "section": "pregnancy-baby",
+     "name": "Porodné (birth grant)",
+     "org": "Labour Office of the Czech Republic (Úřad práce)",
+     "what": "A one-off payment of CZK 13,000 for a first child and CZK 10,000 for a second, for families with low income: net family income in the three months before the birth must be below 2.7 times the family's living minimum.",
+     "how": "Apply online through the Ministry of Labour and Social Affairs portal, or at the Labour Office contact office where you live. You can claim up to one year after the birth.",
+     "url": "https://portal.gov.cz/en/sluzby-vs/birth-grant-S501",
+     "sources": [
+      "https://portal.gov.cz/en/sluzby-vs/birth-grant-S501",
+      "https://mpsv.gov.cz/porodne"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "food-bills"
+     ]
+    }
+   ]
+  },
+  {
    "code": "DK",
    "slug": "denmark",
    "name": "Denmark",
@@ -1522,6 +1625,148 @@
      "reviewed_on": "2026-11-21",
      "also": [
       "food-bills"
+     ]
+    }
+   ]
+  },
+  {
+   "code": "EG",
+   "slug": "egypt",
+   "name": "Egypt",
+   "flag": "🇪🇬",
+   "emergency": {
+    "number": "122",
+    "label": "Police. For an ambulance, call 123; for the fire service, 180",
+    "source": "https://www.southsinai.gov.eg/Directory?DirectoryTypeId=1020"
+   },
+   "resources": [
+    {
+     "id": "egypt-16000",
+     "section": "help-now",
+     "name": "خط نجدة الطفل 16000 (Child Helpline)",
+     "org": "National Council for Childhood and Motherhood (NCCM)",
+     "what": "A line that answers around the clock for children at risk: neglect, psychological and physical abuse, child labour, female genital mutilation, child marriage, and online bullying, blackmail and harassment.",
+     "how": "Call 16000. In danger right now, call 122.",
+     "url": "https://cairo.gov.eg/en/news/news-eng/2025/9e6d9746382148bea8cc161d0bbda758",
+     "phone": "16000",
+     "dial": "16000",
+     "urgent": true,
+     "chip": "Child helpline",
+     "sources": [
+      "https://cairo.gov.eg/en/news/news-eng/2025/9e6d9746382148bea8cc161d0bbda758"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "egypt-takaful",
+     "section": "food-bills",
+     "name": "تكافل Takaful (cash support for families)",
+     "org": "Ministry of Social Solidarity",
+     "what": "Monthly cash support for families below the poverty line with at least one child under 18. Children over 6 must be in school and attend at least 80% of school days.",
+     "how": "Go to the social unit (الوحدة الاجتماعية) for your home address. A home visit by a social worker decides who qualifies.",
+     "url": "https://www.moss.gov.eg/%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA/%D8%A7%D9%84%D8%AD%D9%85%D8%A7%D9%8A%D8%A9-%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A%D8%A9/%D8%A7%D9%84%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9-%D9%84%D9%84%D8%AF%D8%B9%D9%85-%D8%A7%D9%84%D9%86%D9%82%D8%AF%D9%8A-%D8%A3%D9%88%D9%84%D8%A7-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%A7%D9%84%D8%AF%D8%B9%D9%85-%D8%A7%D9%84%D9%86%D9%82%D8%AF%D9%8A-%D8%A7%D9%84%D9%85%D8%B4%D8%B1%D9%88%D8%B7-%D8%AA%D9%83%D8%A7%D9%81%D9%84-%D9%88%D9%83%D8%B1%D8%A7%D9%85%D8%A9/",
+     "sources": [
+      "https://www.moss.gov.eg/%D8%A7%D9%84%D8%AE%D8%AF%D9%85%D8%A7%D8%AA/%D8%A7%D9%84%D8%AD%D9%85%D8%A7%D9%8A%D8%A9-%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A%D8%A9/%D8%A7%D9%84%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9-%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9-%D9%84%D9%84%D8%AF%D8%B9%D9%85-%D8%A7%D9%84%D9%86%D9%82%D8%AF%D9%8A-%D8%A3%D9%88%D9%84%D8%A7-%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC-%D8%A7%D9%84%D8%AF%D8%B9%D9%85-%D8%A7%D9%84%D9%86%D9%82%D8%AF%D9%8A-%D8%A7%D9%84%D9%85%D8%B4%D8%B1%D9%88%D8%B7-%D8%AA%D9%83%D8%A7%D9%81%D9%84-%D9%88%D9%83%D8%B1%D8%A7%D9%85%D8%A9/"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "FI",
+   "slug": "finland",
+   "name": "Finland",
+   "flag": "🇫🇮",
+   "emergency": {
+    "number": "112",
+    "label": "Police, ambulance, fire service and social services. Free to call",
+    "source": "https://www.suomi.fi/services/112-emergency-number-in-finland-emergency-response-centre-agency-finland/01a571b5-3eb9-4b49-a27e-ec8427737c5b"
+   },
+   "resources": [
+    {
+     "id": "finland-nollalinja",
+     "section": "help-now",
+     "name": "Nollalinja",
+     "org": "Nollalinja helpline",
+     "what": "A free helpline, open any hour, for anyone who has experienced violence against women or domestic violence, or the threat of it, whatever their gender. Family members can call too, and crisis workers can refer you to a shelter or other services.",
+     "how": "Call 116 016 (the old number, 080 005 005, still works). Phone help is in Finnish, Swedish and English, with interpreters any hour in Arabic, Dari, Spanish, Farsi, Somali, Sorani, Thai, Ukrainian and Russian. Chat in Finnish, Swedish or English: Monday to Wednesday 9am to 3pm, Thursday and Friday 2pm to 8pm. In danger right now, call 112.",
+     "url": "https://www.nollalinja.fi/en/",
+     "phone": "116 016",
+     "dial": "116016",
+     "urgent": true,
+     "chip": "Domestic violence line",
+     "sources": [
+      "https://www.nollalinja.fi/en/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "finland-mieli-crisis-helpline",
+     "section": "help-now",
+     "name": "MIELI Kriisipuhelin (Crisis Helpline)",
+     "org": "MIELI Mental Health Finland",
+     "what": "A crisis line for anyone going through a hard time or having thoughts of suicide. You can call anonymously and confidentially.",
+     "how": "Call 09 2525 0111 any hour, in Finnish. In Swedish, call 09 2525 0112: Monday and Wednesday 4pm to 8pm, Tuesday, Thursday and Friday 9am to 1pm. In English, call 09 2525 0116: Monday 4pm to 8pm, Thursday and Friday 9am to 1pm.",
+     "url": "https://mieli.fi/mieli-ry/organisaatio/tietoakriisipuhelimesta/",
+     "phone": "09 2525 0111",
+     "dial": "0925250111",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://mieli.fi/mieli-ry/organisaatio/tietoakriisipuhelimesta/",
+      "https://mieli.fi/en/news/mieli-crisis-helpline-new-opening-hours/",
+      "https://mieli.fi/en/support-and-help/suicidal-thoughts-and-self-destructiveness/dealing-with-suicidal-thoughts/"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "finland-116111",
+     "section": "help-now",
+     "name": "Lasten ja nuorten puhelin 116 111 (Child and Youth Phone)",
+     "org": "Mannerheim League for Child Welfare (MLL)",
+     "what": "A free line for children and young people under 25. The call does not show on the phone bill, and you do not have to give your name.",
+     "how": "Call 116 111: Monday to Friday 2pm to 8pm, weekends 5pm to 8pm. From 8pm to midnight every day the same number answers as Nuorten tukilinja, staffed by professionals. In Swedish, call 0800 96 116. Parents can call MLL's parents' line, Vanhempainpuhelin, on 0800 92277.",
+     "url": "https://www.nuortennetti.fi/apua-ja-tukea/lasten-ja-nuorten-puhelin/",
+     "phone": "116 111",
+     "dial": "116111",
+     "urgent": true,
+     "chip": "Child helpline",
+     "sources": [
+      "https://www.nuortennetti.fi/apua-ja-tukea/lasten-ja-nuorten-puhelin/",
+      "https://www.mll.fi/vanhemmille/toiminta-lapsiperheille/lasten-ja-nuorten-puhelin/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "finland-maternity-grant",
+     "section": "pregnancy-baby",
+     "name": "Maternity grant (äitiyspakkaus or €210)",
+     "org": "Kela",
+     "what": "A box of baby clothes and care products, or €210 in cash, tax free. You must live permanently in Finland, your pregnancy must have lasted at least 154 days, and you must have had a check-up with a doctor or at a maternity clinic (neuvola) before the end of the fourth month of pregnancy.",
+     "how": "Apply no later than 2 months before your due date, in the OmaKela e-service (in Finnish and Swedish) or with form SV 15e.",
+     "url": "https://www.kela.fi/maternity-grant",
+     "sources": [
+      "https://www.kela.fi/maternity-grant"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "finland-child-benefit",
+     "section": "food-bills",
+     "name": "Lapsilisä (child benefit)",
+     "org": "Kela",
+     "what": "A monthly payment for each child under 17 who lives in Finland with you: €94.88 a month for one child, more for each further child, and €26 a month more for each child under 3. If you are not married or cohabiting, you can also get a single-parent supplement of €73.30 a month.",
+     "how": "Kela does not pay it automatically. Apply in the OmaKela e-service (in Finnish and Swedish) or with form LL1e, within 6 months of the date you want it to start.",
+     "url": "https://www.kela.fi/child-benefit",
+     "sources": [
+      "https://www.kela.fi/child-benefit"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "single-parent"
      ]
     }
    ]
@@ -1878,6 +2123,143 @@
    ]
   },
   {
+   "code": "GR",
+   "slug": "greece",
+   "name": "Greece",
+   "flag": "🇬🇷",
+   "emergency": {
+    "number": "112",
+    "label": "The single European emergency number. Free, any hour",
+    "source": "https://civilprotection.gov.gr/en/112"
+   },
+   "resources": [
+    {
+     "id": "greece-sos-15900",
+     "section": "help-now",
+     "name": "SOS line 15900",
+     "org": "Ministry of Social Cohesion and Family",
+     "what": "A free line for women facing violence, open 24 hours a day, 365 days a year: counselling and psychological support, basic legal information, and referrals to other services. The line can call you back if you ask.",
+     "how": "Call 15900, or email sos15900@isotita.gr. The line serves women; for other cases of violence, EKKA's 24-hour social support line is 197. In danger right now, call 112.",
+     "url": "https://oikogeneia.gov.gr/programs/ypodochi-katangelion-kai-tilefonikes-grammes-voitheias-kai-psychologikis-ypostirixis/",
+     "phone": "15900",
+     "dial": "15900",
+     "urgent": true,
+     "chip": "Violence against women line",
+     "sources": [
+      "https://oikogeneia.gov.gr/programs/ypodochi-katangelion-kai-tilefonikes-grammes-voitheias-kai-psychologikis-ypostirixis/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "greece-sos-1056",
+     "section": "help-now",
+     "name": "SOS 1056",
+     "org": "The Smile of the Child (Το Χαμόγελο του Παιδιού)",
+     "what": "The national SOS line for children, open 24 hours a day, 365 days a year, answered by social workers and psychologists. Any child or adult can call, including to report a child at risk, with or without giving a name.",
+     "how": "Call 1056, free from a landline or mobile, even with no credit. Arabic interpretation is available. Children can also use Chat 1056, any hour.",
+     "url": "https://hamogelo.gr/gr/el/sos-1056",
+     "phone": "1056",
+     "dial": "1056",
+     "urgent": true,
+     "chip": "Child helpline",
+     "sources": [
+      "https://hamogelo.gr/gr/el/sos-1056",
+      "https://www.gov.gr/sdg/healthcare/national-emergency-numbers/general/1056"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "greece-birth-allowance",
+     "section": "pregnancy-baby",
+     "name": "Επίδομα γέννησης (birth allowance)",
+     "org": "OPEKA",
+     "what": "€2,000 for each child born alive in Greece, paid in two instalments of €1,000, for families with income up to €40,000 a year. The mother must live permanently and legally in Greece; mothers from outside the EU must have lived there legally for the past 12 years.",
+     "how": "Apply within three months of the birth: at the maternity hospital together with the birth declaration, on epidomagennisis.gr, or at a municipal Community Centre (Κέντρο Κοινότητας). You need a mobile number, an email address and a bank account (IBAN) in your name.",
+     "url": "https://mitos.gov.gr/index.php/%CE%94%CE%94:%CE%95%CF%80%CE%AF%CE%B4%CE%BF%CE%BC%CE%B1_%CE%93%CE%AD%CE%BD%CE%BD%CE%B7%CF%83%CE%B7%CF%82",
+     "sources": [
+      "https://mitos.gov.gr/index.php/%CE%94%CE%94:%CE%95%CF%80%CE%AF%CE%B4%CE%BF%CE%BC%CE%B1_%CE%93%CE%AD%CE%BD%CE%BD%CE%B7%CF%83%CE%B7%CF%82",
+      "https://www.gov.gr/org/opeka/gennese/epidoma-genneses"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "greece-child-benefit",
+     "section": "food-bills",
+     "name": "Επίδομα παιδιού (child benefit)",
+     "org": "OPEKA",
+     "what": "A monthly payment for families with children, set by family income. At the lowest income level it is €70 a month for each of the first two children and €140 for each child from the third. You must have lived in Greece for the past five years, or the past 12 years if you are not a Greek citizen.",
+     "how": "Apply online once a year on gov.gr with your TAXISnet login. Applications open in early March and close on 15 January of the next year. It is paid every two months.",
+     "url": "https://mitos.gov.gr/index.php/%CE%94%CE%94:%CE%95%CF%80%CE%AF%CE%B4%CE%BF%CE%BC%CE%B1_%CF%80%CE%B1%CE%B9%CE%B4%CE%B9%CE%BF%CF%8D",
+     "sources": [
+      "https://mitos.gov.gr/index.php/%CE%94%CE%94:%CE%95%CF%80%CE%AF%CE%B4%CE%BF%CE%BC%CE%B1_%CF%80%CE%B1%CE%B9%CE%B4%CE%B9%CE%BF%CF%8D"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "GT",
+   "slug": "guatemala",
+   "name": "Guatemala",
+   "flag": "🇬🇹",
+   "emergency": {
+    "number": "110",
+    "label": "Policía Nacional Civil (120 works too). Bomberos Voluntarios, 122. Bomberos Municipales, 123",
+    "source": "https://conred.gob.gt/numeros-de-emergencia/"
+   },
+   "resources": [
+    {
+     "id": "guatemala-1572",
+     "section": "help-now",
+     "name": "Línea 1572",
+     "org": "Ministerio Público",
+     "what": "The Ministerio Público's line just for women who are victims of violence.",
+     "how": "Call 1572. You can also file a complaint online through MP Virtual. In danger right now, call 110.",
+     "url": "https://www.mp.gob.gt/contactanos/",
+     "phone": "1572",
+     "dial": "1572",
+     "urgent": true,
+     "chip": "Violence against women line",
+     "sources": [
+      "https://www.mp.gob.gt/contactanos/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "guatemala-pgn-ninez",
+     "section": "help-now",
+     "name": "PGN line for reporting harm to children",
+     "org": "Procuraduría de la Niñez y la Adolescencia, Procuraduría General de la Nación (PGN)",
+     "what": "Report violations of children's and teenagers' rights, any hour, all year. You can report anonymously.",
+     "how": "Call 3060-4300. To activate an Alba-Keneth alert for a missing child, call 3061-6233.",
+     "url": "https://pgn.gob.gt/2025/01/pgn-con-nuevos-numeros-telefonicos-para-recepcion-y-atencion-de-denuncias/",
+     "phone": "3060-4300",
+     "dial": "30604300",
+     "urgent": true,
+     "chip": "Child protection line",
+     "sources": [
+      "https://pgn.gob.gt/2025/01/pgn-con-nuevos-numeros-telefonicos-para-recepcion-y-atencion-de-denuncias/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "guatemala-pgn-mujer",
+     "section": "help-now",
+     "name": "PGN unit for women's rights",
+     "org": "Unidad de Protección de Derechos de la Mujer, Adulto Mayor y Personas con Discapacidad, PGN",
+     "what": "The PGN's unit that protects the rights of women, older people and disabled people. Its line answers any hour, all year.",
+     "how": "Call 3068-8538.",
+     "url": "https://pgn.gob.gt/2025/01/pgn-con-nuevos-numeros-telefonicos-para-recepcion-y-atencion-de-denuncias/",
+     "phone": "3068-8538",
+     "dial": "30688538",
+     "sources": [
+      "https://pgn.gob.gt/2025/01/pgn-con-nuevos-numeros-telefonicos-para-recepcion-y-atencion-de-denuncias/"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "IN",
    "slug": "india",
    "name": "India",
@@ -1972,6 +2354,53 @@
      "reviewed_on": "2026-11-19",
      "also": [
       "food-bills"
+     ]
+    }
+   ]
+  },
+  {
+   "code": "ID",
+   "slug": "indonesia",
+   "name": "Indonesia",
+   "flag": "🇮🇩",
+   "emergency": {
+    "number": "112",
+    "label": "The single emergency number for fires, accidents, health emergencies and threats to public safety. Free",
+    "source": "https://jdih.komdigi.go.id/produk_hukum/view/id/539/t/peraturan+menteri+komunikasi+dan+informatika+nomor+10+tahun+2016+tanggal+15+juli+2016"
+   },
+   "resources": [
+    {
+     "id": "indonesia-sapa-129",
+     "section": "help-now",
+     "name": "SAPA 129",
+     "org": "Ministry of Women's Empowerment and Child Protection (KemenPPPA)",
+     "what": "The government's service for women and children facing violence. After a report it arranges psychological support, medical examinations, a protective shelter and legal help, and it keeps what you tell it confidential.",
+     "how": "Call 129 (or 021-129), message 08111-129-129 on WhatsApp, or fill in the online form. In danger right now, call 112.",
+     "url": "https://infopublik.id/kategori/layanan-publik/927918/sapa-129-layanan-cepat-dan-aman-untuk-perempuan-dan-anak-korban-kekerasan",
+     "phone": "129",
+     "dial": "129",
+     "urgent": true,
+     "chip": "Violence against women and children",
+     "sources": [
+      "https://infopublik.id/kategori/layanan-publik/927918/sapa-129-layanan-cepat-dan-aman-untuk-perempuan-dan-anak-korban-kekerasan",
+      "https://setkab.go.id/menteri-pppa-laporkan-tindak-kekerasan-terhadap-perempuan-dan-anak-ke-sapa-129/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "indonesia-healing119",
+     "section": "take-care",
+     "name": "Healing119.id",
+     "org": "Ministry of Health (Kemenkes)",
+     "what": "Free emotional support and first psychological help, any hour, for anyone in Indonesia who feels distressed or hopeless, or is thinking of ending their life. Counsellors can refer you to a health facility.",
+     "how": "From a mobile, dial 119 and choose extension 8, or chat on WhatsApp from the button on healing119.id. If you cannot get through, the lines may be busy: try again shortly. In immediate danger, call 112 or go to the nearest health facility.",
+     "url": "https://kesprimkom.kemkes.go.id/assets/uploads/contents/others/FAQ_Cegah_Bunuh_Diri%2C_Dukung_Kesehatan_Jiwa__Kenali_Layanan_Healing119.id.pdf",
+     "sources": [
+      "https://kesprimkom.kemkes.go.id/assets/uploads/contents/others/FAQ_Cegah_Bunuh_Diri%2C_Dukung_Kesehatan_Jiwa__Kenali_Layanan_Healing119.id.pdf"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "help-now"
      ]
     }
    ]
@@ -3484,6 +3913,70 @@
    ]
   },
   {
+   "code": "RO",
+   "slug": "romania",
+   "name": "Romania",
+   "flag": "🇷🇴",
+   "emergency": {
+    "number": "112",
+    "label": "The European emergency number, free from a landline or mobile",
+    "source": "https://europa.eu/youreurope/citizens/travel/security-and-emergencies/emergency/indexamp_ro.htm"
+   },
+   "resources": [
+    {
+     "id": "romania-anes-0800500333",
+     "section": "help-now",
+     "name": "Linia telefonică 0800 500 333",
+     "org": "Agenția Națională pentru Egalitatea de Șanse între Femei și Bărbați (ANES)",
+     "what": "A free national line, open 24 hours a day, 7 days a week, for domestic violence, human trafficking and discrimination based on sex. It gives immediate guidance, basic legal and psychological counselling, referrals to local services and information on getting a protection order. Victims, family, neighbours and witnesses can call, and you can stay anonymous.",
+     "how": "Call 0800 500 333, free from any national network. In danger right now, call 112.",
+     "url": "https://anes.gov.ro/asistenta-pentru-victime/call-center/",
+     "phone": "0800 500 333",
+     "dial": "0800500333",
+     "urgent": true,
+     "chip": "Domestic violence line",
+     "sources": [
+      "https://anes.gov.ro/asistenta-pentru-victime/call-center/",
+      "https://anes.gov.ro/asistenta-pentru-victime/informatii-utile-pentru-victime/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "romania-116111",
+     "section": "help-now",
+     "name": "Telefonul Copilului 116 111",
+     "org": "Asociația Telefonul Copilului",
+     "what": "The national helpline for children and teenagers, free: for abuse, psychological counselling and any other problem involving a child. You do not have to say who you are.",
+     "how": "Call 116 111, Monday to Friday, 10am to 8pm, from Orange, Telekom or Vodafone landlines and mobiles.",
+     "url": "https://telefonulcopilului.ro/116111/afla-cum-functioneaza-telefonul-copilului-116111/",
+     "phone": "116 111",
+     "dial": "116111",
+     "urgent": true,
+     "chip": "Child helpline",
+     "sources": [
+      "https://telefonulcopilului.ro/116111/afla-cum-functioneaza-telefonul-copilului-116111/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "romania-ordin-de-protectie",
+     "section": "single-parent",
+     "name": "Ordin de protecție (protection order)",
+     "org": "Agenția Națională pentru Egalitatea de Șanse între Femei și Bărbați (ANES)",
+     "what": "ANES offers a model application for a protection order against an abuser, with advice on filling it in, and the forms to ask the state for free legal help (ajutor public judiciar).",
+     "how": "Download the forms from ANES's page for victims. For help with them, call 0800 500 333.",
+     "url": "https://anes.gov.ro/asistenta-pentru-victime/informatii-utile-pentru-victime/",
+     "sources": [
+      "https://anes.gov.ro/asistenta-pentru-victime/informatii-utile-pentru-victime/"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "help-now"
+     ]
+    }
+   ]
+  },
+  {
    "code": "SG",
    "slug": "singapore",
    "name": "Singapore",
@@ -4136,6 +4629,73 @@
    ]
   },
   {
+   "code": "TH",
+   "slug": "thailand",
+   "name": "Thailand",
+   "flag": "🇹🇭",
+   "emergency": {
+    "number": "191",
+    "label": "Emergency report. For medical emergencies (Narenthorn EMS Center), call 1669; for fire, 199",
+    "source": "https://www.thailand.go.th/issue-focus-detail/003_003"
+   },
+   "resources": [
+    {
+     "id": "thailand-1300",
+     "section": "help-now",
+     "name": "สายด่วน 1300 (Social Assistance Center hotline)",
+     "org": "Ministry of Social Development and Human Security",
+     "what": "The ministry's centre for advice and complaints for anyone facing social problems, open 24 hours a day, 7 days a week, in every area.",
+     "how": "Call 1300. In danger right now, call 191.",
+     "url": "https://1300thailand.m-society.go.th/faq",
+     "phone": "1300",
+     "dial": "1300",
+     "urgent": true,
+     "chip": "Social help line",
+     "sources": [
+      "https://1300thailand.m-society.go.th/faq",
+      "https://prd.go.th/main/article/a9a3d5dd-2d90-40e9-af12-2550a6422c34"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "thailand-1323",
+     "section": "help-now",
+     "name": "สายด่วนสุขภาพจิต 1323 (mental health hotline)",
+     "org": "Department of Mental Health",
+     "what": "A mental health hotline open 24 hours a day, if you cannot sleep, feel panicked or are worried.",
+     "how": "Call 1323.",
+     "url": "https://mhc7.dmh.go.th/29/03/2025/21689/",
+     "phone": "1323",
+     "dial": "1323",
+     "urgent": true,
+     "chip": "Mental health line",
+     "sources": [
+      "https://mhc7.dmh.go.th/29/03/2025/21689/"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "thailand-child-support-grant",
+     "section": "food-bills",
+     "name": "เงินอุดหนุนเพื่อการเลี้ยงดูเด็กแรกเกิด (child support grant)",
+     "org": "Ministry of Social Development and Human Security",
+     "what": "600 baht a month for each child until age 6, for households whose members earn on average no more than 100,000 baht a person a year.",
+     "how": "Ask your provincial Office of Social Development and Human Security how to register.",
+     "url": "https://nonthaburi.m-society.go.th/?page_id=4383",
+     "sources": [
+      "https://nonthaburi.m-society.go.th/?page_id=4383"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "pregnancy-baby"
+     ]
+    }
+   ]
+  },
+  {
    "code": "TT",
    "slug": "trinidad-and-tobago",
    "name": "Trinidad and Tobago",
@@ -4208,6 +4768,70 @@
    ]
   },
   {
+   "code": "TR",
+   "slug": "turkey",
+   "name": "Turkey",
+   "flag": "🇹🇷",
+   "emergency": {
+    "number": "112",
+    "label": "Emergency Call Centre (Acil Çağrı Merkezi), when you are in immediate danger",
+    "source": "https://www.aile.gov.tr/ksgm/siddete-maruz-kalindiginda/"
+   },
+   "resources": [
+    {
+     "id": "turkey-alo-183",
+     "section": "help-now",
+     "name": "ALO 183",
+     "org": "Ministry of Family and Social Services (Aile ve Sosyal Hizmetler Bakanlığı)",
+     "what": "A free line, open 24 hours a day, 7 days a week, for help with violence and with services for families, women, children, disabled and older people, and veterans and their relatives. Staff who speak Kurdish and Arabic answer calls in those languages.",
+     "how": "Call 183, free from within Turkey. Deaf callers can send a free SMS to 183 with their name, ID number and request, or make a sign-language video call on 0 549 381 0 183 (weekdays 8am to midnight, Saturdays 8am to 5pm). From abroad, call +90 312 253 92 00.",
+     "url": "https://www.aile.gov.tr/alo-183/alo183pages/hakkinda/",
+     "phone": "183",
+     "dial": "183",
+     "urgent": true,
+     "chip": "Violence and family support line",
+     "sources": [
+      "https://www.aile.gov.tr/alo-183/alo183pages/hakkinda/",
+      "https://www.aile.gov.tr/ksgm/siddete-maruz-kalindiginda/",
+      "https://aile.gov.tr/sss/engelli-ve-yasli-hizmetleri-genel-mudurlugu/alo-183-sosyal-destek/q-0001/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "turkey-law-6284",
+     "section": "single-parent",
+     "name": "Protection under Law 6284",
+     "org": "Ministry of Family and Social Services",
+     "what": "Under Law 6284 a judge can order an abuser to stop threatening or contacting you, to leave your shared home and stay away from it and from your children's school and your workplace, and to hand over weapons. A first order lasts up to six months, and the procedures cost nothing. ŞÖNİM violence prevention centres, open any hour, give psychological, legal and social guidance, and if you cannot afford a lawyer the local bar association (baro) assigns one free.",
+     "how": "Ask at the governor's or district governor's office, a police or gendarmerie station, the public prosecutor's office or a family court. You can also report violence with the KADES app. ALO 183 can tell you how to reach a ŞÖNİM.",
+     "url": "https://www.aile.gov.tr/ksgm/siddete-maruz-kalindiginda/",
+     "sources": [
+      "https://www.aile.gov.tr/ksgm/siddete-maruz-kalindiginda/"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "help-now"
+     ]
+    },
+    {
+     "id": "turkey-dogum-yardimi",
+     "section": "pregnancy-baby",
+     "name": "Doğum yardımı (birth support)",
+     "org": "Ministry of Family and Social Services",
+     "what": "For children born alive on or after 1 January 2025 to a Turkish-citizen mother or father: a one-off 5,000 TL for a first child; 1,500 TL a month for a second child and 5,000 TL a month for a third or later child, until the child turns 5.",
+     "how": "Apply on e-Devlet with your own account, by the time a first child is 12 months old, or 60 months for later children. Without e-Devlet, the ministry's provincial offices or social service centres (SHM) can help. Payments are made through Halkbank.",
+     "url": "https://aile.gov.tr/sss/sosyal-yardimlar-genel-mudurlugu/yeni-dogum-yardimi/",
+     "sources": [
+      "https://aile.gov.tr/sss/sosyal-yardimlar-genel-mudurlugu/yeni-dogum-yardimi/"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "food-bills"
+     ]
+    }
+   ]
+  },
+  {
    "code": "UG",
    "slug": "uganda",
    "name": "Uganda",
@@ -4274,6 +4898,82 @@
      "also": [
       "help-now"
      ]
+    }
+   ]
+  },
+  {
+   "code": "AE",
+   "slug": "united-arab-emirates",
+   "name": "United Arab Emirates",
+   "flag": "🇦🇪",
+   "emergency": {
+    "number": "999",
+    "label": "Police. For an ambulance, call 998; for the fire department (Civil Defence), 997",
+    "source": "https://u.ae/en/information-and-services/justice-safety-and-the-law/handling-emergencies/important-phone-numbers-"
+   },
+   "resources": [
+    {
+     "id": "uae-dfwac-800111",
+     "section": "help-now",
+     "name": "DFWAC helpline 800111",
+     "org": "Dubai Foundation for Women and Children",
+     "what": "A free helpline, open 24/7, for women and children facing violence: urgent help, consultations and information about the foundation's services.",
+     "how": "Call 800111, message 800111 on WhatsApp, or email help@dfwac.ae. In danger right now, call 999.",
+     "url": "https://dfwac.ae/services/helpline",
+     "phone": "800111",
+     "dial": "800111",
+     "urgent": true,
+     "chip": "Domestic violence line",
+     "sources": [
+      "https://dfwac.ae/services/helpline",
+      "https://u.ae/en/information-and-services/justice-safety-and-the-law/handling-emergencies/crime"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "uae-116111",
+     "section": "help-now",
+     "name": "Child protection hotline 116111",
+     "org": "Ministry of Interior",
+     "what": "The Ministry of Interior's hotline for reporting child abuse.",
+     "how": "Call 116111. You can also report through the Ministry of Interior Child Protection Centre's website or the Hemayati app.",
+     "url": "https://u.ae/en/information-and-services/justice-safety-and-the-law/children-safety/report-child-abuse",
+     "phone": "116111",
+     "dial": "116111",
+     "urgent": true,
+     "chip": "Child protection line",
+     "sources": [
+      "https://u.ae/en/information-and-services/justice-safety-and-the-law/children-safety/report-child-abuse"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "uae-ewaa",
+     "section": "help-now",
+     "name": "EWAA Shelters for Women and Children",
+     "org": "EWAA Shelters for Women and Children",
+     "what": "The hotline of EWAA's shelters for women and children, listed by the UAE government for abuse and for human trafficking.",
+     "how": "Call 8007283.",
+     "url": "https://u.ae/en/information-and-services/justice-safety-and-the-law/handling-emergencies/crime",
+     "phone": "8007283",
+     "dial": "8007283",
+     "sources": [
+      "https://u.ae/en/information-and-services/justice-safety-and-the-law/handling-emergencies/crime"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "uae-maternity-leave",
+     "section": "pregnancy-baby",
+     "name": "Maternity leave in the private sector",
+     "org": "UAE Government",
+     "what": "Women working in the private sector get 60 days of maternity leave: 45 days on full pay and 15 on half pay. Up to 45 more days without pay are allowed for an illness caused by the pregnancy or birth, with a medical certificate. Back at work, you get one or two paid nursing breaks a day, an hour at most in all, for six months after the birth.",
+     "how": "Tell your employer. Article 30 of the UAE Labour Law has more on maternity.",
+     "url": "https://u.ae/en/information-and-services/jobs/Sector-of-employment/employment-in-the-private-sector/Types-of-leaves",
+     "sources": [
+      "https://u.ae/en/information-and-services/jobs/Sector-of-employment/employment-in-the-private-sector/Types-of-leaves"
+     ],
+     "reviewed_on": "2026-11-21"
     }
    ]
   },
@@ -4397,6 +5097,154 @@
       "single-parent"
      ],
      "reviewed_on": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "code": "UY",
+   "slug": "uruguay",
+   "name": "Uruguay",
+   "flag": "🇺🇾",
+   "emergency": {
+    "number": "911",
+    "label": "Police. For a medical emergency, call 105",
+    "source": "https://www.inau.gub.uy/linea-azul"
+   },
+   "resources": [
+    {
+     "id": "uruguay-0800-4141",
+     "section": "help-now",
+     "name": "Servicio telefónico 0800 4141",
+     "org": "Inmujeres, Ministerio de Desarrollo Social (MIDES)",
+     "what": "A free, confidential national line, open 24 hours a day, 365 days a year, for women over 18 living in Uruguay who face domestic violence. It listens, advises and helps you find a way forward. Relatives and others who know about a case can call too.",
+     "how": "Call 0800 4141 or *4141. Deaf women can make a video call on 092 626 928, Monday to Friday, 9am to 2pm. In danger right now, call 911.",
+     "url": "https://www.gub.uy/ministerio-desarrollo-social/tramites-y-servicios/servicios/servicio-orientacion-telefonica-mujeres-situacion-violencia",
+     "phone": "0800 4141",
+     "dial": "08004141",
+     "urgent": true,
+     "chip": "Domestic violence line",
+     "sources": [
+      "https://www.gub.uy/ministerio-desarrollo-social/tramites-y-servicios/servicios/servicio-orientacion-telefonica-mujeres-situacion-violencia"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "uruguay-0800-0767",
+     "section": "help-now",
+     "name": "Línea de Vida 0800 0767",
+     "org": "Suicide prevention line, listed by the Ministerio de Salud Pública",
+     "what": "A free suicide prevention line, open 24 hours across the country and answered by trained staff. It supports people in distress and people who want to help someone else.",
+     "how": "Call 0800 0767 or *0767.",
+     "url": "https://www.gub.uy/ministerio-salud-publica/comunicacion/noticias/prevencion-del-suicidio-prioridad-nacional",
+     "phone": "0800 0767",
+     "dial": "08000767",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://www.gub.uy/ministerio-salud-publica/comunicacion/noticias/prevencion-del-suicidio-prioridad-nacional",
+      "https://www.inau.gub.uy/linea-azul"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "uruguay-linea-azul",
+     "section": "help-now",
+     "name": "Línea Azul",
+     "org": "Instituto del Niño y Adolescente del Uruguay (INAU)",
+     "what": "INAU's free line to report that a child or teenager is being mistreated, abused or neglected. Reports are anonymous.",
+     "how": "Call 0800 5050 from any phone, or *5050 from a mobile: Monday to Friday 8am to 8pm, weekends 9am to 7pm, working holidays 10am to 4pm. It is not an emergency service: in danger right now, call 911.",
+     "url": "https://www.inau.gub.uy/linea-azul",
+     "phone": "0800 5050",
+     "dial": "08005050",
+     "urgent": true,
+     "chip": "Child protection line",
+     "sources": [
+      "https://www.inau.gub.uy/linea-azul"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "uruguay-asignacion-familiar",
+     "section": "food-bills",
+     "name": "Asignación Familiar – Plan de Equidad",
+     "org": "Banco de Previsión Social (BPS)",
+     "what": "A payment for children and teenagers, pregnant women and disabled people in households in socioeconomic vulnerability. Children up to 5 need a health card, and from 5 a school certificate.",
+     "how": "Apply in person at the BPS office in your department, with the ID cards of everyone in your household; if you are pregnant, bring your obstetric card. Questions: BPS on 0800 1997 (*1997 from a mobile), Monday to Friday 8am to 6pm, or MIDES on 0800 7263, Monday to Friday 9am to 5pm.",
+     "url": "https://www.bps.gub.uy/11368/plan-de-equidad.html",
+     "sources": [
+      "https://www.bps.gub.uy/11368/plan-de-equidad.html"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "pregnancy-baby"
+     ]
+    }
+   ]
+  },
+  {
+   "code": "VN",
+   "slug": "vietnam",
+   "name": "Vietnam",
+   "flag": "🇻🇳",
+   "emergency": {
+    "number": "113",
+    "label": "Police. For a medical emergency, call 115; for fire and rescue, 114",
+    "source": "https://tongdai111.vn/tin/nhung-so-dien-thoai-khan-cap-can-thuoc-long"
+   },
+   "resources": [
+    {
+     "id": "vietnam-117",
+     "section": "help-now",
+     "name": "Tổng đài quốc gia 117",
+     "org": "Ministry of Culture, Sports and Tourism",
+     "what": "The national hotline for domestic violence, open 24/7 across the country. Operators take reports, give first counselling, check your safety straight away and connect you with local help: health care, safe houses, legal aid, or the police and commune authorities when it is urgent. Calls about children, pregnant women, disabled and older people come first.",
+     "how": "Call or text 117. In danger right now, call 113.",
+     "url": "https://giadinh.bvhttdl.gov.vn/chinh-thuc-kich-hoat-tong-dai-quoc-gia-117-ve-phong-chong-bao-luc-gia-dinh/",
+     "phone": "117",
+     "dial": "117",
+     "urgent": true,
+     "chip": "Domestic violence line",
+     "sources": [
+      "https://giadinh.bvhttdl.gov.vn/chinh-thuc-kich-hoat-tong-dai-quoc-gia-117-ve-phong-chong-bao-luc-gia-dinh/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "vietnam-111",
+     "section": "help-now",
+     "name": "Tổng đài quốc gia bảo vệ trẻ em 111",
+     "org": "Department of Maternal and Child Health, Ministry of Health",
+     "what": "The national child protection line, free and open 24/7. It takes reports of child abuse and risk, and gives psychological and legal advice to children, parents and carers.",
+     "how": "Call 111, or use the 111 app or Zalo ('Tổng đài 111').",
+     "url": "https://tongdai111.vn/sites/gioi-thieu",
+     "phone": "111",
+     "dial": "111",
+     "urgent": true,
+     "chip": "Child helpline",
+     "sources": [
+      "https://tongdai111.vn/sites/gioi-thieu",
+      "https://tongdai111.vn/tin/nhung-so-dien-thoai-khan-cap-can-thuoc-long"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "vietnam-che-do-thai-san",
+     "section": "pregnancy-baby",
+     "name": "Chế độ thai sản (maternity benefit)",
+     "org": "Social insurance (Bảo hiểm xã hội)",
+     "what": "Mothers with compulsory social insurance get 6 months of leave for the birth, paid leave for up to five prenatal check-ups, and a one-off allowance of twice the reference level for each child. For a second child, leave is 7 months under the rule in force from 1 July 2026, if you meet its conditions. With voluntary social insurance, the allowance is 2,000,000 đồng for each child.",
+     "how": "You usually need social insurance contributions for at least 6 of the 12 months before the birth. Ask your employer or your social insurance office how to claim.",
+     "url": "https://xaydungchinhsach.chinhphu.vn/quy-dinh-ve-che-do-thai-san-119261118144558374.htm",
+     "sources": [
+      "https://xaydungchinhsach.chinhphu.vn/quy-dinh-ve-che-do-thai-san-119261118144558374.htm"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "food-bills"
+     ]
     }
    ]
   },
