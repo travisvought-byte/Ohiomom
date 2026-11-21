@@ -270,6 +270,33 @@ class SiteTests(unittest.TestCase):
         world = (ROOT / 'world.html').read_text(encoding='utf-8')
         self.assertIn('aria-label="Georgia (the country)" data-country="GE"', world)
 
+    def test_country_names_take_the_in_a_sentence(self):
+        """Inside a sentence a the-country reads "in the Philippines", "in the Bahamas", "in the United Kingdom", never
+        "in Philippines" or "in The Bahamas"; its heading and title keep the plain name. Every page the build writes is
+        read, so a new country or a new sentence is checked too."""
+        known = ('Bahamas', 'Central African Republic', 'Comoros', 'Czech Republic', 'Dominican Republic', 'Gambia',
+                 'Maldives', 'Marshall Islands', 'Netherlands', 'Philippines', 'Solomon Islands', 'United Arab Emirates',
+                 'United Kingdom')
+        countries = lib.load()['world']['countries']
+        for c in countries:
+            bare = c['name'][4:] if c['name'].startswith('The ') else c['name']
+            if bare in known or c['name'].startswith('The '):
+                self.assertEqual(ymt_build.in_name(c), 'the ' + bare, c['slug'])
+                page = (ROOT / 'countries' / f"{c['slug']}.html").read_text(encoding='utf-8')
+                self.assertIn(f'Free help for moms in the {esc(bare)}:', page, c['slug'])
+                self.assertIn(f'<title>{esc(c["name"])}: help for moms', page, c['slug'])
+            else:
+                self.assertFalse(ymt_build.in_name(c).startswith('the '), c['slug'])
+        names = '|'.join(re.escape(n) for n in known)
+        bad = re.compile(rf'\b(?:in|In|for|of|from|to|across|than) (?:The )?(?:{names})\b|\b(?:in|for|of|from|to) The [A-Z]')
+        for path in PAGES:
+            text = path.read_text(encoding='utf-8')
+            found = bad.search(text)
+            self.assertIsNone(found, f'{path.relative_to(ROOT)}: "{found.group(0) if found else ""}" needs a lower-case "the"')
+        self.assertEqual(ymt_build.possessive({'code': 'PH', 'name': 'Philippines'}), "the Philippines'")
+        self.assertEqual(ymt_build.possessive({'code': 'GB', 'name': 'United Kingdom'}), "the United Kingdom's")
+        self.assertEqual(ymt_build.possessive({'code': 'CA', 'name': 'Canada'}), "Canada's")
+
     def test_state_grid_has_every_state_once(self):
         data = lib.load()
         text = (ROOT / 'states.html').read_text(encoding='utf-8')

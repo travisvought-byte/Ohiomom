@@ -158,6 +158,92 @@
    ]
   },
   {
+   "code": "AD",
+   "slug": "andorra",
+   "name": "Andorra",
+   "flag": "🇦🇩",
+   "lang": "ca",
+   "emergency": {
+    "number": "110",
+    "label": "Police. Ambulance: 116; fire: 118; mountain rescue: 112",
+    "source": "https://www.gov.uk/foreign-travel-advice/andorra/getting-help"
+   },
+   "resources": [
+    {
+     "id": "andorra-181",
+     "section": "help-now",
+     "name": "181: help for victims of gender and domestic violence",
+     "org": "Govern d'Andorra",
+     "what": "The government's service for victims of gender-based and domestic violence answers the 181 line day and night.",
+     "how": "Call 181, any hour. In danger right now, call 110.",
+     "url": "https://www.govern.ad/ca/w/el-servei-d-atencio-a-les-victimes-de-violencia-de-genere-i-violencia-domestica-respondra-al-telefon-181-les-24-hores-1",
+     "phone": "181",
+     "dial": "181",
+     "urgent": true,
+     "chip": "Domestic violence line",
+     "sources": [
+      "https://www.govern.ad/ca/w/el-servei-d-atencio-a-les-victimes-de-violencia-de-genere-i-violencia-domestica-respondra-al-telefon-181-les-24-hores-1"
+     ],
+     "also": [
+      "housing"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "andorra-177",
+     "section": "take-care",
+     "name": "Línia verda 177",
+     "org": "Ministry of Health, Govern d'Andorra",
+     "what": "A phone line for anyone at risk of suicide or having thoughts of suicide, part of the national suicide prevention strategy.",
+     "how": "Call 177. In danger right now, call 110 or 116.",
+     "url": "https://www.govern.ad/ca/tematiques/salut/salut-mental-i-addiccions/estrategia-nacional-de-prevencio-i-lluita-contra-el-suicidi",
+     "phone": "177",
+     "dial": "177",
+     "urgent": true,
+     "chip": "Suicide prevention line",
+     "sources": [
+      "https://www.govern.ad/ca/tematiques/salut/salut-mental-i-addiccions/estrategia-nacional-de-prevencio-i-lluita-contra-el-suicidi"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "AO",
+   "slug": "angola",
+   "name": "Angola",
+   "flag": "🇦🇴",
+   "lang": "pt",
+   "emergency": {
+    "number": "110",
+    "label": "Police. Ambulance: 112; fire: 118",
+    "source": "https://www.gov.uk/foreign-travel-advice/angola/getting-help"
+   },
+   "resources": [
+    {
+     "id": "angola-15015",
+     "section": "kids-differently",
+     "name": "SOS Criança 15015 (child helpline)",
+     "org": "SOS Criança, as listed by UNICEF and UN Women",
+     "what": "The national line for reporting violence against a child, sexual violence included, and other violations of a child’s rights.",
+     "how": "Call 15015. In danger right now, call 110.",
+     "url": "https://www.unicef.org/angola/comunicados-de-imprensa/fim-%C3%A0-viol%C3%AAncia-contra-crian%C3%A7a",
+     "phone": "15015",
+     "dial": "15015",
+     "urgent": true,
+     "chip": "Child helpline",
+     "sources": [
+      "https://www.unicef.org/angola/comunicados-de-imprensa/fim-%C3%A0-viol%C3%AAncia-contra-crian%C3%A7a",
+      "https://data.unwomen.org/global-database-on-violence-against-women/country-profile/Angola/measures/Helpline%2015015%20--%20L%C3%ADnea%2015015"
+     ],
+     "also": [
+      "help-now"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "AR",
    "slug": "argentina",
    "name": "Argentina",
@@ -771,6 +857,58 @@
      "dial": "2465352800",
      "sources": [
       "https://www.gov.bb/State-Bodies/child-care-board"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "BY",
+   "slug": "belarus",
+   "name": "Belarus",
+   "flag": "🇧🇾",
+   "lang": "ru",
+   "emergency": {
+    "number": "102",
+    "label": "Police. Ambulance: 103; fire: 101",
+    "source": "https://www.gov.uk/foreign-travel-advice/belarus/getting-help"
+   },
+   "resources": [
+    {
+     "id": "belarus-133",
+     "section": "take-care",
+     "name": "133: emergency psychological help",
+     "org": "Health system psychologists, listed by district governments",
+     "what": "A line open day and night where psychologists from the health system answer. Free from every phone network.",
+     "how": "Call 133, any hour. In danger right now, call 102 or 103.",
+     "url": "https://lepel.vitebsk-region.gov.by/kruglosutochnaya-liniya-ekstrennoy-psikhologicheskoy-pomoshchi.php/en",
+     "phone": "133",
+     "dial": "133",
+     "urgent": true,
+     "chip": "Psychological help line",
+     "sources": [
+      "https://lepel.vitebsk-region.gov.by/kruglosutochnaya-liniya-ekstrennoy-psikhologicheskoy-pomoshchi.php/en",
+      "https://verkhnedvinsk.vitebsk-region.gov.by/novosti-regiona-item-7722-v-belarusi-rabotaet-kruglosutochnaya-liniya-ekstrennoj-psikhologicheskoj-pomoshchi/en"
+     ],
+     "also": [
+      "help-now"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "belarus-children-line",
+     "section": "kids-differently",
+     "name": "National children’s helpline",
+     "org": "Listed by the Ministry of Health",
+     "what": "A national helpline for children, open day and night. Parents worried about a child can call too.",
+     "how": "Call 8 801 100-1611, any hour.",
+     "url": "https://minzdrav.gov.by/en/dlya-belorusskikh-grazhdan/ekstrennaya-psikhologicheskaya-pomoshch.php",
+     "phone": "8 801 100-1611",
+     "dial": "88011001611",
+     "urgent": true,
+     "chip": "Children’s helpline",
+     "sources": [
+      "https://minzdrav.gov.by/en/dlya-belorusskikh-grazhdan/ekstrennaya-psikhologicheskaya-pomoshch.php"
      ],
      "reviewed_on": "2026-11-21"
     }
@@ -1612,6 +1750,41 @@
      "also": [
       "pregnancy-baby"
      ]
+    }
+   ]
+  },
+  {
+   "code": "CN",
+   "slug": "china",
+   "name": "China",
+   "flag": "🇨🇳",
+   "lang": "zh-Hans",
+   "emergency": {
+    "number": "110",
+    "label": "Police. Ambulance: 120; fire: 119",
+    "source": "https://www.gov.uk/foreign-travel-advice/china/getting-help"
+   },
+   "resources": [
+    {
+     "id": "china-12356",
+     "section": "take-care",
+     "name": "12356 psychological assistance hotline",
+     "org": "National Health Commission",
+     "what": "The national mental health line. Each province answers it at least 18 hours a day, with counselling and support, and help in a mental health emergency.",
+     "how": "Call 12356. In danger right now, call 110 or 120.",
+     "url": "https://www.gov.cn/zhengce/zhengceku/202412/content_6994470.htm",
+     "phone": "12356",
+     "dial": "12356",
+     "urgent": true,
+     "chip": "Mental health line",
+     "sources": [
+      "https://www.gov.cn/zhengce/zhengceku/202412/content_6994470.htm",
+      "https://english.www.gov.cn/news/202412/26/content_WS676c9202c6d0868f4e8ee46c.html"
+     ],
+     "also": [
+      "help-now"
+     ],
+     "reviewed_on": "2026-11-21"
     }
    ]
   },
@@ -2801,6 +2974,40 @@
      "also": [
       "food-bills"
      ]
+    }
+   ]
+  },
+  {
+   "code": "GM",
+   "slug": "gambia",
+   "name": "The Gambia",
+   "flag": "🇬🇲",
+   "lang": "en",
+   "emergency": {
+    "number": "117",
+    "label": "Police. Medical emergencies: 116; fire and rescue: 118",
+    "source": "https://www.smartraveller.gov.au/destinations/africa/gambia"
+   },
+   "resources": [
+    {
+     "id": "gambia-199",
+     "section": "help-now",
+     "name": "Gender-based violence helpline 199",
+     "org": "GBV call centre, set up with the Ministry of Gender, Children and Social Welfare and the UN",
+     "what": "A safe and confidential line for survivors of violence and anyone at risk, answered at any time from anywhere in the Gambia. Volunteers can direct you to the nearest service.",
+     "how": "Call 199, any hour. In danger right now, call 117.",
+     "url": "https://gambia.unfpa.org/en/node/163164",
+     "phone": "199",
+     "dial": "199",
+     "urgent": true,
+     "chip": "Violence helpline",
+     "sources": [
+      "https://gambia.unfpa.org/en/node/163164"
+     ],
+     "also": [
+      "housing"
+     ],
+     "reviewed_on": "2026-11-21"
     }
    ]
   },
@@ -4482,6 +4689,90 @@
    ]
   },
   {
+   "code": "LI",
+   "slug": "liechtenstein",
+   "name": "Liechtenstein",
+   "flag": "🇱🇮",
+   "lang": "de-LI",
+   "emergency": {
+    "number": "112",
+    "label": "European emergency number. Ambulance: 144; police: 117; fire: 118",
+    "source": "https://www.llv.li/serviceportal2/amtsstellen/amt-fuer-bevoelkerungsschutz/sicher-informiert-im-notfall_mai-2026.pdf"
+   },
+   "resources": [
+    {
+     "id": "liechtenstein-frauenhaus",
+     "section": "help-now",
+     "name": "Frauenhaus Liechtenstein (women’s shelter)",
+     "org": "Listed by the National Administration",
+     "what": "Shelter, support and a place to stay for women and their children facing violence. Its emergency line is answered day and night, and interpreters can help.",
+     "how": "Call 380 02 03, day or night. In acute danger, call 117.",
+     "url": "https://www.llv.li/en/individuals/emergency-and-disaster/support-for-people-affected-by-crime/domestic-violence",
+     "phone": "380 02 03",
+     "dial": "3800203",
+     "urgent": true,
+     "chip": "Women’s shelter",
+     "sources": [
+      "https://www.llv.li/en/individuals/emergency-and-disaster/support-for-people-affected-by-crime/domestic-violence",
+      "https://www.integration.li/de/leben/gewalt"
+     ],
+     "also": [
+      "housing"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "liechtenstein-opferhilfe",
+     "section": "help-now",
+     "name": "Opferhilfestelle (victim support office)",
+     "org": "National Administration",
+     "what": "The national office that supports victims of violence in a marriage, relationship or family.",
+     "how": "Call 236 76 96.",
+     "url": "https://www.integration.li/de/leben/gewalt",
+     "phone": "236 76 96",
+     "dial": "2367696",
+     "sources": [
+      "https://www.integration.li/de/leben/gewalt"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "liechtenstein-147",
+     "section": "kids-differently",
+     "name": "147: helpline for children and young people",
+     "org": "Listed by the Office of Social Services",
+     "what": "The helpline for children and teenagers in Liechtenstein.",
+     "how": "Call 147.",
+     "url": "https://www.integration.li/en/life/health",
+     "phone": "147",
+     "dial": "147",
+     "urgent": true,
+     "chip": "Children’s helpline",
+     "sources": [
+      "https://www.integration.li/en/life/health"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "liechtenstein-143",
+     "section": "take-care",
+     "name": "Die Dargebotene Hand 143",
+     "org": "Listed by the Office of Social Services",
+     "what": "A line to talk to someone when things are hard, listed among the emergency numbers.",
+     "how": "Call 143.",
+     "url": "https://www.integration.li/en/life/health",
+     "phone": "143",
+     "dial": "143",
+     "urgent": true,
+     "chip": "Someone to talk to",
+     "sources": [
+      "https://www.integration.li/en/life/health"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "LT",
    "slug": "lithuania",
    "name": "Lithuania",
@@ -4577,6 +4868,40 @@
      "url": "https://guichet.public.lu/en/citoyens/aides/famille-education/allocations-naissance/allocations-familiales.html",
      "sources": [
       "https://guichet.public.lu/en/citoyens/aides/famille-education/allocations-naissance/allocations-familiales.html"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "MW",
+   "slug": "malawi",
+   "name": "Malawi",
+   "flag": "🇲🇼",
+   "lang": "en",
+   "emergency": {
+    "number": "997",
+    "label": "Police (also 990). Ambulance: 998; fire: 999. These lines can be unreliable, so ask local police for other numbers for your area",
+    "source": "https://www.gov.uk/foreign-travel-advice/malawi/getting-help"
+   },
+   "resources": [
+    {
+     "id": "malawi-116",
+     "section": "kids-differently",
+     "name": "National Child Helpline 116",
+     "org": "Listed by UNICEF Malawi",
+     "what": "A free national line to report violence against a child or get help for a child.",
+     "how": "Call 116, free.",
+     "url": "https://www.unicef.org/malawi/protecting-children-violence-everyones-responsibility",
+     "phone": "116",
+     "dial": "116",
+     "urgent": true,
+     "chip": "Child helpline",
+     "sources": [
+      "https://www.unicef.org/malawi/protecting-children-violence-everyones-responsibility"
+     ],
+     "also": [
+      "help-now"
      ],
      "reviewed_on": "2026-11-21"
     }
@@ -4917,6 +5242,59 @@
      "dial": "116111",
      "sources": [
       "https://help.unhcr.org/moldova/?p=5952"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "MC",
+   "slug": "monaco",
+   "name": "Monaco",
+   "flag": "🇲🇨",
+   "lang": "fr",
+   "emergency": {
+    "number": "112",
+    "label": "Ambulance, fire and police from a mobile. From a landline, dial 18",
+    "source": "https://www.gov.uk/foreign-travel-advice/monaco/getting-help"
+   },
+   "resources": [
+    {
+     "id": "monaco-0800919010",
+     "section": "help-now",
+     "name": "Information line for victims of violence",
+     "org": "Government of Monaco, with the victim support association AVIP",
+     "what": "A free number for victims of any kind of violence, from a landline or a mobile. It replaced the old 116 919.",
+     "how": "Call 0800 91 90 10, free. In danger right now, call 112, or 17 for the police.",
+     "url": "https://en.gouv.mc/A-la-Une-du-Portail/A-New-Information-Number-for-Victims-of-Violence-0800-91-90-10",
+     "phone": "0800 91 90 10",
+     "dial": "0800919010",
+     "urgent": true,
+     "chip": "Line for victims of violence",
+     "sources": [
+      "https://en.gouv.mc/A-la-Une-du-Portail/A-New-Information-Number-for-Victims-of-Violence-0800-91-90-10"
+     ],
+     "also": [
+      "housing"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "monaco-daso",
+     "section": "food-bills",
+     "name": "Direction de l’Action et de l’Aide Sociales (DASO)",
+     "org": "Government of Monaco",
+     "what": "The government’s social services: someone to listen, advice, financial help, help with a place to stay, psychological support and help with work.",
+     "how": "Call 98 98 41 00, Monday to Friday, 9:30am to 5pm (the cost of a local call).",
+     "url": "https://monservicepublic.gouv.mc/en/themes/social-health-and-families/social-action/victims-of-violence/help-for-victims-of-violence",
+     "phone": "98 98 41 00",
+     "dial": "98984100",
+     "sources": [
+      "https://monservicepublic.gouv.mc/en/themes/social-health-and-families/social-action/victims-of-violence/help-for-victims-of-violence"
+     ],
+     "also": [
+      "housing",
+      "take-care"
      ],
      "reviewed_on": "2026-11-21"
     }
@@ -6280,6 +6658,57 @@
    ]
   },
   {
+   "code": "RU",
+   "slug": "russia",
+   "name": "Russia",
+   "flag": "🇷🇺",
+   "lang": "ru",
+   "emergency": {
+    "number": "112",
+    "label": "Ambulance, fire and police",
+    "source": "https://www.gov.uk/foreign-travel-advice/russia/getting-help"
+   },
+   "resources": [
+    {
+     "id": "russia-children-line",
+     "section": "kids-differently",
+     "name": "Children’s helpline 8-800-2000-122",
+     "org": "Listed by the Ministry of Labour and Social Protection",
+     "what": "The national helpline for children, teenagers and their parents. Free and anonymous.",
+     "how": "Call 8-800-2000-122, free from any phone.",
+     "url": "https://mintrud.gov.ru/social/family/184",
+     "phone": "8-800-2000-122",
+     "dial": "88002000122",
+     "urgent": true,
+     "chip": "Helpline for children and parents",
+     "sources": [
+      "https://mintrud.gov.ru/social/family/184"
+     ],
+     "also": [
+      "take-care"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "russia-emercom-psy",
+     "section": "take-care",
+     "name": "EMERCOM psychological help line",
+     "org": "Ministry of Emergency Situations (EMERCOM)",
+     "what": "Psychologists answer this line day and night, anonymously. The help is free, though long-distance call charges can apply.",
+     "how": "Call +7 495 989-50-50, any hour. In danger right now, call 112.",
+     "url": "https://psi.mchs.gov.ru/deyatelnost/distancionnaya-pomoshch-naseleniyu?export=pdf",
+     "phone": "+7 495 989-50-50",
+     "dial": "+74959895050",
+     "urgent": true,
+     "chip": "Psychological help line",
+     "sources": [
+      "https://psi.mchs.gov.ru/deyatelnost/distancionnaya-pomoshch-naseleniyu?export=pdf"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "RW",
    "slug": "rwanda",
    "name": "Rwanda",
@@ -6368,6 +6797,75 @@
      "also": [
       "pregnancy-baby"
      ]
+    }
+   ]
+  },
+  {
+   "code": "LC",
+   "slug": "saint-lucia",
+   "name": "Saint Lucia",
+   "flag": "🇱🇨",
+   "lang": "en",
+   "emergency": {
+    "number": "911",
+    "label": "Ambulance, fire and police",
+    "source": "https://www.gov.uk/foreign-travel-advice/st-lucia/getting-help"
+   },
+   "resources": [
+    {
+     "id": "saint-lucia-203",
+     "section": "take-care",
+     "name": "National Helpline 203",
+     "org": "Ministry of Health",
+     "what": "A free, confidential line, open day and night, for anyone in emotional distress, feeling isolated or depressed, or thinking about suicide. Family can call for someone else.",
+     "how": "Call 203, free from a landline or mobile, any hour.",
+     "url": "https://www.govt.lc/news/national-helpline-available-round-the-clock",
+     "phone": "203",
+     "dial": "203",
+     "urgent": true,
+     "chip": "National helpline",
+     "sources": [
+      "https://www.govt.lc/news/national-helpline-available-round-the-clock",
+      "https://externalaffairs.govt.lc/news/ministry-of-health-issues-call-to-combat-loneliness-among-seniors-during-holiday-season"
+     ],
+     "also": [
+      "help-now"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "SM",
+   "slug": "san-marino",
+   "name": "San Marino",
+   "flag": "🇸🇲",
+   "lang": "it",
+   "emergency": {
+    "number": "112",
+    "label": "Police (also 113). Ambulance: 118; fire: 115",
+    "source": "https://www.gov.uk/foreign-travel-advice/san-marino/getting-help"
+   },
+   "resources": [
+    {
+     "id": "san-marino-antiviolenza",
+     "section": "help-now",
+     "name": "Centro d’ascolto antiviolenza (anti-violence listening centre)",
+     "org": "Istituto per la Sicurezza Sociale (ISS)",
+     "what": "The public health and social security service’s listening centre for women facing violence, at the Centro Salute Donna.",
+     "how": "Call 0549 994800, or write to centroascoltoantiviolenza@iss.sm. In danger right now, call 112.",
+     "url": "https://www.iss.sm/on-line/home/violenza-sulle-donne-e-di-genere.html",
+     "phone": "0549 994800",
+     "dial": "0549994800",
+     "urgent": true,
+     "chip": "Anti-violence centre",
+     "sources": [
+      "https://www.iss.sm/on-line/home/violenza-sulle-donne-e-di-genere.html"
+     ],
+     "also": [
+      "take-care"
+     ],
+     "reviewed_on": "2026-11-21"
     }
    ]
   },
@@ -7157,6 +7655,40 @@
      "chip": "Child helpline",
      "sources": [
       "https://childprotection.gov.lk/what-we-do/1929-call-centre-helpline"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "SR",
+   "slug": "suriname",
+   "name": "Suriname",
+   "flag": "🇸🇷",
+   "lang": "nl",
+   "emergency": {
+    "number": "115",
+    "label": "Ambulance, fire and police. Ambulance also 113; fire also 110",
+    "source": "https://www.gov.uk/foreign-travel-advice/suriname/getting-help"
+   },
+   "resources": [
+    {
+     "id": "suriname-114",
+     "section": "take-care",
+     "name": "Helpline 114",
+     "org": "Ministry of Health, Welfare and Labour, with PAHO/WHO",
+     "what": "Suriname’s national mental health crisis line, launched in June 2026: free, confidential and anonymous support, day and night, for anyone in emotional distress, in a mental health crisis or thinking about suicide.",
+     "how": "Call 114, free, any hour. In danger right now, call 115.",
+     "url": "https://www.paho.org/en/news/6-6-2026-help-just-phone-call-away-launch-helpline-114",
+     "phone": "114",
+     "dial": "114",
+     "urgent": true,
+     "chip": "Crisis helpline",
+     "sources": [
+      "https://www.paho.org/en/news/6-6-2026-help-just-phone-call-away-launch-helpline-114"
+     ],
+     "also": [
+      "help-now"
      ],
      "reviewed_on": "2026-11-21"
     }

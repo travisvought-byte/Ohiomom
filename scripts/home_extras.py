@@ -60,8 +60,9 @@ KINDWORD_JS = 'assets/kindword.js'  # the affirmation card's script; OhioMom kee
 I18N = ROOT / 'data' / 'affirmations-i18n'
 LOCAL_JS = 'assets/kindword/{lang}.js'
 RTL = ('ar', 'he', 'ur', 'fa', 'ps', 'yi')  # written right to left
-# A language written like another but for its spelling: Swiss Standard German writes ss where Germany writes ß.
-VARIANTS = {'de-CH': ('de', (('ß', 'ss'),))}
+# A language written like another but for its spelling: Swiss Standard German writes ss where Germany writes ß, and
+# Liechtenstein writes German the Swiss way.
+VARIANTS = {'de-CH': ('de', (('ß', 'ss'),)), 'de-LI': ('de', (('ß', 'ss'),))}
 LANG_TAG = re.compile(r'^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$')
 STYLE = ROOT / 'templates' / 'home-extras.css'
 SHEETS = ('assets/ymt.css', 'ohio/assets/site.css')
