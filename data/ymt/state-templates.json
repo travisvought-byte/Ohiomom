@@ -32,7 +32,8 @@
    "url": "https://www.energyhelp.us/",
    "sources": ["https://acf.gov/ocs/programs/liheap"],
    "phone": "866-674-6327",
-   "phone_label": "NEAR hotline"
+   "phone_label": "NEAR hotline",
+   "also": ["christmas"]
   },
   {
    "id": "211",
@@ -44,7 +45,7 @@
    "url": "https://www.211.org/",
    "sources": ["https://www.211.org/"],
    "phone": "211",
-   "also": ["help-now", "housing"]
+   "also": ["help-now", "housing", "christmas"]
   },
   {
    "id": "coverage",

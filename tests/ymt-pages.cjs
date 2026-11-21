@@ -12,7 +12,7 @@ const all = (d, sel) => [...d.querySelectorAll(sel)];
 {
   const { d } = load('index.html');
   assert.equal(all(d, '.card').length, 0, 'front page shows no listing cards');
-  assert.equal(all(d, '.hero .tile').length, 8, 'seven needs and "See everything"');
+  assert.equal(all(d, '.hero .tile').length, 9, 'Christmas help, seven needs and "See everything"');
   assert.equal(all(d, 'main > section').length, 2, 'front page is the question and the help-now strip, nothing else (the picture and its affirmation are inside the question)');
   assert(all(d, 'main > section')[1].matches('#now'), 'the help-now strip comes straight after the question');
   assert(d.querySelector('.hero .tile[href="help.html#housing"]'), 'housing and shelter is a choice of its own');
@@ -57,8 +57,10 @@ function checkNeeds(file, count) {
   assert.equal(all(d, 'article.card').filter((c) => !c.closest('details.need')).length, 0, `${file}: no listing outside a need`);
   checkCards(d, file);
 }
-checkNeeds('help.html', 8);
-for (const f of fs.readdirSync('states').filter((f) => f.endsWith('.html'))) checkNeeds('states/' + f, 8);
+checkNeeds('help.html', 9);
+for (const f of fs.readdirSync('states').filter((f) => f.endsWith('.html'))) checkNeeds('states/' + f, 9);
+// Christmas help: four needs and the Toys for Tots campaigns of every state.
+checkNeeds('christmas.html', 5);
 checkCards(load('connect.html').d, 'connect.html');
 
 // 4. Choosing a need on the front page opens that need, and only that one.
@@ -98,7 +100,7 @@ assert.equal(all(load('help.html').d, 'details[open]').length, 0);
   const finder = d.querySelector('[data-finder]');
   assert(!finder.hidden, 'the script shows the search bar');
   const total = new Set(all(d, 'article.card').map((c) => c.id.split('--').pop())).size;
-  assert.equal(d.querySelector('[data-count]').textContent, `${total} listings in 8 groups.`);
+  assert.equal(d.querySelector('[data-count]').textContent, `${total} listings in 9 groups.`);
   assert(total >= 44, 'a state page holds every listing for that state');
   // A word opens the needs that hold a match and hides the rest.
   type(w, d, 'shelter');

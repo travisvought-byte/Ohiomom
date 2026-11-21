@@ -41,7 +41,7 @@ main>section.wrap{margin-top:2.75rem}
 .tile strong{display:block;font-size:1.15rem;line-height:1.25;margin:.55rem 0 .15rem;color:var(--ink)}
 .tile span{display:block;color:var(--muted);font-size:.96rem}
 .tile .ico{display:grid;place-items:center;width:2.9rem;height:2.9rem;border-radius:50%;background:var(--soft);font-size:1.45rem}
-.t1 .ico{background:#ffe0e8}.t2 .ico{background:#fff0bf}.t3 .ico{background:#d9f3ee}.t4 .ico{background:#e9e2fb}.t5 .ico{background:#ffe9c9}.t6 .ico{background:#ffe3d6}
+.t9 .ico{background:#dcefdc}.tile.t9{border-color:#c63b3b33;background:linear-gradient(135deg,#fff,#f3faf2)}.t1 .ico{background:#ffe0e8}.t2 .ico{background:#fff0bf}.t3 .ico{background:#d9f3ee}.t4 .ico{background:#e9e2fb}.t5 .ico{background:#ffe9c9}.t6 .ico{background:#ffe3d6}
 @media (min-width:761px){.hero.home .tiles{grid-template-columns:repeat(3,1fr)}}
 main>section .tiles{margin-top:1rem}
 main>section .tile{border-color:var(--line);box-shadow:none}
@@ -172,6 +172,10 @@ button.btn{font-family:inherit;cursor:pointer}
 .ad-slot img{flex:none;width:6.5rem;max-width:30%;height:auto;border-radius:.35rem}
 .ad-slot .ad-sponsor{font-weight:700}
 @media print{.ad-slot{display:none}}
+/* Christmas help: the list of Toys for Tots campaigns in a state card */
+.camps{display:grid;grid-template-columns:repeat(auto-fill,minmax(8.5rem,1fr));gap:.35rem .9rem;margin:.6rem 0 .8rem;padding:0;list-style:none}
+.camps a{font-weight:600}
+.xmasnote{margin-top:1.1rem}
 /* home-extras:start. Front-page picture and affirmations. Copied from templates/home-extras.css by scripts/home_extras.py; edit the template. */
 .herotop{display:flex;align-items:center;gap:1rem 2.2rem}
 .herotext{flex:1 1 0;min-width:0}

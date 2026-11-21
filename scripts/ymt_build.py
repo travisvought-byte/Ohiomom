@@ -15,17 +15,19 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import ads  # noqa: E402
+import christmas_data as xmas  # noqa: E402
 import home_extras as extras  # noqa: E402
 import ymt_lib as lib  # noqa: E402
 from us_geo import STATE_FIPS  # noqa: E402
 
 ROOT = lib.ROOT
 EXIT_URL = 'https://www.google.com/search?q=weather'
-NAV = [('help.html', 'Find help'), ('connect.html', 'Meet moms'), ('states.html', 'By state'), ('county.html', 'Near you'),
+NAV = [('christmas.html', 'Christmas help'), ('help.html', 'Find help'), ('connect.html', 'Meet moms'), ('states.html', 'By state'), ('county.html', 'Near you'),
        ('world.html', 'Worldwide')]
-FOOT = [('help.html', 'Find help'), ('connect.html', 'Meet moms'), ('states.html', 'By state'),
+FOOT = [('christmas.html', 'Christmas help'), ('help.html', 'Find help'), ('connect.html', 'Meet moms'), ('states.html', 'By state'),
         ('about.html', 'About'), ('about.html#advertise', 'Advertise'), ('privacy.html', 'Privacy'), ('report.html', 'Report a problem')]
 TILES = [
+    ('t9', '🎄', 'Christmas help', 'Toys for your kids, a holiday meal, the heat bill. Many sign-ups close early.', 'christmas.html'),
     ('t1', '🤝', 'Meet other moms', 'Groups and communities near you and online.', 'connect.html'),
     ('t7', '🏠', 'Housing and shelter', "A place to stay tonight, women's shelters, help with rent.", 'help.html#housing'),
     ('t2', '🧺', 'A hand with food or bills', 'SNAP, WIC, energy bills and food banks.', 'help.html#food-bills'),
@@ -38,7 +40,7 @@ TILES = [
 # ohiomom.org is one way into this site: its home page goes straight to the Ohio landing page.
 OHIO_REDIRECT = ('\n<script>if(/(^|\\.)ohiomom\\.org$/i.test(location.hostname)){'
                  'location.replace("ohio/index.html"+location.search+location.hash)}</script>')
-STATE_SECTIONS = ['help-now', 'housing', 'food-bills', 'pregnancy-baby', 'kids-differently', 'single-parent', 'take-care', 'military']
+STATE_SECTIONS = ['help-now', 'christmas', 'housing', 'food-bills', 'pregnancy-baby', 'kids-differently', 'single-parent', 'take-care', 'military']
 URGENT_LINES = ['us-ndvh', 'us-988', 'us-childhelp']
 # A state page shows every national listing too, except the ones the state has its own version of.
 # National id: the state template (or state record) that takes its place.
@@ -54,7 +56,11 @@ FIRST = {
     'help-now': ['us-ndvh', 'us-988', 'us-childhelp'],
     'housing': ['us-find-shelter', 'shelters', 'us-ndvh', 'dv', 'us-dv-coalition', '211', 'us-211-help',
                 'housing-hud', 'us-housing-counselor'],
+    'christmas': ['us-toys-for-tots', 'us-angel-tree', '211', 'us-211-help', 'us-operation-santa', 'us-food-bank',
+                  'energy', 'us-liheap', 'us-pf-angel-tree', 'us-homefront-holidays'],
 }
+# Names for the places outside the 50 states and D.C. that have a Toys for Tots campaign.
+TERRITORIES = {'PR': 'Puerto Rico', 'GU': 'Guam', 'VI': 'U.S. Virgin Islands'}
 
 
 def tel(p):
@@ -187,14 +193,15 @@ def cards(records, root='', prefix=None):
     return '<div class="cards">' + ''.join(card(r, root, (prefix or {}).get(r['id'])) for r in records) + '</div>'
 
 
-def need(sec, records, root='', prefix=None):
-    """One need, closed until she asks for it: a row that opens to its short cards."""
-    n = len(records)
+def need(sec, records, root='', prefix=None, extra=''):
+    """One need, closed until she asks for it: a row that opens to its short cards. extra: more cards, already
+    written, that go after the listings (the Toys for Tots campaigns of a state)."""
+    n = len(records) + extra.count('<article class="card')
     count = f'{n} option{"s" if n != 1 else ""}'
     cls = 'need urgent' if sec['id'] == 'help-now' else 'need'
     return (f'<details class="{cls}" id="{sec["id"]}"><summary><span class="ico" aria-hidden="true">{sec["icon"]}</span>'
             f'<h2>{esc(sec["label"])}</h2><span class="nsum">{esc(sec["summary"])}</span>'
-            f'<span class="ncount">{count}</span></summary>{cards(records, root, prefix)}</details>')
+            f'<span class="ncount">{count}</span></summary>{cards(records, root, prefix)[:-6]}{extra}</div></details>')
 
 
 def needs(body):
@@ -211,13 +218,30 @@ def in_order(sid, records):
     return sorted(records, key=lambda r: first.index(kind(r)) if kind(r) in first else len(first))
 
 
-def row(sec, records, root=''):
+def row(sec, records, root='', extra=''):
     """One need with everything that belongs under it. A listing filed under another need first is shown here as well."""
     sid = sec['id']
     primary = [r for r in records if r['section'] == sid]
     also = [r for r in records if sid in r.get('also', [])]
     prefix = {r['id']: f"{sid}--{r['id']}" for r in also}
-    return need(sec, in_order(sid, primary + also), root, prefix)
+    return need(sec, in_order(sid, primary + also), root, prefix, extra)
+
+
+def campaigns_card(data, st, camps, cid=None):
+    """Every Toys for Tots campaign in one state, as one card: a list of links to the campaigns' own websites."""
+    name = next((s['name'] for s in data['states'] if s['abbr'] == st), TERRITORIES.get(st, st))
+    items = ''.join(f'<li><a href="{esc(c["url"])}" rel="noopener">{esc(c["name"])}</a></li>' for c in camps)
+    n = len(camps)
+    checked = lib.pretty_date(xmas.checked_on())
+    return (f'<article class="card" id="{esc(cid or "tft-" + st.lower())}"><h3>Toys for Tots campaigns in {esc(name)}</h3>'
+            f'<p class="short">{n} local campaign{"s" if n != 1 else ""}, each with its own website and dates. Open the one for your area, then its Request a Toy page.</p>'
+            f'<p class="actions"><a class="btn plain" href="https://www.toysfortots.org/find-your-local-chapter/" rel="noopener">Toys for Tots map</a></p>'
+            f'<details class="more"><summary>{"Show the campaign" if n == 1 else f"Show all {n} campaigns"}<span class="sr">: Toys for Tots campaigns in {esc(name)}</span></summary>'
+            f'<ul class="camps">{items}</ul><p class="org">Marine Toys for Tots</p><p>Each campaign\'s website says which towns and counties it serves, its dates, '
+            f'and whether it takes requests from families or only through local charities and agencies.</p>'
+            f'<p><strong>Next step:</strong> Open the campaign nearest you. If your town is not on its site, use the Toys for Tots map to find the campaign that covers you.</p>'
+            f'<p class="src">Checked {esc(checked)}, from Toys for Tots\' list of local campaigns. Sources: '
+            f'<a href="{esc(xmas.SOURCE)}" rel="noopener">1</a></p></details></article>')
 
 
 def finder(what, hint):
@@ -332,6 +356,60 @@ def build_help(data):
                 head_extra=structured_data(breadcrumbs(data, [('Find help', 'help.html')])), slots=('topic-help', 'topic'))
 
 
+CHRISTMAS_ROWS = [
+    ('xmas-gifts', '🎁', 'Toys and gifts for your kids', 'Toys for Tots, Angel Tree, a letter to Santa, and help for military families.',
+     ['us-toys-for-tots', 'us-angel-tree', 'us-operation-santa', 'us-pf-angel-tree', 'us-homefront-holidays', 'us-211-help']),
+    ('xmas-meal', '🍽️', 'A holiday meal', 'Food banks and pantries, holiday food boxes, and SNAP.',
+     ['us-food-bank', 'us-211-help', 'us-snap', 'us-homefront-holidays']),
+    ('xmas-heat', '🔥', 'The heat bill', 'Help paying for heat, and what to do about a shutoff notice.',
+     ['us-liheap', 'us-211-help']),
+    ('xmas-you', '☕', 'Take care of you', 'The holidays can be hard. Someone to talk to, any hour.',
+     ['us-parent-helpline', 'us-tlc-mama', 'us-988']),
+]
+
+
+def build_christmas(data):
+    """Christmas help in one place: the national programs by need, then every Toys for Tots campaign by state."""
+    nat = {r['id']: r for r in data['resources']}
+    rows = []
+    for rid, icon, label, summary, ids in CHRISTMAS_ROWS:
+        sec = {'id': rid, 'label': label, 'icon': icon, 'summary': summary}
+        rows.append(need(sec, [nat[i] for i in ids], '', {i: f'{rid}--{i}' for i in ids}))
+    by = xmas.by_state()
+    order = [s['abbr'] for s in data['states']] + sorted(k for k in by if k in TERRITORIES)
+    tft = ''.join(campaigns_card(data, st, by[st], f'tft-{st.lower()}') for st in order if st in by)
+    total = sum(len(v) for v in by.values())
+    sec = {'id': 'toys-for-tots', 'label': 'Toys for Tots near you, state by state', 'icon': '🧸',
+           'summary': f'All {total} local campaigns, each with its own website and sign-up dates.'}
+    rows.append(need(sec, [], '', None, tft))
+    options = '<option value="">Choose your state</option>' + ''.join(
+        f'<option value="states/{s["abbr"].lower()}.html#christmas">{esc(s["name"])}</option>' for s in data['states'])
+    pick = (f'<div class="statepick"><label for="statepick">Christmas help in your state</label>'
+            f'<select id="statepick" data-state-pick>{options}</select>'
+            f'<a href="county.html">Find your county</a><a href="#toys-for-tots">Toys for Tots campaigns</a></div>')
+    late = ('<div class="localbox xmasnote"><strong>Late in the season?</strong> Many Angel Tree sign-ups closed in the fall, '
+            'and each Toys for Tots campaign closes on its own date, some at the end of November and some in December. '
+            'Start with your area\'s Toys for Tots campaign today. If something has closed, dial <a href="tel:211">211</a> and ask: '
+            '\u201cWhat Christmas help is still open for my kids?\u201d Never pay to sign up for free Christmas help.</div>')
+    lede = ('Toys for your kids, a holiday meal and help with the heat bill. Free, and no sign-up here. '
+            'Pick what you need, or search for your town.')
+    site = data['site']
+    ohio = (f'<section class="wrap"><div class="localbox"><strong>Ohio mom?</strong> '
+            f'<a href="ohio/holidays.html">Christmas and holiday help in Ohio</a> lists Ohio\'s own programs, holiday meals, '
+            f'and lights and Santa close to home.</div></section>')
+    body = (hero('🎄 Christmas help for moms', lede, pick + late)
+            + finder('Search Christmas help', 'toys, Columbus, heat bill…') + needs(''.join(rows)) + ohio
+            + '<section class="wrap slim"><p>In danger right now? Call 911. The holidays can be hard: you can call or text 988 any hour.</p></section>')
+    desc = ('Free Christmas help for moms in every state: local Toys for Tots campaigns, Angel Tree, '
+            'Operation Santa, holiday meals and help with the heat bill.')
+    base = f"https://{site['domain']}/"
+    about = {'@type': 'CollectionPage', '@id': base + 'christmas.html', 'url': base + 'christmas.html',
+             'name': 'Christmas help for moms', 'description': desc, 'inLanguage': 'en', 'isPartOf': {'@id': base + '#website'}}
+    return page(data, 'christmas.html', 'Christmas help for moms: toys, gifts and holiday meals', desc, body,
+                head_extra=structured_data(about, breadcrumbs(data, [('Christmas help', 'christmas.html')])),
+                slots=('topic-help', 'topic'))
+
+
 def build_connect(data):
     prim = [r for r in data['resources'] if r['section'] == 'connect']
     also = [r for r in data['resources'] if 'connect' in r.get('also', [])]
@@ -360,7 +438,9 @@ def build_state(data, s):
     have = {kind(r) for r in recs}
     # The state's own offices first, then every national listing the state does not already have its own version of.
     everything = recs + [r for r in data['resources'] if REPLACED_BY_STATE.get(r['id']) not in have]
-    rows = ''.join(row(secs[sid], everything, '../') for sid in STATE_SECTIONS)
+    camps = xmas.by_state().get(s['abbr'], [])
+    rows = ''.join(row(secs[sid], everything, '../', campaigns_card(data, s['abbr'], camps) if sid == 'christmas' and camps else '')
+                   for sid in STATE_SECTIONS)
     local = ''
     if s.get('local_site'):
         ls = s['local_site']
@@ -664,7 +744,7 @@ def build_404(data):
 def build_all(data):
     files = {
         'index.html': build_index(data), 'help.html': build_help(data), 'connect.html': build_connect(data),
-        'states.html': build_states_index(data), 'yoga.html': build_yoga(data), 'about.html': build_about(data),
+        'states.html': build_states_index(data), 'christmas.html': build_christmas(data), 'yoga.html': build_yoga(data), 'about.html': build_about(data),
         'report.html': build_report(data), '404.html': build_404(data), 'county.html': build_county(data),
         'privacy.html': build_privacy(data),
     }

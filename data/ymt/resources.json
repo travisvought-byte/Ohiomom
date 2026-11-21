@@ -19,6 +19,12 @@
    "summary": "Safety, crisis support and urgent needs. All free, most open any hour."
   },
   {
+   "id": "christmas",
+   "label": "Christmas help",
+   "icon": "🎄",
+   "summary": "Toys and gifts for your kids, a holiday meal and the heat bill. Many sign-ups close early, so start now."
+  },
+  {
    "id": "housing",
    "label": "Housing and shelter",
    "icon": "🏠",
@@ -161,7 +167,8 @@
    "phone": "211",
    "also": [
     "food-bills",
-    "housing"
+    "housing",
+    "christmas"
    ]
   },
   {
@@ -284,7 +291,10 @@
    ],
    "reviewed_on": "2026-11-15",
    "phone": "866-674-6327",
-   "phone_label": "NEAR hotline"
+   "phone_label": "NEAR hotline",
+   "also": [
+    "christmas"
+   ]
   },
   {
    "id": "us-food-bank",
@@ -298,7 +308,10 @@
    "sources": [
     "https://www.feedingamerica.org/find-your-local-foodbank"
    ],
-   "reviewed_on": "2026-11-15"
+   "reviewed_on": "2026-11-15",
+   "also": [
+    "christmas"
+   ]
   },
   {
    "id": "us-health-centers",
@@ -786,6 +799,114 @@
    "also": [
     "take-care"
    ]
+  },
+  {
+   "id": "us-toys-for-tots",
+   "section": "christmas",
+   "scope": "US",
+   "name": "Toys for Tots: ask for toys for your kids",
+   "org": "Marine Toys for Tots, U.S. Marine Corps Reserve",
+   "what": "Toys for Tots gives new toys to children whose families cannot afford Christmas gifts. Every area runs its own campaign with its own dates: some take requests from families into late November or December, and some give toys only through local charities, schools and social services.",
+   "how": "Find the campaign for your area and open its Request a Toy page. If requests have closed, use the campaign's Contact page and ask which local groups are giving out its toys.",
+   "url": "https://www.toysfortots.org/request-a-toy",
+   "links": [
+    {
+     "label": "Find your local campaign",
+     "url": "https://www.toysfortots.org/find-your-local-chapter/"
+    }
+   ],
+   "sources": [
+    "https://www.toysfortots.org/request-a-toy",
+    "https://www.toysfortots.org/find-your-local-chapter/",
+    "https://www.toysfortots.org/faq",
+    "https://raleigh-nc.toysfortots.org/",
+    "https://cumberlandcounty-nc.toysfortots.org/"
+   ],
+   "reviewed_on": "2026-11-20"
+  },
+  {
+   "id": "us-angel-tree",
+   "section": "christmas",
+   "scope": "US",
+   "name": "Salvation Army Angel Tree and Christmas help",
+   "org": "The Salvation Army",
+   "what": "Many local Salvation Army offices give Christmas gifts, and some give a holiday food box, to children in families with low incomes. Angel Tree usually serves children 12 and younger. Each office sets its own sign-up dates, and many close in the fall.",
+   "how": "Enter your ZIP code at SAAngelTree.org. If your area is not on it, or sign-up has closed, call your nearest Salvation Army and ask whether any Christmas help, a waiting list or a food box is still open.",
+   "url": "https://www.saangeltree.org/",
+   "links": [
+    {
+     "label": "Find your local Salvation Army",
+     "url": "https://salvationarmyusa.org/usn/contact"
+    }
+   ],
+   "sources": [
+    "https://www.saangeltree.org/",
+    "https://salvationarmyusa.org/usn/contact",
+    "https://southernusa.salvationarmy.org/texas-austin/angel-tree",
+    "https://www.valleynewslive.com/2026/11/09/salvation-army-opens-holiday-programs-registration-plans-red-kettle-kickoff-fargo/"
+   ],
+   "reviewed_on": "2026-11-20"
+  },
+  {
+   "id": "us-operation-santa",
+   "section": "christmas",
+   "scope": "US",
+   "name": "USPS Operation Santa: a letter to Santa",
+   "org": "U.S. Postal Service",
+   "what": "Children and families write to Santa, and people across the country adopt the letters and send the gifts asked for. It is open to families in the continental U.S., Hawaii and Puerto Rico. Not every letter is adopted.",
+   "how": "Include your first and last name, your full return address and the wishes in order. Mail it to Santa Claus, 123 Elf Road, North Pole, 88888 with a First-Class stamp, postmarked by December 5, 2026.",
+   "url": "https://www.uspsoperationsanta.com/",
+   "sources": [
+    "https://about.usps.com/newsroom/national-releases/2026/0914-usps-operation-santa-program-now-accepting-letters.htm",
+    "https://www.wsmv.com/2026/09/15/heres-how-send-letter-santa-through-usps/"
+   ],
+   "reviewed_on": "2026-11-20"
+  },
+  {
+   "id": "us-pf-angel-tree",
+   "section": "christmas",
+   "scope": "US",
+   "name": "Angel Tree for children with a parent in prison",
+   "org": "Prison Fellowship (a different program from the Salvation Army's Angel Tree)",
+   "what": "A local church delivers a Christmas gift to the child on behalf of their mom or dad in prison.",
+   "how": "The parent in prison signs the children up on an application from the prison chaplain, sent out each summer. If you are raising the children, you can ask Prison Fellowship to mail an application to the parent. A church contacts you, usually October to December, if an application was received.",
+   "url": "https://www.prisonfellowship.org/about/angel-tree/",
+   "links": [
+    {
+     "label": "Questions for families",
+     "url": "https://prisonfellowship.zendesk.com/hc/en-us/categories/202544208-Angel-Tree"
+    }
+   ],
+   "sources": [
+    "https://www.prisonfellowship.org/donate/donate-to-angel-tree/",
+    "https://app.smartsheet.com/b/form/24a76bc4a05d4ddaa5e7582b91794bd2",
+    "https://prisonfellowship.zendesk.com/hc/en-us/categories/202544208-Angel-Tree"
+   ],
+   "reviewed_on": "2026-11-20"
+  },
+  {
+   "id": "us-homefront-holidays",
+   "section": "christmas",
+   "scope": "US",
+   "also": [
+    "military"
+   ],
+   "name": "Operation Homefront: holiday meals and toys for military families",
+   "org": "Operation Homefront",
+   "what": "Holiday Meals for Military events give a holiday meal to military families, mainly junior enlisted families (E-1 to E-6), and Holiday Toy Drive events give toys. Events are held in certain cities, most near bases, through December.",
+   "how": "Open the list of Holiday Meals events and register for one near you. For toy drives, the Holiday Toys page says to follow Operation Homefront on Facebook to hear when sign-up opens in your area.",
+   "url": "https://operationhomefront.org/holiday-meals-for-military",
+   "links": [
+    {
+     "label": "Holiday Toy Drive",
+     "url": "https://operationhomefront.org/holidaytoys"
+    }
+   ],
+   "sources": [
+    "https://operationhomefront.org/?p=59930",
+    "https://operationhomefront.org/holidaytoys"
+   ],
+   "reviewed_on": "2026-11-20"
   }
  ]
 }

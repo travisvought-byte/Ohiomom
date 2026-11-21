@@ -1,0 +1,953 @@
+# Marine Toys for Tots local campaigns, one per campaign website: subdomain of toysfortots.org | campaign place | state | ZIP codes of its listed places | other place names
+# Read 2026-11-20 from https://www.toysfortots.org/wp-json/wp/v2/tft-location (the list behind https://www.toysfortots.org/find-your-local-chapter/). Rebuilt by scripts/christmas_data.py --fetch.
+anchorage-ak|Anchorage AK|AK|99506
+anniston-al|Anniston AL|AL|36203
+atmore-al|Atmore AL|AL|36502
+bessemer-al|Bessemer AL|AL|35022
+cullman-al|Cullman AL|AL|35179
+daphne-al|Daphne AL|AL|36526
+decatur-al|Decatur AL|AL|35603,35703
+thewiregrass|Dothan AL|AL|36301,36330
+elberta-al|Elberta AL|AL|36535
+florence-al|Florence AL|AL|35633
+fortpayne-al|Fort Payne AL|AL|35967
+heflin-al|Heflin AL|AL|36264
+huntsville-al|Huntsville AL|AL|35801
+lowndes-butler-al|Lowndes and Butler AL|AL|36032
+mobile-al|Mobile AL|AL|36605
+montgomery-al|Montgomery AL|AL|36107
+phenix-city-al|Phenix City AL|AL|36869
+tuscaloosa-al|Tuscaloosa AL|AL|35475
+conway-ar|Conway AR|AR|72032
+dardanelle-ar|Dardanelle AR|AR|72834
+franklin-ar|Franklin AR|AR|72949
+fort-smith-ar|Ft. Smith AR|AR|72904
+jonesboro-ar|Jonesboro AR|AR|72401,72467
+lamar-ar|Lamar AR|AR|72846
+mena-ar|Mena AR|AR|71953
+twin-lakes-ar|Mountain Home AR|AR|72653
+newport-ar|Newport AR|AR|72076
+little-rock-ar|North Little Rock AR|AR|72118
+perry-county-ar|Perryville AR|AR|71825
+pine-bluff-ar|Pine Bluff AR|AR|71665
+rogers-ar|Rogers AR|AR|72756
+casa-grande-az|Casa Grande AZ|AZ|85122
+cottonwood-az|Cottonwood AZ|AZ|86326
+flagstaff-az|Flagstaff AZ|AZ|86001
+greenlee-county-az|Greenlee County AZ|AZ|85546
+cochisecounty-az|Hereford AZ|AZ|85650
+kingman-az|Kingman AZ|AZ|86413
+lake-havasu-city-az|Lake Havasu City AZ|AZ|86406
+phoenix-az|Phoenix AZ|AZ|85309
+prescott-az|Prescott AZ|AZ|86301,86314
+safford-az|Safford AZ|AZ|85546
+sedona-az|Sedona AZ|AZ|86351
+tucson-az|Tucson AZ|AZ|85730
+yuma-az|Yuma AZ|AZ|85369
+alameda-ca|Alameda CA|CA|94501
+atascadero-ca|Atascadero CA|CA|93422
+bakersfield-ca|Bakersfield CA|CA|93308
+barstow-ca|Barstow CA|CA|92311
+burson-ca|Burson CA|CA|95252
+butte-county-ca|Butte County CA|CA|95973
+california-city-ca|California City CA|CA|93505
+cambria-ca|Cambria CA|CA|93428
+campen-4th-lar-ca|Camp Pendleton 4th LAR CA|CA|92055
+concord-ca|Concord CA|CA|94519
+delano-ca|Delano CA|CA|93215
+etna-ca|Etna CA|CA|96097
+eureka|Eureka CA|CA|95501
+eureka-ca-native-america-program|Eureka CA Native American Program|CA|95501
+fresno|Fresno CA|CA|93611
+glenn-county-ca|Glenn County CA|CA|95943,96943
+grass-valley-ca|Grass Valley CA|CA|95945
+lake-county-ca|Kelseyville CA|CA|95451
+laguna-niguel-ca|Laguna Niguel CA|CA|92677
+krv|Lake Isabella CA|CA|93283
+lathrop-ca|Lathrop CA|CA|95330
+lemoore-ca|Lemoore CA|CA|93246
+lincoln-ca|Lincoln CA|CA|95603
+los-banos-ca|Los Banos CA|CA|93635
+monterey-county-ca|Monterey County CA|CA|93940
+napa-ca|Napa CA|CA|94558
+oakhurst-ca|Oakhurst CA|CA|93614
+palmdale-ca|Palmdale CA|CA|93535,93551
+los-angeles-ca|Pasadena CA|CA|91107
+placerville-ca|Placerville CA|CA|95682
+port-hueneme-ca|Port Hueneme CA|CA|93003,93033
+porterville-ca|Porterville CA|CA|93257
+red-bluff-ca|Red Bluff CA|CA|96080
+redding-ca|Redding CA|CA|96002
+ridgecrest-ca|Ridgecrest CA|CA|93555
+sacramento-ca|Sacramento CA|CA|95826
+san-bruno-ca|San Bruno CA|CA|94066
+san-diego-ca|San Diego CA|CA|92131
+san-jose-ca|San Jose CA|CA|95112
+santacruzcounty|Santa Cruz CA|CA|95076
+santa-maria-ca|Santa Maria CA|CA|93436
+santa-rosa-ca|Santa Rosa CA|CA|95472
+seal-beach-ca|Seal Beach CA|CA|90740
+solano-county-ca|Solano County CA|CA|94533
+south-tahoe|South Lake Tahoe CA|CA|96150
+tahoe-truckee|Tahoe City CA|CA|96148
+bell-ca|Terminal Island CA|CA|90201
+travis-afb-ca|Travis AFB CA|CA|94535
+tulare-ca|Tulare CA|CA|93274
+turlock-ca|Turlock CA|CA|95204
+29-palms-ca|Twentynine Palms CA|CA|92277
+ukiah-ca|Ukiah CA|CA|95482
+willows-ca|Willows CA|CA|95988
+woodland-ca|Woodland CA|CA|95616,95776
+yuba-city-ca|Yuba City CA|CA|95991
+alamosa-toys-for-tots|Alamosa CO|CO|81101
+aurora-co|Aurora CO|CO|80011
+canon-city-co|Canon City CO|CO|81212
+colorado-springs-co|Colorado Springs CO|CO|80918
+fort-collins-co|Fort Collins CO|CO|80612
+mesacounty-co|Grand Junction CO|CO|81419
+greeley-co|Greeley CO|CO|80634
+laplata-county-co|Laplata County CO|CO|81301
+southwest-colorado|Laplata County CO|CO|81122
+louisville-co|Louisville CO|CO|80027
+pagosa-springs-co|Pagosa Springs CO|CO|81147
+pueblo-co|Pueblo CO|CO|80915
+bridgeport-ct|Bridgeport CT|CT|06610
+new-haven-ct|New Haven CT|CT|06512
+norwalk-ct|Norwalk CT|CT|06851
+plainville-ct|Plainville CT|CT|06062
+ridgefield-ct|Ridgefield CT|CT|06877
+stamford-ct|Stamford CT|CT|06905
+windham-county-ct|Windham County CT|CT|06237
+anacostia-dc|Anacostia DC|DC|20373
+dover-de|Dover DE|DE|19901
+nassau-de|Nassau DE|DE|19947,19975
+ocean-view-de|Ocean View DE|DE|19975
+wilmington-de|Wilmington DE|DE|19808
+apalachicola-fl|Apalachicola FL|FL|32328
+arcadia-fl|Arcadia FL|FL|34266
+barefoot-bay-fl|Barefoot Bay FL|FL|32907
+beverly-hills-fl|Beverly Hills FL|FL|34450
+bonita-springs-fl|Bonita Springs FL|FL|34135
+bradenton-fl|Bradenton FL|FL|34212,34221
+washington-holmes-county|Chipley FL|FL|32428,32462
+clay-county-fl|Clay County FL|FL|32003,32073
+clewiston-fl|Clewiston FL|FL|33935
+volusiacounty|Daytona Beach FL|FL|32724
+fernandina-beach-fl|Fernandina Beach FL|FL|32034
+fort-myers-fl|Fort Myers FL|FL|33917
+fort-pierce-fl|Fort Pierce FL|FL|34953
+fort-walton-beach-fl|Fort Walton Beach FL|FL|32536
+greenwood-fl|Greenwood FL|FL|32446
+hamiltonfl|Hamilton County FL|FL|32052
+hardeefl|Hardee County FL|FL|34786
+hialeah-fl|Hialeah FL|FL|33015
+highlandsfl|Highlands County FL|FL|33852,33875
+hollister-fl|Hollister FL|FL|32147
+jacksonville-fl|Jacksonville FL|FL|32226
+jeffersonfl|Jefferson County FL|FL|34786
+floridakeys|Key West FL|FL|33174
+osceolafl|Kissimmee St Cloud FL|FL|34786
+lafayettefl|Lafayette County FL|FL|34786
+lake-city-fl|Lake City FL|FL|32024
+polkcounty-fl|Lakeland FL|FL|33813
+madison-fl|Madison FL|FL|32059,32340
+mims-fl|Mims FL|FL|32754
+moore-haven-fl|Moore Haven FL|FL|33471
+naples-fl|Naples FL|FL|34120
+new-port-richey-fl|New Port Richey FL|FL|34654
+newberry-fl|Newberry FL|FL|32643
+ocala-fl|Ocala FL|FL|34471
+okeechobee-fl|Okeechobee FL|FL|34974
+orlando-fl|Orlando FL|FL|32827
+oxford-fl|Oxford FL|FL|32163
+palm-coast-fl|Palm Coast FL|FL|32164
+panama-city-fl|Panama City FL|FL|32405
+pensacola-fl|Pensacola FL|FL|32514
+charlotte-county-fl|Punta Gorda FL|FL|33954
+quincy-fl|Quincy FL|FL|32343,32351
+sarasota-fl|Sarasota FL|FL|34235
+spring-hill-fl|Spring Hill FL|FL|34609
+staugustine-fl|St Augustine FL|FL|32259
+st-petersburg-fl|St. Petersburg FL|FL|33767
+stuart-fl|Stuart FL|FL|34994
+tallahassee-fl|Tallahassee FL|FL|32327
+tampa-fl|Tampa FL|FL|33611
+taylorfl|Taylor County FL|FL|32348
+unionfl|Union County FL|FL|32054
+vero-beach-fl|Vero Beach FL|FL|32962
+wellborn-fl|Wellborn FL|FL|32062
+west-palm-beach-fl|West Palm Beach FL|FL|33409
+adel-ga|Adel GA|GA|31620
+albany-ga|Albany GA|GA|31704
+athens-ga|Athens GA|GA|30605
+augusta-ga|Augusta GA|GA|30815
+blairsville-union-ga|Blairsville Union GA|GA|30512
+brunswick-ga|Brunswick GA|GA|31520
+west-ga|Buchanan GA|GA|30116,30180
+calhoun-ga|Calhoun GA|GA|30701
+camilla-ga|Camilla GA|GA|31707
+columbus-ga|Columbus GA|GA|31906
+crisp-ga|Crisp GA|GA|31015
+northatlanta|Cummings GA|GA|30253,30281
+dalton-ga|Dalton GA|GA|30755
+ellijay-ga|Ellijay GA|GA|30540
+fort-valley-ga|Fort Valley GA|GA|31069
+gainesville-ga|Gainesville GA|GA|30542
+gray-ga|Gray GA|GA|31032
+griffin-ga|Griffin GA|GA|30223
+homerville-ga|Homerville GA|GA|31313,31634
+jasper-ga|Jasper GA|GA|30143
+jenkins-county-ga|Jenkins County GA|GA|30442
+kingston-ga|Kingston GA|GA|30121
+lagrange-ga|LaGrange GA|GA|36108
+lavonia-ga|Lavonia GA|GA|30553
+milledgeville-ga|Milledgeville GA|GA|31061
+millen-ga|Millen GA|GA|31326
+statesboro-ga|Millen GA|GA|31326
+morganton-ga|Morganton GA|GA|30560
+mountairy-ga|Mount Airy GA|GA|30571
+nashville-ga|Nashville GA|GA|31639
+southside|Newnan GA|GA|30269
+pearson-ga|Pearson GA|GA|31639
+quitman-ga|Quitman GA|GA|31643
+rome-ga|Rome GA|GA|30125
+savannah-ga|Savannah GA|GA|31409
+st-marys-ga|St Marys GA|GA|31548
+tallapoosa-ga|Tallapoosa GA|GA|30176
+terrell-county-ga|Terrell County GA|GA|31721
+thomasville-ga|Thomasville GA|GA|31792
+tifton-ga|Tifton GA|GA|31794
+valdosta-ga|Valdosta GA|GA|31620
+vidalia-ga|Vidalia GA|GA|30474
+warner-robins-ga|Warner Robins GA|GA|31005
+dededo-gu|Dededo GU|GU|96537
+hilo-hi|Hilo HI|HI|96720
+kaneohe-bay-hi|Kaneohe Bay HI|HI|96863
+kauai-hi|Kauai HI|HI|96746
+anamosa-ia|Anamosa IA|IA|52205
+burlington-ia|Burlington IA|IA|52623
+cedar-falls-ia|Cedar Falls IA|IA|50613
+cedar-rapids-ia|Cedar Rapids IA|IA|52404
+des-moines-ia|Des Moines IA|IA|50109
+dubuque-ia|Dubuque IA|IA|52001
+iowa-city-ia|Iowa City IA|IA|52240
+keokuk-ia|Keokuk IA|IA|52632
+jackson-county-ia|Maquoketa IA|IA|52060
+mason-city-ia|Mason City IA|IA|50401
+sioux-city-ia|Sioux City IA|IA|51103
+boise-id|Boise ID|ID|83705
+canyon-county-id|Canyon County ID|ID|83687
+coeur-d-alene-id|Coeur d'Alene ID|ID|83814,83854
+idaho-falls-id|Idaho Falls ID|ID|83401,83402
+kellog-id|Kellogg ID|ID|83837
+lewiston-id|Lewiston ID|ID|83501
+pocatello--id|Pocatello ID|ID|83201
+twin-falls-id|Twin Falls ID|ID|83338
+albion-il|Albion IL|IL|62806
+alton-il|Alton IL|IL|62002
+kanecounty-il|Batavia IL|IL|60119
+bloomington-il|Bloomington IL|IL|61761
+champaign-il|Champaign IL|IL|61801,61821
+chester-il|Chester IL|IL|62278
+chicago-il|Chicago IL|IL|60037
+danville-il|Danville IL|IL|61832,61846
+de-witt-county|De Witt County IL|IL|61727
+decatur-il|Decatur IL|IL|62521
+dixon-il|Dixon IL|IL|61006,61021
+forrest-il|Forrest IL|IL|61764
+great-lakes-il|Great Lakes IL|IL|60088
+greenville-il|Greenville IL|IL|
+havana-il|Havana IL|IL|61542
+herrin-il|Herrin IL|IL|62924
+jacksonville-il|Jacksonville IL|IL|62670
+joliet-il|Joliet IL|IL|60436
+lincoln-il|Lincoln IL|IL|62656
+kankakee-il|Manteno IL|IL|60915
+mchenry-county-il|Marengo IL|IL|60012
+menard-il|Menard IL|IL|62684
+ogle-il|Ogle IL|IL|61006
+peoria-il|Peoria IL|IL|61603
+westcentral-il|Quincy IL|IL|62376
+quad-cities|Rock Island IL|IL|61299
+rockford-il|Rockford IL|IL|61088
+carroll-county-il|Savanna IL|IL|61046
+sheldon-il|Sheldon IL|IL|60970
+sangamon-county-il|Springfield IL|IL|62561
+stlouis-il|St Louis IL|IL|62221
+sterling-il|Sterling IL|IL|61071
+stonington-il|Stonington IL|IL|62567
+dekalb-il|Sycamore IL|IL|60115,60178
+tuscola-il|Tuscola IL|IL|61953
+dupage-il|Warrenville IL|IL|60178
+anderson-in|Anderson IN|IN|47356
+auburn-in|Auburn IN|IN|46706
+columbia-city-in|Columbia City IN|IN|46725
+crane-in|Crane IN|IN|47522
+dearborn-in|Dearborn IN|IN|47001
+bartholomew-county-in|Elizabethtown IN|IN|47232
+elkhart-in|Elkhart IN|IN|46517
+evansville-in|Evansville IN|IN|47710
+ft-wayne-in|Fort Wayne IN|IN|46770,46804
+gary-in|Gary IN|IN|46409
+hobart-in|Hobart IN|IN|46307
+indianapolis-in|Indianapolis IN|IN|46216
+jasper-in|Jasper IN|IN|47532
+lafayette-in|Lafayette IN|IN|47905
+michigan-city-in|Michigan City IN|IN|46350
+new-albany-in|New Albany IN|IN|47124
+north-vernon-in|North Vernon IN|IN|47227
+peru-in|Peru IN|IN|46971
+richmond-in|Richmond IN|IN|47374
+shelby-in|Shelby IN|IN|46040
+south-bend-in|South Bend IN|IN|46613
+terre-haute-in|Terre Haute IN|IN|47803
+valparaiso-in|Valparaiso IN|IN|46304
+vincennes-in|Vincennes IN|IN|47591
+warsaw-in|Warsaw IN|IN|46808
+labettecounty|Altoona KS|KS|67330
+hays-ks|Hays KS|KS|67601
+hutchinson-ks|Hutchinson KS|KS|67501
+lawrence-ks|Lawrence KS|KS|66049
+pittsburg-ks|Pittsburg KS|KS|66762
+pratt-ks|Pratt KS|KS|67124
+russell-ks|Russell KS|KS|67665
+topeka-ks|Topeka KS|KS|66619
+wichita-ks|Wichita KS|KS|67210
+berea-ky|Berea KY|KY|40475
+bowling-green-ky|Bowling Green KY|KY|42101
+calhoun-ky|Calhoun KY|KY|42376
+fort-knox-ky|Fort Knox KY|KY|40160
+georgetown-ky|Georgetown KY|KY|40324,40379
+jackson-ky|Jackson KY|KY|41339
+lexington-ky|Lexington KY|KY|40503
+southcentral-ky|London KY|KY|40769
+louisville-ky|Louisville KY|KY|40108
+owensboro-ky|Owensboro KY|KY|42303
+paducah-ky|Paducah KY|KY|42001
+bastrop-la|Bastrop LA|LA|71220
+baton-rouge-la|Baton Rouge LA|LA|70820
+belle-chasse-la|Belle Chasse LA|LA|70143
+bossier-city-la|Bossier City LA|LA|71111
+northwest-la|Bossier City LA|LA|71111
+westla|DeRidder LA|LA|70634
+eunice-la-toys-for-tots|Eunice LA|LA|70535
+houma-la|Houma LA|LA|70343
+lafayette-la|Lafayette LA|LA|70506
+morgan-city-la|Morgan City LA|LA|70380
+new-orleans-la|New Orleans LA|LA|70114,70119
+raceland-la|Raceland LA|LA|70394
+ruston-la|Ruston LA|LA|71270
+stjamesparish-la|St James Parish LA|LA|70071
+st-joseph-la|St Joseph LA|LA|71366
+st-tammany-la|St Tammany LA|LA|70458
+southwest-la|Sulphur LA|LA|70605
+st-charles-parish|Waggaman LA|LA|70087
+white-castle-la|White Castle LA|LA|70788
+boston-ma|Ayer MA|MA|01434
+westernmass|Chicopee MA|MA|01022
+devens-ma|Devens MA|MA|01432
+cape-cod-ma|Orleans MA|MA|02638
+somerset-ma|Somerset MA|MA|02725
+worcester-ma|Worcester MA|MA|01434
+baltimore-md|Baltimore MD|MD|21234
+midshore-md|Centreville MD|MD|21617
+charles-county-md|Charles County MD|MD|20601,20785
+chesapeake-beach-md|Chesapeake Beach MD|MD|20639
+edgewater-md|Edgewater MD|MD|21037
+elkton-md|Elkton MD|MD|21921
+fortmeade-md|Fort Meade MD|MD|20794
+frederick-md|Frederick MD|MD|21702
+frostburg-md|Frostburg MD|MD|21532
+germantown-md|Germantown MD|MD|20879
+hagerstown-md|Hagerstown MD|MD|21740
+harford-md|Harford MD|MD|21078,21085
+oakland-md|Oakland MD|MD|21550
+salisbury-md|Salisbury MD|MD|21863
+stmarys-md|St Mary's MD|MD|20650
+aroostook-me|Aroostook ME|ME|02725,04779
+bangor-me|Bangor ME|ME|04474
+lincoln-me|Lincoln ME|ME|04457
+millinocket-me|Millinocket ME|ME|04462
+morrill-me|Morrill ME|ME|04952
+rockland-me|Rockland ME|ME|04862
+saco-me|Saco ME|ME|04061,04261
+springvale-me|Springvale ME|ME|04005,04064
+topsham-me|Topsham ME|ME|04011
+wiscasset-me|Wiscasset ME|ME|04578
+alma-mi|Alma MI|MI|48832,48906
+atlanta-mi|Atlanta MI|MI|49709
+baldwin-mi|Baldwin MI|MI|49304
+kbic-mi-native-american-program|Baraga MI Native American Program|MI|49908
+barry-mi|Barry MI|MI|49632
+battle-creek-mi|Battle Creek MI|MI|49037
+bay-county-mi|Bay City MI|MI|48706
+berrien-mi|Berrien MI|MI|49085,49101
+cadillac-mi|Cadillac MI|MI|49601
+caspian-mi|Caspian MI|MI|49915
+cassopolis-mi|Cassopolis MI|MI|49031
+baraga-mi|Chassell MI|MI|49908
+dearborn-mi|Dearborn MI|MI|48125
+detroit-mi|Detroit MI|MI|48045
+east-tawas-mi|East Tawas MI|MI|48730
+flint-mi|Flint MI|MI|48439
+fremont-mi|Fremont MI|MI|49412
+gaylord-mi|Gaylord MI|MI|49735
+deltameno-mi|Gladstone MI|MI|49807
+grand-rapids-mi|Grand Rapids MI|MI|49333
+grayling-mi|Grayling MI|MI|49738
+hart-mi|Hart MI|MI|49420
+holland-mi|Holland MI|MI|49423
+houghton-lake-mi|Houghton Lake MI|MI|48651
+howell-mi|Howell MI|MI|48843
+inkster-mi|Inkster MI|MI|48185
+ionia-mi|Ionia MI|MI|48846
+iron-mountain-mi|Iron Mountain MI|MI|49802
+jackson-mi|Jackson MI|MI|49203
+jonesville-mi|Jonesville MI|MI|49266
+lansing-mi|Lansing MI|MI|48906
+ludington-mi|Ludington MI|MI|49431
+marquette-mi|Marquette MI|MI|49814
+mecosta-mi|Mecosta MI|MI|48632
+midland-mi|Midland MI|MI|48642
+mt-pleasant-mi|Mt Pleasant MI|MI|48883
+muskegon-mi|Muskegon MI|MI|49444
+new-buffalo-mi|New Buffalo MI|MI|49128
+newport-mi|Newport MI|MI|48161
+north-oakland-county|North Oakland County MI|MI|48442
+novi-mi|Novi MI|MI|48220
+oden-mi|Oden MI|MI|49740
+onsted-mi|Onsted MI|MI|49221,49253
+shiawassee-mi|Owosso MI|MI|48867
+port-huron-mi|Port Huron MI|MI|48059
+saginaw-mi|Saginaw MI|MI|48602
+st-johns-mi|St Johns MI|MI|48879
+montcalm-mi|Stanton MI|MI|48838
+traverse-city-mi|Traverse City MI|MI|49684
+trenton-mi|Trenton MI|MI|48235
+west-branch-mi|West Branch MI|MI|48756
+ypsilanti-mi|Ypsilanti MI|MI|48198
+adrian-mn|Adrian MN|MN|56110
+alexandria-mn|Alexandria MN|MN|56308
+austin-mn|Austin MN|MN|55912
+buffalo-mn|Buffalo MN|MN|55313,55362
+itasca-mn|Cohasset MN|MN|55721
+faribault-mn|Faribault MN|MN|55021,56096
+garrison-mn|Garrison MN|MN|56450
+little-falls-mn|Little Falls MN|MN|56345
+mankato-mn|Mankato MN|MN|56058
+martin-county-mn|Martin County MN|MN|56031
+minneapolis-mn|Minneapolis MN|MN|55450
+monticello-mn|Monticello MN|MN|55362
+nashwauk-mn|Nashwauk MN|MN|55769
+new-london-mn|New London MN|MN|56273
+kanabeccounty|Ogilvie MN|MN|56358
+owatonna-mn|Owatonna MN|MN|55060
+pine-city-mn|Pine City MN|MN|55063
+red-wing-mn|Red Wing MN|MN|55066
+rochester-mn|Rochester MN|MN|55940
+st-cloud-mn|St. Cloud MN|MN|56301,56303
+wadena-mn|Wadena MN|MN|56477
+waite-park-mn|Waite Park MN|MN|56387
+boonville-mo|Boonville MO|MO|65233
+bridgeton-mo|Bridgeton MO|MO|63044
+buchanan-county-mo|Buchanan County MO|MO|64505
+california-mo|California MO|MO|65018
+cape-girardeau-mo|Cape Girardeau MO|MO|63701
+columbia-mo|Columbia MO|MO|65251
+festus-mo|Festus MO|MO|62095
+northeastmissouri|Hannibal MO|MO|63401
+houston-mo|Houston MO|MO|65689
+jasper-mo|Jasper MO|MO|64801
+jefferson-city-mo|Jefferson City MO|MO|65109
+kansas-city-mo|Kansas City MO|MO|64147
+kennett-mo|Kennett MO|MO|63857
+marshall-mo|Marshall MO|MO|65340
+northcentral-mo|Moberly MO|MO|65239
+newton-mo|Newton MO|MO|64844
+park-hills-mo|Park Hills MO|MO|63601
+scott-county-mo|Scott County MO|MO|63965
+springfield-mo|Springfield MO|MO|65802
+troy-mo|Troy MO|MO|63379
+morgan-county-mo|Versailles MO|MO|65084
+warrensburg-mo|Warrensburg MO|MO|65305
+waynesville-mo|Waynesville MO|MO|65584
+west-plains-mo|West Plains MO|MO|65775
+brookhaven-ms|Brookhaven MS|MS|39601
+crawford-ms|Crawford MS|MS|39701
+durant-ms|Durant MS|MS|39063
+george-county-ms|George County MS|MS|39563
+greene-ms|Greene MS|MS|39476
+greenville-ms|Greenville MS|MS|38703
+gulfport-ms|Gulfport MS|MS|39501
+hattiesburg-ms|Hattiesburg MS|MS|39401
+hazlehurst-ms|Hazlehurst MS|MS|35126,39059
+jackson-ms|Jackson MS|MS|39208
+jefferson-county-ms|Jefferson County MS|MS|39120
+lambert-ms|Lambert MS|MS|38643
+louisville-ms|Louisville MS|MS|39339
+mccomb-ms|McComb MS|MS|39648
+simpson-ms|Mendenhall MS|MS|39114
+meridian-ms|Meridian MS|MS|39301
+monticello-ms|Monticello MS|MS|39654
+moss-point-ms|Moss Point MS|MS|39503
+natchez-ms|Natchez MS|MS|39120
+pontotoc-ms|Oxford MS|MS|38801,38826
+perry-county-ms|Perry County MS|MS|39476
+picayune-ms|Picayune MS|MS|39466
+vicksburg-ms|Vicksburg MS|MS|39180
+winona-ms|Winona MS|MS|38901
+anaconda-mt|Anaconda MT|MT|59711
+billings-mt|Billings MT|MT|59102
+bozeman-mt|Bozeman MT|MT|59715
+butte-mt|Butte MT|MT|59701
+columbia-falls-mt|Columbia Falls MT|MT|59912
+deer-lodge-mt|Deer Lodge MT|MT|59722
+great-falls-mt|Great Falls MT|MT|59404
+helena-mt|Helena MT|MT|59602
+miles-city-mt|Miles City MT|MT|59301
+missoula-mt|Missoula MT|MT|59801
+native-american-mt|Native American MT|MT|59601
+philipsburg-mt|Philipsburg MT|MT|59858
+polson-mt|Polson MT|MT|59860
+roundup-mt|Roundup MT|MT|59072
+sanders-county-mt|Sanders MT|MT|59874
+aberdeen-nc|Aberdeen NC|NC|27281
+anson-county-nc|Anson County NC|NC|28170
+asheboro-nc|Asheboro NC|NC|27205
+wnctft-nc|Asheville NC|NC|28792
+badin-nc|Badin NC|NC|28001
+boone-nc|Boone NC|NC|28665
+calabash-nc|Calabash NC|NC|28431
+camp-lejeune-nc|Camp Lejeune NC|NC|28545
+charlotte-nc|Charlotte NC|NC|28213
+concord-nc|Concord NC|NC|28023
+cumberlandcounty-nc|Cumberland County NC|NC|28303
+dunn-nc|Dunn NC|NC|27526
+enfield-nc|Enfield NC|NC|27823,27856
+inner-coastal-plain-nc|Fayetteville NC|NC|28301
+smokymt|Franklin NC|NC|28734
+gastonia-nc|Gastonia NC|NC|28052
+gates-county-nc|Gates County NC|NC|27932
+greensboro-nc|Greensboro NC|NC|27409
+hickory-nc|Hickory NC|NC|28658
+hillsborough-nc|Hillsborough NC|NC|27278
+jefferson-nc|Jefferson NC|NC|28694
+kill-devil-hills-nc|Kill Devil Hills NC|NC|27932
+lenoir-nc|Lenoir NC|NC|28645
+lexington-nc|Lexington NC|NC|27295
+lilesville-nc|Lilesville NC|NC|28170
+lincolnton-nc|Lincolnton NC|NC|28092
+mocksville-nc|Mocksville NC|NC|27028
+monroe-nc|Monroe NC|NC|28112
+mooresville-nc|Mooresville NC|NC|28715,28805
+morganton-nc|Morganton NC|NC|28655
+mount-airy-nc|Mount Airy NC|NC|27030
+mount-nc|Mount NC|NC|27834
+murphy-nc|Murphy NC|NC|28901
+north-wilkesboro|North Wilkesboro NC|NC|28651
+pamlico-nc|Pamlico NC|NC|28510
+pittsboro-nc|Pittsboro NC|NC|27312
+raleigh-nc|Raleigh NC|NC|27606
+rockingham-nc|Rockingham NC|NC|28379
+rocky-mount-nc|Rocky Mount NC|NC|27801
+rutherfordton-nc|Rutherfordton NC|NC|28043
+salisbury-nc|Salisbury NC|NC|28144
+sanford-nc|Sanford NC|NC|27332
+cleveland-county-nc|Shelby NC|NC|28086
+spruce-pine-nc|Spruce Pine NC|NC|28705
+wentworth-nc|Wentworth NC|NC|27025,27320
+westfield-nc|Westfield NC|NC|27052
+williamston-nc|Williamston NC|NC|27892
+wilmington-nc|Wilmington NC|NC|28451
+winston-salem-nc|Winston-Salem NC|NC|27012
+bismarck-nd|Bismarck ND|ND|58501,58503
+jamestown-nd|Jamestown ND|ND|58401
+minot-nd|Minot ND|ND|58701,58703
+wahpeton-nd|Wahpeton ND|ND|58075
+norfolk-ne|Norfolk NE|NE|68701
+omaha-ne|Omaha NE|NE|68111
+sidney-ne|Sidney NE|NE|69162
+grafton-nh|Grafton NH|NH|03561
+keene-nh|Keene NH|NH|03467
+lebanon-nh|Lebanon NH|NH|03755
+londonderry-nh|Londonderry NH|NH|03053
+atlanticnj|Absecon NJ|NJ|08234
+camden-nj|Camden NJ|NJ|08104
+dover-nj|Dover NJ|NJ|07806
+cape-may-nj|Marmora NJ|NJ|08204
+metuchen-nj|Metuchen NJ|NJ|08817
+mt-laurel-nj|Mt Laurel NJ|NJ|08052
+newark-nj|Newark NJ|NJ|07076
+pennsville-nj|Pennsville NJ|NJ|08070
+red-bank-nj|Red Bank NJ|NJ|07701
+southern-ocean-county|Southern Ocean County NJ|NJ|08232
+vineland-nj|Vineland NJ|NJ|08360
+wenonah-nj|Wenonah NJ|NJ|08090
+west-trenton-nj|West Trenton NJ|NJ|08640
+alamogordo-nm|Alamogordo NM|NM|88310,88317
+albuquerque-nm|Albuquerque NM|NM|87117
+carlsbad-nm|Carlsbad NM|NM|88220
+deming-nm|Deming NM|NM|88030
+farmington-nm|Farmington NM|NM|87401
+gallup-nm|Gallup NM|NM|87301
+grants-nm|Grants NM|NM|87020
+hobbs-nm|Hobbs NM|NM|88240,88241
+las-cruces-nm|Las Cruces NM|NM|88001,88011
+reserve-nm|Reserve NM|NM|87830
+roswell-nm|Roswell NM|NM|88203
+ruidoso-nm|Ruidoso NM|NM|88346
+silvercity-nm|Silver City NM|NM|88061
+socorro-nm|Socorro NM|NM|87801
+truth-or-consequences-nm|Truth or Consequences NM|NM|87901
+carson-city-nv|Carson City NV|NV|89706
+fallon-nv|Fallon NV|NV|89406
+hawthorne-nv|Hawthorne NV|NV|89415
+las-vegas-nv|Las Vegas NV|NV|89115
+pahrump-nv|PaHrump NV|NV|89048
+pahrump-nv-native-american-program|Pahrump NV Native American Program|NV|89048
+reno-nv|Reno NV|NV|89501
+albany-ny|Albany NY|NY|12302
+binghamton-ny|Binghamton NY|NY|13901
+brooklyn-ny|Brooklyn NY|NY|11234
+buffalo-ny|Buffalo NY|NY|14201
+cny-ny|Camden NY|NY|13042,13044
+canastota-ny|Canastota NY|NY|13037
+cortland-ny|Cortland NY|NY|13045
+dutchess-county-ny|Dutchess County NY|NY|12569
+elmira-ny|Elmira NY|NY|14871
+fulton-ny|Fulton NY|NY|13126
+garden-city-ny|Garden City NY|NY|11530
+jamestown-ny|Jamestown NY|NY|14701
+macedon-ny|Macedon NY|NY|14502
+putnam-ny|Mahopac NY|NY|10541
+westchesterputnam-ny|Mahopac NY|NY|10562
+hudson-valley|Newburgh NY|NY|12550
+norwich-ny|Norwich NY|NY|13411
+ogdensburg-ny|Ogdensburg NY|NY|13668
+olean-ny|Olean NY|NY|14706
+westchester-county-ny|Ossining NY|NY|10706
+owego-ny|Owego NY|NY|13812
+rochester-ny|Rochester NY|NY|14611
+rockland-county-ny|Rockland County NY|NY|10941
+staten-island-ny|Staten Island NY|NY|10301
+steuben-county-ny|Steuben county NY|NY|14801,14812
+suffolk-county-ny|Suffolk County NY|NY|11706
+sullivan-county-ny|Sullivan County NY|NY|12754
+syracuse-ny|Syracuse NY|NY|13211
+jefferson-ny|Watertown NY|NY|13601
+akron-oh|Akron OH|OH|44720
+ashland-oh|Ashland OH|OH|43205,44053
+ashtabula-oh|Ashtabula OH|OH|44030
+brookpark-oh|Brookpark OH|OH|44142
+bryan-oh|Bryan OH|OH|43506
+starkcounty|Canton OH|OH|44720
+champagne-oh|Champagne OH|OH|43211
+champaign-oh|Champaign OH|OH|43230
+cincinnati-oh|Cincinnati OH|OH|45207
+columbus-oh|Columbus OH|OH|43217
+dayton-oh|Dayton OH|OH|45433
+dellroy-oh|Dellroy OH|OH|44620
+delaware-county-oh|Delware OH|OH|43028,43136
+fairfield-county-oh|Fairfield OH|OH|43232
+findlay-oh|Findlay OH|OH|45840
+fremont-oh|Fremont OH|OH|43420
+knox-county-oh|Howard OH|OH|43019
+lake-milton-oh|Lake Milton OH|OH|44272
+lima-oh|Lima OH|OH|45806
+madison-oh|Madison OH|OH|43110
+marion-oh|Marion OH|OH|43302
+medina-oh|Medina OH|OH|44281
+mentor-oh|Mentor OH|OH|44095
+butlerwarrencounty|Middletown OH|OH|45044
+wilmington-oh|Monroe OH|OH|45152
+north-ridgeville-oh|North Ridgeville OH|OH|44107
+ottawa-oh|Ottawa OH|OH|45875
+perrysburg-oh|Perrysburg OH|OH|43551
+portsmouth-oh|Portsmouth OH|OH|45662
+rushsylvania-oh|Rushsylvania OH|OH|43347
+sandusky-oh|Sandusky OH|OH|44847
+sherrodsville-oh|Sherrodsville OH|OH|44675
+sidney-oh|Sidney OH|OH|45356
+union-oh|Union OH|OH|43221
+vienna-oh|Vienna OH|OH|44473
+washington-court-house-oh|Washington Court House OH|OH|43160
+wooster-oh|Wooster OH|OH|44676
+zanesville-oh|Zanesville OH|OH|43821|Dresden OH
+ardmore-ok|Ardmore OK|OK|73401
+atoka-ok|Atoka OK|OK|74525
+broken-arrow-ok|Broken Arrow OK|OK|74014
+claremore-ok|Claremore OK|OK|74361
+durant-ok|Durant OK|OK|74701
+hugo-ok|Hugo OK|OK|74743,75460
+jay-ok|Jay OK|OK|74346
+lahoma-ok|Lahoma OK|OK|73754
+native-american-ok|Native American OK|OK|74346
+okc|Oklahoma City OK|OK|73150
+pushmataha-county-ok|Pushmataha County OK|OK|74743
+shawnee-ok|Shawnee OK|OK|74801
+tahlequah-ok|Tahlequah OK|OK|74464
+tahlequah-ok-native-american|Tahlequah OK Native American|OK|74464
+texhoma-ok|Texhoma OK|OK|73949
+astoria-or|Astoria OR|OR|97138
+bend-or|Bend OR|OR|97702
+brookings-or|Brookings OR|OR|97415
+dallas-or|Dallas OR|OR|97361
+eugene-or|Eugene OR|OR|97477
+jackson-county-or|Jackson County OR|OR|97504,97539
+josephinecounty|Josephine County OR|OR|97526
+klamath-falls-or|Klamath Falls OR|OR|97603
+lake-county-or|Lake County OR|OR|97630
+portland-or|Portland OR|OR|97217
+roseburg-or|Roseburg OR|OR|97470
+salem-or|Salem OR|OR|97301
+allentown-pa|Allentown PA|PA|18109
+bedford-pa|Bedford PA|PA|15522
+berks-pa|Berks PA|PA|19547
+butler-pa|Butler PA|PA|16050
+carlisle-pa|Carlisle PA|PA|17015
+chester-county-pa|Chester County PA|PA|19425
+clearfield-pa|Clearfield PA|PA|16830
+east-stroudsburg-pa|East Stroudsburg PA|PA|18360
+ebensburg-pa|Ebensburg PA|PA|16601
+erie-pa|Erie PA|PA|16504
+folsom-pa|Folsom PA|PA|19033
+gettysburg|Gettysburg PA|PA|17331
+greenville-pa|Greenville PA|PA|16125
+halifax-pa|Halifax PA|PA|17404
+montgomery-county-pa|Harleysville PA|PA|19425
+harrisburg-pa|Harrisburg PA|PA|17110
+hatboro-pa|Hatboro PA|PA|19001
+huntingdon-pa|Huntingdon PA|PA|16652
+jeannette-pa|Jeannette PA|PA|15601
+johnstown-pa|Johnstown PA|PA|15902
+lancaster-pa|Lancaster PA|PA|17512,17603
+lebanon-pa|Lebanon PA|PA|17046
+lemont-pa|Lemont PA|PA|16803
+lewisburg-pa|Lewisburg PA|PA|17777
+meadville-pa|Meadville PA|PA|16335
+buckscountypa|Milford Square PA|PA|18955
+minersville-pa|Minersville PA|PA|17901
+new-castle-pa|New Castle PA|PA|16143
+clinton-county-pa|North Bend PA|PA|17745
+pittsburgh-pa|North Versailles PA|PA|15208,15215
+oil-city-pa|Oil City PA|PA|16346
+perryopolis-pa|Perryopolis PA|PA|15473
+philadelphia-pa|Philadelphia PA|PA|19007
+pottstown-pa|Pottstown PA|PA|19464
+red-hill-pa|Red Hill PA|PA|18951
+beaver-county-pa|Sewickley PA|PA|15042,15143
+tamaqua-pa|Tamaqua PA|PA|18071,18252
+tarentum-pa|Tarentum PA|PA|15068
+warren-pa|Warren PA|PA|16365
+washington-pa|Washington PA|PA|15301
+williamsport-pa|Williamsport PA|PA|17701
+wyoming-pa|Wyoming PA|PA|18644
+york-pa|York PA|PA|17404
+pr|Ceiba PR|PR|00934
+providence-ri|Providence RI|RI|02905
+abbeville-sc|Abbeville SC|SC|29620
+aiken-sc|Aiken SC|SC|29801
+allendale-sc|Allendale SC|SC|29827
+bamberg-sc|Bamberg SC|SC|29003
+barnwell-sc|Barnwell SC|SC|29853
+belton-sc|Belton SC|SC|29627
+bennettsville-sc|Bennettsville SC|SC|29512
+charleston-sc|Charleston SC|SC|29406
+chester-sc|Chester SC|SC|29706
+cottageville-sc|Cottageville SC|SC|29435
+darlington-sc|Darlington SC|SC|29501
+columbia-sc|Eastover SC|SC|29044
+edgefield-sc|Edgefield SC|SC|29860
+florence-sc|Florence SC|SC|29501
+gaffney-sc|Gaffney SC|SC|29372
+georgetown-sc|Georgetown SC|SC|29585
+greenville-sc|Greenville SC|SC|29605
+lancaster-sc|Lancaster SC|SC|29715
+horry-sc|Murrells Inlet SC|SC|29577
+orangeburg-sc|Orangeburg SC|SC|29115
+pickens-sc|Pickens SC|SC|29630
+rock-hill-sc|Rock Hill SC|SC|29708,29745
+salem-sc|Salem SC|SC|29672
+sumter-sc|Sumter SC|SC|29154
+union-sc|Union SC|SC|29379
+williamsburg-county-sc|Williamsburg County SC|SC|29102
+aberdeen-sd|Aberdeen SD|SD|57401
+watertown-sd|Watertown SD|SD|57201
+big-sandy-tn|Big Sandy TN|TN|38221,38320
+midsouth|Bolivar TN|TN|38654
+chattanooga-tn|Chattanooga TN|TN|37406
+clarksville-tn|Clarksville TN|TN|37043
+crossville-tn|Crossville TN|TN|38558
+dover-tn|Dover TN|TN|38464
+jackson-tn|Jackson TN|TN|38305
+johnson-city-tn|Johnson City TN|TN|37615
+knoxville-tn|Knoxville TN|TN|37920
+nashville-tn|Nashville TN|TN|37167
+pigeon-forge-tn|Pigeon Forge TN|TN|37820
+pulaski-tn|Pulaski TN|TN|38460
+abilene-tx|Abilene TX|TX|79607
+amarillo-tx|Amarillo TX|TX|79101
+arlington-tx|Arlington TX|TX|76018
+aubrey-tx|Aubrey TX|TX|76201
+austin-tx|Austin TX|TX|78719
+bay-city-tx|Bay City TX|TX|77414
+baytown-tx|Baytown TX|TX|77521
+beeville-tx|Beeville TX|TX|78102,78389
+ben-wheeler-tx|Ben Wheeler TX|TX|75754
+big-spring-tx|Big Spring TX|TX|79720
+breckenridge-tx|Breckenridge TX|TX|76424
+broaddus-tx|Broaddus TX|TX|75929
+college-station-tx|College Station TX|TX|77840
+conroe-tx|Conroe TX|TX|77302
+corpus-christi-tx|Corpus Christi TX|TX|78419
+crockett-tx|Crockett TX|TX|75835
+denison-tx|Denison TX|TX|75414,75491
+el-campo-tx|El Campo TX|TX|77437
+el-paso-tx|El Paso TX|TX|79930
+ennis-tx|Ennis TX|TX|75119
+fort-worth-tx|Fort Worth TX|TX|76127
+galveston-tx|Galveston TX|TX|77550
+graham-tx|Graham TX|TX|76458
+granbury-tx|Granbury TX|TX|76049
+groveton-tx|Groveton TX|TX|75845
+harlingen-tx|Harlingen TX|TX|78552
+gillespie-county-tx|Harper TX|TX|78631
+henderson-tx|Henderson TX|TX|75654
+houston-tx|Houston TX|TX|77034
+jacksboro-tx|Jacksboro TX|TX|76458
+jacksonville-tx|Jacksonville TX|TX|75766
+jefferson-tx|Jefferson TX|TX|75657
+kingsville-tx|Kingsville TX|TX|78363
+newton-tyler-counties-tx|Kirbyville TX|TX|75956
+lamesa-tx|Lamesa TX|TX|79331
+laredo-tx|Laredo TX|TX|78041
+liberty-tx|Liberty TX|TX|77535
+woodcounty-tx|Lindale TX|TX|75783
+longview-tx|Longview TX|TX|75604,75657
+lubbock-tx|Lubbock TX|TX|79403
+lufkin-tx|Lufkin TX|TX|75904
+mansfield-tx|Mansfield TX|TX|75154
+collinco-tx|McKinney TX|TX|75006
+mexia-tx|Mexia TX|TX|76667
+mission-tx|Mission TX|TX|78572
+nacogdoches-tx|Nacogdoches TX|TX|75961
+odessa-tx|Odessa TX|TX|79705
+orange-tx|Orange TX|TX|77632
+palestine-tx|Palestine TX|TX|75803
+perryton-tx|Perryton TX|TX|79070
+point-tx|Point TX|TX|75472
+powderly-tx|Powderly TX|TX|75462
+rainbow-tx|Rainbow TX|TX|76043
+rockwallt4t|Rockwall TX|TX|75032
+san-angelo-tx|San Angelo TX|TX|76905
+san-antonio-tx|San Antonio TX|TX|78219
+san-diego-tx|San Diego TX|TX|78384
+silsbee-tx|Silsbee TX|TX|77656
+stafford-tx|Stafford TX|TX|77479
+stinnett-tx|Stinnett TX|TX|79083
+texarkana-tx|Texarkana TX|TX|75501
+noharrise45|Tomball TX|TX|77377
+tyler-tx|Tyler TX|TX|75763
+victoria-tx|Victoria TX|TX|77901,77905
+waco-tx|Waco TX|TX|76707
+houston-northwest-tx|Waller TX|TX|77484
+waller-tx|Waller TX|TX|77484
+brazoria-county-tx|West Columbia TX|TX|77511
+wichita-falls-tx|Wichita Falls TX|TX|76308
+huntcountytx|Wolfe City TX|TX|75496
+cedar-city-ut|Cedar City UT|UT|84721
+logan-ut|Logan UT|UT|84333
+manti-ut|Manti UT|UT|84642
+ogden-ut|Ogden UT|UT|84041
+ogden-ut-native-american-program|Ogden UT Native American Program|UT|84333
+panguitch-ut|Panguitch UT|UT|84726
+richfield-ut|Richfield UT|UT|84652
+riverton-ut|Riverton UT|UT|84065
+salt-lake-city-ut|Salt Lake City UT|UT|84043,84045
+st-george-ut|St George UT|UT|84770
+stockton-ut|Stockton UT|UT|84074
+wayne-county-ut|Wayne County UT|UT|84701
+aylett-va|Aylett VA|VA|23086
+bracey-va|Bracey VA|VA|23920
+charlottesville-va|Charlottesville VA|VA|22936,22963
+christiansburg-va|Christiansburg VA|VA|24141,24315
+clear-brook-va|Clear Brook VA|VA|22630
+fauquier-va|Fauquier VA|VA|20106
+gloucester-va|Gloucester VA|VA|23061
+honaker-va|Honaker VA|VA|24260
+lancaster-va|Lancaster VA|VA|22503,23061
+loudoun-va|Loudoun VA|VA|20176
+lynchburg-va|Lynchburg VA|VA|24502
+marine-tft-nap|Marine Toys for Tots Native American Program|VA|22172
+martinsville-va|Martinsville VA|VA|24078
+stuart-va|Patrick Springs VA|VA|24133
+pennington-gap-va|Pennington Gap VA|VA|24277
+quantico-va|Quantico VA|VA|22134
+richmond-va|Richmond VA|VA|23234
+roanoke-va|Roanoke VA|VA|24019
+smithfield-va|Smithfield VA|VA|23314
+suffolk-va|Suffolk VA|VA|23434
+virginia-beach-va|Virginia Beach VA|VA|23456,23505
+wythe-va|Wythe VA|VA|24368
+bennington-county-vt|Bennington County VT|VT|05257
+chittenden-county-vt|Chittenden County VT|VT|05446
+lyndonville-vt|Lyndonville VT|VT|05824
+montpelier-vt|Montpelier VT|VT|05641
+townshend-vt|Townshed VT|VT|
+belfair-wa|Belfair WA|WA|98311
+bellingham-wa|Bellingham WA|WA|98248
+chehalis-wa|Chehalis WA|WA|98589
+everett-wa|Everett WA|WA|98115,98201
+fort-lewis-wa|Fort Lewis WA|WA|98433
+grays-harbor-wa|Grays Harbor County WA|WA|98516
+southwhidbey|Langley WA|WA|98253
+olympia-wa|Olympia WA|WA|98512
+pasco-wa|Pasco WA|WA|99301
+pierce-county-wa|Pierce County WA|WA|98407
+port-angeles-wa|Port Angeles WA|WA|98362
+port-townsend-wa|Port Townsend WA|WA|98368
+shelton-wa|Shelton WA|WA|98584
+spokane-wa|Spokane WA|WA|99205
+walla-walla-wa|Walla Walla WA|WA|99348,99362
+whidbey-island-wa|Whidbey Island WA|WA|98277
+yakima-wa|Yakima WA|WA|98901
+appleton-wi|Appleton WI|WI|54911,54952
+beloit-wi|Beloit WI|WI|53511
+danbury-wi|Danbury WI|WI|54830
+eau-claire-wi|Eau Claire WI|WI|54701
+fond-du-lac-wi|Fond du Lac WI|WI|54935
+friendship-wi|Friendship WI|WI|53934
+green-bay-wi|Green Bay WI|WI|54304
+iola-wi|Iola WI|WI|54473
+janesville-wi|Janesville WI|WI|53546
+madison-wi|Madison WI|WI|53704
+marshfield-wi|Marshfield WI|WI|54449
+milwaukee-wi|Milwaukee WI|WI|53207
+new-richmond-wi|New Richmond WI|WI|54017
+oshkosh-wi|Oshkosh WI|WI|54904
+rice-lake-wi|Rice Lake WI|WI|54757
+shawano-wi|Shawano WI|WI|54166
+shawano-wi-native-american-program|Shawano WI Native American Program|WI|54166
+stevens-point-wi|Stevens Point WI|WI|54481
+sturtevant-wi|Sturtevant WI|WI|53170
+wausau-wi|Wausau WI|WI|54401,54474
+wisconsin-rapids-wi|Wisconsin Rapids WI|WI|54494
+beckleywv|Beckley WV|WV|25801
+charleston-wv|Charleston WV|WV|25313
+elkins-wv|Elkins WV|WV|26241
+evans-wv|Evans WV|WV|25241
+greenbrier-wv|Greenbrier WV|WV|25801
+harpers-ferry-wv|Harpers Ferry WV|WV|25425
+martinsburg-wv|Martinsburg WV|WV|25404,25419
+morgantown-wv|Morgantown WV|WV|26505,26525
+moundsville-wv|Moundsville WV|WV|26041
+parkersburg-wv|Parkersburg WV|WV|26101
+princeton-wv|Princeton WV|WV|24739
+romney-wv|Romney WV|WV|26757
+wheeling-wv|Wheeling WV|WV|43971
+casper-wy|Casper WY|WY|82601
+cheyenne-wy|Cheyenne WY|WY|82009
+laramie-wy|Laramie WY|WY|82009
+powell-wy|Powell WY|WY|82414
+rawlins-wy|Rawlins WY|WY|82301
+sheridan-wy|Sheridan WY|WY|82801
