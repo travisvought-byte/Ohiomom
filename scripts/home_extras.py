@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""The picture and Deborah's jokes on the two front pages.
+"""The picture and the daily affirmation on the two front pages.
 
 Both front pages carry the same card, drawn here so the two cannot drift apart:
 
 - **The picture.** It is the family whose site this is (the owner's call, November 17, 2026). Deborah is on her
-  mat, tall and blond, in pink leggings, trying to get through a joke. Her children are around, each doing his
-  or her own thing; nobody is there to answer the joke. Who they are is shown by what they do and never said.
+  mat, tall and blond, in pink leggings, saying a kind word to the mom who has just arrived. Her children are
+  around, each doing his or her own thing. Who they are is shown by what they do and never said.
   She works on different poses (POSES) in different sweaters (SWEATERS), and different children are around
   (KIDS, CASTS). The site does not name the children, and nothing else about them is written here: no ages,
   schools or places, and nothing about their health. It is inline SVG, moved by CSS. The rules are in
@@ -14,31 +14,33 @@ Both front pages carry the same card, drawn here so the two cannot drift apart:
   the copies. The picture is decoration, so it is hidden from screen readers, and it holds still for visitors
   whose device asks for reduced motion. The OhioMom picture is the same room with a cardinal at the window and
   Ohio on the wall.
-- **The jokes.** One shows in the picture: Deborah's speech bubble, at the top of the page, so it is the first
-  thing a visitor meets (the owner's call, November 17, 2026: it should disarm people as they arrive).
-  data/jokes.json holds them. Only jokes marked `approved` are ever written into a page.
-- **Each joke with its picture is one little story, and they take turns** (the owner's call, November 17, 2026;
-  the card first showed one joke a day). The page carries all the approved jokes. Its script shuffles them,
-  shows one, and turns to another about once a minute; a visitor can flip back and on, and stop and start the
-  turning. Nothing is sent or stored. The bubble and the line under it are HTML, not part of the drawing, so the
-  words wrap, can be read aloud by a screen reader, and can be selected. The bubble keeps room for the longest
-  joke, so nothing below it moves when the joke changes. jokes.html lists them all.
+- **The affirmation.** One shows in the picture: Deborah's speech bubble, at the top of the page, so it is the
+  first thing a visitor meets. It replaced Deborah's jokes on November 20, 2026, at the owner's request: something
+  warm for a mom going through a hard time. data/affirmations.json holds them. Only affirmations marked `approved`
+  are ever written into a page. Under it, one line points to the site's own page of people to talk to.
+- **One a day, by the date.** The page carries all the approved affirmations, in the order on file. Its script
+  counts the days on the visitor's own calendar and shows that day's one, so everyone sees the same one on the
+  same day and tomorrow brings the next. A visitor can flip back and on to read others; nothing turns by itself.
+  Nothing is sent or stored. The bubble and the line under it are HTML, not part of the drawing, so the words
+  wrap, can be read aloud by a screen reader, and can be selected. The bubble keeps room for the longest
+  affirmation, so nothing below it moves when the affirmation changes. affirmations.html lists them all.
 - **The caption.** Along the floor of the drawing, between the buttons that flip, one line says what Deborah is
   working on.
 
-How a joke gets its picture: every pose's arms and legs, every sweater pattern and all four children are in the
-drawing, and all but one set are switched off. The same script that shows a joke switches on that joke's set,
-by setting attributes on the drawing. What it needs (the poses, the sweaters, and each joke's choice) is in
-the page beside the jokes, not in the stylesheet, so a stylesheet a browser kept from last month cannot dress
-her wrong. With scripts off the page shows the first pose, the first sweater and one child, and no joke.
+How an affirmation gets its picture: every pose's arms and legs, every sweater pattern and all four children are
+in the drawing, and all but one set are switched off. The same script that shows an affirmation switches on that
+affirmation's set, by setting attributes on the drawing. What it needs (the poses, the sweaters, and each
+affirmation's choice) is in the page beside the affirmations, not in the stylesheet, so a stylesheet a browser kept
+from last month cannot dress her wrong. With scripts off the page shows the first pose, the first sweater and one
+child, and no affirmation.
 
-The national front page (index.html) and jokes.html are built by scripts/ymt_build.py, which calls the
+The national front page (index.html) and affirmations.html are built by scripts/ymt_build.py, which calls the
 functions here. The OhioMom front page (ohio/index.html) is static source, so this script writes the same
 blocks into it between marker comments, the way scripts/prerender_ohio.py does for the events.
 
     python3 scripts/home_extras.py              write the blocks into ohio/index.html and the rules into both stylesheets
-    python3 scripts/home_extras.py --check      check data/jokes.json, and fail if a page or stylesheet is out of step
-    python3 scripts/home_extras.py --approve    mark the waiting jokes approved (scripts/joke_preview.py shows them first)
+    python3 scripts/home_extras.py --check      check data/affirmations.json, and fail if a page or stylesheet is out of step
+    python3 scripts/home_extras.py --approve    mark the waiting affirmations approved (scripts/affirmation_preview.py shows them first)
 """
 import json
 import math
@@ -48,13 +50,17 @@ from html import escape as esc
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-JOKES = ROOT / 'data' / 'jokes.json'
+AFFIRMATIONS = ROOT / 'data' / 'affirmations.json'
 OHIO_HOME = ROOT / 'ohio' / 'index.html'
 STYLE = ROOT / 'templates' / 'home-extras.css'
 SHEETS = ('assets/ymt.css', 'ohio/assets/site.css')
-JOKE_MAX = 220  # characters: a joke is a line or two, never a story
-JOKE_HEADING = 'Deborah’s jokes'  # the heading of the speech bubble: the jokes are hers
-TURN_SECONDS = 56  # the card turns to another joke this often: four times round the picture's 14-second loop
+AFFIRMATION_MAX = 220  # characters: an affirmation is a line or two, never a story
+HEADING = 'A kind word for today'  # the heading of the speech bubble
+LIST_LINK = 'More kind words'  # the link from the bubble to affirmations.html
+# The one line under the affirmation, for a mom whose day is more than hard: it points to the site's own page of
+# people to talk to (help.html#take-care on Yoga Mom Talk, wellbeing.html on OhioMom), which carries the numbers.
+HELP_WORDS = ('Having a really hard time?', 'Find someone to talk to')
+OHIO_LIST, OHIO_HELP = '../affirmations.html', 'wellbeing.html'  # the same two links, from ohio/index.html
 
 INK, SKIN, BLUSH = '#2b2140', '#f3c7a6', '#ee8fa0'
 BRAND, TEAL, SUN = '#cf2f5b', '#12766f', '#ffcb52'
@@ -70,23 +76,22 @@ OHIO = ('M.1 2.4L8.8 2.1L10.8 3L12 3.9L13.5 4.4L15.9 4.6L18.5 4L20.1 4L22.7 2.2L
 
 # ---------------------------------------------------------------- who is in the picture
 # The picture is the family whose site this is (the owner's call, November 17, 2026): Deborah on her mat and
-# her four children. The children are simply around, each doing his or her own thing while she tries to get
-# through her joke: nobody is there to answer it. Who they are is shown by what they do, never said (the owner's
-# call the same day). Each child stands in the same place every time, so nothing ever overlaps.
-# The site does not name them: the names below only say who is in a joke's picture. Nothing else about the
+# her four children. The children are simply around, each doing his or her own thing while she says her kind
+# word for the day. Who they are is shown by what they do, never said (the owner's call, November 17, 2026). Each child stands in the same place every time, so nothing ever overlaps.
+# The site does not name them: the names below only say who is in an affirmation's picture. Nothing else about the
 # children is written anywhere in this repository: no ages, schools or places, and nothing about their health.
 KIDS = ('delilah', 'ephraim', 'genevieve', 'atlas')
 KID_NAMES = {'delilah': 'Delilah', 'ephraim': 'Ephraim', 'genevieve': 'Genevieve', 'atlas': 'Atlas'}
 KID_X = {'genevieve': 106, 'ephraim': 150, 'delilah': 380, 'atlas': 452}  # where each one stands
-# Who is around when a joke does not say: these take turns down the list, never the same children twice running.
+# Who is around when an affirmation does not say: these take turns down the list, never the same children twice running.
 CASTS = (('delilah',), ('ephraim', 'atlas'), ('genevieve',), ('atlas', 'delilah'), ('ephraim',), ('genevieve', 'delilah'),
          ('atlas',), ('ephraim', 'genevieve'), ('delilah', 'ephraim', 'genevieve', 'atlas'), ('genevieve', 'atlas'),
          ('ephraim', 'delilah'))
 
 # What each child can be doing. The first is what is drawn before the script runs. A story can say what a child
-# is doing (`do` in data/jokes.json); otherwise each child's activities take turns down the list.
+# is doing (`do` in data/affirmations.json); otherwise each child's activities take turns down the list.
 ACTS = {
-    'delilah': ('again', 'copy', 'juice'),      # wants the joke again; copies her mother's pose; a juice box
+    'delilah': ('hug', 'copy', 'juice'),        # wants a hug; copies her mother's pose; a juice box
     'ephraim': ('book', 'cube', 'music'),       # nose in a book; a puzzle cube; headphones on, hands in his pocket
     'genevieve': ('arms', 'cat', 'sketch'),     # arms crossed; a little black stuffed cat; a sketchbook
     'atlas': ('plant', 'box', 'blanket'),       # behind the plant; in a cardboard box; under a blanket
@@ -104,7 +109,7 @@ WHENS = {
 }
 
 # ---------------------------------------------------------------- her sweaters
-# Deborah has a sweater for every joke. name: (wool, pattern color, collar and hem, pattern).
+# Deborah has a sweater for every affirmation. name: (wool, pattern color, collar and hem, pattern).
 SWEATERS = {
     'heart': ('#ffd9e4', '#cf2f5b', '#f7b3c8', 'heart'),
     'candy': ('#f47aa5', '#ffffff', '#d95486', 'stripes'),
@@ -125,7 +130,7 @@ SWEATERS = {
 }
 SEASON_SWEATERS = {'thanksgiving': ('pumpkin', 'cranberry'), 'winter': ('evergreen', 'snowy'), 'night': ('midnight',)}
 EVERYDAY_SWEATERS = [name for name in SWEATERS if not any(name in v for v in SEASON_SWEATERS.values())]
-FIRST_SWEATER = 'heart'  # the one drawn in the page, before the script has picked a joke
+FIRST_SWEATER = 'heart'  # the one drawn in the page, before the script has picked an affirmation
 
 # ---------------------------------------------------------------- her poses
 # Deborah is always working on a pose. She is drawn once from the hips up (her "top half"), and each
@@ -176,7 +181,7 @@ POSES = {
                    feet=(((211, 89.5), (209, 82.5)), ((263.5, 167.5), (273.5, 167.5))),
                    arms=(((231, 80), (213, 84)), ((286, 97), (275, 109))), front='b'),
 }
-FIRST_POSE = 'tree'  # the one drawn in the page, before the script has picked a joke
+FIRST_POSE = 'tree'  # the one drawn in the page, before the script has picked an affirmation
 
 
 def num(v):
@@ -206,7 +211,7 @@ def top_move(pose):
 
 
 def bubble_tail(pose):
-    """How far across the picture her head is, so the tail of the joke bubble can point at her."""
+    """How far across the picture her head is, so the tail of the affirmation bubble can point at her."""
     return f'{round(placed(HEAD, POSES[pose]["top"])[0] / 5.2)}%'
 
 
@@ -288,14 +293,14 @@ def cheeks(y, gap, r=2.4):
 
 
 def delilah(cast):
-    """Delilah, the smallest: a tutu, red boots, a bow. She wants the joke again until her mother opens one eye;
-    or she copies the pose, arms up; or she has a juice box."""
+    """Delilah, the smallest: a tutu, red boots, a bow. She holds her arms out for a hug until her mother opens one
+    eye; or she copies the pose, arms up; or she has a juice box."""
     boots, top = '#e0453a', '#8a63d2'
     arm = f'fill="none" stroke="{SKIN}" stroke-width="5.4" stroke-linecap="round" stroke-linejoin="round"'
     legs = (f'<path d="M-7 163v10M7 163v10" stroke="{boots}" stroke-width="8.5" stroke-linecap="round"/>'
             f'<ellipse cx="-8.5" cy="176.2" rx="6.3" ry="3.2" fill="{boots}"/><ellipse cx="8.5" cy="176.2" rx="6.3" ry="3.2" fill="{boots}"/>'
             '<ellipse cx="0" cy="160" rx="19.5" ry="6.5" fill="#f9c5d5"/><ellipse cx="0" cy="157.5" rx="16.5" ry="5" fill="#f497b6"/>')
-    arms = (act('delilah', 'again', f'<path d="M-12 142L-23.5 149.5L-13.5 156M12 142L23.5 149.5L13.5 156" {arm}/>')
+    arms = (act('delilah', 'hug', f'<path d="M-12 142L-23 134L-31 129M12 142L23 134L31 129" {arm}/>')
             + act('delilah', 'copy', f'<path d="M-12 141L-17 122L-3 104M12 141L17 122L3 104" {arm}/>')
             + act('delilah', 'juice', f'<path d="M-12 142L-23.5 149.5L-13.5 156M12 142L21 136L15 128" {arm}/>'))
     torso = (f'<rect x="-13.5" y="135" width="27" height="24" rx="10.5" fill="{top}"/>'
@@ -312,8 +317,8 @@ def delilah(cast):
               '<rect x="12.5" y="122" width="6" height="5" rx="1" fill="#fff"/>'
               '<path d="M18 119l2.5-6" stroke="#f497b6" stroke-width="1.6" stroke-linecap="round"/>')
     body = f'<g class="sc-kid">{legs}{arms}{torso}{head}{box}</g>'
-    said = act('delilah', 'again', says(1, -12, 64, 74, 30, 3, 'Ha ha!') + says(2, -12, 60, 86, 34, 3, 'Again!', 19)
-               + says(3, -12, 58, 104, 38, 3, 'AGAIN!', 22, BRAND) + says(4, -12, 62, 92, 32, 3, 'Please?', 18)
+    said = act('delilah', 'hug', says(1, -12, 64, 74, 30, 3, 'Mama!') + says(2, -12, 60, 74, 34, 3, 'Hug?', 19)
+               + says(3, -12, 58, 128, 38, 3, 'LOVE YOU!', 19, BRAND) + says(4, -12, 62, 100, 32, 3, 'Big hug!', 18)
                + heart(-46, 128, 1.5, BRAND, 'sc-heart'))
     return kid('delilah', body + said, cast)
 
@@ -481,7 +486,7 @@ def deborah():
 
 def scene_svg(ohio=False, cast=('delilah',)):
     """The front-page picture. `ohio` adds the cardinal at the window and Ohio on the wall. `cast` is who is
-    drawn showing before the script has picked a joke."""
+    drawn showing before the script has picked an affirmation."""
     p = ['<svg class="scene" viewBox="0 10 520 216" aria-hidden="true" focusable="false">'
          '<defs><linearGradient id="sc-wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6f5f0"/>'
          '<stop offset="1" stop-color="#d2ebe5"/></linearGradient>'
@@ -578,7 +583,7 @@ def scene_svg(ohio=False, cast=('delilah',)):
     return ''.join(p)
 
 
-# ---------------------------------------------------------------- the card: joke, picture, and the way to flip
+# ---------------------------------------------------------------- the card: affirmation, picture, and the way to flip
 def icon(*paths):
     """A small picture for a button. It carries its own size, so it shows right whatever the stylesheet."""
     return '<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" focusable="false">' + ''.join(paths) + '</svg>'
@@ -587,20 +592,19 @@ def icon(*paths):
 STROKE = 'fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"'
 ICON_BACK = icon(f'<path d="M9 2L4 7l5 5" {STROKE}/>')
 ICON_NEXT = icon(f'<path d="M5 2l5 5-5 5" {STROKE}/>')
-# Two pictures in one button: the bars show while the jokes are turning, the triangle when they have stopped.
-ICON_PAUSE = icon('<path data-icon="pause" d="M3 2.5h3v9H3zM8 2.5h3v9H8z" fill="currentColor"/>',
-                  '<path data-icon="play" display="none" d="M4 2.2v9.6L11.5 7z" fill="currentColor"/>')
 
 
-def joke_bubble(jokes, list_href):
-    """The joke as Deborah's speech bubble, for the top of the picture card: the heading, a button that stops
-    and starts the turning, a link to all the jokes, and the joke. It is hidden until the script has put a joke
-    in it, so there is never an empty bubble. Nothing at all with no approved jokes."""
-    if not jokes:
+def affirmation_bubble(affirmations, list_href, help_href):
+    """The affirmation as Deborah's speech bubble, for the top of the picture card: the heading, a link to all the
+    affirmations, the affirmation, and one line pointing to the site's own page of people to talk to. It is hidden
+    until the script has put an affirmation in it, so there is never an empty bubble. Nothing at all with no
+    approved affirmations."""
+    if not affirmations:
         return ''
-    return (f'<div class="saying" id="joke" hidden><div class="sayinghead"><h2>{JOKE_HEADING}</h2>'
-            f'<button type="button" class="pp" id="joke-pause" aria-label="Pause the jokes">{ICON_PAUSE}</button>'
-            f'<a href="{esc(list_href)}">All jokes</a></div><p class="joketext" id="joke-text"></p></div>')
+    ask, go = HELP_WORDS
+    return (f'<div class="saying" id="affirm" hidden><div class="sayinghead"><h2>{HEADING}</h2>'
+            f'<a href="{esc(list_href)}">{LIST_LINK}</a></div><p class="affirmtext" id="affirm-text"></p>'
+            f'<p class="sayhelp">{ask} <a href="{esc(help_href)}">{go}</a></p></div>')
 
 
 # The bar lies along the floor of the drawing. Where it lies is written on the bar itself, not in the stylesheet,
@@ -608,51 +612,51 @@ def joke_bubble(jokes, list_href):
 BAR_STYLE = 'position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center'
 
 
-def flip_bar(jokes):
+def flip_bar(affirmations):
     """Along the floor of the drawing: Back, what Deborah is working on, Next. The script fills in the words and
-    shows the bar, so with scripts off, or with no approved jokes, the picture stands alone."""
-    if not jokes:
+    shows the bar, so with scripts off, or with no approved affirmations, the picture stands alone."""
+    if not affirmations:
         return ''
     return (f'<div class="flipbar" id="scene-foot" style="{BAR_STYLE}" hidden>'
-            f'<button type="button" id="joke-prev" aria-label="Previous joke">{ICON_BACK}</button>'
+            f'<button type="button" id="affirm-prev" aria-label="Previous affirmation">{ICON_BACK}</button>'
             '<p class="scenecap" id="scene-cap"></p>'
-            f'<button type="button" id="joke-next" aria-label="Next joke">{ICON_NEXT}</button></div>')
+            f'<button type="button" id="affirm-next" aria-label="Next affirmation">{ICON_NEXT}</button></div>')
 
 
-def scene_block(ohio=False, jokes=None, list_href='jokes.html'):
-    """The picture card for a front page: the joke in a speech bubble, the drawing under it, and along the
-    floor of the drawing the buttons that flip to another joke, with what Deborah is working on between them."""
-    jokes = jokes or []
-    return (f'<div class="scenebox" id="scene" style="position:relative">{joke_bubble(jokes, list_href)}'
-            f'{scene_svg(ohio)}{flip_bar(jokes)}</div>')
+def scene_block(ohio=False, affirmations=None, list_href='affirmations.html', help_href='help.html#take-care'):
+    """The picture card for a front page: the affirmation in a speech bubble, the drawing under it, and along the
+    floor of the drawing the buttons that flip to another affirmation, with what Deborah is working on between them."""
+    affirmations = affirmations or []
+    return (f'<div class="scenebox" id="scene" style="position:relative">{affirmation_bubble(affirmations, list_href, help_href)}'
+            f'{scene_svg(ohio)}{flip_bar(affirmations)}</div>')
 
 
-# ---------------------------------------------------------------- the jokes
-def read_jokes():
-    return json.loads(JOKES.read_text(encoding='utf-8'))
+# ---------------------------------------------------------------- the affirmations
+def read_affirmations():
+    return json.loads(AFFIRMATIONS.read_text(encoding='utf-8'))
 
 
-def approved_jokes(data=None):
-    """The jokes the owner has approved, in the order they are on file. An unapproved joke is never written into a page."""
-    data = read_jokes() if data is None else data
-    return [j['text'] for j in data['jokes'] if j.get('approved') is True]
+def approved_affirmations(data=None):
+    """The affirmations the owner has approved, in the order they are on file. An unapproved affirmation is never written into a page."""
+    data = read_affirmations() if data is None else data
+    return [j['text'] for j in data['affirmations'] if j.get('approved') is True]
 
 
-def check_jokes(data):
-    """Problems with data/jokes.json, as a list of sentences."""
+def check_affirmations(data):
+    """Problems with data/affirmations.json, as a list of sentences."""
     errors = []
-    for i, j in enumerate(data.get('jokes', []), 1):
-        where = f'joke {i}'
+    for i, j in enumerate(data.get('affirmations', []), 1):
+        where = f'affirmation {i}'
         text = j.get('text')
         if not isinstance(text, str) or not text.strip() or text != text.strip():
-            errors.append(f'{where}: the joke is empty or has stray spaces')
-        elif len(text) > JOKE_MAX:
-            errors.append(f'{where}: {len(text)} characters; keep a joke under {JOKE_MAX}')
+            errors.append(f'{where}: the affirmation is empty or has stray spaces')
+        elif len(text) > AFFIRMATION_MAX:
+            errors.append(f'{where}: {len(text)} characters; keep an affirmation under {AFFIRMATION_MAX}')
         elif '<' in text or '>' in text or '|' in text:
             errors.append(f'{where}: plain words only, no markup')
         if not isinstance(j.get('approved'), bool):
             errors.append(f'{where}: approved must be true or false')
-        # The picture that goes with it: who is around, her pose, her sweater. All optional: what a joke leaves out takes its turn.
+        # The picture that goes with it: who is around, her pose, her sweater. All optional: what an affirmation leaves out takes its turn.
         cast = j.get('cast')
         if cast is not None and (not isinstance(cast, list) or len(set(cast)) != len(cast) or any(k not in KIDS for k in cast)):
             errors.append(f'{where}: cast is a list of {", ".join(KIDS)}, each once (an empty list is Deborah alone)')
@@ -677,27 +681,27 @@ def check_jokes(data):
             errors.append(f'{where}: copying her mother needs a pose with arms up: pose is one of {", ".join(COPY_POSES)}')
         extra = set(j) - {'text', 'approved', 'cast', 'pose', 'sweater', 'do', 'when'}
         if extra:
-            errors.append(f'{where}: {", ".join(sorted(extra))} is not something a joke has')
-    texts = [j.get('text') for j in data.get('jokes', [])]
+            errors.append(f'{where}: {", ".join(sorted(extra))} is not something an affirmation has')
+    texts = [j.get('text') for j in data.get('affirmations', [])]
     if len(set(texts)) != len(texts):
-        errors.append('the same joke is listed twice')
+        errors.append('the same affirmation is listed twice')
     return errors
 
 
-# ---------------------------------------------------------------- the picture that goes with each joke
-def take_turns(jokes, key, names):
-    """Each joke's `key` (its pose or its sweater): its own if it names one, otherwise the next in turn.
-    A turn is skipped if the two jokes before or the two after already have it, so the list never has her in the
-    same pose, or the same sweater, twice in three unless the jokes themselves ask for it.
-    `names` can be a function of the joke, for lists that depend on the story (the seasonal sweaters)."""
+# ---------------------------------------------------------------- the picture that goes with each affirmation
+def take_turns(affirmations, key, names):
+    """Each affirmation's `key` (its pose or its sweater): its own if it names one, otherwise the next in turn.
+    A turn is skipped if the two affirmations before or the two after already have it, so the list never has her in the
+    same pose, or the same sweater, twice in three unless the affirmations themselves ask for it.
+    `names` can be a function of the affirmation, for lists that depend on the story (the seasonal sweaters)."""
     pick = names if callable(names) else (lambda j: names)
     out, turns = [], {}
-    for i, j in enumerate(jokes):
+    for i, j in enumerate(affirmations):
         mine = j.get(key)
         if not mine:
             options = list(pick(j))
             turn = turns.get(tuple(options), 0)
-            near = out[-2:] + [later.get(key) for later in jokes[i + 1:i + 3]]
+            near = out[-2:] + [later.get(key) for later in affirmations[i + 1:i + 3]]
             for _ in range(len(options)):
                 if options[turn % len(options)] not in near:
                     break
@@ -715,19 +719,19 @@ def caption(pose):
 
 
 def looks(data=None):
-    """One (pose, sweater, cast, caption) for every joke on file, in order: the picture that goes with it.
-    Joke and picture together are one little story. A joke can name its pose, its sweater and its cast (which
-    children are around). Whatever it leaves out takes its turn. A joke about "my youngest" names Delilah as its
-    cast, so she is the one in the room; the joke itself never says so."""
-    jokes = (read_jokes() if data is None else data)['jokes']
-    poses = take_turns(jokes, 'pose', lambda j: ['easy'] if j.get('when') == 'night' else list(POSES))
-    sweaters = take_turns(jokes, 'sweater', lambda j: SEASON_SWEATERS.get(j.get('when')) or EVERYDAY_SWEATERS)
+    """One (pose, sweater, cast, caption) for every affirmation on file, in order: the picture that goes with it.
+    Affirmation and picture together are one little story. An affirmation can name its pose, its sweater and its cast (which
+    children are around). Whatever it leaves out takes its turn. An affirmation about "my youngest" names Delilah as its
+    cast, so she is the one in the room; the affirmation itself never says so."""
+    affirmations = (read_affirmations() if data is None else data)['affirmations']
+    poses = take_turns(affirmations, 'pose', lambda j: ['easy'] if j.get('when') == 'night' else list(POSES))
+    sweaters = take_turns(affirmations, 'sweater', lambda j: SEASON_SWEATERS.get(j.get('when')) or EVERYDAY_SWEATERS)
     doing = {k: 0 for k in ACTS}
     out, turn, before = [], 0, None
-    for i, j in enumerate(jokes):
+    for i, j in enumerate(affirmations):
         cast = j.get('cast')
         if cast is None:
-            after = jokes[i + 1].get('cast') if i + 1 < len(jokes) else None
+            after = affirmations[i + 1].get('cast') if i + 1 < len(affirmations) else None
             near = (before, tuple(after) if after is not None else None)
             while CASTS[turn % len(CASTS)] in near:  # not the same children twice running
                 turn += 1
@@ -749,28 +753,28 @@ def looks(data=None):
 
 
 def approved_looks(data=None):
-    """The picture for each approved joke, in the same order as approved_jokes. Like the jokes, nothing about
+    """The picture for each approved affirmation, in the same order as approved_affirmations. Like the affirmations, nothing about
     an unapproved one reaches a page."""
-    data = read_jokes() if data is None else data
-    return [look for j, look in zip(data['jokes'], looks(data)) if j.get('approved') is True]
+    data = read_affirmations() if data is None else data
+    return [look for j, look in zip(data['affirmations'], looks(data)) if j.get('approved') is True]
 
 
-def scene_data(joke_looks):
-    """What the page's script needs to dress the picture for a joke: every pose (how her top half moves, the point
-    she wobbles about, where the joke bubble's tail points), every sweater, and each joke's pose, sweater, children
-    and caption, in the jokes' order. It is all in the page, so a stylesheet a browser kept from last month cannot
+def scene_data(saying_looks):
+    """What the page's script needs to dress the picture for an affirmation: every pose (how her top half moves, the point
+    she wobbles about, where the affirmation bubble's tail points), every sweater, and each affirmation's pose, sweater, children
+    and caption, in the affirmations' order. It is all in the page, so a stylesheet a browser kept from last month cannot
     put it out of step."""
     return {
         'p': {name: [top_move(name), f'{num(spec["foot"][0])}px {num(spec["foot"][1])}px', bubble_tail(name)] for name, spec in POSES.items()},
         'w': {name: list(sweater) for name, sweater in SWEATERS.items()},
-        'd': ['|'.join((pose, sweater, ' '.join(cast), words, ' '.join(acts), when)) for pose, sweater, cast, words, acts, when in joke_looks],
+        'd': ['|'.join((pose, sweater, ' '.join(cast), words, ' '.join(acts), when)) for pose, sweater, cast, words, acts, when in saying_looks],
         's': {name: list(spec) for name, spec in WHENS.items()},
     }
 
 
-# Dresses the picture for joke number `p`: the pose, the sweater, which children are around, and the caption.
-# It only sets attributes on the drawing, so it can run again for another joke.
-# It does nothing on a page with no picture, or for a joke the page has no picture for.
+# Dresses the picture for affirmation number `p`: the pose, the sweater, which children are around, and the caption.
+# It only sets attributes on the drawing, so it can run again for another affirmation.
+# It does nothing on a page with no picture, or for an affirmation the page has no picture for.
 DRESS = ('function(D,p){var S=D.getElementById("scene-data"),B=D.getElementById("scene");if(!S||!B||p==null)return;'
          'S=JSON.parse(S.textContent);var v=(S.d[p]||"").split("|"),P=S.p[v[0]],W=S.w[v[1]];if(!P||!W)return;'
          'var c=" "+v[2]+" ",A=" "+(v[4]||"")+" ",'
@@ -788,37 +792,33 @@ DRESS = ('function(D,p){var S=D.getElementById("scene-data"),B=D.getElementById(
          'B.style.setProperty("--tail",P[2]);'
          'var C=D.getElementById("scene-cap");if(C&&v[3])C.textContent=v[3]}')
 
-# The card's script. It shuffles the jokes and shows the first, so each visit starts on a different one; turns
-# to the next every TURN_SECONDS while the page is in view; and flips back or on when asked. Flipping by hand
-# stops the turning (the reader has taken over), the button in the bubble stops and starts it, and a device set
-# to reduce motion never starts it. A joke too long for the room the bubble keeps is set a little smaller, so
-# the page below never moves when the joke changes. Each joke brings its picture, and the two fade in together
-# (not on a device set to reduce motion). A seasonal story is in the turn only in its season, and a late-night
-# one only after bedtime, by the visitor's clock; when one is, the card opens on it. Nothing is sent or stored.
-JOKE_SCRIPT = ('<script>(function(){var D=document,d=D.getElementById("jokes-data"),b=D.getElementById("joke"),t=D.getElementById("joke-text");'
-               'if(!d||!b||!t)return;var J=JSON.parse(d.textContent),n=J.length,o=[],i,r,x,at=0,timer=0,dress=' + DRESS + ','
+# The card's script. It shows the day's affirmation: it counts the days on the visitor's own calendar and takes
+# that one from the list, in the order on file, so everyone sees the same one on the same day and tomorrow brings the
+# next. A seasonal one is in the turn only in its season, and a late-night one only after bedtime, by the visitor's
+# clock; when one is, the card opens on the day's one of those. Back and Next flip to the others; nothing turns by
+# itself. An affirmation too long for the room the bubble keeps is set a little smaller, so the page below never
+# moves when it changes. Each affirmation brings its picture, and the two fade in together when the reader flips
+# (not on a device set to reduce motion). Nothing is sent or stored.
+AFFIRMATION_SCRIPT = ('<script>(function(){var D=document,d=D.getElementById("affirmations-data"),b=D.getElementById("affirm"),t=D.getElementById("affirm-text");'
+               'if(!d||!b||!t)return;var J=JSON.parse(d.textContent),n=J.length,o=[],e=[],s=[],i,at=0,dress=' + DRESS + ','
                'still=!!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches),'
                'fade=function(e){if(e&&e.animate&&!still)e.animate([{opacity:.2},{opacity:1}],{duration:450,easing:"ease-out"})};if(!n)return;'
                'var Z=D.getElementById("scene-data"),S=Z?JSON.parse(Z.textContent):{},now=new Date(),'
                'md=(now.getMonth()+1)*100+now.getDate(),hr=now.getHours(),'
+               'day=Math.floor(Date.UTC(now.getFullYear(),now.getMonth(),now.getDate())/864e5),'
                'w=function(k){return((S.d||[])[k]||"").split("|")[5]||""},'
                'ok=function(k){var e=w(k),s=(S.s||{})[e],y;if(!e)return 1;if(!s)return 0;y=s[0]=="h"?hr:md;return s[1]<=s[2]?y>=s[1]&&y<=s[2]:y>=s[1]||y<=s[2]};'
-               'for(i=0;i<n;i++)if(ok(i))o.push(i);n=o.length;if(!n)return;'
-               'for(i=n-1;i>0;i--){r=Math.floor(Math.random()*(i+1));x=o[i];o[i]=o[r];o[r]=x}'
-               'for(i=0;i<n;i++)if(w(o[i])){x=o[i];o[i]=o[0];o[0]=x;break}'
+               'for(i=0;i<n;i++)if(ok(i)){o.push(i);(w(i)?s:e).push(i)}n=o.length;if(!n)return;'
+               'at=o.indexOf(s.length?s[day%s.length]:e[day%e.length]);'
                'function show(k,first){at=(k%n+n)%n;t.textContent=J[o[at]];b.hidden=false;t.style.fontSize="";'
                'var c=window.getComputedStyle?getComputedStyle(t):null,h=c?parseFloat(c.minHeight)||0:0,f=c?parseFloat(c.fontSize)||0:0,z=100;'
                'while(h&&f&&t.scrollHeight>h+1&&z>72){z-=4;t.style.fontSize=f*z/100+"px"}'
                'dress(D,o[at]);if(!first){fade(t);fade(D.querySelector("#scene svg"))}}'
-               'function run(on){if(timer){clearInterval(timer);timer=0}'
-               'if(on){t.removeAttribute("aria-live");timer=setInterval(function(){if(!D.hidden)show(at+1)},' + str(TURN_SECONDS * 1000) + ')}'
-               'var p=D.getElementById("joke-pause"),a,i;if(!p)return;p.setAttribute("aria-label",on?"Pause the jokes":"Play the jokes");'
-               'a=p.querySelectorAll("[data-icon]");for(i=0;i<a.length;i++)a[i].setAttribute("display",(a[i].getAttribute("data-icon")=="pause")==on?"inline":"none")}'
-               'function flip(s){run(false);t.setAttribute("aria-live","polite");show(at+s)}'
+               'function flip(s){t.setAttribute("aria-live","polite");show(at+s)}'
                'function on(id,g){var e=D.getElementById(id);if(e)e.onclick=g}'
-               'on("joke-prev",function(){flip(-1)});on("joke-next",function(){flip(1)});on("joke-pause",function(){run(!timer)});'
+               'on("affirm-prev",function(){flip(-1)});on("affirm-next",function(){flip(1)});'
                'var q=D.getElementById("scene-foot");if(q)q.hidden=false;'
-               'show(0,1);run(!still)})();</script>')
+               'show(at,1)})();</script>')
 
 
 def as_data(name, value):
@@ -826,29 +826,29 @@ def as_data(name, value):
     return f'<script type="application/json" id="{name}">' + json.dumps(value, ensure_ascii=False, sort_keys=True).replace('<', '\\u003c') + '</script>'
 
 
-def jokes_data(jokes):
-    """The approved jokes as a data block in the page."""
-    return as_data('jokes-data', list(jokes))
+def affirmations_data(affirmations):
+    """The approved affirmations as a data block in the page."""
+    return as_data('affirmations-data', list(affirmations))
 
 
-def joke_scripts(jokes, joke_looks):
-    """The data and the one script for a front page: the jokes, the picture that goes with each, and the script
+def affirmation_scripts(affirmations, saying_looks):
+    """The data and the one script for a front page: the affirmations, the picture that goes with each, and the script
     that shows one and turns to the next."""
-    if not jokes:
+    if not affirmations:
         return ''
-    if len(joke_looks) != len(jokes):
-        raise SystemExit('every joke needs its picture: the two lists are not the same length')
-    return jokes_data(jokes) + as_data('scene-data', scene_data(joke_looks)) + JOKE_SCRIPT
+    if len(saying_looks) != len(affirmations):
+        raise SystemExit('every affirmation needs its picture: the two lists are not the same length')
+    return affirmations_data(affirmations) + as_data('scene-data', scene_data(saying_looks)) + AFFIRMATION_SCRIPT
 
 
-def joke_list(jokes):
-    """Every approved joke, for jokes.html. Plain words in a list: the page needs no script."""
-    return '<ol class="jokelist">' + ''.join(f'<li>{esc(text)}</li>' for text in jokes) + '</ol>'
+def affirmation_list(affirmations):
+    """Every approved affirmation, for affirmations.html. Plain words in a list: the page needs no script."""
+    return '<ol class="affirmlist">' + ''.join(f'<li>{esc(text)}</li>' for text in affirmations) + '</ol>'
 
 
 # ---------------------------------------------------------------- the rules that move the picture
 CSS_OPEN = '/* home-extras:start'  # how the block begins, whatever the rest of its first line says
-CSS_START = CSS_OPEN + '. Front-page picture and jokes. Copied from templates/home-extras.css by scripts/home_extras.py; edit the template. */'
+CSS_START = CSS_OPEN + '. Front-page picture and affirmations. Copied from templates/home-extras.css by scripts/home_extras.py; edit the template. */'
 CSS_END = '/* home-extras:end */'
 
 
@@ -866,12 +866,12 @@ def render_sheet(text):
 MARK = re.compile(r'<!--home-extras:(?P<name>[a-z]+)-->(?P<body>.*?)<!--/home-extras-->', re.S)
 
 
-def ohio_blocks(jokes, joke_looks):
-    return {'scene': scene_block(True, jokes, '../jokes.html'), 'jokescript': joke_scripts(jokes, joke_looks)}
+def ohio_blocks(affirmations, saying_looks):
+    return {'scene': scene_block(True, affirmations, OHIO_LIST, OHIO_HELP), 'affirmscript': affirmation_scripts(affirmations, saying_looks)}
 
 
-def render_ohio(text, jokes, joke_looks):
-    blocks = ohio_blocks(jokes, joke_looks)
+def render_ohio(text, affirmations, saying_looks):
+    blocks = ohio_blocks(affirmations, saying_looks)
     found = [m.group('name') for m in MARK.finditer(text)]
     if sorted(found) != sorted(blocks):
         raise SystemExit(f'ohio/index.html: expected one marker each for {sorted(blocks)}, found {found}')
@@ -879,27 +879,27 @@ def render_ohio(text, jokes, joke_looks):
 
 
 def approve():
-    """Mark the waiting jokes approved."""
-    data = read_jokes()
-    new = [j for j in data['jokes'] if j.get('approved') is not True]
+    """Mark the waiting affirmations approved."""
+    data = read_affirmations()
+    new = [j for j in data['affirmations'] if j.get('approved') is not True]
     if not new:
-        raise SystemExit('Every joke on file is already approved.')
+        raise SystemExit('Every affirmation on file is already approved.')
     for j in new:
         j['approved'] = True
-    JOKES.write_text(json.dumps(data, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
-    print(f'Approved {len(new)} jokes; {len(data["jokes"])} are now in the turn. Now run scripts/ymt_build.py and scripts/home_extras.py.')
+    AFFIRMATIONS.write_text(json.dumps(data, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
+    print(f'Approved {len(new)} affirmations; {len(data["affirmations"])} are now in the turn. Now run scripts/ymt_build.py and scripts/home_extras.py.')
 
 
 def main():
     if '--approve' in sys.argv:
         approve()
         return
-    data = read_jokes()
-    errors = check_jokes(data)
+    data = read_affirmations()
+    errors = check_affirmations(data)
     if errors:
-        raise SystemExit('data/jokes.json:\n' + '\n'.join(errors))
-    jokes, joke_looks = approved_jokes(data), approved_looks(data)
-    targets = {OHIO_HOME: lambda text: render_ohio(text, jokes, joke_looks)}
+        raise SystemExit('data/affirmations.json:\n' + '\n'.join(errors))
+    affirmations, saying_looks = approved_affirmations(data), approved_looks(data)
+    targets = {OHIO_HOME: lambda text: render_ohio(text, affirmations, saying_looks)}
     targets.update({ROOT / rel: render_sheet for rel in SHEETS})
     stale = []
     for path, render in targets.items():
@@ -911,10 +911,10 @@ def main():
                 path.write_text(new, encoding='utf-8')
     if '--check' in sys.argv:
         if stale:
-            raise SystemExit('Out of step with the picture, its rules or the jokes (run python3 scripts/home_extras.py):\n' + '\n'.join(stale))
-        print(f'OK: {len(data["jokes"])} jokes, {len(jokes)} approved; the OhioMom front page and both stylesheets match')
+            raise SystemExit('Out of step with the picture, its rules or the affirmations (run python3 scripts/home_extras.py):\n' + '\n'.join(stale))
+        print(f'OK: {len(data["affirmations"])} affirmations, {len(affirmations)} approved; the OhioMom front page and both stylesheets match')
     else:
-        print(f'{len(jokes)} approved jokes. ' + ('Wrote ' + ', '.join(stale) if stale else 'Nothing to write'))
+        print(f'{len(affirmations)} approved affirmations. ' + ('Wrote ' + ', '.join(stale) if stale else 'Nothing to write'))
 
 
 if __name__ == '__main__':

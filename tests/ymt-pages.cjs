@@ -13,7 +13,7 @@ const all = (d, sel) => [...d.querySelectorAll(sel)];
   const { d } = load('index.html');
   assert.equal(all(d, '.card').length, 0, 'front page shows no listing cards');
   assert.equal(all(d, '.hero .tile').length, 8, 'seven needs and "See everything"');
-  assert.equal(all(d, 'main > section').length, 2, 'front page is the question and the help-now strip, nothing else (the picture and its joke are inside the question)');
+  assert.equal(all(d, 'main > section').length, 2, 'front page is the question and the help-now strip, nothing else (the picture and its affirmation are inside the question)');
   assert(all(d, 'main > section')[1].matches('#now'), 'the help-now strip comes straight after the question');
   assert(d.querySelector('.hero .tile[href="help.html#housing"]'), 'housing and shelter is a choice of its own');
   const phones = all(d, '.phonecard');
