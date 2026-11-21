@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          for h in yogamomtalk.com www.yogamomtalk.com ohiomom.org www.ohiomom.org ohiomom.com www.ohiomom.com yogamomtalk.org www.yogamomtalk.org; do
-            echo "== $h"; dig +short A $h; dig +short CNAME $h
+          set +e
+          for u in http://www.yogamomtalk.com/ https://www.yogamomtalk.com/ http://ohiomom.org/ http://www.ohiomom.org/ http://ohiomom.com/ http://www.ohiomom.com/ http://yogamomtalk.org/ http://www.yogamomtalk.org/ http://www.yogamomtalk.com/ohio/report.html http://www.yogamomtalk.com/ohio/; do
+            echo "== $u"
+            curl -sSL -o /tmp/b -w '%{http_code} final=%{url_effective} hops=%{num_redirects}\n' --max-time 30 "$u" 2>&1 | grep -v "curl.se\|legitimacy\|secure connection\|webpage mentioned"
+            grep -o "<title>[^<]*" /tmp/b | head -1
+            rm -f /tmp/b
           done
-          echo "== DNSSEC"; dig +dnssec A yogamomtalk.com @1.1.1.1 | grep -E "status|flags|RRSIG" | head; dig A yogamomtalk.com @8.8.8.8 | grep status
-          for u in http://www.yogamomtalk.com/ https://www.yogamomtalk.com/ http://yogamomtalk.com/ https://yogamomtalk.com/ http://ohiomom.org/ https://ohiomom.org/ http://ohiomom.com/ https://yogamomtalk.org/ https://www.yogamomtalk.com/ohio/report.html http://www.ohiomom.org/ http://www.yogamomtalk.org/ http://www.ohiomom.com/; do
-            echo "== $u"; curl -sSL -o /tmp/b -w '%{http_code} final=%{url_effective} ssl=%{ssl_verify_result}\n' --max-time 30 "$u" ; grep -o "<title>[^<]*" /tmp/b | head -1 || true
-          done
-          echo "== cert"; echo | openssl s_client -connect www.yogamomtalk.com:443 -servername www.yogamomtalk.com 2>/dev/null | openssl x509 -noout -subject -issuer -dates || true
-# run 2
+          echo "== cert"; echo | openssl s_client -connect www.yogamomtalk.com:443 -servername www.yogamomtalk.com 2>/dev/null | openssl x509 -noout -subject -dates
+# run 3
