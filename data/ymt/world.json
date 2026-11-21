@@ -1643,6 +1643,19 @@
    ]
   },
   {
+   "code": "CY",
+   "slug": "cyprus",
+   "name": "Cyprus",
+   "flag": "🇨🇾",
+   "lang": "el",
+   "emergency": {
+    "number": "112",
+    "label": "Emergency: police, ambulance or fire service",
+    "source": "https://help.unhcr.org/cyprus/?p=82"
+   },
+   "resources": []
+  },
+  {
    "code": "CZ",
    "slug": "czech-republic",
    "name": "Czech Republic",
@@ -2068,6 +2081,85 @@
      "chip": "Line for women facing violence",
      "sources": [
       "https://www.transparencia.gob.sv/institutions/instituto-salvadoreno-para-el-desarrollo-de-la-mujer/services/10500.pdf"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "EE",
+   "slug": "estonia",
+   "name": "Estonia",
+   "flag": "🇪🇪",
+   "lang": "et",
+   "emergency": {
+    "number": "112",
+    "label": "Emergency: ambulance, police or rescue",
+    "source": "https://www.112.ee/en/emergency-phone-number-112"
+   },
+   "resources": [
+    {
+     "id": "estonia-116006",
+     "section": "help-now",
+     "name": "Ohvriabi kriisitelefon (victim support crisis line)",
+     "org": "Victim support crisis line, listed by the Social Insurance Board (Sotsiaalkindlustusamet)",
+     "what": "A line open day and night for anyone facing physical, mental, economic or sexual violence. There is an online chat too.",
+     "how": "Call 116 006, any hour. In danger right now, call 112.",
+     "url": "https://help.unhcr.org/estonia/where-to-find-help-in-estonia/emergency/",
+     "phone": "116 006",
+     "dial": "116006",
+     "urgent": true,
+     "chip": "Victim support line",
+     "sources": [
+      "https://help.unhcr.org/estonia/where-to-find-help-in-estonia/emergency/",
+      "https://www.sotsiaalkindlustusamet.ee/en/victim-support"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "estonia-116111",
+     "section": "kids-differently",
+     "name": "Lasteabi (child helpline)",
+     "org": "Listed by the Social Insurance Board (Sotsiaalkindlustusamet)",
+     "what": "Free counselling by phone and online, day and night, for anyone under 18 and for any adult worried about a child.",
+     "how": "Call 116 111, free, any hour.",
+     "url": "https://sotsiaalkindlustusamet.ee/en/child-and-adult-need-help/child-protection-and-family-support",
+     "phone": "116 111",
+     "dial": "116111",
+     "sources": [
+      "https://sotsiaalkindlustusamet.ee/en/child-and-adult-need-help/child-protection-and-family-support",
+      "https://help.unhcr.org/estonia/where-to-find-help-in-estonia/emergency/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "estonia-lapsetoetus",
+     "section": "food-bills",
+     "name": "Lapsetoetus (child allowance)",
+     "org": "Social Insurance Board (Sotsiaalkindlustusamet)",
+     "what": "A monthly payment for every child until age 19: €80 a month each for a first and second child, and €100 for a third child and more. A parent raising a child alone can also get a single parent's child allowance of €100 a month.",
+     "how": "Your allowances are in the Social Insurance Board's self-service portal. Both you and your child must live in Estonia.",
+     "url": "https://sotsiaalkindlustusamet.ee/en/family-benefits-and-allowances/family-benefits-overview/child-and-family-benefits-rates",
+     "sources": [
+      "https://sotsiaalkindlustusamet.ee/en/family-benefits-and-allowances/family-benefits-overview/child-and-family-benefits-rates",
+      "https://sotsiaalkindlustusamet.ee/en/family-benefits-and-allowances/family-allowances"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "single-parent"
+     ]
+    },
+    {
+     "id": "estonia-sunnitoetus",
+     "section": "pregnancy-baby",
+     "name": "Sünnitoetus (childbirth allowance)",
+     "org": "Social Insurance Board (Sotsiaalkindlustusamet)",
+     "what": "A one-off payment of €320 for each baby (€1,000 each for triplets or more).",
+     "how": "It is paid once the birth is registered. Both you and your baby must live in Estonia.",
+     "url": "https://sotsiaalkindlustusamet.ee/en/family-benefits-and-allowances/family-allowances",
+     "sources": [
+      "https://sotsiaalkindlustusamet.ee/en/family-benefits-and-allowances/family-allowances",
+      "https://sotsiaalkindlustusamet.ee/en/family-benefits-and-allowances/family-benefits-overview/child-and-family-benefits-rates"
      ],
      "reviewed_on": "2026-11-21"
     }
@@ -2702,6 +2794,53 @@
    ]
   },
   {
+   "code": "HN",
+   "slug": "honduras",
+   "name": "Honduras",
+   "flag": "🇭🇳",
+   "lang": "es",
+   "emergency": {
+    "number": "911",
+    "label": "Emergency: the free national emergency line (Sistema Nacional de Emergencias 911), open day and night",
+    "source": "https://help.unhcr.org/honduras/wp-content/uploads/sites/56/2025/02/Ruta-de-Atencion-Choluteca.pdf"
+   },
+   "resources": [
+    {
+     "id": "honduras-114",
+     "section": "help-now",
+     "name": "Línea 114 “Mujer, Vivir sin Miedo” (line for women facing violence)",
+     "org": "National line, listed by UNHCR and UN Women",
+     "what": "A free line, open day and night, for women facing violence: crisis support, emotional support and legal guidance, and a way to report the violence.",
+     "how": "Call 114, free, any hour. In danger right now, call 911.",
+     "url": "https://help.unhcr.org/honduras/wp-content/uploads/sites/56/2025/02/Ruta-de-Atencion-Choluteca.pdf",
+     "phone": "114",
+     "dial": "114",
+     "urgent": true,
+     "chip": "Line for women facing violence",
+     "sources": [
+      "https://help.unhcr.org/honduras/wp-content/uploads/sites/56/2025/02/Ruta-de-Atencion-Choluteca.pdf",
+      "https://data.unwomen.org/global-database-on-violence-against-women/country-profile/Honduras/measures/Relaunch%20of%20the%20Telephone%20Line%201-1-4%20%E2%80%9CMUJER%20Living%20Without%20Fear%E2%80%9D%20--%20Relanzamiento%20de%20la%20L%C3%ADnea%20Telef%C3%B3nica%201-1-4%20%E2%80%9CMUJER%20Vivir%20sin%20Miedo%22"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "honduras-110",
+     "section": "kids-differently",
+     "name": "Línea 110 (line for children and teenagers)",
+     "org": "National line, listed by UNHCR",
+     "what": "A free line, open day and night, where children and teenagers can get emotional support and report abuse.",
+     "how": "Call 110, free, any hour.",
+     "url": "https://help.unhcr.org/honduras/wp-content/uploads/sites/56/2025/02/Ruta-de-Atencion-Choluteca.pdf",
+     "phone": "110",
+     "dial": "110",
+     "sources": [
+      "https://help.unhcr.org/honduras/wp-content/uploads/sites/56/2025/02/Ruta-de-Atencion-Choluteca.pdf"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "HK",
    "slug": "hong-kong",
    "name": "Hong Kong",
@@ -2877,6 +3016,76 @@
      "also": [
       "single-parent"
      ]
+    }
+   ]
+  },
+  {
+   "code": "IS",
+   "slug": "iceland",
+   "name": "Iceland",
+   "flag": "🇮🇸",
+   "lang": "is",
+   "emergency": {
+    "number": "112",
+    "label": "Emergency: every emergency service. You can also chat with 112 online",
+    "source": "https://island.is/en/accidents-and-emergencies"
+   },
+   "resources": [
+    {
+     "id": "iceland-bjarkarhlid",
+     "section": "help-now",
+     "name": "Bjarkarhlíð (centre for survivors of violence)",
+     "org": "Bjarkarhlíð, Reykjavík, listed by the 112 emergency line",
+     "what": "Free counselling and support for anyone 18 or older who has been abused or trafficked, whatever their gender, origin or social status.",
+     "how": "Call 553 3000 to book a talk with a counsellor. In danger right now, call 112.",
+     "url": "https://112.is/en/resources/bjarkarhlid",
+     "phone": "553 3000",
+     "dial": "5533000",
+     "sources": [
+      "https://112.is/en/resources/bjarkarhlid"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "iceland-1717",
+     "section": "take-care",
+     "name": "Red Cross Help Line 1717",
+     "org": "Icelandic Red Cross, listed on Iceland's government portal",
+     "what": "Someone to talk to after something hard has happened.",
+     "how": "Call 1717. In a crisis, call 112.",
+     "url": "https://island.is/en/accidents-and-emergencies",
+     "phone": "1717",
+     "dial": "1717",
+     "sources": [
+      "https://island.is/en/accidents-and-emergencies"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "iceland-prenatal-care",
+     "section": "pregnancy-baby",
+     "name": "Prenatal care at your health centre",
+     "org": "Icelandic health centres (heilsugæsla)",
+     "what": "Pregnancy check-ups with midwives and doctors at your local health centre, and a postnatal check 6 to 10 weeks after the birth. Prenatal care is free once your legal home has been in Iceland for six months, and so is giving birth under national health insurance.",
+     "how": "Book your first check between weeks 8 and 12 of the pregnancy at your local health centre.",
+     "url": "https://island.is/en/pregnancy-prenatal-care-and-birth",
+     "sources": [
+      "https://island.is/en/pregnancy-prenatal-care-and-birth"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "iceland-barnabaetur",
+     "section": "food-bills",
+     "name": "Barnabætur (child benefits)",
+     "org": "Iceland Revenue and Customs (Skatturinn)",
+     "what": "A payment for parents of children under 18, worked out from the income on your tax return, with a little more for children under 7. It is paid four times a year.",
+     "how": "You do not need to apply: it is worked out from your tax return. For the year your baby is born, it is paid by itself.",
+     "url": "https://www.skatturinn.is/english/individuals/child-benefits/child-benefits/",
+     "sources": [
+      "https://www.skatturinn.is/english/individuals/child-benefits/child-benefits/"
+     ],
+     "reviewed_on": "2026-11-21"
     }
    ]
   },
@@ -3631,6 +3840,107 @@
    ]
   },
   {
+   "code": "KW",
+   "slug": "kuwait",
+   "name": "Kuwait",
+   "flag": "🇰🇼",
+   "lang": "ar",
+   "emergency": {
+    "number": "112",
+    "label": "Emergency: police, ambulance and firefighters",
+    "source": "https://e.gov.kw/sites/kgoEnglish/Pages/Visitors/TourismInKuwait/EssintialServicesEmergencies.aspx"
+   },
+   "resources": []
+  },
+  {
+   "code": "LV",
+   "slug": "latvia",
+   "name": "Latvia",
+   "flag": "🇱🇻",
+   "lang": "lv",
+   "emergency": {
+    "number": "112",
+    "label": "Emergency: fire, police or ambulance",
+    "source": "https://www.vugd.gov.lv/en/single-emergency-call-number-112-latvia"
+   },
+   "resources": [
+    {
+     "id": "latvia-116006",
+     "section": "help-now",
+     "name": "116006: help for victims of violence and crime",
+     "org": "Association “Skalbes”, for the State",
+     "what": "A free line for anyone who has faced physical, mental, economic or sexual violence, or another crime. Open every day from 12:00 to 22:00.",
+     "how": "Call 116 006, free. In danger right now, call 112.",
+     "url": "https://help.unhcr.org/latvia/where-to-find-help-in-latvia/helplines/",
+     "phone": "116 006",
+     "dial": "116006",
+     "urgent": true,
+     "chip": "Line for victims of violence",
+     "sources": [
+      "https://help.unhcr.org/latvia/where-to-find-help-in-latvia/helplines/",
+      "https://www.jpa.gov.lv/en/services/informational-support-victims-criminal-offences-telephone-consultation"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "latvia-116123",
+     "section": "take-care",
+     "name": "116123 crisis line",
+     "org": "Listed by the National Health Service (Nacionālais veselības dienests)",
+     "what": "Free emotional support for adults, day and night, in Latvian, Russian and English.",
+     "how": "Call 116 123, free, any hour. With acute thoughts of suicide, call 112.",
+     "url": "https://www.vmnvd.gov.lv/en/toll-free-unified-crisis-line-116123",
+     "phone": "116 123",
+     "dial": "116123",
+     "sources": [
+      "https://www.vmnvd.gov.lv/en/toll-free-unified-crisis-line-116123"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "latvia-116111",
+     "section": "kids-differently",
+     "name": "Bērnu un pusaudžu uzticības tālrunis (helpline for children and teenagers)",
+     "org": "National helpline, listed by UNHCR Latvia",
+     "what": "A line for children and teenagers, open day and night. There is an online chat in Latvian on weekdays from 12:00 to 20:00.",
+     "how": "Call 116 111, any hour.",
+     "url": "https://help.unhcr.org/latvia/where-to-find-help-in-latvia/helplines/",
+     "phone": "116 111",
+     "dial": "116111",
+     "sources": [
+      "https://help.unhcr.org/latvia/where-to-find-help-in-latvia/helplines/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "latvia-family-allowance",
+     "section": "food-bills",
+     "name": "Ģimenes valsts pabalsts (state family allowance)",
+     "org": "State Social Insurance Agency (VSAA)",
+     "what": "A monthly payment from the child's first birthday to age 16 (to 20 while studying full time): €25 a month for one child, €50 each for two, €75 each for three and €100 each for four or more. A child with a disability gets €160 a month more.",
+     "how": "Apply on Latvija.gov.lv or at a VSAA or state and local government customer service centre, from the birth and no later than 24 months after the first birthday.",
+     "url": "https://www.vsaa.gov.lv/en/services/state-family-allowance",
+     "sources": [
+      "https://www.vsaa.gov.lv/en/services/state-family-allowance"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "latvia-childbirth-allowance",
+     "section": "pregnancy-baby",
+     "name": "Bērna piedzimšanas pabalsts (childbirth allowance)",
+     "org": "State Social Insurance Agency (VSAA)",
+     "what": "A one-off payment of €600 for each child born from January 1, 2026, to a parent who lives in Latvia.",
+     "how": "Apply on Latvija.gov.lv, at a VSAA or customer service centre, or when you register the birth in Riga. Apply within 6 months of the birth, or it is lost.",
+     "url": "https://www.vsaa.gov.lv/en/services/childbirth-allowance",
+     "sources": [
+      "https://www.vsaa.gov.lv/en/services/childbirth-allowance"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "LT",
    "slug": "lithuania",
    "name": "Lithuania",
@@ -3669,6 +3979,63 @@
      "url": "https://socmin.lrv.lt/en/activities/family-and-children/social-assistance-to-families-and-children/assistance-to-pregnant-women-and-families-raising-children/",
      "sources": [
       "https://socmin.lrv.lt/en/activities/family-and-children/social-assistance-to-families-and-children/assistance-to-pregnant-women-and-families-raising-children/"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "LU",
+   "slug": "luxembourg",
+   "name": "Luxembourg",
+   "flag": "🇱🇺",
+   "lang": "fr",
+   "emergency": {
+    "number": "112",
+    "label": "Emergency: ambulance or fire brigade. You can also dial 113 for the police",
+    "source": "https://guichet.public.lu/en/citoyens/sante/services-urgence/appel-urgence.html"
+   },
+   "resources": [
+    {
+     "id": "luxembourg-cnvv",
+     "section": "help-now",
+     "name": "Centre national pour victimes de violences (CNVV) helpline",
+     "org": "National Centre for Victims of Violence, with the Government of Luxembourg",
+     "what": "A line open day and night for anyone facing violence, and the people close to them, whatever their age or gender: someone to listen, information and guidance. The centre also gives psychosocial, medical and legal help in person.",
+     "how": "Call 20 60 10 60, any hour. In danger right now, call 112 or 113.",
+     "url": "https://gouvernement.lu/en/actualites/toutes_actualites/communiques/2026/05-mai/05-cnvv-anniversaire.html",
+     "phone": "20 60 10 60",
+     "dial": "20601060",
+     "urgent": true,
+     "chip": "Line for anyone facing violence",
+     "sources": [
+      "https://gouvernement.lu/en/actualites/toutes_actualites/communiques/2026/05-mai/05-cnvv-anniversaire.html"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "luxembourg-allocation-naissance",
+     "section": "pregnancy-baby",
+     "name": "Allocation de naissance (birth allowance)",
+     "org": "Children's Future Fund (CAE)",
+     "what": "€1,740.09 in all, in three parts of €580.03: before the birth (after at least 5 pregnancy check-ups and a dental check), at the birth (after a postnatal gynaecology check), and at age 2 (after 6 check-ups for the child).",
+     "how": "Your gynaecologist, commune or maternity ward gives you the forms. Send them to the CAE within 1 year of the birth, or for the last part within 1 year of the child's second birthday.",
+     "url": "https://guichet.public.lu/en/citoyens/aides/famille-education/allocations-naissance/allocation-naissance.html",
+     "sources": [
+      "https://guichet.public.lu/en/citoyens/aides/famille-education/allocations-naissance/allocation-naissance.html"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "luxembourg-allocation-familiale",
+     "section": "food-bills",
+     "name": "Allocation familiale (family allowance)",
+     "org": "Children's Future Fund (CAE)",
+     "what": "A monthly payment for each child to age 18 (to 25 while still at school or in an apprenticeship), a little more from age 6 and again from 12, with a back-to-school payment each August.",
+     "how": "Apply to the CAE online through MyGuichet.lu, or by post, with your child's birth certificate and your bank details.",
+     "url": "https://guichet.public.lu/en/citoyens/aides/famille-education/allocations-naissance/allocations-familiales.html",
+     "sources": [
+      "https://guichet.public.lu/en/citoyens/aides/famille-education/allocations-naissance/allocations-familiales.html"
      ],
      "reviewed_on": "2026-11-21"
     }
@@ -3767,6 +4134,57 @@
    ]
   },
   {
+   "code": "MT",
+   "slug": "malta",
+   "name": "Malta",
+   "flag": "🇲🇹",
+   "lang": "en",
+   "emergency": {
+    "number": "112",
+    "label": "Emergency: police, ambulance or fire service. Free from any phone",
+    "source": "https://pulizija.gov.mt/en/emergency-services-112/"
+   },
+   "resources": [
+    {
+     "id": "malta-179",
+     "section": "help-now",
+     "name": "Supportline 179",
+     "org": "Agenzija Appoġġ, Foundation for Social Welfare Services",
+     "what": "A free national line, open day and night, for domestic violence, child abuse, homelessness and other worries, and for emotional support. There is a chat too, every day from 7:30am to 1pm and 7:30pm to midnight.",
+     "how": "Call 179, free from any phone, any hour. In danger right now, call 112.",
+     "url": "https://fsws.gov.mt/appogg/support-line/",
+     "phone": "179",
+     "dial": "179",
+     "urgent": true,
+     "chip": "Supportline 179",
+     "sources": [
+      "https://fsws.gov.mt/appogg/support-line/"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "malta-childrens-allowance",
+     "section": "food-bills",
+     "name": "Children's Allowance and Child Birth Bonus",
+     "org": "Department of Social Security",
+     "what": "A yearly allowance for each child under 16, higher for families on a lower income, and a one-off bonus for each newborn.",
+     "how": "Registering the birth at the Public Registry starts it by itself; a letter asks for anything missing. If nothing is paid within four months of the birth, apply within six months. Parents living apart, single parents, and babies born outside Malta need to apply.",
+     "url": "https://socialsecurity.gov.mt/?p=2209",
+     "sources": [
+      "https://socialsecurity.gov.mt/?p=2209",
+      "https://socialsecurity.gov.mt/en/timeline/families-and-children/"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "pregnancy-baby"
+     ]
+    }
+   ]
+  },
+  {
    "code": "MX",
    "slug": "mexico",
    "name": "Mexico",
@@ -3819,6 +4237,35 @@
      "also": [
       "housing"
      ]
+    }
+   ]
+  },
+  {
+   "code": "MN",
+   "slug": "mongolia",
+   "name": "Mongolia",
+   "flag": "🇲🇳",
+   "lang": "mn",
+   "emergency": {
+    "number": "105",
+    "label": "Emergency response. You can also dial 103 for an ambulance, 102 for the police or 101 for the fire brigade",
+    "source": "https://crc.gov.mn/list/harilcaa-holboony-jlchilgee/en?show=196"
+   },
+   "resources": [
+    {
+     "id": "mongolia-108",
+     "section": "kids-differently",
+     "name": "108 Child Helpline",
+     "org": "General Authority for Child and Family Development and Protection",
+     "what": "The national line for children: counselling and information, and fast help to protect a child at risk.",
+     "how": "Call 108.",
+     "url": "https://mlsp.gov.mn/eng/content/detail/2016",
+     "phone": "108",
+     "dial": "108",
+     "sources": [
+      "https://mlsp.gov.mn/eng/content/detail/2016"
+     ],
+     "reviewed_on": "2026-11-21"
     }
    ]
   },
@@ -4201,6 +4648,33 @@
    ]
   },
   {
+   "code": "NI",
+   "slug": "nicaragua",
+   "name": "Nicaragua",
+   "flag": "🇳🇮",
+   "lang": "es",
+   "emergency": {
+    "number": "118",
+    "label": "National Police emergency line, open day and night",
+    "source": "https://www.policia.gob.ni/wp-content/uploads/2026/03/POLIC%C3%8DA-NACIONAL-TEMPORADA-VERANIEGA-2026..pdf"
+   },
+   "resources": [
+    {
+     "id": "nicaragua-casas-maternas",
+     "section": "pregnancy-baby",
+     "name": "Casas Maternas (maternity waiting homes)",
+     "org": "Ministry of Health (MINSA)",
+     "what": "A free place to stay near a hospital or health centre for pregnant women from communities far from one, usually from about 10 days before the due date, and after the birth. You are checked by health staff and learn about birth, breastfeeding and caring for your baby.",
+     "how": "Ask your midwife (partera), community health worker or nearest health unit, or go to the casa materna yourself.",
+     "url": "https://www.minsa.gob.ni/sites/default/files/2023-02/Normativa%20-%20050%20%27Manual%20de%20Organizaci%C3%B3n%20de%20Estructura%20de%20Casa%20Materna%27.pdf",
+     "sources": [
+      "https://www.minsa.gob.ni/sites/default/files/2023-02/Normativa%20-%20050%20%27Manual%20de%20Organizaci%C3%B3n%20de%20Estructura%20de%20Casa%20Materna%27.pdf"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "NG",
    "slug": "nigeria",
    "name": "Nigeria",
@@ -4394,6 +4868,35 @@
      "url": "https://www.nav.no/barnetrygd",
      "sources": [
       "https://www.nav.no/barnetrygd"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "OM",
+   "slug": "oman",
+   "name": "Oman",
+   "flag": "🇴🇲",
+   "lang": "ar",
+   "emergency": {
+    "number": "9999",
+    "label": "Emergency",
+    "source": "https://gov.om/en/emergency-numbers"
+   },
+   "resources": [
+    {
+     "id": "oman-1100",
+     "section": "kids-differently",
+     "name": "Child protection hotline 1100",
+     "org": "Listed by UNICEF Oman",
+     "what": "The national child protection hotline, for a child at risk of violence or neglect.",
+     "how": "Call 1100. If a child is in danger right now, call 9999.",
+     "url": "https://www.unicef.org/oman/protection-children-violence",
+     "phone": "1100",
+     "dial": "1100",
+     "sources": [
+      "https://www.unicef.org/oman/protection-children-violence"
      ],
      "reviewed_on": "2026-11-21"
     }
@@ -5397,6 +5900,81 @@
      "url": "https://www.mpsvr.sk/sk/rodina-socialna-pomoc/podpora-rodinam-detmi/penazna-pomoc/pridavok-dieta/",
      "sources": [
       "https://www.mpsvr.sk/sk/rodina-socialna-pomoc/podpora-rodinam-detmi/penazna-pomoc/pridavok-dieta/"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "single-parent"
+     ]
+    }
+   ]
+  },
+  {
+   "code": "SI",
+   "slug": "slovenia",
+   "name": "Slovenia",
+   "flag": "🇸🇮",
+   "lang": "sl",
+   "emergency": {
+    "number": "112",
+    "label": "Emergency: ambulance, fire service and rescue. You can also dial 113 for the police",
+    "source": "https://gov.si/en/topics/emergency-call"
+   },
+   "resources": [
+    {
+     "id": "slovenia-sos-telefon",
+     "section": "help-now",
+     "name": "SOS telefon (line for anyone facing violence)",
+     "org": "Društvo SOS telefon, listed by the Government of Slovenia",
+     "what": "A free line, open day and night all year, for anyone who needs help or information about any kind of violence.",
+     "how": "Call 080 11 55, free, any hour. In danger right now, call 113 or 112.",
+     "url": "https://www.gov.si/teme/pomoc-v-primeru-nasilja",
+     "phone": "080 11 55",
+     "dial": "0801155",
+     "urgent": true,
+     "chip": "Line for anyone facing violence",
+     "sources": [
+      "https://www.gov.si/teme/pomoc-v-primeru-nasilja"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "slovenia-tom",
+     "section": "kids-differently",
+     "name": "TOM telefon (line for children and teenagers)",
+     "org": "Listed by the Government of Slovenia",
+     "what": "A free, anonymous and confidential line for children and teenagers.",
+     "how": "Call 116 111, free.",
+     "url": "https://www.gov.si/teme/pomoc-v-primeru-nasilja",
+     "phone": "116 111",
+     "dial": "116111",
+     "sources": [
+      "https://www.gov.si/teme/pomoc-v-primeru-nasilja"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "slovenia-pomoc-ob-rojstvu",
+     "section": "pregnancy-baby",
+     "name": "Pomoč ob rojstvu otroka (birth grant)",
+     "org": "Ministry for Demography, Family and Social Affairs, through the social work centres",
+     "what": "A one-off payment of €441.60 (from March 1, 2026) for each newborn, to buy what the baby needs, where a parent lives in Slovenia.",
+     "how": "The mother applies on e-uprava or at the social work centre (center za socialno delo) where she lives, from 60 days before the due date to 60 days after the birth.",
+     "url": "https://www.gov.si/teme/pravice-ob-rojstvu-otroka/",
+     "sources": [
+      "https://www.gov.si/teme/pravice-ob-rojstvu-otroka/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "slovenia-otroski-dodatek",
+     "section": "food-bills",
+     "name": "Otroški dodatek (child allowance)",
+     "org": "Ministry for Demography, Family and Social Affairs, through the social work centres",
+     "what": "A monthly payment for each child under 18, set by the family's income: from about €25.70 to €177.24 a child, a little more for second and later children, and 30% more for a single parent.",
+     "how": "Apply on e-uprava or at the social work centre (CSD) where you live. Questions: 01 369 75 00.",
+     "url": "https://www.gov.si/teme/otroski-dodatek/",
+     "sources": [
+      "https://www.gov.si/teme/otroski-dodatek/"
      ],
      "reviewed_on": "2026-11-21",
      "also": [
