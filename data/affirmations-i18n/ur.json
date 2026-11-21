@@ -1,0 +1,415 @@
+{
+ "lang": "ur",
+ "name": "Urdu",
+ "dir": "rtl",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "آج سب کچھ کرنا ضروری نہیں۔ بس اگلا چھوٹا کام کافی ہے۔"
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "تھکنا ہار جانا نہیں ہے۔ آپ تھکی ہوئی ہیں کیونکہ آپ ہر روز ڈٹی رہتی ہیں۔"
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "برتن انتظار کر سکتے ہیں۔ آپ کو پانچ منٹ بیٹھنے کا پورا حق ہے۔"
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "رات کے کھانے میں سیریل بھی گھر والوں کا پیٹ بھرنا ہی ہے۔"
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "آرام کمانا نہیں پڑتا۔ آپ ابھی اسی وقت آرام کر سکتی ہیں۔"
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "کچھ دنوں میں جیت یہی ہوتی ہے کہ سب سونے کے وقت تک خیریت سے پہنچ گئے۔ یہ سچی جیت ہے۔"
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "آپ جتنا کرتی ہیں، اتنا کوئی نہیں دیکھتا۔ میں دیکھتی ہوں۔"
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "بکھرا ہوا گھر اور پیار میں پلے بچے۔ یہ اچھا سودا ہے۔"
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "مشکل دن میں آپ کی پوری کوشش مختلف دکھتی ہے، پھر بھی وہ گنی جاتی ہے۔"
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "ایک گہری سانس۔ کندھے ڈھیلے چھوڑ دیں۔ آپ اچھا کر رہی ہیں۔"
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "آج توقعات کچھ کم رکھنا ٹھیک ہے۔ کسی اور دن پھر بڑھا لیجیے گا۔"
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "مدد مانگنا ہمت کی بات ہے، کمزوری کی نہیں۔"
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "ایک اور کام کو نہ کہنے کا آپ کو حق ہے۔"
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "اگر آج آپ کو تنہائی محسوس ہوئی، تو ایسا محسوس کرنے والی آپ اکیلی ماں نہیں ہیں۔ ہم بہت سی ہیں۔"
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "آپ ایسی سہیلی کی حقدار ہیں جو آپ کا حال پوچھے اور جواب کا انتظار کرے۔"
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "پہلے خود بات شروع کرنا ٹھیک ہے۔ زیادہ تر مائیں یہی چاہتی ہیں کہ کوئی پہل کرے۔"
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "نظرانداز محسوس کرنے کا مطلب یہ نہیں کہ آپ اہم نہیں۔ آپ بہت اہم ہیں۔"
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "آپ کے جذبات سمجھ میں آتے ہیں۔ آپ ضرورت سے زیادہ نہیں ہیں۔"
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "یہاں آپ کو اپنا مشکل دن سمجھانے کی ضرورت نہیں۔ ہم سمجھتے ہیں۔"
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "کسی دوسری ماں کو \"میرے ساتھ بھی\" لکھا ایک میسج پورا دن بدل سکتا ہے۔"
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "دودھ پلانا، کپڑے بدلنا، جھلانا، اور پھر وہی۔ یہ اصل کام ہے، چاہے بس بیٹھے رہنے جیسا لگے۔"
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "آپ اور آپ کا بچہ ابھی ایک دوسرے کو جان رہے ہیں۔ کوئی جلدی نہیں۔"
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "نومولود کے ساتھ دن لمبے ہوتے ہیں۔ یہ دور ہمیشہ نہیں رہے گا۔"
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "اگر آج آپ نے بس ایک ننھی سی جان کا پیٹ بھرا اور اسے گرم رکھا، تو آپ نے بہت بڑا کام کیا۔"
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "آپ کو جلدی پہلے جیسا ہونے کی ضرورت نہیں۔ آپ جہاں ہیں، وہیں رہ سکتی ہیں۔"
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "بچے کو جیسے بھی دودھ ملے، آپ اس کا خیال رکھ رہی ہیں۔ یہی اصل بات ہے۔"
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "نیند کم اور پیار بھرپور، دونوں ایک ساتھ ہو سکتے ہیں۔"
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "بچے کو گود میں لیں اور گھر کے کام چھوڑ دیں۔ گھر کہیں نہیں جا رہا۔"
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "دکان میں بچے کا مچلنا آپ کو بری ماں نہیں بناتا۔ اس کا مطلب بس یہ ہے کہ آپ کا بچہ چھوٹا ہے۔"
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "چھوٹے بچے حدیں اس لیے آزماتے ہیں کیونکہ آپ کے ساتھ وہ محفوظ محسوس کرتے ہیں۔"
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "آج آپ کل سے ایک منٹ زیادہ پرسکون رہیں۔ یہ گنا جاتا ہے۔"
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "اگر غصہ آ گیا، تو ایک جپھی اور ایک \"معاف کرنا\" بہت کچھ ٹھیک کر دیتے ہیں۔ اور اس سے بچے کچھ اچھا بھی سیکھتے ہیں۔"
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "چپچپے ہاتھ، اونچی آوازیں، بڑے جذبات۔ آپ ایک پورا انسان پروان چڑھا رہی ہیں۔"
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "اس گھنٹے کا پانچواں \"کیوں؟\" ایک ننھا ذہن ہے جو بڑھ رہا ہے۔"
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "خوشگوار یاد بنانے کے لیے مکمل دن کی ضرورت نہیں۔"
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "زور سے بند ہوا دروازہ کہانی کا اختتام نہیں۔ روشنی جلائے رکھیں۔"
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "آپ کا نوعمر بچہ شاید کہے نہیں، مگر آپ کا ہر دن ساتھ ہونا اس کے لیے معنی رکھتا ہے۔"
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "گھر میں پرسکون رہنے والی بننا محنت کا کام ہے۔ اور آپ یہ کر رہی ہیں۔"
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "کچھ بہترین باتیں گاڑی میں ہوتی ہیں۔ بس چلتی رہیں۔"
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "وہ بڑے ہونے کے لیے دور جاتے ہیں، آپ کو پیچھے چھوڑنے کے لیے نہیں۔"
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "آپ کو ہر سوال کا جواب معلوم ہونا ضروری نہیں۔ سننا ہی بہت بڑی بات ہے۔"
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "بڑے بچوں کو اب بھی آپ کی ضرورت ہے، بس خاموش طریقوں سے۔"
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "سب کچھ اکیلے سنبھالنے میں ایسی طاقت لگتی ہے جو زیادہ تر لوگ کبھی نہیں دیکھ پاتے۔"
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "آپ اپنے بچے کے لیے کافی اچھی ماں ہیں۔ ہمیشہ سے تھیں۔"
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "دو ہاتھ، سو کام۔ خود پر تھوڑی نرمی کریں۔"
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "آپ کے بچے آپ کو دیکھ کر سیکھ رہے ہیں کہ ایک مضبوط اور محبت کرنے والا انسان کیسا ہوتا ہے۔"
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "تھوڑا رکنا ذمہ داری چھوڑنا نہیں۔ اسی سے آپ آگے چل پاتی ہیں۔"
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "کوئی حساب نہیں رکھ رہا۔ محبت اور ساتھ ہونا، یہی اصل بات ہے۔"
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "غم اور محبت ایک ہی جگہ سے آتے ہیں۔ کسی کی یاد آنا بتاتا ہے کہ آپ نے کتنی محبت کی۔"
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "غم کا کوئی صحیح وقت مقرر نہیں ہوتا۔ جتنا وقت چاہیے، اتنا لیں۔"
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "مشکل برسیوں پر خود کے ساتھ اتنی ہی نرمی رکھیں جتنی کسی سہیلی کے ساتھ رکھتیں۔"
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "آپ اداسی لیے ہوئے بھی اپنے بچوں کے ساتھ ہنس سکتی ہیں۔ دونوں سچ ہیں۔"
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "اگر آپ نے حمل یا بچہ کھویا ہے، تو وہ دکھ سچا ہے، اور آپ کی محبت بھی۔"
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "کچھ دن غم خاموش رہتا ہے اور کچھ دن شور مچاتا ہے۔ دونوں ٹھیک ہیں۔"
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "پیسوں کی کمی کا مطلب محبت کی کمی نہیں۔"
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "آپ کے بچوں کو خریدی ہوئی چیزوں سے زیادہ آپ کے ساتھ گزارا وقت یاد رہے گا۔"
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "بلوں کے لیے مدد کے بارے میں پوچھنا سمجھداری ہے، شرم کی بات نہیں۔ مدد اسی لیے تو ہے۔"
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "پارک میں بغیر پیسوں کی ایک دوپہر ہفتے کا بہترین دن بن سکتی ہے۔"
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "آپ نے پیسوں کو ایک ہفتہ اور کھینچ لیا۔ یہ واقعی ہنر ہے۔"
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "پیسوں کی فکر تھکا دیتی ہے۔ آپ بہت کچھ اٹھائے ہوئے ہیں، اور پھر بھی ڈٹی ہوئی ہیں۔"
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "آج آپ نے ایک گلاس پانی پیا۔ وہیں سے شروع کریں۔"
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "سب گھر سے نکل گئے۔ شاید جوتے میل نہیں کھا رہے تھے۔ پھر بھی جیت ہے۔"
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "آپ نے وہ فون کر ہی دیا جس سے آپ گھبرا رہی تھیں۔ یہ ہمت تھی۔"
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "آج آپ ہنسیں۔ اسے سنبھال کر رکھیں۔"
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "گرم کھانا، صاف کپڑے، سوتے وقت کی کہانی۔ چھوٹی چھوٹی باتیں مل کر بچپن بناتی ہیں۔"
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "آج آپ نے کسی کے ساتھ اچھا سلوک کیا، چاہے وہ آپ خود ہی کیوں نہ ہوں۔"
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "مکمل ہونا نہیں، آگے بڑھنا۔ آج آپ آگے بڑھیں۔"
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "آپ نے فہرست کا ایک کام پورا کیا۔ کچھ نہ ہونے سے ایک زیادہ۔"
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "آپ اچھی ماں ہیں۔ آپ کو اس کی فکر ہے، یہی بتاتا ہے کہ آپ کو کتنی پروا ہے۔"
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "دن بھر میں جتنا کر پاتی ہیں، آپ اس سے کہیں بڑھ کر ہیں۔"
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "آپ کے بچوں کو مکمل ماں نہیں چاہیے۔ انہیں آپ چاہییں، اور آپ ان کے پاس ہیں۔"
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "خود کے ساتھ اتنا ہی صبر رکھیں جتنا اپنے بچوں کے ساتھ رکھتی ہیں۔"
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "آپ کو اپنی جگہ لینے، چیزیں چاہنے اور اپنے خواب رکھنے کا حق ہے۔"
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "ایک غلطی محبت کو مٹا نہیں دیتی۔ کل نئی شروعات ہے۔"
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "آپ کسی کی پوری دنیا ہیں، اور آپ اپنی ذات میں بھی ایک انسان ہیں۔"
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "ہر لمحہ اچھا نہ لگنا ٹھیک ہے۔ آپ پھر بھی اپنے بچوں سے پورے دل سے محبت کر سکتی ہیں۔"
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "ماں بننے کا کوئی ایک صحیح طریقہ نہیں۔ آپ کا طریقہ بھی ٹھیک ہے۔"
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "درخت والے آسن کی طرح ڈگمگانا ٹھیک ہے۔ آپ پھر سے توازن پا سکتی ہیں۔"
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "پہاڑ والے آسن کی طرح پاؤں جما لیں۔ آپ جتنا محسوس کرتی ہیں، اس سے زیادہ مضبوطی سے کھڑی ہیں۔"
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "جنگجو دو: مضبوط ٹانگیں، کھلے بازو۔ یہی آپ ہیں، اس ہفتے کا سامنا کرتی ہوئی۔"
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "چار گن کر سانس لیں، چار گن کر چھوڑیں۔ آپ یہیں ہیں، اور اچھا کر رہی ہیں۔"
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "ستارے کی طرح کھل کر پھیلیں۔ آپ کو جگہ لینے کا حق ہے۔"
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "چوڑی، نیچی بیٹھک میں ٹکے رہنا مشکل ہے۔ لمبا دن بھی ایسا ہی ہے۔ اور آپ ٹکی ہوئی ہیں۔"
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "آپ ہلال کی طرح جھک کر بھی کھڑی رہ سکتی ہیں۔"
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "ابھی پاؤں کی انگلیاں چھونا ضروری نہیں۔ ہر تھوڑا سا کھنچاؤ بھی گنا جاتا ہے۔"
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "تکون والا آسن: ایک ہاتھ نیچے، ایک ہاتھ اوپر۔ زمین سے جڑی رہیں اور کھنچتی رہیں۔"
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "دیر ہو گئی ہے۔ جو آج نہیں ہوا، وہ کل تک رک سکتا ہے۔"
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "اس وقت بچے کے ساتھ جاگ رہی ہیں؟ اس لمحے بہت سی مائیں آپ کے ساتھ جاگ رہی ہیں۔"
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "گھر خاموش ہے۔ یہ لمحہ آپ کا ہے۔ سانس لیں۔"
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "آپ نے آج کا دن پار کر لیا۔ آج کو بس اتنا ہی چاہیے تھا۔"
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "اگر آج رات دماغ بےچین ہے، تو سب لکھ لیں اور اسے صبح تک رکنے دیں۔"
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "آنکھوں کو آرام دیں۔ کل پھر سے شروع کر سکتی ہیں۔"
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "تہوار خوشی کے ساتھ ساتھ مشکل بھی ہو سکتے ہیں۔ یہ موسم آپ کو جیسا بھی لگے، ٹھیک ہے۔"
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "دسترخوان کا مکمل ہونا ضروری نہیں۔ اس کے اردگرد بیٹھے لوگ ہی اصل بات ہیں۔"
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "اگر اس سال کسی کی کمی محسوس ہو رہی ہے، تو اپنے دل کے ساتھ نرمی کریں۔"
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "شکریہ امی، ہر کھانے، ہر سفر اور ہر جپھی کے لیے۔"
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "مہمان بلانا، پکوان بنانا یا ہر وقت مسکرانا ضروری نہیں۔ سادہ تہوار بھی تہوار ہی ہے۔"
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "اس سال آپ کے بچوں کو ملنے والا سب سے اچھا تحفہ آپ کے ساتھ گزارا وقت ہے۔"
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "چھوٹا سا جشن بھی محبت سے بھرا ہوتا ہے۔ اسے خاص بنانے کے لیے زیادہ پیسے نہیں چاہییں۔"
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "ٹھنڈے دن، گرم جپھیاں۔ آپ اپنے گھر کی گرمی ہیں۔"
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "تہواروں کی کچھ بھاگ دوڑ چھوڑ دینا ٹھیک ہے۔ سکون بھی ایک تحفہ ہے۔"
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "اگر اس سال یہ موسم بھاری لگ رہا ہے، تو آپ اکیلی نہیں ہیں۔ ایک ایک دن کر کے چلیں۔"
+  }
+ ]
+}

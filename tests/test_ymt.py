@@ -3,6 +3,7 @@ import re
 import struct
 import sys
 import unittest
+from html import escape as esc
 from html.parser import HTMLParser
 from pathlib import Path
 
@@ -171,6 +172,98 @@ class SiteTests(unittest.TestCase):
                 if level == 'countries':
                     self.assertNotIn('dial 211', text, f'{path.name}: 211 is a U.S. number')
         self.assertIn('id="affirm"', (ROOT / 'county.html').read_text(encoding='utf-8'))
+
+    def test_crisis_cards_come_right_after_the_heading(self):
+        """On every state page, country page and the county page, the "Need help right now?" phone cards are the first
+        thing after the heading, before search, the county picker's results or any need."""
+        pages = sorted((ROOT / 'states').glob('*.html')) + sorted((ROOT / 'countries').glob('*.html')) + [ROOT / 'county.html']
+        for path in pages:
+            text = path.read_text(encoding='utf-8')
+            main = text[text.index('<main id="main">'):]
+            first_after_hero = re.search(r'<section class="hero[^"]*">.*?</div></section>\s*(<[^>]+>)', main, re.S).group(1)
+            self.assertEqual(first_after_hero, '<section class="wrap now" id="now">', f'{path.name}: crisis cards first')
+            self.assertEqual(main.count('class="wrap now" id="now"'), 1, path.name)
+            self.assertIn('Need help right now?', main, path.name)
+
+    def test_world_page_leads_with_the_emergency_line(self):
+        """Above the map, one short line goes straight to the emergency numbers."""
+        text = (ROOT / 'world.html').read_text(encoding='utf-8')
+        line = text.find('<p class="dangerline"><a href="#now">')
+        self.assertGreater(line, 0, 'the line is there')
+        self.assertLess(line, text.find('<h1'), 'it comes first')
+        self.assertLess(line, text.find('<svg class="worldmap"'), 'it comes before the map')
+        self.assertIn('id="now"', text, 'it leads somewhere')
+
+    def test_country_pages_load_only_their_own_language(self):
+        """A country page in another language loads that language's affirmations and no other; an English-speaking
+        country loads none, and nothing on a page loads from anywhere but the site."""
+        langs = set(home_extras.translation_langs())
+        for c in lib.load()['world']['countries']:
+            text = (ROOT / 'countries' / f"{c['slug']}.html").read_text(encoding='utf-8')
+            files = re.findall(r'<script src="\.\./assets/kindword/([^"]+)\.js"></script>', text)
+            if c['lang'] in langs:
+                self.assertEqual(files, [c['lang']], c['slug'])
+                self.assertIn(f'lang="{c["lang"]}"', text, c['slug'])
+                rtl = c['lang'].split('-')[0] in home_extras.RTL
+                self.assertEqual('dir="rtl"' in text, rtl, c['slug'])
+            else:
+                self.assertEqual(files, [], c['slug'])
+                self.assertNotIn('affirm-local', text, c['slug'])
+
+    def test_world_map_shades_and_links_every_country(self):
+        """Every country in world.json is pink and a link to its page on the world map, with its name for screen
+        readers and a hover title; countries without a page are grey and not links. The same countries are in the
+        list under the map, so nothing is lost without the map."""
+        data = lib.load()
+        text = (ROOT / 'world.html').read_text(encoding='utf-8')
+        svg = re.search(r'<svg class="worldmap"[^>]*>(.*?)</svg>', text, re.S)
+        self.assertIsNotNone(svg, 'world.html has the map')
+        grey = re.search(r'<g class="land" aria-hidden="true">(.*?)</g>', svg.group(1), re.S).group(1)
+        self.assertNotIn('<a', grey, 'grey countries are not links')
+        self.assertGreater(grey.count('<path'), 80, 'the rest of the world is drawn')
+        covered = re.search(r'<g class="covered">(.*)</g>', svg.group(1), re.S).group(1)
+        links = re.findall(r'<a href="([^"]+)" aria-label="([^"]+)" data-country="([A-Z]{2})">(.*?)</a>', covered, re.S)
+        self.assertEqual(len(links), covered.count('<a '), 'every link on the map has a name')
+        by_code = {code: (href, label, inner) for href, label, code, inner in links}
+        listed = re.search(r'<details class="maplist">(.*?)</details>', text, re.S).group(1)
+        for c in data['world']['countries']:
+            self.assertIn(c['code'], by_code, f"{c['name']} is not on the map")
+            href, label, inner = by_code[c['code']]
+            self.assertEqual(href, f"countries/{c['slug']}.html", c['name'])
+            self.assertEqual(label, esc(c['name']), c['name'])
+            self.assertIn(f'<title>{esc(c["name"])}</title>', inner, c['name'])
+            self.assertRegex(inner, r'<(path d="M|circle )', f"{c['name']} has a shape or a dot")
+            self.assertTrue((ROOT / href).exists(), href)
+            self.assertIn(f'href="{href}"', listed, f"{c['name']} is in the list under the map")
+        self.assertEqual(by_code.get('US', ('',))[0], 'states.html', 'the United States leads to the states')
+        self.assertEqual(len(by_code), len(data['world']['countries']) + 1, 'no link for a country without a page')
+        self.assertNotIn('tabindex="-1"', svg.group(0), 'every country link can be reached from the keyboard')
+        for small in ('SG', 'BB', 'BS', 'TT'):
+            if small in by_code:
+                self.assertIn('<circle ', by_code[small][2], f'{small} is big enough to tap')
+        # The map stays small: the outlines file and the page.
+        self.assertLess((ROOT / 'data/ymt/world-map.json').stat().st_size, 60_000)
+        self.assertLess(len(text.encode('utf-8')), 110_000)
+
+    def test_state_grid_has_every_state_once(self):
+        data = lib.load()
+        text = (ROOT / 'states.html').read_text(encoding='utf-8')
+        grid = re.search(r'<ul class="usgrid"[^>]*>(.*?)</ul>', text, re.S)
+        self.assertIsNotNone(grid, 'states.html has the state grid')
+        tiles = re.findall(r'<li style="grid-area:(\d+)/(\d+)"><a href="states/([a-z]{2})\.html" title="([^"]+)">([A-Z]{2})'
+                           r'<span class="sr"> ([^<]+)</span></a></li>', grid.group(1))
+        self.assertEqual(len(tiles), grid.group(1).count('<li'), 'every tile is a plain link')
+        self.assertEqual(len({(r, c) for r, c, *_ in tiles}), len(tiles), 'no two tiles in one place')
+        self.assertEqual(sorted(a for _, _, a, *_ in tiles), sorted(s['abbr'].lower() for s in data['states']))
+        names = {s['abbr']: s['name'] for s in data['states']}
+        for _, _, a, title, shown, sr in tiles:
+            self.assertEqual(shown, a.upper())
+            self.assertEqual(title, esc(names[shown]))
+            self.assertEqual(sr, esc(names[shown]))
+        self.assertEqual(len(tiles), 51)
+        listed = re.search(r'<details class="maplist">(.*?)</details>', text, re.S).group(1)
+        for s in data['states']:
+            self.assertIn(f'href="states/{s["abbr"].lower()}.html"', listed, f"{s['name']} is in the list under the grid")
 
     def test_no_shelter_addresses_or_unfilled_placeholders(self):
         for path in PAGES:

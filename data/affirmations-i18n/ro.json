@@ -1,0 +1,415 @@
+{
+ "lang": "ro",
+ "name": "Romanian",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "Nu trebuie să le faci pe toate azi. Următorul lucru mic e de ajuns."
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "Oboseala nu înseamnă eșec. Ești obosită pentru că ești acolo, zi de zi."
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "Vasele pot să aștepte. Ai voie să te așezi cinci minute."
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "Cerealele la cină tot înseamnă că ți-ai hrănit familia."
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "Odihna nu e ceva ce trebuie să meriți. Ai voie să te odihnești chiar acum."
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "În unele zile, victoria e că toată lumea a ajuns cu bine până la culcare. E o victorie adevărată."
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "Faci mult mai mult decât vede oricine. Eu văd."
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "O casă în dezordine și niște copii iubiți. E un schimb bun."
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "Într-o zi grea, ce ai tu mai bun arată altfel, și tot contează."
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "O respirație adâncă. Lasă umerii jos. Te descurci bine."
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "E în regulă să cobori ștacheta azi. O poți ridica din nou în altă zi."
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "Să ceri ajutor e un semn de putere, nu de slăbiciune."
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "Ai voie să spui nu încă unui lucru."
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "Dacă azi te-ai simțit singură, nu ești singura mamă care s-a simțit așa. Suntem multe."
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "Meriți o prietenă care te întreabă cum ești și chiar așteaptă răspunsul."
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "E în regulă să faci tu primul pas. Cele mai multe mame speră ca cineva să-l facă."
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "Faptul că te simți nevăzută nu înseamnă că nu contezi. Contezi enorm."
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "Ce simți are sens. Nu ești „prea mult”."
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "Aici nu trebuie să-ți explici ziua grea. Te înțelegem."
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "Un mesaj către altă mamă care spune „și eu” poate schimba o zi întreagă."
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "Hrănit, schimbat, legănat, și iar de la capăt. E muncă adevărată, chiar dacă pare că doar stai jos."
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "Tu și bebelușul tău încă vă cunoașteți. Nu e nicio grabă."
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "Zilele cu un nou-născut sunt lungi. Perioada asta nu va dura la nesfârșit."
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "Dacă tot ce ai făcut azi a fost să ții un om mic sătul și la căldură, ai făcut o treabă mare."
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "Nu trebuie să-ți revii repede. Poți să fii pur și simplu acolo unde ești."
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "Oricum ar fi hrănit bebelușul tău, tu ai grijă de el. Asta contează."
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "Poți fi nedormită și plină de iubire în același timp."
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "Ține bebelușul în brațe și lasă casa. Casa o să fie tot acolo."
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "O criză de nervi în magazin nu te face o mamă rea. Înseamnă doar că ai un copil mic."
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "Cei mici testează limitele pentru că lângă tine se simt în siguranță."
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "Azi ai rămas calmă cu un minut mai mult decât ieri. Contează."
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "Dacă ți-ai pierdut răbdarea, o îmbrățișare și un „iartă-mă” repară mult. Și îi învață ceva bun."
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "Mânuțe lipicioase, voci tari, emoții mari. Crești un om întreg."
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "Al cincilea „de ce?” din ora asta e o minte mică ce crește."
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "Nu ai nevoie de o zi perfectă ca să faci o amintire fericită."
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "O ușă trântită nu e finalul poveștii. Lasă lumina aprinsă."
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "Adolescentul tău poate nu o spune, dar prezența ta statornică contează."
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "Să fii cea calmă din casă e muncă grea. Și tu o faci."
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "Unele dintre cele mai bune discuții au loc în mașină. Continuă să conduci."
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "Se îndepărtează ca să crească, nu ca să te lase în urmă."
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "Nu trebuie să ai toate răspunsurile. Să asculți e o mare parte din toate."
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "Copiii mari încă au nevoie de tine, doar într-un fel mai tăcut."
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "Să duci totul singură cere o putere pe care cei mai mulți n-o văd niciodată."
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "Ești o mamă destul de bună pentru copilul tău. Mereu ai fost."
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "O pereche de mâini, o sută de treburi. Fii blândă cu tine."
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "Copiii tăi învață, privindu-te, cum arată un om puternic și iubitor."
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "O pauză nu înseamnă că îți părăsești postul. Așa reziști mai departe."
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "Nimeni nu ține scorul. Iubirea și faptul că ești acolo, asta contează."
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "Durerea pierderii și iubirea vin din același loc. Dorul arată cât de mult ai iubit."
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "Nu există un calendar corect pentru doliu. Ia-ți timpul de care ai nevoie."
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "În zilele de comemorare grele, fii la fel de blândă cu tine cum ai fi cu o prietenă."
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "Poți purta tristețe și totuși să râzi cu copiii tăi. Amândouă sunt adevărate."
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "Dacă ai pierdut o sarcină sau un bebeluș, pierderea e reală, și iubirea ta la fel."
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "În unele zile durerea e tăcută, în altele e zgomotoasă. Amândouă sunt în regulă."
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "Să ai puțini bani nu înseamnă să ai puțină iubire."
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "Copiii tăi își vor aminti timpul petrecut cu tine mai mult decât lucrurile pe care le-ai cumpărat."
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "Să întrebi de ajutor la facturi e un lucru inteligent, nu o rușine. Pentru asta există ajutorul."
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "O după-amiază gratuită în parc poate fi cea mai bună zi din săptămână."
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "Ai făcut banii să ajungă încă o săptămână. Asta cere adevărată pricepere."
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "Grijile legate de bani te obosesc. Duci mult în spate, și totuși ești încă aici."
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "Azi ai băut un pahar cu apă. Începe de acolo."
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "Toată lumea a ieșit pe ușă. Poate pantofii nu se potriveau. Tot e o victorie."
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "Ai dat telefonul de care te temeai. A fost curaj."
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "Ai râs azi. Păstrează asta."
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "O masă caldă, un tricou curat, o poveste înainte de culcare. Lucrurile mici alcătuiesc o copilărie."
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "Azi ai fost bună cu cineva, chiar dacă doar cu tine."
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "Progres, nu perfecțiune. Azi ai mers înainte."
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "Ai terminat un lucru de pe listă. E cu unul mai mult decât niciunul."
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "Ești o mamă bună. Faptul că îți faci griji pentru asta arată cât de mult îți pasă."
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "Ești mai mult decât ce reușești să faci într-o zi."
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "Copiii tăi nu au nevoie de o mamă perfectă. Au nevoie de tine, și te au."
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "Fii la fel de răbdătoare cu tine cum ești cu copiii tăi."
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "Ai voie să-ți faci loc, să-ți dorești lucruri și să ai propriile visuri."
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "O greșeală nu șterge iubirea. Mâine e un nou început."
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "Ești lumea întreagă pentru cineva, dar ești și propria ta persoană."
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "E în regulă să nu te bucuri de fiecare minut. Îți poți iubi copiii din tot sufletul oricum."
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "Nu există un singur fel corect de a fi mamă. Felul tău e și el bun."
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "Ca în postura copacului, e în regulă să te clatini. Îți poți regăsi echilibrul."
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "Înfige-ți tălpile ca în postura muntelui. Ești mai stabilă decât te simți."
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "Războinicul doi: picioare puternice, brațe deschise. Asta ești tu, în fața săptămânii ăsteia."
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "Inspiră pe patru timpi, expiră pe patru timpi. Ești aici, și te descurci bine."
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "Întinde-te larg ca o stea. Ai voie să ocupi spațiu."
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "O ghemuire largă și joasă e greu de ținut. La fel și o zi lungă. Și tu o ții."
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "Te poți apleca precum o semilună și să rămâi totuși în picioare."
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "Nu trebuie să ajungi încă la degetele de la picioare. Fiecare bucățică de întindere contează."
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "Postura triunghiului: o mână jos, una sus. Rămâi ancorată și continuă să te întinzi."
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "E târziu. Ce n-a fost făcut azi poate aștepta până mâine."
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "Trează cu bebelușul la ora asta? Multe mame sunt treze cu tine chiar acum."
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "Casa e liniștită. Momentul ăsta e al tău. Respiră."
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "Ai trecut de ziua de azi. Doar de asta avea nevoie ziua."
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "Dacă mintea nu-ți dă pace la noapte, scrie totul și lasă să aștepte până dimineață."
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "Odihnește-ți ochii. Mâine poți începe din nou."
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "Sărbătorile pot fi grele, nu doar vesele. Orice ar însemna perioada asta pentru tine, e în regulă."
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "Masa nu trebuie să fie perfectă. Oamenii din jurul ei contează."
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "Dacă anul ăsta îți lipsește cineva de la masă, fii blândă cu inima ta."
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "Mulțumesc, mamă, pentru fiecare masă, fiecare drum cu mașina și fiecare îmbrățișare."
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "Nu trebuie să primești musafiri, să faci prăjituri sau să zâmbești tot timpul. O sărbătoare simplă tot sărbătoare e."
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "Cel mai frumos cadou pe care îl primesc copiii tăi anul ăsta e timpul cu tine."
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "O sărbătoare mică e și ea plină de iubire. Nu-ți trebuie mulți bani ca s-o faci specială."
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "Zile reci, îmbrățișări calde. Tu ești locul cald din casa ta."
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "E în regulă să sari peste o parte din agitația sărbătorilor. Liniștea e și ea un cadou."
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "Dacă perioada asta e grea pentru tine anul acesta, nu ești singură. O zi pe rând."
+  }
+ ]
+}

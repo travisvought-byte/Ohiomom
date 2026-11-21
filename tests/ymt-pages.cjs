@@ -272,7 +272,7 @@ function checkStructure(d, file) {
   for (const h of all(d, 'summary h2, summary h3')) assert.equal(h.parentElement.tagName, 'SUMMARY', `${file}: a row heading is a direct child of its summary`);
   for (const sm of all(d, 'summary')) for (const c of sm.children) assert(!['DIV', 'P', 'UL', 'SECTION'].includes(c.tagName), `${file}: a block element inside a summary`);
 }
-const staticPages = ['index.html', 'help.html', 'connect.html', 'states.html', 'county.html', 'about.html', 'privacy.html', 'yoga.html', 'report.html', '404.html', 'family-guide.html']
+const staticPages = ['index.html', 'help.html', 'connect.html', 'states.html', 'county.html', 'world.html', 'about.html', 'privacy.html', 'yoga.html', 'report.html', '404.html', 'family-guide.html']
   .concat(fs.readdirSync('states').filter((f) => f.endsWith('.html')).map((f) => 'states/' + f))
   .concat(fs.readdirSync('ohio').filter((f) => f.endsWith('.html')).map((f) => 'ohio/' + f))
   .concat(fs.readdirSync('ohio/help').filter((f) => f.endsWith('.html')).map((f) => 'ohio/help/' + f))
@@ -281,6 +281,29 @@ const staticPages = ['index.html', 'help.html', 'connect.html', 'states.html', '
 assert(staticPages.length > 70);
 for (const f of staticPages) checkStructure(staticDoc(f), f);
 console.log(`PASS structure: one banner, one main, landmarks and heading order on ${staticPages.length} pages`);
+
+// The tappable maps: plain links with names, in the page as it is sent (no script), each to a page that exists.
+{
+  const world = JSON.parse(fs.readFileSync('data/ymt/world.json', 'utf8')).countries;
+  const d = staticDoc('world.html');
+  const links = all(d, 'svg.worldmap a[href]');
+  assert.equal(links.length, world.length + 1, 'one link per country, and the United States');
+  for (const a of links) {
+    assert(a.getAttribute('aria-label') && a.querySelector('title'), 'a country on the map has a name');
+    assert(fs.existsSync(a.getAttribute('href')), a.getAttribute('href'));
+    assert(!a.hasAttribute('tabindex'), 'a country on the map is in the tab order');
+  }
+  assert.equal(all(d, 'svg.worldmap .land a').length, 0, 'grey countries are not links');
+  assert.equal(all(d, 'details.maplist a[href^="countries/"]').length, world.length, 'every country is in the list under the map');
+  const s = staticDoc('states.html');
+  const tiles = all(s, 'ul.usgrid a[href^="states/"]');
+  assert.equal(tiles.length, 51, '50 states and D.C. on the grid');
+  for (const a of tiles) assert(fs.existsSync(a.getAttribute('href')) && /^[A-Z]{2} \S/.test(a.textContent), a.textContent);
+  assert.equal(all(s, 'details.maplist a').length, 51, 'and in the list under it');
+  const c = staticDoc('county.html');
+  assert.equal(c.querySelector('.hero').nextElementSibling.id, 'now', 'the county page opens with the crisis cards');
+}
+console.log('PASS maps: every country and state is a named link, with the list under the map; the county page opens with the crisis cards');
 
 (async () => {
   // The pages that fill themselves in keep the same structure once they have.

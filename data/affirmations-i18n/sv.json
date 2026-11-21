@@ -1,0 +1,415 @@
+{
+ "lang": "sv",
+ "name": "Swedish",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "Du behöver inte hinna allt i dag. Nästa lilla sak räcker."
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "Att vara trött är inte att misslyckas. Du är trött för att du finns där, dag efter dag."
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "Disken kan vänta. Du får sätta dig ner i fem minuter."
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "Flingor till middag räknas också som att ge familjen mat."
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "Vila är inget du måste förtjäna. Du får vila precis nu."
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "Vissa dagar är segern att alla klarade sig fram till läggdags. Det är en riktig seger."
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "Du gör mer än någon ser. Jag ser det."
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "Ett stökigt hem och älskade barn. Det är ett bra byte."
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "En tung dag ser ditt bästa annorlunda ut, och det räknas ändå."
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "Ett djupt andetag. Släpp ner axlarna. Du gör det bra."
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "Det är okej att sänka ribban i dag. Du kan höja den igen en annan dag."
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "Att be om hjälp är starkt, inte svagt."
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "Du får säga nej till en sak till."
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "Om du kände dig ensam i dag är du inte den enda mamman som känt så. Vi är många."
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "Du förtjänar en vän som frågar hur du mår och väntar in svaret."
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "Det är okej att höra av dig först. De flesta mammor hoppas att någon ska göra det."
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "Att känna sig osynlig betyder inte att du inte spelar någon roll. Du betyder jättemycket."
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "Dina känslor är begripliga. Du är inte för mycket."
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "Här behöver du inte förklara din tunga dag. Vi förstår."
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "Ett sms till en annan mamma där det står ”jag med” kan vända en hel dag."
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "Mata, byta, vagga, om igen. Det är riktigt arbete, även när det ser ut som att sitta still."
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "Du och din bebis håller fortfarande på att lära känna varandra. Det är ingen brådska."
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "Dagarna med en nyfödd är långa. Den här perioden varar inte för evigt."
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "Om allt du gjorde i dag var att hålla en liten människa mätt och varm, har du gjort ett stort jobb."
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "Du behöver inte snabbt bli som förut. Du får bara vara där du är."
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "Hur din bebis än får mat tar du hand om din bebis. Det är det som räknas."
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "Du kan sakna sömn och vara full av kärlek på samma gång."
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "Håll bebisen och låt hemmet vara. Hemmet finns kvar."
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "Ett utbrott i affären gör dig inte till en dålig mamma. Det betyder bara att du har en liten unge."
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "De små testar gränserna för att de känner sig trygga med dig."
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "Du höll dig lugn en minut längre än i går. Det räknas."
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "Om du tappade tålamodet lagar en kram och ett ”förlåt” mycket. Och det lär dem något fint."
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "Kladdiga händer, höga röster, stora känslor. Du fostrar en hel människa."
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "Det femte ”varför?” den här timmen är en liten hjärna som växer."
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "Du behöver ingen perfekt dag för att skapa ett glatt minne."
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "En smälld dörr är inte slutet på historien. Låt lampan vara tänd."
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "Din tonåring säger det kanske inte, men att du alltid finns där betyder något."
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "Att vara den lugna i huset är hårt arbete. Och du gör det."
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "Några av de bästa samtalen sker i bilen. Fortsätt bara att köra."
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "De drar sig undan för att bli vuxna, inte för att lämna dig bakom sig."
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "Du behöver inte ha alla svar. Att lyssna är en stor del av det."
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "Stora barn behöver dig fortfarande, bara på tystare sätt."
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "Att klara allt själv kräver en styrka som de flesta aldrig ser."
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "Du är mamma nog åt ditt barn. Det har du alltid varit."
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "Ett par händer, hundra uppgifter. Var snäll mot dig själv."
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "Dina barn lär sig, genom att se dig, hur en stark och kärleksfull människa är."
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "En paus är inte att lämna din post. Det är så du orkar fortsätta."
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "Ingen för protokoll. Kärlek och att finnas där är det som betyder något."
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "Sorg och kärlek kommer från samma ställe. Att sakna någon visar hur mycket du har älskat."
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "Det finns inget rätt schema för sorg. Ta den tid du behöver."
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "På de svåra årsdagarna, var lika varsam mot dig själv som du skulle vara mot en vän."
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "Du kan bära på sorg och ändå skratta med dina barn. Båda är på riktigt."
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "Om du har förlorat en graviditet eller en bebis är den förlusten på riktigt, och det är din kärlek också."
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "Vissa dagar är sorgen tyst och vissa dagar högljudd. Båda är okej."
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "Ont om pengar betyder inte ont om kärlek."
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "Dina barn kommer att minnas tiden med dig mer än sakerna du köpte."
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "Att fråga om hjälp med räkningarna är klokt, inte skamligt. Det är därför hjälpen finns."
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "En gratis eftermiddag i parken kan bli veckans bästa dag."
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "Du fick pengarna att räcka en vecka till. Det kräver riktig skicklighet."
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "Pengaoro tar på krafterna. Du bär på mycket, och du är fortfarande här."
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "Du drack ett glas vatten i dag. Börja där."
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "Alla kom ut genom dörren. Skorna kanske inte matchade. Ändå en seger."
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "Du ringde det där samtalet du hade bävat för. Det var modigt."
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "Du skrattade i dag. Håll fast vid det."
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "En varm måltid, en ren tröja, en godnattsaga. Små saker blir tillsammans en barndom."
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "I dag var du snäll mot någon, även om det bara var mot dig själv."
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "Framsteg, inte perfektion. Du kom framåt i dag."
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "Du gjorde klart en sak på listan. Det är en mer än ingen."
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "Du är en bra mamma. Att du oroar dig för det visar hur mycket du bryr dig."
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "Du är mer än det du hinner med på en dag."
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "Dina barn behöver ingen perfekt mamma. De behöver dig, och de har dig."
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "Var lika tålmodig med dig själv som du är med dina barn."
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "Du får ta plats, vilja saker och ha dina egna drömmar."
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "Ett misstag suddar inte ut kärleken. I morgon är en ny början."
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "Du är någons hela värld, och du är också din egen människa."
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "Det är okej att inte älska varenda minut. Du kan ändå älska dina barn av hela ditt hjärta."
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "Det finns inte ett enda rätt sätt att vara mamma. Ditt sätt duger också."
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "Som i trädet är det okej att vingla. Du kan hitta balansen igen."
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "Stå stadigt med fötterna som i berget. Du står stadigare än du känner dig."
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "Krigare två: starka ben, öppna armar. Det är du, inför den här veckan."
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "Andas in på fyra, ut på fyra. Du är här, och du gör det bra."
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "Sträck ut dig brett som en stjärna. Du får ta plats."
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "En bred, djup squat är svår att hålla. En lång dag likaså. Och du håller i."
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "Du kan luta dig som en månskära och ändå stå kvar."
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "Du behöver inte nå tårna än. Varje liten bit av stretchen räknas."
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "Triangeln: en hand ner, en hand upp. Stå stadigt och fortsätt sträcka dig."
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "Det är sent. Det som inte blev gjort i dag kan vänta till i morgon."
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "Vaken med bebisen vid den här tiden? Massor av mammor är vakna med dig just nu."
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "Huset är tyst. Den här stunden är din. Andas."
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "Du tog dig igenom dagen. Det var allt dagen behövde."
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "Om tankarna snurrar i natt, skriv ner dem och låt dem vänta till i morgon bitti."
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "Vila ögonen. I morgon får du börja om."
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "Högtider kan vara tunga lika väl som glada. Hur den här tiden än känns för dig är det okej."
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "Bordet behöver inte vara perfekt. Det är människorna runt det som betyder något."
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "Om du saknar någon vid bordet i år, var varsam med ditt hjärta."
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "Tack, mamma, för varje måltid, varje skjuts och varje kram."
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "Du behöver inte vara värdinna, baka eller le dig igenom allt. En enkel högtid är fortfarande en högtid."
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "Den bästa julklappen dina barn får i år är tid med dig."
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "En liten jul är ändå full av kärlek. Det behövs inte mycket pengar för att göra den speciell."
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "Kalla dagar, varma kramar. Du är den varma platsen i ditt hem."
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "Det är okej att hoppa över en del av julstressen. Lugn är också en gåva."
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "Om högtiden känns tung i år är du inte ensam. Ta en dag i taget."
+  }
+ ]
+}

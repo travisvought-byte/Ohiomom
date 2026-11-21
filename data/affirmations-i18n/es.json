@@ -1,0 +1,415 @@
+{
+ "lang": "es",
+ "name": "Spanish",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "No tienes que hacerlo todo hoy. Con lo siguiente, aunque sea pequeño, basta."
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "Estar cansada no es fracasar. Estás cansada porque sigues dando la cara cada día."
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "Los platos pueden esperar. Tienes derecho a sentarte cinco minutos."
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "Cereal para cenar también cuenta como darle de comer a tu familia."
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "El descanso no es algo que tengas que ganarte. Puedes descansar ahora mismo."
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "Hay días en que el logro es que todos llegaron a la hora de dormir. Y es un logro de verdad."
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "Haces mucho más de lo que se ve. Yo lo veo."
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "Una casa desordenada y unos hijos queridos. Es un buen trato."
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "En un día difícil, lo mejor de ti se ve distinto, y aun así cuenta."
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "Respira hondo. Suelta los hombros. Lo estás haciendo bien."
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "Está bien bajar la exigencia hoy. Otro día la puedes volver a subir."
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "Pedir ayuda es de valientes, no de débiles."
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "Tienes permiso para decirle que no a una cosa más."
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "Si hoy te sentiste sola, no eres la única mamá que se ha sentido así. Somos muchas."
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "Mereces una amiga que te pregunte cómo estás y se quede a escuchar la respuesta."
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "Está bien ser la primera en escribir. Muchas mamás están esperando que alguien lo haga."
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "Que nadie lo note no significa que no importes. Importas muchísimo."
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "Lo que sientes tiene sentido. No eres demasiado."
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "Aquí no tienes que explicar tu día difícil. Te entendemos."
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "Un mensaje a otra mamá que diga «a mí también» puede cambiarte el día entero."
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "Dar de comer, cambiar, arrullar, y otra vez. Eso es trabajo de verdad, aunque parezca que estás sentada sin hacer nada."
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "Tú y tu bebé todavía se están conociendo. No hay prisa."
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "Los días con un recién nacido son largos. Esta etapa no va a durar para siempre."
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "Si lo único que hiciste hoy fue mantener a una personita alimentada y abrigada, hiciste un trabajo enorme."
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "No tienes que volver a ser la de antes enseguida. Puedes estar justo donde estás."
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "Como sea que alimentes a tu bebé, lo estás cuidando. Eso es lo que cuenta."
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "Puedes andar corta de sueño y llena de amor al mismo tiempo."
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "Abraza a tu bebé y olvídate de la casa. La casa va a seguir ahí."
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "Un berrinche en la tienda no te hace mala mamá. Solo quiere decir que tienes un niño pequeño."
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "Los pequeños ponen a prueba los límites porque contigo se sienten seguros."
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "Hoy mantuviste la calma un minuto más que ayer. Eso cuenta."
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "Si perdiste la paciencia, un abrazo y un «perdón» arreglan mucho. Y también les enseñan algo bueno."
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "Manitas pegajosas, voces fuertes, emociones grandes. Estás criando a una persona entera."
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "El quinto «¿por qué?» de la hora es una mentecita que está creciendo."
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "No necesitas un día perfecto para crear un recuerdo feliz."
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "Un portazo no es el final de la historia. Deja la luz de la entrada encendida."
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "Puede que tu adolescente no lo diga, pero que estés siempre ahí le importa."
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "Ser la que mantiene la calma en casa cuesta mucho. Y lo estás haciendo."
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "Algunas de las mejores conversaciones surgen de camino a algún sitio. Sigue llevándolos."
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "Se alejan para crecer, no para dejarte atrás."
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "No necesitas tener todas las respuestas. Escuchar ya es mucho."
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "Los hijos grandes todavía te necesitan, solo que de maneras más calladas."
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "Sacarlo todo adelante sola requiere una fuerza que casi nadie ve."
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "Eres mamá suficiente para tus hijos. Siempre lo has sido."
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "Un solo par de manos y cien tareas. Sé amable contigo."
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "Tus hijos aprenden, mirándote, cómo es una persona fuerte y cariñosa."
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "Tomarte un descanso no es abandonar tu puesto. Es lo que te permite seguir."
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "Nadie lleva la cuenta. Lo que importa es el amor y estar presente."
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "El duelo y el amor nacen del mismo lugar. Extrañar a alguien muestra cuánto lo quisiste."
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "No hay un tiempo correcto para el duelo. Tómate el tiempo que necesites."
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "En los aniversarios difíciles, trátate con la misma ternura que tendrías con una amiga."
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "Puedes llevar tristeza por dentro y aun así reírte con tus hijos. Las dos cosas son reales."
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "Si perdiste un embarazo o un bebé, esa pérdida es real, y tu amor también."
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "Hay días en que el duelo es silencioso y otros en que hace mucho ruido. Las dos cosas están bien."
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "Que te falte dinero no significa que te falte amor."
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "Tus hijos van a recordar el tiempo contigo más que las cosas que les compraste."
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "Preguntar por ayuda con las cuentas es de mujer lista, no una vergüenza. Para eso existe esa ayuda."
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "Una tarde gratis en el parque puede ser el mejor día de la semana."
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "Hiciste que el dinero alcanzara una semana más. Eso tiene mucho mérito."
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "Preocuparse por el dinero agota. Llevas mucho a cuestas, y aquí sigues."
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "Hoy te tomaste un vaso de agua. Empieza por ahí."
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "Todos salieron de casa. Quizá los zapatos no combinaban. Igual es un logro."
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "Hiciste esa llamada que tanto temías. Fue muy valiente."
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "Hoy te reíste. Guárdalo."
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "Una comida caliente, una camisa limpia, un cuento antes de dormir. Las cosas pequeñas van formando una infancia."
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "Hoy fuiste amable con alguien, aunque ese alguien fueras tú."
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "Avanzar, no ser perfecta. Hoy diste un paso adelante."
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "Terminaste una cosa de la lista. Es una más que ninguna."
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "Eres una buena mamá. Que te preocupe serlo muestra cuánto te importa."
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "Eres mucho más que lo que logras hacer en un día."
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "Tus hijos no necesitan una mamá perfecta. Te necesitan a ti, y te tienen."
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "Ten contigo la misma paciencia que tienes con tus hijos."
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "Tienes derecho a ocupar tu lugar, a querer cosas y a tener tus propios sueños."
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "Un error no borra el amor. Mañana es un nuevo comienzo."
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "Eres el mundo entero de alguien, y también eres tú misma."
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "Está bien no disfrutar cada minuto. Igual puedes amar a tus hijos con todo el corazón."
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "No hay una sola forma correcta de ser mamá. Tu forma también vale."
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "Como en la postura del árbol, está bien tambalearse. Puedes volver a encontrar el equilibrio."
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "Planta los pies como en la postura de la montaña. Estás más firme de lo que sientes."
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "Guerrero dos: piernas fuertes, brazos abiertos. Así eres tú frente a esta semana."
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "Inhala contando hasta cuatro, exhala contando hasta cuatro. Estás aquí, y lo estás haciendo bien."
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "Ábrete como una estrella. Tienes derecho a ocupar espacio."
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "Una sentadilla ancha y baja cuesta sostenerla. Un día largo también. Y lo estás sosteniendo."
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "Puedes inclinarte como una luna creciente y seguir de pie."
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "Todavía no tienes que llegar a tocarte los pies. Cada poquito de estiramiento cuenta."
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "Postura del triángulo: una mano abajo, otra arriba. Mantente firme y sigue estirándote."
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "Ya es tarde. Lo que no se hizo hoy puede esperar a mañana."
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "¿Despierta con el bebé a esta hora? Muchas mamás están despiertas contigo ahora mismo."
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "La casa está en silencio. Este momento es tuyo. Respira."
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "Llegaste al final del día. Es todo lo que hoy necesitaba."
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "Si tu mente no para esta noche, escríbelo y deja que espere hasta mañana."
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "Descansa los ojos. Mañana puedes empezar de nuevo."
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "Las fiestas pueden ser difíciles además de alegres. Sientas lo que sientas en esta temporada, está bien."
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "La mesa no tiene que ser perfecta. Lo que importa es la gente sentada alrededor."
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "Si este año extrañas a alguien en la mesa, trata con cariño a tu corazón."
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "Gracias, mamá, por cada comida, cada vez que nos llevaste y cada abrazo."
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "No tienes que recibir a todos, hornear ni sonreír todo el tiempo. Unas fiestas sencillas siguen siendo fiestas."
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "El mejor regalo que tus hijos reciben este año es el tiempo contigo."
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "Una celebración pequeña también está llena de amor. No hace falta mucho dinero para que sea especial."
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "Días fríos, abrazos calentitos. Tú eres el rincón cálido de tu casa."
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "Está bien saltarte parte del ajetreo de las fiestas. La paz también es un regalo."
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "Si esta temporada te pesa, no estás sola. Ve un día a la vez."
+  }
+ ]
+}

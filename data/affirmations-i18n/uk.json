@@ -1,0 +1,415 @@
+{
+ "lang": "uk",
+ "name": "Ukrainian",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "Сьогодні не треба встигнути все. Достатньо наступної маленької справи."
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "Втома — це не поразка. Ти втомилася, бо щодня знову поруч."
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "Посуд може почекати. Ти маєш право посидіти п’ять хвилин."
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "Пластівці на вечерю — це теж нагодована родина."
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "Відпочинок не треба заслуговувати. Ти можеш відпочити просто зараз."
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "Іноді перемога — це те, що всі дожили до часу спати. І це справжня перемога."
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "Ти робиш більше, ніж хтось бачить. Я це бачу."
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "Безлад у домі й улюблені діти. Це добрий обмін."
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "У важкий день твоє найкраще виглядає інакше, і воно все одно рахується."
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "Один глибокий вдих. Опусти плечі. У тебе все виходить."
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "Сьогодні можна опустити планку. Іншого дня ти знову її піднімеш."
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "Попросити про допомогу — це сила, а не слабкість."
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "Ти маєш право сказати «ні» ще одній справі."
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "Якщо сьогодні тобі було самотньо, ти не єдина мама, яка так почувалася. Нас багато."
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "Ти заслуговуєш на подругу, яка запитає, як ти, і дочекається відповіді."
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "Це нормально — написати першою. Більшість мам чекають, що хтось це зробить."
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "Те, що тебе не помічають, не означає, що ти не важлива. Ти дуже важлива."
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "Твої почуття мають сенс. Ти не «занадто»."
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "Тут не треба пояснювати свій важкий день. Ми розуміємо."
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "Повідомлення іншій мамі зі словами «у мене теж» може змінити цілий день."
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "Нагодувати, переповити, заколисати — і знову. Це справжня робота, навіть коли здається, що ти просто сидиш."
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "Ти і твоє маля ще тільки знайомитеся. Нікуди не треба поспішати."
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "Дні з новонародженим довгі. Цей період не триватиме вічно."
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "Якщо сьогодні ти лише тримала маленьку людину ситою й у теплі, ти зробила величезну роботу."
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "Не треба швидко ставати такою, як раніше. Можна просто бути там, де ти зараз."
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "Хоч би як харчувалося твоє маля, ти про нього дбаєш. Це головне."
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "Можна недосипати й бути сповненою любові водночас."
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "Тримай маля на руках і відпусти хатні справи. Дім нікуди не дінеться."
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "Істерика в магазині не робить тебе поганою мамою. Це лише означає, що в тебе малюк."
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "Малеча перевіряє межі, бо поруч із тобою почувається в безпеці."
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "Сьогодні ти зберігала спокій на хвилину довше, ніж учора. Це важливо."
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "Якщо ти зірвалася, обійми і «вибач» багато що виправлять. І навчать їх чогось доброго."
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "Липкі ручки, гучні голоси, великі почуття. Ти виховуєш цілу людину."
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "П’яте «чому?» за годину — це маленький розум, що росте."
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "Для щасливого спогаду не потрібен ідеальний день."
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "Грюкнуті двері — не кінець історії. Залиш світло увімкненим."
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "Твій підліток, може, і не скаже цього, але твоя постійна присутність важить."
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "Бути тією, хто зберігає спокій у домі, — важка праця. І ти з нею справляєшся."
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "Деякі з найкращих розмов стаються в машині. Просто їдь далі."
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "Вони віддаляються, щоб вирости, а не щоб залишити тебе позаду."
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "Не обов’язково знати всі відповіді. Уміти слухати — це вже багато."
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "Великим дітям ти досі потрібна, просто тихіше."
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "Тягнути все самій — це сила, якої більшість людей ніколи не бачить."
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "Ти достатньо добра мама для своєї дитини. Ти завжди нею була."
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "Одні руки, сто справ. Будь до себе лагіднішою."
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "Твої діти, дивлячись на тебе, вчаться, якою буває сильна й любляча людина."
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "Перерва — це не втеча з посту. Так ти тримаєшся далі."
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "Ніхто не рахує балів. Важать любов і те, що ти поруч."
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "Горе і любов мають одне джерело. Те, як сильно ти сумуєш, показує, як сильно ти любила."
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "Для горя немає правильного розкладу. Дай собі стільки часу, скільки потрібно."
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "У важкі річниці будь до себе такою ж ніжною, як була б до подруги."
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "Ти можеш носити в собі смуток і все одно сміятися з дітьми. І те, і те справжнє."
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "Якщо ти втратила вагітність або дитину, ця втрата справжня, і твоя любов теж."
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "Буває, що горе тихе, а буває — гучне. І те, і те нормально."
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "Мало грошей не означає мало любові."
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "Твої діти пам’ятатимуть час із тобою більше, ніж речі, які ти купила."
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "Питати про допомогу з рахунками — це розумно, а не соромно. Саме для цього вона й існує."
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "Безкоштовний день у парку може стати найкращим днем тижня."
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "Ти розтягнула гроші ще на тиждень. Для цього потрібна справжня вправність."
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "Тривога про гроші виснажує. Ти несеш багато, і ти досі тут."
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "Сьогодні ти випила склянку води. Почни з цього."
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "Усі вийшли з дому. Може, взуття було не до пари. Однаково перемога."
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "Ти зробила той дзвінок, якого боялася. Це було сміливо."
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "Ти сьогодні сміялася. Збережи це."
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "Тепла їжа, чиста футболка, казка на ніч. Із дрібниць складається дитинство."
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "Сьогодні ти була доброю до когось, навіть якщо лише до себе."
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "Поступ, а не ідеальність. Сьогодні ти зробила крок уперед."
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "Ти закінчила одну справу зі списку. Це на одну більше, ніж жодної."
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "Ти добра мама. Те, що ти через це переживаєш, показує, як тобі не байдуже."
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "Ти більше, ніж те, що встигаєш зробити за день."
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "Твоїм дітям не потрібна ідеальна мама. Їм потрібна ти, і ти в них є."
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "Будь до себе такою ж терплячою, як до своїх дітей."
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "Ти маєш право займати місце, чогось хотіти і мати власні мрії."
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "Помилка не скасовує любові. Завтра — новий початок."
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "Для когось ти цілий світ, і водночас ти — окрема людина."
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "Це нормально — не любити кожну хвилину. Ти все одно можеш любити своїх дітей усім серцем."
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "Немає одного правильного способу бути мамою. Твій спосіб теж має право бути."
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "Як у позі дерева, хитатися — це нормально. Ти знову знайдеш рівновагу."
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "Упрись ногами, як у позі гори. Ти стоїш твердіше, ніж тобі здається."
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "Воїн два: сильні ноги, розкриті руки. Це ти, коли зустрічаєш цей тиждень."
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "Вдих на чотири, видих на чотири. Ти тут, і в тебе все виходить."
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "Розкрийся широко, як зірка. Ти маєш право займати місце."
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "Широке низьке присідання важко втримати. Довгий день теж. А ти тримаєшся."
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "Ти можеш нахилитися, як місяць-серпик, і все одно стояти."
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "Не обов’язково вже діставати до пальців ніг. Кожна дещиця розтяжки рахується."
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "Поза трикутника: одна рука донизу, друга догори. Стій міцно й тягнися далі."
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "Уже пізно. Те, що не встигла сьогодні, почекає до завтра."
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "Не спиш із малям у таку годину? Безліч мам зараз не спить разом із тобою."
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "У домі тихо. Ця мить — твоя. Дихай."
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "Ти прожила цей день. Більше сьогодні нічого й не треба було."
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "Якщо цієї ночі думки не дають спокою, запиши їх і нехай почекають до ранку."
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "Дай очам відпочити. Завтра можна почати знову."
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "Свята бувають і важкими, і радісними. Хоч би що ти відчувала цієї пори, це нормально."
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "Стіл не мусить бути ідеальним. Найважливіше — люди довкола нього."
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "Якщо цього року тобі когось бракує за столом, будь ніжною до свого серця."
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "Дякую, мамо, за кожну страву, кожну поїздку і кожні обійми."
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "Не обов’язково приймати гостей, пекти чи весь час усміхатися. Прості свята — однаково свята."
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "Найкращий подарунок, який отримають твої діти цього року, — час із тобою."
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "Скромне свято теж сповнене любові. Не треба багато грошей, щоб зробити його особливим."
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "Холодні дні, теплі обійми. Ти — тепле місце у своєму домі."
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "Можна пропустити частину святової метушні. Спокій — теж подарунок."
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "Якщо цього року ця пора тобі важка, ти не сама. Один день за раз."
+  }
+ ]
+}

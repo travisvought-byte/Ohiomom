@@ -277,17 +277,21 @@ def urgent_strip(data, root='', more=None):
             f'<a href="{esc(more)}">More ways to get help now</a></p></section>')
 
 
-def kind_word(help_href, root=''):
+def kind_word(help_href, root='', lang=None):
     """The day's affirmation, as on the front page but without the picture. Every state, country and county page
-    carries it, in the same place: after the needs, before the closing note (scripts/home_extras.py)."""
+    carries it, in the same place: after the needs, before the closing note (scripts/home_extras.py).
+    lang: a country's language (its "lang" in data/ymt/world.json). Where the affirmations are in that language, the
+    card shows the day's one in it, with the English under it; otherwise it stays English only."""
     sayings = extras.approved_affirmations()
-    return extras.affirmation_card(sayings, f'{root}affirmations.html', help_href)
+    return extras.affirmation_card(sayings, f'{root}affirmations.html', help_href, extras.local_language(lang))
 
 
-def kind_word_scripts(root=''):
-    """The card's script: one file, assets/kindword.js, written by scripts/home_extras.py."""
+def kind_word_scripts(root='', lang=None):
+    """The card's script: one file, assets/kindword.js, written by scripts/home_extras.py, and on a country page in
+    another language, that one language's file (assets/kindword/<lang>.js) before it."""
     sayings = extras.approved_affirmations()
-    return ('\n' + extras.affirmation_card_scripts(sayings, root)) if sayings else ''
+    local = extras.local_language(lang)
+    return ('\n' + extras.affirmation_card_scripts(sayings, root, local[0] if local else None)) if sayings else ''
 
 
 def closing(root, free=''):
@@ -454,9 +458,40 @@ def build_connect(data):
                 head_extra=structured_data(breadcrumbs(data, [('Meet other moms', 'connect.html')])), slots=('topic-connect', 'topic'))
 
 
+# The U.S. as a grid of equal tiles, roughly where each state sits on the map: (abbreviation, row, column), row by row.
+US_TILES = [
+    ('AK', 0, 0), ('ME', 0, 10),
+    ('WI', 1, 5), ('VT', 1, 9), ('NH', 1, 10),
+    ('WA', 2, 0), ('ID', 2, 1), ('MT', 2, 2), ('ND', 2, 3), ('MN', 2, 4), ('IL', 2, 5), ('MI', 2, 6), ('NY', 2, 8), ('MA', 2, 9),
+    ('OR', 3, 0), ('NV', 3, 1), ('WY', 3, 2), ('SD', 3, 3), ('IA', 3, 4), ('IN', 3, 5), ('OH', 3, 6), ('PA', 3, 7), ('NJ', 3, 8),
+    ('CT', 3, 9), ('RI', 3, 10),
+    ('CA', 4, 0), ('UT', 4, 1), ('CO', 4, 2), ('NE', 4, 3), ('MO', 4, 4), ('KY', 4, 5), ('WV', 4, 6), ('VA', 4, 7), ('MD', 4, 8),
+    ('DE', 4, 9),
+    ('AZ', 5, 1), ('NM', 5, 2), ('KS', 5, 3), ('AR', 5, 4), ('TN', 5, 5), ('NC', 5, 6), ('SC', 5, 7), ('DC', 5, 8),
+    ('OK', 6, 3), ('LA', 6, 4), ('MS', 6, 5), ('AL', 6, 6), ('GA', 6, 7),
+    ('HI', 7, 0), ('TX', 7, 3), ('FL', 7, 8),
+]
+
+
+def state_grid(data):
+    """Every state and D.C. as one tile with its two letters, each a link to its page. Plain links in a list, in reading
+    order (row by row), so it works with no script, from the keyboard and with a screen reader, which reads each
+    tile's full name after its letters."""
+    names = {s['abbr']: s['name'] for s in data['states']}
+    missing = sorted(set(names) - {a for a, _, _ in US_TILES})
+    if missing:
+        sys.exit(f'scripts/ymt_build.py: no tile in US_TILES for {", ".join(missing)}')
+    tiles = ''.join(f'<li style="grid-area:{r + 1}/{c + 1}"><a href="states/{a.lower()}.html" title="{esc(names[a])}">'
+                    f'{a}<span class="sr"> {esc(names[a])}</span></a></li>' for a, r, c in US_TILES if a in names)
+    return f'<ul class="usgrid" aria-label="Map of the states">{tiles}</ul>'
+
+
 def build_states_index(data):
     items = ''.join(f'<li><a href="states/{s["abbr"].lower()}.html">{esc(s["name"])}<small>{s["abbr"]}</small></a></li>' for s in data['states'])
-    body = hero('Help by state', 'All 50 states and the District of Columbia. Pick yours.') + f'<section class="wrap"><ul class="statelist">{items}</ul><p class="note">Looking for help close to home? <a href="county.html">Find your county</a>. Looking for something national? See <a href="help.html">Find help</a>.</p></section>'
+    body = (hero('Help by state', 'All 50 states and the District of Columbia. Tap yours on the map, or open the list.')
+            + f'<section class="wrap mapwrap">{state_grid(data)}'
+            f'<details class="maplist"><summary>All {len(data["states"])} as a list</summary><ul class="statelist">{items}</ul></details>'
+            '<p class="note">Looking for help close to home? <a href="county.html">Find your county</a>. Looking for something national? See <a href="help.html">Find help</a>.</p></section>')
     return page(data, 'states.html', 'Help by state',
                 'Pick your state for SNAP, WIC, child care, health coverage, disability help and domestic violence resources.', body,
                 head_extra=structured_data(breadcrumbs(data, [('Help by state', 'states.html')])))
@@ -547,21 +582,63 @@ def emergency_card(c):
             f'<small>Emergency in {esc(c["name"])}: {esc(e["label"])}</small></a></li>')
 
 
+WORLD_MAP = lib.DATA / 'world-map.json'  # Natural Earth outlines, made by scripts/world_map_data.py
+DOT_AREA = 22  # a country drawn smaller than this (in square map units) also gets a dot, so it can be found and tapped
+
+
+def world_map(world):
+    """The map on world.html: every country, grey; every country with a page, pink and a link to it (the United States
+    links to the state pages). A country too
+    small to draw at this scale (Singapore, Barbados) is a dot at its label point, and a very small one gets a dot too.
+    A new country in world.json is shaded the next time this runs; one that is not on the map stops the build."""
+    m = json.loads(WORLD_MAP.read_text(encoding='utf-8'))
+    covered = {c['code'] for c in world['countries']}
+    shapes = {c['code']: c for c in m['countries'] if c.get('code')}
+    points = {p['code']: p for p in m['points']}
+    missing = sorted(covered - set(shapes) - set(points))
+    if missing:
+        sys.exit(f'scripts/ymt_build.py: {", ".join(missing)} not in {WORLD_MAP.relative_to(ROOT)}')
+    # The United States has no country page: it links to the states instead.
+    targets = [(c['slug'], c['code'], c['name'], f'countries/{c["slug"]}.html') for c in world['countries']]
+    if 'US' in shapes and 'US' not in covered:
+        targets.append(('united-states', 'US', 'United States: help by state', 'states.html'))
+    linked = {code for _, code, _, _ in targets}
+    grey = ''.join(f'<path d="{c["d"]}"/>' for c in m['countries'] if c.get('code') not in linked)
+    links = ''
+    for _, code, name, href in sorted(targets):
+        shape = shapes.get(code)
+        x, y = (shape or points[code])['label']
+        inner = f'<title>{esc(name)}</title>' + (f'<path d="{shape["d"]}"/>' if shape else '')
+        if not shape or shape['area'] < DOT_AREA:
+            inner += f'<circle cx="{x}" cy="{y}" r="5"/>'
+        links += f'<a href="{href}" aria-label="{esc(name)}" data-country="{code}">{inner}</a>'
+    return (f'<svg class="worldmap" viewBox="0 0 {m["width"]} {m["height"]}" role="group" '
+            f'aria-label="World map. The {len(covered)} countries with their own page are shaded and link to it.">'
+            f'<g class="land" aria-hidden="true">{grey}</g><g class="covered">{links}</g></svg>')
+
+
 def build_world(data):
     world = data['world']
     items = ''.join(f'<li><a href="countries/{c["slug"]}.html"><span aria-hidden="true">{c["flag"]}</span> {esc(c["name"])}'
                     f'<small>Emergency {esc(c["emergency"]["number"])}</small></a></li>' for c in world['countries'])
     lede = ('Help for moms wherever you live. Pick your country for its own crisis lines, family payments and support, '
             'or use the help below, which works in any country. Free, private, no sign-up.')
-    body = (hero('Help for moms, anywhere in the world', lede, country_pick(world))
+    n = len(world['countries'])
+    # The map comes first to the eye, so one line above it keeps the way to an emergency number first of all.
+    danger = '<p class="dangerline"><a href="#now">In danger right now? Find your country\'s emergency number</a></p>'
+    top = hero('Help for moms, anywhere in the world', lede, country_pick(world)).replace('<div class="wrap">', '<div class="wrap">' + danger, 1)
+    body = (top
+            + f'<section class="wrap mapwrap" id="countries"><h2>Find your country</h2>'
+            f'<p class="quiet">The {n} countries in pink have their own page, and the United States leads to its states. '
+            f'Tap yours, or open the list.</p>{world_map(world)}'
+            f'<details class="maplist"><summary>All {n} countries as a list</summary><ul class="statelist">{items}</ul></details>'
+            '<p class="note">More countries are on the way. Living in the U.S.? <a href="states.html">Choose your state</a>. '
+            'Know a free service for moms in your country? <a href="report.html">Tell us</a>.</p></section>'
             + '<section class="wrap now" id="now"><h2>In danger right now?</h2>'
             '<p class="quiet">Call your country\'s emergency number. Here are the numbers for the countries we cover so far.</p>'
             f'<ul class="phonecards">{"".join(emergency_card(c) for c in world["countries"])}</ul></section>'
             + finder('Search help that works in any country', 'helpline, breastfeeding, custody…', NO_MATCH_WORLD)
-            + needs(world_rows(data, world['worldwide']))
-            + f'<section class="wrap"><h2>Countries</h2><ul class="statelist">{items}</ul>'
-            '<p class="note">More countries are on the way. Living in the U.S.? <a href="states.html">Choose your state</a>. '
-            'Know a free service for moms in your country? <a href="report.html">Tell us</a>.</p></section>')
+            + needs(world_rows(data, world['worldwide'])))
     desc = ('Free help for moms outside the U.S.: crisis and domestic violence lines, family payments, breastfeeding and '
             'postpartum support, country by country.')
     base = f"https://{data['site']['domain']}/"
@@ -588,7 +665,7 @@ def build_country(data, c):
             f'<ul class="phonecards">{cards_now}</ul></section>'
             + finder(f'Search every {c["name"]} listing', 'helpline, benefit, breastfeeding…', NO_MATCH_WORLD)
             + needs(world_rows(data, everything, '../', c))
-            + kind_word('#take-care', '../')
+            + kind_word('#take-care', '../', c.get('lang'))
             + closing('../', 'Numbers are free to call unless the listing says otherwise. '))
     path = f'countries/{c["slug"]}.html'
     desc = (f'Free help for moms in {c["name"]}: the emergency number, domestic violence and crisis lines, family payments, '
@@ -600,7 +677,7 @@ def build_country(data, c):
     trail = breadcrumbs(data, [('Worldwide', 'world.html'), (c['name'], path)])
     return page(data, path, f'{c["name"]}: help for moms', desc, body, head_extra=structured_data(about, trail),
                 slots=(f'country-{c["code"].lower()}', 'country'),
-                danger=f'In danger right now? Call {c["emergency"]["number"]}.', scripts=kind_word_scripts('../'))
+                danger=f'In danger right now? Call {c["emergency"]["number"]}.', scripts=kind_word_scripts('../', c.get('lang')))
 
 
 def county_pick(data, s):
@@ -684,7 +761,8 @@ def build_county(data):
                'If something is wrong, <a href="report.html">tell us</a>.</p>'
                '<p class="note">Nothing you type on this page is saved. A ZIP code is matched inside your browser, using a list '
                'your browser downloads for the first digit of the code.</p></section>')
-    body = (hero_html + f'\n<div id="county-app">{fallback}</div>' + statehelp + '\n' + urgent_strip(data) + '\n'
+    # The crisis phone cards come right after the heading, as on every state and country page.
+    body = (hero_html + '\n' + urgent_strip(data) + f'\n<div id="county-app">{fallback}</div>' + statehelp + '\n'
             + kind_word('help.html#take-care') + '\n' + sources)
     return page(data, 'county.html', 'Help near you, by county',
                 'Public housing, housing counselors, legal aid, health centers, school districts and Head Start in every U.S. county, '

@@ -1,0 +1,415 @@
+{
+ "lang": "hu",
+ "name": "Hungarian",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "Ma nem kell mindent megcsinálnod. Elég a következő kis lépés."
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "A fáradtság nem kudarc. Azért vagy fáradt, mert nap mint nap ott vagy."
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "A mosogatás várhat. Nyugodtan leülhetsz öt percre."
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "Ha vacsorára gabonapehely volt, akkor is megetetted a családodat."
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "A pihenést nem kell kiérdemelned. Most rögtön pihenhetsz."
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "Van, amikor az a győzelem, hogy mindenki kibírta lefekvésig. Ez igazi győzelem."
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "Többet teszel, mint amennyit bárki lát. Én látom."
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "Rendetlen lakás és szeretett gyerekek. Ez jó csere."
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "Egy nehéz napon máshogy néz ki a legjobb formád, és az is számít."
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "Egy mély levegő. Engedd le a vállad. Jól csinálod."
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "Ma nyugodtan lejjebb teheted a lécet. Majd egy másik nap feljebb teszed."
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "Segítséget kérni erő, nem gyengeség."
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "Nyugodtan mondhatsz nemet még egy dologra."
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "Ha ma magányosnak érezted magad, nem te vagy az egyetlen anya, aki így érzett. Sokan vagyunk."
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "Megérdemelsz egy barátnőt, aki megkérdezi, hogy vagy, és meg is várja a választ."
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "Nyugodtan jelentkezz te elsőként. A legtöbb anya abban reménykedik, hogy valaki megteszi."
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "Attól, hogy láthatatlannak érzed magad, még nagyon is számítasz."
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "Az érzéseidnek van értelme. Nem vagy „túl sok”."
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "Itt nem kell megmagyaráznod a nehéz napodat. Értjük."
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "Egy üzenet egy másik anyának, hogy „én is”, megfordíthat egy egész napot."
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "Etetés, pelenkázás, ringatás, és újra elölről. Ez valódi munka, még ha úgy is tűnik, mintha csak ülnél."
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "Te és a babád még ismerkedtek egymással. Nincs hova sietni."
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "Az újszülöttes napok hosszúak. Ez az időszak nem tart örökké."
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "Ha ma csak annyit csináltál, hogy egy pici embert jóllakottan és melegben tartottál, hatalmas munkát végeztél."
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "Nem kell gyorsan visszaállnod a régi önmagadra. Lehetsz egyszerűen ott, ahol most vagy."
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "Akárhogy kapja is az ételt a babád, te gondoskodsz róla. Ez számít."
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "Lehetsz kialvatlan és szeretettel teli egyszerre."
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "Tartsd a babát, és engedd el a háztartást. A ház megvár."
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "Egy hiszti a boltban nem tesz rossz anyává. Csak annyit jelent, hogy kisgyereked van."
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "A picik azért feszegetik a határokat, mert melletted biztonságban érzik magukat."
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "Ma egy perccel tovább maradtál nyugodt, mint tegnap. Ez számít."
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "Ha elvesztetted a türelmed, egy ölelés és egy „bocsánat” sokat helyrehoz. És valami jóra is tanít."
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "Ragacsos kezek, hangos hangok, nagy érzések. Egy egész embert nevelsz."
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "Az óra ötödik „miért?”-je egy kis elme, ami épp nő."
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "Egy boldog emlékhez nem kell tökéletes nap."
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "Egy becsapott ajtó nem a történet vége. Hagyd égve a villanyt."
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "A kamaszod talán nem mondja ki, de számít neki, hogy mindig ott vagy."
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "A ház nyugodt pontjának lenni kemény munka. És te csinálod."
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "A legjobb beszélgetések közül néhány az autóban születik. Csak vezess tovább."
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "Azért távolodnak, hogy felnőjenek, nem azért, hogy magad mögött hagyjanak."
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "Nem kell minden választ tudnod. A meghallgatás már nagy rész."
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "A nagyobb gyerekeknek is szükségük van rád, csak csendesebben."
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "Egyedül vinni mindent olyan erőt kíván, amit a legtöbben sosem látnak."
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "Elég jó anya vagy a gyerekednek. Mindig is az voltál."
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "Egy pár kéz, száz feladat. Légy elnéző magaddal."
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "A gyerekeid tőled tanulják meg, milyen egy erős, szerető ember."
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "A szünet nem az őrhely elhagyása. Így bírod tovább."
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "Senki sem számolja a pontokat. A szeretet és az, hogy ott vagy, ez számít."
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "A gyász és a szeretet ugyanonnan fakad. Az, hogy hiányzik valaki, azt mutatja, mennyire szeretted."
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "A gyásznak nincs helyes menetrendje. Szánj rá annyi időt, amennyire szükséged van."
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "A nehéz évfordulókon légy olyan gyengéd magadhoz, mint egy barátnődhöz lennél."
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "Hordozhatsz szomorúságot, és közben nevethetsz a gyerekeiddel. Mindkettő valódi."
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "Ha elvesztettél egy várandósságot vagy egy babát, az a veszteség valódi, és a szereteted is az."
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "Van, hogy a gyász csendes, és van, hogy hangos. Mindkettő rendben van."
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "A kevés pénz nem jelent kevés szeretetet."
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "A gyerekeid a veled töltött időre jobban emlékeznek majd, mint a dolgokra, amiket vettél."
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "Segítséget kérni a számlákhoz okos dolog, nem szégyen. Ezért van ez a segítség."
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "Egy ingyenes délután a parkban lehet a hét legjobb napja."
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "Még egy hétre kihúztad a pénzt. Ehhez igazi ügyesség kell."
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "A pénz miatti aggódás kimerítő. Sokat cipelsz, és még mindig itt vagy."
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "Ma ittál egy pohár vizet. Kezdd ott."
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "Mindenki kijutott az ajtón. Lehet, hogy a cipők nem illettek össze. Akkor is győzelem."
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "Elintézted azt a telefont, amitől tartottál. Ez bátorság volt."
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "Ma nevettél. Őrizd meg."
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "Egy meleg étel, egy tiszta póló, egy esti mese. A kis dolgokból áll össze a gyerekkor."
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "Ma kedves voltál valakihez, még ha csak saját magadhoz is."
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "Fejlődés, nem tökéletesség. Ma előreléptél."
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "Egy dolgot kipipáltál a listán. Ez eggyel több a semminél."
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "Jó anya vagy. Már az, hogy aggódsz emiatt, mutatja, mennyire fontos neked."
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "Több vagy annál, amit egy nap alatt elvégzel."
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "A gyerekeidnek nem tökéletes anya kell. Te kellesz nekik, és te ott vagy nekik."
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "Légy olyan türelmes magadhoz, mint a gyerekeidhez."
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "Jogod van helyet foglalni, vágyni dolgokra, és saját álmaid lehetnek."
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "Egy hiba nem törli el a szeretetet. Holnap új kezdet."
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "Valakinek te vagy az egész világ, és közben önálló ember is vagy."
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "Rendben van, ha nem élvezed minden percét. Attól még teljes szívedből szeretheted a gyerekeidet."
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "Nincs egyetlen helyes módja annak, hogyan legyél anya. A te utad is jó."
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "Mint a fa pózban, nyugodtan meginoghatsz. Újra megtalálod az egyensúlyod."
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "Állj stabilan, mint a hegy pózban. Erősebben állsz, mint ahogy érzed."
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "Harcos kettő: erős lábak, kitárt karok. Ez vagy te, ahogy szembenézel ezzel a héttel."
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "Belégzés négyig, kilégzés négyig. Itt vagy, és jól csinálod."
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "Nyújtózz ki szélesen, mint egy csillag. Jogod van helyet foglalni."
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "Egy széles, mély guggolást nehéz megtartani. Egy hosszú napot is. És te tartod."
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "Hajolhatsz, mint egy holdsarló, és közben állva maradsz."
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "Még nem kell elérned a lábujjaidat. Minden kis nyújtás számít."
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "Háromszög póz: egyik kéz lent, másik fent. Maradj stabil, és nyújtózkodj tovább."
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "Késő van. Ami ma nem készült el, ráér holnap."
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "Ilyenkor ébren vagy a babával? Most rengeteg anya virraszt veled együtt."
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "Csend van a házban. Ez a pillanat a tiéd. Lélegezz."
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "Túljutottál a mai napon. Ma csak erre volt szükség."
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "Ha ma éjjel nem hagynak nyugodni a gondolataid, írd le őket, és hagyd, hogy várjanak reggelig."
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "Pihentesd a szemed. Holnap újrakezdheted."
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "Az ünnepek lehetnek nehezek is, nem csak vidámak. Bárhogy éled meg ezt az időszakot, rendben van."
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "Az asztalnak nem kell tökéletesnek lennie. A körülötte ülő emberek számítanak."
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "Ha idén hiányzik valaki az asztal mellől, bánj gyengéden a szíveddel."
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "Köszönöm, anya, minden ételt, minden fuvart és minden ölelést."
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "Nem kell vendégeket fogadnod, sütnöd vagy végig mosolyognod. Egy egyszerű ünnep is ünnep."
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "A legszebb ajándék, amit idén a gyerekeid kapnak, a veled töltött idő."
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "Egy kis ünnep is tele van szeretettel. Nem kell hozzá sok pénz, hogy különleges legyen."
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "Hideg napok, meleg ölelések. Te vagy a meleg pont az otthonodban."
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "Nyugodtan kihagyhatsz valamennyit az ünnepi rohanásból. A nyugalom is ajándék."
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "Ha idén nehéz neked ez az időszak, nem vagy egyedül. Egyszerre csak egy nap."
+  }
+ ]
+}

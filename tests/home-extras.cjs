@@ -325,11 +325,16 @@ print(jp.page({"affirmations": [{"text": t, "approved": ok, "cast": cast} for t,
     const d = new JSDOM(fs.readFileSync(path.join(ROOT, rel), 'utf8')).window.document;
     const box = d.getElementById('scene') || d.getElementById('affirm');
     assert(box, `${rel}: the affirmation card is on the page`);
-    // A location page loads the card's script from one file of the site's own.
-    const file = all(d, 'script[src]').map((el) => el.getAttribute('src')).filter((src) => src.endsWith('kindword.js'));
+    // A location page loads the card's script from one file of the site's own, and a country page in another language
+    // first loads that one language's affirmations from a file of its own.
+    const srcs = all(d, 'script[src]').map((el) => el.getAttribute('src'));
+    const file = srcs.filter((src) => src.endsWith('/kindword.js') || src === 'kindword.js');
+    const local = srcs.filter((src) => /kindword\/[^/]+\.js$/.test(src));
     if (!d.getElementById('scene')) {
       assert.equal(file.length, 1, `${rel}: the card's script`);
-      const code = fs.readFileSync(path.join(ROOT, path.dirname(rel), file[0]), 'utf8');
+      assert(local.length <= 1, `${rel}: at most one language's file`);
+      if (local.length) assert(srcs.indexOf(local[0]) < srcs.indexOf(file[0]), `${rel}: the language's file loads before the card's script`);
+      const code = local.concat(file).map((src) => fs.readFileSync(path.join(ROOT, path.dirname(rel), src), 'utf8')).join('\n');
       assert(!code.includes('</script'), 'the script file can sit in a page');
       return box.outerHTML + `<script>${code}</script>`;
     }
@@ -361,6 +366,61 @@ print(jp.page({"affirmations": [{"text": t, "approved": ok, "cast": cast} for t,
     assert(still.getElementById('affirm').hidden, `${rel}: no empty card before the script runs`);
   }
   console.log(`PASS the day's affirmation is on all ${places.length - 1} location pages, the same one as the front page, with Back and Next`);
+}
+
+// 10. A country page whose people mostly speak another language shows the day's affirmation in that language, with the
+// English under it, both the same one as the front page and in step through Back and Next. An English-speaking country,
+// or one whose language has no translation yet, shows the English alone and loads no language file.
+{
+  const ROOT = path.join(__dirname, '..');
+  const world = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/ymt/world.json'), 'utf8')).countries;
+  const english = JSON.parse(py('import json; print(json.dumps(e.approved_affirmations()))'));
+  const langs = JSON.parse(py('import json; print(json.dumps({l: e.local_affirmations(l) for l in e.translation_langs()}))'));
+  const RTL = ['ar', 'he', 'ur', 'fa'];
+  const pageOf = (c) => {
+    const rel = `countries/${c.slug}.html`, d = new JSDOM(fs.readFileSync(path.join(ROOT, rel), 'utf8')).window.document;
+    const srcs = all(d, 'script[src]').map((el) => el.getAttribute('src'));
+    const local = srcs.filter((src) => /kindword\/[^/]+\.js$/.test(src));
+    const code = local.concat(srcs.filter((src) => src.endsWith('/kindword.js'))).map((src) => fs.readFileSync(path.join(ROOT, 'countries', src), 'utf8')).join('\n');
+    return { rel, d, local, body: d.getElementById('affirm').outerHTML + `<script>${code}</script>` };
+  };
+  let localized = 0, plain = 0;
+  for (const c of world) {
+    const p = pageOf(c), words = langs[c.lang], line = p.d.getElementById('affirm-local');
+    if (!words) {
+      plain++;
+      assert(!line, `${p.rel}: English only, no second line`);
+      assert.equal(p.local.length, 0, `${p.rel}: English only, no language file`);
+      const page = open(p.body);
+      assert.equal(page.d.getElementById('affirm-local'), null);
+      continue;
+    }
+    localized++;
+    assert.equal(words.length, english.length, `${c.lang}: one line for each affirmation`);
+    assert.deepEqual(p.local, [`../assets/kindword/${c.lang}.js`], `${p.rel}: loads its own language and no other`);
+    assert(line, `${p.rel}: the line in ${c.lang}`);
+    assert.equal(line.getAttribute('lang'), c.lang, `${p.rel}: lang`);
+    assert.equal(line.getAttribute('dir'), RTL.includes(c.lang.split('-')[0]) ? 'rtl' : null, `${p.rel}: dir`);
+    assert.equal(p.d.getElementById('affirm-text').getAttribute('lang'), 'en', `${p.rel}: the English is marked English`);
+    assert(line.hidden, `${p.rel}: nothing shows before the script runs`);
+    for (const now of ['2027-03-10T12:00:00', '2026-11-20T12:00:00', '2026-12-10T12:00:00', '2027-03-10T23:30:00']) {
+      const page = open(p.body, { now }), d = page.d;
+      const check = (what) => {
+        const en = shown(d), i = english.indexOf(en), here = d.getElementById('affirm-local');
+        assert(i >= 0, `${p.rel}: an approved affirmation`);
+        assert(!here.hidden, `${p.rel} ${what}: the line in ${c.lang} shows`);
+        assert.equal(here.textContent, words[i], `${p.rel} at ${now} ${what}: the same affirmation in ${c.lang}`);
+      };
+      check('today');
+      page.tap('#affirm-next'); check('after Next');
+      page.tap('#affirm-next'); check('after Next again');
+      page.tap('#affirm-prev'); check('after Back');
+      assert.equal(d.getElementById('affirm-local').getAttribute('aria-live'), 'polite', `${p.rel}: a flipped line is read out`);
+    }
+  }
+  assert(localized > 40 && plain > 10, `${localized} countries in their language, ${plain} in English`);
+  for (const slug of ['united-kingdom', 'canada', 'nigeria', 'south-africa', 'philippines']) assert.equal(world.find((c) => c.slug === slug).lang, 'en', `${slug} reads in English`);
+  console.log(`PASS ${localized} country pages show the day's affirmation in their language over the English, in step through Back and Next, with lang and dir set; ${plain} show the English alone`);
 }
 
 console.log('PASS front-page picture is decoration beside the question; the daily affirmation is Deborah\'s speech bubble in it: one a day by the visitor\'s own date, the next one tomorrow, back and next to flip, no timers, and one gentle line to the site\'s own page of people to talk to; every affirmation brings its own pose, sweater, children, what they are doing and caption; seasonal and late-night ones come out only in their time, and open the card when they do; the owner\'s preview steps through every affirmation with the same picture');

@@ -1,5 +1,5 @@
 {
- "note": "Help for moms outside the United States, built into world.html and countries/<slug>.html by scripts/ymt_build.py. Every listing needs a source it was checked against and the date. 'phone' is printed as the country writes it; 'dial' is the digits a phone in that country dials (or a full +country number for a line called from abroad). Never list a shelter address. Added November 19, 2026 at the owner's request: Yoga Mom Talk as a worldwide resource for moms.",
+ "note": "Help for moms outside the United States, built into world.html and countries/<slug>.html by scripts/ymt_build.py. Every listing needs a source it was checked against and the date. 'phone' is printed as the country writes it; 'dial' is the digits a phone in that country dials (or a full +country number for a line called from abroad). Never list a shelter address. 'lang' is the language the country page shows the day's affirmation in, beside the English (en: English only; see data/affirmations-i18n/). Added November 19, 2026 at the owner's request: Yoga Mom Talk as a worldwide resource for moms.",
  "worldwide": [
   {
    "id": "world-findahelpline",
@@ -116,6 +116,7 @@
    "slug": "argentina",
    "name": "Argentina",
    "flag": "🇦🇷",
+   "lang": "es",
    "emergency": {
     "number": "911",
     "label": "Police or an emergency ambulance. In Buenos Aires city and some nearby areas, 107 also sends an ambulance",
@@ -217,6 +218,7 @@
    "slug": "australia",
    "name": "Australia",
    "flag": "🇦🇺",
+   "lang": "en",
    "emergency": {
     "number": "000",
     "label": "Police, fire and ambulance",
@@ -341,6 +343,7 @@
    "slug": "austria",
    "name": "Austria",
    "flag": "🇦🇹",
+   "lang": "de",
    "emergency": {
     "number": "112",
     "label": "Single European emergency number. Also 133 for the police, 144 for an ambulance, 122 for the fire service",
@@ -441,6 +444,7 @@
    "slug": "bahamas",
    "name": "The Bahamas",
    "flag": "🇧🇸",
+   "lang": "en",
    "emergency": {
     "number": "919",
     "label": "Police, fire and ambulance. 911 works too",
@@ -492,6 +496,7 @@
    "slug": "bangladesh",
    "name": "Bangladesh",
    "flag": "🇧🇩",
+   "lang": "bn",
    "emergency": {
     "number": "999",
     "label": "Police, fire and ambulance. Free, any hour",
@@ -557,6 +562,7 @@
    "slug": "barbados",
    "name": "Barbados",
    "flag": "🇧🇧",
+   "lang": "en",
    "emergency": {
     "number": "211",
     "label": "Police. Ambulance, 511. Fire, 311",
@@ -623,6 +629,7 @@
    "slug": "belgium",
    "name": "Belgium",
    "flag": "🇧🇪",
+   "lang": "nl",
    "emergency": {
     "number": "112",
     "label": "Urgent medical help or the fire service. For the police, call 101",
@@ -761,6 +768,7 @@
    "slug": "bolivia",
    "name": "Bolivia",
    "flag": "🇧🇴",
+   "lang": "es",
    "emergency": {
     "number": "110",
     "label": "Police patrols (Radio Patrullas). For the fire service, call 119",
@@ -824,6 +832,7 @@
    "slug": "brazil",
    "name": "Brazil",
    "flag": "🇧🇷",
+   "lang": "pt",
    "emergency": {
     "number": "190",
     "label": "Military Police, when someone is in danger right now. For an ambulance (SAMU), call 192",
@@ -944,6 +953,7 @@
    "slug": "canada",
    "name": "Canada",
    "flag": "🇨🇦",
+   "lang": "en",
    "emergency": {
     "number": "911",
     "label": "Police, fire and ambulance",
@@ -1052,6 +1062,7 @@
    "slug": "chile",
    "name": "Chile",
    "flag": "🇨🇱",
+   "lang": "es",
    "emergency": {
     "number": "133",
     "label": "Carabineros, the police. For an ambulance (SAMU), call 131",
@@ -1160,6 +1171,7 @@
    "slug": "colombia",
    "name": "Colombia",
    "flag": "🇨🇴",
+   "lang": "es",
    "emergency": {
     "number": "123",
     "label": "The national number for emergencies and safety",
@@ -1245,6 +1257,7 @@
    "slug": "costa-rica",
    "name": "Costa Rica",
    "flag": "🇨🇷",
+   "lang": "es",
    "emergency": {
     "number": "911",
     "label": "Any emergency. INAMU's free 9-1-1 line for women facing violence answers any hour, every day",
@@ -1345,6 +1358,7 @@
    "slug": "croatia",
    "name": "Croatia",
    "flag": "🇭🇷",
+   "lang": "hr",
    "emergency": {
     "number": "112",
     "label": "Police, emergency medical help and fire brigade. Free, any hour; you can report in Croatian, English, German, Italian, Hungarian or Slovak",
@@ -1456,6 +1470,7 @@
    "slug": "czech-republic",
    "name": "Czech Republic",
    "flag": "🇨🇿",
+   "lang": "cs",
    "emergency": {
     "number": "112",
     "label": "Single European emergency number. Also 155 for an ambulance, 158 for the police, 150 for the fire service. Free, any hour",
@@ -1559,6 +1574,7 @@
    "slug": "denmark",
    "name": "Denmark",
    "flag": "🇩🇰",
+   "lang": "da",
    "emergency": {
     "number": "112",
     "label": "Ambulance, fire and police. For non-urgent police matters, call 114",
@@ -1674,6 +1690,7 @@
    "slug": "dominican-republic",
    "name": "Dominican Republic",
    "flag": "🇩🇴",
+   "lang": "es",
    "emergency": {
     "number": "911",
     "label": "Police, fire and ambulance through the national 9-1-1 system",
@@ -1740,6 +1757,7 @@
    "slug": "ecuador",
    "name": "Ecuador",
    "flag": "🇪🇨",
+   "lang": "es",
    "emergency": {
     "number": "911",
     "label": "ECU 911: emergencies of every kind, including reports of violence",
@@ -1808,6 +1826,7 @@
    "slug": "egypt",
    "name": "Egypt",
    "flag": "🇪🇬",
+   "lang": "ar",
    "emergency": {
     "number": "122",
     "label": "Police. For an ambulance, call 123; for the fire service, 180",
@@ -1851,6 +1870,7 @@
    "slug": "ethiopia",
    "name": "Ethiopia",
    "flag": "🇪🇹",
+   "lang": "am",
    "emergency": {
     "number": "991",
     "label": "Police, toll-free",
@@ -1885,6 +1905,7 @@
    "slug": "finland",
    "name": "Finland",
    "flag": "🇫🇮",
+   "lang": "fi",
    "emergency": {
     "number": "112",
     "label": "Police, ambulance, fire service and social services. Free to call",
@@ -1984,6 +2005,7 @@
    "slug": "france",
    "name": "France",
    "flag": "🇫🇷",
+   "lang": "fr",
    "emergency": {
     "number": "112",
     "label": "Any emergency, free, any hour. Also 15 for medical help, 17 for police, 18 for fire",
@@ -2105,6 +2127,7 @@
    "slug": "germany",
    "name": "Germany",
    "flag": "🇩🇪",
+   "lang": "de",
    "emergency": {
     "number": "112",
     "label": "Ambulance and fire. For the police, call 110",
@@ -2234,6 +2257,7 @@
    "slug": "ghana",
    "name": "Ghana",
    "flag": "🇬🇭",
+   "lang": "en",
    "emergency": {
     "number": "112",
     "label": "Police, fire and ambulance, on every mobile network",
@@ -2335,6 +2359,7 @@
    "slug": "greece",
    "name": "Greece",
    "flag": "🇬🇷",
+   "lang": "el",
    "emergency": {
     "number": "112",
     "label": "The single European emergency number. Free, any hour",
@@ -2410,6 +2435,7 @@
    "slug": "guatemala",
    "name": "Guatemala",
    "flag": "🇬🇹",
+   "lang": "es",
    "emergency": {
     "number": "110",
     "label": "Policía Nacional Civil (120 works too). Bomberos Voluntarios, 122. Bomberos Municipales, 123",
@@ -2472,6 +2498,7 @@
    "slug": "hungary",
    "name": "Hungary",
    "flag": "🇭🇺",
+   "lang": "hu",
    "emergency": {
     "number": "112",
     "label": "The single European emergency number, for when you need the emergency services",
@@ -2568,6 +2595,7 @@
    "slug": "india",
    "name": "India",
    "flag": "🇮🇳",
+   "lang": "hi",
    "emergency": {
     "number": "112",
     "label": "Police, fire and ambulance",
@@ -2667,6 +2695,7 @@
    "slug": "indonesia",
    "name": "Indonesia",
    "flag": "🇮🇩",
+   "lang": "id",
    "emergency": {
     "number": "112",
     "label": "The single emergency number for fires, accidents, health emergencies and threats to public safety. Free",
@@ -2714,6 +2743,7 @@
    "slug": "ireland",
    "name": "Ireland",
    "flag": "🇮🇪",
+   "lang": "en",
    "emergency": {
     "number": "112",
     "label": "Police, fire and ambulance (999 works too). Free from any phone",
@@ -2802,6 +2832,7 @@
    "slug": "israel",
    "name": "Israel",
    "flag": "🇮🇱",
+   "lang": "he",
    "emergency": {
     "number": "100",
     "label": "Police. For an ambulance (Magen David Adom), call 101; for the fire department, 102",
@@ -2894,6 +2925,7 @@
    "slug": "italy",
    "name": "Italy",
    "flag": "🇮🇹",
+   "lang": "it",
    "emergency": {
     "number": "112",
     "label": "The European emergency number, free from any phone",
@@ -2981,6 +3013,7 @@
    "slug": "jamaica",
    "name": "Jamaica",
    "flag": "🇯🇲",
+   "lang": "en",
    "emergency": {
     "number": "119",
     "label": "Police. For an ambulance or the fire service, dial 110",
@@ -3054,6 +3087,7 @@
    "slug": "japan",
    "name": "Japan",
    "flag": "🇯🇵",
+   "lang": "ja",
    "emergency": {
     "number": "110",
     "label": "Police. For an ambulance or the fire service, call 119",
@@ -3188,6 +3222,7 @@
    "slug": "kenya",
    "name": "Kenya",
    "flag": "🇰🇪",
+   "lang": "sw",
    "emergency": {
     "number": "999",
     "label": "Police, fire and ambulance. 112 also works from a mobile",
@@ -3263,6 +3298,7 @@
    "slug": "malaysia",
    "name": "Malaysia",
    "flag": "🇲🇾",
+   "lang": "ms",
    "emergency": {
     "number": "999",
     "label": "Police, ambulance, fire and civil defence. Free, even with no credit",
@@ -3354,6 +3390,7 @@
    "slug": "mexico",
    "name": "Mexico",
    "flag": "🇲🇽",
+   "lang": "es",
    "emergency": {
     "number": "911",
     "label": "Police, fire and medical emergencies across the country",
@@ -3409,6 +3446,7 @@
    "slug": "morocco",
    "name": "Morocco",
    "flag": "🇲🇦",
+   "lang": "ar",
    "emergency": {
     "number": "19",
     "label": "Police. For an ambulance or the fire service, call 15",
@@ -3471,6 +3509,7 @@
    "slug": "nepal",
    "name": "Nepal",
    "flag": "🇳🇵",
+   "lang": "ne",
    "emergency": {
     "number": "100",
     "label": "Police control",
@@ -3531,6 +3570,7 @@
    "slug": "netherlands",
    "name": "Netherlands",
    "flag": "🇳🇱",
+   "lang": "nl",
    "emergency": {
     "number": "112",
     "label": "Police, fire and ambulance",
@@ -3649,6 +3689,7 @@
    "slug": "new-zealand",
    "name": "New Zealand",
    "flag": "🇳🇿",
+   "lang": "en",
    "emergency": {
     "number": "111",
     "label": "Police, fire and ambulance",
@@ -3738,6 +3779,7 @@
    "slug": "nigeria",
    "name": "Nigeria",
    "flag": "🇳🇬",
+   "lang": "en",
    "emergency": {
     "number": "112",
     "label": "National emergency number, free from any network",
@@ -3820,6 +3862,7 @@
    "slug": "norway",
    "name": "Norway",
    "flag": "🇳🇴",
+   "lang": "nb",
    "emergency": {
     "number": "112",
     "label": "Police. For an ambulance or acute danger to life or health, call 113",
@@ -3935,6 +3978,7 @@
    "slug": "pakistan",
    "name": "Pakistan",
    "flag": "🇵🇰",
+   "lang": "ur",
    "emergency": {
     "number": "1122",
     "label": "Ambulance and rescue. Police, dial 15. Fire, dial 16",
@@ -4005,6 +4049,7 @@
    "slug": "panama",
    "name": "Panama",
    "flag": "🇵🇦",
+   "lang": "es",
    "emergency": {
     "number": "911",
     "label": "The national emergency number, free from anywhere in the country, for when a life is in danger",
@@ -4035,6 +4080,7 @@
    "slug": "peru",
    "name": "Peru",
    "flag": "🇵🇪",
+   "lang": "es",
    "emergency": {
     "number": "105",
     "label": "Police. For fire, call 116; for an ambulance (SAMU), call 106",
@@ -4100,6 +4146,7 @@
    "slug": "philippines",
    "name": "Philippines",
    "flag": "🇵🇭",
+   "lang": "en",
    "emergency": {
     "number": "911",
     "label": "Police, fire, medical and rescue",
@@ -4147,6 +4194,7 @@
    "slug": "poland",
    "name": "Poland",
    "flag": "🇵🇱",
+   "lang": "pl",
    "emergency": {
     "number": "112",
     "label": "Any emergency. For an ambulance you can also call 999",
@@ -4252,6 +4300,7 @@
    "slug": "portugal",
    "name": "Portugal",
    "flag": "🇵🇹",
+   "lang": "pt",
    "emergency": {
     "number": "112",
     "label": "Any emergency, free, any hour, every day",
@@ -4373,6 +4422,7 @@
    "slug": "romania",
    "name": "Romania",
    "flag": "🇷🇴",
+   "lang": "ro",
    "emergency": {
     "number": "112",
     "label": "The European emergency number, free from a landline or mobile",
@@ -4437,6 +4487,7 @@
    "slug": "rwanda",
    "name": "Rwanda",
    "flag": "🇷🇼",
+   "lang": "rw",
    "emergency": {
     "number": "112",
     "label": "Emergency. For an ambulance, call 912",
@@ -4528,6 +4579,7 @@
    "slug": "saudi-arabia",
    "name": "Saudi Arabia",
    "flag": "🇸🇦",
+   "lang": "ar",
    "emergency": {
     "number": "911",
     "label": "Ministry of Interior emergency and security reports. Police: 999; Saudi Red Crescent ambulance: 997; Civil Defense: 998",
@@ -4591,6 +4643,7 @@
    "slug": "singapore",
    "name": "Singapore",
    "flag": "🇸🇬",
+   "lang": "en",
    "emergency": {
     "number": "999",
     "label": "Police. For an ambulance or the fire service, dial 995",
@@ -4693,6 +4746,7 @@
    "slug": "south-africa",
    "name": "South Africa",
    "flag": "🇿🇦",
+   "lang": "en",
    "emergency": {
     "number": "10111",
     "label": "Police. From a cellphone, 112. Ambulance, 10177",
@@ -4777,6 +4831,7 @@
    "slug": "south-korea",
    "name": "South Korea",
    "flag": "🇰🇷",
+   "lang": "ko",
    "emergency": {
     "number": "112",
     "label": "Police, with interpreters at set hours. For fire and rescue, call 119",
@@ -4877,6 +4932,7 @@
    "slug": "spain",
    "name": "Spain",
    "flag": "🇪🇸",
+   "lang": "es",
    "emergency": {
     "number": "112",
     "label": "Any emergency, free from any phone, even with no credit or signal",
@@ -4966,6 +5022,7 @@
    "slug": "sri-lanka",
    "name": "Sri Lanka",
    "flag": "🇱🇰",
+   "lang": "si",
    "emergency": {
     "number": "119",
     "label": "Police emergency, for anything that needs the police right away",
@@ -5036,6 +5093,7 @@
    "slug": "sweden",
    "name": "Sweden",
    "flag": "🇸🇪",
+   "lang": "sv",
    "emergency": {
     "number": "112",
     "label": "Ambulance, police and rescue services",
@@ -5156,6 +5214,7 @@
    "slug": "switzerland",
    "name": "Switzerland",
    "flag": "🇨🇭",
+   "lang": "de-CH",
    "emergency": {
     "number": "112",
     "label": "Works with a foreign SIM too. Also 117 for the police, 144 for an ambulance, 118 for the fire service",
@@ -5262,6 +5321,7 @@
    "slug": "taiwan",
    "name": "Taiwan",
    "flag": "🇹🇼",
+   "lang": "zh-Hant",
    "emergency": {
     "number": "110",
     "label": "Police. For fire or emergency rescue, call 119",
@@ -5338,6 +5398,7 @@
    "slug": "tanzania",
    "name": "Tanzania",
    "flag": "🇹🇿",
+   "lang": "sw",
    "emergency": {
     "number": "112",
     "label": "Police, fire and ambulance",
@@ -5389,6 +5450,7 @@
    "slug": "thailand",
    "name": "Thailand",
    "flag": "🇹🇭",
+   "lang": "th",
    "emergency": {
     "number": "191",
     "label": "Emergency report. For medical emergencies (Narenthorn EMS Center), call 1669; for fire, 199",
@@ -5456,6 +5518,7 @@
    "slug": "trinidad-and-tobago",
    "name": "Trinidad and Tobago",
    "flag": "🇹🇹",
+   "lang": "en",
    "emergency": {
     "number": "999",
     "label": "Police. Fire, 990. Ambulance, 811",
@@ -5528,6 +5591,7 @@
    "slug": "turkey",
    "name": "Turkey",
    "flag": "🇹🇷",
+   "lang": "tr",
    "emergency": {
     "number": "112",
     "label": "Emergency Call Centre (Acil Çağrı Merkezi), when you are in immediate danger",
@@ -5592,6 +5656,7 @@
    "slug": "uganda",
    "name": "Uganda",
    "flag": "🇺🇬",
+   "lang": "en",
    "emergency": {
     "number": "999",
     "label": "National emergency number. 112 works too",
@@ -5662,6 +5727,7 @@
    "slug": "ukraine",
    "name": "Ukraine",
    "flag": "🇺🇦",
+   "lang": "uk",
    "emergency": {
     "number": "102",
     "label": "Police",
@@ -5762,6 +5828,7 @@
    "slug": "united-arab-emirates",
    "name": "United Arab Emirates",
    "flag": "🇦🇪",
+   "lang": "ar",
    "emergency": {
     "number": "999",
     "label": "Police. For an ambulance, call 998; for the fire department (Civil Defence), 997",
@@ -5838,6 +5905,7 @@
    "slug": "united-kingdom",
    "name": "United Kingdom",
    "flag": "🇬🇧",
+   "lang": "en",
    "emergency": {
     "number": "999",
     "label": "Police, fire and ambulance",
@@ -5961,6 +6029,7 @@
    "slug": "uruguay",
    "name": "Uruguay",
    "flag": "🇺🇾",
+   "lang": "es",
    "emergency": {
     "number": "911",
     "label": "Police. For a medical emergency, call 105",
@@ -6045,6 +6114,7 @@
    "slug": "vietnam",
    "name": "Vietnam",
    "flag": "🇻🇳",
+   "lang": "vi",
    "emergency": {
     "number": "113",
     "label": "Police. For a medical emergency, call 115; for fire and rescue, 114",
@@ -6109,6 +6179,7 @@
    "slug": "zambia",
    "name": "Zambia",
    "flag": "🇿🇲",
+   "lang": "en",
    "emergency": {
     "number": "999",
     "label": "Police, fire and ambulance",
@@ -6165,6 +6236,7 @@
    "slug": "zimbabwe",
    "name": "Zimbabwe",
    "flag": "🇿🇼",
+   "lang": "en",
    "emergency": {
     "number": "112",
     "label": "Police, fire and ambulance from an Econet phone. On NetOne, dial 114",

@@ -417,6 +417,82 @@ class AffirmationTests(unittest.TestCase):
             self.approving(batch())
 
 
+class TranslationTests(unittest.TestCase):
+    """A country page shows the day's affirmation in the language most of its people speak, over the English. Each
+    language's lines are in data/affirmations-i18n/, one for each affirmation, in the same order."""
+
+    def test_every_language_on_file_is_complete_and_follows_the_english(self):
+        data = extras.read_affirmations()
+        self.assertEqual(extras.check_translations(data), [])
+        english = extras.approved_affirmations(data)
+        for lang in extras.translation_langs():
+            lines = extras.local_affirmations(lang, data)
+            self.assertEqual(len(lines), len(english), lang)
+            self.assertEqual(len(set(lines)), len(lines), f'{lang}: no line twice')
+            self.assertFalse(set(lines) & set(english), f'{lang}: no line left in English')
+            found = extras.read_translation(lang)
+            self.assertEqual([j['en'] for j in found['affirmations']][:len(data['affirmations'])],
+                             [j['text'] for j in data['affirmations']], f'{lang}: line for line with the English')
+
+    def test_every_country_language_is_known(self):
+        world = json.loads((ROOT / 'data/ymt/world.json').read_text(encoding='utf-8'))['countries']
+        langs = set(extras.translation_langs())
+        for c in world:
+            self.assertRegex(c.get('lang', ''), extras.LANG_TAG, c['slug'])
+        for slug, lang in {'india': 'hi', 'switzerland': 'de-CH', 'belgium': 'nl', 'kenya': 'sw', 'tanzania': 'sw',
+                           'canada': 'en', 'nigeria': 'en', 'south-africa': 'en', 'philippines': 'en'}.items():
+            self.assertEqual(next(c['lang'] for c in world if c['slug'] == slug), lang, slug)
+        # A country whose language has no file yet stays in English: no half-made card.
+        missing = sorted(c['slug'] for c in world if c['lang'] != 'en' and c['lang'] not in langs)
+        for slug in missing:
+            self.assertIsNone(extras.local_language(next(c['lang'] for c in world if c['slug'] == slug)), slug)
+
+    def test_the_swiss_spell_without_eszett(self):
+        swiss = extras.local_affirmations('de-CH')
+        self.assertFalse(any('\u00df' in line for line in swiss))
+        self.assertTrue(any('\u00df' in line for line in extras.local_affirmations('de')), 'the German has some to swap')
+
+    def test_the_check_catches_what_can_go_wrong(self):
+        data = {'affirmations': [{'text': 'One.', 'approved': True}, {'text': 'Two.', 'approved': True}, {'text': 'Three.', 'approved': False}]}
+
+        def problems(change, name='fr'):
+            found = {'lang': name, 'name': 'French', 'dir': 'rtl' if name in extras.RTL else 'ltr',
+                     'affirmations': [{'en': 'One.', 'text': 'Un.'}, {'en': 'Two.', 'text': 'Deux.'}]}
+            change(found)
+            return ' '.join(extras.check_translation(found, data, name))
+        self.assertEqual(problems(lambda f: None), '', 'a line may wait for an unapproved affirmation')
+        self.assertIn('lang must be', problems(lambda f: f.update(lang='de')))
+        self.assertIn('dir must be "rtl"', problems(lambda f: f.update(dir='ltr'), 'ar'))
+        self.assertIn('dir must be "ltr"', problems(lambda f: f.update(dir='rtl')))
+        self.assertIn('has no fr line yet', problems(lambda f: f['affirmations'].pop()))
+        self.assertIn('translate it again', problems(lambda f: f['affirmations'][0].update(en='Once.')))
+        self.assertIn('still in English', problems(lambda f: f['affirmations'][0].update(text='One.')))
+        self.assertIn('no markup', problems(lambda f: f['affirmations'][0].update(text='<b>Un</b>.')))
+        self.assertIn('stray spaces', problems(lambda f: f['affirmations'][0].update(text=' Un.')))
+        self.assertIn('twice', problems(lambda f: f['affirmations'][1].update(text='Un.')))
+        self.assertIn('4 lines', problems(lambda f: f['affirmations'].extend([{'en': 'x', 'text': 'y'}] * 2)))
+
+    def test_english_and_unknown_languages_stay_english(self):
+        for lang in (None, '', 'en', 'en-GB', 'xx'):
+            self.assertIsNone(extras.local_language(lang), lang)
+        self.assertEqual(extras.local_language('ar'), ('ar', 'rtl'))
+        self.assertEqual(extras.local_language('ja'), ('ja', 'ltr'))
+        plain = extras.affirmation_card(['One.'], 'a.html', 'b.html')
+        self.assertNotIn('affirm-local', plain)
+        local = extras.affirmation_card(['One.'], 'a.html', 'b.html', ('he', 'rtl'))
+        self.assertIn('<p class="affirmlocal" id="affirm-local" lang="he" dir="rtl" hidden></p>', local)
+        self.assertIn('<p class="affirmtext" id="affirm-text" lang="en"></p>', local)
+
+    def test_each_language_file_is_written_and_safe_in_a_page(self):
+        for lang in extras.translation_langs():
+            path = ROOT / extras.LOCAL_JS.format(lang=lang)
+            self.assertTrue(path.exists(), path)
+            code = path.read_text(encoding='utf-8')
+            self.assertEqual(code, extras.affirmation_local_script(lang), f'{path} is up to date')
+            self.assertNotIn('</script', code.lower())
+            self.assertNotIn('http', code.split('\n', 1)[1], 'it loads nothing')
+
+
 class StoryTests(unittest.TestCase):
     """An affirmation and its picture are one little story: her pose, her sweater, which children are around, and the caption."""
 

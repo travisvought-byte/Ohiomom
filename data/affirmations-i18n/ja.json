@@ -1,0 +1,415 @@
+{
+ "lang": "ja",
+ "name": "Japanese",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "今日ぜんぶやらなくても大丈夫。次の小さなひとつで十分です。"
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "疲れているのは失敗じゃない。毎日そこにいるから、疲れているんです。"
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "お皿洗いは待ってくれます。5分座ってもいいんですよ。"
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "夕ごはんがシリアルでも、家族のおなかを満たしたことに変わりありません。"
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "休むのに、資格はいりません。今すぐ休んでいいんです。"
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "みんなが寝る時間までたどり着けた、それが勝ちの日もあります。立派な勝ちです。"
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "あなたは誰の目にも見える以上のことをしています。私には見えていますよ。"
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "散らかった家と、愛されている子どもたち。いい取引です。"
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "つらい日のベストはいつもと違って見えるけれど、それでもちゃんと意味があります。"
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "深呼吸をひとつ。肩の力を抜いて。ちゃんとやれていますよ。"
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "今日はハードルを下げてもいいんです。また別の日に上げればいい。"
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "助けを求めるのは強さです。弱さではありません。"
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "もうひとつ増える用事に「ノー」と言っていいんです。"
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "今日さみしかったなら、そう感じたママはあなただけじゃありません。たくさんいます。"
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "「元気？」と聞いて、答えを待ってくれる友だちが、あなたにはいて当然です。"
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "自分から声をかけてもいいんです。多くのママが、誰かが声をかけてくれるのを待っています。"
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "誰にも気づかれていない気がしても、あなたが大切じゃないわけではありません。とても大切な人です。"
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "あなたの気持ちには理由があります。あなたは「重すぎる」なんてことはありません。"
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "ここでは、つらい一日を説明しなくていいんです。わかっていますよ。"
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "ほかのママへの「私もだよ」のひとことが、一日をまるごと変えることがあります。"
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "授乳して、おむつを替えて、あやして、またくり返し。座っているだけに見えても、それは立派な仕事です。"
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "あなたと赤ちゃんは、まだお互いを知っている途中です。急がなくていいんです。"
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "新生児との毎日は長いもの。でも、この時期がずっと続くわけではありません。"
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "今日したことが、小さな人をおなかいっぱいで温かくしておくことだけなら、それは大きな仕事です。"
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "すぐに元どおりにならなくていいんです。今のあなたのままでいいんです。"
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "どんな方法で授乳していても、あなたは赤ちゃんのお世話をしています。それが一番大事なことです。"
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "寝不足でも、愛情はいっぱい。その両方でいいんです。"
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "赤ちゃんを抱っこして、家のことは置いておきましょう。家は逃げません。"
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "お店でのかんしゃくは、あなたがダメなママだという意味ではありません。小さい子がいるというだけです。"
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "小さな子が限界を試すのは、あなたのそばが安心だからです。"
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "今日は昨日より1分長く落ち着いていられました。それも大事なことです。"
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "カッとなってしまったら、ハグと「ごめんね」で多くのことは元に戻ります。それに、子どもにもいいことを教えられます。"
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "べたべたの手、大きな声、大きな気持ち。あなたはひとりの人間をまるごと育てています。"
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "この1時間で5回目の「なんで？」は、小さな頭が育っている証拠です。"
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "楽しい思い出をつくるのに、完璧な一日はいりません。"
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "バタンと閉められたドアは、物語の終わりではありません。明かりはつけておいてあげて。"
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "思春期の子は口に出さないかもしれないけれど、あなたがいつもいることは大きな意味があります。"
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "家の中で落ち着いている役は大変な仕事です。そしてあなたは、それをやっています。"
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "いちばんいい会話は、車の中で生まれることがあります。そのまま運転を続けて。"
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "子どもが離れていくのは大人になるため。あなたを置いていくためではありません。"
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "すべての答えを知らなくていいんです。聞くことが大きな部分です。"
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "大きくなった子も、まだあなたを必要としています。静かな形で。"
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "ひとりでがんばるには、ほとんどの人が気づかないほどの強さが必要です。"
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "あなたはわが子にとって、もう十分なママです。ずっとそうでした。"
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "手は2本、やることは100個。自分にやさしくね。"
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "子どもたちはあなたを見て、強くて愛情深い人がどんな人かを学んでいます。"
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "休むことは、持ち場を離れることではありません。続けていくための方法です。"
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "誰も点数なんてつけていません。大切なのは愛と、そばにいることです。"
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "悲しみと愛は、同じところから生まれます。恋しく思うのは、それだけ愛していた証です。"
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "悲しみに正しいスケジュールはありません。必要なだけ時間をかけていいんです。"
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "つらい記念日には、友だちにするのと同じように、自分にもやさしくしてあげて。"
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "悲しみを抱えたままでも、子どもと笑っていいんです。どちらも本当の気持ちです。"
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "妊娠や赤ちゃんを失ったなら、その喪失は本物です。そしてあなたの愛も本物です。"
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "悲しみが静かな日もあれば、大きな音をたてる日もあります。どちらも大丈夫。"
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "お金が少なくても、愛が少ないわけではありません。"
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "子どもたちは、買ってもらった物より、あなたと過ごした時間を覚えています。"
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "支払いの支援について聞くのは賢いこと。恥ずかしいことではありません。そのための支援です。"
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "公園で過ごすお金のかからない午後が、一週間でいちばんの日になることもあります。"
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "お金をもう一週間もたせました。それは本当にすごい腕前です。"
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "お金の心配は疲れるもの。たくさん抱えながら、それでもあなたはここにいます。"
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "今日、コップ一杯の水を飲みましたね。そこから始めましょう。"
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "みんな玄関を出られました。靴はちぐはぐだったかも。それでも勝ちです。"
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "こわかった電話を、ちゃんとかけられましたね。勇気がありました。"
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "今日、笑いましたね。その気持ちを大事にして。"
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "温かいごはん、きれいなシャツ、寝る前のお話。小さなことが積み重なって、子ども時代になります。"
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "今日、あなたは誰かにやさしくしました。それが自分自身だけだったとしても。"
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "完璧じゃなくて、前進。今日、あなたは前に進みました。"
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "リストのひとつを終わらせました。ゼロよりひとつ多いです。"
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "あなたはいいママです。それを心配すること自体が、どれだけ大切に思っているかの証です。"
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "あなたは、一日にできたことよりずっと大きな存在です。"
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "子どもたちに完璧なママは必要ありません。必要なのはあなたで、子どもたちにはあなたがいます。"
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "子どもに向けるのと同じ忍耐を、自分にも向けてあげて。"
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "自分の場所を持っていい。何かを望んでいい。自分の夢を持っていいんです。"
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "ひとつの失敗で、愛が消えることはありません。明日はまた新しいスタートです。"
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "あなたは誰かの世界のすべて。そして、ひとりの自分でもあります。"
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "一分一秒を愛せなくても大丈夫。それでも子どもを心から愛せます。"
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "ママのあり方に、正解はひとつではありません。あなたのやり方でいいんです。"
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "木のポーズのように、ぐらついても大丈夫。またバランスを取り戻せます。"
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "山のポーズのように、足をしっかり床につけて。あなたは感じているより、ずっと安定しています。"
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "戦士のポーズ2：力強い脚、大きく開いた腕。それが今週に向かうあなたです。"
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "4つ数えて吸って、4つ数えて吐いて。あなたは今ここにいて、ちゃんとやれています。"
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "星のように大きく伸びて。あなたは場所をとっていいんです。"
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "広く低いスクワットを保つのは大変。長い一日も同じです。そして、あなたは持ちこたえています。"
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "三日月のように体を傾けても、ちゃんと立っていられます。"
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "まだつま先に届かなくて大丈夫。少しのストレッチでも意味があります。"
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "三角のポーズ：片手は下へ、片手は上へ。足元をしっかり保って、伸び続けて。"
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "もう遅い時間です。今日できなかったことは、明日まで待ってくれます。"
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "こんな時間に赤ちゃんと起きていますか？今この瞬間、たくさんのママがあなたと一緒に起きています。"
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "家が静かになりました。この時間はあなたのもの。深呼吸して。"
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "今日を乗り切りましたね。今日はそれで十分です。"
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "今夜、頭の中が忙しいなら、書き出して朝まで待たせておきましょう。"
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "目を休めて。明日また始められます。"
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "年末年始やお祝いの季節は、楽しいだけでなくつらいこともあります。どんな気持ちでも大丈夫。"
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "食卓は完璧じゃなくていい。囲む人たちこそが大切です。"
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "今年、食卓に会いたい人がいないなら、自分の心にやさしくしてあげて。"
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "ありがとう、お母さん。毎日のごはん、送り迎え、そしてたくさんのハグを。"
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "おもてなしも、お菓子作りも、ずっと笑顔でいることも、しなくていいんです。シンプルなお祝いも立派なお祝いです。"
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "今年、子どもたちがもらういちばんの贈り物は、あなたと過ごす時間です。"
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "小さなお祝いでも、愛はいっぱい。特別にするのに、たくさんのお金はいりません。"
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "寒い日、温かいハグ。あなたが家のぬくもりです。"
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "季節の慌ただしさを少しスキップしてもいいんです。穏やかさも贈り物です。"
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "今年この季節が重く感じるなら、あなたはひとりじゃありません。一日ずつでいいんです。"
+  }
+ ]
+}

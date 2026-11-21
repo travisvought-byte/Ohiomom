@@ -1,0 +1,415 @@
+{
+ "lang": "bn",
+ "name": "Bengali",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "আজ সবকিছু করতে হবে না। পরের ছোট্ট কাজটাই যথেষ্ট।"
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "ক্লান্ত হওয়া মানে হেরে যাওয়া নয়। তুমি ক্লান্ত, কারণ তুমি প্রতিদিন পাশে থাকো।"
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "থালাবাসন অপেক্ষা করতে পারে। পাঁচ মিনিট বসার অধিকার তোমার আছে।"
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "রাতে সিরিয়াল খাওয়ানোও পরিবারের পেট ভরানোই।"
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "বিশ্রাম অর্জন করতে হয় না। তুমি এখনই একটু বিশ্রাম নিতে পারো।"
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "কোনো কোনো দিন জয় মানে সবাই ঘুমের সময় পর্যন্ত ঠিকঠাক পৌঁছেছে। এটা সত্যিকারের জয়।"
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "তুমি যা করো, কেউ তার সবটা দেখে না। আমি দেখি।"
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "অগোছালো ঘর আর ভালোবাসায় বড় হওয়া সন্তান। এটা ভালো বিনিময়।"
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "কঠিন দিনে তোমার সেরাটা অন্যরকম দেখায়, তবুও সেটা গোনা হয়।"
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "একটা গভীর শ্বাস। কাঁধ দুটো আলগা করো। তুমি ভালোই করছ।"
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "আজ প্রত্যাশা একটু কমিয়ে রাখা ঠিক আছে। অন্য কোনো দিন আবার বাড়িয়ে নিও।"
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "সাহায্য চাওয়া শক্তির কাজ, দুর্বলতার নয়।"
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "আরও একটা কাজে না বলার অধিকার তোমার আছে।"
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "আজ যদি একা লেগে থাকে, তুমি একমাত্র মা নও যার এমন লেগেছে। আমরা অনেকে।"
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "তোমার এমন একজন বন্ধু প্রাপ্য, যে জিজ্ঞেস করবে তুমি কেমন আছ আর উত্তরের জন্য অপেক্ষা করবে।"
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "আগে নিজে যোগাযোগ করা ঠিক আছে। বেশিরভাগ মা আশা করে থাকে কেউ একজন করবে।"
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "কেউ খেয়াল করছে না মনে হলেও, তুমি গুরুত্বহীন নও। তুমি খুব গুরুত্বপূর্ণ।"
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "তোমার অনুভূতিগুলো বোঝা যায়। তুমি বাড়াবাড়ি নও।"
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "এখানে তোমার কঠিন দিনটা ব্যাখ্যা করতে হবে না। আমরা বুঝি।"
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "আরেকজন মাকে \"আমারও\" লেখা একটা মেসেজ পুরো দিনটা বদলে দিতে পারে।"
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "খাওয়ানো, কাপড় বদলানো, দোল দেওয়া, তারপর আবার। এটা সত্যিকারের কাজ, যদিও মনে হয় শুধু বসে আছ।"
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "তুমি আর তোমার বাচ্চা এখনো একে অপরকে চিনছ। কোনো তাড়া নেই।"
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "নবজাতকের সাথে দিনগুলো লম্বা। এই সময়টা চিরকাল থাকবে না।"
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "আজ যদি শুধু একটা ছোট্ট মানুষকে পেট ভরে খাইয়ে আর উষ্ণ রেখে থাকো, তুমি অনেক বড় কাজ করেছ।"
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "তাড়াতাড়ি আগের মতো হয়ে যেতে হবে না। তুমি যেখানে আছ, সেখানেই থাকতে পারো।"
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "বাচ্চা যেভাবেই খাক, তুমি তার যত্ন নিচ্ছ। এটাই আসল কথা।"
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "ঘুম কম আর ভালোবাসা ভরপুর, দুটোই একসাথে হতে পারে।"
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "বাচ্চাকে কোলে নাও, ঘরের কাজ পড়ে থাকুক। ঘর কোথাও যাচ্ছে না।"
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "দোকানে বাচ্চার কান্নাকাটি তোমাকে খারাপ মা বানায় না। এর মানে শুধু তোমার একটা ছোট্ট বাচ্চা আছে।"
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "ছোটরা সীমা পরীক্ষা করে, কারণ তোমার কাছে তারা নিরাপদ বোধ করে।"
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "আজ তুমি গতকালের চেয়ে এক মিনিট বেশি শান্ত ছিলে। এটা গোনা হয়।"
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "যদি রাগ হয়ে গিয়ে থাকে, একটা জড়িয়ে ধরা আর একটা \"সরি\" অনেক কিছু ঠিক করে দেয়। আর ওরাও ভালো কিছু শেখে।"
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "চটচটে হাত, জোরে আওয়াজ, বড় বড় অনুভূতি। তুমি একজন পূর্ণ মানুষ গড়ে তুলছ।"
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "এই ঘণ্টার পঞ্চম \"কেন?\" মানে একটা ছোট্ট মন বেড়ে উঠছে।"
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "সুখের স্মৃতি বানাতে নিখুঁত দিন লাগে না।"
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "জোরে বন্ধ হওয়া দরজা গল্পের শেষ নয়। আলোটা জ্বেলে রাখো।"
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "তোমার কিশোর সন্তান হয়তো বলবে না, কিন্তু তোমার সবসময় পাশে থাকাটা তার কাছে অনেক কিছু।"
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "বাড়িতে শান্ত মানুষটা হওয়া কঠিন কাজ। আর তুমি সেটাই করছ।"
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "কিছু সেরা কথাবার্তা গাড়িতেই হয়। চালিয়ে যাও।"
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "ওরা বড় হতে দূরে সরে, তোমাকে পেছনে ফেলে যেতে নয়।"
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "সব প্রশ্নের উত্তর জানতে হবে না। শোনাটাই অনেকখানি।"
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "বড় সন্তানদেরও এখনো তোমাকে দরকার, শুধু আরও নীরবভাবে।"
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "সবকিছু একা সামলাতে এমন শক্তি লাগে, যা বেশিরভাগ মানুষ কখনো দেখে না।"
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "তোমার সন্তানের জন্য তুমি যথেষ্ট ভালো মা। সবসময়ই ছিলে।"
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "দুটো হাত, একশো কাজ। নিজের প্রতি একটু নরম হও।"
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "তোমার সন্তানেরা তোমাকে দেখে শিখছে, একজন শক্ত আর ভালোবাসায় ভরা মানুষ কেমন হয়।"
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "একটু বিরতি নেওয়া মানে দায়িত্ব ছেড়ে দেওয়া নয়। এভাবেই তুমি এগিয়ে যেতে পারো।"
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "কেউ হিসাব রাখছে না। ভালোবাসা আর পাশে থাকা, এটাই আসল।"
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "শোক আর ভালোবাসা একই জায়গা থেকে আসে। কাউকে মনে পড়া বোঝায় তুমি কতটা ভালোবেসেছিলে।"
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "শোকের কোনো ঠিক সময়সূচি নেই। যতটা সময় দরকার, নাও।"
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "কঠিন বার্ষিকীর দিনগুলোতে নিজের প্রতি ততটাই কোমল হও, যতটা একজন বন্ধুর প্রতি হতে।"
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "মনে দুঃখ নিয়েও তুমি সন্তানদের সাথে হাসতে পারো। দুটোই সত্যি।"
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "তুমি যদি গর্ভ বা সন্তান হারিয়ে থাকো, সেই হারানো সত্যি, আর তোমার ভালোবাসাও।"
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "কোনো দিন শোক চুপচাপ, কোনো দিন খুব জোরালো। দুটোই ঠিক আছে।"
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "টাকার টান মানে ভালোবাসার টান নয়।"
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "তোমার সন্তানেরা কেনা জিনিসের চেয়ে তোমার সাথে কাটানো সময় বেশি মনে রাখবে।"
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "বিল নিয়ে সাহায্যের কথা জিজ্ঞেস করা বুদ্ধিমানের কাজ, লজ্জার নয়। সাহায্যটা তো এর জন্যই আছে।"
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "পার্কে বিনা খরচের একটা বিকেল সপ্তাহের সেরা দিন হয়ে উঠতে পারে।"
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "তুমি টাকাটা আরও এক সপ্তাহ চালিয়ে নিয়েছ। এর জন্য সত্যিকারের দক্ষতা লাগে।"
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "টাকার দুশ্চিন্তা ক্লান্ত করে দেয়। তুমি অনেক কিছু বয়ে বেড়াচ্ছ, তবুও তুমি আছ।"
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "আজ তুমি এক গ্লাস পানি খেয়েছ। সেখান থেকেই শুরু করো।"
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "সবাই দরজা দিয়ে বের হয়েছে। জুতোগুলো হয়তো মেলেনি। তবুও জয়।"
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "যে ফোনটা করতে ভয় পাচ্ছিলে, সেটা করে ফেলেছ। এটা সাহসের কাজ।"
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "আজ তুমি হেসেছ। ওটা আঁকড়ে রাখো।"
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "গরম খাবার, পরিষ্কার জামা, ঘুমের আগে একটা গল্প। ছোট ছোট জিনিস মিলেই শৈশব হয়।"
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "আজ তুমি কারো প্রতি সদয় ছিলে, হোক না সেটা শুধু নিজের প্রতি।"
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "নিখুঁত নয়, এগিয়ে চলা। আজ তুমি এগিয়েছ।"
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "তালিকার একটা কাজ শেষ করেছ। কিছু না হওয়ার চেয়ে একটা বেশি।"
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "তুমি ভালো মা। এ নিয়ে তোমার চিন্তা হওয়াটাই দেখায় তুমি কতটা যত্ন করো।"
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "একদিনে যা করে উঠতে পারো, তুমি তার চেয়ে অনেক বেশি।"
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "তোমার সন্তানদের নিখুঁত মা লাগবে না। তাদের তোমাকে দরকার, আর তুমি তাদের কাছে আছ।"
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "নিজের প্রতি ততটাই ধৈর্য রাখো, যতটা সন্তানদের প্রতি রাখো।"
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "নিজের জায়গা নেওয়ার, কিছু চাওয়ার আর নিজের স্বপ্ন রাখার অধিকার তোমার আছে।"
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "একটা ভুল ভালোবাসা মুছে দেয় না। কাল নতুন শুরু।"
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "তুমি কারো পুরো পৃথিবী, আবার তুমি নিজের মতো একজন মানুষও।"
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "প্রতিটা মুহূর্ত ভালো না লাগাটা ঠিক আছে। তবুও তুমি সন্তানদের পুরো মন দিয়ে ভালোবাসতে পারো।"
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "মা হওয়ার একটাই ঠিক উপায় নেই। তোমার উপায়টাও ঠিক।"
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "বৃক্ষাসনের মতো, একটু টলে যাওয়া ঠিক আছে। তুমি আবার ভারসাম্য খুঁজে পাবে।"
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "তাড়াসনের মতো পা দুটো শক্ত করে রাখো। তুমি যতটা ভাবো, তার চেয়ে বেশি দৃঢ়।"
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "বীরভদ্রাসন দুই: শক্ত পা, খোলা হাত। এটাই তুমি, এই সপ্তাহের মুখোমুখি।"
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "চার গুনে শ্বাস নাও, চার গুনে ছাড়ো। তুমি এখানেই আছ, আর ভালোই করছ।"
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "তারার মতো ছড়িয়ে দাও নিজেকে। জায়গা নেওয়ার অধিকার তোমার আছে।"
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "চওড়া, নিচু হয়ে বসে থাকা কঠিন। লম্বা দিনও তেমনই। আর তুমি টিকে আছ।"
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "তুমি অর্ধচন্দ্রের মতো হেলেও দাঁড়িয়ে থাকতে পারো।"
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "এখনই পায়ের আঙুল ছুঁতে হবে না। প্রতিটা ছোট্ট টানও গোনা হয়।"
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "ত্রিকোণাসন: এক হাত নিচে, এক হাত ওপরে। মাটিতে শক্ত থাকো আর প্রসারিত হতে থাকো।"
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "অনেক রাত হয়েছে। আজ যা হয়নি, তা কাল পর্যন্ত অপেক্ষা করতে পারে।"
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "এই সময়ে বাচ্চার সাথে জেগে আছ? এখন অনেক মা তোমার সাথে জেগে আছে।"
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "ঘর চুপচাপ। এই মুহূর্তটা তোমার। শ্বাস নাও।"
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "আজকের দিনটা তুমি পার করেছ। আজকের জন্য এটুকুই দরকার ছিল।"
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "আজ রাতে মন অস্থির থাকলে, সব লিখে রাখো আর সকাল পর্যন্ত অপেক্ষা করতে দাও।"
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "চোখ দুটোকে বিশ্রাম দাও। কাল আবার নতুন করে শুরু করতে পারবে।"
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "উৎসব আনন্দের পাশাপাশি কঠিনও হতে পারে। এই সময়টা তোমার কাছে যেমনই লাগুক, ঠিক আছে।"
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "খাবারের টেবিল নিখুঁত হতে হবে না। তাকে ঘিরে থাকা মানুষগুলোই আসল।"
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "এ বছর যদি টেবিলে কারো অভাব বোধ করো, নিজের মনের প্রতি কোমল থেকো।"
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "ধন্যবাদ মা, প্রতিটা খাবার, প্রতিটা যাত্রা আর প্রতিটা জড়িয়ে ধরার জন্য।"
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "অতিথি আপ্যায়ন, রান্নাবান্না বা সারাক্ষণ হাসিমুখে থাকতে হবে না। সাদামাটা উৎসবও উৎসব।"
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "এ বছর তোমার সন্তানদের সেরা উপহার হলো তোমার সাথে কাটানো সময়।"
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "ছোট্ট উদযাপনও ভালোবাসায় ভরা। বিশেষ করে তুলতে অনেক টাকা লাগে না।"
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "ঠান্ডা দিন, উষ্ণ আলিঙ্গন। তুমিই তোমার ঘরের উষ্ণ কোণ।"
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "উৎসবের কিছু দৌড়ঝাঁপ বাদ দেওয়া ঠিক আছে। শান্তিও একটা উপহার।"
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "এ বছর এই সময়টা যদি ভারী লাগে, তুমি একা নও। একদিন একদিন করে এগোও।"
+  }
+ ]
+}
