@@ -517,6 +517,52 @@
    ]
   },
   {
+   "code": "AZ",
+   "slug": "azerbaijan",
+   "name": "Azerbaijan",
+   "flag": "🇦🇿",
+   "lang": "az",
+   "emergency": {
+    "number": "102",
+    "label": "Police. Ambulance: 103; fire: 101",
+    "source": "https://www.gov.uk/foreign-travel-advice/azerbaijan/getting-help"
+   },
+   "resources": [
+    {
+     "id": "azerbaijan-116111-women",
+     "section": "help-now",
+     "name": "Women’s Support Line (116111)",
+     "org": "Set up with the State Committee for Family, Women and Children Affairs",
+     "what": "A line open day and night for women and girls facing physical or emotional violence or in a hard place, with support and referral on to help.",
+     "how": "Call 116111, any hour, or +994 50 680 22 80. In danger right now, call 102.",
+     "url": "https://family.gov.az/en/post/3126/24-saat-fealiyyet-gosterecek-qadin-destek-xetti-xidmeti-yaradilib",
+     "phone": "116111",
+     "dial": "116111",
+     "urgent": true,
+     "chip": "Women’s support line",
+     "sources": [
+      "https://family.gov.az/en/post/3126/24-saat-fealiyyet-gosterecek-qadin-destek-xetti-xidmeti-yaradilib"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "azerbaijan-116111-children",
+     "section": "kids-differently",
+     "name": "Children’s Hotline (116111)",
+     "org": "Children’s Hotline, reported by AZERTAC, the state news agency",
+     "what": "The same short number also answers children, day and night.",
+     "how": "Call 116111, any hour.",
+     "url": "https://azertag.az/en/xeber/_azerbaijan_children_hotline_publishes_results_for_2024-3405475",
+     "phone": "116111",
+     "dial": "116111",
+     "sources": [
+      "https://azertag.az/en/xeber/_azerbaijan_children_hotline_publishes_results_for_2024-3405475"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "BS",
    "slug": "bahamas",
    "name": "The Bahamas",
@@ -870,6 +916,71 @@
    ]
   },
   {
+   "code": "BZ",
+   "slug": "belize",
+   "name": "Belize",
+   "flag": "🇧🇿",
+   "lang": "en",
+   "emergency": {
+    "number": "911",
+    "label": "Police, fire and ambulance. 90 works too",
+    "source": "https://www.gov.uk/foreign-travel-advice/belize/getting-help"
+   },
+   "resources": [
+    {
+     "id": "belize-moh-care",
+     "section": "take-care",
+     "name": "Ministry of Health and Wellness hotline (0-800-MOH-CARE)",
+     "org": "Ministry of Health and Wellness",
+     "what": "The Ministry’s public hotline. In its suicide prevention message the Ministry asked anyone who is struggling to call it, or to book an appointment at the mental health clinic of the nearest public hospital. It is a general health line, not a crisis line, and its hours are not published.",
+     "how": "Call 0-800-664-2273 (0-800-MOH-CARE). In danger right now, call 911.",
+     "url": "https://www.pressoffice.gov.bz/mohw-observes-world-suicide-prevention-day-2021/",
+     "phone": "0-800-664-2273",
+     "dial": "08006642273",
+     "sources": [
+      "https://www.pressoffice.gov.bz/mohw-observes-world-suicide-prevention-day-2021/",
+      "https://www.pressoffice.gov.bz/wp-content/uploads/2026/05/May-19-PR131-26-MoHW-Advises-Vigilance-Following-Measles-Cases.pdf"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "BT",
+   "slug": "bhutan",
+   "name": "Bhutan",
+   "flag": "🇧🇹",
+   "lang": "dz",
+   "emergency": {
+    "number": "113",
+    "label": "Police. Ambulance: 112; fire: 110",
+    "source": "https://www.gov.uk/foreign-travel-advice/bhutan/getting-help"
+   },
+   "resources": [
+    {
+     "id": "bhutan-1098",
+     "section": "help-now",
+     "name": "Helpline 1098 (for women and children)",
+     "org": "PEMA, the national agency for mental health and child protection",
+     "what": "The national helpline for women and children, free and open day and night, for protection and counselling. It also helps anyone in mental distress, or who wants to know what services there are.",
+     "how": "Call 1098, free, any hour, or email helpline@thepema.gov.bt. In danger right now, call 113.",
+     "url": "https://thepema.gov.bt/faqs",
+     "phone": "1098",
+     "dial": "1098",
+     "urgent": true,
+     "chip": "Women and children’s helpline",
+     "sources": [
+      "https://thepema.gov.bt/faqs"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "kids-differently",
+      "take-care"
+     ]
+    }
+   ]
+  },
+  {
    "code": "BO",
    "slug": "bolivia",
    "name": "Bolivia",
@@ -1108,6 +1219,48 @@
      "also": [
       "pregnancy-baby"
      ]
+    }
+   ]
+  },
+  {
+   "code": "BN",
+   "slug": "brunei",
+   "name": "Brunei",
+   "flag": "🇧🇳",
+   "lang": "ms",
+   "emergency": {
+    "number": "993",
+    "label": "Police. Ambulance: 991; fire: 995; search and rescue: 998",
+    "source": "https://www.gov.uk/foreign-travel-advice/brunei/getting-help"
+   },
+   "resources": [
+    {
+     "id": "brunei-145",
+     "section": "take-care",
+     "name": "Talian Harapan 145 (hope line)",
+     "org": "Ministry of Health",
+     "what": "The Ministry of Health’s line for emotional and crisis support, and for finding out about mental health services.",
+     "how": "Call 145. In danger right now, call 993 for the police or 991 for an ambulance.",
+     "url": "https://moh.gov.bn/services/psychology-services/",
+     "phone": "145",
+     "dial": "145",
+     "sources": [
+      "https://moh.gov.bn/services/psychology-services/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "brunei-psychology",
+     "section": "take-care",
+     "name": "Community psychology services",
+     "org": "Ministry of Health",
+     "what": "The Ministry of Health’s community psychologists see people at health centres, by appointment.",
+     "how": "Ask your nearest clinic or hospital for a referral.",
+     "url": "https://moh.gov.bn/services/psychology-services/",
+     "sources": [
+      "https://moh.gov.bn/services/psychology-services/"
+     ],
+     "reviewed_on": "2026-11-21"
     }
    ]
   },
@@ -1644,6 +1797,54 @@
      "url": "https://dhr.go.cr/informacion_relevante/comunicados/2018/abril/10.CCSS_debe_garantizar_atencion_prenatal.pdf",
      "sources": [
       "https://dhr.go.cr/informacion_relevante/comunicados/2018/abril/10.CCSS_debe_garantizar_atencion_prenatal.pdf"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "CI",
+   "slug": "cote-divoire",
+   "name": "Côte d'Ivoire",
+   "flag": "🇨🇮",
+   "lang": "fr",
+   "emergency": {
+    "number": "110",
+    "label": "Police (111 or 170 work too). Ambulance: 185; fire: 180",
+    "source": "https://www.gov.uk/foreign-travel-advice/cote-d-ivoire/getting-help"
+   },
+   "resources": [
+    {
+     "id": "cote-divoire-1308",
+     "section": "help-now",
+     "name": "Line 1308 (gender-based violence)",
+     "org": "Ministry of Women, Family and Children",
+     "what": "A free national emergency line, open day and night, for reporting gender-based violence, whether it is happening to you or you saw it.",
+     "how": "Call 1308, free, any hour. In danger right now, call 110.",
+     "url": "https://famille.gouv.ci/vbg_app/public/storage/vbg/V1_Kit_Media_Engagement_National_VBG.pdf",
+     "phone": "1308",
+     "dial": "1308",
+     "urgent": true,
+     "chip": "Violence line",
+     "sources": [
+      "https://famille.gouv.ci/vbg_app/public/storage/vbg/V1_Kit_Media_Engagement_National_VBG.pdf"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "cote-divoire-116",
+     "section": "kids-differently",
+     "name": "Allô 116 Enfant en détresse (child helpline)",
+     "org": "Ministry of Women, Family and Children",
+     "what": "A free emergency line, open day and night from any landline or mobile, for children facing violence, abuse or exploitation, and for anyone reporting it.",
+     "how": "Call 116, free, any hour.",
+     "url": "https://famille.gouv.ci/mffe/wp-content/uploads/2022/06/Procedure-de-protection-dun-enfant-en-cas-de-violences.pdf",
+     "phone": "116",
+     "dial": "116",
+     "urgent": true,
+     "chip": "Child helpline",
+     "sources": [
+      "https://famille.gouv.ci/mffe/wp-content/uploads/2022/06/Procedure-de-protection-dun-enfant-en-cas-de-violences.pdf"
      ],
      "reviewed_on": "2026-11-21"
     }
@@ -3008,6 +3209,53 @@
    ]
   },
   {
+   "code": "GY",
+   "slug": "guyana",
+   "name": "Guyana",
+   "flag": "🇬🇾",
+   "lang": "en",
+   "emergency": {
+    "number": "911",
+    "label": "Police. Fire: 912; ambulance: 913",
+    "source": "https://www.gov.uk/foreign-travel-advice/guyana/getting-help"
+   },
+   "resources": [
+    {
+     "id": "guyana-suicide-helpline",
+     "section": "take-care",
+     "name": "Inter-agency Suicide Prevention Helpline",
+     "org": "Listed by the Ministry of Home Affairs",
+     "what": "Guyana’s suicide prevention helpline, open day and night, for anyone thinking about suicide or worried about someone.",
+     "how": "Call 223-0001 or 223-0009, any hour. You can also call or text 600-7896 or 623-4444. In danger right now, call 911.",
+     "url": "https://gro.moha.gov.gy/world-suicide-prevention-day-2025-youre-not-alone-help-is-available/",
+     "phone": "223-0001",
+     "dial": "2230001",
+     "text": "Text 600-7896 or 623-4444",
+     "urgent": true,
+     "chip": "Suicide prevention helpline",
+     "sources": [
+      "https://gro.moha.gov.gy/world-suicide-prevention-day-2025-youre-not-alone-help-is-available/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "guyana-914",
+     "section": "take-care",
+     "name": "Suicide Prevention Hotline 914",
+     "org": "Ministry of Human Services and Social Security",
+     "what": "A toll-free suicide prevention hotline run by the Ministry.",
+     "how": "Call 914, toll-free.",
+     "url": "https://gro.moha.gov.gy/world-suicide-prevention-day-2025-youre-not-alone-help-is-available/",
+     "phone": "914",
+     "dial": "914",
+     "sources": [
+      "https://gro.moha.gov.gy/world-suicide-prevention-day-2025-youre-not-alone-help-is-available/"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "HN",
    "slug": "honduras",
    "name": "Honduras",
@@ -4186,6 +4434,54 @@
    ]
   },
   {
+   "code": "LB",
+   "slug": "lebanon",
+   "name": "Lebanon",
+   "flag": "🇱🇧",
+   "lang": "ar",
+   "emergency": {
+    "number": "112",
+    "label": "Police. Ambulance: 140; fire: 175",
+    "source": "https://www.gov.uk/foreign-travel-advice/lebanon/getting-help"
+   },
+   "resources": [
+    {
+     "id": "lebanon-1745",
+     "section": "help-now",
+     "name": "National domestic violence hotline (1745)",
+     "org": "Internal Security Forces, as listed by the United Nations in Lebanon",
+     "what": "The national line, run by the police (Internal Security Forces), for reporting domestic violence. The United Nations noted that calls to it are not free.",
+     "how": "Call 1745. In danger right now, call 112.",
+     "url": "https://lebanon.un.org/en/download/59475/107793",
+     "phone": "1745",
+     "dial": "1745",
+     "urgent": true,
+     "chip": "Domestic violence line",
+     "sources": [
+      "https://lebanon.un.org/en/download/59475/107793"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "lebanon-1564",
+     "section": "take-care",
+     "name": "1564, the Lifeline",
+     "org": "Ministry of Public Health, with Embrace",
+     "what": "Lebanon’s national line for emotional support and suicide prevention, open day and night. Trained listeners, supervised by mental health professionals, help anyone in deep distress or thinking about suicide, and can refer you to mental health services.",
+     "how": "Call 1564, any hour. In danger right now, call 112, or 140 for an ambulance.",
+     "url": "https://moph.gov.lb/en/view/75556/1564-the-lifeline",
+     "phone": "1564",
+     "dial": "1564",
+     "urgent": true,
+     "chip": "Emotional support line",
+     "sources": [
+      "https://moph.gov.lb/en/view/75556/1564-the-lifeline"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "LT",
    "slug": "lithuania",
    "name": "Lithuania",
@@ -4375,6 +4671,53 @@
      "also": [
       "single-parent"
      ]
+    }
+   ]
+  },
+  {
+   "code": "MV",
+   "slug": "maldives",
+   "name": "Maldives",
+   "flag": "🇲🇻",
+   "lang": "dv",
+   "emergency": {
+    "number": "119",
+    "label": "Police. Ambulance: 102; fire: 118",
+    "source": "https://www.gov.uk/foreign-travel-advice/maldives/getting-help"
+   },
+   "resources": [
+    {
+     "id": "maldives-1677",
+     "section": "take-care",
+     "name": "National Mental Health Helpline (1677)",
+     "org": "National Mental Health Department",
+     "what": "A free, private line open day and night for anyone who feels overwhelmed or stressed, or just needs someone to talk to.",
+     "how": "Call 1677, free, any hour. In danger right now, call 119.",
+     "url": "https://blogs.presidency.gov.mv/daily-blogs/national-mental-health-helpline-offers-247-confidential-support",
+     "phone": "1677",
+     "dial": "1677",
+     "urgent": true,
+     "chip": "Mental health helpline",
+     "sources": [
+      "https://blogs.presidency.gov.mv/daily-blogs/national-mental-health-helpline-offers-247-confidential-support"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "maldives-1412",
+     "section": "kids-differently",
+     "name": "Child helpline 1412",
+     "org": "Ministry of Gender and Family and the Maldives Police Service",
+     "what": "A toll-free line, started by the Government in 2009, to report violence against a child.",
+     "how": "Call 1412, toll-free.",
+     "url": "https://www.unicef.org/maldives/press-releases/launching-1412-call-centre-ahan-mobile-application-report-violence-against-children",
+     "phone": "1412",
+     "dial": "1412",
+     "sources": [
+      "https://www.unicef.org/maldives/press-releases/launching-1412-call-centre-ahan-mobile-application-report-violence-against-children",
+      "https://gender.gov.mv/en/?p=1428"
+     ],
+     "reviewed_on": "2026-11-21"
     }
    ]
   },
@@ -4697,6 +5040,36 @@
      "sources": [
       "https://www.maroc.ma/index%2Ephp/fr/actualites/aide-sociale-directe-la-premiere-augmentation-entrera-en-vigueur-compter-de-la-fin-du-mois-de-novembre",
       "https://www.cg.gov.ma/en/node/11563"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "MZ",
+   "slug": "mozambique",
+   "name": "Mozambique",
+   "flag": "🇲🇿",
+   "lang": "pt",
+   "emergency": {
+    "number": "112",
+    "label": "Ambulance, fire and police. If the call does not connect, go to the nearest police station or health facility",
+    "source": "https://www.gov.uk/foreign-travel-advice/mozambique/getting-help"
+   },
+   "resources": [
+    {
+     "id": "mozambique-116",
+     "section": "kids-differently",
+     "name": "Linha Fala Criança 116 (child helpline)",
+     "org": "Linha Fala Criança, as listed by UNICEF",
+     "what": "The national child helpline, for reporting abuse or violence against a child, child marriage, or any other harm to a child’s rights.",
+     "how": "Call 116. In danger right now, call 112.",
+     "url": "https://www.unicef.org/mozambique/en/take-action",
+     "phone": "116",
+     "dial": "116",
+     "sources": [
+      "https://www.unicef.org/mozambique/en/take-action",
+      "https://www.unicef.org/mozambique/en/stories/new-delegation-ombudsman-and-child-help-line-inaugurated-cabo-delgado"
      ],
      "reviewed_on": "2026-11-21"
     }
@@ -6063,6 +6436,35 @@
    ]
   },
   {
+   "code": "SN",
+   "slug": "senegal",
+   "name": "Senegal",
+   "flag": "🇸🇳",
+   "lang": "fr",
+   "emergency": {
+    "number": "17",
+    "label": "Police. Ambulance: 15; fire: 18. In the countryside, the gendarmerie on 123 may come faster",
+    "source": "https://www.gov.uk/foreign-travel-advice/senegal/getting-help"
+   },
+   "resources": [
+    {
+     "id": "senegal-116",
+     "section": "kids-differently",
+     "name": "Line 116 (to report harm to a child)",
+     "org": "Child protection unit (CAPE) of the Government of Senegal",
+     "what": "A short number the Government’s child protection unit lists for reporting a child who is being harmed or exploited, including online. Its hours and cost are not published.",
+     "how": "Call 116. In danger right now, call 17 for the police or 15 for an ambulance.",
+     "url": "https://www.vie-publique.sn/documents/8499/rapport-annuel-2025-cellule-appui-protection-enfance-cape",
+     "phone": "116",
+     "dial": "116",
+     "sources": [
+      "https://www.vie-publique.sn/documents/8499/rapport-annuel-2025-cellule-appui-protection-enfance-cape"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "RS",
    "slug": "serbia",
    "name": "Serbia",
@@ -6141,6 +6543,35 @@
      "url": "https://ite.gov.rs/extfile/sr/3055/Najcesce-postavljana-pitanja-eBeba.pdf",
      "sources": [
       "https://ite.gov.rs/extfile/sr/3055/Najcesce-postavljana-pitanja-eBeba.pdf"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "SC",
+   "slug": "seychelles",
+   "name": "Seychelles",
+   "flag": "🇸🇨",
+   "lang": "en",
+   "emergency": {
+    "number": "999",
+    "label": "Ambulance, fire and police",
+    "source": "https://www.gov.uk/foreign-travel-advice/seychelles/getting-help"
+   },
+   "resources": [
+    {
+     "id": "seychelles-116",
+     "section": "kids-differently",
+     "name": "Child helpline 116",
+     "org": "Social Affairs Department, Ministry of Employment and Social Affairs",
+     "what": "A free helpline, launched in 2021, for children who are being abused or need advice. Adults can call it to report child abuse.",
+     "how": "Call 116, free.",
+     "url": "https://employment.gov.sc/media-centre/publications/449-new-helpline-for-children-in-distress",
+     "phone": "116",
+     "dial": "116",
+     "sources": [
+      "https://employment.gov.sc/media-centre/publications/449-new-helpline-for-children-in-distress"
      ],
      "reviewed_on": "2026-11-21"
     }
@@ -7780,6 +8211,38 @@
      "also": [
       "pregnancy-baby"
      ]
+    }
+   ]
+  },
+  {
+   "code": "UZ",
+   "slug": "uzbekistan",
+   "name": "Uzbekistan",
+   "flag": "🇺🇿",
+   "lang": "uz",
+   "emergency": {
+    "number": "112",
+    "label": "The single emergency number since 2024. Police: 102; ambulance: 103; fire: 101 still work",
+    "source": "https://www.gov.uk/foreign-travel-advice/uzbekistan/getting-help"
+   },
+   "resources": [
+    {
+     "id": "uzbekistan-1146",
+     "section": "help-now",
+     "name": "Trust helpline 1146",
+     "org": "Listed by the Government of Uzbekistan and the Ombudsman",
+     "what": "A short helpline for anyone who has suffered harassment or violence. Its hours and cost are not published.",
+     "how": "Call 1146. In danger right now, call 112, or 102 for the police.",
+     "url": "https://baraka.gov.uz/en/welfare-category/reporting-an-incident-of-harassment-and-violence/",
+     "phone": "1146",
+     "dial": "1146",
+     "urgent": true,
+     "chip": "Harassment and violence helpline",
+     "sources": [
+      "https://baraka.gov.uz/en/welfare-category/reporting-an-incident-of-harassment-and-violence/",
+      "https://ombudsman.uz/en/docs/tazyiq-va-zoravonlikdan-jabrlangan-shaxslar-qayerga-murojaat-qilishlari-kerak-2"
+     ],
+     "reviewed_on": "2026-11-21"
     }
    ]
   },
