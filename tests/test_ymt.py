@@ -295,10 +295,10 @@ class SiteTests(unittest.TestCase):
         expected.update({path: 'ohio/assets/share.jpg' for path in ohio})
         expected[ROOT / 'family-guide.html'] = 'assets/share-family-guide.jpg'
         # 61 national pages, the world page and one page per country (data/ymt/world.json), the list of daily affirmations
-        # and the old address of the jokes that passes visitors on to it, once an affirmation is approved; 23 Ohio pages;
+        # and the old address of the jokes that passes visitors on to it, once an affirmation is approved; 24 Ohio pages;
         # the family guide
         world = 1 + len(lib.load()['world']['countries'])
-        self.assertEqual(len(expected), 61 + world + (2 if home_extras.approved_affirmations() else 0) + 23 + 1)
+        self.assertEqual(len(expected), 61 + world + (2 if home_extras.approved_affirmations() else 0) + 24 + 1)
         for path, picture in expected.items():
             p = parse(path)
             meta = {a.get('property') or a.get('name'): a.get('content') for t, a in p.tags if t == 'meta'}

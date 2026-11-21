@@ -64,6 +64,7 @@ input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible,su
 .map path.dim{opacity:.28}
 .map path.sel{stroke:var(--ink);stroke-width:3;opacity:1}
 .maptip{text-align:center;color:var(--muted);font-size:.92rem;margin:.2rem 0 .4rem;min-height:1.5em}
+.maplink{text-align:center;margin:.2rem 0 .5rem;font-size:.95rem}.maplink a{font-weight:700}
 .countybox{background:var(--soft);border-radius:var(--r);padding:.9rem 1.1rem;margin:1rem 0}
 .countybox:empty{display:none}
 

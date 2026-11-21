@@ -18,6 +18,8 @@ Yoga Mom Talk is independent and is not affiliated with any other "Mom Talk" sho
 | `/yoga.html` | Passes visitors on to `/ohio/yoga.html`. Deborah's yoga and training sessions are in person in Ohio, so only the Ohio pages offer them (decided Nov 15, 2026); the national menu has no Yoga link |
 | `/ohio/` | OhioMom: the Ohio landing page, county pages, Ohio help pages, Wix forms and polls. Pages and their own `assets/` are self-contained here, except the site icon, which every page takes from `/assets/` |
 | `/family-guide.html` | The Ohio family guide. The path is fixed because the Veteran Home Guardians guide and the printed flyer's QR code point to `ohiomom.org/family-guide.html`. It stays Ohio-only. Its own links and canonical address use `www.yogamomtalk.com`, so the page works whether or not ohiomom.org is connected |
+| `/ohio/map.html` | The OhioMom map: every health center, Head Start program, public housing office and housing counselor in Ohio's 88 counties, plus upcoming events, on a map with a list, kind chips and a town or ZIP search (see "The OhioMom map") |
+| `/assets/vendor/` | Leaflet 1.9.4 and Leaflet.markercluster, copied unchanged from the Native repository (Nina's Map), with their licenses in `LICENSES.txt`. Served from this site; nothing comes from a CDN |
 | `/js/wix/` | Wix form code. It stays at the site root because the Ohio pages import `/js/wix/form-store.js` |
 | Old Ohio URLs (`/events.html`, `/near-you.html`, `/counties.html`, `/listen.html`, `/wellbeing.html`, `/counties/*.html`, `/help/{bills,disability,pregnancy-baby,single-parent}.html`) | Small redirect pages that send people to the same page under `/ohio/` and keep the query string and fragment |
 
@@ -59,6 +61,17 @@ Every county in the 50 states and D.C. has a page with local listings from six f
 - **Privacy.** The page reads only this site's own files, with no cookies sent. The county is in the part of the address after `#`, which a browser never sends to the server. A typed ZIP code is matched inside the browser; the only request it causes is for the list of ZIP codes that start with the same digit.
 - **Why one page and not 3,144.** Wix hosts at most 2,000 files and 20 MB for a site, so the county layer is one page plus 61 data files (about 7 MB, which Wix compresses about five to one on the way to a phone). The whole site is about 12 MB. It is too big to publish through the Wix connector; it goes live with `scripts/publish_wix.py` (see "Publishing to Wix").
 - **How much is done.** `python3 scripts/coverage.py` reports it. On November 16, 2026: every county has a page, and every county has at least one listing inside the county itself; 3,141 (99.9%) have a school district in the county; 2,033 (64.7%, home to 89.6% of Americans) have a public housing agency with its office there or named for it; 2,968 (94.4%, 99.3% of people) have all six kinds of listing in or near the county; every county has a legal aid program serving it; and 6 counties (0.2%, 1.1% of people) have a hand-checked local guide.
+
+## The OhioMom map
+
+`ohio/map.html` puts the places the site already has on one map, in the style of Nina's Map in the Native repository: a map you can zoom, a list beside it (under it on a phone), chips to turn each kind on and off, a county box, and a search box that takes a town, a ZIP code, a county or any words.
+
+- **What is on it.** From `assets/us/oh.json` (the county data above): the health center sites, Head Start and Early Head Start programs, public housing agencies and HUD-approved housing counselors that are in each county itself, 1,014 places as of the November 16, 2026 data. The upcoming events in `ohio/assets/data.json` are added in the browser. Nothing else is added, and nothing is looked up anywhere.
+- **Where each place sits.** The repository has no latitude or longitude for any place, so nothing is shown at a street address. The map draws the county shapes from `ohio/assets/map.json` (the same shapes as the small county picker) with Leaflet's flat map mode, and each county gets one circle at its label point that counts its places. Zoomed out, neighboring circles join into one; a press on a circle opens that county's list. The page says plainly that places are shown at the middle of their county.
+- **No map pictures from anyone.** There is no tile layer, so no map company sees a visitor's internet address, and the Privacy page needed no change. Leaflet itself is served from `assets/vendor/`.
+- **Without the script.** `scripts/ohio_map.py` writes the same places into the page as a plain list, county by county, with phone links and no web links (so the monthly Ohio link check does not grow by a thousand addresses; websites are in `ohio/assets/map-places.json` and the map shows them). The map and its controls stay hidden until the script runs, and if a file fails to load the page says so and keeps the list.
+- **Using it.** The circles, chips, county box, search box and list all work from the keyboard; Enter or Space on a circle opens it. The list says what it shows in a status line that screen readers announce. A county picked here is kept in the address (`map.html#county=Knox`, so it can be shared) and remembered in the browser like the Near you page. Each county's list links to its OhioMom page where there is one, to `county.html` for that county, and to the All resources page for it.
+- **Keeping it current.** After `assets/us/oh.json` changes, run `python3 scripts/ohio_map.py`; the push checks run it with `--check`. The monthly county refresh runs it before rebuilding. `tests/test_ohio_map.py` and `tests/ohio-map.cjs` check the data, the plain list and the page script.
 
 ## How pages are laid out: a little first, the rest when asked
 
@@ -194,6 +207,8 @@ What is not yet proven: the calls are the ones in Wix's recipe for uploading a s
 ## Credit and license
 
 The disability, neurodiversity and military-family listings are adapted from the family guide in the Veteran Resident Resource Guide, created by Travis Vought and shared by Veteran Home Guardians (CC BY 4.0). Data here is CC BY 4.0; code is MIT. See `LICENSE`.
+
+The map code in `assets/vendor/` is Leaflet (BSD 2-Clause, Volodymyr Agafonkin and CloudMade) and Leaflet.markercluster (MIT, David Leaver); `assets/vendor/LICENSES.txt` has both licenses in full.
 
 The Ohio town and ZIP code list (`ohio/assets/places.json`) comes from the GeoNames postal code files (https://www.geonames.org/, CC BY 4.0), checked against the U.S. Census Bureau's 2010 ZCTA to County Relationship File, which is in the public domain. The All resources page credits GeoNames where the list is used.
 
