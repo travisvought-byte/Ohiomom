@@ -112,6 +112,107 @@
  ],
  "countries": [
   {
+   "code": "AR",
+   "slug": "argentina",
+   "name": "Argentina",
+   "flag": "🇦🇷",
+   "emergency": {
+    "number": "911",
+    "label": "Police or an emergency ambulance. In Buenos Aires city and some nearby areas, 107 also sends an ambulance",
+    "source": "https://www.argentina.gob.ar/tema/emergencias"
+   },
+   "resources": [
+    {
+     "id": "argentina-144",
+     "section": "help-now",
+     "name": "Línea 144",
+     "org": "Government of Argentina",
+     "what": "Free, any hour, every day of the year, for anyone facing gender-based violence or at risk: physical, psychological, sexual, economic and more. A team of lawyers, psychologists and social workers listens and advises.",
+     "how": "Call 144, or send a WhatsApp to +54 9 11 2771-6463. Video calls are available for deaf people. In Spanish.",
+     "url": "https://argentina.gob.ar/linea-144",
+     "phone": "144",
+     "dial": "144",
+     "urgent": true,
+     "chip": "Gender violence line",
+     "sources": [
+      "https://argentina.gob.ar/linea-144",
+      "https://www.argentina.gob.ar/tema/emergencias"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "argentina-salud-mental",
+     "section": "help-now",
+     "name": "National mental health line",
+     "org": "Ministry of Health",
+     "what": "Free, confidential and open any hour, for a mental health crisis, thoughts of suicide or self-harm, or when you are worried about someone. Trained staff can send emergency help.",
+     "how": "Call 0800-999-0091. In Spanish.",
+     "url": "https://www.argentina.gob.ar/dispositivo-0800",
+     "phone": "0800-999-0091",
+     "dial": "08009990091",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://www.argentina.gob.ar/dispositivo-0800"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "argentina-102",
+     "section": "help-now",
+     "name": "Línea 102",
+     "org": "Children's rights line",
+     "what": "A free, confidential line on children's and teenagers' rights, for when a child is being hurt or their rights are being ignored.",
+     "how": "Call 102. In Spanish.",
+     "url": "https://www.argentina.gob.ar/abusosexualinfantil",
+     "phone": "102",
+     "dial": "102",
+     "sources": [
+      "https://www.argentina.gob.ar/abusosexualinfantil"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "argentina-auh",
+     "section": "food-bills",
+     "name": "Asignación Universal por Hijo (AUH)",
+     "org": "ANSES",
+     "what": "A monthly payment for each child under 18 (with no age limit for a child with a disability), for parents who are out of work, in informal or domestic work, or on the monotributo social.",
+     "how": "Check your contact details and family links in mi ANSES; once they are confirmed, payments start. Keep your child's check-ups and vaccines up to date to get the full amount.",
+     "url": "https://www.argentina.gob.ar/asignacion-universal-por-hijo-para-proteccion-social",
+     "sources": [
+      "https://www.argentina.gob.ar/asignacion-universal-por-hijo-para-proteccion-social"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "single-parent"
+     ]
+    },
+    {
+     "id": "argentina-embarazo",
+     "section": "pregnancy-baby",
+     "name": "Asignación por Embarazo",
+     "org": "ANSES",
+     "what": "A monthly payment during pregnancy, for up to 9 months, for women who are out of work, in informal or domestic work, or on the monotributo social.",
+     "how": "Sign up to the Programa Sumar, which confirms your pregnancy, and apply from week 12. The last 20% is paid after the birth once your Sumar check-ups are recorded.",
+     "url": "https://www.argentina.gob.ar/asignacion-por-embarazo-para-proteccion-social",
+     "sources": [
+      "https://www.argentina.gob.ar/asignacion-por-embarazo-para-proteccion-social"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "food-bills"
+     ]
+    }
+   ]
+  },
+  {
    "code": "AU",
    "slug": "australia",
    "name": "Australia",
@@ -418,6 +519,126 @@
    ]
   },
   {
+   "code": "BR",
+   "slug": "brazil",
+   "name": "Brazil",
+   "flag": "🇧🇷",
+   "emergency": {
+    "number": "190",
+    "label": "Military Police, when someone is in danger right now. For an ambulance (SAMU), call 192",
+    "source": "https://agenciagov.ebc.com.br/noticias/202608/lei-maria-da-penha-como-funciona-a-central-de-atendimento-a-mulher-ligue-180"
+   },
+   "resources": [
+    {
+     "id": "brazil-ligue-180",
+     "section": "help-now",
+     "name": "Ligue 180",
+     "org": "Ministry of Women",
+     "what": "Free, any hour, every day, weekends and holidays too. It explains your rights, points you to specialist services near you and takes reports of violence against women.",
+     "how": "Call 180, or send a WhatsApp to (61) 9610-0180. In Portuguese, with Libras (sign language) for deaf women. If violence is happening now, call 190.",
+     "url": "https://www.gov.br/pt-br/servicos/denunciar-e-buscar-ajuda-a-vitimas-de-violencia-contra-mulheres",
+     "phone": "180",
+     "dial": "180",
+     "urgent": true,
+     "chip": "Violence against women line",
+     "sources": [
+      "https://www.gov.br/pt-br/servicos/denunciar-e-buscar-ajuda-a-vitimas-de-violencia-contra-mulheres",
+      "https://agenciagov.ebc.com.br/noticias/202608/lei-maria-da-penha-como-funciona-a-central-de-atendimento-a-mulher-ligue-180"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "brazil-cvv",
+     "section": "help-now",
+     "name": "CVV (Centro de Valorização da Vida)",
+     "org": "CVV",
+     "what": "Volunteers offer emotional support and suicide prevention, in confidence and without judgment, any hour.",
+     "how": "Call 188. The call is free. You can also chat or write on the website. In Portuguese.",
+     "url": "https://cvv.org.br/",
+     "phone": "188",
+     "dial": "188",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://cvv.org.br/",
+      "https://www.conass.org.br/prevencao-ao-suicidio-conta-com-ligacao-gratuita-em-todo-pais/"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "brazil-samu",
+     "section": "help-now",
+     "name": "SAMU 192",
+     "org": "Ministry of Health",
+     "what": "Free emergency medical help and ambulances, any hour, every day.",
+     "how": "Call 192.",
+     "url": "https://www.gov.br/saude/pt-br/composicao/saes/samu-192",
+     "phone": "192",
+     "dial": "192",
+     "urgent": true,
+     "chip": "Ambulance",
+     "sources": [
+      "https://www.gov.br/saude/pt-br/composicao/saes/samu-192"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "brazil-disque-100",
+     "section": "help-now",
+     "name": "Disque 100",
+     "org": "Ministry of Human Rights and Citizenship",
+     "what": "Free, any hour, to report abuse or neglect of children and teenagers, and other human rights violations.",
+     "how": "Call 100 from any phone, or send a WhatsApp to (61) 99611-0100. In Portuguese.",
+     "url": "https://www.gov.br/mdh/pt-br/acesso-a-informacao/disque-100",
+     "phone": "100",
+     "dial": "100",
+     "urgent": true,
+     "chip": "Child protection line",
+     "sources": [
+      "https://www.gov.br/mdh/pt-br/acesso-a-informacao/disque-100"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "brazil-pre-natal",
+     "section": "pregnancy-baby",
+     "name": "Prenatal care in the public health system (SUS)",
+     "org": "Ministry of Health",
+     "what": "Regular pregnancy check-ups at your local public health unit, with care through the birth and a check-up afterwards.",
+     "how": "Go to the primary care unit nearest your home as soon as you think you are pregnant, ideally by week 12. Visits are monthly to week 28, every two weeks to week 36, then weekly.",
+     "url": "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/g/gravidez/pre-natal",
+     "sources": [
+      "https://www.gov.br/saude/pt-br/assuntos/saude-de-a-a-z/g/gravidez/pre-natal"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "brazil-bolsa-familia",
+     "section": "food-bills",
+     "name": "Bolsa Família",
+     "org": "Ministry of Development and Social Assistance (MDS)",
+     "what": "Monthly money for families with income up to R$218 per person, with extra for each child under 7, and for pregnant women, nursing mothers and children 7 to 18.",
+     "how": "Sign up in the Cadastro Único at your city's social assistance office. For information, call Disque Social 121.",
+     "url": "https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia/folder-pbf.pdf",
+     "phone": "121",
+     "dial": "121",
+     "sources": [
+      "https://www.gov.br/mds/pt-br/acoes-e-programas/bolsa-familia/folder-pbf.pdf"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "pregnancy-baby"
+     ]
+    }
+   ]
+  },
+  {
    "code": "CA",
    "slug": "canada",
    "name": "Canada",
@@ -522,6 +743,514 @@
       "single-parent"
      ],
      "reviewed_on": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "code": "CL",
+   "slug": "chile",
+   "name": "Chile",
+   "flag": "🇨🇱",
+   "emergency": {
+    "number": "133",
+    "label": "Carabineros, the police. For an ambulance (SAMU), call 131",
+    "source": "https://chileatiende.gob.cl/fichas/11937/1/pdf"
+   },
+   "resources": [
+    {
+     "id": "chile-1455",
+     "section": "help-now",
+     "name": "Fono 1455",
+     "org": "Servicio Nacional de la Mujer y la Equidad de Género (SernamEG)",
+     "what": "A free national line for women who are facing, or have faced, gender-based violence, and for people who want to help them. It offers guidance and psychological and legal support.",
+     "how": "Call 1455, every day from 8am to midnight, holidays too, or send a WhatsApp to +56 9 9700 7000. In Spanish. For the police, call 133; Carabineros' family line is 149.",
+     "phone": "1455",
+     "dial": "1455",
+     "urgent": true,
+     "chip": "Violence against women line",
+     "sources": [
+      "https://chileatiende.gob.cl/fichas/11937/1/pdf"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "chile-4141",
+     "section": "help-now",
+     "name": "Línea *4141",
+     "org": "Ministry of Health",
+     "what": "Free, confidential help any hour for a crisis linked to suicide: thoughts of suicide, extreme emotional pain or wanting to hurt yourself. A psychologist answers.",
+     "how": "Dial *4141 from any mobile phone. In Spanish.",
+     "url": "https://www.minsal.cl/linea-de-atencion-4141-no-estas-solo-no-estas-sola/",
+     "sources": [
+      "https://www.minsal.cl/linea-de-atencion-4141-no-estas-solo-no-estas-sola/"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "chile-samu",
+     "section": "help-now",
+     "name": "SAMU 131",
+     "org": "Ministry of Health",
+     "what": "The ambulance service for medical emergencies when a life is at risk.",
+     "how": "Call 131.",
+     "phone": "131",
+     "dial": "131",
+     "urgent": true,
+     "chip": "Ambulance",
+     "sources": [
+      "https://www.minsal.cl/papa-francisco-en-chile-uso-de-la-red-de-salud/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "chile-fono-infancia",
+     "section": "take-care",
+     "name": "Fono Infancia",
+     "org": "Fundación Integra",
+     "what": "Free advice from psychologists who specialise in childhood, for parents and anyone caring for children.",
+     "how": "Call 800 200 818 or use the online chat, Monday to Friday, 8:30am to 7pm. In Spanish.",
+     "phone": "800 200 818",
+     "dial": "800200818",
+     "sources": [
+      "https://chileatiende.gob.cl/fichas/1783/1/pdf",
+      "https://www.chileatiende.gob.cl/fichas/2161/1/pdf"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "single-parent"
+     ]
+    },
+    {
+     "id": "chile-crece-mas",
+     "section": "pregnancy-baby",
+     "name": "Chile Crece Más (formerly Chile Crece Contigo)",
+     "org": "Government of Chile",
+     "what": "Support for children and their families from the first prenatal check-up in the public health system, including a newborn kit for babies born in public hospitals and parenting programmes.",
+     "how": "Your public health centre and your municipality can tell you what is offered where you live. Being in the Registro Social de Hogares opens up more support.",
+     "url": "https://www.chileatiende.gob.cl/fichas/2161/1/pdf",
+     "sources": [
+      "https://www.chileatiende.gob.cl/fichas/2161/1/pdf"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "chile-suf",
+     "section": "food-bills",
+     "name": "Subsidio Familiar (SUF)",
+     "org": "Instituto de Previsión Social (IPS)",
+     "what": "$22,007 a month for each child under 18, for families in the most vulnerable 60% of the Registro Social de Hogares who have no social security. Pregnant women can apply for the maternal subsidy from the fifth month.",
+     "how": "Apply at your municipality with your child's birth certificate, and their health check card (under 6) or school certificate (6 and over).",
+     "url": "https://chileatiende.gob.cl/fichas/33112/1/pdf",
+     "sources": [
+      "https://chileatiende.gob.cl/fichas/33112/1/pdf"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "pregnancy-baby"
+     ]
+    }
+   ]
+  },
+  {
+   "code": "CO",
+   "slug": "colombia",
+   "name": "Colombia",
+   "flag": "🇨🇴",
+   "emergency": {
+    "number": "123",
+    "label": "The national number for emergencies and safety",
+    "source": "https://www.crcom.gov.co/sites/default/files/normatividad/2025507436.pdf"
+   },
+   "resources": [
+    {
+     "id": "colombia-155",
+     "section": "help-now",
+     "name": "Línea 155",
+     "org": "Policía Nacional",
+     "what": "Free and confidential, any hour, every day, for women facing violence and anyone who knows of a case. It explains your rights, how to report, and where to get legal and health help.",
+     "how": "Call 155. In Spanish.",
+     "url": "https://www.policia.gov.co/contenido/linea-155-orientacion-mujeres-victimas",
+     "phone": "155",
+     "dial": "155",
+     "urgent": true,
+     "chip": "Violence against women line",
+     "sources": [
+      "https://www.policia.gov.co/contenido/linea-155-orientacion-mujeres-victimas",
+      "https://www.policia.gov.co/contenido/llamadas-que-salvan-vidas"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "colombia-106",
+     "section": "help-now",
+     "name": "Línea 106",
+     "org": "Ministry of Health",
+     "what": "Free, confidential support from mental health professionals, any hour, for anyone in crisis, at risk, or who needs to talk.",
+     "how": "Call 106 from a landline or mobile. Video calls can be booked too. In Spanish.",
+     "url": "https://minsalud.gov.co/salud/publica/salud-mental/Paginas/linea-106.aspx",
+     "phone": "106",
+     "dial": "106",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://minsalud.gov.co/salud/publica/salud-mental/Paginas/linea-106.aspx",
+      "https://www.fomag.gov.co/wp-content/uploads/2026/06/directorio-salud-mental-prevencion-suicidio-minsalud-4-11.pdf"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "colombia-141",
+     "section": "help-now",
+     "name": "Línea 141",
+     "org": "Instituto Colombiano de Bienestar Familiar (ICBF)",
+     "what": "A free national line, any hour, to protect children and teenagers: when a child is scared at home, being hurt, or going without food, school or health care.",
+     "how": "Call 141. ICBF's general line, 018000 91 80 80, is open weekdays from 8am to 5pm.",
+     "url": "https://www.icbf.gov.co/linea-141",
+     "phone": "141",
+     "dial": "141",
+     "urgent": true,
+     "chip": "Child protection line",
+     "sources": [
+      "https://www.icbf.gov.co/linea-141"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "colombia-desarrollo-infantil",
+     "section": "pregnancy-baby",
+     "name": "Desarrollo Infantil en la Familia",
+     "org": "Instituto Colombiano de Bienestar Familiar (ICBF)",
+     "what": "Support from pregnancy until age five: group meetings each week, at least one home visit a month, early learning and nutrition. Children under two, pregnant women and breastfeeding mothers come first.",
+     "how": "Go to the ICBF zonal centre (Centro Zonal) nearest your home.",
+     "url": "https://www.icbf.gov.co/desarrollo-infantil-en-la-familia",
+     "sources": [
+      "https://www.icbf.gov.co/desarrollo-infantil-en-la-familia"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "food-bills"
+     ]
+    }
+   ]
+  },
+  {
+   "code": "DO",
+   "slug": "dominican-republic",
+   "name": "Dominican Republic",
+   "flag": "🇩🇴",
+   "emergency": {
+    "number": "911",
+    "label": "Police, fire and ambulance through the national 9-1-1 system",
+    "source": "https://dominicanrepublic.unfpa.org/sites/default/files/pub-pdf/victima_de_violencia_flyer.pdf"
+   },
+   "resources": [
+    {
+     "id": "dominican-republic-linea-vida",
+     "section": "help-now",
+     "name": "Línea Vida",
+     "org": "Línea Vida",
+     "what": "A free line, open any hour, to report violence and get guidance.",
+     "how": "Call 809-200-1202. In Spanish. In danger right now, call 911.",
+     "phone": "809-200-1202",
+     "dial": "8092001202",
+     "urgent": true,
+     "chip": "Report violence",
+     "sources": [
+      "https://dominicanrepublic.unfpa.org/sites/default/files/pub-pdf/victima_de_violencia_flyer.pdf",
+      "https://cdn.com.do/nacionales/como-denunciar-la-violencia-de-genero-en-rd-pasos-y-ayuda/?amp=1"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "dominican-republic-linea-mujer",
+     "section": "help-now",
+     "name": "Línea Mujer *212",
+     "org": "Ministerio de la Mujer",
+     "what": "A free, confidential line for women facing gender-based or family violence, open any hour, every day.",
+     "how": "Dial *212 from any mobile phone (Altice, Claro or Viva). In Spanish.",
+     "url": "https://findahelpline.com/organizations/linea-de-emergencia-212",
+     "sources": [
+      "https://www.diariolibre.com/noticias/ministerio-de-la-mujer-presenta-linea-de-ayuda-para-casos-de-violencia-PF11144281",
+      "https://findahelpline.com/organizations/linea-de-emergencia-212",
+      "https://dominicanrepublic.unfpa.org/sites/default/files/pub-pdf/victima_de_violencia_flyer.pdf"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "dominican-republic-salud-mental",
+     "section": "help-now",
+     "name": "Cuida tu Salud Mental",
+     "org": "Ministry of Health",
+     "what": "Trained behavioural health specialists listen and help you find care.",
+     "how": "Call 809-200-1400, every day from 8am to midnight. In Spanish.",
+     "phone": "809-200-1400",
+     "dial": "8092001400",
+     "urgent": true,
+     "chip": "Mental health line",
+     "sources": [
+      "https://eldia.com.do/salud-mental-estara-disponible-de-8-de-la-manana-a-12-de-la-medianoche/",
+      "https://findahelpline.com/countries/do"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    }
+   ]
+  },
+  {
+   "code": "FR",
+   "slug": "france",
+   "name": "France",
+   "flag": "🇫🇷",
+   "emergency": {
+    "number": "112",
+    "label": "Any emergency, free, any hour. Also 15 for medical help, 17 for police, 18 for fire",
+    "source": "https://www.service-public.gouv.fr/particuliers/vosdroits/F33954"
+   },
+   "resources": [
+    {
+     "id": "france-3919",
+     "section": "help-now",
+     "name": "3919 Violences Femmes Info",
+     "org": "Fédération nationale Solidarité Femmes",
+     "what": "A free, anonymous national line for women facing any kind of violence, and for the people around them. Open any hour, every day. It listens, explains your options and points you to help near you.",
+     "how": "Call 3919. It does not show on the phone bill. Listening is in French and, at set times, 12 other languages including English, Arabic, Spanish, Portuguese and Polish. It is not an emergency line: in danger right now, call 17.",
+     "url": "https://www.sante.fr/node/1873309",
+     "phone": "39 19",
+     "dial": "3919",
+     "urgent": true,
+     "chip": "Violence against women line",
+     "sources": [
+      "https://www.sante.fr/node/1873309",
+      "https://www.service-public.gouv.fr/particuliers/vosdroits/F33954"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "france-3114",
+     "section": "help-now",
+     "name": "3114, national suicide prevention line",
+     "org": "Ministry of Health",
+     "what": "Free, any hour, every day. Nurses and psychologists answer if you are thinking about suicide, or if you are worried about someone.",
+     "how": "Call 3114 from anywhere in France. The line is in French.",
+     "url": "https://www.sante.fr/le-numero-national-de-prevention-du-suicide-0",
+     "phone": "31 14",
+     "dial": "3114",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://www.sante.fr/le-numero-national-de-prevention-du-suicide-0",
+      "https://www.service-public.gouv.fr/particuliers/vosdroits/F33954"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "france-119",
+     "section": "help-now",
+     "name": "119 Enfance en danger",
+     "org": "National child protection helpline",
+     "what": "For children in danger and any adult worried about a child. Free, confidential and open any hour.",
+     "how": "Call 119. Young people under 18 can also chat online every day from 3pm to 8:30pm.",
+     "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F33954",
+     "phone": "119",
+     "dial": "119",
+     "urgent": true,
+     "chip": "Child protection line",
+     "sources": [
+      "https://www.service-public.gouv.fr/particuliers/vosdroits/F33954"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "france-115",
+     "section": "housing",
+     "name": "115 Samu social",
+     "org": "Samu social",
+     "what": "The number to call when you have nowhere to stay. Free from any phone in mainland France and overseas, any hour, every day.",
+     "how": "Call 115.",
+     "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F33954",
+     "phone": "115",
+     "dial": "115",
+     "urgent": true,
+     "chip": "Nowhere to stay",
+     "sources": [
+      "https://www.service-public.gouv.fr/particuliers/vosdroits/F33954"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "france-pmi",
+     "section": "pregnancy-baby",
+     "name": "PMI centres (Protection maternelle et infantile)",
+     "org": "Your département",
+     "what": "Free health centres, open to all, for pregnant women and children up to age 6: pregnancy check-ups, care for you after the birth, baby check-ups, growth and development checks and vaccines.",
+     "how": "Find your nearest centre on your département's website or in the Service-public.fr directory.",
+     "url": "https://www.sante.fr/sappuyer-sur-les-centres-de-pmi",
+     "sources": [
+      "https://www.sante.fr/sappuyer-sur-les-centres-de-pmi"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "kids-differently"
+     ]
+    },
+    {
+     "id": "france-prime-naissance",
+     "section": "pregnancy-baby",
+     "name": "Prime à la naissance",
+     "org": "Caisse d'allocations familiales (Caf)",
+     "what": "A one-off payment of €1,093.11 for each baby, for families under an income limit. It is paid in the seventh month of pregnancy.",
+     "how": "Declare your pregnancy first, then apply online with the Caf (or the MSA if you are in the farming scheme).",
+     "url": "https://www.justice.fr/fiche/prestation-accueil-jeune-enfant-paje-prime-naissance",
+     "sources": [
+      "https://www.justice.fr/fiche/prestation-accueil-jeune-enfant-paje-prime-naissance"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "food-bills"
+     ]
+    }
+   ]
+  },
+  {
+   "code": "DE",
+   "slug": "germany",
+   "name": "Germany",
+   "flag": "🇩🇪",
+   "emergency": {
+    "number": "112",
+    "label": "Ambulance and fire. For the police, call 110",
+    "source": "https://gesund.bund.de/wege-im-gesundheitswesen/jugend/psychische-gesundheit/soforthilfe"
+   },
+   "resources": [
+    {
+     "id": "germany-hilfetelefon",
+     "section": "help-now",
+     "name": "Hilfetelefon Gewalt gegen Frauen",
+     "org": "Federal Office for Family and Civil Society Tasks (BAFzA)",
+     "what": "A free, anonymous national line for women facing any kind of violence, open around the clock, every day of the year. Family, friends and professionals can call too.",
+     "how": "Call 116 016. Help is in German and 18 other languages with interpreters, in German Sign Language and in easy German. You can also get help online on the website.",
+     "url": "https://www.hilfetelefon.de/",
+     "phone": "116 016",
+     "dial": "116016",
+     "urgent": true,
+     "chip": "Violence against women line",
+     "sources": [
+      "https://www.hilfetelefon.de/",
+      "https://familienportal.de/familienportal/lebenslagen/krise-und-konflikt/krisetelefone-anlaufstellen"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "germany-telefonseelsorge",
+     "section": "help-now",
+     "name": "TelefonSeelsorge",
+     "org": "TelefonSeelsorge (run by the churches)",
+     "what": "Someone to talk to, free and anonymous, day and night, whatever is weighing on you. You can also write by chat or email, or talk face to face at a local centre.",
+     "how": "Call 0800 111 0 111, 0800 111 0 222 or 116 123. The line is in German.",
+     "url": "https://www.telefonseelsorge.de/",
+     "phone": "0800 111 0 111",
+     "dial": "08001110111",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://www.telefonseelsorge.de/",
+      "https://familienportal.de/familienportal/lebenslagen/krise-und-konflikt/krisetelefone-anlaufstellen"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "germany-schwangere-in-not",
+     "section": "pregnancy-baby",
+     "name": "Hilfetelefon Schwangere in Not",
+     "org": "Federal Ministry for Family Affairs",
+     "what": "Free, confidential help any hour for pregnant women who feel alone or in trouble, anonymous if you wish. It can also help you find a pregnancy counselling centre near you.",
+     "how": "Call 0800 40 40 020 from anywhere in Germany. Help is in 19 languages, including sign language. Chat and email are on its website.",
+     "url": "https://familienportal.de/familienportal/lebenslagen/schwangerschaft-geburt/gesundheit-und-beratung/wo-kann-ich-mich-beraten-lassen-wenn-ich-schwanger-bin--125110",
+     "phone": "0800 40 40 020",
+     "dial": "08004040020",
+     "urgent": true,
+     "chip": "Pregnancy help line",
+     "sources": [
+      "https://familienportal.de/familienportal/lebenslagen/schwangerschaft-geburt/gesundheit-und-beratung/wo-kann-ich-mich-beraten-lassen-wenn-ich-schwanger-bin--125110",
+      "https://familienportal.de/familienportal/lebenslagen/krise-und-konflikt/krisetelefone-anlaufstellen"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "help-now"
+     ]
+    },
+    {
+     "id": "germany-elterntelefon",
+     "section": "take-care",
+     "name": "Elterntelefon",
+     "org": "Nummer gegen Kummer",
+     "what": "A free, anonymous line for parents and other adults who are worried about a child or about family life.",
+     "how": "Call 0800 111 0 550: Monday, Wednesday and Friday 9am to 5pm, Tuesday and Thursday 9am to 7pm. In German. Children and teens can call 116 111 themselves, Monday to Saturday, 2pm to 8pm.",
+     "url": "https://www.nummergegenkummer.de/",
+     "phone": "0800 111 0 550",
+     "dial": "08001110550",
+     "sources": [
+      "https://www.nummergegenkummer.de/",
+      "https://familienportal.de/familienportal/lebenslagen/krise-und-konflikt/krisetelefone-anlaufstellen"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "single-parent"
+     ]
+    },
+    {
+     "id": "germany-mutter-und-kind",
+     "section": "pregnancy-baby",
+     "name": "Bundesstiftung Mutter und Kind",
+     "org": "Federal Foundation Mother and Child",
+     "what": "Money for pregnant women in financial hardship, for things like maternity clothes, the baby's first things, the home and childcare. It is not taken off Bürgergeld or other benefits.",
+     "how": "Apply at a pregnancy counselling centre (Schwangerschaftsberatungsstelle) near you, before the baby is born. Counselling there is free and can be anonymous.",
+     "url": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/schwangerschaft-und-kinderwunsch/bundesstiftung-mutter-und-kind",
+     "sources": [
+      "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/schwangerschaft-und-kinderwunsch/bundesstiftung-mutter-und-kind",
+      "https://familienportal.de/familienportal/lebenslagen/schwangerschaft-geburt/gesundheit-und-beratung/wo-kann-ich-mich-beraten-lassen-wenn-ich-schwanger-bin--125110"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "food-bills"
+     ]
+    },
+    {
+     "id": "germany-kindergeld",
+     "section": "food-bills",
+     "name": "Kindergeld (child benefit)",
+     "org": "Familienkasse, Federal Employment Agency",
+     "what": "€259 a month for each child from January 2026, whatever your income. It goes to the parent the child lives with.",
+     "how": "It is paid by the Familienkasse at the Agentur für Arbeit. Families on a low income can also get Kinderzuschlag, up to €297 a month per child on top, and can apply online with a BundID account.",
+     "url": "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/kindergeld",
+     "sources": [
+      "https://www.bmbfsfj.bund.de/bmbfsfj/themen/familie/familienleistungen/kindergeld",
+      "https://www.arbeitsagentur.de/vor-ort/marburg/presse/2026-23-mehr-unterstutzung-fur-familien"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "single-parent"
+     ]
     }
    ]
   },
@@ -810,6 +1539,93 @@
       "single-parent"
      ],
      "reviewed_on": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "code": "IT",
+   "slug": "italy",
+   "name": "Italy",
+   "flag": "🇮🇹",
+   "emergency": {
+    "number": "112",
+    "label": "The European emergency number, free from any phone",
+    "source": "https://europa.eu/youreurope/citizens/travel/safety/emergency/index_it.htm"
+   },
+   "resources": [
+    {
+     "id": "italy-1522",
+     "section": "help-now",
+     "name": "1522 anti-violence and stalking line",
+     "org": "Department for Equal Opportunities",
+     "what": "Free, any hour, every day, for anyone facing gender-based violence or stalking. Trained staff listen and point you to support services near you, and you can stay anonymous.",
+     "how": "Call 1522 from a landline or mobile. Help is in Italian, English, French, Spanish and Arabic.",
+     "url": "https://regione.lazio.it/notizie/pari-opportunita/numero-verde-nazionale-anti-violenza-stalking-1522",
+     "phone": "1522",
+     "dial": "1522",
+     "urgent": true,
+     "chip": "Violence against women line",
+     "sources": [
+      "https://regione.lazio.it/notizie/pari-opportunita/numero-verde-nazionale-anti-violenza-stalking-1522"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "italy-telefono-amico",
+     "section": "help-now",
+     "name": "Telefono Amico Italia",
+     "org": "Telefono Amico Italia",
+     "what": "Volunteers listen if you feel alone, low or overwhelmed, or have thoughts of suicide.",
+     "how": "Call 02 2327 2327 every day from 9am to midnight, or send a WhatsApp to 324 011 7252. The service is free; you pay only your normal call cost. In Italian.",
+     "phone": "02 2327 2327",
+     "dial": "0223272327",
+     "urgent": true,
+     "chip": "Someone to talk to",
+     "sources": [
+      "https://www.telefonoamico.it/z_site2021/wp-content/uploads/CS_2024_PrevenzioneSuicidio.pdf"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "italy-telefono-azzurro",
+     "section": "help-now",
+     "name": "Telefono Azzurro",
+     "org": "Telefono Azzurro",
+     "what": "Free, any hour, every day, for children and teens up to 18, and for parents and other adults who want advice about a child.",
+     "how": "Call 19696 or use the web chat. In Italian.",
+     "url": "https://azzurro.it/",
+     "phone": "19696",
+     "dial": "19696",
+     "urgent": true,
+     "chip": "Child helpline",
+     "sources": [
+      "https://azzurro.it/",
+      "https://findahelpline.com/organizations/telefono-azzurro"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "italy-assegno-unico",
+     "section": "food-bills",
+     "name": "Assegno unico e universale",
+     "org": "INPS",
+     "what": "A monthly payment for each child, from the seventh month of pregnancy up to age 21. The amount depends on your ISEE (family income and assets); families without an ISEE still get the minimum.",
+     "how": "Apply online at inps.it, through the INPS contact centre, or with free help from a patronato.",
+     "url": "https://www.inps.it/it/it/dettaglio-scheda.it.schede-servizio-strumento.schede-servizi.assegno-unico-e-universale-per-i-figli-a-carico-55984.assegno-unico-e-universale-per-i-figli-a-carico.html",
+     "sources": [
+      "https://servizi2.inps.it/docallegati/Mig/InpsComunica/Brochure/Assegno_unico_per_i_figli_2022.pdf",
+      "https://www.inps.it/it/it/dettaglio-scheda.it.schede-servizio-strumento.schede-servizi.assegno-unico-e-universale-per-i-figli-a-carico-55984.assegno-unico-e-universale-per-i-figli-a-carico.html"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "pregnancy-baby"
+     ]
     }
    ]
   },
@@ -1108,6 +1924,124 @@
    ]
   },
   {
+   "code": "NL",
+   "slug": "netherlands",
+   "name": "Netherlands",
+   "flag": "🇳🇱",
+   "emergency": {
+    "number": "112",
+    "label": "Police, fire and ambulance",
+    "source": "https://veiligthuis.nl/"
+   },
+   "resources": [
+    {
+     "id": "netherlands-veilig-thuis",
+     "section": "help-now",
+     "name": "Veilig Thuis",
+     "org": "Veilig Thuis",
+     "what": "The national advice and reporting centre for domestic violence and child abuse, whether it is happening to you or someone else. Free and open any hour.",
+     "how": "Call 0800-2000. You can also chat anonymously on weekdays from 9am to 5pm. In Dutch. In danger right now, call 112.",
+     "url": "https://veiligthuis.nl/",
+     "phone": "0800-2000",
+     "dial": "08002000",
+     "urgent": true,
+     "chip": "Family violence line",
+     "sources": [
+      "https://veiligthuis.nl/",
+      "https://www.nji.nl/kennis/welbevinden/met-wie-kan-ik-bellen-of-chatten"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "netherlands-113",
+     "section": "help-now",
+     "name": "113 Zelfmoordpreventie",
+     "org": "113 Zelfmoordpreventie",
+     "what": "Free, anonymous help by phone or chat, day and night, if you are thinking about suicide or worried about someone.",
+     "how": "Call 113 (or 0800-0113) from the Netherlands, or chat on the website. The website has a page in English.",
+     "url": "https://www.113.nl/english",
+     "phone": "113",
+     "dial": "113",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://www.113.nl/",
+      "https://www.113.nl/english",
+      "https://www.nji.nl/kennis/welbevinden/met-wie-kan-ik-bellen-of-chatten"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "netherlands-kindertelefoon",
+     "section": "help-now",
+     "name": "De Kindertelefoon",
+     "org": "De Kindertelefoon",
+     "what": "For children and young people who want to talk about anything that is on their mind.",
+     "how": "Call 0800-0432 or chat, every day from 11am to 9pm. In Dutch.",
+     "phone": "0800-0432",
+     "dial": "08000432",
+     "urgent": true,
+     "chip": "Child helpline",
+     "sources": [
+      "https://www.nji.nl/kennis/welbevinden/met-wie-kan-ik-bellen-of-chatten"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "netherlands-kinderbijslag",
+     "section": "food-bills",
+     "name": "Kinderbijslag (child benefit)",
+     "org": "Sociale Verzekeringsbank (SVB)",
+     "what": "A regular payment towards the cost of raising your children.",
+     "how": "Register your baby's birth with your municipality. The SVB then sends you a letter within a few weeks, and you apply online in My SVB with DigiD or ask for a paper form. Register your baby with your health insurer within 4 months too.",
+     "url": "https://www.svb.nl/en/child-benefit/how-to-claim-dutch-child-benefit/kinderbijslag-aanvragen",
+     "sources": [
+      "https://www.svb.nl/en/child-benefit/how-to-claim-dutch-child-benefit/kinderbijslag-aanvragen",
+      "https://www.rijksoverheid.nl/vraag-en-antwoord/kinderbijslag/hoe-vraag-ik-kinderbijslag-aan"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "pregnancy-baby"
+     ]
+    },
+    {
+     "id": "netherlands-kindgebonden-budget",
+     "section": "food-bills",
+     "name": "Kindgebonden budget",
+     "org": "Dienst Toeslagen",
+     "what": "An extra contribution towards the costs of children under 18, if you meet the conditions. With shared care, it goes to the parent who gets the kinderbijslag.",
+     "how": "If you qualify, you usually get a letter from the Dienst Toeslagen without having to apply. The full conditions are on toeslagen.nl.",
+     "url": "https://www.rijksoverheid.nl/themas/belastingen-uitkeringen-en-toeslagen/kinderbijslag/vraag-en-antwoord/kindgebonden-budget/wanneer-heb-ik-recht-op-kindgebonden-budget",
+     "sources": [
+      "https://www.rijksoverheid.nl/themas/belastingen-uitkeringen-en-toeslagen/kinderbijslag/vraag-en-antwoord/kindgebonden-budget/wanneer-heb-ik-recht-op-kindgebonden-budget"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "single-parent"
+     ]
+    },
+    {
+     "id": "netherlands-vaccinations",
+     "section": "pregnancy-baby",
+     "name": "Free childhood vaccinations",
+     "org": "Consultatiebureau (youth health care)",
+     "what": "The vaccines in the national programme are free for children from birth to 18.",
+     "how": "Your child gets them at the consultatiebureau or the youth health service in your area.",
+     "url": "https://www.rijksoverheid.nl/vraag-en-antwoord/vaccinaties/zijn-vaccinaties-gratis",
+     "sources": [
+      "https://www.rijksoverheid.nl/vraag-en-antwoord/vaccinaties/zijn-vaccinaties-gratis"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "NZ",
    "slug": "new-zealand",
    "name": "New Zealand",
@@ -1349,6 +2283,71 @@
    ]
   },
   {
+   "code": "PE",
+   "slug": "peru",
+   "name": "Peru",
+   "flag": "🇵🇪",
+   "emergency": {
+    "number": "105",
+    "label": "Police. For fire, call 116; for an ambulance (SAMU), call 106",
+    "source": "https://elperuano.pe/noticia/305020-del-105-al-911-gobierno-avanza-hacia-un-sistema-integrado-para-atender-emergencias-mas-rapido"
+   },
+   "resources": [
+    {
+     "id": "peru-linea-100",
+     "section": "help-now",
+     "name": "Línea 100",
+     "org": "Ministry of Women and Vulnerable Populations (MIMP)",
+     "what": "Free, any hour, every day of the year, for anyone facing violence against women or family members, or who knows of a case. A team gives legal, psychological and social advice.",
+     "how": "Call 100 from a landline or mobile anywhere in Peru. Help is in Spanish, Quechua and Aymara. In danger right now, call 105.",
+     "phone": "100",
+     "dial": "100",
+     "urgent": true,
+     "chip": "Family violence line",
+     "sources": [
+      "https://www.elperuano.pe/noticia/208864-linea-100-atendio-23-mil-llamadas-por-violencia-contra-mujeres-e-integrantes-del-grupo-familiar",
+      "https://www.infobae.com/peru/2026/06/26/numeros-de-emergencia-en-peru-cuando-llamar-a-la-policia-bomberos-samu-linea-100-y-911/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "peru-113",
+     "section": "help-now",
+     "name": "Línea 113, option 5",
+     "org": "Ministry of Health (MINSA)",
+     "what": "Free, confidential help from psychologists, any hour, for an emotional crisis or when you feel at risk.",
+     "how": "Call 113 and choose option 5, or write on WhatsApp to 955 557 000. In Spanish.",
+     "phone": "113",
+     "dial": "113",
+     "urgent": true,
+     "chip": "Mental health line",
+     "sources": [
+      "https://andina.pe/agencia/noticia-linea-113-del-minsa-mas-60000-personas-recibieron-orientacion-psicologica-gratuita-1048068.aspx"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "peru-juntos",
+     "section": "food-bills",
+     "name": "Juntos",
+     "org": "Ministry of Development and Social Inclusion (MIDIS)",
+     "what": "Money every two months for families in poverty with a pregnant woman, children or young people up to 19, as long as they keep up prenatal check-ups, child health checks and school.",
+     "how": "Families are chosen and signed up by MIDIS through its local staff.",
+     "url": "https://andina.pe/agencia/noticia-programa-juntos-atiende-a-mas-un-millon-personas-todo-pais-1094736.aspx",
+     "sources": [
+      "https://andina.pe/agencia/noticia-programa-juntos-atiende-a-mas-un-millon-personas-todo-pais-1094736.aspx"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "pregnancy-baby"
+     ]
+    }
+   ]
+  },
+  {
    "code": "PH",
    "slug": "philippines",
    "name": "Philippines",
@@ -1392,6 +2391,111 @@
       "https://mb.com.ph/2026/02/19/not-all-solo-parents-qualify-under-expanded-law-dswd"
      ],
      "reviewed_on": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "code": "PL",
+   "slug": "poland",
+   "name": "Poland",
+   "flag": "🇵🇱",
+   "emergency": {
+    "number": "112",
+    "label": "Any emergency. For an ambulance you can also call 999",
+    "source": "https://www.gov.pl/web/zdrowie/gdzie-uzyskac-pomoc-psychologiczna-i-psychiatryczna"
+   },
+   "resources": [
+    {
+     "id": "poland-niebieska-linia",
+     "section": "help-now",
+     "name": "Niebieska Linia",
+     "org": "Niebieska Linia",
+     "what": "A free line, open around the clock, for people facing violence at home and for anyone who sees it happening.",
+     "how": "Call 800 120 002. In Polish.",
+     "url": "https://www.gov.pl/web/zdrowie/przemoc-domowa",
+     "phone": "800 120 002",
+     "dial": "800120002",
+     "urgent": true,
+     "chip": "Domestic violence line",
+     "sources": [
+      "https://www.gov.pl/web/zdrowie/przemoc-domowa",
+      "https://niebieskalinia.info/wp-content/uploads/2026/05/Raport_marzec_2026.pdf"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "poland-116123",
+     "section": "help-now",
+     "name": "116 123 emotional support line",
+     "org": "National helpline for people in emotional crisis",
+     "what": "A support line, open around the clock, for adults going through an emotional crisis.",
+     "how": "Call 116 123. In Polish.",
+     "url": "https://www.gov.pl/web/zdrowie/gdzie-uzyskac-pomoc-psychologiczna-i-psychiatryczna",
+     "phone": "116 123",
+     "dial": "116123",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://www.gov.pl/web/zdrowie/gdzie-uzyskac-pomoc-psychologiczna-i-psychiatryczna"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "poland-itaka",
+     "section": "help-now",
+     "name": "Centrum Wsparcia",
+     "org": "Fundacja Itaka",
+     "what": "Free support, around the clock, for adults in a mental health crisis.",
+     "how": "Call 800 70 2222. In Polish.",
+     "phone": "800 70 2222",
+     "dial": "800702222",
+     "urgent": true,
+     "chip": "Mental health line",
+     "sources": [
+      "https://www.gov.pl/web/zdrowie/gdzie-uzyskac-pomoc-psychologiczna-i-psychiatryczna"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "poland-116111",
+     "section": "help-now",
+     "name": "116 111 helpline for children and young people",
+     "org": "Telefon Zaufania dla Dzieci i Młodzieży",
+     "what": "Free, anonymous support for children and teenagers.",
+     "how": "Call 116 111.",
+     "phone": "116 111",
+     "dial": "116111",
+     "urgent": true,
+     "chip": "Child helpline",
+     "sources": [
+      "https://www.gov.pl/web/zdrowie/gdzie-uzyskac-pomoc-psychologiczna-i-psychiatryczna"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "poland-800-plus",
+     "section": "food-bills",
+     "name": "Rodzina 800+",
+     "org": "ZUS (Social Insurance Institution)",
+     "what": "800 zł a month for every child until they turn 18, whatever the family's income.",
+     "how": "Apply online to ZUS through PUE ZUS or the mZUS app, the Emp@tia portal, or your online bank. Apply within 3 months of your baby's birth to be paid from the day of birth.",
+     "url": "https://www.gov.pl/web/cyfryzacja/wnioski-o-800-tylko-przez-internet",
+     "sources": [
+      "https://www.gov.pl/web/cyfryzacja/wnioski-o-800-tylko-przez-internet"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "pregnancy-baby"
+     ]
     }
    ]
   },
@@ -1578,6 +2682,95 @@
       "single-parent"
      ],
      "reviewed_on": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "code": "ES",
+   "slug": "spain",
+   "name": "Spain",
+   "flag": "🇪🇸",
+   "emergency": {
+    "number": "112",
+    "label": "Any emergency, free from any phone, even with no credit or signal",
+    "source": "https://administracion.gob.es/pag_Home/en/Tu-espacio-europeo/derechos-obligaciones/ciudadanos/asistencia-sanitaria/numeros-urgencia.html"
+   },
+   "resources": [
+    {
+     "id": "spain-016",
+     "section": "help-now",
+     "name": "016",
+     "org": "Ministry of Equality",
+     "what": "Free, confidential help any hour for women facing any form of violence, and for the people around them.",
+     "how": "Call 016, or send a WhatsApp message (no calls) to 600 000 016. The phone line works in 53 languages. You can also email 016-online@igualdad.gob.es.",
+     "url": "https://violenciagenero.igualdad.gob.es/wp-content/uploads/DGVGInforma_016paratodas.pdf",
+     "phone": "016",
+     "dial": "016",
+     "urgent": true,
+     "chip": "Violence against women line",
+     "sources": [
+      "https://violenciagenero.igualdad.gob.es/wp-content/uploads/DGVGInforma_016paratodas.pdf"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "spain-024",
+     "section": "help-now",
+     "name": "024 suicide prevention line",
+     "org": "Ministry of Health",
+     "what": "Free, confidential and open every hour of the year, for anyone with thoughts of suicide and for their family and friends.",
+     "how": "Call 024 from anywhere in Spain. There is also a chat run by the Red Cross and a sign language video service. If a life is in danger right now, call 112.",
+     "url": "https://www.sanidad.gob.es/linea024/home.htm",
+     "phone": "024",
+     "dial": "024",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://www.sanidad.gob.es/linea024/home.htm"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "spain-anar",
+     "section": "help-now",
+     "name": "ANAR helpline",
+     "org": "Fundación ANAR",
+     "what": "Free, confidential help for children and teenagers, any hour.",
+     "how": "Call 900 20 20 10 or open the chat on the website. In Spanish, with phone interpreting for other languages.",
+     "url": "https://v2.anar.org/en",
+     "phone": "900 20 20 10",
+     "dial": "900202010",
+     "urgent": true,
+     "chip": "Child helpline",
+     "sources": [
+      "https://v2.anar.org/en",
+      "https://findahelpline.com/organizations/fundacion-anar-de-ayuda-a-ninos-as-y-adolescentes-en-riesgo"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "spain-imv",
+     "section": "food-bills",
+     "name": "Ingreso Mínimo Vital",
+     "org": "Social Security (INSS)",
+     "what": "A monthly payment for people and families who do not have enough to cover the basics. Families on it with children also get a child supplement.",
+     "how": "Apply online at imv.seg-social.es and keep the reference code you are given. For information, call 020. In the Basque Country apply through Lanbide; in Navarra and Catalonia, through local offices.",
+     "url": "https://sede.seg-social.gob.es/wps/portal/sede/sede/Ciudadanos/familia/270420inss_sinc",
+     "phone": "020",
+     "dial": "020",
+     "sources": [
+      "https://sede.seg-social.gob.es/wps/portal/sede/sede/Ciudadanos/familia/270420inss_sinc"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "single-parent"
+     ]
     }
    ]
   },
