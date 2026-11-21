@@ -1,0 +1,415 @@
+{
+ "lang": "bg",
+ "name": "Bulgarian",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "Не е нужно днес да свършиш всичко. Следващото малко нещо е достатъчно."
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "Умората не е провал. Уморена си, защото всеки ден си до тях."
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "Чиниите могат да почакат. Можеш да седнеш за пет минути."
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "Зърнена закуска за вечеря пак се брои за нахранено семейство."
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "Почивката не е нещо, което трябва да заслужиш. Можеш да си починеш точно сега."
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "Някои дни победата е, че всички сте стигнали до лягане. Това е истинска победа."
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "Правиш повече, отколкото някой вижда. Аз го виждам."
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "Разхвърлян дом и обичани деца. Това е добра размяна."
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "В труден ден най-доброто ти изглежда различно, но пак се брои."
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "Едно дълбоко вдишване. Отпусни раменете. Справяш се."
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "Нормално е днес да свалиш летвата. Можеш да я вдигнеш друг ден."
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "Да поискаш помощ е проява на сила, не на слабост."
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "Имаш право да кажеш „не“ на още едно нещо."
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "Ако днес си се чувствала самотна, не си единствената майка, която го е усетила. Много сме."
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "Заслужаваш приятелка, която да те попита как си и да изчака отговора."
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "Нормално е ти да потърсиш първа. Повечето майки се надяват някой да го направи."
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "Това, че се чувстваш невидима, не значи, че нямаш значение. Имаш огромно значение."
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "Чувствата ти са разбираеми. Не си „прекалено“."
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "Тук не е нужно да обясняваш трудния си ден. Разбираме те."
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "Едно съобщение до друга майка с думите „и аз“ може да преобърне целия ден."
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "Хранене, преповиване, люлеене и отначало. Това е истинска работа, дори когато изглежда като седене на едно място."
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "Ти и бебето ти още се опознавате. Няма за къде да бързате."
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "Дните с новородено са дълги. Този период няма да трае вечно."
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "Ако днес единственото, което си направила, е да държиш едно мъничко човече нахранено и на топло, свършила си голяма работа."
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "Не е нужно бързо да се върнеш във форма. Можеш просто да бъдеш там, където си."
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "Както и да храниш бебето си, ти се грижиш за него. Това е важното."
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "Можеш да си недоспала и пълна с обич едновременно."
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "Гушни бебето и остави къщата. Къщата ще си е тук и после."
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "Една криза в магазина не те прави лоша майка. Просто имаш малко дете."
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "Малките проверяват границите, защото се чувстват в безопасност с теб."
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "Днес остана спокойна с една минута по-дълго от вчера. Това се брои."
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "Ако си избухнала, една прегръдка и едно „извинявай“ оправят много. И ги учат на нещо хубаво."
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "Лепкави ръчички, силни гласове, големи чувства. Отглеждаш цял човек."
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "Петото „защо?“ за един час е малко умче, което расте."
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "Не ти трябва съвършен ден, за да създадеш щастлив спомен."
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "Една затръшната врата не е краят на историята. Остави лампата да свети."
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "Тийнейджърът ти може и да не го казва, но това, че винаги си до него, има значение."
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "Да бъдеш спокойната вкъщи е тежка работа. А ти я вършиш."
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "Някои от най-хубавите разговори се случват в колата. Карай нататък."
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "Отдалечават се, за да пораснат, а не за да те оставят зад себе си."
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "Не е нужно да знаеш всички отговори. Слушането е голяма част от това."
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "Големите деца още имат нужда от теб, просто по по-тих начин."
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "Да се справяш сама изисква сила, която повечето хора никога не виждат."
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "Ти си достатъчно добра майка за детето си. Винаги си била."
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "Едни ръце, сто задачи. Бъди по-мила към себе си."
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "Като те гледат, децата ти научават как изглежда един силен и обичащ човек."
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "Почивката не е изоставяне на поста ти. Тя е начинът да продължиш."
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "Никой не брои точки. Важни са обичта и това, че си тук."
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "Скръбта и любовта идват от едно и също място. Колкото ти липсва някой, толкова си го обичала."
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "Няма правилен срок за скръбта. Дай си толкова време, колкото ти трябва."
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "На тежките годишнини бъди толкова нежна към себе си, колкото би била към приятелка."
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "Можеш да носиш тъга и пак да се смееш с децата си. И двете са истински."
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "Ако си загубила бременност или бебе, тази загуба е истинска, както и твоята обич."
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "Някои дни скръбта е тиха, а други – шумна. И двете са нормални."
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "Малкото пари не означават малко обич."
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "Децата ти ще помнят времето с теб повече от нещата, които си купила."
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "Да попиташ за помощ със сметките е разумно, а не срамно. Точно за това е тази помощ."
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "Един безплатен следобед в парка може да е най-хубавият ден от седмицата."
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "Изкара с парите още една седмица. Това иска истинско умение."
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "Тревогата за пари изтощава. Носиш много, и пак си тук."
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "Днес изпи чаша вода. Започни оттам."
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "Всички излязоха от вкъщи. Обувките може и да не си пасваха. Пак е победа."
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "Направи обаждането, от което се страхуваше. Това беше смело."
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "Днес се смя. Задръж това."
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "Топла храна, чиста блузка, приказка за лека нощ. От малките неща се гради детството."
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "Днес беше добра към някого, дори ако това беше само към себе си."
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "Напредък, не съвършенство. Днес направи крачка напред."
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "Свърши едно нещо от списъка. Това е с едно повече от нищо."
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "Ти си добра майка. Това, че се тревожиш, показва колко много държиш на това."
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "Ти си повече от това, което успяваш да свършиш за един ден."
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "Децата ти нямат нужда от съвършена майка. Имат нужда от теб, и те имат."
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "Бъди толкова търпелива към себе си, колкото си към децата си."
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "Имаш право да заемаш място, да искаш нещо за себе си и да имаш свои мечти."
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "Една грешка не заличава обичта. Утре е ново начало."
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "Ти си целият свят за някого, но си и човек сама по себе си."
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "Нормално е да не ти харесва всяка минута. Пак можеш да обичаш децата си с цялото си сърце."
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "Няма един правилен начин да бъдеш майка. Твоят начин също е правилен."
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "Като в позата на дървото, нормално е да се олюлееш. Можеш отново да намериш равновесие."
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "Стъпи здраво като в позата на планината. По-стабилна си, отколкото се чувстваш."
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "Воин две: силни крака, отворени ръце. Това си ти пред тази седмица."
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "Вдишай на четири, издишай на четири. Тук си и се справяш."
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "Разпери се широко като звезда. Имаш право да заемаш място."
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "Широкият нисък клек се задържа трудно. Дългият ден също. А ти го задържаш."
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "Можеш да се наклониш като полумесец и пак да стоиш права."
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "Още не е нужно да стигаш пръстите на краката си. Всяко малко разтягане се брои."
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "Позата на триъгълника: едната ръка долу, другата горе. Стой здраво на земята и продължавай да се протягаш."
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "Късно е. Каквото не е свършено днес, може да почака до утре."
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "Будна с бебето в този час? Много майки са будни с теб точно сега."
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "Къщата е тиха. Този миг е твой. Дишай."
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "Изкара деня. Това беше всичко, от което днешният ден имаше нужда."
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "Ако умът ти не спира тази нощ, запиши мислите си и ги остави да почакат до сутринта."
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "Затвори очи и си почини. Утре можеш да започнеш отначало."
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "Празниците могат да са тежки, не само радостни. Каквото и да чувстваш през този сезон, то е нормално."
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "Масата не е нужно да е съвършена. Важни са хората около нея."
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "Ако тази година ти липсва някой на масата, бъди нежна със сърцето си."
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "Благодаря ти, мамо, за всяко ястие, всяко возене и всяка прегръдка."
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "Не е нужно да посрещаш гости, да печеш или да се усмихваш през цялото време. Простият празник пак е празник."
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "Най-хубавият подарък, който децата ти ще получат тази година, е времето с теб."
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "Малкият празник пак е пълен с обич. Не са нужни много пари, за да е специален."
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "Студени дни, топли прегръдки. Ти си топлото място в своя дом."
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "Нормално е да пропуснеш част от празничната суматоха. Спокойствието също е подарък."
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "Ако тази година празниците ти тежат, не си сама. Ден по ден."
+  }
+ ]
+}
