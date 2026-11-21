@@ -96,7 +96,8 @@ def running_ads(data):
     return ads.active(data.get('ads', []), data.get('today') or ads.today())
 
 
-def page(data, path, title, desc, body, body_class='', head_extra='', canonical=None, scripts='', slots=()):
+def page(data, path, title, desc, body, body_class='', head_extra='', canonical=None, scripts='', slots=(),
+         danger='In danger right now? Call 911.'):
     """slots: the ad slots this page takes, the most specific first (scripts/ads.py). A page with none never shows an ad,
     and a page whose slots no running ad names has no ad markup at all. The ad comes last in <main>, after the page's own content."""
     site = data['site']
@@ -135,7 +136,7 @@ def page(data, path, title, desc, body, body_class='', head_extra='', canonical=
 <footer class="foot">
 <p class="footnav">{foot}</p>
 <p>Founded by {esc(site['founder'])}. See something out of date, or know a group we should list? <a href="{root}report.html">Report a problem</a>.</p>
-<p class="small">In danger right now? Call 911. {esc(site['name'])} is an information directory, not an emergency service or a provider of legal, medical or financial advice. Contacts come from published official and organization sources and are not telephone-confirmed. No sign-up. We count visits without cookies, and nothing you type is sent. Any ad is labeled Advertisement. See <a href="{root}privacy.html">Privacy</a>.</p>
+<p class="small">{esc(danger)} {esc(site['name'])} is an information directory, not an emergency service or a provider of legal, medical or financial advice. Contacts come from published official and organization sources and are not telephone-confirmed. No sign-up. We count visits without cookies, and nothing you type is sent. Any ad is labeled Advertisement. See <a href="{root}privacy.html">Privacy</a>.</p>
 <p class="small">Ohio mom? Visit <a href="{root}{esc(site['ohio_path'])}">OhioMom</a>. Mobility and disability resources: <a href="{esc(site['mobilitytalk_url'])}">Mobility Talk</a>.</p>
 </footer>
 <script src="{root}assets/ymt.js"></script>{scripts}
@@ -522,7 +523,8 @@ def build_world(data):
     about = {'@type': 'CollectionPage', '@id': base + 'world.html', 'url': base + 'world.html', 'name': 'Help for moms, anywhere in the world',
              'description': desc, 'inLanguage': 'en', 'isPartOf': {'@id': base + '#website'}}
     return page(data, 'world.html', 'Help for moms around the world', desc, body,
-                head_extra=structured_data(about, breadcrumbs(data, [('Worldwide', 'world.html')])), slots=('topic-help', 'topic'))
+                head_extra=structured_data(about, breadcrumbs(data, [('Worldwide', 'world.html')])), slots=('topic-help', 'topic'),
+                danger='In danger right now? Call your local emergency number.')
 
 
 def build_country(data, c):
@@ -552,7 +554,8 @@ def build_country(data, c):
              'about': {'@type': 'Country', 'name': c['name']}}
     trail = breadcrumbs(data, [('Worldwide', 'world.html'), (c['name'], path)])
     return page(data, path, f'{c["name"]}: help for moms', desc, body, head_extra=structured_data(about, trail),
-                slots=(f'country-{c["code"].lower()}', 'country'))
+                slots=(f'country-{c["code"].lower()}', 'country'),
+                danger=f'In danger right now? Call {c["emergency"]["number"]}.')
 
 
 def county_pick(data, s):

@@ -133,6 +133,18 @@ class SiteTests(unittest.TestCase):
                 digits = re.sub(r'\D', '', shown)
                 self.assertTrue(href.endswith(digits), f'{path}: {href} vs {shown}')
 
+    def test_country_pages_never_send_moms_to_911(self):
+        """A mom in Ghana who reads "Call 911" calls nothing. Country pages give their own number, the world page none."""
+        data = lib.load()
+        for c in data['world']['countries']:
+            text = (ROOT / f"countries/{c['slug']}.html").read_text(encoding='utf-8')
+            self.assertIn(f"In danger right now? Call {c['emergency']['number']}.", text, c['slug'])
+            if c['emergency']['number'] != '911':
+                self.assertNotIn('Call 911.', text, f"{c['slug']} tells moms to call 911")
+        world = (ROOT / 'world.html').read_text(encoding='utf-8')
+        self.assertIn('Call your local emergency number.', world)
+        self.assertNotIn('In danger right now? Call 911.', world)
+
     def test_no_shelter_addresses_or_unfilled_placeholders(self):
         for path in PAGES:
             text = path.read_text(encoding='utf-8')
