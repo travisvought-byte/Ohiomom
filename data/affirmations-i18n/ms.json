@@ -1,0 +1,415 @@
+{
+ "lang": "ms",
+ "name": "Malay",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "Awak tak perlu buat semuanya hari ini. Satu perkara kecil seterusnya pun sudah cukup."
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "Penat bukan bermakna gagal. Awak penat kerana awak terus ada, setiap hari."
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "Pinggan mangkuk boleh tunggu. Awak berhak duduk sekejap, lima minit."
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "Bijirin untuk makan malam pun dikira menyuap keluarga."
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "Rehat bukan sesuatu yang perlu awak usahakan untuk layak. Awak boleh berehat sekarang juga."
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "Ada hari, kemenangannya ialah semua orang selamat sampai waktu tidur. Itu kemenangan yang sebenar."
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "Awak buat lebih banyak daripada yang orang nampak. Saya nampak."
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "Rumah bersepah dan anak-anak yang disayangi. Itu pertukaran yang baik."
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "Pada hari yang sukar, usaha terbaik awak nampak lain, dan ia tetap dikira."
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "Tarik nafas dalam-dalam. Turunkan bahu. Awak buat dengan baik."
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "Tak apa turunkan sasaran hari ini. Awak boleh naikkan semula hari lain."
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "Meminta tolong itu tanda kuat, bukan lemah."
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "Awak berhak berkata tidak kepada satu lagi perkara."
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "Kalau hari ini awak rasa sunyi, awak bukan satu-satunya ibu yang rasa begitu. Kita ramai."
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "Awak layak ada kawan yang bertanya khabar dan sabar menunggu jawapannya."
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "Tak apa kalau awak yang tegur dulu. Kebanyakan ibu berharap ada orang yang mulakan."
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "Rasa tak dipandang bukan bermakna awak tak penting. Awak sangat penting."
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "Perasaan awak masuk akal. Awak bukan beban."
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "Di sini awak tak perlu terangkan hari sukar awak. Kami faham."
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "Satu mesej kepada ibu lain yang berbunyi \"saya pun sama\" boleh mengubah sepanjang hari."
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "Menyusu, tukar lampin, dodoi, dan ulang lagi. Itu kerja sebenar, walaupun nampak macam duduk saja."
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "Awak dan bayi awak masih belajar mengenali satu sama lain. Tak perlu tergesa-gesa."
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "Hari-hari bersama bayi baru lahir memang panjang. Fasa ini tidak akan kekal selamanya."
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "Kalau hari ini awak cuma pastikan seorang insan kecil kenyang dan hangat, awak sudah buat kerja besar."
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "Awak tak perlu cepat-cepat kembali seperti dulu. Awak boleh sahaja berada di mana awak sekarang."
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "Walau apa pun cara bayi awak diberi makan, awak sedang menjaganya. Itulah yang penting."
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "Awak boleh kurang tidur dan penuh kasih sayang pada masa yang sama."
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "Dukung bayi dan biarkan dulu kerja rumah. Rumah itu tetap ada di situ."
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "Anak mengamuk di kedai tidak menjadikan awak ibu yang teruk. Ia cuma bermakna awak ada anak kecil."
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "Si kecil menguji had kerana mereka rasa selamat dengan awak."
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "Hari ini awak kekal tenang seminit lebih lama daripada semalam. Itu dikira."
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "Kalau awak terlepas marah, pelukan dan \"maaf\" boleh membaiki banyak perkara. Ia juga mengajar mereka sesuatu yang baik."
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "Tangan melekit, suara kuat, perasaan besar. Awak sedang membesarkan seorang manusia yang utuh."
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "\"Kenapa?\" yang kelima dalam sejam ialah minda kecil yang sedang membesar."
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "Awak tak perlukan hari yang sempurna untuk mencipta kenangan gembira."
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "Pintu yang dihempas bukan pengakhiran cerita. Biarkan lampu terus menyala."
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "Anak remaja awak mungkin tak cakap, tapi kehadiran awak yang sentiasa ada sangat bermakna."
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "Menjadi orang yang tenang di rumah memang kerja berat. Dan awak sedang melakukannya."
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "Sebahagian perbualan terbaik berlaku dalam kereta. Teruskan memandu."
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "Mereka menjauh untuk membesar, bukan untuk meninggalkan awak."
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "Awak tak perlu tahu semua jawapan. Mendengar pun sudah sebahagian besar."
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "Anak-anak yang besar masih perlukan awak, cuma dengan cara yang lebih senyap."
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "Melakukannya seorang diri memerlukan kekuatan yang kebanyakan orang tak pernah nampak."
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "Awak sudah cukup sebagai ibu untuk anak awak. Sejak dulu lagi."
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "Sepasang tangan, seratus kerja. Berlembutlah dengan diri sendiri."
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "Anak-anak awak belajar, dengan memerhati awak, bagaimana rupa insan yang kuat dan penyayang."
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "Berehat bukan bermakna meninggalkan tanggungjawab. Itulah cara awak terus bertahan."
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "Tiada siapa yang mengira markah. Kasih sayang dan kehadiran awak, itu yang penting."
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "Duka dan kasih datang dari tempat yang sama. Rindu menunjukkan betapa awak menyayangi."
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "Tiada jadual yang betul untuk berduka. Ambillah masa yang awak perlukan."
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "Pada tarikh ulang tahun yang berat, berlembutlah dengan diri sendiri seperti awak berlembut dengan kawan."
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "Awak boleh memendam sedih dan masih ketawa bersama anak-anak. Kedua-duanya benar."
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "Kalau awak kehilangan kandungan atau bayi, kehilangan itu nyata, dan kasih awak juga nyata."
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "Ada hari duka itu senyap, ada hari ia bising. Kedua-duanya tak apa."
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "Kurang duit tidak bermakna kurang kasih sayang."
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "Anak-anak awak akan lebih ingat masa bersama awak berbanding barang yang awak belikan."
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "Bertanya tentang bantuan bil itu bijak, bukan memalukan. Memang untuk itulah bantuan itu ada."
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "Satu petang percuma di taman boleh jadi hari terbaik minggu itu."
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "Awak berjaya cukupkan duit seminggu lagi. Itu memerlukan kemahiran sebenar."
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "Risau tentang duit memang memenatkan. Awak memikul banyak, dan awak masih di sini."
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "Hari ini awak minum segelas air. Mulakan dari situ."
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "Semua orang berjaya keluar rumah. Mungkin kasutnya tak sepadan. Tetap satu kemenangan."
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "Awak dah buat panggilan yang awak takutkan itu. Itu berani."
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "Awak ketawa hari ini. Simpanlah rasa itu."
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "Makanan panas, baju bersih, cerita sebelum tidur. Perkara kecil inilah yang membina zaman kanak-kanak."
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "Hari ini awak berbuat baik kepada seseorang, walaupun hanya kepada diri sendiri."
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "Kemajuan, bukan kesempurnaan. Hari ini awak melangkah ke depan."
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "Awak siapkan satu perkara dalam senarai. Itu satu lebih daripada tiada."
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "Awak ibu yang baik. Awak risau tentangnya, dan itu menunjukkan betapa awak ambil berat."
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "Awak lebih daripada apa yang sempat awak siapkan dalam sehari."
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "Anak-anak awak tak perlukan ibu yang sempurna. Mereka perlukan awak, dan mereka ada awak."
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "Bersabarlah dengan diri sendiri seperti awak bersabar dengan anak-anak."
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "Awak berhak ada ruang sendiri, mahukan sesuatu dan punya impian sendiri."
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "Satu kesilapan tidak memadam kasih sayang. Esok permulaan yang baru."
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "Awak dunia seseorang, dan awak juga insan yang tersendiri."
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "Tak apa kalau tak suka setiap minit. Awak tetap boleh sayang anak-anak sepenuh hati."
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "Tiada satu cara yang betul untuk menjadi ibu. Cara awak juga boleh."
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "Seperti dalam postur pokok, tak apa kalau goyang. Awak boleh cari semula keseimbangan."
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "Tapakkan kaki seperti dalam postur gunung. Awak lebih kukuh daripada yang awak rasa."
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "Pahlawan dua: kaki kuat, tangan terbuka. Itulah awak, menghadapi minggu ini."
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "Tarik nafas kiraan empat, hembus kiraan empat. Awak di sini, dan awak buat dengan baik."
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "Regangkan diri seluas bintang. Awak berhak mengambil ruang."
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "Mencangkung luas dan rendah memang susah untuk dikekalkan. Begitu juga hari yang panjang. Dan awak bertahan."
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "Awak boleh melentur seperti bulan sabit dan masih berdiri."
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "Awak belum perlu sampai ke jari kaki. Setiap sedikit regangan dikira."
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "Postur segi tiga: satu tangan ke bawah, satu ke atas. Kekal teguh dan terus meregang."
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "Dah lewat malam. Apa yang tak siap hari ini boleh tunggu esok."
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "Berjaga dengan bayi pada waktu begini? Ramai ibu sedang berjaga bersama awak sekarang."
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "Rumah sudah sunyi. Saat ini milik awak. Bernafaslah."
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "Awak sudah melalui hari ini. Itu sahaja yang hari ini perlukan."
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "Kalau fikiran awak sibuk malam ini, tuliskan dan biarkan ia tunggu sampai pagi."
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "Rehatkan mata. Esok awak boleh mula semula."
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "Musim perayaan boleh jadi berat, bukan hanya gembira. Apa pun yang awak rasa musim ini, tak apa."
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "Meja makan tak perlu sempurna. Orang di sekelilingnya yang penting."
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "Kalau tahun ini ada yang awak rindu di meja makan, berlembutlah dengan hati awak."
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "Terima kasih, ibu, untuk setiap hidangan, setiap kali hantar dan setiap pelukan."
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "Awak tak perlu jadi tuan rumah, membuat kuih atau tersenyum sepanjang masa. Perayaan yang ringkas tetap perayaan."
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "Hadiah terbaik untuk anak-anak awak tahun ini ialah masa bersama awak."
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "Sambutan kecil juga penuh kasih sayang. Tak perlu banyak duit untuk menjadikannya istimewa."
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "Hari yang sejuk, pelukan yang hangat. Awaklah sudut hangat di rumah awak."
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "Tak apa kalau awak langkau sebahagian kesibukan musim perayaan. Ketenangan juga satu hadiah."
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "Kalau musim ini terasa berat tahun ini, awak tidak keseorangan. Satu hari pada satu masa."
+  }
+ ]
+}

@@ -1,0 +1,415 @@
+{
+ "lang": "he",
+ "name": "Hebrew",
+ "dir": "rtl",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "את לא צריכה להספיק הכול היום. הדבר הקטן הבא מספיק."
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "עייפות זה לא כישלון. את עייפה כי את שם, יום אחרי יום."
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "הכלים יכולים לחכות. מותר לך לשבת חמש דקות."
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "דגני בוקר לארוחת ערב זה גם להאכיל את המשפחה."
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "מנוחה היא לא משהו שצריך להרוויח. מותר לך לנוח עכשיו."
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "יש ימים שבהם הניצחון הוא שכולם הגיעו בשלום לשעת השינה. זה ניצחון אמיתי."
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "את עושה הרבה יותר ממה שמישהו רואה. אני רואה."
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "בית מבולגן וילדים אהובים. זו עסקה טובה."
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "ביום קשה, המיטב שלך נראה אחרת, והוא עדיין נחשב."
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "נשימה עמוקה אחת. תורידי את הכתפיים. את מסתדרת יפה."
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "זה בסדר להוריד את הרף היום. ביום אחר תוכלי להרים אותו שוב."
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "לבקש עזרה זה כוח, לא חולשה."
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "מותר לך להגיד לא לעוד דבר אחד."
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "אם הרגשת היום בודדה, את לא האמא היחידה שהרגישה ככה. אנחנו הרבה."
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "מגיעה לך חברה ששואלת מה שלומך ומחכה לתשובה."
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "זה בסדר לפנות ראשונה. רוב האמהות מקוות שמישהי תעשה את זה."
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "להרגיש שקופה לא אומר שאת לא חשובה. את חשובה מאוד."
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "הרגשות שלך מובנים. את לא \"יותר מדי\"."
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "כאן את לא צריכה להסביר את היום הקשה שלך. אנחנו מבינות."
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "הודעה לאמא אחרת שאומרת \"גם אני\" יכולה להפוך יום שלם."
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "להאכיל, להחליף, לנדנד, ושוב מההתחלה. זו עבודה אמיתית, גם כשזה נראה כמו ישיבה במקום."
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "את והתינוק שלך עוד לומדים להכיר זה את זה. אין לאן למהר."
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "הימים עם תינוק חדש ארוכים. התקופה הזאת לא תימשך לנצח."
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "אם כל מה שעשית היום היה לשמור על בן אדם קטן שבע וחם, עשית עבודה גדולה."
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "את לא צריכה לחזור מהר לעצמך הקודמת. את יכולה פשוט להיות איפה שאת."
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "לא משנה איך התינוק שלך ניזון, את דואגת לו. זה מה שחשוב."
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "אפשר לישון מעט ולהיות מלאה באהבה באותו הזמן."
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "תחזיקי את התינוק ותעזבי את הבית. הבית עוד יהיה פה."
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "התקף זעם בסופר לא הופך אותך לאמא רעה. זה רק אומר שיש לך פעוט."
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "הקטנים בודקים גבולות כי לידך הם מרגישים בטוחים."
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "נשארת רגועה דקה אחת יותר מאתמול. זה נחשב."
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "אם התפרצת, חיבוק ו\"סליחה\" מתקנים הרבה. וזה גם מלמד אותם משהו טוב."
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "ידיים דביקות, קולות רמים, רגשות גדולים. את מגדלת בן אדם שלם."
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "ה\"למה?\" החמישי בשעה הזאת הוא מוח קטן שגדל."
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "לא צריך יום מושלם כדי ליצור זיכרון שמח."
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "דלת שנטרקה היא לא סוף הסיפור. תשאירי את האור דלוק."
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "אולי המתבגר שלך לא יגיד את זה, אבל הנוכחות היציבה שלך חשובה."
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "להיות הרגועה בבית זו עבודה קשה. ואת עושה אותה."
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "חלק מהשיחות הכי טובות קורות באוטו. פשוט תמשיכי לנסוע."
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "הם מתרחקים כדי לגדול, לא כדי להשאיר אותך מאחור."
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "את לא צריכה לדעת את כל התשובות. להקשיב זה חלק גדול מזה."
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "ילדים גדולים עדיין צריכים אותך, רק בדרכים שקטות יותר."
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "לסחוב הכול לבד דורש כוח שרוב האנשים לא רואים אף פעם."
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "את אמא מספיק טובה לילד שלך. תמיד היית."
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "זוג ידיים אחד, מאה משימות. תהיי עדינה עם עצמך."
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "הילדים שלך לומדים, כשהם מסתכלים עלייך, איך נראה אדם חזק ואוהב."
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "לקחת הפסקה זה לא לנטוש את העמדה. ככה ממשיכים."
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "אף אחד לא סופר נקודות. אהבה ונוכחות, זה מה שחשוב."
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "אבל ואהבה באים מאותו מקום. הגעגוע מראה כמה אהבת."
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "אין לוח זמנים נכון לאבל. קחי את הזמן שאת צריכה."
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "בימי השנה הקשים, תהיי עדינה עם עצמך כמו שהיית עם חברה."
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "את יכולה לשאת עצב ועדיין לצחוק עם הילדים שלך. שניהם אמיתיים."
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "אם איבדת הריון או תינוק, האובדן הזה אמיתי, וגם האהבה שלך."
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "יש ימים שהאבל שקט ויש ימים שהוא רועש. שניהם בסדר."
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "מעט כסף לא אומר מעט אהבה."
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "הילדים שלך יזכרו את הזמן איתך יותר מהדברים שקנית."
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "לשאול על עזרה עם החשבונות זה חכם, לא מביך. בשביל זה העזרה קיימת."
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "אחר צהריים בחינם בפארק יכול להיות היום הכי טוב בשבוע."
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "גרמת לכסף להספיק עוד שבוע. זה דורש כישרון אמיתי."
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "דאגות כסף מעייפות. את סוחבת הרבה, ואת עדיין כאן."
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "שתית היום כוס מים. תתחילי משם."
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "כולם יצאו מהדלת. אולי הנעליים לא התאימו. עדיין ניצחון."
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "עשית את שיחת הטלפון שחששת ממנה. זה היה אמיץ."
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "צחקת היום. תחזיקי בזה."
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "ארוחה חמה, חולצה נקייה, סיפור לפני השינה. דברים קטנים מצטברים לילדות."
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "היום היית טובה למישהו, גם אם זו היית רק את."
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "התקדמות, לא שלמות. היום התקדמת."
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "סיימת דבר אחד מהרשימה. זה אחד יותר מכלום."
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "את אמא טובה. העובדה שאת דואגת לגבי זה מראה כמה אכפת לך."
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "את יותר ממה שאת מספיקה לעשות ביום אחד."
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "הילדים שלך לא צריכים אמא מושלמת. הם צריכים אותך, ויש להם אותך."
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "תהיי סבלנית עם עצמך כמו שאת סבלנית עם הילדים שלך."
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "מותר לך לתפוס מקום, לרצות דברים ולהחזיק בחלומות משלך."
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "טעות לא מוחקת אהבה. מחר זו התחלה חדשה."
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "את כל העולם של מישהו, ואת גם אישה בפני עצמה."
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "זה בסדר לא לאהוב כל רגע. את עדיין יכולה לאהוב את הילדים שלך בכל הלב."
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "אין דרך נכונה אחת להיות אמא. גם הדרך שלך לגיטימית."
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "כמו בתנוחת העץ, זה בסדר להתנדנד. את יכולה למצוא שוב את שיווי המשקל."
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "תעמידי את הרגליים יציב כמו בתנוחת ההר. את יציבה יותר ממה שאת מרגישה."
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "לוחמת שתיים: רגליים חזקות, ידיים פתוחות. זו את, מול השבוע הזה."
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "שאיפה עד ארבע, נשיפה עד ארבע. את כאן, ואת מסתדרת יפה."
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "תתמתחי לרוחב כמו כוכב. מותר לך לתפוס מקום."
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "סקוואט רחב ונמוך קשה להחזיק. גם יום ארוך. ואת מחזיקה."
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "את יכולה להתכופף כמו חרמש של ירח ועדיין לעמוד."
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "את לא צריכה להגיע לבהונות עדיין. כל מתיחה קטנה נחשבת."
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "תנוחת המשולש: יד אחת למטה, יד אחת למעלה. תישארי מקורקעת ותמשיכי להימתח."
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "כבר מאוחר. מה שלא נעשה היום יכול לחכות למחר."
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "ערה עם התינוק בשעה כזאת? הרבה אמהות ערות איתך עכשיו."
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "הבית שקט. הרגע הזה שלך. תנשמי."
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "עברת את היום. זה כל מה שהיום היה צריך."
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "אם הראש לא מפסיק לעבוד הלילה, תכתבי את זה ותני לזה לחכות לבוקר."
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "תני לעיניים לנוח. מחר תוכלי להתחיל מחדש."
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "חגים יכולים להיות קשים וגם שמחים. מה שהעונה הזאת מרגישה לך, זה בסדר."
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "השולחן לא צריך להיות מושלם. מה שחשוב זה האנשים מסביבו."
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "אם השנה חסר לך מישהו ליד השולחן, תהיי עדינה עם הלב שלך."
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "תודה, אמא, על כל ארוחה, כל הסעה וכל חיבוק."
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "את לא חייבת לארח, לאפות או לחייך כל הזמן. חג פשוט הוא עדיין חג."
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "המתנה הכי טובה שהילדים שלך מקבלים השנה היא זמן איתך."
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "חגיגה קטנה מלאה באהבה גם היא. לא צריך הרבה כסף כדי שתהיה מיוחדת."
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "ימים קרים, חיבוקים חמים. את המקום החם בבית שלך."
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "זה בסדר לדלג על חלק מהלחץ של החגים. שקט זה גם מתנה."
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "אם העונה הזאת כבדה עלייך השנה, את לא לבד. יום אחד בכל פעם."
+  }
+ ]
+}

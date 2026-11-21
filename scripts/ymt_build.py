@@ -277,17 +277,21 @@ def urgent_strip(data, root='', more=None):
             f'<a href="{esc(more)}">More ways to get help now</a></p></section>')
 
 
-def kind_word(help_href, root=''):
+def kind_word(help_href, root='', lang=None):
     """The day's affirmation, as on the front page but without the picture. Every state, country and county page
-    carries it, in the same place: after the needs, before the closing note (scripts/home_extras.py)."""
+    carries it, in the same place: after the needs, before the closing note (scripts/home_extras.py).
+    lang: a country's language (its "lang" in data/ymt/world.json). Where the affirmations are in that language, the
+    card shows the day's one in it, with the English under it; otherwise it stays English only."""
     sayings = extras.approved_affirmations()
-    return extras.affirmation_card(sayings, f'{root}affirmations.html', help_href)
+    return extras.affirmation_card(sayings, f'{root}affirmations.html', help_href, extras.local_language(lang))
 
 
-def kind_word_scripts(root=''):
-    """The card's script: one file, assets/kindword.js, written by scripts/home_extras.py."""
+def kind_word_scripts(root='', lang=None):
+    """The card's script: one file, assets/kindword.js, written by scripts/home_extras.py, and on a country page in
+    another language, that one language's file (assets/kindword/<lang>.js) before it."""
     sayings = extras.approved_affirmations()
-    return ('\n' + extras.affirmation_card_scripts(sayings, root)) if sayings else ''
+    local = extras.local_language(lang)
+    return ('\n' + extras.affirmation_card_scripts(sayings, root, local[0] if local else None)) if sayings else ''
 
 
 def closing(root, free=''):
@@ -620,7 +624,10 @@ def build_world(data):
     lede = ('Help for moms wherever you live. Pick your country for its own crisis lines, family payments and support, '
             'or use the help below, which works in any country. Free, private, no sign-up.')
     n = len(world['countries'])
-    body = (hero('Help for moms, anywhere in the world', lede, country_pick(world))
+    # The map comes first to the eye, so one line above it keeps the way to an emergency number first of all.
+    danger = '<p class="dangerline"><a href="#now">In danger right now? Find your country\'s emergency number</a></p>'
+    top = hero('Help for moms, anywhere in the world', lede, country_pick(world)).replace('<div class="wrap">', '<div class="wrap">' + danger, 1)
+    body = (top
             + f'<section class="wrap mapwrap" id="countries"><h2>Find your country</h2>'
             f'<p class="quiet">The {n} countries in pink have their own page, and the United States leads to its states. '
             f'Tap yours, or open the list.</p>{world_map(world)}'
@@ -658,7 +665,7 @@ def build_country(data, c):
             f'<ul class="phonecards">{cards_now}</ul></section>'
             + finder(f'Search every {c["name"]} listing', 'helpline, benefit, breastfeeding…', NO_MATCH_WORLD)
             + needs(world_rows(data, everything, '../', c))
-            + kind_word('#take-care', '../')
+            + kind_word('#take-care', '../', c.get('lang'))
             + closing('../', 'Numbers are free to call unless the listing says otherwise. '))
     path = f'countries/{c["slug"]}.html'
     desc = (f'Free help for moms in {c["name"]}: the emergency number, domestic violence and crisis lines, family payments, '
@@ -670,7 +677,7 @@ def build_country(data, c):
     trail = breadcrumbs(data, [('Worldwide', 'world.html'), (c['name'], path)])
     return page(data, path, f'{c["name"]}: help for moms', desc, body, head_extra=structured_data(about, trail),
                 slots=(f'country-{c["code"].lower()}', 'country'),
-                danger=f'In danger right now? Call {c["emergency"]["number"]}.', scripts=kind_word_scripts('../'))
+                danger=f'In danger right now? Call {c["emergency"]["number"]}.', scripts=kind_word_scripts('../', c.get('lang')))
 
 
 def county_pick(data, s):

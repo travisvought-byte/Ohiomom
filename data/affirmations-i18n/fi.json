@@ -1,0 +1,415 @@
+{
+ "lang": "fi",
+ "name": "Finnish",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "Sinun ei tarvitse tehdä kaikkea tänään. Seuraava pieni asia riittää."
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "Väsymys ei ole epäonnistumista. Olet väsynyt, koska olet paikalla päivästä toiseen."
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "Tiskit voivat odottaa. Saat istahtaa viideksi minuutiksi."
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "Murot iltaruoaksi ovat nekin perheen ruokkimista."
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "Lepoa ei tarvitse ansaita. Saat levätä juuri nyt."
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "Joskus voitto on se, että kaikki selvisivät nukkumaanmenoon asti. Se on oikea voitto."
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "Teet enemmän kuin kukaan näkee. Minä näen sen."
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "Sotkuinen koti ja rakastetut lapset. Hyvä vaihtokauppa."
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "Raskaana päivänä sinun parhaasi näyttää erilaiselta, ja sekin on arvokasta."
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "Yksi syvä hengenveto. Laske hartiat. Pärjäät hyvin."
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "Tänään saa laskea rimaa. Voit nostaa sen taas toisena päivänä."
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "Avun pyytäminen on vahvuutta, ei heikkoutta."
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "Saat sanoa ei vielä yhdelle asialle."
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "Jos tunsit itsesi tänään yksinäiseksi, et ole ainoa äiti, joka on tuntenut niin. Meitä on paljon."
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "Ansaitset ystävän, joka kysyy, mitä sinulle kuuluu, ja jää kuuntelemaan vastauksen."
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "On ihan ok ottaa itse ensin yhteyttä. Useimmat äidit toivovat, että joku tekisi niin."
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "Vaikka tuntisit itsesi näkymättömäksi, olet tärkeä. Todella tärkeä."
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "Tunteesi ovat ymmärrettäviä. Et ole liikaa."
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "Täällä sinun ei tarvitse selittää raskasta päivääsi. Me ymmärrämme."
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "Viesti toiselle äidille, jossa lukee ”niin minäkin”, voi kääntää koko päivän."
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "Syöttämistä, vaipanvaihtoa, tuudittamista ja taas alusta. Se on oikeaa työtä, vaikka näyttäisi paikallaan istumiselta."
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "Sinä ja vauvasi tutustutte vielä toisiinne. Ei ole mikään kiire."
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "Päivät vastasyntyneen kanssa ovat pitkiä. Tämä vaihe ei kestä ikuisesti."
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "Jos ainoa asia, jonka tänään teit, oli pitää pieni ihminen kylläisenä ja lämpimänä, teit ison työn."
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "Sinun ei tarvitse palautua nopeasti ennalleen. Saat olla juuri siinä, missä olet."
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "Miten tahansa vauvasi saakin ruokansa, sinä huolehdit vauvastasi. Se on tärkeintä."
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "Voit olla univelkainen ja täynnä rakkautta yhtä aikaa."
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "Pidä vauvaa sylissä ja anna kodin olla. Koti on vielä huomennakin siinä."
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "Kiukkukohtaus kaupassa ei tee sinusta huonoa äitiä. Se tarkoittaa vain, että sinulla on taapero."
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "Pienet koettelevat rajoja, koska tuntevat olonsa turvalliseksi kanssasi."
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "Pysyit tänään rauhallisena minuutin pidempään kuin eilen. Sekin on tärkeää."
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "Jos menetit malttisi, halaus ja ”anteeksi” korjaavat paljon. Ja se opettaa heille jotain hyvää."
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "Tahmeat kädet, kovat äänet, isot tunteet. Kasvatat kokonaista ihmistä."
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "Tunnin viides ”miksi?” on pieni mieli kasvamassa."
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "Onnelliseen muistoon ei tarvita täydellistä päivää."
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "Paiskattu ovi ei ole tarinan loppu. Jätä valo palamaan."
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "Teinisi ei ehkä sano sitä, mutta sillä on merkitystä, että olet aina siinä."
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "On raskasta olla kodin rauhallinen ihminen. Ja sinä olet."
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "Jotkut parhaista keskusteluista käydään autossa. Aja vain eteenpäin."
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "He ottavat etäisyyttä kasvaakseen, eivät jättääkseen sinut."
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "Sinun ei tarvitse tietää kaikkia vastauksia. Kuunteleminen on iso osa sitä."
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "Isommatkin lapset tarvitsevat sinua, vain hiljaisemmin."
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "Yksin pärjääminen vaatii voimaa, jota useimmat eivät koskaan näe."
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "Olet tarpeeksi hyvä äiti lapsellesi. Olet aina ollut."
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "Yhdet kädet, sata tehtävää. Ole itsellesi lempeä."
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "Lapsesi oppivat sinua katsomalla, millainen on vahva ja rakastava ihminen."
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "Tauko ei ole paikaltaan karkaamista. Sen avulla jaksat."
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "Kukaan ei pidä pistekirjanpitoa. Rakkaus ja läsnäolo ovat tärkeimpiä."
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "Suru ja rakkaus tulevat samasta paikasta. Ikävä kertoo, kuinka paljon olet rakastanut."
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "Surulle ei ole oikeaa aikataulua. Ota se aika, jonka tarvitset."
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "Vaikeina vuosipäivinä ole itsellesi yhtä lempeä kuin olisit ystävällesi."
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "Voit kantaa surua ja silti nauraa lastesi kanssa. Molemmat ovat totta."
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "Jos menetit raskauden tai vauvan, menetys on todellinen, ja niin on rakkautesikin."
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "Joskus suru on hiljaista ja joskus äänekästä. Molemmat ovat ok."
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "Vähät rahat eivät tarkoita vähää rakkautta."
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "Lapsesi muistavat kanssasi vietetyn ajan paremmin kuin tavarat, joita ostit."
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "Avun kysyminen laskuihin on fiksua, ei häpeällistä. Juuri sitä varten apu on olemassa."
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "Ilmainen iltapäivä puistossa voi olla viikon paras päivä."
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "Sait rahat riittämään vielä viikon. Siihen tarvitaan todellista taitoa."
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "Rahahuolet väsyttävät. Kannat paljon, ja olet silti yhä tässä."
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "Joit tänään lasillisen vettä. Aloita siitä."
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "Kaikki pääsivät ovesta ulos. Kengät eivät ehkä olleet pari. Silti voitto."
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "Soitit sen puhelun, jota jännitit. Se oli rohkeaa."
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "Nauroit tänään. Pidä siitä kiinni."
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "Lämmin ateria, puhdas paita, iltasatu. Pienistä asioista koostuu lapsuus."
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "Olit tänään ystävällinen jollekulle, vaikka vain itsellesi."
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "Edistystä, ei täydellisyyttä. Pääsit tänään eteenpäin."
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "Sait yhden asian listalta tehdyksi. Se on yksi enemmän kuin ei yhtään."
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "Olet hyvä äiti. Se, että murehdit sitä, kertoo kuinka paljon välität."
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "Olet enemmän kuin se, mitä saat päivässä aikaan."
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "Lapsesi eivät tarvitse täydellistä äitiä. He tarvitsevat sinua, ja sinä olet heillä."
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "Ole itsellesi yhtä kärsivällinen kuin lapsillesi."
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "Saat viedä tilaa, haluta asioita ja unelmoida omia unelmiasi."
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "Virhe ei pyyhi rakkautta pois. Huominen on uusi alku."
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "Olet jollekulle koko maailma, ja olet myös oma itsesi."
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "On ok, ettei jokainen hetki ole ihana. Voit silti rakastaa lapsiasi koko sydämestäsi."
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "Ei ole yhtä oikeaa tapaa olla äiti. Sinun tapasi on yhtä hyvä."
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "Kuten puuasennossa, saa huojua. Löydät tasapainosi uudelleen."
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "Asetu tukevasti kuin vuoriasennossa. Seisot vakaammin kuin miltä tuntuu."
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "Soturi kaksi: vahvat jalat, avoimet kädet. Siinä olet sinä tämän viikon edessä."
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "Hengitä sisään neljään, ulos neljään. Olet tässä, ja pärjäät hyvin."
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "Venyttäydy leveäksi kuin tähti. Saat viedä tilaa."
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "Leveässä, matalassa kyykyssä on vaikea pysyä. Niin on pitkässä päivässäkin. Ja sinä pysyt."
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "Voit kallistua kuin kuunsirppi ja pysyä silti pystyssä."
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "Sinun ei tarvitse vielä ylettyä varpaisiin. Jokainen pieni venytys on tärkeä."
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "Kolmioasento: toinen käsi alas, toinen ylös. Pysy maadoittuneena ja kurota yhä."
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "On myöhä. Mikä jäi tänään tekemättä, voi odottaa huomiseen."
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "Hereillä vauvan kanssa tähän aikaan? Moni äiti valvoo kanssasi juuri nyt."
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "Talo on hiljainen. Tämä hetki on sinun. Hengitä."
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "Selvisit tästä päivästä. Muuta päivä ei tarvinnut."
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "Jos ajatukset pyörivät tänä yönä, kirjoita ne ylös ja anna niiden odottaa aamuun."
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "Lepuuta silmiäsi. Huomenna saat aloittaa alusta."
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "Juhlapyhät voivat olla raskaita yhtä lailla kuin iloisia. Miltä tämä aika sinusta tuntuukin, se on ok."
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "Pöydän ei tarvitse olla täydellinen. Sen ympärillä olevat ihmiset ovat tärkeimpiä."
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "Jos joku puuttuu tänä vuonna pöydän äärestä, ole hellä sydämellesi."
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "Kiitos, äiti, jokaisesta ateriasta, jokaisesta kyydistä ja jokaisesta halauksesta."
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "Sinun ei tarvitse kestitä, leipoa tai hymyillä koko ajan. Yksinkertainen juhla on silti juhla."
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "Paras lahja, jonka lapsesi tänä vuonna saavat, on aika kanssasi."
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "Pieni joulu on silti täynnä rakkautta. Ei tarvita paljon rahaa, jotta siitä tulee erityinen."
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "Kylmät päivät, lämpimät halaukset. Sinä olet kotisi lämmin paikka."
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "On ok jättää osa joulukiireestä väliin. Rauhakin on lahja."
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "Jos juhla-aika tuntuu tänä vuonna raskaalta, et ole yksin. Päivä kerrallaan."
+  }
+ ]
+}

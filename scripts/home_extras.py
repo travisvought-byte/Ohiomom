@@ -54,6 +54,15 @@ AFFIRMATIONS = ROOT / 'data' / 'affirmations.json'
 OHIO_HOME = ROOT / 'ohio' / 'index.html'
 OHIO_COUNTIES = ROOT / 'ohio' / 'counties'  # each hand-kept county page carries the day's affirmation too
 KINDWORD_JS = 'assets/kindword.js'  # the affirmation card's script; OhioMom keeps its own copy in ohio/assets/
+# The affirmations in other languages, for the country pages: one file per language, line for line with
+# data/affirmations.json (data/affirmations-i18n/es.json). Each becomes one small script, assets/kindword/es.js, that only
+# the pages in that language load.
+I18N = ROOT / 'data' / 'affirmations-i18n'
+LOCAL_JS = 'assets/kindword/{lang}.js'
+RTL = ('ar', 'he', 'ur', 'fa', 'ps', 'yi')  # written right to left
+# A language written like another but for its spelling: Swiss Standard German writes ss where Germany writes ß.
+VARIANTS = {'de-CH': ('de', (('ß', 'ss'),))}
+LANG_TAG = re.compile(r'^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$')
 STYLE = ROOT / 'templates' / 'home-extras.css'
 SHEETS = ('assets/ymt.css', 'ohio/assets/site.css')
 AFFIRMATION_MAX = 220  # characters: an affirmation is a line or two, never a story
@@ -633,17 +642,25 @@ def scene_block(ohio=False, affirmations=None, list_href='affirmations.html', he
             f'{scene_svg(ohio)}{flip_bar(affirmations)}</div>')
 
 
-def affirmation_card(affirmations, list_href, help_href):
+def affirmation_card(affirmations, list_href, help_href, local=None):
     """The day's affirmation on its own, for the location pages (every state, country and county page): the same bubble
     as on the front pages, the same day's affirmation and the same Back and Next buttons, but no picture, so a page
     that is mostly phone numbers stays light. Like the bubble, it waits hidden until the script has filled it, and
-    there is nothing at all with no approved affirmations."""
+    there is nothing at all with no approved affirmations.
+    local: (lang, dir) on a country page whose language has the affirmations in it (local_language). The day's
+    affirmation is then shown in that language, with the English in smaller words right under it."""
     if not affirmations:
         return ''
     ask, go = HELP_WORDS
+    words = '<p class="affirmtext" id="affirm-text"></p>'
+    if local:
+        lang, direction = local
+        rtl = ' dir="rtl"' if direction == 'rtl' else ''
+        words = (f'<p class="affirmlocal" id="affirm-local" lang="{esc(lang)}"{rtl} hidden></p>'
+                 '<p class="affirmtext" id="affirm-text" lang="en"></p>')
     return (f'<section class="wrap kindword" aria-label="{HEADING}"><div class="saying solo" id="affirm" hidden>'
             f'<div class="sayinghead"><h2>{HEADING}</h2><a href="{esc(list_href)}">{LIST_LINK}</a></div>'
-            f'<p class="affirmtext" id="affirm-text"></p>'
+            f'{words}'
             f'<div class="flipbar solo" id="scene-foot" hidden>'
             f'<button type="button" id="affirm-prev" aria-label="Previous affirmation">{ICON_BACK}</button>'
             f'<p class="sayhelp">{ask} <a href="{esc(help_href)}">{go}</a></p>'
@@ -669,9 +686,137 @@ def affirmation_card_script(affirmations, saying_looks):
             + put + '})();\n' + run + '\n')
 
 
-def affirmation_card_scripts(affirmations, root=''):
-    """What a location page loads for affirmation_card: the one script file, from the site's own assets."""
-    return f'<script src="{esc(root)}{KINDWORD_JS}"></script>' if affirmations else ''
+def affirmation_card_scripts(affirmations, root='', lang=None):
+    """What a location page loads for affirmation_card: the one script file, from the site's own assets, and on a country
+    page in another language (lang), that language's affirmations first, so only the one language a page needs is loaded."""
+    if not affirmations:
+        return ''
+    first = f'<script src="{esc(root)}{LOCAL_JS.format(lang=lang)}"></script>' if lang else ''
+    return first + f'<script src="{esc(root)}{KINDWORD_JS}"></script>'
+
+
+def affirmation_local_script(lang, data=None):
+    """The script file for one language (LOCAL_JS): the approved affirmations in that language, in the same order as the
+    English ones, put into the page for the card's script to show beside them."""
+    local = local_affirmations(lang, data)
+    if not local:
+        raise SystemExit(f'no affirmations in {lang}')
+    name = read_translation(lang)['name']
+    value = json.dumps(json.dumps(local, ensure_ascii=False), ensure_ascii=False).replace('<', '\\u003c')
+    return (f'// The day\'s affirmation in {name}, for the country pages in {name}. Written by scripts/home_extras.py from '
+            f'data/affirmations-i18n/; do not edit.\n'
+            '(function(){var D=document;if(D.getElementById("affirmations-local"))return;var e=D.createElement("script");'
+            f'e.type="application/json";e.id="affirmations-local";e.textContent={value};D.body.appendChild(e)}})();\n')
+
+
+# ---------------------------------------------------------------- the affirmations in other languages
+def read_translation(lang):
+    """One language's file, or None when there is none. A spelling variant (VARIANTS) is made from its language's file."""
+    base, swaps = VARIANTS.get(lang, (lang, ()))
+    path = I18N / f'{base}.json'
+    if not LANG_TAG.match(base) or not path.exists():
+        return None
+    found = json.loads(path.read_text(encoding='utf-8'))
+    if swaps:
+        def swap(text):
+            for a, b in swaps:
+                text = text.replace(a, b)
+            return text
+        found = dict(found, lang=lang, affirmations=[dict(j, text=swap(j.get('text', ''))) for j in found.get('affirmations', [])])
+    return found
+
+
+def translation_langs():
+    """Every language the affirmations are in besides English, spelling variants included."""
+    files = sorted(p.stem for p in I18N.glob('*.json')) if I18N.exists() else []
+    return files + sorted(v for v, (base, _) in VARIANTS.items() if base in files)
+
+
+def local_language(lang):
+    """(lang, dir) for a country page in lang, or None where the card stays English only: an English-speaking country,
+    no lang given, or a language the affirmations are not in yet. Never half a language: a file with a gap is an error
+    in check_translation, so the build stops before it."""
+    if not lang or lang == 'en' or lang.startswith('en-'):
+        return None
+    found = read_translation(lang)
+    if not found:
+        return None
+    return lang, found.get('dir', 'ltr')
+
+
+def local_affirmations(lang, data=None):
+    """The approved affirmations in lang, in the order of the English ones (approved_affirmations), or None."""
+    data = read_affirmations() if data is None else data
+    found = read_translation(lang)
+    if not found:
+        return None
+    lines = found.get('affirmations', [])
+    out = []
+    for i, j in enumerate(data['affirmations']):
+        if j.get('approved') is True:
+            if i >= len(lines) or lines[i].get('en') != j['text']:
+                raise SystemExit(f'data/affirmations-i18n: {lang} has no line for affirmation {i + 1} (run python3 scripts/home_extras.py --check)')
+            out.append(lines[i]['text'])
+    return out
+
+
+def check_translation(found, data, name):
+    """Problems with one language's file, as a list of sentences. It must follow data/affirmations.json line for line:
+    each line carries the English it was made from (en), so a reworded English line shows up here until it is
+    translated again. A line may be missing only for an affirmation that is not approved yet."""
+    errors = []
+    where = f'data/affirmations-i18n/{name}.json'
+    if found.get('lang') != name:
+        errors.append(f'{where}: lang must be "{name}", the name of the file')
+    if not isinstance(found.get('name'), str) or not found['name'].strip():
+        errors.append(f'{where}: name, the language\'s name in English, is missing')
+    want = 'rtl' if name.split('-')[0] in RTL else 'ltr'
+    if found.get('dir') != want:
+        errors.append(f'{where}: dir must be "{want}"')
+    extra = set(found) - {'lang', 'name', 'dir', 'note', 'affirmations'}
+    if extra:
+        errors.append(f'{where}: {", ".join(sorted(extra))} is not something this file has')
+    lines, english = found.get('affirmations'), data.get('affirmations', [])
+    if not isinstance(lines, list):
+        return errors + [f'{where}: affirmations must be a list']
+    if len(lines) > len(english):
+        errors.append(f'{where}: {len(lines)} lines for {len(english)} affirmations')
+    seen = set()
+    for i, j in enumerate(english):
+        at = f'{where}, line {i + 1}'
+        if i >= len(lines):
+            if j.get('approved') is True:
+                errors.append(f'{at}: the approved affirmation "{j.get("text")}" has no {name} line yet')
+            continue
+        line = lines[i]
+        if not isinstance(line, dict) or set(line) != {'en', 'text'}:
+            errors.append(f'{at}: each line is {{"en": the English, "text": the {name}}}')
+            continue
+        if line['en'] != j.get('text'):
+            errors.append(f'{at}: made from "{line["en"]}", but the English is now "{j.get("text")}"; translate it again')
+        text = line['text']
+        if not isinstance(text, str) or not text.strip() or text != text.strip():
+            errors.append(f'{at}: the line is empty or has stray spaces')
+        elif len(text) > AFFIRMATION_MAX:
+            errors.append(f'{at}: {len(text)} characters; keep it under {AFFIRMATION_MAX}')
+        elif '<' in text or '>' in text or '|' in text:
+            errors.append(f'{at}: plain words only, no markup')
+        elif text == line['en']:
+            errors.append(f'{at}: the line is still in English')
+        elif text in seen:
+            errors.append(f'{at}: the same line twice')
+        seen.add(text)
+    return errors
+
+
+def check_translations(data):
+    errors = []
+    for name in (sorted(p.stem for p in I18N.glob('*.json')) if I18N.exists() else []):
+        if name in VARIANTS:
+            errors.append(f'data/affirmations-i18n/{name}.json: {name} is made from {VARIANTS[name][0]}.json; it needs no file of its own')
+            continue
+        errors += check_translation(json.loads((I18N / f'{name}.json').read_text(encoding='utf-8')), data, name)
+    return errors
 
 
 # ---------------------------------------------------------------- the affirmations
@@ -843,7 +988,8 @@ DRESS = ('function(D,p){var S=D.getElementById("scene-data"),B=D.getElementById(
 # moves when it changes. Each affirmation brings its picture, and the two fade in together when the reader flips
 # (not on a device set to reduce motion). Nothing is sent or stored.
 AFFIRMATION_SCRIPT = ('<script>(function(){var D=document,d=D.getElementById("affirmations-data"),b=D.getElementById("affirm"),t=D.getElementById("affirm-text");'
-               'if(!d||!b||!t)return;var J=JSON.parse(d.textContent),n=J.length,o=[],e=[],s=[],i,at=0,dress=' + DRESS + ','
+               'if(!d||!b||!t)return;var L=D.getElementById("affirm-local"),M=D.getElementById("affirmations-local"),LT=L&&M?JSON.parse(M.textContent):[],'
+               'J=JSON.parse(d.textContent),n=J.length,o=[],e=[],s=[],i,at=0,dress=' + DRESS + ','
                'still=!!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches),'
                'fade=function(e){if(e&&e.animate&&!still)e.animate([{opacity:.2},{opacity:1}],{duration:450,easing:"ease-out"})};if(!n)return;'
                'var Z=D.getElementById("scene-data"),S=Z?JSON.parse(Z.textContent):{},now=new Date(),'
@@ -854,10 +1000,11 @@ AFFIRMATION_SCRIPT = ('<script>(function(){var D=document,d=D.getElementById("af
                'for(i=0;i<n;i++)if(ok(i)){o.push(i);(w(i)?s:e).push(i)}n=o.length;if(!n)return;'
                'at=o.indexOf(s.length?s[day%s.length]:e[day%e.length]);'
                'function show(k,first){at=(k%n+n)%n;t.textContent=J[o[at]];b.hidden=false;t.style.fontSize="";'
+               'if(L){L.textContent=LT[o[at]]||"";L.hidden=!L.textContent;if(!first)fade(L)}'
                'var c=window.getComputedStyle?getComputedStyle(t):null,h=c?parseFloat(c.minHeight)||0:0,f=c?parseFloat(c.fontSize)||0:0,z=100;'
                'while(h&&f&&t.scrollHeight>h+1&&z>72){z-=4;t.style.fontSize=f*z/100+"px"}'
                'dress(D,o[at]);if(!first){fade(t);fade(D.querySelector("#scene svg"))}}'
-               'function flip(s){t.setAttribute("aria-live","polite");show(at+s)}'
+               'function flip(s){t.setAttribute("aria-live","polite");if(L)L.setAttribute("aria-live","polite");show(at+s)}'
                'function on(id,g){var e=D.getElementById(id);if(e)e.onclick=g}'
                'on("affirm-prev",function(){flip(-1)});on("affirm-next",function(){flip(1)});'
                'var q=D.getElementById("scene-foot");if(q)q.hidden=false;'
@@ -947,12 +1094,18 @@ def main():
     errors = check_affirmations(data)
     if errors:
         raise SystemExit('data/affirmations.json:\n' + '\n'.join(errors))
+    errors = check_translations(data)
+    if errors:
+        raise SystemExit('\n'.join(errors))
     affirmations, saying_looks = approved_affirmations(data), approved_looks(data)
     targets = {OHIO_HOME: lambda text: render_ohio(text, affirmations, saying_looks)}
     county_blocks = ohio_county_blocks(affirmations, saying_looks)
     script = affirmation_card_script(affirmations, saying_looks)
     for rel in (KINDWORD_JS, 'ohio/' + KINDWORD_JS):
         targets[ROOT / rel] = lambda text: script
+    if affirmations:
+        for lang in translation_langs():
+            targets[ROOT / LOCAL_JS.format(lang=lang)] = (lambda lang: lambda text: affirmation_local_script(lang, data))(lang)
     for page in sorted(OHIO_COUNTIES.glob('*.html')):
         targets[page] = (lambda where: lambda text: render_ohio(text, affirmations, saying_looks, county_blocks, where))(
             str(page.relative_to(ROOT)))
@@ -964,6 +1117,7 @@ def main():
         if new != text:
             stale.append(str(path.relative_to(ROOT)))
             if '--check' not in sys.argv:
+                path.parent.mkdir(parents=True, exist_ok=True)
                 path.write_text(new, encoding='utf-8')
     if '--check' in sys.argv:
         if stale:

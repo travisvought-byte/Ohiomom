@@ -1,0 +1,415 @@
+{
+ "lang": "ne",
+ "name": "Nepali",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "आज सबै काम गरिसक्नु पर्दैन। अर्को सानो काम मात्र पुग्छ।"
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "थाक्नु भनेको हार्नु होइन। तिमी थाकेकी छौ, किनकि तिमी हरेक दिन साथमा रहन्छ्यौ।"
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "भाँडा कुर्न सक्छन्। पाँच मिनेट बस्ने तिम्रो पूरा अधिकार छ।"
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "बेलुकाको खानामा सिरियल दिनु पनि परिवारलाई खुवाउनु नै हो।"
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "आराम कमाउनु पर्दैन। तिमी अहिल्यै आराम गर्न सक्छ्यौ।"
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "कुनै दिन जित भनेकै सबै जना सुत्ने बेलासम्म ठीकसँग पुग्नु हो। यो साँचो जित हो।"
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "तिमी जति गर्छ्यौ, त्यति कसैले देख्दैन। म देख्छु।"
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "अस्तव्यस्त घर र मायामा हुर्केका बच्चा। यो राम्रो साटासाट हो।"
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "गाह्रो दिनमा तिम्रो सबैभन्दा राम्रो प्रयास फरक देखिन्छ, तर पनि त्यो गनिन्छ।"
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "एउटा लामो सास। काँध खुकुलो छोड। तिमी राम्रै गर्दैछ्यौ।"
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "आज अपेक्षा अलि घटाउनु ठीक छ। अर्को दिन फेरि बढाउन सक्छ्यौ।"
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "सहयोग माग्नु बलियो हुनु हो, कमजोरी होइन।"
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "अर्को एउटा कामलाई होइन भन्ने तिम्रो अधिकार छ।"
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "आज एक्लो महसुस भयो भने, यस्तो महसुस गर्ने तिमी मात्र आमा होइनौ। हामी धेरै छौँ।"
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "तिम्रो हालखबर सोध्ने र जवाफ पर्खने साथी पाउन तिमी योग्य छौ।"
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "पहिले आफैँ सम्पर्क गर्नु ठीक छ। धेरैजसो आमाहरू कसैले पहिले बोलोस् भन्ने आशा गरिरहेका हुन्छन्।"
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "कसैले नदेखेजस्तो लाग्नुको अर्थ तिमी महत्त्वपूर्ण छैनौ भन्ने होइन। तिमी धेरै महत्त्वपूर्ण छौ।"
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "तिम्रा भावना बुझ्न सकिने छन्। तिमी धेरै बढी होइनौ।"
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "यहाँ तिमीले आफ्नो गाह्रो दिन बुझाउनु पर्दैन। हामी बुझ्छौँ।"
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "अर्की आमालाई \"मलाई पनि\" भन्ने एउटा म्यासेजले पूरै दिन फेर्न सक्छ।"
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "खुवाउने, फेर्ने, झुलाउने, अनि फेरि उही। यो साँचो काम हो, बसिरहेजस्तो देखिए पनि।"
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "तिमी र तिम्रो बच्चा अझै एकअर्कालाई चिन्दैछौ। कुनै हतार छैन।"
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "नवजात शिशुसँगका दिन लामा हुन्छन्। यो समय सधैँ रहँदैन।"
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "आज तिमीले एउटा सानो मान्छेलाई अघाउञ्जेल खुवाएर न्यानो राख्यौ भने मात्र पनि, तिमीले ठूलो काम गर्‍यौ।"
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "छिट्टै पहिलेजस्तै हुनु पर्दैन। तिमी जहाँ छौ, त्यहीँ रहन सक्छ्यौ।"
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "बच्चालाई जसरी खुवाए पनि, तिमी उसको हेरचाह गर्दैछ्यौ। मुख्य कुरा यही हो।"
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "निद्रा कम र माया भरपूर, दुवै एकैसाथ हुन सक्छ।"
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "बच्चालाई काखमा लेऊ, घरको काम छाडिदेऊ। घर कतै जाँदैन।"
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "पसलमा बच्चाले गर्ने जिद्दीले तिमीलाई नराम्री आमा बनाउँदैन। यसको अर्थ मात्र तिम्रो बच्चा सानो छ भन्ने हो।"
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "साना बच्चाले सीमा जाँच्छन्, किनकि तिमीसँग उनीहरू सुरक्षित महसुस गर्छन्।"
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "आज तिमी हिजोभन्दा एक मिनेट बढी शान्त रह्यौ। यो पनि गनिन्छ।"
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "रिस उठेको थियो भने, एउटा अँगालो र एउटा \"माफ गर\" ले धेरै कुरा मिलाउँछ। अनि बच्चाहरूले राम्रो कुरा पनि सिक्छन्।"
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "टाँसिने हात, ठूला आवाज, ठूला भावना। तिमी एउटा पूरा मान्छे हुर्काउँदैछ्यौ।"
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "यो घण्टाको पाँचौँ \"किन?\" बढ्दै गरेको एउटा सानो दिमाग हो।"
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "खुसीको सम्झना बनाउन सिद्ध दिन चाहिँदैन।"
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "जोडले बन्द गरिएको ढोका कथाको अन्त्य होइन। बत्ती बालेर राख।"
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "तिम्रो किशोर छोराछोरीले भन्दैनन् होला, तर तिमी सधैँ साथमा हुनुको अर्थ ठूलो छ।"
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "घरमा शान्त रहने मान्छे हुनु कडा मिहिनेत हो। र तिमी त्यो गर्दैछ्यौ।"
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "केही सबैभन्दा राम्रा कुराकानी गाडीमा हुन्छन्। गाडी चलाइरह।"
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "उनीहरू ठूलो हुन टाढिन्छन्, तिमीलाई पछाडि छोड्न होइन।"
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "सबै प्रश्नको उत्तर थाहा हुनु पर्दैन। सुन्नु नै ठूलो कुरा हो।"
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "ठूला छोराछोरीलाई अझै तिम्रो खाँचो छ, बस अझ चुपचाप तरिकाले।"
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "सबै कुरा एक्लै धान्न यस्तो बल चाहिन्छ, जुन धेरैले कहिल्यै देख्दैनन्।"
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "तिमी आफ्नो बच्चाका लागि पर्याप्त राम्री आमा हौ। सधैँ थियौ।"
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "दुई हात, सय काम। आफूप्रति अलि नरम होऊ।"
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "तिम्रा बच्चाहरू तिमीलाई हेरेर बलियो र मायालु मान्छे कस्तो हुन्छ भनेर सिक्दैछन्।"
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "अलिकति विश्राम लिनु जिम्मेवारी छोड्नु होइन। यसैले तिमी अघि बढ्न सक्छ्यौ।"
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "कसैले हिसाब राखेको छैन। माया र साथमा हुनु, यही मुख्य हो।"
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "शोक र माया एउटै ठाउँबाट आउँछन्। कसैको याद आउनुले तिमीले कति माया गर्‍यौ भन्ने देखाउँछ।"
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "शोकको कुनै सही समयसीमा हुँदैन। जति समय चाहिन्छ, लेऊ।"
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "गाह्रा बरखीका दिनमा आफूप्रति त्यति नै कोमल होऊ, जति साथीप्रति हुन्थ्यौ।"
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "मनमा दुःख बोकेर पनि तिमी बच्चाहरूसँग हाँस्न सक्छ्यौ। दुवै साँचो हुन्।"
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "यदि तिमीले गर्भ वा बच्चा गुमायौ भने, त्यो क्षति साँचो हो, र तिम्रो माया पनि।"
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "कुनै दिन शोक चुपचाप हुन्छ, कुनै दिन चर्को। दुवै ठीक छन्।"
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "पैसाको कमीको अर्थ मायाको कमी होइन।"
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "तिम्रा बच्चाहरूलाई किनेका सामानभन्दा तिमीसँग बिताएको समय बढी याद रहनेछ।"
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "बिलका लागि सहयोगबारे सोध्नु बुद्धिमानी हो, लाजको कुरा होइन। सहयोग त्यसैका लागि त छ।"
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "पार्कमा बिनापैसाको एउटा दिउँसो हप्ताको सबैभन्दा राम्रो दिन बन्न सक्छ।"
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "तिमीले पैसा अझै एक हप्ता चलायौ। यसका लागि साँच्चै सीप चाहिन्छ।"
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "पैसाको चिन्ताले थकाउँछ। तिमीले धेरै बोकेकी छौ, तर पनि तिमी यहीँ छौ।"
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "आज तिमीले एक गिलास पानी पियौ। त्यहीँबाट सुरु गर।"
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "सबै जना ढोकाबाट निस्किए। जुत्ता मिलेनन् होला। तैपनि जित हो।"
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "जुन फोन गर्न डराइरहेकी थियौ, त्यो गरिहाल्यौ। त्यो साहस थियो।"
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "आज तिमी हाँस्यौ। त्यसलाई सम्हालेर राख।"
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "तातो खाना, सफा लुगा, सुत्ने बेलाको कथा। साना कुराहरू मिलेर बाल्यकाल बन्छ।"
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "आज तिमी कसैप्रति दयालु भयौ, चाहे त्यो आफूप्रति मात्र किन नहोस्।"
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "सिद्धता होइन, प्रगति। आज तिमी अघि बढ्यौ।"
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "सूचीको एउटा काम सक्यौ। केही नहुनुभन्दा एउटा बढी।"
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "तिमी राम्री आमा हौ। यसबारे चिन्ता गर्नुले नै तिमीलाई कति मतलब छ भन्ने देखाउँछ।"
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "एक दिनमा जति भ्याउँछ्यौ, तिमी त्योभन्दा धेरै बढी हौ।"
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "तिम्रा बच्चाहरूलाई सिद्ध आमा चाहिँदैन। उनीहरूलाई तिमी चाहिन्छ्यौ, र तिमी उनीहरूसँग छौ।"
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "आफ्ना बच्चाहरूसँग जति धैर्य राख्छ्यौ, आफूसँग पनि त्यति नै राख।"
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "आफ्नो ठाउँ लिने, केही चाहने र आफ्नै सपना देख्ने अधिकार तिमीलाई छ।"
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "एउटा गल्तीले माया मेटाउँदैन। भोलि नयाँ सुरुवात हो।"
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "तिमी कसैको पूरै संसार हौ, र तिमी आफैँमा पनि एउटा मान्छे हौ।"
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "हरेक पल मन नपर्नु ठीक छ। तैपनि तिमी आफ्ना बच्चाहरूलाई पूरा मनले माया गर्न सक्छ्यौ।"
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "आमा हुने एउटै सही तरिका छैन। तिम्रो तरिका पनि ठीक छ।"
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "वृक्षासनजस्तै, अलि डगमगाउनु ठीक छ। तिमी फेरि सन्तुलन पाउन सक्छ्यौ।"
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "ताडासनजस्तै खुट्टा जमाऊ। तिमीलाई लागेभन्दा तिमी बढी स्थिर छौ।"
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "वीरभद्रासन दुई: बलिया खुट्टा, खुला हात। यही तिमी हौ, यो हप्ताको सामना गर्दै।"
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "चार गनेर सास लेऊ, चार गनेर छोड। तिमी यहीँ छौ, र राम्रै गर्दैछ्यौ।"
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "ताराजस्तै फैलिएर तन्क। ठाउँ लिने तिम्रो अधिकार छ।"
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "चौडा र तल बसाइमा टिकिरहन गाह्रो हुन्छ। लामो दिन पनि त्यस्तै। र तिमी टिकेकी छौ।"
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "तिमी अर्धचन्द्रजस्तै ढल्किएर पनि उभिइरहन सक्छ्यौ।"
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "अहिल्यै खुट्टाका औँला छुनु पर्दैन। हरेक सानो तन्काइ पनि गनिन्छ।"
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "त्रिकोणासन: एउटा हात तल, एउटा माथि। जमिनसँग जोडिएर बस, र तन्किँदै जाऊ।"
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "धेरै राति भयो। आज नभएको काम भोलिसम्म पर्खन सक्छ।"
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "यो बेला बच्चासँग ब्युँझिरहेकी छौ? अहिले धेरै आमाहरू तिमीसँगै ब्युँझिरहेका छन्।"
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "घर शान्त छ। यो पल तिम्रो हो। सास फेर।"
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "तिमीले आजको दिन पार गर्‍यौ। आजलाई यति नै चाहिएको थियो।"
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "आज राति मन अशान्त छ भने, सबै लेखिदेऊ र बिहानसम्म पर्खन देऊ।"
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "आँखालाई आराम देऊ। भोलि फेरि सुरु गर्न सक्छ्यौ।"
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "चाडपर्व खुसीसँगै गाह्रो पनि हुन सक्छ। यो समय तिमीलाई जस्तो लागे पनि, ठीक छ।"
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "खानाको टेबल सिद्ध हुनु पर्दैन। वरिपरि बसेका मान्छे नै मुख्य हुन्।"
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "यो वर्ष टेबलमा कसैको अभाव खट्किन्छ भने, आफ्नो मनप्रति कोमल होऊ।"
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "धन्यवाद आमा, हरेक खाना, हरेक यात्रा र हरेक अँगालोका लागि।"
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "पाहुना बोलाउनु, परिकार बनाउनु वा सधैँ मुस्कुराइरहनु पर्दैन। सादा चाड पनि चाड नै हो।"
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "यो वर्ष तिम्रा बच्चाहरूले पाउने सबैभन्दा राम्रो उपहार तिमीसँग बिताएको समय हो।"
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "सानो उत्सव पनि मायाले भरिएको हुन्छ। विशेष बनाउन धेरै पैसा चाहिँदैन।"
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "चिसा दिन, न्याना अँगालो। तिमी नै आफ्नो घरको न्यानो कुना हौ।"
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "चाडपर्वको केही भागदौड छोड्नु ठीक छ। शान्ति पनि एउटा उपहार हो।"
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "यो वर्ष यो समय भारी लागिरहेको छ भने, तिमी एक्ली छैनौ। एक दिनमा एक दिन गरेर अघि बढ।"
+  }
+ ]
+}

@@ -1,0 +1,415 @@
+{
+ "lang": "nl",
+ "name": "Dutch",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "Je hoeft vandaag niet alles te doen. Het volgende kleine ding is genoeg."
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "Moe zijn is niet hetzelfde als falen. Je bent moe omdat je er elke dag weer bent."
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "De afwas kan wachten. Je mag best vijf minuten gaan zitten."
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "Cornflakes als avondeten telt ook als je gezin te eten geven."
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "Rust hoef je niet te verdienen. Je mag nu meteen even rusten."
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "Sommige dagen is de overwinning dat iedereen het tot bedtijd heeft gered. Dat is een echte overwinning."
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "Je doet meer dan iemand ziet. Ik zie het."
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "Een rommelig huis en geliefde kinderen. Dat is een goede ruil."
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "Op een zware dag ziet je best anders uit, en het telt nog steeds."
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "Eén keer diep ademhalen. Schouders omlaag. Je doet het goed."
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "Het is oké om de lat vandaag lager te leggen. Een andere dag leg je hem weer hoger."
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "Om hulp vragen is sterk, niet zwak."
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "Je mag nee zeggen tegen nog één ding erbij."
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "Als je je vandaag eenzaam voelde: je bent niet de enige moeder die dat voelde. We zijn met velen."
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "Je verdient een vriendin die vraagt hoe het met je gaat en op het antwoord wacht."
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "Het is oké om zelf als eerste een berichtje te sturen. De meeste moeders hopen dat iemand dat doet."
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "Je onzichtbaar voelen betekent niet dat je er niet toe doet. Je doet er heel erg toe."
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "Je gevoelens kloppen. Je bent niet te veel."
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "Hier hoef je je zware dag niet uit te leggen. We snappen het."
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "Een berichtje aan een andere moeder met „ik ook” kan een hele dag omdraaien."
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "Voeden, verschonen, wiegen, en weer opnieuw. Dat is echt werk, ook als het lijkt op stilzitten."
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "Jij en je baby leren elkaar nog kennen. Er is geen haast."
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "De dagen met een pasgeboren baby zijn lang. Deze periode duurt niet eeuwig."
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "Als je vandaag alleen een klein mensje gevoed en warm hebt gehouden, heb je groot werk geleverd."
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "Je hoeft niet snel weer de oude te zijn. Je mag gewoon zijn waar je nu bent."
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "Hoe je baby ook gevoed wordt, je zorgt voor je baby. Dat is wat telt."
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "Je kunt slaap tekortkomen en tegelijk vol liefde zitten."
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "Houd de baby vast en laat het huis even voor wat het is. Het huis loopt niet weg."
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "Een driftbui in de supermarkt maakt je geen slechte moeder. Het betekent dat je een peuter hebt."
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "Kleintjes testen grenzen omdat ze zich bij jou veilig voelen."
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "Je bleef vandaag een minuut langer rustig dan gisteren. Dat telt."
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "Als je uit je slof schoot, maken een knuffel en een „sorry” veel goed. Zo leren ze ook iets moois."
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "Plakhanden, harde stemmen, grote gevoelens. Je voedt een heel mens op."
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "De vijfde „waarom?” van het uur is een klein hoofdje dat groeit."
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "Je hebt geen perfecte dag nodig voor een fijne herinnering."
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "Een dichtgeslagen deur is niet het einde van het verhaal. Laat het licht maar aan."
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "Je tiener zegt het misschien niet, maar dat jij er steeds bent, doet ertoe."
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "De rustige in huis zijn is zwaar werk. En je doet het."
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "Sommige van de beste gesprekken gebeuren in de auto. Blijf rijden."
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "Ze trekken zich terug om groot te worden, niet om jou achter te laten."
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "Je hoeft niet op alles een antwoord te hebben. Luisteren is al een groot deel."
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "Grote kinderen hebben je nog steeds nodig, alleen op een stillere manier."
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "Het alleen doen vraagt een kracht die de meeste mensen nooit zien."
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "Je bent als moeder genoeg voor je kind. Dat ben je altijd geweest."
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "Eén paar handen, honderd klussen. Wees mild voor jezelf."
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "Je kinderen leren door naar jou te kijken hoe een sterk, liefdevol mens eruitziet."
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "Pauze nemen is je post niet verlaten. Zo hou je het vol."
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "Niemand houdt de score bij. Liefde en er zijn, dat is wat telt."
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "Verdriet en liefde komen uit dezelfde plek. Iemand missen laat zien hoeveel je van diegene hield."
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "Er is geen juist tijdschema voor rouw. Neem de tijd die je nodig hebt."
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "Wees op de moeilijke gedenkdagen net zo zacht voor jezelf als je voor een vriendin zou zijn."
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "Je kunt verdriet meedragen en toch lachen met je kinderen. Allebei is echt."
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "Als je een zwangerschap of een baby hebt verloren, is dat verlies echt, en je liefde ook."
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "Sommige dagen is verdriet stil en sommige dagen luid. Allebei is oké."
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "Weinig geld betekent niet weinig liefde."
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "Je kinderen onthouden de tijd met jou beter dan de dingen die je kocht."
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "Vragen naar hulp bij rekeningen is slim, geen schande. Daar is die hulp voor."
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "Een gratis middag in het park kan de mooiste dag van de week zijn."
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "Je hebt het nog een week langer rondgekregen. Dat is echt een kunst."
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "Geldzorgen zijn vermoeiend. Je draagt veel, en je bent er nog steeds."
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "Je hebt vandaag een glas water gedronken. Begin daar."
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "Iedereen is de deur uit. De schoenen pasten misschien niet bij elkaar. Toch een overwinning."
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "Je hebt dat telefoontje gepleegd waar je tegen opzag. Dat was moedig."
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "Je hebt vandaag gelachen. Houd dat vast."
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "Een warme maaltijd, een schoon shirt, een verhaaltje voor het slapengaan. Kleine dingen vormen samen een jeugd."
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "Vandaag was je lief voor iemand, al was het maar voor jezelf."
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "Vooruitgang, niet perfectie. Je bent vandaag vooruitgegaan."
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "Je hebt één ding van de lijst afgemaakt. Dat is er één meer dan geen."
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "Je bent een goede moeder. Dat je je er zorgen over maakt, laat zien hoeveel het je kan schelen."
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "Je bent meer dan wat je op een dag gedaan krijgt."
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "Je kinderen hebben geen perfecte moeder nodig. Ze hebben jou nodig, en ze hebben jou."
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "Wees net zo geduldig met jezelf als met je kinderen."
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "Je mag ruimte innemen, dingen willen en je eigen dromen hebben."
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "Een fout maakt de liefde niet ongedaan. Morgen is een nieuwe start."
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "Je bent voor iemand de hele wereld, en je bent ook gewoon jezelf."
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "Het is oké om niet van elke minuut te genieten. Je kunt toch met heel je hart van je kinderen houden."
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "Er is niet één juiste manier om moeder te zijn. Jouw manier mag er zijn."
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "Net als in de boomhouding mag je wiebelen. Je vindt je evenwicht wel weer."
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "Zet je voeten stevig neer zoals in de berghouding. Je staat steviger dan je voelt."
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "Krijger twee: sterke benen, open armen. Zo sta jij deze week in."
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "Adem vier tellen in, vier tellen uit. Je bent hier, en je doet het goed."
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "Strek je wijd uit als een ster. Je mag ruimte innemen."
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "Een brede, lage squat is zwaar om vol te houden. Een lange dag ook. En je houdt het vol."
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "Je kunt buigen als een maansikkel en toch blijven staan."
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "Je hoeft je tenen nog niet te raken. Elk beetje rekken telt."
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "Driehoekshouding: één hand omlaag, één hand omhoog. Blijf geaard en blijf reiken."
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "Het is laat. Wat vandaag niet af is gekomen, kan tot morgen wachten."
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "Om dit uur wakker met de baby? Heel veel moeders zijn nu samen met jou wakker."
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "Het huis is stil. Dit moment is van jou. Adem."
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "Je bent de dag doorgekomen. Meer had vandaag niet nodig."
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "Malen je gedachten vannacht? Schrijf ze op en laat ze wachten tot de ochtend."
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "Laat je ogen rusten. Morgen mag je opnieuw beginnen."
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "Feestdagen kunnen zwaar zijn én fijn. Hoe deze tijd ook voor je voelt, het is oké."
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "De tafel hoeft niet perfect te zijn. De mensen eromheen, daar gaat het om."
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "Mis je dit jaar iemand aan tafel, wees dan zacht voor je hart."
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "Dank je wel, mam, voor elke maaltijd, elk ritje en elke knuffel."
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "Je hoeft niet te ontvangen, te bakken of de hele tijd te glimlachen. Een eenvoudig feest is nog steeds een feest."
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "Het mooiste cadeau dat je kinderen dit jaar krijgen, is tijd met jou."
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "Een klein feest zit ook vol liefde. Er is niet veel geld nodig om het bijzonder te maken."
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "Koude dagen, warme knuffels. Jij bent de warme plek in je huis."
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "Het is oké om een deel van de feestdrukte over te slaan. Rust is ook een cadeau."
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "Is deze tijd dit jaar zwaar? Dan ben je niet alleen. Neem het dag voor dag."
+  }
+ ]
+}

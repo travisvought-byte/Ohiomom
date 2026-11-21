@@ -185,6 +185,31 @@ class SiteTests(unittest.TestCase):
             self.assertEqual(main.count('class="wrap now" id="now"'), 1, path.name)
             self.assertIn('Need help right now?', main, path.name)
 
+    def test_world_page_leads_with_the_emergency_line(self):
+        """Above the map, one short line goes straight to the emergency numbers."""
+        text = (ROOT / 'world.html').read_text(encoding='utf-8')
+        line = text.find('<p class="dangerline"><a href="#now">')
+        self.assertGreater(line, 0, 'the line is there')
+        self.assertLess(line, text.find('<h1'), 'it comes first')
+        self.assertLess(line, text.find('<svg class="worldmap"'), 'it comes before the map')
+        self.assertIn('id="now"', text, 'it leads somewhere')
+
+    def test_country_pages_load_only_their_own_language(self):
+        """A country page in another language loads that language's affirmations and no other; an English-speaking
+        country loads none, and nothing on a page loads from anywhere but the site."""
+        langs = set(home_extras.translation_langs())
+        for c in lib.load()['world']['countries']:
+            text = (ROOT / 'countries' / f"{c['slug']}.html").read_text(encoding='utf-8')
+            files = re.findall(r'<script src="\.\./assets/kindword/([^"]+)\.js"></script>', text)
+            if c['lang'] in langs:
+                self.assertEqual(files, [c['lang']], c['slug'])
+                self.assertIn(f'lang="{c["lang"]}"', text, c['slug'])
+                rtl = c['lang'].split('-')[0] in home_extras.RTL
+                self.assertEqual('dir="rtl"' in text, rtl, c['slug'])
+            else:
+                self.assertEqual(files, [], c['slug'])
+                self.assertNotIn('affirm-local', text, c['slug'])
+
     def test_world_map_shades_and_links_every_country(self):
         """Every country in world.json is pink and a link to its page on the world map, with its name for screen
         readers and a hover title; countries without a page are grey and not links. The same countries are in the

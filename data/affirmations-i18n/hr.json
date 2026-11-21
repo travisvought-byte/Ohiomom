@@ -1,0 +1,415 @@
+{
+ "lang": "hr",
+ "name": "Croatian",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "Ne moraš danas sve napraviti. Dovoljna je sljedeća mala stvar."
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "Umor nije neuspjeh. Umorna si zato što si tu, iz dana u dan."
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "Suđe može čekati. Smiješ sjesti na pet minuta."
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "Pahuljice za večeru također se računaju kao hranjenje obitelji."
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "Odmor ne moraš zaslužiti. Smiješ se odmoriti odmah sada."
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "Ponekad je pobjeda to što su svi dočekali vrijeme za spavanje. To je prava pobjeda."
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "Radiš više nego što itko vidi. Ja to vidim."
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "Neuredna kuća i voljena djeca. To je dobra zamjena."
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "U teškom danu tvoje najbolje izgleda drukčije, i svejedno se računa."
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "Jedan dubok udah. Spusti ramena. Dobro ti ide."
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "U redu je danas spustiti ljestvicu. Neki drugi dan možeš je opet podignuti."
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "Tražiti pomoć znak je snage, a ne slabosti."
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "Smiješ reći ne još jednoj obavezi."
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "Ako si se danas osjećala usamljeno, nisi jedina mama koja se tako osjećala. Ima nas puno."
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "Zaslužuješ prijateljicu koja te pita kako si i čeka odgovor."
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "U redu je prva se javiti. Većina mama se nada da će to netko učiniti."
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "To što se osjećaš nevidljivo ne znači da nisi važna. Jako si važna."
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "Tvoji osjećaji imaju smisla. Nisi „previše“."
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "Ovdje ne moraš objašnjavati svoj teški dan. Razumijemo."
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "Poruka drugoj mami koja kaže „i ja“ može okrenuti cijeli dan."
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "Hranjenje, presvlačenje, ljuljanje, i ispočetka. To je pravi posao, čak i kad izgleda kao sjedenje na mjestu."
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "Ti i tvoja beba još se upoznajete. Nema žurbe."
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "Dani s novorođenčetom su dugi. Ovo razdoblje neće trajati zauvijek."
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "Ako si danas samo održala malog čovjeka sitim i na toplom, obavila si velik posao."
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "Ne moraš se brzo vratiti u staro stanje. Možeš jednostavno biti tu gdje jesi."
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "Kako god hranila svoju bebu, brineš se za nju. To je ono što se računa."
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "Možeš biti neispavana i puna ljubavi u isto vrijeme."
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "Drži bebu i pusti kuću. Kuća će i dalje biti tu."
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "Ispad bijesa u trgovini ne čini te lošom mamom. Znači samo da imaš malo dijete."
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "Mališani testiraju granice jer se uz tebe osjećaju sigurno."
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "Danas si ostala mirna minutu dulje nego jučer. To se računa."
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "Ako si planula, zagrljaj i „oprosti“ puno toga poprave. I nauče ih nečemu dobrom."
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "Ljepljive ručice, glasni glasovi, velike emocije. Odgajaš cijelog čovjeka."
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "Peti „zašto?“ u satu znači da mali um raste."
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "Ne treba ti savršen dan da stvoriš sretnu uspomenu."
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "Zalupljena vrata nisu kraj priče. Ostavi svjetlo upaljeno."
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "Tvoj tinejdžer to možda ne govori, ali tvoja stalna prisutnost je važna."
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "Biti ona smirena u kući težak je posao. I ti ga obavljaš."
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "Neki od najboljih razgovora dogode se u autu. Samo ti vozi dalje."
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "Udaljavaju se da bi odrasli, a ne da bi te ostavili iza sebe."
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "Ne moraš imati sve odgovore. Slušanje je velik dio toga."
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "Velika djeca te i dalje trebaju, samo na tiši način."
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "Sve izgurati sama traži snagu koju većina ljudi nikad ne vidi."
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "Dovoljno si dobra mama za svoje dijete. Uvijek si bila."
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "Jedan par ruku, sto poslova. Budi blaga prema sebi."
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "Tvoja djeca, gledajući tebe, uče kako izgleda snažna osoba puna ljubavi."
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "Odmor nije napuštanje dužnosti. Tako izdržiš dalje."
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "Nitko ne broji bodove. Važni su ljubav i to da si tu."
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "Tuga i ljubav izviru iz istog mjesta. Koliko ti netko nedostaje pokazuje koliko si voljela."
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "Ne postoji pravi rok za tugovanje. Uzmi vremena koliko ti treba."
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "Na teške godišnjice budi nježna prema sebi kao što bi bila prema prijateljici."
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "Možeš nositi tugu i svejedno se smijati sa svojom djecom. Oboje je stvarno."
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "Ako si izgubila trudnoću ili bebu, taj gubitak je stvaran, kao i tvoja ljubav."
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "Nekim je danima tuga tiha, a nekima glasna. Oboje je u redu."
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "Manjak novca ne znači manjak ljubavi."
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "Tvoja djeca će pamtiti vrijeme s tobom više nego stvari koje si kupila."
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "Pitati za pomoć s računima pametno je, a ne sramotno. Upravo za to ta pomoć i postoji."
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "Besplatno popodne u parku može biti najljepši dan u tjednu."
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "Rastegnula si novac još tjedan dana. Za to treba pravo umijeće."
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "Briga oko novca iscrpljuje. Nosiš puno, i još si tu."
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "Danas si popila čašu vode. Kreni od toga."
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "Svi su izašli iz kuće. Možda se cipele nisu slagale. Svejedno pobjeda."
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "Obavila si onaj poziv kojeg si se bojala. To je bilo hrabro."
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "Danas si se smijala. Zadrži to."
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "Topao obrok, čista majica, priča za laku noć. Od malih stvari sastoji se djetinjstvo."
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "Danas si bila dobra prema nekome, makar i samo prema sebi."
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "Napredak, ne savršenstvo. Danas si se pomaknula naprijed."
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "Završila si jednu stvar s popisa. To je jedna više nego nijedna."
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "Dobra si mama. To što se brineš oko toga pokazuje koliko ti je stalo."
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "Vrijediš više od onoga što stigneš napraviti u jednom danu."
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "Tvojoj djeci ne treba savršena mama. Trebaš im ti, i imaju te."
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "Budi strpljiva prema sebi kao što si prema svojoj djeci."
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "Smiješ zauzimati prostor, nešto željeti i imati svoje snove."
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "Pogreška ne poništava ljubav. Sutra je novi početak."
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "Nekome si cijeli svijet, a i dalje si svoja osoba."
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "U redu je ne uživati u svakoj minuti. I dalje možeš voljeti svoju djecu cijelim srcem."
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "Ne postoji samo jedan pravi način da budeš mama. Tvoj način je u redu."
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "Kao u položaju drveta, u redu je zanjihati se. Ravnotežu ćeš opet pronaći."
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "Čvrsto postavi stopala kao u položaju planine. Stabilnija si nego što se osjećaš."
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "Ratnik dva: snažne noge, raširene ruke. To si ti, spremna za ovaj tjedan."
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "Udahni na četiri, izdahni na četiri. Tu si, i dobro ti ide."
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "Raširi se kao zvijezda. Smiješ zauzimati prostor."
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "Širok i nizak čučanj teško je zadržati. Dug dan također. I ti ga držiš."
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "Možeš se nagnuti kao polumjesec i i dalje stajati."
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "Još ne moraš dosegnuti prste na nogama. Svako malo istezanja se računa."
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "Položaj trokuta: jedna ruka dolje, jedna gore. Ostani prizemljena i nastavi se protezati."
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "Kasno je. Što danas nije obavljeno, može pričekati do sutra."
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "Budna s bebom u ovo doba? Puno je mama budno s tobom upravo sada."
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "Kuća je tiha. Ovaj trenutak je tvoj. Diši."
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "Prebrodila si današnji dan. Samo je to danas trebalo."
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "Ako ti misli noćas ne daju mira, zapiši ih i neka pričekaju do jutra."
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "Odmori oči. Sutra možeš krenuti ispočetka."
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "Blagdani mogu biti teški koliko i sretni. Kako god se osjećala u ovo doba godine, u redu je."
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "Stol ne mora biti savršen. Važni su ljudi oko njega."
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "Ako ti ove godine netko nedostaje za stolom, budi nježna prema svom srcu."
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "Hvala ti, mama, za svaki obrok, svaku vožnju i svaki zagrljaj."
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "Ne moraš ugostiti sve, peći kolače ni smiješiti se cijelo vrijeme. Jednostavan blagdan i dalje je blagdan."
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "Najljepši poklon koji tvoja djeca ove godine dobivaju je vrijeme s tobom."
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "I mali blagdan pun je ljubavi. Ne treba puno novca da bude poseban."
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "Hladni dani, topli zagrljaji. Ti si toplo mjesto u svom domu."
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "U redu je preskočiti dio blagdanske gužve. I mir je poklon."
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "Ako ti je ovo doba ove godine teško, nisi sama. Dan po dan."
+  }
+ ]
+}

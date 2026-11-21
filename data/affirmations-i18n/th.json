@@ -1,0 +1,415 @@
+{
+ "lang": "th",
+ "name": "Thai",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "วันนี้ไม่ต้องทำทุกอย่างให้เสร็จก็ได้ แค่เรื่องเล็กๆ เรื่องถัดไปก็พอแล้ว"
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "เหนื่อยไม่ได้แปลว่าล้มเหลว คุณเหนื่อยเพราะคุณอยู่ตรงนั้นทุกวัน"
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "จานชามรอได้ คุณนั่งพักสักห้านาทีได้นะ"
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "ซีเรียลเป็นมื้อเย็นก็ยังนับว่าได้ดูแลให้ครอบครัวอิ่มท้อง"
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "การพักผ่อนไม่ใช่สิ่งที่ต้องทำให้สมควรได้ก่อน คุณพักได้เลยตอนนี้"
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "บางวัน ชัยชนะคือทุกคนผ่านไปจนถึงเวลานอนได้ นั่นคือชัยชนะจริงๆ"
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "คุณทำมากกว่าที่ใครเห็น ฉันเห็นนะ"
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "บ้านรกๆ กับลูกที่ได้รับความรัก เป็นการแลกที่คุ้มค่า"
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "ในวันที่ยาก สิ่งที่ดีที่สุดของคุณอาจดูต่างไป แต่ก็ยังมีค่าเสมอ"
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "หายใจลึกๆ หนึ่งครั้ง ปล่อยไหล่ลง คุณทำได้ดีแล้ว"
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "วันนี้ลดมาตรฐานลงบ้างก็ไม่เป็นไร วันอื่นค่อยยกขึ้นใหม่ก็ได้"
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "การขอความช่วยเหลือคือความเข้มแข็ง ไม่ใช่ความอ่อนแอ"
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "คุณมีสิทธิ์ปฏิเสธเรื่องที่เพิ่มเข้ามาอีกเรื่อง"
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "ถ้าวันนี้รู้สึกเหงา คุณไม่ใช่แม่คนเดียวที่รู้สึกแบบนี้ พวกเรามีกันเยอะ"
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "คุณสมควรมีเพื่อนที่ถามว่าเป็นยังไงบ้าง แล้วรอฟังคำตอบจริงๆ"
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "ทักไปก่อนก็ได้นะ แม่ส่วนใหญ่ก็หวังว่าจะมีใครสักคนเริ่ม"
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "การรู้สึกว่าไม่มีใครมองเห็น ไม่ได้แปลว่าคุณไม่สำคัญ คุณสำคัญมาก"
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "ความรู้สึกของคุณมีเหตุผล คุณไม่ได้มากเกินไป"
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "ที่นี่ไม่ต้องอธิบายวันที่แสนยากของคุณ เราเข้าใจ"
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "ข้อความถึงแม่อีกคนที่บอกว่า \"ฉันก็เหมือนกัน\" เปลี่ยนทั้งวันได้เลย"
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "ให้นม เปลี่ยนผ้าอ้อม กล่อม แล้วก็วนใหม่ นั่นคืองานจริงๆ แม้จะดูเหมือนแค่นั่งเฉยๆ"
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "คุณกับลูกน้อยยังกำลังเรียนรู้กันและกัน ไม่ต้องรีบ"
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "วันที่อยู่กับเด็กแรกเกิดนั้นยาวนาน แต่ช่วงนี้จะไม่อยู่ไปตลอด"
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "ถ้าวันนี้คุณแค่ดูแลคนตัวเล็กๆ ให้อิ่มและอบอุ่น คุณได้ทำงานที่ยิ่งใหญ่แล้ว"
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "ไม่ต้องรีบกลับไปเป็นเหมือนเดิม อยู่ตรงที่คุณเป็นตอนนี้ก็พอ"
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "ไม่ว่าลูกจะได้กินด้วยวิธีไหน คุณกำลังดูแลลูกอยู่ นั่นคือสิ่งที่สำคัญ"
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "อดนอนแต่เต็มไปด้วยความรัก เป็นไปได้พร้อมกัน"
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "อุ้มลูกไว้ แล้วปล่อยงานบ้านไปก่อน บ้านไม่หนีไปไหน"
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "ลูกงอแงในห้างไม่ได้ทำให้คุณเป็นแม่ที่แย่ แค่แปลว่าคุณมีลูกเล็ก"
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "เด็กๆ ลองทดสอบขอบเขต เพราะเขารู้สึกปลอดภัยเมื่ออยู่กับคุณ"
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "วันนี้คุณใจเย็นได้นานกว่าเมื่อวานหนึ่งนาที นั่นก็นับนะ"
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "ถ้าเผลอโมโห การกอดและคำว่า \"ขอโทษนะ\" ช่วยได้มาก และยังสอนสิ่งดีๆ ให้ลูกด้วย"
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "มือเหนียวๆ เสียงดังๆ อารมณ์ใหญ่ๆ คุณกำลังเลี้ยงคนคนหนึ่งให้เติบโตเต็มตัว"
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "\"ทำไม?\" ครั้งที่ห้าในชั่วโมงนี้ คือสมองน้อยๆ ที่กำลังเติบโต"
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "ไม่ต้องมีวันที่สมบูรณ์แบบก็สร้างความทรงจำที่มีความสุขได้"
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "ประตูที่ถูกปิดดังปังไม่ใช่ตอนจบของเรื่อง เปิดไฟรอไว้เถอะ"
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "ลูกวัยรุ่นอาจไม่พูดออกมา แต่การที่คุณอยู่ตรงนั้นเสมอมีความหมายมาก"
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "การเป็นคนใจเย็นในบ้านเป็นงานหนัก และคุณก็กำลังทำอยู่"
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "บทสนทนาที่ดีที่สุดบางครั้งเกิดขึ้นในรถ ขับต่อไปเถอะ"
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "เขาถอยห่างเพื่อเติบโต ไม่ใช่เพื่อทิ้งคุณไว้ข้างหลัง"
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "คุณไม่จำเป็นต้องมีคำตอบทุกข้อ การรับฟังก็เป็นส่วนใหญ่แล้ว"
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "ลูกที่โตแล้วยังต้องการคุณ แค่ในแบบที่เงียบกว่าเดิม"
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "การทำทุกอย่างคนเดียวต้องใช้ความเข้มแข็งที่คนส่วนใหญ่ไม่เคยเห็น"
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "คุณเป็นแม่ที่ดีพอสำหรับลูกแล้ว และเป็นมาตลอด"
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "สองมือ ร้อยงาน ใจดีกับตัวเองบ้างนะ"
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "ลูกๆ กำลังเรียนรู้จากการมองคุณ ว่าคนที่เข้มแข็งและเปี่ยมด้วยความรักเป็นอย่างไร"
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "การพักไม่ใช่การทิ้งหน้าที่ แต่เป็นวิธีที่ทำให้คุณไปต่อได้"
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "ไม่มีใครนับคะแนน ความรักและการอยู่ตรงนั้นคือสิ่งสำคัญ"
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "ความเศร้าและความรักมาจากที่เดียวกัน การคิดถึงใครสักคนบอกว่าคุณรักเขามากแค่ไหน"
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "ความเศร้าโศกไม่มีกำหนดเวลาที่ถูกต้อง ใช้เวลาเท่าที่คุณต้องการ"
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "ในวันครบรอบที่ยากลำบาก อ่อนโยนกับตัวเองเหมือนที่คุณอ่อนโยนกับเพื่อน"
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "คุณแบกความเศร้าไว้และยังหัวเราะกับลูกได้ ทั้งสองอย่างเป็นเรื่องจริง"
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "ถ้าคุณเคยสูญเสียการตั้งครรภ์หรือลูกน้อย การสูญเสียนั้นเป็นเรื่องจริง และความรักของคุณก็เช่นกัน"
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "บางวันความเศร้าก็เงียบ บางวันก็ดัง ทั้งสองแบบไม่เป็นไร"
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "เงินน้อยไม่ได้แปลว่าความรักน้อย"
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "ลูกจะจำเวลาที่อยู่กับคุณได้มากกว่าของที่คุณซื้อให้"
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "การถามหาความช่วยเหลือเรื่องค่าใช้จ่ายเป็นเรื่องฉลาด ไม่ใช่เรื่องน่าอาย ความช่วยเหลือมีไว้เพื่อสิ่งนี้"
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "บ่ายวันหนึ่งที่สวนสาธารณะแบบไม่เสียเงิน อาจเป็นวันที่ดีที่สุดของสัปดาห์"
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "คุณทำให้เงินพอใช้ไปได้อีกสัปดาห์ ต้องเก่งจริงๆ ถึงทำได้"
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "การกังวลเรื่องเงินเหนื่อยมาก คุณแบกไว้เยอะ และคุณก็ยังอยู่ตรงนี้"
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "วันนี้คุณดื่มน้ำไปหนึ่งแก้ว เริ่มจากตรงนั้น"
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "ทุกคนออกจากบ้านได้ รองเท้าอาจไม่เข้าคู่กัน แต่ก็ยังเป็นชัยชนะ"
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "คุณโทรสายที่กลัวมาตลอดแล้ว นั่นกล้าหาญมาก"
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "วันนี้คุณได้หัวเราะ เก็บความรู้สึกนั้นไว้นะ"
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "อาหารร้อนๆ เสื้อสะอาด นิทานก่อนนอน เรื่องเล็กๆ รวมกันเป็นวัยเด็ก"
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "วันนี้คุณใจดีกับใครสักคน ถึงคนนั้นจะเป็นตัวคุณเองก็ตาม"
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "ก้าวหน้า ไม่ต้องสมบูรณ์แบบ วันนี้คุณได้ก้าวไปข้างหน้าแล้ว"
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "คุณทำเสร็จไปหนึ่งอย่างในรายการ มากกว่าไม่ได้ทำเลยตั้งหนึ่งอย่าง"
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "คุณเป็นแม่ที่ดี การที่คุณกังวลเรื่องนี้แสดงว่าคุณใส่ใจมากแค่ไหน"
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "คุณมีค่ามากกว่างานที่ทำเสร็จในหนึ่งวัน"
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "ลูกไม่ต้องการแม่ที่สมบูรณ์แบบ ลูกต้องการคุณ และลูกก็มีคุณ"
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "อดทนกับตัวเองให้เหมือนที่อดทนกับลูก"
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "คุณมีสิทธิ์มีพื้นที่ของตัวเอง มีสิ่งที่อยากได้ และมีความฝันของตัวเอง"
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "ความผิดพลาดหนึ่งครั้งไม่ได้ลบความรัก พรุ่งนี้คือการเริ่มต้นใหม่"
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "คุณคือทั้งโลกของใครบางคน และคุณก็เป็นตัวของตัวเองด้วย"
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "ไม่ต้องรักทุกนาทีก็ได้ คุณยังรักลูกได้หมดหัวใจอยู่ดี"
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "ไม่มีวิธีเป็นแม่ที่ถูกต้องอยู่แบบเดียว วิธีของคุณก็ใช้ได้"
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "เหมือนท่าต้นไม้ โยกเยกบ้างก็ไม่เป็นไร คุณหาสมดุลได้อีกครั้ง"
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "ยืนให้มั่นเหมือนท่าภูเขา คุณมั่นคงกว่าที่รู้สึก"
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "ท่านักรบสอง ขาแข็งแรง แขนเปิดกว้าง นั่นคือคุณที่กำลังเผชิญสัปดาห์นี้"
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "หายใจเข้านับสี่ หายใจออกนับสี่ คุณอยู่ตรงนี้ และคุณทำได้ดีแล้ว"
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "กางตัวให้กว้างเหมือนดวงดาว คุณมีสิทธิ์มีพื้นที่ของตัวเอง"
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "ท่านั่งยองกว้างๆ ต่ำๆ ค้างไว้ได้ยาก วันที่ยาวนานก็เหมือนกัน และคุณก็ยังยืนหยัดอยู่"
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "คุณเอนตัวได้เหมือนพระจันทร์เสี้ยว และยังยืนอยู่ได้"
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "ยังไม่ต้องแตะปลายเท้าก็ได้ การยืดเหยียดทุกนิดก็มีค่า"
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "ท่าสามเหลี่ยม มือหนึ่งลง มือหนึ่งขึ้น ยืนให้มั่นแล้วเอื้อมต่อไป"
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "ดึกแล้ว อะไรที่ยังไม่เสร็จวันนี้รอพรุ่งนี้ได้"
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "ตื่นอยู่กับลูกตอนนี้เหรอ ตอนนี้มีแม่อีกมากที่ตื่นอยู่เป็นเพื่อนคุณ"
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "บ้านเงียบแล้ว ช่วงเวลานี้เป็นของคุณ หายใจลึกๆ"
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "คุณผ่านวันนี้มาได้แล้ว วันนี้ต้องการแค่นั้น"
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "ถ้าคืนนี้ความคิดวุ่นวาย จดไว้แล้วให้มันรอถึงพรุ่งนี้เช้า"
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "พักสายตาเถอะ พรุ่งนี้เริ่มใหม่ได้"
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "เทศกาลอาจทั้งยากและมีความสุข ช่วงนี้คุณรู้สึกยังไงก็ไม่เป็นไร"
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "โต๊ะอาหารไม่ต้องสมบูรณ์แบบ คนที่อยู่รอบโต๊ะต่างหากที่สำคัญ"
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "ถ้าปีนี้คิดถึงใครที่ไม่ได้มานั่งร่วมโต๊ะ อ่อนโยนกับหัวใจตัวเองนะ"
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "ขอบคุณนะแม่ สำหรับทุกมื้อ ทุกการรับส่ง และทุกอ้อมกอด"
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "ไม่ต้องเป็นเจ้าภาพ ไม่ต้องอบขนม หรือยิ้มตลอดเวลา เทศกาลเรียบง่ายก็ยังเป็นเทศกาล"
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "ของขวัญที่ดีที่สุดที่ลูกจะได้ปีนี้ คือเวลาที่ได้อยู่กับคุณ"
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "งานฉลองเล็กๆ ก็เต็มไปด้วยความรัก ไม่ต้องใช้เงินมากก็ทำให้พิเศษได้"
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "วันหนาว อ้อมกอดอุ่น คุณคือมุมอบอุ่นของบ้าน"
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "ข้ามความวุ่นวายช่วงเทศกาลไปบ้างก็ไม่เป็นไร ความสงบก็เป็นของขวัญเหมือนกัน"
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "ถ้าปีนี้ช่วงเวลานี้หนักสำหรับคุณ คุณไม่ได้อยู่คนเดียว ค่อยๆ ไปทีละวัน"
+  }
+ ]
+}

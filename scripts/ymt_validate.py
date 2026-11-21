@@ -103,6 +103,10 @@ def main():
         if c.get('code') in codes:
             errors.append(f'world {c["code"]}: duplicate country')
         codes.add(c.get('code'))
+        # The language the country page shows the day's affirmation in (en for English only). A language the affirmations
+        # are not in yet (data/affirmations-i18n/) keeps the page in English until they are.
+        if 'lang' in c and not (isinstance(c['lang'], str) and re.match(r'^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$', c['lang'])):
+            errors.append(f'world {c.get("code")}: lang is a language tag such as en, es or zh-Hant')
         e = c.get('emergency') or {}
         if not emergency_dial.match(e.get('number', '')) or not e.get('label'):
             errors.append(f'world {c.get("code")}: emergency needs a number and a label')

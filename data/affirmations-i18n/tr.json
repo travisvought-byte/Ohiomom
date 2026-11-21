@@ -1,0 +1,415 @@
+{
+ "lang": "tr",
+ "name": "Turkish",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "Bugün her şeyi yapmak zorunda değilsin. Sıradaki küçük adım yeter."
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "Yorgunluk başarısızlık değil. Yorgunsun, çünkü her gün oradasın."
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "Bulaşıklar bekleyebilir. Beş dakika oturmaya hakkın var."
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "Akşam yemeğinde mısır gevreği de aileni doyurmak sayılır."
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "Dinlenmeyi hak etmen gerekmiyor. Şu an dinlenebilirsin."
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "Bazı günler zafer, herkesin yatma saatine kadar sağ salim gelmesidir. Bu gerçek bir zaferdir."
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "Kimsenin görmediği kadar çok şey yapıyorsun. Ben görüyorum."
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "Dağınık bir ev ve sevilen çocuklar. Bu iyi bir takas."
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "Zor bir günde elinden gelenin en iyisi farklı görünür, ama yine de sayılır."
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "Derin bir nefes. Omuzlarını bırak. Gayet iyi gidiyorsun."
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "Bugün çıtayı düşürmek sorun değil. Başka bir gün yine yükseltirsin."
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "Yardım istemek güçlü olmaktır, zayıflık değil."
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "Bir şeye daha hayır deme hakkın var."
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "Bugün kendini yalnız hissettiysen, böyle hisseden tek anne sen değilsin. Biz çok kişiyiz."
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "Sana nasıl olduğunu soran ve cevabını bekleyen bir arkadaşı hak ediyorsun."
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "İlk adımı senin atman sorun değil. Çoğu anne birinin atmasını umuyor."
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "Görülmediğini hissetmek önemsiz olduğun anlamına gelmez. Çok önemlisin."
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "Hissettiklerin anlamlı. Sen fazla değilsin."
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "Burada zor gününü açıklamak zorunda değilsin. Anlıyoruz."
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "Başka bir anneye “ben de” diyen bir mesaj, bütün bir günü değiştirebilir."
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "Beslemek, alt değiştirmek, sallamak ve yeniden. Bu, oturuyor gibi görünse de gerçek bir emek."
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "Sen ve bebeğin hâlâ birbirinizi tanıyorsunuz. Acele yok."
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "Yenidoğanla geçen günler uzun. Bu dönem sonsuza kadar sürmeyecek."
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "Bugün tek yaptığın küçücük bir insanı tok ve sıcak tutmaksa, çok büyük bir iş yaptın."
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "Hemen eski hâline dönmek zorunda değilsin. Olduğun yerde olabilirsin."
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "Bebeğin nasıl beslenirse beslensin, ona sen bakıyorsun. Önemli olan bu."
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "Hem uykusuz hem de sevgi dolu olabilirsin."
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "Bebeği kucakla, evi boş ver. Ev yine orada olacak."
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "Markette bir kriz seni kötü bir anne yapmaz. Sadece küçük bir çocuğun olduğu anlamına gelir."
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "Küçükler sınırları zorlar, çünkü yanında kendilerini güvende hissederler."
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "Bugün dünden bir dakika daha uzun sakin kaldın. Bu da sayılır."
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "Sinirlendiysen, bir sarılma ve bir “özür dilerim” çok şeyi düzeltir. Üstelik onlara güzel bir şey de öğretir."
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "Yapış yapış eller, yüksek sesler, kocaman duygular. Bir insanı bütünüyle yetiştiriyorsun."
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "Bu saatteki beşinci “neden?”, büyüyen küçük bir zihin."
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "Mutlu bir anı için kusursuz bir güne ihtiyacın yok."
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "Çarpılan bir kapı hikâyenin sonu değil. Işığı açık bırak."
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "Ergen çocuğun söylemeyebilir ama hep yanında olman çok önemli."
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "Evdeki sakin kişi olmak zor bir iş. Ve sen bunu yapıyorsun."
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "En güzel sohbetlerin bazıları arabada olur. Sen sürmeye devam et."
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "Büyümek için uzaklaşıyorlar, seni geride bırakmak için değil."
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "Her sorunun cevabını bilmek zorunda değilsin. Dinlemek işin büyük kısmı."
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "Büyük çocukların hâlâ sana ihtiyacı var, sadece daha sessizce."
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "Her şeyi tek başına göğüslemek, çoğu insanın hiç görmediği bir güç ister."
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "Çocuğun için yeterince iyi bir annesin. Hep öyleydin."
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "Bir çift el, yüz iş. Kendine nazik davran."
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "Çocukların seni izleyerek güçlü ve sevgi dolu bir insanın nasıl olduğunu öğreniyor."
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "Mola vermek görevi bırakmak değil. Devam edebilmenin yolu bu."
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "Kimse puan tutmuyor. Önemli olan sevgi ve yanlarında olmak."
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "Yas ve sevgi aynı yerden gelir. Birini özlemek, onu ne kadar sevdiğini gösterir."
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "Yasın doğru bir takvimi yok. İhtiyacın olan zamanı kendine tanı."
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "Zor yıl dönümlerinde, bir arkadaşına nasıl şefkat gösterirsen kendine de öyle göster."
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "Hem hüzün taşıyıp hem çocuklarınla gülebilirsin. İkisi de gerçek."
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "Bir gebeliği ya da bir bebeği kaybettiysen, o kayıp gerçek; sevgin de öyle."
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "Bazı günler yas sessizdir, bazı günler gürültülü. İkisi de olur."
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "Az para, az sevgi demek değil."
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "Çocukların, aldığın şeylerden çok seninle geçen zamanı hatırlayacak."
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "Faturalar için yardım sormak akıllıca, utanılacak bir şey değil. O yardım tam da bunun için var."
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "Parkta bedava bir öğleden sonra haftanın en güzel günü olabilir."
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "Parayı bir hafta daha yetirdin. Bu gerçek bir beceri ister."
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "Para derdi yorar. Çok şey taşıyorsun ve hâlâ buradasın."
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "Bugün bir bardak su içtin. Oradan başla."
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "Herkes kapıdan çıktı. Ayakkabılar belki uyumsuzdu. Yine de bir zafer."
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "Korktuğun o telefonu açtın. Cesaret istiyordu."
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "Bugün güldün. Buna sıkı tutun."
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "Sıcak bir yemek, temiz bir tişört, bir masal. Küçük şeyler bir araya gelip bir çocukluk olur."
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "Bugün birine nazik davrandın, o kişi sadece sen olsan bile."
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "Kusursuzluk değil, ilerleme. Bugün bir adım ileri gittin."
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "Listeden bir şeyi bitirdin. Hiç yoktan bir fazla."
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "Sen iyi bir annesin. Bunu dert etmen, ne kadar önemsediğini gösteriyor."
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "Bir günde yetiştirebildiklerinden çok daha fazlasısın."
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "Çocuklarının kusursuz bir anneye ihtiyacı yok. Sana ihtiyaçları var ve seni yanlarında buluyorlar."
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "Çocuklarına gösterdiğin sabrı kendine de göster."
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "Yer kaplamaya, bir şeyler istemeye ve kendi hayallerine sahip olmaya hakkın var."
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "Bir hata sevgiyi silmez. Yarın yeni bir başlangıç."
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "Birinin bütün dünyasısın, ama aynı zamanda kendine ait bir insansın."
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "Her dakikayı sevmemen normal. Yine de çocuklarını bütün kalbinle sevebilirsin."
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "Anne olmanın tek bir doğru yolu yok. Senin yolun da geçerli."
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "Ağaç duruşundaki gibi sallanmak sorun değil. Dengeni yeniden bulabilirsin."
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "Ayaklarını dağ duruşundaki gibi yere bas. Hissettiğinden daha sağlamsın."
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "Savaşçı iki: güçlü bacaklar, açık kollar. İşte bu haftaya göğüs geren sensin."
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "Dörde kadar nefes al, dörde kadar ver. Buradasın ve gayet iyi gidiyorsun."
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "Bir yıldız gibi geniş geniş uzan. Yer kaplamaya hakkın var."
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "Geniş ve alçak bir çömelme zor tutulur. Uzun bir gün de öyle. Sen tutuyorsun."
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "Bir hilal gibi eğilip yine de ayakta kalabilirsin."
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "Ayak parmaklarına henüz uzanmak zorunda değilsin. Her küçük esneme sayılır."
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "Üçgen duruşu: bir el aşağıda, bir el yukarıda. Yere sağlam bas ve uzanmaya devam et."
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "Saat geç oldu. Bugün yapılamayanlar yarını bekleyebilir."
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "Bu saatte bebekle uyanık mısın? Şu an seninle birlikte uyanık bir sürü anne var."
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "Ev sessiz. Bu an senin. Nefes al."
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "Bugünü atlattın. Bugünün ihtiyacı sadece buydu."
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "Bu gece aklın durmuyorsa, yaz onları ve sabaha kadar beklesinler."
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "Gözlerini dinlendir. Yarın yeniden başlayabilirsin."
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "Bayramlar ve tatiller mutlu olduğu kadar zor da olabilir. Bu dönem sana nasıl geliyorsa, sorun değil."
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "Sofranın kusursuz olması gerekmiyor. Önemli olan etrafındaki insanlar."
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "Bu yıl sofrada birinin eksikliğini hissediyorsan, kalbine nazik davran."
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "Teşekkürler anne, her yemek, her yolculuk ve her sarılma için."
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "Misafir ağırlamak, pasta yapmak ya da hep gülümsemek zorunda değilsin. Sade bir kutlama da kutlamadır."
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "Çocuklarının bu yıl alacağı en güzel hediye, seninle geçirdikleri zaman."
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "Küçük bir kutlama da sevgi doludur. Özel olması için çok para gerekmez."
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "Soğuk günler, sıcak sarılmalar. Evinin sıcak köşesi sensin."
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "Yoğun koşturmacanın bir kısmını atlamak sorun değil. Huzur da bir hediyedir."
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "Bu dönem bu yıl sana ağır geliyorsa, yalnız değilsin. Her seferinde tek bir gün."
+  }
+ ]
+}

@@ -69,6 +69,13 @@
 .saying.solo{margin:0;max-width:40rem;border:2px solid #e6f5f0;box-shadow:0 8px 18px -14px #6b3f5b99}
 .saying.solo::after{display:none}
 .saying.solo .affirmtext{min-height:calc(3.9*clamp(1.1rem,2.7vw,1.25rem))}
+/* On a country page in another language: the day's affirmation in that language, the English in smaller words under it.
+   Scripts other than the Latin, Greek and Cyrillic ones take the device's own sans-serif, which has their letters. */
+.affirmlocal{font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;font-size:clamp(1.15rem,2.8vw,1.32rem);line-height:1.4;margin:.15rem 0 0;color:var(--ink)}
+.affirmlocal:lang(ar),.affirmlocal:lang(he),.affirmlocal:lang(hi),.affirmlocal:lang(bn),.affirmlocal:lang(ne),.affirmlocal:lang(th),.affirmlocal:lang(ja),.affirmlocal:lang(ko),.affirmlocal:lang(zh){font-family:system-ui,-apple-system,"Segoe UI","Noto Sans",sans-serif;line-height:1.6}
+.affirmlocal:lang(ur){font-family:"Noto Nastaliq Urdu","Jameel Noori Nastaleeq","Urdu Typesetting",system-ui,"Segoe UI","Noto Sans",sans-serif;line-height:2}
+.affirmlocal[dir=rtl]{text-align:right}
+.affirmlocal:not([hidden])+.affirmtext{min-height:0;font-size:.92rem;line-height:1.4;color:var(--muted);margin-top:.35rem}
 .flipbar.solo{display:flex;align-items:center;padding:.35rem 0 0}
 .flipbar.solo button{background:var(--soft);box-shadow:none}
 .flipbar.solo .sayhelp{flex:1;min-width:0;margin:0;text-align:center}

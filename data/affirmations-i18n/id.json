@@ -1,0 +1,415 @@
+{
+ "lang": "id",
+ "name": "Indonesian",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "Kamu tidak harus menyelesaikan semuanya hari ini. Satu hal kecil berikutnya sudah cukup."
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "Lelah bukan berarti gagal. Kamu lelah karena kamu terus hadir, setiap hari."
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "Piring kotor bisa menunggu. Kamu boleh duduk lima menit."
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "Sereal untuk makan malam tetap terhitung memberi makan keluargamu."
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "Istirahat bukan sesuatu yang harus kamu dapatkan dulu. Kamu boleh beristirahat sekarang juga."
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "Ada hari ketika kemenangannya adalah semua orang sampai di jam tidur dengan selamat. Itu kemenangan sungguhan."
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "Kamu melakukan lebih banyak daripada yang dilihat orang. Aku melihatnya."
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "Rumah berantakan dan anak-anak yang disayang. Itu pertukaran yang baik."
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "Di hari yang berat, usaha terbaikmu terlihat berbeda, dan itu tetap berarti."
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "Satu tarikan napas dalam. Turunkan bahumu. Kamu baik-baik saja."
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "Tidak apa-apa menurunkan standar hari ini. Kamu bisa menaikkannya lagi di hari lain."
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "Meminta tolong itu tanda kuat, bukan lemah."
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "Kamu boleh berkata tidak untuk satu hal lagi."
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "Kalau hari ini kamu merasa kesepian, kamu bukan satu-satunya ibu yang merasakannya. Kita banyak."
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "Kamu layak punya teman yang menanyakan kabarmu dan mau menunggu jawabannya."
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "Tidak apa-apa menyapa duluan. Kebanyakan ibu berharap ada yang memulai."
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "Merasa tidak terlihat bukan berarti kamu tidak berarti. Kamu sangat berarti."
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "Perasaanmu masuk akal. Kamu tidak berlebihan."
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "Di sini kamu tidak perlu menjelaskan harimu yang berat. Kami mengerti."
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "Satu pesan ke ibu lain yang berbunyi \"aku juga\" bisa mengubah seharian."
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "Menyusui, ganti popok, menimang, lalu ulang lagi. Itu kerja sungguhan, meski kelihatannya cuma duduk diam."
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "Kamu dan bayimu masih saling mengenal. Tidak perlu terburu-buru."
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "Hari-hari bersama bayi baru lahir memang panjang. Masa ini tidak akan berlangsung selamanya."
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "Kalau hari ini kamu hanya menjaga satu manusia kecil tetap kenyang dan hangat, kamu sudah melakukan pekerjaan besar."
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "Kamu tidak perlu cepat-cepat kembali seperti dulu. Kamu boleh berada di tempatmu sekarang."
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "Bagaimanapun cara bayimu diberi makan, kamu sedang merawatnya. Itulah yang penting."
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "Kamu bisa kurang tidur dan penuh cinta pada saat yang sama."
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "Gendong bayimu dan biarkan urusan rumah. Rumah itu tetap akan ada."
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "Anak tantrum di toko tidak membuatmu jadi ibu yang buruk. Itu cuma berarti kamu punya balita."
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "Si kecil menguji batas karena mereka merasa aman bersamamu."
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "Hari ini kamu tetap tenang satu menit lebih lama dari kemarin. Itu berarti."
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "Kalau kamu sempat marah, pelukan dan kata \"maaf\" bisa memperbaiki banyak hal. Itu juga mengajarkan mereka sesuatu yang baik."
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "Tangan lengket, suara keras, perasaan besar. Kamu sedang membesarkan seorang manusia seutuhnya."
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "\"Kenapa?\" yang kelima dalam satu jam adalah pikiran kecil yang sedang tumbuh."
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "Kamu tidak butuh hari yang sempurna untuk membuat kenangan bahagia."
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "Pintu yang dibanting bukan akhir cerita. Biarkan lampunya tetap menyala."
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "Anak remajamu mungkin tidak mengatakannya, tapi kehadiranmu yang selalu ada sangat berarti."
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "Menjadi yang tetap tenang di rumah itu kerja keras. Dan kamu melakukannya."
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "Beberapa obrolan terbaik terjadi di mobil. Terus saja menyetir."
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "Mereka menjauh untuk tumbuh dewasa, bukan untuk meninggalkanmu."
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "Kamu tidak perlu tahu semua jawaban. Mendengarkan sudah merupakan bagian besar."
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "Anak yang sudah besar tetap membutuhkanmu, hanya dengan cara yang lebih tenang."
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "Menjalaninya sendirian butuh kekuatan yang tidak pernah dilihat kebanyakan orang."
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "Kamu sudah cukup sebagai ibu untuk anakmu. Sejak dulu."
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "Satu pasang tangan, seratus pekerjaan. Bersikap lembutlah pada dirimu sendiri."
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "Anak-anakmu belajar, dengan melihatmu, seperti apa orang yang kuat dan penuh kasih."
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "Beristirahat bukan berarti meninggalkan tugas. Justru itu caramu bisa terus bertahan."
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "Tidak ada yang menghitung skor. Cinta dan kehadiranmu, itulah yang penting."
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "Duka dan cinta datang dari tempat yang sama. Rasa rindu menunjukkan betapa kamu mencintai."
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "Tidak ada jadwal yang benar untuk berduka. Ambil waktu yang kamu butuhkan."
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "Di hari peringatan yang berat, bersikaplah lembut pada dirimu seperti kamu lembut pada seorang sahabat."
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "Kamu bisa membawa kesedihan dan tetap tertawa bersama anak-anakmu. Keduanya nyata."
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "Kalau kamu kehilangan kehamilan atau bayi, kehilangan itu nyata, dan cintamu juga."
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "Ada hari ketika duka terasa sunyi, ada hari ketika ia riuh. Keduanya tidak apa-apa."
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "Kekurangan uang tidak berarti kekurangan cinta."
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "Anak-anakmu akan lebih mengingat waktu bersamamu daripada barang yang kamu belikan."
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "Menanyakan bantuan untuk tagihan itu cerdas, bukan memalukan. Bantuan itu memang ada untuk itu."
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "Satu sore gratis di taman bisa jadi hari terbaik minggu ini."
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "Kamu berhasil membuat uangnya cukup satu minggu lagi. Itu butuh keterampilan sungguhan."
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "Mengkhawatirkan uang itu melelahkan. Kamu memikul banyak hal, dan kamu masih di sini."
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "Hari ini kamu minum segelas air. Mulai dari situ."
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "Semua orang berhasil keluar rumah. Mungkin sepatunya tidak serasi. Tetap saja menang."
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "Kamu sudah menelepon yang kamu takutkan itu. Itu berani."
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "Hari ini kamu tertawa. Simpan itu baik-baik."
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "Makanan hangat, baju bersih, dongeng sebelum tidur. Hal-hal kecil itulah yang membentuk masa kecil."
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "Hari ini kamu berbuat baik kepada seseorang, meski itu hanya dirimu sendiri."
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "Kemajuan, bukan kesempurnaan. Hari ini kamu melangkah maju."
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "Kamu menyelesaikan satu hal di daftar. Itu satu lebih banyak daripada tidak sama sekali."
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "Kamu ibu yang baik. Kekhawatiranmu soal itu menunjukkan betapa kamu peduli."
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "Kamu lebih dari apa yang bisa kamu selesaikan dalam sehari."
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "Anak-anakmu tidak butuh ibu yang sempurna. Mereka butuh kamu, dan mereka punya kamu."
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "Bersabarlah pada dirimu sendiri seperti kamu bersabar pada anak-anakmu."
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "Kamu boleh punya ruang, menginginkan sesuatu, dan punya mimpimu sendiri."
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "Satu kesalahan tidak menghapus cinta. Besok adalah awal yang baru."
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "Kamu adalah seluruh dunia bagi seseorang, dan kamu juga pribadi yang utuh."
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "Tidak apa-apa kalau tidak menikmati setiap menit. Kamu tetap bisa mencintai anak-anakmu sepenuh hati."
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "Tidak ada satu cara yang benar untuk menjadi ibu. Caramu juga boleh."
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "Seperti dalam pose pohon, tidak apa-apa goyah. Kamu bisa menemukan keseimbanganmu lagi."
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "Tapakkan kakimu seperti dalam pose gunung. Kamu lebih kokoh daripada yang kamu rasakan."
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "Pejuang dua: kaki kuat, lengan terbuka. Itulah kamu, menghadapi minggu ini."
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "Tarik napas dalam hitungan empat, embuskan dalam hitungan empat. Kamu di sini, dan kamu baik-baik saja."
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "Rentangkan dirimu lebar seperti bintang. Kamu boleh mengambil ruang."
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "Jongkok yang lebar dan rendah itu sulit ditahan. Begitu juga hari yang panjang. Dan kamu bertahan."
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "Kamu bisa melengkung seperti bulan sabit dan tetap berdiri."
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "Kamu belum perlu menyentuh jari kaki. Setiap sedikit peregangan itu berarti."
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "Pose segitiga: satu tangan ke bawah, satu ke atas. Tetap berpijak kuat dan terus menjangkau."
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "Sudah larut. Yang belum selesai hari ini bisa menunggu sampai besok."
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "Terjaga bersama bayi jam segini? Banyak ibu sedang terjaga bersamamu sekarang."
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "Rumah sudah sepi. Saat ini milikmu. Bernapaslah."
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "Kamu berhasil melewati hari ini. Hanya itu yang dibutuhkan hari ini."
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "Kalau pikiranmu ramai malam ini, tuliskan dan biarkan menunggu sampai pagi."
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "Istirahatkan matamu. Besok kamu bisa mulai lagi."
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "Hari raya bisa terasa berat sekaligus membahagiakan. Apa pun rasanya musim ini bagimu, tidak apa-apa."
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "Meja makan tidak perlu sempurna. Orang-orang di sekelilingnya yang penting."
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "Kalau tahun ini kamu merindukan seseorang di meja makan, bersikaplah lembut pada hatimu."
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "Terima kasih, Ibu, untuk setiap masakan, setiap antar-jemput, dan setiap pelukan."
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "Kamu tidak harus menjamu tamu, membuat kue, atau tersenyum sepanjang waktu. Perayaan sederhana tetaplah perayaan."
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "Hadiah terbaik yang anak-anakmu terima tahun ini adalah waktu bersamamu."
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "Perayaan kecil pun penuh cinta. Tidak perlu banyak uang untuk membuatnya istimewa."
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "Hari yang dingin, pelukan yang hangat. Kamulah sudut hangat di rumahmu."
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "Tidak apa-apa melewatkan sebagian kesibukan hari raya. Ketenangan juga sebuah hadiah."
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "Kalau musim ini terasa berat tahun ini, kamu tidak sendirian. Jalani satu hari demi satu hari."
+  }
+ ]
+}

@@ -1,0 +1,415 @@
+{
+ "lang": "sw",
+ "name": "Swahili",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "Huhitaji kufanya kila kitu leo. Jambo dogo linalofuata linatosha."
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "Kuchoka si kushindwa. Umechoka kwa sababu unaendelea kuwepo kila siku."
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "Vyombo vinaweza kusubiri. Una haki ya kuketi kwa dakika tano."
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "Nafaka kwa chakula cha jioni bado ni kuilisha familia yako."
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "Kupumzika si kitu unachopaswa kukistahili. Unaweza kupumzika sasa hivi."
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "Siku nyingine ushindi ni kwamba kila mtu amefika salama hadi wakati wa kulala. Huo ni ushindi wa kweli."
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "Unafanya mengi kuliko mtu yeyote anavyoona. Mimi naona."
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "Nyumba iliyovurugika na watoto wanaopendwa. Hiyo ni biashara nzuri."
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "Siku ngumu, juhudi zako bora huonekana tofauti, na bado zinahesabika."
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "Pumua kwa kina mara moja. Shusha mabega. Unaendelea vizuri."
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "Ni sawa kupunguza matarajio leo. Unaweza kuyainua tena siku nyingine."
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "Kuomba msaada ni ujasiri, si udhaifu."
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "Una haki ya kukataa jambo moja zaidi."
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "Kama leo ulijisikia mpweke, wewe si mama pekee aliyejisikia hivyo. Tuko wengi."
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "Unastahili rafiki anayekuuliza hali yako na kusubiri jibu."
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "Ni sawa kuwa wa kwanza kuwasiliana. Akina mama wengi wanatumaini mtu atafanya hivyo."
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "Kujisikia kama hakuna anayekuona hakumaanishi kwamba wewe si muhimu. Wewe ni muhimu sana."
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "Hisia zako zina maana. Wewe si mzigo."
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "Hapa huhitaji kueleza siku yako ngumu. Tunaelewa."
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "Ujumbe kwa mama mwingine unaosema \"mimi pia\" unaweza kubadilisha siku nzima."
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "Kulisha, kubadilisha nepi, kubembeleza, na tena upya. Hiyo ni kazi halisi, hata inapoonekana kama kukaa tu."
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "Wewe na mtoto wako bado mnajifunza kufahamiana. Hakuna haraka."
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "Siku na mtoto mchanga ni ndefu. Kipindi hiki hakitadumu milele."
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "Kama leo ulichofanya ni kumtunza mtu mdogo ashibe na apate joto, umefanya kazi kubwa."
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "Huhitaji kurudi haraka ulivyokuwa. Unaweza kuwa tu pale ulipo."
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "Vyovyote mtoto wako anavyolishwa, unamtunza. Hilo ndilo muhimu."
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "Unaweza kukosa usingizi na kujaa upendo kwa wakati mmoja."
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "Mbebe mtoto na uache kazi za nyumba. Nyumba bado itakuwepo."
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "Mtoto kulia na kugaagaa dukani hakukufanyi mama mbaya. Inamaanisha tu una mtoto mdogo."
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "Watoto wadogo hujaribu mipaka kwa sababu wanajisikia salama wakiwa nawe."
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "Leo ulibaki mtulivu dakika moja zaidi kuliko jana. Hilo linahesabika."
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "Kama ulikasirika, kumbatio na \"samahani\" vinarekebisha mengi. Na vinawafundisha jambo jema pia."
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "Mikono inayonata, sauti kubwa, hisia kubwa. Unalea mtu kamili."
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "\"Kwa nini?\" ya tano katika saa hii ni akili ndogo inayokua."
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "Huhitaji siku kamilifu ili kutengeneza kumbukumbu ya furaha."
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "Mlango uliobamizwa si mwisho wa hadithi. Acha taa iwake."
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "Kijana wako anaweza asiseme, lakini uwepo wako wa kila siku una maana kubwa."
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "Kuwa mtulivu ndani ya nyumba ni kazi ngumu. Na unaifanya."
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "Baadhi ya mazungumzo bora hutokea garini. Endelea kuendesha."
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "Wanajitenga ili wakue, si ili wakuache nyuma."
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "Huhitaji kuwa na majibu yote. Kusikiliza ni sehemu kubwa ya jambo hili."
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "Watoto wakubwa bado wanakuhitaji, ila kwa njia za kimya zaidi."
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "Kufanya yote peke yako kunahitaji nguvu ambayo watu wengi hawaioni kamwe."
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "Kama mama, unamtosha mtoto wako. Umekuwa hivyo siku zote."
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "Mikono miwili, kazi mia. Jihurumie."
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "Watoto wako wanajifunza, wakikutazama, jinsi mtu mwenye nguvu na upendo anavyokuwa."
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "Kupumzika si kuacha kazi yako. Ndivyo unavyoweza kuendelea."
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "Hakuna anayehesabu alama. Upendo na kuwepo ndivyo muhimu."
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "Majonzi na upendo hutoka mahali pamoja. Kumkumbuka mtu kunaonyesha jinsi ulivyompenda."
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "Hakuna ratiba sahihi ya maombolezo. Chukua muda unaohitaji."
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "Katika kumbukumbu ngumu za kila mwaka, jionee huruma kama ungemwonea rafiki."
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "Unaweza kubeba huzuni na bado ukacheka na watoto wako. Yote mawili ni ya kweli."
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "Kama ulipoteza mimba au mtoto, hasara hiyo ni ya kweli, na upendo wako pia."
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "Siku nyingine huzuni huwa kimya, na siku nyingine huwa na kelele. Yote ni sawa."
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "Kuwa na pesa kidogo hakumaanishi kuwa na upendo kidogo."
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "Watoto wako watakumbuka muda waliokaa nawe kuliko vitu ulivyowanunulia."
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "Kuuliza kuhusu msaada wa bili ni busara, si aibu. Ndiyo maana msaada huo upo."
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "Mchana wa bure bustanini unaweza kuwa siku bora ya wiki."
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "Ulifanya pesa zitoshe wiki moja zaidi. Hilo linahitaji ujuzi wa kweli."
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "Kuhangaikia pesa kunachosha. Unabeba mengi, na bado uko hapa."
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "Leo ulikunywa glasi ya maji. Anzia hapo."
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "Kila mtu alitoka mlangoni. Huenda viatu havikulingana. Bado ni ushindi."
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "Ulipiga ile simu uliyokuwa ukiiogopa. Huo ulikuwa ujasiri."
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "Leo ulicheka. Shikilia hilo."
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "Chakula cha moto, shati safi, hadithi kabla ya kulala. Vitu vidogo hujenga utoto."
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "Leo ulimfanyia mtu wema, hata kama ni wewe mwenyewe tu."
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "Hatua, si ukamilifu. Leo umesonga mbele."
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "Umemaliza jambo moja kwenye orodha. Hilo ni moja zaidi ya hakuna."
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "Wewe ni mama mwema. Kuwa na wasiwasi kuhusu hilo kunaonyesha jinsi unavyojali."
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "Wewe ni zaidi ya kile unachoweza kumaliza kwa siku moja."
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "Watoto wako hawahitaji mama mkamilifu. Wanakuhitaji wewe, na uko nao."
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "Kuwa mvumilivu kwako mwenyewe kama unavyowavumilia watoto wako."
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "Una haki ya kuchukua nafasi, kutamani vitu na kuwa na ndoto zako mwenyewe."
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "Kosa halifuti upendo. Kesho ni mwanzo mpya."
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "Wewe ni ulimwengu mzima wa mtu fulani, na pia wewe ni mtu wako mwenyewe."
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "Ni sawa kutofurahia kila dakika. Bado unaweza kuwapenda watoto wako kwa moyo wako wote."
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "Hakuna njia moja tu sahihi ya kuwa mama. Njia yako inakubalika."
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "Kama katika mkao wa mti, ni sawa kuyumba. Unaweza kupata usawa wako tena."
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "Simamisha miguu yako imara kama katika mkao wa mlima. Uko imara kuliko unavyojisikia."
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "Shujaa wa pili: miguu yenye nguvu, mikono iliyonyooshwa. Huyo ni wewe, ukiikabili wiki hii."
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "Vuta pumzi hadi nne, toa hadi nne. Uko hapa, na unaendelea vizuri."
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "Jinyooshe kwa upana kama nyota. Una haki ya kuchukua nafasi."
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "Kuchuchumaa kwa upana na chini ni vigumu kudumu. Siku ndefu pia. Na unadumu."
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "Unaweza kuinama kama mwezi mchanga na bado ukasimama."
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "Huhitaji kufikia vidole vya miguu bado. Kila kunyoosha kidogo kunahesabika."
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "Mkao wa pembetatu: mkono mmoja chini, mmoja juu. Kaa imara na endelea kunyoosha."
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "Ni usiku sana. Kisichofanyika leo kinaweza kusubiri hadi kesho."
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "Uko macho na mtoto saa hii? Akina mama wengi wako macho pamoja nawe sasa hivi."
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "Nyumba imetulia. Wakati huu ni wako. Pumua."
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "Umeivuka siku ya leo. Hilo ndilo pekee leo ilihitaji."
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "Kama akili yako haitulii usiku huu, yaandike na uyaache yasubiri hadi asubuhi."
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "Pumzisha macho yako. Kesho unaweza kuanza upya."
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "Sikukuu zinaweza kuwa ngumu pamoja na kuwa za furaha. Vyovyote unavyojisikia msimu huu, ni sawa."
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "Meza haihitaji kuwa kamilifu. Watu walio kuizunguka ndio muhimu."
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "Kama mwaka huu unamkosa mtu mezani, kuwa mpole kwa moyo wako."
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "Asante, mama, kwa kila mlo, kila safari na kila kumbatio."
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "Huhitaji kukaribisha wageni, kuoka au kutabasamu muda wote. Sikukuu rahisi bado ni sikukuu."
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "Zawadi bora watakayopata watoto wako mwaka huu ni muda pamoja nawe."
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "Sherehe ndogo nayo imejaa upendo. Haihitaji pesa nyingi ili iwe maalum."
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "Siku za baridi, makumbatio ya joto. Wewe ndiye joto la nyumba yako."
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "Ni sawa kuruka baadhi ya pilikapilika za sikukuu. Amani nayo ni zawadi."
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "Kama msimu huu ni mzito kwako mwaka huu, hauko peke yako. Siku moja baada ya nyingine."
+  }
+ ]
+}

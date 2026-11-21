@@ -1,0 +1,415 @@
+{
+ "lang": "ar",
+ "name": "Arabic",
+ "dir": "rtl",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "لستِ مضطرة لإنجاز كل شيء اليوم. تكفي الخطوة الصغيرة التالية."
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "التعب ليس فشلًا. أنتِ متعبة لأنكِ حاضرة كل يوم."
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "الصحون يمكنها الانتظار. من حقكِ أن تجلسي خمس دقائق."
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "رقائق الحبوب على العشاء تُحسب أيضًا إطعامًا لعائلتكِ."
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "الراحة ليست شيئًا عليكِ أن تستحقيه. يمكنكِ أن ترتاحي الآن."
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "في بعض الأيام يكون الإنجاز أن الجميع وصلوا إلى وقت النوم بسلام. وهذا إنجاز حقيقي."
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "أنتِ تفعلين أكثر مما يراه أي أحد. أنا أرى ذلك."
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "بيت غير مرتب وأطفال محبوبون. إنها مقايضة جيدة."
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "في اليوم الصعب يبدو أفضل ما لديكِ مختلفًا، ومع ذلك فهو يُحسب."
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "نفس عميق واحد. أرخي كتفيكِ. أنتِ بخير."
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "لا بأس أن تخففي سقف توقعاتكِ اليوم. يمكنكِ رفعه من جديد في يوم آخر."
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "طلب المساعدة قوة، وليس ضعفًا."
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "من حقكِ أن تقولي لا لأمر إضافي."
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "إن شعرتِ بالوحدة اليوم، فلستِ الأم الوحيدة التي شعرت بذلك. نحن كثيرات."
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "تستحقين صديقة تسألكِ عن حالكِ وتنتظر الجواب."
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "لا بأس أن تبادري أنتِ أولًا. معظم الأمهات يتمنين أن يبادر أحد."
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "شعوركِ بأن لا أحد يراكِ لا يعني أنكِ غير مهمة. أنتِ مهمة جدًا."
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "مشاعركِ مفهومة. أنتِ لستِ عبئًا."
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "هنا لا تحتاجين إلى شرح يومكِ الصعب. نحن نفهمكِ."
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "رسالة إلى أم أخرى تقول «وأنا أيضًا» قد تغيّر يومًا كاملًا."
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "إرضاع، وتغيير، وهدهدة، ثم من جديد. هذا عمل حقيقي، حتى لو بدا كأنكِ جالسة فقط."
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "أنتِ وطفلكِ ما زلتما تتعرفان على بعضكما. لا داعي للعجلة."
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "الأيام مع المولود الجديد طويلة. هذه المرحلة لن تدوم إلى الأبد."
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "إن كان كل ما فعلتِه اليوم أنكِ أبقيتِ إنسانًا صغيرًا شبعانَ ودافئًا، فقد قمتِ بعمل عظيم."
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "لا يلزمكِ أن تعودي كما كنتِ بسرعة. يمكنكِ ببساطة أن تكوني حيث أنتِ."
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "أيًّا كانت طريقة إطعام طفلكِ، فأنتِ تعتنين به. وهذا ما يهم."
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "يمكن أن تكوني قليلة النوم ومليئة بالحب في الوقت نفسه."
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "احضني طفلكِ ودعي شؤون البيت. البيت سيبقى في مكانه."
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "نوبة غضب في المتجر لا تجعلكِ أمًّا سيئة. إنها تعني فقط أن لديكِ طفلًا صغيرًا."
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "الصغار يختبرون الحدود لأنهم يشعرون بالأمان معكِ."
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "بقيتِ هادئة دقيقة أطول من الأمس. وهذا يُحسب."
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "إن فقدتِ أعصابكِ، فإن حضنًا وكلمة «آسفة» يصلحان الكثير. ويعلّمانهم شيئًا جميلًا أيضًا."
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "أيدٍ لزجة، وأصوات عالية، ومشاعر كبيرة. أنتِ تربّين إنسانًا كاملًا."
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "«لماذا؟» الخامسة في هذه الساعة هي عقل صغير ينمو."
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "لا تحتاجين إلى يوم مثالي لتصنعي ذكرى سعيدة."
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "باب يُصفق بقوة ليس نهاية الحكاية. اتركي الضوء مضاءً."
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "قد لا يقولها ابنكِ المراهق، لكن وجودكِ الثابت يعني له الكثير."
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "أن تكوني الهادئة في البيت عمل شاق. وأنتِ تقومين به."
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "بعض أجمل الأحاديث تحدث في السيارة. واصلي القيادة."
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "إنهم يبتعدون ليكبروا، لا ليتركوكِ خلفهم."
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "لا تحتاجين إلى كل الإجابات. الإصغاء جزء كبير من الأمر."
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "الأبناء الكبار ما زالوا يحتاجونكِ، لكن بطرق أهدأ."
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "أن تحملي كل شيء وحدكِ يتطلب قوة لا يراها معظم الناس."
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "أنتِ أمٌّ كافية لطفلكِ. وكنتِ كذلك دائمًا."
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "يدان اثنتان ومئة مهمة. ترفّقي بنفسكِ."
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "أطفالكِ يتعلمون، وهم يرونكِ، كيف يبدو الإنسان القوي المحب."
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "أخذ استراحة ليس تخليًا عن موقعكِ. إنه ما يعينكِ على الاستمرار."
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "لا أحد يعدّ النقاط. المهم هو الحب وأن تكوني حاضرة."
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "الحزن والحب ينبعان من المكان نفسه. اشتياقكِ يدل على مقدار حبكِ."
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "لا يوجد موعد صحيح لانتهاء الحزن. خذي الوقت الذي تحتاجينه."
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "في الذكريات السنوية الصعبة، كوني رفيقة بنفسكِ كما تكونين مع صديقة."
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "يمكنكِ أن تحملي الحزن وتضحكي مع أطفالكِ رغم ذلك. كلاهما حقيقي."
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "إن فقدتِ حملًا أو طفلًا، فهذه خسارة حقيقية، وحبكِ حقيقي أيضًا."
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "في بعض الأيام يكون الحزن صامتًا، وفي أيام أخرى يكون صاخبًا. وكلاهما طبيعي."
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "قلة المال لا تعني قلة الحب."
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "سيتذكر أطفالكِ الوقت الذي قضوه معكِ أكثر من الأشياء التي اشتريتِها."
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "السؤال عن مساعدة في دفع الفواتير تصرف ذكي، وليس عيبًا. لهذا وُجدت المساعدة."
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "عصر مجاني في الحديقة قد يكون أجمل يوم في الأسبوع."
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "جعلتِ المال يكفي أسبوعًا آخر. هذا يحتاج إلى مهارة حقيقية."
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "القلق بشأن المال مُتعب. أنتِ تحملين الكثير، وما زلتِ هنا."
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "شربتِ كوبًا من الماء اليوم. ابدئي من هنا."
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "خرج الجميع من الباب. ربما لم تكن الأحذية متطابقة. ومع ذلك إنجاز."
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "أجريتِ المكالمة التي كنتِ تخشينها. كان ذلك شجاعة."
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "ضحكتِ اليوم. تمسّكي بذلك."
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "وجبة دافئة، وقميص نظيف، وحكاية قبل النوم. الأشياء الصغيرة تصنع طفولة."
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "كنتِ لطيفة مع أحدهم اليوم، حتى لو كان ذلك مع نفسكِ فقط."
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "التقدم لا الكمال. لقد تقدمتِ اليوم."
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "أنهيتِ أمرًا واحدًا من القائمة. هذا أكثر من لا شيء."
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "أنتِ أم جيدة. وقلقكِ بشأن ذلك يدل على مدى اهتمامكِ."
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "أنتِ أكبر من كل ما تنجزينه في يوم واحد."
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "أطفالكِ لا يحتاجون إلى أم مثالية. يحتاجونكِ أنتِ، وأنتِ معهم."
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "كوني صبورة مع نفسكِ كما تصبرين على أطفالكِ."
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "من حقكِ أن يكون لكِ مكان، وأن تريدي أشياء، وأن تكون لكِ أحلامكِ الخاصة."
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "الخطأ لا يمحو الحب. الغد بداية جديدة."
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "أنتِ العالم كله لأحدهم، وأنتِ أيضًا إنسانة قائمة بذاتها."
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "لا بأس ألا تستمتعي بكل دقيقة. ما زال بإمكانكِ أن تحبي أطفالكِ من كل قلبكِ."
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "لا توجد طريقة واحدة صحيحة لتكوني أمًّا. طريقتكِ مقبولة أيضًا."
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "كما في وضعية الشجرة، لا بأس أن تتمايلي. يمكنكِ أن تستعيدي توازنكِ."
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "ثبّتي قدميكِ كما في وضعية الجبل. أنتِ أثبت مما تشعرين."
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "المحاربة الثانية: ساقان قويتان وذراعان مفتوحتان. هذه أنتِ في مواجهة هذا الأسبوع."
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "شهيق حتى أربعة، وزفير حتى أربعة. أنتِ هنا، وأنتِ بخير."
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "تمدّدي واسعة كالنجمة. من حقكِ أن تأخذي مساحتكِ."
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "القرفصاء الواسعة المنخفضة صعبة الثبات. وكذلك اليوم الطويل. وأنتِ صامدة."
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "يمكنكِ أن تميلي كالهلال وتبقي واقفة."
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "لا يلزمكِ أن تلمسي أصابع قدميكِ بعد. كل قدر من التمدد يُحسب."
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "وضعية المثلث: يد إلى الأسفل ويد إلى الأعلى. ابقي ثابتة وواصلي الامتداد."
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "لقد تأخر الوقت. ما لم يُنجز اليوم يمكنه أن ينتظر حتى الغد."
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "مستيقظة مع طفلكِ في هذه الساعة؟ أمهات كثيرات مستيقظات معكِ الآن."
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "البيت هادئ. هذه اللحظة لكِ. تنفّسي."
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "لقد اجتزتِ هذا اليوم. وهذا كل ما احتاجه اليوم."
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "إن كان عقلكِ مشغولًا الليلة، فاكتبي ما فيه ودعيه ينتظر حتى الصباح."
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "أريحي عينيكِ. غدًا يمكنكِ أن تبدئي من جديد."
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "المناسبات قد تكون صعبة بقدر ما هي سعيدة. أيًّا كان شعوركِ في هذا الموسم، فلا بأس."
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "المائدة لا تحتاج إلى أن تكون مثالية. المهم هم الناس الذين حولها."
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "إن كنتِ تفتقدين أحدًا على المائدة هذا العام، فترفّقي بقلبكِ."
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "شكرًا يا أمي، على كل وجبة، وكل مشوار، وكل حضن."
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "لستِ مضطرة للاستضافة أو الخَبز أو الابتسام طوال الوقت. المناسبة البسيطة تبقى مناسبة."
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "أجمل هدية يحصل عليها أطفالكِ هذا العام هي الوقت معكِ."
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "الاحتفال الصغير مليء بالحب أيضًا. لا يحتاج إلى مال كثير ليكون مميزًا."
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "أيام باردة وأحضان دافئة. أنتِ الركن الدافئ في بيتكِ."
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "لا بأس أن تتجاوزي بعض صخب المناسبات. السكينة هدية أيضًا."
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "إن كان هذا الموسم ثقيلًا عليكِ هذا العام، فلستِ وحدكِ. يومًا بيوم."
+  }
+ ]
+}

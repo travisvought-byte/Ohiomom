@@ -1,0 +1,415 @@
+{
+ "lang": "el",
+ "name": "Greek",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "Δεν χρειάζεται να τα κάνεις όλα σήμερα. Το επόμενο μικρό βήμα φτάνει."
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "Η κούραση δεν είναι αποτυχία. Είσαι κουρασμένη επειδή είσαι εκεί, κάθε μέρα."
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "Τα πιάτα μπορούν να περιμένουν. Έχεις δικαίωμα να καθίσεις πέντε λεπτά."
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "Δημητριακά για βραδινό; Κι αυτό μετράει ως φαγητό για την οικογένειά σου."
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "Την ξεκούραση δεν χρειάζεται να την κερδίσεις. Μπορείς να ξεκουραστείς τώρα."
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "Κάποιες μέρες η νίκη είναι ότι όλοι φτάσαμε ως την ώρα του ύπνου. Είναι αληθινή νίκη."
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "Κάνεις πολύ περισσότερα απ’ όσα βλέπει κανείς. Εγώ τα βλέπω."
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "Ένα ακατάστατο σπίτι και αγαπημένα παιδιά. Καλή ανταλλαγή."
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "Σε μια δύσκολη μέρα, το καλύτερό σου μοιάζει αλλιώς, και πάλι μετράει."
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "Μια βαθιά ανάσα. Χαλάρωσε τους ώμους. Τα πας καλά."
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "Είναι εντάξει να κατεβάσεις τον πήχη σήμερα. Θα τον ανεβάσεις ξανά άλλη μέρα."
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "Το να ζητάς βοήθεια είναι δύναμη, όχι αδυναμία."
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "Έχεις δικαίωμα να πεις όχι σε ακόμα ένα πράγμα."
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "Αν σήμερα ένιωσες μοναξιά, δεν είσαι η μόνη μαμά που ένιωσε έτσι. Είμαστε πολλές."
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "Σου αξίζει μια φίλη που ρωτάει πώς είσαι και περιμένει την απάντηση."
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "Είναι εντάξει να κάνεις εσύ το πρώτο βήμα. Οι περισσότερες μαμάδες ελπίζουν να το κάνει κάποια."
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "Το ότι νιώθεις αόρατη δεν σημαίνει ότι δεν μετράς. Μετράς πάρα πολύ."
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "Αυτά που νιώθεις έχουν λογική. Δεν είσαι «υπερβολική»."
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "Εδώ δεν χρειάζεται να εξηγήσεις τη δύσκολη μέρα σου. Σε καταλαβαίνουμε."
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "Ένα μήνυμα σε μια άλλη μαμά που λέει «κι εγώ» μπορεί να αλλάξει όλη τη μέρα."
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "Τάισμα, άλλαγμα, νανούρισμα, και ξανά απ’ την αρχή. Είναι αληθινή δουλειά, ακόμα κι όταν μοιάζει με απλό κάθισμα."
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "Εσύ και το μωρό σου ακόμα γνωρίζεστε. Δεν υπάρχει βιασύνη."
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "Οι μέρες με ένα νεογέννητο είναι μεγάλες. Αυτή η περίοδος δεν θα κρατήσει για πάντα."
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "Αν το μόνο που έκανες σήμερα ήταν να κρατήσεις έναν μικρό άνθρωπο χορτάτο και ζεστό, έκανες σπουδαία δουλειά."
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "Δεν χρειάζεται να γίνεις γρήγορα όπως πριν. Μπορείς απλώς να είσαι εκεί που είσαι."
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "Όπως κι αν τρέφεται το μωρό σου, το φροντίζεις. Αυτό μετράει."
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "Μπορείς να έχεις λίγο ύπνο και πολλή αγάπη ταυτόχρονα."
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "Κράτα το μωρό αγκαλιά και άσε το σπίτι. Το σπίτι θα είναι ακόμα εδώ."
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "Ένα ξέσπασμα στο σούπερ μάρκετ δεν σε κάνει κακή μαμά. Σημαίνει ότι έχεις ένα νήπιο."
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "Τα μικρά δοκιμάζουν τα όρια επειδή νιώθουν ασφάλεια μαζί σου."
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "Έμεινες ήρεμη ένα λεπτό περισσότερο από χθες. Αυτό μετράει."
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "Αν θύμωσες, μια αγκαλιά κι ένα «συγγνώμη» διορθώνουν πολλά. Και τους μαθαίνουν κάτι καλό."
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "Κολλημένα χεράκια, δυνατές φωνές, μεγάλα συναισθήματα. Μεγαλώνεις έναν ολόκληρο άνθρωπο."
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "Το πέμπτο «γιατί;» της ώρας είναι ένα μικρό μυαλό που μεγαλώνει."
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "Δεν χρειάζεσαι τέλεια μέρα για να φτιάξεις μια χαρούμενη ανάμνηση."
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "Μια πόρτα που χτυπάει δεν είναι το τέλος της ιστορίας. Άφησε το φως αναμμένο."
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "Ο έφηβός σου μπορεί να μην το λέει, αλλά η σταθερή σου παρουσία μετράει."
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "Το να είσαι η ήρεμη του σπιτιού είναι δύσκολη δουλειά. Και την κάνεις."
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "Μερικές από τις καλύτερες κουβέντες γίνονται στο αυτοκίνητο. Συνέχισε να οδηγείς."
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "Απομακρύνονται για να μεγαλώσουν, όχι για να σε αφήσουν πίσω."
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "Δεν χρειάζεται να έχεις όλες τις απαντήσεις. Το να ακούς είναι μεγάλο μέρος."
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "Τα μεγάλα παιδιά σε χρειάζονται ακόμα, απλώς πιο αθόρυβα."
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "Το να τα βγάζεις πέρα μόνη θέλει μια δύναμη που οι περισσότεροι δεν βλέπουν ποτέ."
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "Είσαι αρκετή μαμά για το παιδί σου. Πάντα ήσουν."
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "Δύο χέρια, εκατό δουλειές. Να είσαι επιεικής με τον εαυτό σου."
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "Τα παιδιά σου μαθαίνουν, βλέποντάς σε, πώς είναι ένας δυνατός, τρυφερός άνθρωπος."
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "Το διάλειμμα δεν είναι εγκατάλειψη. Έτσι αντέχεις."
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "Κανείς δεν κρατάει σκορ. Η αγάπη και το να είσαι εκεί, αυτά μετράνε."
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "Το πένθος και η αγάπη έρχονται από το ίδιο μέρος. Η απουσία που νιώθεις δείχνει πόσο αγάπησες."
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "Δεν υπάρχει σωστό χρονοδιάγραμμα για το πένθος. Πάρε όσο χρόνο χρειάζεσαι."
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "Στις δύσκολες επετείους, να είσαι τόσο τρυφερή με τον εαυτό σου όσο θα ήσουν με μια φίλη."
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "Μπορείς να κουβαλάς λύπη και να γελάς με τα παιδιά σου. Και τα δύο είναι αληθινά."
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "Αν έχασες μια εγκυμοσύνη ή ένα μωρό, η απώλεια είναι αληθινή, και η αγάπη σου επίσης."
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "Κάποιες μέρες το πένθος είναι σιωπηλό και κάποιες φωνάζει. Και τα δύο είναι εντάξει."
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "Τα λίγα χρήματα δεν σημαίνουν λίγη αγάπη."
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "Τα παιδιά σου θα θυμούνται τον χρόνο μαζί σου περισσότερο από τα πράγματα που αγόρασες."
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "Το να ρωτάς για βοήθεια με τους λογαριασμούς είναι έξυπνο, όχι ντροπή. Γι’ αυτό υπάρχει η βοήθεια."
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "Ένα δωρεάν απόγευμα στο πάρκο μπορεί να είναι η καλύτερη μέρα της εβδομάδας."
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "Τα έβγαλες πέρα μια εβδομάδα ακόμα. Αυτό θέλει πραγματική ικανότητα."
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "Η έγνοια για τα χρήματα κουράζει. Κουβαλάς πολλά, κι όμως είσαι ακόμα εδώ."
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "Ήπιες ένα ποτήρι νερό σήμερα. Ξεκίνα από εκεί."
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "Όλοι βγήκαν από την πόρτα. Τα παπούτσια ίσως δεν ταίριαζαν. Και πάλι νίκη."
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "Έκανες το τηλεφώνημα που φοβόσουν. Ήταν γενναίο."
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "Γέλασες σήμερα. Κράτα το."
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "Ένα ζεστό φαγητό, ένα καθαρό μπλουζάκι, ένα παραμύθι πριν τον ύπνο. Τα μικρά πράγματα φτιάχνουν μια παιδική ηλικία."
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "Σήμερα φέρθηκες καλά σε κάποιον, έστω κι αν ήταν μόνο ο εαυτός σου."
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "Πρόοδος, όχι τελειότητα. Σήμερα προχώρησες."
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "Τελείωσες ένα πράγμα από τη λίστα. Ένα παραπάνω από κανένα."
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "Είσαι καλή μαμά. Το ότι σε απασχολεί δείχνει πόσο νοιάζεσαι."
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "Είσαι πολύ περισσότερα από όσα προλαβαίνεις σε μια μέρα."
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "Τα παιδιά σου δεν χρειάζονται τέλεια μαμά. Χρειάζονται εσένα, και σε έχουν."
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "Να είσαι υπομονετική με τον εαυτό σου όσο είσαι με τα παιδιά σου."
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "Έχεις δικαίωμα να πιάνεις χώρο, να θέλεις πράγματα και να έχεις τα δικά σου όνειρα."
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "Ένα λάθος δεν σβήνει την αγάπη. Το αύριο είναι μια καινούργια αρχή."
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "Είσαι ο κόσμος όλος για κάποιον, και είσαι και ο δικός σου άνθρωπος."
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "Είναι εντάξει να μην απολαμβάνεις κάθε λεπτό. Μπορείς και πάλι να αγαπάς τα παιδιά σου με όλη σου την καρδιά."
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "Δεν υπάρχει ένας σωστός τρόπος να είσαι μαμά. Ο δικός σου τρόπος χωράει."
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "Όπως στη στάση του δέντρου, είναι εντάξει να ταλαντεύεσαι. Μπορείς να βρεις ξανά την ισορροπία σου."
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "Στερέωσε τα πόδια σου όπως στη στάση του βουνού. Είσαι πιο σταθερή απ’ όσο νιώθεις."
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "Πολεμιστής δύο: δυνατά πόδια, ανοιχτά χέρια. Αυτή είσαι εσύ, απέναντι σε αυτή την εβδομάδα."
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "Εισπνοή στο τέσσερα, εκπνοή στο τέσσερα. Είσαι εδώ, και τα πας καλά."
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "Ανοίξου πλατιά σαν αστέρι. Έχεις δικαίωμα να πιάνεις χώρο."
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "Ένα φαρδύ, χαμηλό κάθισμα είναι δύσκολο να το κρατήσεις. Το ίδιο και μια μεγάλη μέρα. Και την κρατάς."
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "Μπορείς να γέρνεις σαν μισοφέγγαρο και να στέκεσαι ακόμα όρθια."
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "Δεν χρειάζεται να φτάσεις ακόμα τα δάχτυλα των ποδιών. Κάθε λίγο τέντωμα μετράει."
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "Στάση του τριγώνου: ένα χέρι κάτω, ένα χέρι πάνω. Μείνε γειωμένη και συνέχισε να τεντώνεσαι."
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "Είναι αργά. Ό,τι δεν έγινε σήμερα μπορεί να περιμένει ως αύριο."
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "Ξύπνια με το μωρό τέτοια ώρα; Πολλές μαμάδες είναι ξύπνιες μαζί σου αυτή τη στιγμή."
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "Το σπίτι ησύχασε. Αυτή η στιγμή είναι δική σου. Ανάσανε."
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "Τα κατάφερες για σήμερα. Μόνο αυτό χρειαζόταν η μέρα."
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "Αν το μυαλό σου τρέχει απόψε, γράψ’ τα και άφησέ τα να περιμένουν ως το πρωί."
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "Ξεκούρασε τα μάτια σου. Αύριο ξεκινάς από την αρχή."
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "Οι γιορτές μπορεί να είναι δύσκολες όσο και χαρούμενες. Ό,τι κι αν νιώθεις αυτή την εποχή, είναι εντάξει."
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "Το τραπέζι δεν χρειάζεται να είναι τέλειο. Οι άνθρωποι γύρω του είναι αυτό που μετράει."
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "Αν φέτος σου λείπει κάποιος από το τραπέζι, να είσαι τρυφερή με την καρδιά σου."
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "Ευχαριστώ, μαμά, για κάθε φαγητό, κάθε διαδρομή και κάθε αγκαλιά."
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "Δεν χρειάζεται να φιλοξενήσεις, να ψήσεις ή να χαμογελάς συνέχεια. Μια απλή γιορτή είναι κι αυτή γιορτή."
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "Το καλύτερο δώρο που παίρνουν φέτος τα παιδιά σου είναι χρόνος μαζί σου."
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "Μια μικρή γιορτή είναι κι αυτή γεμάτη αγάπη. Δεν χρειάζονται πολλά χρήματα για να γίνει ξεχωριστή."
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "Κρύες μέρες, ζεστές αγκαλιές. Εσύ είσαι η ζεστή γωνιά του σπιτιού σου."
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "Είναι εντάξει να παραλείψεις λίγη από τη γιορτινή φούρια. Η ηρεμία είναι κι αυτή δώρο."
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "Αν αυτή η εποχή σε βαραίνει φέτος, δεν είσαι μόνη. Μία μέρα τη φορά."
+  }
+ ]
+}

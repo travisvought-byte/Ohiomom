@@ -1,0 +1,415 @@
+{
+ "lang": "vi",
+ "name": "Vietnamese",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "Hôm nay mẹ không cần làm hết mọi việc. Chỉ cần việc nhỏ tiếp theo là đủ."
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "Mệt không có nghĩa là thất bại. Mẹ mệt vì ngày nào mẹ cũng có mặt."
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "Chén bát có thể đợi. Mẹ được phép ngồi xuống năm phút."
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "Ngũ cốc cho bữa tối thì vẫn là cho cả nhà ăn rồi."
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "Nghỉ ngơi không phải thứ mẹ phải cố mới xứng đáng. Mẹ có thể nghỉ ngay bây giờ."
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "Có những ngày, chiến thắng là cả nhà đều bình an đến giờ đi ngủ. Đó là chiến thắng thật sự."
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "Mẹ làm nhiều hơn những gì người khác thấy. Mình thấy điều đó."
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "Nhà bừa bộn mà con được yêu thương. Đó là một cuộc đổi chác đáng giá."
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "Vào ngày khó khăn, điều tốt nhất của mẹ trông khác đi, nhưng vẫn đáng kể."
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "Hít một hơi thật sâu. Thả lỏng vai. Mẹ đang làm tốt lắm."
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "Hôm nay hạ thấp yêu cầu một chút cũng không sao. Hôm khác mẹ có thể nâng lên lại."
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "Nhờ giúp đỡ là mạnh mẽ, không phải yếu đuối."
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "Mẹ được phép từ chối thêm một việc nữa."
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "Nếu hôm nay mẹ thấy cô đơn, mẹ không phải người mẹ duy nhất cảm thấy vậy. Chúng ta đông lắm."
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "Mẹ xứng đáng có một người bạn hỏi mẹ có ổn không và chờ nghe câu trả lời."
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "Mẹ chủ động nhắn trước cũng không sao. Nhiều mẹ khác cũng đang mong có ai đó bắt đầu."
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "Cảm thấy không ai nhìn thấy mình không có nghĩa là mẹ không quan trọng. Mẹ quan trọng lắm."
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "Cảm xúc của mẹ là có lý do. Mẹ không hề là gánh nặng."
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "Ở đây mẹ không cần giải thích ngày khó khăn của mình. Chúng mình hiểu."
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "Một tin nhắn gửi mẹ khác chỉ ghi \"mình cũng vậy\" có thể làm cả ngày khác đi."
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "Cho bú, thay tã, ru, rồi lại từ đầu. Đó là công việc thật sự, dù trông như chỉ ngồi yên."
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "Mẹ và bé vẫn đang làm quen với nhau. Không cần vội."
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "Những ngày bên em bé sơ sinh thật dài. Giai đoạn này sẽ không kéo dài mãi."
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "Nếu hôm nay mẹ chỉ giữ cho một con người bé xíu được no và ấm, mẹ đã làm một việc rất lớn."
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "Mẹ không cần vội trở lại như trước. Mẹ cứ là chính mình lúc này."
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "Dù bé được nuôi bằng cách nào, mẹ vẫn đang chăm sóc con. Đó mới là điều quan trọng."
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "Mẹ có thể thiếu ngủ mà vẫn tràn đầy yêu thương."
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "Cứ bế con đi, việc nhà để đó. Nhà vẫn ở đó mà."
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "Con ăn vạ ở siêu thị không làm mẹ thành người mẹ tồi. Chỉ là mẹ đang có một bé nhỏ."
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "Các bé thử giới hạn vì bé thấy an toàn khi ở bên mẹ."
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "Hôm nay mẹ giữ bình tĩnh lâu hơn hôm qua một phút. Vậy là đáng kể rồi."
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "Nếu mẹ lỡ nổi nóng, một cái ôm và một lời \"mẹ xin lỗi\" sẽ hàn gắn được nhiều điều. Và con cũng học được điều hay."
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "Tay dính, giọng to, cảm xúc lớn. Mẹ đang nuôi dạy cả một con người."
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "Câu \"tại sao?\" thứ năm trong giờ này là một trí óc nhỏ đang lớn lên."
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "Không cần một ngày hoàn hảo mới có được một kỷ niệm vui."
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "Một tiếng đóng cửa rầm không phải là hết chuyện. Cứ để đèn sáng đó."
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "Con tuổi teen có thể không nói ra, nhưng việc mẹ luôn ở đó rất có ý nghĩa."
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "Làm người giữ bình tĩnh trong nhà là việc vất vả. Và mẹ đang làm được."
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "Có những cuộc trò chuyện hay nhất diễn ra trên xe. Cứ lái tiếp nhé."
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "Con rời xa một chút để lớn lên, chứ không phải để bỏ mẹ lại phía sau."
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "Mẹ không cần biết hết mọi câu trả lời. Lắng nghe đã là một phần rất lớn."
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "Con lớn rồi vẫn cần mẹ, chỉ là theo cách lặng lẽ hơn."
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "Một mình gánh vác cần một sức mạnh mà hầu hết mọi người không bao giờ thấy."
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "Mẹ đã đủ tốt với con rồi. Từ trước đến giờ vẫn vậy."
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "Một đôi tay, trăm việc. Hãy nhẹ nhàng với bản thân."
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "Các con nhìn mẹ mà học được một người mạnh mẽ và giàu yêu thương là như thế nào."
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "Nghỉ một chút không phải là bỏ cuộc. Đó là cách để mẹ đi tiếp."
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "Không ai đếm điểm cả. Tình yêu và sự có mặt mới là điều quan trọng."
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "Nỗi đau mất mát và tình yêu đến từ cùng một nơi. Nhớ thương ai đó cho thấy mẹ đã yêu nhiều đến thế nào."
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "Đau buồn không có lịch trình nào là đúng. Mẹ cứ dành bao nhiêu thời gian mẹ cần."
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "Vào những ngày giỗ, ngày kỷ niệm khó khăn, hãy dịu dàng với bản thân như với một người bạn."
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "Mẹ có thể mang nỗi buồn mà vẫn cười đùa với con. Cả hai đều là thật."
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "Nếu mẹ đã mất một lần mang thai hay một em bé, mất mát đó là thật, và tình yêu của mẹ cũng vậy."
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "Có ngày nỗi đau lặng im, có ngày nó ồn ào. Cả hai đều không sao."
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "Ít tiền không có nghĩa là ít yêu thương."
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "Các con sẽ nhớ thời gian bên mẹ nhiều hơn những món đồ mẹ mua."
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "Hỏi về hỗ trợ tiền hóa đơn là khôn ngoan, không có gì đáng xấu hổ. Hỗ trợ có ra là để giúp chuyện đó."
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "Một buổi chiều miễn phí ở công viên có thể là ngày vui nhất tuần."
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "Mẹ đã xoay xở cho đủ tiền thêm một tuần. Phải khéo lắm mới làm được vậy."
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "Lo chuyện tiền bạc thật mệt. Mẹ đang gánh nhiều lắm, và mẹ vẫn còn ở đây."
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "Hôm nay mẹ đã uống một ly nước. Bắt đầu từ đó nhé."
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "Cả nhà đã ra khỏi cửa. Có thể giày không cùng đôi. Vẫn là một chiến thắng."
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "Mẹ đã gọi cuộc điện thoại mà mẹ ngại. Thật can đảm."
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "Hôm nay mẹ đã cười. Hãy giữ lấy điều đó."
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "Một bữa ăn nóng, một chiếc áo sạch, một câu chuyện trước giờ ngủ. Những điều nhỏ bé góp lại thành tuổi thơ."
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "Hôm nay mẹ đã tử tế với một ai đó, dù người đó chỉ là chính mẹ."
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "Tiến bộ, không phải hoàn hảo. Hôm nay mẹ đã tiến lên."
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "Mẹ đã xong một việc trong danh sách. Vậy là hơn không một việc."
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "Mẹ là một người mẹ tốt. Việc mẹ lo lắng về điều đó cho thấy mẹ thương con biết bao."
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "Mẹ có giá trị hơn những gì mẹ làm được trong một ngày."
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "Các con không cần một người mẹ hoàn hảo. Các con cần mẹ, và các con có mẹ."
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "Hãy kiên nhẫn với bản thân như mẹ kiên nhẫn với con."
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "Mẹ được phép có chỗ của mình, được mong muốn và có những ước mơ riêng."
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "Một lỗi lầm không xóa được tình yêu. Ngày mai là một khởi đầu mới."
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "Mẹ là cả thế giới của một người, và mẹ cũng là chính mình."
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "Không yêu thích từng phút cũng không sao. Mẹ vẫn có thể yêu con bằng cả trái tim."
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "Không có một cách đúng duy nhất để làm mẹ. Cách của mẹ cũng ổn."
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "Như tư thế cái cây, chao đảo một chút cũng không sao. Mẹ sẽ tìm lại được thăng bằng."
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "Đứng vững như tư thế ngọn núi. Mẹ vững vàng hơn mẹ nghĩ."
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "Chiến binh hai: chân khỏe, tay mở rộng. Đó chính là mẹ, đối mặt với tuần này."
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "Hít vào đếm bốn, thở ra đếm bốn. Mẹ đang ở đây, và mẹ đang ổn."
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "Dang rộng như một ngôi sao. Mẹ được phép chiếm chỗ của mình."
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "Ngồi xổm rộng và thấp rất khó giữ. Một ngày dài cũng vậy. Và mẹ đang giữ được."
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "Mẹ có thể nghiêng như vầng trăng khuyết mà vẫn đứng vững."
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "Mẹ chưa cần chạm tới ngón chân đâu. Mỗi chút giãn cơ đều đáng kể."
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "Tư thế tam giác: một tay xuống, một tay lên. Đứng vững và tiếp tục vươn ra."
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "Khuya rồi. Việc gì hôm nay chưa xong có thể đợi đến mai."
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "Thức cùng bé vào giờ này sao? Rất nhiều mẹ đang thức cùng mẹ lúc này."
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "Nhà đã yên tĩnh. Khoảnh khắc này là của mẹ. Hít thở nhé."
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "Mẹ đã đi qua được ngày hôm nay. Hôm nay chỉ cần vậy thôi."
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "Nếu đêm nay đầu óc mẹ còn bận rộn, hãy viết ra và để nó đợi đến sáng."
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "Cho mắt nghỉ ngơi nhé. Ngày mai mẹ có thể bắt đầu lại."
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "Mùa lễ có thể vừa vui vừa khó khăn. Mùa này mẹ cảm thấy thế nào cũng không sao."
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "Bàn ăn không cần hoàn hảo. Những người ngồi quanh mới là điều quan trọng."
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "Nếu năm nay bên bàn ăn thiếu vắng một người, hãy dịu dàng với trái tim mình."
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "Cảm ơn mẹ, vì từng bữa cơm, từng chuyến đưa đón và từng cái ôm."
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "Mẹ không cần đãi khách, làm bánh hay cười suốt cả ngày. Một mùa lễ giản dị vẫn là mùa lễ."
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "Món quà tuyệt nhất các con nhận được năm nay là thời gian bên mẹ."
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "Một dịp lễ nhỏ vẫn đầy ắp yêu thương. Không cần nhiều tiền để làm nó đặc biệt."
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "Ngày lạnh, cái ôm ấm. Mẹ là góc ấm áp trong ngôi nhà của mình."
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "Bỏ qua một phần bận rộn mùa lễ cũng không sao. Bình yên cũng là một món quà."
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "Nếu mùa này năm nay nặng nề với mẹ, mẹ không một mình đâu. Từng ngày một thôi."
+  }
+ ]
+}

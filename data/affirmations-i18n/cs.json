@@ -1,0 +1,415 @@
+{
+ "lang": "cs",
+ "name": "Czech",
+ "dir": "ltr",
+ "affirmations": [
+  {
+   "en": "You do not have to do it all today. The next small thing is enough.",
+   "text": "Dnes nemusíš zvládnout všechno. Stačí ta další malá věc."
+  },
+  {
+   "en": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "text": "Únava není selhání. Jsi unavená, protože jsi tu pro ně každý den."
+  },
+  {
+   "en": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "text": "Nádobí počká. Máš právo si na pět minut sednout."
+  },
+  {
+   "en": "Cereal for dinner still counts as feeding your family.",
+   "text": "Cereálie k večeři se taky počítají jako nakrmená rodina."
+  },
+  {
+   "en": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "text": "Odpočinek si nemusíš zasloužit. Klidně si odpočiň hned teď."
+  },
+  {
+   "en": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "text": "Někdy je vítězství, že to všichni dotáhli až do večerky. To je opravdové vítězství."
+  },
+  {
+   "en": "You are doing more than anyone sees. I see it.",
+   "text": "Děláš víc, než kdokoli vidí. Já to vidím."
+  },
+  {
+   "en": "A messy house and loved kids. That is a good trade.",
+   "text": "Neuklizený byt a milované děti. To je dobrý obchod."
+  },
+  {
+   "en": "Your best looks different on a hard day, and it still counts.",
+   "text": "V těžký den vypadá to tvoje nejlepší jinak, a pořád se počítá."
+  },
+  {
+   "en": "One deep breath. Drop your shoulders. You are doing okay.",
+   "text": "Jeden hluboký nádech. Spusť ramena. Zvládáš to."
+  },
+  {
+   "en": "It is okay to lower the bar today. You can raise it again another day.",
+   "text": "Dnes je v pořádku snížit laťku. Zvednout ji můžeš jindy."
+  },
+  {
+   "en": "Asking for help is a strong thing to do, not a weak one.",
+   "text": "Říct si o pomoc je projev síly, ne slabosti."
+  },
+  {
+   "en": "You are allowed to say no to one more thing.",
+   "text": "Máš právo říct ne další věci navíc."
+  },
+  {
+   "en": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "text": "Jestli ses dnes cítila sama, nejsi jediná máma, která to tak měla. Je nás hodně."
+  },
+  {
+   "en": "You deserve a friend who asks how you are and waits for the answer.",
+   "text": "Zasloužíš si kamarádku, která se zeptá, jak se máš, a počká na odpověď."
+  },
+  {
+   "en": "It is okay to reach out first. Most moms are hoping someone will.",
+   "text": "Klidně se ozvi jako první. Většina mam doufá, že to někdo udělá."
+  },
+  {
+   "en": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "text": "To, že se cítíš neviditelná, neznamená, že na tobě nezáleží. Záleží na tobě moc."
+  },
+  {
+   "en": "Your feelings make sense. You are not too much.",
+   "text": "Tvoje pocity dávají smysl. Nejsi „moc“."
+  },
+  {
+   "en": "You do not have to explain your hard day here. We get it.",
+   "text": "Tady nemusíš svůj těžký den vysvětlovat. Rozumíme."
+  },
+  {
+   "en": "A text to another mom that says “me too” can turn a whole day around.",
+   "text": "Zpráva jiné mámě se slovy „já taky“ dokáže otočit celý den."
+  },
+  {
+   "en": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "text": "Krmení, přebalování, houpání a znovu dokola. To je skutečná práce, i když to vypadá jako sezení na místě."
+  },
+  {
+   "en": "You and your baby are still learning each other. There is no rush.",
+   "text": "Ty a tvoje miminko se pořád ještě poznáváte. Není kam spěchat."
+  },
+  {
+   "en": "The days with a newborn are long. This stretch will not last forever.",
+   "text": "Dny s novorozencem jsou dlouhé. Tohle období nebude trvat věčně."
+  },
+  {
+   "en": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "text": "Jestli jsi dnes jen udržela malého človíčka najedeného a v teple, odvedla jsi velký kus práce."
+  },
+  {
+   "en": "You do not need to bounce back. You can just be where you are.",
+   "text": "Nemusíš být rychle zase ve formě. Můžeš prostě být tam, kde jsi."
+  },
+  {
+   "en": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "text": "Ať už miminko krmíš jakkoli, staráš se o něj. To je to, co se počítá."
+  },
+  {
+   "en": "You can be short on sleep and full of love at the same time.",
+   "text": "Můžeš být nevyspalá a plná lásky zároveň."
+  },
+  {
+   "en": "Hold the baby and let the house go. The house will still be here.",
+   "text": "Pochovej miminko a domácnost nech být. Ta tu bude i potom."
+  },
+  {
+   "en": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "text": "Záchvat vzteku v obchodě z tebe nedělá špatnou mámu. Znamená jen, že máš batole."
+  },
+  {
+   "en": "Little ones test the limits because they feel safe with you.",
+   "text": "Malí zkoušejí hranice, protože se s tebou cítí v bezpečí."
+  },
+  {
+   "en": "You stayed calm one minute longer than yesterday. That counts.",
+   "text": "Dnes jsi zůstala klidná o minutu déle než včera. To se počítá."
+  },
+  {
+   "en": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "text": "Jestli ti ujely nervy, obejmutí a „promiň“ spraví hodně. A naučí je to něco dobrého."
+  },
+  {
+   "en": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "text": "Ulepené ručičky, hlasité hlasy, velké emoce. Vychováváš celého člověka."
+  },
+  {
+   "en": "The fifth “why?” of the hour is a little mind growing.",
+   "text": "Páté „proč?“ za hodinu je malá hlavička, která roste."
+  },
+  {
+   "en": "You do not need a perfect day to make a happy memory.",
+   "text": "Ke šťastné vzpomínce nepotřebuješ dokonalý den."
+  },
+  {
+   "en": "A slammed door is not the end of the story. Keep the porch light on.",
+   "text": "Prásknutí dveřmi není konec příběhu. Nech svítit světlo."
+  },
+  {
+   "en": "Your teen may not say it, but your steady presence matters.",
+   "text": "Tvůj puberťák to možná neřekne, ale to, že jsi stále nablízku, je důležité."
+  },
+  {
+   "en": "Being the calm one in the house is hard work. You are doing it.",
+   "text": "Být tou klidnou v domě je dřina. A ty to děláš."
+  },
+  {
+   "en": "Some of the best talks happen in the car. Keep driving.",
+   "text": "Některé z nejlepších rozhovorů se odehrají v autě. Jen jeď dál."
+  },
+  {
+   "en": "They pull away to grow up, not to leave you behind.",
+   "text": "Vzdalují se, aby dospěli, ne aby tě nechali za sebou."
+  },
+  {
+   "en": "You do not need every answer. Listening is a big part of it.",
+   "text": "Nemusíš znát všechny odpovědi. Naslouchání je velká část toho všeho."
+  },
+  {
+   "en": "Big kids still need you, just in quieter ways.",
+   "text": "Velké děti tě pořád potřebují, jen tišeji."
+  },
+  {
+   "en": "Doing it on your own takes a strength most people never see.",
+   "text": "Zvládat všechno sama chce sílu, kterou většina lidí nikdy neuvidí."
+  },
+  {
+   "en": "You are enough parent for your child. You always have been.",
+   "text": "Pro své dítě jsi dost dobrá máma. Vždycky jsi byla."
+  },
+  {
+   "en": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "text": "Jedny ruce, sto úkolů. Buď na sebe hodná."
+  },
+  {
+   "en": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "text": "Tvoje děti se od tebe učí, jak vypadá silný a laskavý člověk."
+  },
+  {
+   "en": "Taking a break is not leaving your post. It is how you keep going.",
+   "text": "Pauza neznamená opustit své místo. Díky ní vydržíš."
+  },
+  {
+   "en": "Nobody is keeping score. Love and showing up are what matter.",
+   "text": "Nikdo nepočítá body. Záleží na lásce a na tom, že jsi tu."
+  },
+  {
+   "en": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "text": "Smutek a láska pramení ze stejného místa. To, jak moc ti někdo chybí, ukazuje, jak moc jsi milovala."
+  },
+  {
+   "en": "There is no right timeline for grief. Take the time you need.",
+   "text": "Na truchlení neexistuje správný harmonogram. Dej si tolik času, kolik potřebuješ."
+  },
+  {
+   "en": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "text": "O těžkých výročích buď k sobě tak jemná, jako bys byla ke kamarádce."
+  },
+  {
+   "en": "You can carry sadness and still laugh with your kids. Both are real.",
+   "text": "Můžeš v sobě nosit smutek a přesto se smát se svými dětmi. Obojí je skutečné."
+  },
+  {
+   "en": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "text": "Jestli jsi přišla o těhotenství nebo o miminko, ta ztráta je skutečná a tvoje láska také."
+  },
+  {
+   "en": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "text": "Některé dny je smutek tichý a některé hlasitý. Obojí je v pořádku."
+  },
+  {
+   "en": "Being short on money does not make you short on love.",
+   "text": "Málo peněz neznamená málo lásky."
+  },
+  {
+   "en": "Your kids will remember the time with you more than the things you bought.",
+   "text": "Tvoje děti si budou pamatovat čas s tebou víc než věci, které jsi koupila."
+  },
+  {
+   "en": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "text": "Zeptat se na pomoc se složenkami je chytré, ne ostudné. Právě kvůli tomu ta pomoc existuje."
+  },
+  {
+   "en": "A free afternoon at the park can be the best day of the week.",
+   "text": "Odpoledne v parku zadarmo může být nejlepší den v týdnu."
+  },
+  {
+   "en": "You stretched it one more week. That takes real skill.",
+   "text": "Vyšla jsi s penězi o týden déle. To chce opravdové umění."
+  },
+  {
+   "en": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "text": "Starosti o peníze vyčerpávají. Neseš toho hodně, a pořád jsi tady."
+  },
+  {
+   "en": "You drank a glass of water today. Start there.",
+   "text": "Dnes jsi vypila sklenici vody. Začni tím."
+  },
+  {
+   "en": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "text": "Všichni vyšli z domu. Boty možná neladily. Stejně je to vítězství."
+  },
+  {
+   "en": "You made the phone call you were dreading. That was brave.",
+   "text": "Zavolala jsi tam, kam se ti tak nechtělo. To bylo statečné."
+  },
+  {
+   "en": "You laughed today. Hold on to that.",
+   "text": "Dnes ses smála. Drž se toho."
+  },
+  {
+   "en": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "text": "Teplé jídlo, čisté tričko, pohádka na dobrou noc. Z malých věcí se skládá dětství."
+  },
+  {
+   "en": "Today you were kind to someone, even if it was only yourself.",
+   "text": "Dnes jsi byla k někomu laskavá, i kdyby to byla jen ty sama."
+  },
+  {
+   "en": "Progress, not perfect. You moved forward today.",
+   "text": "Pokrok, ne dokonalost. Dnes ses posunula dopředu."
+  },
+  {
+   "en": "You finished one thing on the list. That is one more than none.",
+   "text": "Dokončila jsi jednu věc ze seznamu. To je o jednu víc než žádná."
+  },
+  {
+   "en": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "text": "Jsi dobrá máma. To, že si s tím děláš starosti, ukazuje, jak moc ti na tom záleží."
+  },
+  {
+   "en": "You are more than what you get done in a day.",
+   "text": "Jsi víc než to, co za den stihneš."
+  },
+  {
+   "en": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "text": "Tvoje děti nepotřebují dokonalou mámu. Potřebují tebe, a tebe mají."
+  },
+  {
+   "en": "Be as patient with yourself as you are with your kids.",
+   "text": "Měj se sebou stejnou trpělivost, jakou máš se svými dětmi."
+  },
+  {
+   "en": "You are allowed to take up space, to want things and to have your own dreams.",
+   "text": "Máš právo zabírat místo, něco chtít a mít své vlastní sny."
+  },
+  {
+   "en": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "text": "Chyba lásku nesmaže. Zítra je nový začátek."
+  },
+  {
+   "en": "You are someone’s whole world, and you are also your own person.",
+   "text": "Pro někoho jsi celý svět, a zároveň jsi taky sama sebou."
+  },
+  {
+   "en": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "text": "Je v pořádku neužívat si každou minutu. Své děti můžeš přesto milovat celým srdcem."
+  },
+  {
+   "en": "There is no one right way to be a mom. Your way is allowed.",
+   "text": "Neexistuje jediný správný způsob, jak být mámou. Tvůj způsob je v pořádku."
+  },
+  {
+   "en": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "text": "Jako v pozici stromu je v pořádku zakolísat. Rovnováhu zase najdeš."
+  },
+  {
+   "en": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "text": "Pevně se postav jako v pozici hory. Stojíš pevněji, než se cítíš."
+  },
+  {
+   "en": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "text": "Válečník II: silné nohy, otevřená náruč. To jsi ty, jak čelíš tomuhle týdnu."
+  },
+  {
+   "en": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "text": "Nádech na čtyři, výdech na čtyři. Jsi tady a zvládáš to."
+  },
+  {
+   "en": "Stretch wide like a star. You are allowed to take up room.",
+   "text": "Roztáhni se doširoka jako hvězda. Máš právo zabírat místo."
+  },
+  {
+   "en": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "text": "Široký, hluboký dřep se těžko drží. Dlouhý den taky. A ty ho držíš."
+  },
+  {
+   "en": "You can lean like a crescent moon and still be standing.",
+   "text": "Můžeš se naklonit jako srpek měsíce a pořád stát."
+  },
+  {
+   "en": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "text": "Na špičky prstů ještě dosáhnout nemusíš. Každý kousek protažení se počítá."
+  },
+  {
+   "en": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "text": "Pozice trojúhelníku: jedna ruka dole, druhá nahoře. Stůj pevně a dál se natahuj."
+  },
+  {
+   "en": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "text": "Je pozdě. Co se dnes nestihlo, počká do zítřka."
+  },
+  {
+   "en": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "text": "V tuhle hodinu vzhůru s miminkem? Spousta mam teď bdí s tebou."
+  },
+  {
+   "en": "The house is quiet. This moment is yours. Breathe.",
+   "text": "V domě je ticho. Tahle chvíle je tvoje. Dýchej."
+  },
+  {
+   "en": "You made it through today. That is all today needed.",
+   "text": "Zvládla jsi dnešek. Víc dnešek nepotřeboval."
+  },
+  {
+   "en": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "text": "Jestli ti dnes v noci běží hlava, zapiš si to a nech to počkat do rána."
+  },
+  {
+   "en": "Rest your eyes. Tomorrow you get to start again.",
+   "text": "Zavři oči a odpočiň si. Zítra můžeš začít znovu."
+  },
+  {
+   "en": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "text": "Svátky můžou být těžké, nejen radostné. Ať je pro tebe tohle období jakékoli, je to v pořádku."
+  },
+  {
+   "en": "The table does not need to be perfect. The people around it are what matter.",
+   "text": "Stůl nemusí být dokonalý. Záleží na lidech kolem něj."
+  },
+  {
+   "en": "If you are missing someone at the table this year, be gentle with your heart.",
+   "text": "Jestli ti letos u stolu někdo chybí, buď ke svému srdci něžná."
+  },
+  {
+   "en": "Thank you, mom, for every meal, every ride and every hug.",
+   "text": "Děkuju, mami, za každé jídlo, každé svezení a každé obejmutí."
+  },
+  {
+   "en": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "text": "Nemusíš hostit, péct ani se pořád usmívat. Jednoduché svátky jsou pořád svátky."
+  },
+  {
+   "en": "The best gift your kids get this year is time with you.",
+   "text": "Nejlepší dárek, který letos tvoje děti dostanou, je čas s tebou."
+  },
+  {
+   "en": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "text": "Malé svátky jsou taky plné lásky. Aby byly výjimečné, není potřeba moc peněz."
+  },
+  {
+   "en": "Cold days, warm hugs. You are the warm place in your house.",
+   "text": "Studené dny, teplá objetí. Ty jsi to teplé místo ve svém domově."
+  },
+  {
+   "en": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "text": "Je v pořádku vynechat část svátečního shonu. Klid je taky dárek."
+  },
+  {
+   "en": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "text": "Jestli je pro tebe letos tohle období těžké, nejsi sama. Den po dni."
+  }
+ ]
+}
