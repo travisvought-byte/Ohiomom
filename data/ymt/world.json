@@ -236,6 +236,188 @@
    ]
   },
   {
+   "code": "BS",
+   "slug": "bahamas",
+   "name": "The Bahamas",
+   "flag": "🇧🇸",
+   "emergency": {
+    "number": "919",
+    "label": "Police, fire and ambulance. 911 works too",
+    "source": "https://www.royalbahamaspolice.org/crimeprevention/emergencynumbers.html"
+   },
+   "resources": [
+    {
+     "id": "bahamas-crisis-centre",
+     "section": "help-now",
+     "name": "The Bahamas Crisis Centre",
+     "org": "The Bahamas Crisis Centre",
+     "what": "Help any hour for anyone facing domestic violence, sexual abuse or another crisis.",
+     "how": "Call 242-328-0922. Normal call charges may apply.",
+     "phone": "242-328-0922",
+     "dial": "2423280922",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://findahelpline.com/countries/bs",
+      "https://www.royalbahamaspolice.org/crimeprevention/emergencynumbers.html",
+      "https://royalbahamaspolice.org/crimeprevention/helpandsupport.html"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "bahamas-pace",
+     "section": "single-parent",
+     "name": "PACE Bahamas",
+     "org": "PACE Bahamas",
+     "what": "Help for teen mothers to finish high school, and work to prevent teen pregnancy.",
+     "how": "Call 242-356-0943 or 242-676-5944. Normal call charges may apply.",
+     "phone": "242-356-0943",
+     "dial": "2423560943",
+     "sources": [
+      "https://royalbahamaspolice.org/crimeprevention/helpandsupport.html"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "pregnancy-baby"
+     ]
+    }
+   ]
+  },
+  {
+   "code": "BD",
+   "slug": "bangladesh",
+   "name": "Bangladesh",
+   "flag": "🇧🇩",
+   "emergency": {
+    "number": "999",
+    "label": "Police, fire and ambulance. Free, any hour",
+    "source": "https://www.itu.int/net4/wsis/stocktaking/Prizes/2026/Details/15149061210000000"
+   },
+   "resources": [
+    {
+     "id": "bangladesh-109",
+     "section": "help-now",
+     "name": "National Helpline 109",
+     "org": "Ministry of Women and Children Affairs",
+     "what": "A free line, open any hour, for women and children facing violence. It can arrange rescue, legal and counselling help, health referrals, and help to stop a child marriage.",
+     "how": "Dial 109.",
+     "phone": "109",
+     "dial": "109",
+     "urgent": true,
+     "chip": "Women and children's helpline",
+     "sources": [
+      "https://www.thedailystar.net/supplements/16-days-activism-2025/news/when-danger-strikes-where-can-women-turn-4042526"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "kids-differently"
+     ]
+    },
+    {
+     "id": "bangladesh-1098",
+     "section": "kids-differently",
+     "name": "Child Helpline 1098",
+     "org": "Bangladesh Child Helpline",
+     "what": "A free helpline for children, open every day and night, holidays included, in Bangla.",
+     "how": "Dial 1098 from anywhere in Bangladesh.",
+     "phone": "1098",
+     "dial": "1098",
+     "sources": [
+      "https://childhelplineinternational.org/bangladesh-bangladesh-child-helpline-1098/",
+      "https://findahelpline.com/countries/bd"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "help-now"
+     ]
+    },
+    {
+     "id": "bangladesh-legal-aid",
+     "section": "single-parent",
+     "name": "Legal aid helpline 16699",
+     "org": "National Legal Aid Services Organisation",
+     "what": "Free legal advice by phone for people who cannot afford a lawyer, and where to find your nearest legal aid office.",
+     "how": "Call 16699. It is toll-free. This number replaced the old 16430 in November 2025.",
+     "phone": "16699",
+     "dial": "16699",
+     "sources": [
+      "https://b.bssnews.net/news/333144",
+      "https://b.bssnews.net/news/342010"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "BB",
+   "slug": "barbados",
+   "name": "Barbados",
+   "flag": "🇧🇧",
+   "emergency": {
+    "number": "211",
+    "label": "Police. Ambulance, 511. Fire, 311",
+    "source": "https://www.gov.bb/media_files/Shelter-Booklet-2025.pdf"
+   },
+   "resources": [
+    {
+     "id": "barbados-lifeline",
+     "section": "help-now",
+     "name": "Lifeline Barbados",
+     "org": "Ministry of Health and Wellness",
+     "what": "The Ministry of Health's mental health hotline, open any hour. Operators trained in crisis support listen, help and refer you on.",
+     "how": "Call 536-4500. Normal call charges may apply.",
+     "phone": "246-536-4500",
+     "dial": "2465364500",
+     "urgent": true,
+     "chip": "Mental health line",
+     "sources": [
+      "https://health.gov.bb/News/Press-Releases/Barbados-Has-New-24-Hour-Mental-He",
+      "https://barbadostoday.bb/2025/05/08/over-6-000-reach-out-to-mental-health-hotline-in-first-year"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "barbados-aada",
+     "section": "help-now",
+     "name": "Advocates Against Domestic Abuse (AADA) helpline",
+     "org": "Advocates Against Domestic Abuse",
+     "what": "A helpline open any hour for people facing abuse, with crisis support, counselling and advocacy.",
+     "how": "Call 246-432-2873. Normal call charges may apply.",
+     "url": "https://aada.bb/",
+     "phone": "246-432-2873",
+     "dial": "2464322873",
+     "urgent": true,
+     "chip": "Domestic abuse line",
+     "sources": [
+      "https://aada.bb/",
+      "https://findahelpline.com/countries/bb"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "barbados-child-care-board",
+     "section": "kids-differently",
+     "name": "Child Care Board",
+     "org": "Government of Barbados",
+     "what": "The agency that runs child protection in Barbados, for children under 18. Contact it to report a child you are worried about. If a child is in danger right now, call 211.",
+     "how": "Call the office on 246-535-2800. Normal call charges may apply.",
+     "url": "https://www.gov.bb/State-Bodies/child-care-board",
+     "phone": "246-535-2800",
+     "dial": "2465352800",
+     "sources": [
+      "https://www.gov.bb/State-Bodies/child-care-board"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "CA",
    "slug": "canada",
    "name": "Canada",
@@ -340,6 +522,107 @@
       "single-parent"
      ],
      "reviewed_on": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "code": "GH",
+   "slug": "ghana",
+   "name": "Ghana",
+   "flag": "🇬🇭",
+   "emergency": {
+    "number": "112",
+    "label": "Police, fire and ambulance, on every mobile network",
+    "source": "https://www.modernghana.com/news/981740/112-new-hotline-for-all-emergency-services.html"
+   },
+   "resources": [
+    {
+     "id": "ghana-orange-support-centre",
+     "section": "help-now",
+     "name": "Orange Support Centre",
+     "org": "Ministry of Gender, Children and Social Protection",
+     "what": "A free line for anyone facing abuse at home or sexual violence. You can talk it through, get legal help and help finding emergency shelter, and learn about your health and rights.",
+     "how": "Call 0800 111 222. It is toll-free.",
+     "phone": "0800 111 222",
+     "dial": "0800111222",
+     "urgent": true,
+     "chip": "Domestic violence line",
+     "sources": [
+      "https://www.mogcsp.gov.gh/market-sensitization/",
+      "https://ghana.um.dk/en/about-us/about-ghana/report-domestic-violence"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "ghana-mental-health-helpline",
+     "section": "help-now",
+     "name": "National mental health helpline",
+     "org": "Mental Health Authority",
+     "what": "The national line for anyone who is struggling or having thoughts of suicide. It can link you to mental health care near where you live.",
+     "how": "Call 0800 678 678. Normal call charges may apply.",
+     "phone": "0800 678 678",
+     "dial": "0800678678",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://gna.org.gh/2026/09/mha-calls-for-compassionate-approach-to-suicide-prevention/",
+      "https://findahelpline.com/countries/gh"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "ghana-dovvsu",
+     "section": "help-now",
+     "name": "DOVVSU helpline",
+     "org": "Ghana Police Service, Domestic Violence and Victim Support Unit",
+     "what": "The police unit for domestic violence, child abuse and sexual violence. It is there for every victim, women, children and men.",
+     "how": "Call 055 100 0900. Normal call charges may apply. If you are in danger right now, call 112.",
+     "phone": "055 100 0900",
+     "dial": "0551000900",
+     "sources": [
+      "https://police.gov.gh/en/index.php/wp-json/wp/v2/pages/1730",
+      "https://ghana.unfpa.org/en/news/unfpa-supports-dovvsu-activate-domestic-violence-hotline"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "kids-differently"
+     ]
+    },
+    {
+     "id": "ghana-nhis-pregnancy",
+     "section": "pregnancy-baby",
+     "name": "Free health insurance in pregnancy",
+     "org": "National Health Insurance Authority",
+     "what": "Pregnant women can join the National Health Insurance Scheme without paying. Care in pregnancy under the scheme is free, including check-ups, lab tests, scans and emergency care.",
+     "how": "Register in person at your district NHIS office. Bring your antenatal card or a note from your doctor or midwife.",
+     "url": "https://nhis.gov.gh/membership",
+     "sources": [
+      "https://nhis.gov.gh/membership",
+      "https://mobile.ghanaweb.com/GhanaHomePage/NewsArchive/Free-maternal-health-policy-is-still-active-ndash-Minister-1720319"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "ghana-leap",
+     "section": "food-bills",
+     "name": "LEAP cash transfer",
+     "org": "Ministry of Gender, Children and Social Protection",
+     "what": "Cash paid every two months to the poorest households, including pregnant women and mothers with a baby under one. Families in LEAP also get free health insurance.",
+     "how": "Households are chosen by the LEAP Management Secretariat at the Ministry of Gender, Children and Social Protection.",
+     "url": "https://www.unicef.org/ghana/reports/cash-transfers-ghana",
+     "sources": [
+      "https://www.unicef.org/ghana/reports/cash-transfers-ghana"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "pregnancy-baby"
+     ]
     }
    ]
   },
@@ -679,6 +962,97 @@
    ]
   },
   {
+   "code": "MY",
+   "slug": "malaysia",
+   "name": "Malaysia",
+   "flag": "🇲🇾",
+   "emergency": {
+    "number": "999",
+    "label": "Police, ambulance, fire and civil defence. Free, even with no credit",
+    "source": "https://www.malaymail.com/news/malaysia/2026/04/18/in-an-emergency-dont-google-dial-999-for-faster-help/213599"
+   },
+   "resources": [
+    {
+     "id": "malaysia-talian-kasih",
+     "section": "help-now",
+     "name": "Talian Kasih 15999",
+     "org": "Social Welfare Department (JKM)",
+     "what": "A line open any hour for women, children and families in crisis, including abuse, neglect and sexual harassment. It offers counselling, protection and welfare help.",
+     "how": "Dial 15999, or send a WhatsApp to 019-261 5999. Normal call charges may apply.",
+     "url": "https://www.malaysia.gov.my/en/topics/talian-kasih-15999",
+     "phone": "15999",
+     "dial": "15999",
+     "text": "WhatsApp 019-261 5999",
+     "urgent": true,
+     "chip": "Family crisis line",
+     "sources": [
+      "https://www.malaysia.gov.my/en/topics/talian-kasih-15999",
+      "https://www.utusan.com.my/terkini/2025/10/talian-kasih-terima-lebih-50000-panggilan/"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "kids-differently"
+     ]
+    },
+    {
+     "id": "malaysia-befrienders",
+     "section": "help-now",
+     "name": "Befrienders Kuala Lumpur",
+     "org": "Befrienders KL",
+     "what": "Free, confidential emotional support any hour of the day, for anyone who is struggling or thinking about suicide.",
+     "how": "Call 03-7627 2929. The support is free; normal call charges may apply.",
+     "url": "https://befrienders.org.my/",
+     "phone": "03-7627 2929",
+     "dial": "0376272929",
+     "urgent": true,
+     "chip": "Someone to talk to",
+     "sources": [
+      "https://befrienders.org.my/"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "malaysia-wao",
+     "section": "help-now",
+     "name": "Women's Aid Organisation (WAO)",
+     "org": "Women's Aid Organisation",
+     "what": "Help for women facing domestic violence, including crisis support and a safe shelter.",
+     "how": "Call the WAO Hotline on 03-3000 8858, 9am to 5pm, or text or WhatsApp TINA on 018-988 8058 any hour. Normal call charges may apply.",
+     "url": "https://wao.org.my/getting-help-for-domestic-violence/",
+     "phone": "03-3000 8858",
+     "dial": "0330008858",
+     "text": "SMS or WhatsApp 018-988 8058",
+     "sources": [
+      "https://wao.org.my/getting-help-for-domestic-violence/"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "malaysia-bkk",
+     "section": "food-bills",
+     "name": "Children's Financial Aid (BKK)",
+     "org": "Social Welfare Department (JKM)",
+     "what": "Monthly help for families caring for children: RM250 for each child aged 6 or under and RM200 for each child aged 7 to 18, up to RM1,000 a family.",
+     "how": "Apply online on eBantuan JKM, or in person at your district Social Welfare Office.",
+     "url": "https://www.malaysia.gov.my/en/personas/low-income-families/mendapatkan-bantuan-asas/childrens-financial-aid-bkk",
+     "sources": [
+      "https://www.malaysia.gov.my/en/personas/low-income-families/mendapatkan-bantuan-asas/childrens-financial-aid-bkk",
+      "https://www.malaysia.gov.my/en/personas/low-income-families/mendapatkan-bantuan-asas/applying-for-social-welfare-department-jkm-aid"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "single-parent"
+     ]
+    }
+   ]
+  },
+  {
    "code": "MX",
    "slug": "mexico",
    "name": "Mexico",
@@ -905,6 +1279,76 @@
    ]
   },
   {
+   "code": "PK",
+   "slug": "pakistan",
+   "name": "Pakistan",
+   "flag": "🇵🇰",
+   "emergency": {
+    "number": "1122",
+    "label": "Ambulance and rescue. Police, dial 15. Fire, dial 16",
+    "source": "https://travel.gc.ca/assistance/embassies-consulates/Pakistan"
+   },
+   "resources": [
+    {
+     "id": "pakistan-1099",
+     "section": "help-now",
+     "name": "Helpline 1099",
+     "org": "Ministry of Human Rights",
+     "what": "A free government helpline for legal advice and help when your rights are violated. Most complaints it handles are about women's rights, and it can refer you to the right office.",
+     "how": "Dial 1099. You can also send a WhatsApp to 0333 9085709.",
+     "url": "https://mohr.gov.pk/Detail/YWRiYjU0NzktMGE2Zi00NDYyLTljNzktMTA2N2M2MjBlZWZl",
+     "phone": "1099",
+     "dial": "1099",
+     "text": "WhatsApp 0333 9085709",
+     "urgent": true,
+     "chip": "Rights helpline",
+     "sources": [
+      "https://mohr.gov.pk/Detail/YWRiYjU0NzktMGE2Zi00NDYyLTljNzktMTA2N2M2MjBlZWZl",
+      "https://www.app.com.pk/?p=1286115"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "single-parent"
+     ]
+    },
+    {
+     "id": "pakistan-rozan",
+     "section": "take-care",
+     "name": "Rozan Counseling Helpline",
+     "org": "Rozan",
+     "what": "Counselling by phone for emotional and mental health struggles, including violence against women and child sexual abuse.",
+     "how": "Call 0304 111 1741, Monday to Friday, 9am to 5pm. Normal call charges may apply.",
+     "url": "https://rozan.org/counseling-services/",
+     "phone": "0304 111 1741",
+     "dial": "03041111741",
+     "sources": [
+      "https://rozan.org/counseling-services/",
+      "https://findahelpline.com/countries/pk"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "help-now"
+     ]
+    },
+    {
+     "id": "pakistan-nashonuma",
+     "section": "pregnancy-baby",
+     "name": "Benazir Nashonuma",
+     "org": "Ministry of Poverty Alleviation and Social Safety",
+     "what": "Cash every three months for pregnant and breastfeeding mothers and children under two in families on the Benazir Income Support Programme: PKR 2,000 for each mother and boy, and PKR 2,500 for each girl, with special nutritious food.",
+     "how": "It is for families already on the Benazir Income Support Programme. Mothers go to regular check-ups and keep their children's vaccines up to date.",
+     "url": "https://pass.gov.pk/Detail/YzM5NjU5ZjctNWM2NC00ODNjLWE2ZGQtZTA0M2ZmYjBkN2Fi",
+     "sources": [
+      "https://pass.gov.pk/Detail/YzM5NjU5ZjctNWM2NC00ODNjLWE2ZGQtZTA0M2ZmYjBkN2Fi"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "food-bills"
+     ]
+    }
+   ]
+  },
+  {
    "code": "PH",
    "slug": "philippines",
    "name": "Philippines",
@@ -948,6 +1392,108 @@
       "https://mb.com.ph/2026/02/19/not-all-solo-parents-qualify-under-expanded-law-dswd"
      ],
      "reviewed_on": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "code": "SG",
+   "slug": "singapore",
+   "name": "Singapore",
+   "flag": "🇸🇬",
+   "emergency": {
+    "number": "999",
+    "label": "Police. For an ambulance or the fire service, dial 995",
+    "source": "https://msf.gov.sg/what-we-do/help-those-in-need/article/programmes/National-Anti-Violence-and-Sexual-Harassment-Helpline-NAVH"
+   },
+   "resources": [
+    {
+     "id": "singapore-navh",
+     "section": "help-now",
+     "name": "National Anti-Violence and Sexual Harassment Helpline (NAVH)",
+     "org": "Ministry of Social and Family Development",
+     "what": "A line open any hour to get help with, or report, family violence, abuse, neglect, sexual violence or sexual harassment. Victims, family, neighbours and professionals can all call.",
+     "how": "Call 1800-777-0000, or use the online report form. Airtime charges apply from a mobile.",
+     "url": "https://msf.gov.sg/what-we-do/help-those-in-need/article/programmes/National-Anti-Violence-and-Sexual-Harassment-Helpline-NAVH",
+     "phone": "1800-777-0000",
+     "dial": "18007770000",
+     "urgent": true,
+     "chip": "Family violence line",
+     "sources": [
+      "https://msf.gov.sg/what-we-do/help-those-in-need/article/programmes/National-Anti-Violence-and-Sexual-Harassment-Helpline-NAVH",
+      "https://www.msf.gov.sg/what-we-do/break-the-silence/get-help/i-want-to-report-domestic-violence"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "kids-differently"
+     ]
+    },
+    {
+     "id": "singapore-sos",
+     "section": "help-now",
+     "name": "Samaritans of Singapore (SOS)",
+     "org": "Samaritans of Singapore",
+     "what": "Someone to talk to, any hour, if you are in crisis or having thoughts of suicide.",
+     "how": "Call 1767, or send a WhatsApp to CareText on 9151 1767. Both are open 24 hours. Normal call charges may apply.",
+     "url": "https://www.sos.org.sg/contact-us/",
+     "phone": "1767",
+     "dial": "1767",
+     "text": "WhatsApp 9151 1767",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://www.sos.org.sg/contact-us/"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "singapore-comcare",
+     "section": "food-bills",
+     "name": "ComCare",
+     "org": "Ministry of Social and Family Development",
+     "what": "Money help for families on a low income or in urgent need, from short-term help with living costs to help right away.",
+     "how": "Call the ComCare Hotline, open 7am to midnight every day, or visit a Social Service Office. For Singapore Citizens, and Permanent Residents living with a family member who is a citizen. Airtime charges apply from a mobile.",
+     "url": "https://www.msf.gov.sg/ComCare",
+     "phone": "1800-222-0000",
+     "dial": "18002220000",
+     "sources": [
+      "https://www.msf.gov.sg/ComCare"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "single-parent"
+     ]
+    },
+    {
+     "id": "singapore-baby-bonus",
+     "section": "pregnancy-baby",
+     "name": "Baby Bonus",
+     "org": "Ministry of Social and Family Development",
+     "what": "For each child who is a Singapore Citizen: a Cash Gift of $11,000 or more, paid in steps until age 6½, and a $5,000 grant into a Child Development Account, which the government also matches when you save. Parents must be married for the Cash Gift.",
+     "how": "Apply in the LifeSG app when you register the birth.",
+     "url": "https://msf.gov.sg/what-we-do/help-those-in-need/article/programmes/baby-bonus-scheme",
+     "sources": [
+      "https://msf.gov.sg/what-we-do/help-those-in-need/article/programmes/baby-bonus-scheme"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "food-bills"
+     ]
+    },
+    {
+     "id": "singapore-legal-aid",
+     "section": "single-parent",
+     "name": "Legal Aid Bureau",
+     "org": "Ministry of Law",
+     "what": "Legal help with civil cases, including divorce, for people with limited means and a reasonable case. You can see a duty lawyer for advice.",
+     "how": "Register on the Legal Aid Bureau's applicant portal, then book an appointment before you go. Open weekdays, 8:30am to 5pm.",
+     "url": "https://lab.mlaw.gov.sg/legal-services/how-do-i-apply-for-legal-aid/",
+     "sources": [
+      "https://lab.mlaw.gov.sg/legal-services/how-do-i-apply-for-legal-aid/"
+     ],
+     "reviewed_on": "2026-11-21"
     }
    ]
   },
@@ -1032,6 +1578,199 @@
       "single-parent"
      ],
      "reviewed_on": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "code": "TZ",
+   "slug": "tanzania",
+   "name": "Tanzania",
+   "flag": "🇹🇿",
+   "emergency": {
+    "number": "112",
+    "label": "Police, fire and ambulance",
+    "source": "https://www.smartraveller.gov.au/destinations/africa/tanzania"
+   },
+   "resources": [
+    {
+     "id": "tanzania-116",
+     "section": "help-now",
+     "name": "National Child Helpline 116",
+     "org": "C-Sema, with the Government of Tanzania",
+     "what": "A free line, open day and night, for children and for women and girls at risk of violence. Parents, family and neighbours can call to report a child in danger.",
+     "how": "Dial 116 from any phone.",
+     "phone": "116",
+     "dial": "116",
+     "urgent": true,
+     "chip": "Child and women's helpline",
+     "sources": [
+      "https://www.unfpa.org/news/tanzanian-helpline-reaching-thousands-risk-women-and-girls-every-day",
+      "https://findahelpline.com/organizations/national-child-helpline-tanzania-116"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "kids-differently"
+     ]
+    },
+    {
+     "id": "tanzania-afya-199",
+     "section": "take-care",
+     "name": "Afya Call Center",
+     "org": "Ministry of Health",
+     "what": "Free health advice any hour from doctors and nurses, including mental health and sexual and reproductive health, and help finding a health facility near you.",
+     "how": "Dial 199.",
+     "phone": "199",
+     "dial": "199",
+     "sources": [
+      "https://www.villagereach.org/2025/08/18/tanzanias-afya-call-center-cita/",
+      "https://findahelpline.com/countries/tz"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "pregnancy-baby"
+     ]
+    }
+   ]
+  },
+  {
+   "code": "TT",
+   "slug": "trinidad-and-tobago",
+   "name": "Trinidad and Tobago",
+   "flag": "🇹🇹",
+   "emergency": {
+    "number": "999",
+    "label": "Police. Fire, 990. Ambulance, 811",
+    "source": "https://ttps.gov.tt/contact/"
+   },
+   "resources": [
+    {
+     "id": "trinidad-and-tobago-800-save",
+     "section": "help-now",
+     "name": "National Domestic Violence Hotline (800-SAVE)",
+     "org": "Government of Trinidad and Tobago",
+     "what": "A line open any hour to get help with domestic or gender-based violence. It offers crisis help and counselling, and can arrange a place at the national shelter for women and their children.",
+     "how": "Dial 800-SAVE (800-7283). Normal call charges may apply.",
+     "phone": "800-7283",
+     "dial": "8007283",
+     "urgent": true,
+     "chip": "Domestic violence line",
+     "sources": [
+      "https://www.opm.gov.tt/wp-content/uploads/Media-Release-PROTECTING-OUR-CITIZENS-FROM-DOMESTIC-VIOLENCE.pdf",
+      "https://findahelpline.com/organizations/the-national-domestic-violence-hotline"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "trinidad-and-tobago-lifeline",
+     "section": "help-now",
+     "name": "Lifeline",
+     "org": "Lifeline Trinidad and Tobago",
+     "what": "Free, anonymous support any hour for anyone in emotional crisis or thinking about suicide.",
+     "how": "Call 800-5588 or 866-5433. Both are toll-free.",
+     "phone": "800-5588",
+     "dial": "8005588",
+     "urgent": true,
+     "chip": "Crisis line",
+     "sources": [
+      "https://findcarett.com/lifeline/",
+      "https://health.gov.tt/suicide",
+      "https://findahelpline.com/countries/tt"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "trinidad-and-tobago-childrens-authority",
+     "section": "kids-differently",
+     "name": "Children's Authority hotline",
+     "org": "Children's Authority of Trinidad and Tobago",
+     "what": "The government agency that protects children. Call any hour to report a child you think is being abused or neglected.",
+     "how": "Dial 996 or 800-2014. Children who want to talk to someone can call Childline on 800-4321 or 131. Normal call charges may apply.",
+     "phone": "996",
+     "dial": "996",
+     "sources": [
+      "https://health.gov.tt/teencarett/topics/sexual-abuse",
+      "https://findahelpline.com/organizations/children-s-authority-hotline"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "help-now"
+     ]
+    }
+   ]
+  },
+  {
+   "code": "UG",
+   "slug": "uganda",
+   "name": "Uganda",
+   "flag": "🇺🇬",
+   "emergency": {
+    "number": "999",
+    "label": "National emergency number. 112 works too",
+    "source": "https://www.pulse.ug/story/police-publish-national-emergency-crime-reporting-hotlines-2026031011583031146"
+   },
+   "resources": [
+    {
+     "id": "uganda-sauti-116",
+     "section": "help-now",
+     "name": "Sauti 116",
+     "org": "Ministry of Gender, Labour and Social Development",
+     "what": "A free line, open day and night, to report abuse of a child or violence against a woman. Social workers and psychologists answer and pass cases on for help.",
+     "how": "Dial 116 from any phone. You can also text 116.",
+     "phone": "116",
+     "dial": "116",
+     "text": "Text 116",
+     "urgent": true,
+     "chip": "Child and family helpline",
+     "sources": [
+      "https://www.unicef.org/uganda/stories/swedish-mps-visit-sauti-116-ugandas-247-child-and-women-protection-lifeline"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "kids-differently"
+     ]
+    },
+    {
+     "id": "uganda-mifumi",
+     "section": "help-now",
+     "name": "MIFUMI domestic violence helpline",
+     "org": "MIFUMI",
+     "what": "A free line, open any hour, for women and children facing violence at home. Counsellors help you make a safety plan and can help with legal advice and emergency shelter.",
+     "how": "Call 0800 200 250. It is toll-free in Uganda.",
+     "phone": "0800 200 250",
+     "dial": "0800200250",
+     "urgent": true,
+     "chip": "Domestic violence line",
+     "sources": [
+      "https://mifumi.org/?p=40",
+      "https://findahelpline.com/organizations/mifumi-domestic-violence-helpline"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "uganda-mental-health-uganda",
+     "section": "take-care",
+     "name": "Mental Health Uganda toll-free line",
+     "org": "Mental Health Uganda",
+     "what": "Free, confidential support with your mental health, on a weekday.",
+     "how": "Call 0800 21 21 21, Monday to Friday, 8:30am to 5pm.",
+     "phone": "0800 21 21 21",
+     "dial": "0800212121",
+     "sources": [
+      "https://findahelpline.com/organizations/mental-health-uganda-toll-free"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "help-now"
+     ]
     }
    ]
   },
@@ -1155,6 +1894,119 @@
       "single-parent"
      ],
      "reviewed_on": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "code": "ZM",
+   "slug": "zambia",
+   "name": "Zambia",
+   "flag": "🇿🇲",
+   "emergency": {
+    "number": "999",
+    "label": "Police, fire and ambulance",
+    "source": "https://www.smartraveller.gov.au/destinations/zambia"
+   },
+   "resources": [
+    {
+     "id": "zambia-lifeline-933",
+     "section": "help-now",
+     "name": "Lifeline 933",
+     "org": "Lifeline/Childline Zambia",
+     "what": "A free line for adults, open day and night, for gender-based violence, mental health worries and other hard times. Counsellors listen and refer you on for help.",
+     "how": "Call 933 for free. Texting and online counselling are offered too.",
+     "url": "https://clzambia.org/",
+     "phone": "933",
+     "dial": "933",
+     "urgent": true,
+     "chip": "Adult helpline",
+     "sources": [
+      "https://clzambia.org/",
+      "https://lifeline-international.com/lifeline-childline-zambia/"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "zambia-childline-116",
+     "section": "kids-differently",
+     "name": "Childline 116",
+     "org": "Lifeline/Childline Zambia",
+     "what": "A free line for children, open day and night, in English and seven Zambian languages. It helps with abuse, neglect, child marriage, bullying and more.",
+     "how": "Dial 116 for free.",
+     "url": "https://clzambia.org/",
+     "phone": "116",
+     "dial": "116",
+     "urgent": true,
+     "chip": "Child helpline",
+     "sources": [
+      "https://clzambia.org/",
+      "https://findahelpline.com/organizations/childline-zambia",
+      "https://www.unicef.org/zambia/stories/lifeline-zambias-children"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "help-now"
+     ]
+    }
+   ]
+  },
+  {
+   "code": "ZW",
+   "slug": "zimbabwe",
+   "name": "Zimbabwe",
+   "flag": "🇿🇼",
+   "emergency": {
+    "number": "112",
+    "label": "Police, fire and ambulance from an Econet phone. On NetOne, dial 114",
+    "source": "https://www.gov.uk/foreign-travel-advice/zimbabwe/getting-help"
+   },
+   "resources": [
+    {
+     "id": "zimbabwe-musasa",
+     "section": "help-now",
+     "name": "Musasa helpline",
+     "org": "Musasa",
+     "what": "A free line, open any hour, for women and girls facing violence at home or sexual violence. Musasa offers counselling, safe shelter, and help getting medical care quickly after rape.",
+     "how": "Call 08080074 from Econet or 08010074 from NetOne.",
+     "url": "https://musasa.co.zw/",
+     "phone": "08080074",
+     "dial": "08080074",
+     "urgent": true,
+     "chip": "Women's helpline",
+     "sources": [
+      "https://musasa.co.zw/",
+      "https://zimbabwe.un.org/en/node/50660",
+      "https://findahelpline.com/countries/zw"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "housing"
+     ]
+    },
+    {
+     "id": "zimbabwe-childline-116",
+     "section": "kids-differently",
+     "name": "Childline 116",
+     "org": "Childline Zimbabwe",
+     "what": "A free line for children up to 18, open day and night from any network. Adults can contact Childline to report a child being abused.",
+     "how": "Dial 116. You can also send a WhatsApp to +263 719 116 116.",
+     "url": "https://childline.org.zw/",
+     "phone": "116",
+     "dial": "116",
+     "text": "WhatsApp +263 719 116 116",
+     "urgent": true,
+     "chip": "Child helpline",
+     "sources": [
+      "https://childline.org.zw/",
+      "https://findahelpline.com/countries/zw"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "help-now"
+     ]
     }
    ]
   }
