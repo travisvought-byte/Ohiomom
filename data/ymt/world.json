@@ -1184,8 +1184,8 @@
    "flag": "🇨🇷",
    "emergency": {
     "number": "911",
-    "label": "Any emergency, including violence against women, any hour, every day",
-    "source": "https://delfino.cr/2025/08/mujeres-pueden-acceder-a-servicios-del-inamu-mediante-canales-digitales-telefonicos-y-presenciales"
+    "label": "Any emergency. INAMU's free 9-1-1 line for women facing violence answers any hour, every day",
+    "source": "https://www.inamu.go.cr/-/noticias-servicio-9-1-1-inamu-funciona-horario-24-7"
    },
    "resources": [
     {
@@ -1193,14 +1193,14 @@
      "section": "help-now",
      "name": "INAMU line 1125",
      "org": "Instituto Nacional de las Mujeres (INAMU)",
-     "what": "A free line for legal and psychosocial guidance for women. Violence emergencies go to 911, where INAMU's emergency service answers any hour, every day.",
-     "how": "Call 1125, Monday to Friday, 8am to 4pm. INAMU's Ela app has chat guidance any hour and a panic button linked to 911.",
-     "url": "https://delfino.cr/2025/08/mujeres-pueden-acceder-a-servicios-del-inamu-mediante-canales-digitales-telefonicos-y-presenciales",
+     "what": "INAMU's line for guidance and information on women's rights, including family law, dividing property, divorce, custody, child support, paternity, harassment at work and political violence. For violence, call INAMU's free 9-1-1 line, open any hour, every day.",
+     "how": "Call 1125, Monday to Friday, 8am to 4pm. INAMU's Ela app is also available any hour of the day: download it from your app store and register.",
+     "url": "https://www.inamu.go.cr/en/web/inamu/contacto",
      "phone": "1125",
      "dial": "1125",
      "sources": [
-      "https://delfino.cr/2025/08/mujeres-pueden-acceder-a-servicios-del-inamu-mediante-canales-digitales-telefonicos-y-presenciales",
-      "https://delfino.cr/2025/09/atencion-24-7-inamu-aclara-funcionamiento-de-su-linea-de-emergencias"
+      "https://www.inamu.go.cr/-/noticias-servicio-9-1-1-inamu-funciona-horario-24-7",
+      "https://www.inamu.go.cr/en/web/inamu/contacto"
      ],
      "reviewed_on": "2026-11-21"
     },
@@ -2071,8 +2071,8 @@
    "flag": "🇮🇱",
    "emergency": {
     "number": "100",
-    "label": "Police. For an ambulance (Magen David Adom), call 101; for fire and rescue, 102",
-    "source": "https://aisrael.org/en/essential-phone-numbers"
+    "label": "Police. For an ambulance (Magen David Adom), call 101; for the fire department, 102",
+    "source": "https://www.gov.il/BlobFolder/generalpage/general_tuota/he/TheLifeCycleInIsrael_en.pdf"
    },
    "resources": [
     {
