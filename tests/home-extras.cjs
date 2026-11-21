@@ -1,6 +1,6 @@
-// Deborah's jokes take turns in the picture card on the two front pages: a random one first, another about once a
-// minute, and the visitor can flip back and on and stop the turning. Each joke brings its picture (her pose and
-// sweater, and which of her children are around), and the picture stays out of the way.
+// The daily affirmation is Deborah's speech bubble in the picture card on the two front pages: one a day, picked by the
+// visitor's own date, and the visitor can flip back and on to read others. Nothing turns by itself. Each affirmation
+// brings its picture (her pose and sweater, and which of her children are around), and the picture stays out of the way.
 // Run: node tests/home-extras.cjs
 const assert = require('node:assert/strict'), fs = require('node:fs'), path = require('node:path'), { execFileSync } = require('node:child_process'), { JSDOM } = require('jsdom');
 const all = (d, sel) => [...d.querySelectorAll(sel)];
@@ -8,135 +8,93 @@ const py = (code) => execFileSync('python3', ['-c', 'import sys; sys.path.insert
 
 // Four little stories, built by the same code that builds the pages.
 const STORIES = [
-  { text: 'Joke one.', cast: ['atlas', 'ephraim'], pose: 'triangle', sweater: 'plum' },
-  { text: 'Joke two.', cast: [], pose: 'easy', sweater: 'bubblegum' },
-  { text: 'Joke three.', cast: ['genevieve'], pose: 'warrior2', sweater: 'candy' },
-  { text: 'Joke four.', cast: ['delilah'], pose: 'tree', sweater: 'heart' },
+  { text: 'Kind word one.', cast: ['atlas', 'ephraim'], pose: 'triangle', sweater: 'plum' },
+  { text: 'Kind word two.', cast: [], pose: 'easy', sweater: 'bubblegum' },
+  { text: 'Kind word three.', cast: ['genevieve'], pose: 'warrior2', sweater: 'candy' },
+  { text: 'Kind word four.', cast: ['delilah'], pose: 'tree', sweater: 'heart' },
 ];
 const card = (stories) => py(`import json
-data = {"jokes": [dict(j, approved=True) for j in json.loads(${JSON.stringify(JSON.stringify(stories))})]}
-jokes, looks = e.approved_jokes(data), e.approved_looks(data)
-print(e.scene_block(False, jokes, "jokes.html") + e.joke_scripts(jokes, looks))`);
-const TURN = Number(py('print(e.TURN_SECONDS * 1000)'));
+data = {"affirmations": [dict(j, approved=True) for j in json.loads(${JSON.stringify(JSON.stringify(stories))})]}
+sayings, looks = e.approved_affirmations(data), e.approved_looks(data)
+print(e.scene_block(False, sayings, "affirmations.html", "help.html#take-care") + e.affirmation_scripts(sayings, looks))`);
 
-// Open a page body and run the page's own script, with the dice, the clock and the visitor's settings in the test's hands.
-// `random` near 1 leaves the jokes in the order on file, so a test can say which comes next.
+// Open a page body and run the page's own script, with the clock and the visitor's settings in the test's hands.
 // `now` is the visitor's clock: by default a weekday noon in March, when no seasonal or late-night story is in the turn.
-function open(body, { random = () => 0.999999, reduce = false, now = '2027-03-10T12:00:00' } = {}) {
+// Any timer the script asks for is counted, so a test can say there are none.
+function open(body, { reduce = false, now = '2027-03-10T12:00:00' } = {}) {
   const dom = new JSDOM(`<!doctype html><html lang="en"><body><main>${body}</main></body></html>`, { runScripts: 'outside-only', pretendToBeVisual: true });
-  const w = dom.window, d = w.document, timers = new Map();
-  let next = 1, hidden = false;
-  w.Math.random = random;
+  const w = dom.window, d = w.document, timers = [];
   const RealDate = w.Date;
   w.Date = class extends RealDate { constructor(...a) { if (a.length) super(...a); else super(now); } };
-  w.setInterval = (f, ms) => { timers.set(next, { f, ms }); return next++; };
-  w.clearInterval = (id) => { timers.delete(id); };
+  w.setInterval = (f, ms) => { timers.push(ms); return timers.length; };
+  w.setTimeout = (f, ms) => { timers.push(ms); return timers.length; };
   w.matchMedia = (q) => ({ matches: reduce && q === '(prefers-reduced-motion: reduce)' });
-  Object.defineProperty(d, 'hidden', { get: () => hidden, configurable: true });
   const scripts = all(d, 'script').filter((s) => s.type !== 'application/json');
   assert.equal(scripts.length, 1, 'one script runs the card');
   w.eval(scripts[0].textContent);
-  return {
-    d, timers,
-    minute: () => { for (const t of [...timers.values()]) t.f(); },   // one turn of the clock
-    hide: (yes) => { hidden = yes; },
-    tap: (sel) => d.querySelector(sel).dispatchEvent(new w.Event('click', { bubbles: true })),
-  };
+  return { d, timers, tap: (sel) => d.querySelector(sel).dispatchEvent(new w.Event('click', { bubbles: true })) };
 }
-const shown = (d) => (d.getElementById('joke').hidden ? null : d.getElementById('joke-text').textContent);
+const shown = (d) => (d.getElementById('affirm').hidden ? null : d.getElementById('affirm-text').textContent);
 // The names in an attribute (data-pose, data-kid, ...) whose parts of the drawing are showing.
 const seen = (d, attr) => all(d, `svg.scene [${attr}]`).filter((el) => el.getAttribute('display') !== 'none').map((el) => el.getAttribute(attr));
-const turning = (page) => page.timers.size === 1;
-const button = (d) => { const b = d.getElementById('joke-pause'); return [b.getAttribute('aria-label'), all(b, '[data-icon]').filter((i) => i.getAttribute('display') !== 'none').map((i) => i.getAttribute('data-icon')).join()]; };
+// The day number the page counts from: days since 1 January 1970 on the visitor's own calendar.
+const dayOf = (now) => { const t = new Date(now); return Math.floor(Date.UTC(t.getFullYear(), t.getMonth(), t.getDate()) / 864e5); };
 
-// 1. A visit opens on a joke picked by the dice, and every joke comes round once before any comes round again.
+// 1. One a day, by the visitor's date: everyone sees the same one on the same day, and the next day brings the next.
 {
   const body = card(STORIES);
-  assert.equal(shown(open(body).d), 'Joke one.');
-  assert.equal(shown(open(body, { random: () => 0 }).d), 'Joke two.', 'other dice, another joke first');
-  let k = 0;
-  const dice = [0.3, 0.9, 0.1], page = open(body, { random: () => dice[k++ % dice.length] });
-  const round = [shown(page.d)];
-  for (let i = 1; i < STORIES.length; i++) { page.minute(); round.push(shown(page.d)); }
-  assert.deepEqual([...round].sort(), STORIES.map((s) => s.text).sort(), 'all four, once each');
-  page.minute();
-  assert.equal(shown(page.d), round[0], 'then round again in the same order');
+  const days = ['2027-03-10', '2027-03-11', '2027-03-12', '2027-03-13', '2027-03-14'];
+  const seenDays = days.map((day) => shown(open(body, { now: day + 'T12:00:00' }).d));
+  const first = dayOf('2027-03-10T12:00:00') % STORIES.length;
+  assert.deepEqual(seenDays, days.map((_, i) => STORIES[(first + i) % STORIES.length].text), 'the next day, the next one, and round again');
+  assert.equal(shown(open(body, { now: '2027-03-10T00:05:00' }).d), seenDays[0], 'just after midnight');
+  assert.equal(shown(open(body, { now: '2027-03-10T20:55:00' }).d), seenDays[0], 'and late in the evening: one all day');
   // Before the script runs there is no empty bubble and no dead button.
   const still = new JSDOM(body).window.document;
-  assert(still.getElementById('joke').hidden && still.getElementById('scene-foot').hidden, 'the bubble and the buttons wait for the script');
-  assert.equal(still.getElementById('joke-text').textContent, '');
+  assert(still.getElementById('affirm').hidden && still.getElementById('scene-foot').hidden, 'the bubble and the buttons wait for the script');
+  assert.equal(still.getElementById('affirm-text').textContent, '');
 }
 
-// 2. It turns by itself about once a minute, and only while someone can see it.
+// 2. Nothing turns by itself, so nothing needs a stop button.
 {
   const page = open(card(STORIES)), d = page.d;
-  assert(turning(page), 'one timer');
-  assert.equal([...page.timers.values()][0].ms, TURN);
-  assert(TURN >= 45000 && TURN <= 75000, 'about a minute');
-  assert.deepEqual(button(d), ['Pause the jokes', 'pause']);
+  assert.deepEqual(page.timers, [], 'no timer of any kind');
   assert(!d.getElementById('scene-foot').hidden, 'the buttons show once the script is running');
-  page.minute();
-  assert.equal(shown(d), 'Joke two.');
-  assert(!d.getElementById('joke-text').hasAttribute('aria-live'), 'a joke that turns by itself is not read out over what a screen reader is saying');
-  page.hide(true); page.minute(); page.minute();
-  assert.equal(shown(d), 'Joke two.', 'a tab nobody is looking at does not turn');
-  page.hide(false); page.minute();
-  assert.equal(shown(d), 'Joke three.');
+  assert(!d.getElementById('affirm-text').hasAttribute('aria-live'), 'the day\'s affirmation is read in its place, not announced');
+  assert.equal(d.getElementById('affirm-pause'), null);
+  // One gentle line under it points to the site's own page of people to talk to.
+  const help = d.querySelector('#affirm .sayhelp a');
+  assert.equal(help.textContent, 'Find someone to talk to');
+  assert.equal(help.getAttribute('href'), 'help.html#take-care');
 }
 
-// 3. The button in the bubble stops it and starts it.
+// 3. Back and Next flip, and a screen reader hears the new one.
 {
-  const page = open(card(STORIES)), d = page.d;
-  page.tap('#joke-pause');
-  assert(!turning(page), 'stopped');
-  assert.deepEqual(button(d), ['Play the jokes', 'play'], 'the button says what it will do now');
-  assert.equal(shown(d), 'Joke one.', 'stopping leaves the joke where it is');
-  page.tap('#joke-pause');
-  assert(turning(page) && page.timers.size === 1, 'started again, with one timer and no more');
-  assert.deepEqual(button(d), ['Pause the jokes', 'pause']);
-  page.minute();
-  assert.equal(shown(d), 'Joke two.');
-}
-
-// 4. Back and Next flip. The reader has taken over, so the turning stops, and a screen reader hears the new joke.
-{
-  const page = open(card(STORIES)), d = page.d;
-  page.tap('#joke-next');
-  assert.equal(shown(d), 'Joke two.');
-  assert(!turning(page), 'a flip stops the turning');
-  assert.deepEqual(button(d), ['Play the jokes', 'play']);
-  assert.equal(d.getElementById('joke-text').getAttribute('aria-live'), 'polite');
-  page.tap('#joke-next'); page.tap('#joke-next');
-  assert.equal(shown(d), 'Joke four.');
-  page.tap('#joke-next');
-  assert.equal(shown(d), 'Joke one.', 'after the last comes the first');
-  page.tap('#joke-prev');
-  assert.equal(shown(d), 'Joke four.', 'and before the first, the last');
-  page.tap('#joke-prev');
-  assert.equal(shown(d), 'Joke three.');
-  // Starting it again carries on from the joke on show, and goes quiet for screen readers again.
-  page.tap('#joke-pause'); page.minute();
-  assert.equal(shown(d), 'Joke four.');
-  assert(!d.getElementById('joke-text').hasAttribute('aria-live'));
-  assert.equal(d.getElementById('joke-prev').getAttribute('aria-label'), 'Previous joke');
-  assert.equal(d.getElementById('joke-next').getAttribute('aria-label'), 'Next joke');
-  assert.equal(all(d, '#scene button').length, 3, 'three buttons: back, next, and stop or start');
+  const page = open(card(STORIES), { now: '2027-03-10T12:00:00' }), d = page.d, start = dayOf('2027-03-10T12:00:00') % STORIES.length;
+  const at = (k) => STORIES[((start + k) % STORIES.length + STORIES.length) % STORIES.length].text;
+  page.tap('#affirm-next');
+  assert.equal(shown(d), at(1));
+  assert.equal(d.getElementById('affirm-text').getAttribute('aria-live'), 'polite');
+  page.tap('#affirm-next'); page.tap('#affirm-next'); page.tap('#affirm-next');
+  assert.equal(shown(d), at(0), 'after the last comes the first');
+  page.tap('#affirm-prev');
+  assert.equal(shown(d), at(-1), 'and before the first, the last');
+  assert.deepEqual(page.timers, []);
+  assert.equal(d.getElementById('affirm-prev').getAttribute('aria-label'), 'Previous affirmation');
+  assert.equal(d.getElementById('affirm-next').getAttribute('aria-label'), 'Next affirmation');
+  assert.equal(all(d, '#scene button').length, 2, 'two buttons: back and next');
   for (const b of all(d, '#scene button')) assert(b.getAttribute('aria-label') && b.type === 'button' && !b.closest('[aria-hidden]'), 'each is a real button with a name');
 }
 
-// 5. A device that asks for less motion is not given a card that changes by itself. The reader can still flip, and can start it.
+// 4. A device that asks for less motion gets the same day's affirmation, and can still flip.
 {
-  const page = open(card(STORIES), { reduce: true }), d = page.d;
-  assert.equal(shown(d), 'Joke one.', 'there is still a joke');
-  assert(!turning(page), 'nothing turns');
-  assert.deepEqual(button(d), ['Play the jokes', 'play']);
-  page.tap('#joke-next');
-  assert.equal(shown(d), 'Joke two.');
-  page.tap('#joke-pause');
-  assert(turning(page), 'the reader can start it');
+  const page = open(card(STORIES), { reduce: true }), d = page.d, start = dayOf('2027-03-10T12:00:00') % STORIES.length;
+  assert.equal(shown(d), STORIES[start].text, 'the same one');
+  page.tap('#affirm-next');
+  assert.equal(shown(d), STORIES[(start + 1) % STORIES.length].text);
 }
 
-// 6. Each joke brings its picture: Deborah's pose and sweater, which children are around, and the caption.
+// 6. Each affirmation brings its picture: Deborah's pose and sweater, which children are around, and the caption.
 {
   const tables = JSON.parse(py('import json\nprint(json.dumps({"poses": {k: e.top_move(k) for k in e.POSES}, "sweaters": e.SWEATERS, "first": [e.FIRST_POSE, e.FIRST_SWEATER]}))'));
   const body = card(STORIES);
@@ -155,52 +113,52 @@ const button = (d) => { const b = d.getElementById('joke-pause'); return [b.getA
   };
   // As written, before any script: the first pose, the first sweater, one child.
   check(new JSDOM(body).window.document, { cast: ['delilah'], pose: tables.first[0], sweater: tables.first[1] }, 'with scripts off');
-  const page = open(body), d = page.d;
+  // On a day that opens on story one, the stories come round in order as the reader flips, each with its picture.
+  const one = ['2027-03-10', '2027-03-11', '2027-03-12', '2027-03-13'].map((x) => x + 'T12:00:00').find((x) => dayOf(x) % STORIES.length === 0);
+  const page = open(body, { now: one }), d = page.d;
   check(d, STORIES[0], 'story one');
   assert.equal(d.getElementById('scene-cap').textContent, 'Deborah is working on triangle pose.', 'the caption is about Deborah, whoever is around');
-  assert.match(d.getElementById('scene').style.getPropertyValue('--tail'), /^\d\d%$/, 'the tail of the joke bubble follows her head');
-  page.minute();
-  check(d, STORIES[1], 'story two, when the clock turns');
+  assert.match(d.getElementById('scene').style.getPropertyValue('--tail'), /^\d\d%$/, 'the tail of the bubble follows her head');
+  page.tap('#affirm-next');
+  check(d, STORIES[1], 'story two');
   assert.equal(d.getElementById('scene-cap').textContent, 'Deborah is working on easy pose.', 'Deborah alone');
-  page.tap('#joke-next');
-  check(d, STORIES[2], 'story three, by the button');
+  page.tap('#affirm-next');
+  check(d, STORIES[2], 'story three');
   assert.equal(d.getElementById('scene-cap').textContent, 'Deborah is working on warrior two.');
-  page.tap('#joke-prev'); page.tap('#joke-prev');
-  check(d, STORIES[0], 'back to story one: the picture goes back with the joke');
-  page.tap('#joke-prev');
+  page.tap('#affirm-prev'); page.tap('#affirm-prev');
+  check(d, STORIES[0], 'back to story one: the picture goes back with the words');
+  page.tap('#affirm-prev');
   check(d, STORIES[3], 'and round to the last');
-  // However the dice fall, a joke and its picture stay together, whether the clock turns it or the reader does.
+  // Whatever the day, an affirmation and its picture stay together, whichever way the reader flips.
   const caps = { triangle: 'Deborah is working on triangle pose.', easy: 'Deborah is working on easy pose.', warrior2: 'Deborah is working on warrior two.', tree: 'Deborah is working on tree pose.' };
-  const dice = [() => () => 0, () => () => 0.5, () => { let k = 0; return () => [0.7, 0.2, 0.4][k++ % 3]; }];
-  for (const make of dice) {
-    for (const step of [(pg) => pg.minute(), (pg) => pg.tap('#joke-next'), (pg) => pg.tap('#joke-prev')]) {
-      const mixed = open(body, { random: make() }), order = [];
+  for (const day of ['2027-03-10', '2027-03-11', '2027-03-12', '2027-03-13']) {
+    for (const step of ['#affirm-next', '#affirm-prev']) {
+      const other = open(body, { now: day + 'T12:00:00' }), order = [];
       for (let i = 0; i < STORIES.length; i++) {
-        const story = STORIES.find((s) => s.text === shown(mixed.d));
+        const story = STORIES.find((s) => s.text === shown(other.d));
         order.push(story.text);
-        check(mixed.d, story, `shuffled, ${story.text}`);
-        assert.equal(mixed.d.getElementById('scene-cap').textContent, caps[story.pose]);
-        step(mixed);
+        check(other.d, story, `${day}, ${story.text}`);
+        assert.equal(other.d.getElementById('scene-cap').textContent, caps[story.pose]);
+        other.tap(step);
       }
       assert.equal(new Set(order).size, STORIES.length, 'every story once');
-      assert.notDeepEqual(order, STORIES.map((s) => s.text), 'these dice do mix the order');
     }
   }
   // The script only dresses the drawing: it adds nothing to it that a keyboard or a screen reader could land on.
   assert.equal(all(d, 'svg.scene a, svg.scene [tabindex], svg.scene [href], svg.scene title, svg.scene button').length, 0);
   assert.equal(d.querySelector('svg.scene').getAttribute('aria-hidden'), 'true');
-  assert(!d.getElementById('scene-cap').closest('[aria-hidden]') && !d.getElementById('joke-text').closest('[aria-hidden]'), 'the words are for everyone');
-  // A page whose picture data has lost a story still tells that story's joke, in the picture it had on.
-  const holed = open(body.replace(/"easy\|bubblegum\|\|[^"]*"/, '""'));
-  holed.minute();
-  assert.equal(shown(holed.d), 'Joke two.');
-  check(holed.d, STORIES[0], 'a joke with no picture of its own keeps the one before it');
+  assert(!d.getElementById('scene-cap').closest('[aria-hidden]') && !d.getElementById('affirm-text').closest('[aria-hidden]'), 'the words are for everyone');
+  // A page whose picture data has lost a story still gives that story's words, in the picture it had on.
+  const holed = open(body.replace(/"easy\|bubblegum\|\|[^"]*"/, '""'), { now: one });
+  holed.tap('#affirm-next');
+  assert.equal(shown(holed.d), 'Kind word two.');
+  check(holed.d, STORIES[0], 'an affirmation with no picture of its own keeps the one before it');
 }
 
-// 7. The pages as built: the picture is beside the question and hidden from screen readers; the joke is in the picture
-// card, as Deborah's speech bubble straight above the drawing; and every approved joke comes round with its own picture.
+// 7. The pages as built: the picture is beside the question and hidden from screen readers; the affirmation is in the
+// picture card, as Deborah's speech bubble straight above the drawing; and every approved one comes round with its own picture.
 {
-  const approved = JSON.parse(fs.readFileSync('data/jokes.json', 'utf8')).jokes.filter((j) => j.approved === true);
+  const approved = JSON.parse(fs.readFileSync('data/affirmations.json', 'utf8')).affirmations.filter((j) => j.approved === true);
   for (const file of ['index.html', 'ohio/index.html']) {
     const d = new JSDOM(fs.readFileSync(file, 'utf8')).window.document;
     const art = all(d, 'svg.scene');
@@ -212,47 +170,55 @@ const button = (d) => { const b = d.getElementById('joke-pause'); return [b.getA
     assert.equal(top.firstElementChild.className, 'herotext', `${file}: the question is first in reading order`);
     assert(top.querySelector('.herotext > h1') && top.querySelector('.herotext > .lede'), `${file}: the question and its line`);
     assert(top.nextElementSibling.matches('.tiles'), `${file}: the choices follow at once`);
-    assert.equal(all(d, 'main > section').length, 2, `${file}: the joke adds no section of its own`);
-    const box = d.getElementById('joke');
+    assert.equal(all(d, 'main > section').length, 2, `${file}: the affirmation adds no section of its own`);
+    const box = d.getElementById('affirm');
     if (approved.length) {
-      assert(box && box.hidden, `${file}: the joke bubble is there and waits for the script`);
-      assert.equal(box.parentElement, art[0].parentElement, `${file}: the joke is in the picture card`);
+      assert(box && box.hidden, `${file}: the bubble is there and waits for the script`);
+      assert.equal(box.parentElement, art[0].parentElement, `${file}: the affirmation is in the picture card`);
       assert.equal(box.nextElementSibling, art[0], `${file}: the bubble sits straight above the drawing`);
-      assert(!box.closest('[aria-hidden]'), `${file}: screen readers read the joke; only the drawing is hidden from them`);
-      assert.equal(box.querySelector('h2').textContent, 'Deborah’s jokes');
-      const link = box.querySelector('a');
-      assert.equal(link.textContent, 'All jokes');
-      assert(fs.existsSync(path.join(path.dirname(file), link.getAttribute('href'))), `${file}: the list of jokes is where the link says`);
-      assert.deepEqual(JSON.parse(d.getElementById('jokes-data').textContent), approved.map((j) => j.text), `${file}: the approved jokes, in the order on file`);
+      assert(!box.closest('[aria-hidden]'), `${file}: screen readers read the affirmation; only the drawing is hidden from them`);
+      assert.equal(box.querySelector('h2').textContent, 'A kind word for today');
+      const link = box.querySelector('.sayinghead a');
+      assert.equal(link.textContent, 'More kind words');
+      assert(fs.existsSync(path.join(path.dirname(file), link.getAttribute('href'))), `${file}: the list is where the link says`);
+      // One gentle line under the affirmation points to the page of people to talk to that the site already has.
+      const help = box.querySelector('.sayhelp a');
+      const [target, hash] = help.getAttribute('href').split('#');
+      assert.equal(target, file === 'index.html' ? 'help.html' : 'wellbeing.html', `${file}: the site's own page of people to talk to`);
+      const there = new JSDOM(fs.readFileSync(path.join(path.dirname(file), target), 'utf8')).window.document;
+      if (hash) assert(there.getElementById(hash), `${file}: #${hash} is on ${target}`);
+      assert(there.querySelector('a[href="tel:988"]'), `${file}: that page has the crisis line`);
+      assert.deepEqual(JSON.parse(d.getElementById('affirmations-data').textContent), approved.map((j) => j.text), `${file}: the approved affirmations, in the order on file`);
       // The buttons that flip lie along the floor of the drawing, with the caption between them, and wait for the script.
       const bar = d.getElementById('scene-foot');
       assert(bar && bar.hidden && bar.previousElementSibling === art[0], `${file}: the bar comes straight after the drawing and waits for the script`);
       assert.equal(bar.style.position, 'absolute', `${file}: it lies over the floor whatever stylesheet the browser kept`);
-      assert.deepEqual([...bar.children].map((el) => el.id), ['joke-prev', 'scene-cap', 'joke-next'], `${file}: Back, what she is working on, Next`);
+      assert.deepEqual([...bar.children].map((el) => el.id), ['affirm-prev', 'scene-cap', 'affirm-next'], `${file}: Back, what she is working on, Next`);
       assert(!bar.closest('[aria-hidden]'), `${file}: screen readers reach the buttons and the caption`);
       assert.equal(art[0].parentElement.id, 'scene', `${file}: the script finds the picture card by its id`);
       const scene = JSON.parse(d.getElementById('scene-data').textContent);
-      assert.equal(scene.d.length, approved.length, `${file}: a picture for every joke`);
-      // Every approved joke, as the page itself shows it: its own children, one pose, and what the joke asks for.
-      const own = all(d, 'script').filter((x) => x.textContent.includes('"jokes-data"'));
-      assert.equal(own.length, 1, `${file}: one script tells the joke and dresses the picture`);
-      const page = open(art[0].parentElement.outerHTML + d.getElementById('jokes-data').outerHTML + d.getElementById('scene-data').outerHTML + own[0].outerHTML);
-      // At three times of year and day: which stories are in the turn, the one in season first, each with its picture.
+      assert.equal(scene.d.length, approved.length, `${file}: a picture for every affirmation`);
+      // Every approved affirmation, as the page itself shows it: its own children, one pose, and what the story asks for.
+      const own = all(d, 'script').filter((x) => x.textContent.includes('"affirmations-data"'));
+      assert.equal(own.length, 1, `${file}: one script shows the affirmation and dresses the picture`);
+      const page = open(art[0].parentElement.outerHTML + d.getElementById('affirmations-data').outerHTML + d.getElementById('scene-data').outerHTML + own[0].outerHTML);
+      // At three times of year and day: which stories are in the turn, the day's one first (one of the season or the
+      // hour when there are any), then the rest in the order on file, each with its picture.
       const inTurn = (j, now) => {
         if (!j.when) return true;
         const t = new Date(now), [kind, from, to] = scene.s[j.when], y = kind === 'h' ? t.getHours() : (t.getMonth() + 1) * 100 + t.getDate();
         return from <= to ? y >= from && y <= to : y >= from || y <= to;
       };
       for (const now of ['2027-03-10T12:00:00', '2026-11-20T12:00:00', '2026-12-24T22:30:00', '2027-07-04T02:00:00']) {
-        const page = open(art[0].parentElement.outerHTML + d.getElementById('jokes-data').outerHTML + d.getElementById('scene-data').outerHTML + own[0].outerHTML, { now });
-        const order = approved.filter((j) => inTurn(j, now));
-        const first = order.findIndex((j) => j.when);
-        if (first > 0) [order[0], order[first]] = [order[first], order[0]];
+        const page = open(art[0].parentElement.outerHTML + d.getElementById('affirmations-data').outerHTML + d.getElementById('scene-data').outerHTML + own[0].outerHTML, { now });
+        const inOrder = approved.filter((j) => inTurn(j, now)), special = inOrder.filter((j) => j.when), everyday = inOrder.filter((j) => !j.when);
+        const today = special.length ? special[dayOf(now) % special.length] : everyday[dayOf(now) % everyday.length];
+        const k = inOrder.indexOf(today), order = inOrder.slice(k).concat(inOrder.slice(0, k));
         if (now.startsWith('2027-03')) assert(order.every((j) => !j.when), 'a March noon has only everyday stories');
         else assert(order[0].when, `${now}: the card opens on a story of the season, or of the hour`);
         order.forEach((j, i) => {
           const label = `${file} ${now} story ${i + 1}`;
-          if (i) page.tap('#joke-next');
+          if (i) page.tap('#affirm-next');
           assert.equal(shown(page.d), j.text, label);
           assert.deepEqual(seen(page.d, 'data-kid').sort(), [...(j.cast || seen(page.d, 'data-kid'))].sort(), `${label}: the children the story names`);
           assert.equal(seen(page.d, 'data-pose').length > 0 && new Set(seen(page.d, 'data-pose')).size, 1, `${label}: one pose`);
@@ -263,27 +229,27 @@ const button = (d) => { const b = d.getElementById('joke-pause'); return [b.getA
           assert.deepEqual([...new Set(seen(page.d, 'data-when'))], j.when ? [j.when] : [], `${label}: the season's things, and only them`);
           assert.match(page.d.getElementById('scene-cap').textContent, /^Deborah is working on [a-z -]+\.$/, `${label}: a caption`);
         });
-        page.tap('#joke-next');
+        page.tap('#affirm-next');
         assert.equal(shown(page.d), order[0].text, `${now}: round again, and only the stories in the turn`);
       }
     } else {
-      assert(!box && !d.getElementById('jokes-data') && !d.getElementById('scene-data') && !d.getElementById('scene-foot'),
-        `${file}: no joke bubble, buttons or picture data until a joke is approved`);
+      assert(!box && !d.getElementById('affirmations-data') && !d.getElementById('scene-data') && !d.getElementById('scene-foot'),
+        `${file}: no bubble, buttons or picture data until an affirmation is approved`);
     }
   }
-  // The list of all the jokes is plain words: no script, no picture, nothing hidden.
+  // The list of all the affirmations is plain words: no script, no picture, nothing hidden.
   if (approved.length) {
-    const d = new JSDOM(fs.readFileSync('jokes.html', 'utf8')).window.document;
-    assert.deepEqual(all(d, 'ol.jokelist > li').map((li) => li.textContent), approved.map((j) => j.text));
-    assert.equal(all(d, 'ol.jokelist [hidden], svg.scene, #jokes-data, #scene-data').length, 0);
+    const d = new JSDOM(fs.readFileSync('affirmations.html', 'utf8')).window.document;
+    assert.deepEqual(all(d, 'ol.affirmlist > li').map((li) => li.textContent), approved.map((j) => j.text));
+    assert.equal(all(d, 'ol.affirmlist [hidden], svg.scene, #affirmations-data, #scene-data').length, 0);
   }
 }
 
-// 8. The owner's preview (scripts/joke_preview.py) runs the same picture through every joke on file.
+// 8. The owner's preview (scripts/affirmation_preview.py) runs the same picture through every affirmation on file.
 {
-  const html = py(`import json, joke_preview as jp
-jokes = [("Joke A.", True, ["delilah"]), ("Joke B.", True, ["ephraim"]), ("Joke C.", False, ["atlas", "genevieve"]), ("Joke D.", False, [])]
-print(jp.page({"jokes": [{"text": t, "approved": ok, "cast": cast} for t, ok, cast in jokes]}))`);
+  const html = py(`import json, affirmation_preview as jp
+sayings = [("Word A.", True, ["delilah"]), ("Word B.", True, ["ephraim"]), ("Word C.", False, ["atlas", "genevieve"]), ("Word D.", False, [])]
+print(jp.page({"affirmations": [{"text": t, "approved": ok, "cast": cast} for t, ok, cast in sayings]}))`);
   const dom = new JSDOM(html, { runScripts: 'outside-only' });
   const d = dom.window.document;
   const run = all(d, 'script').filter((x) => x.type !== 'application/json');
@@ -296,29 +262,29 @@ print(jp.page({"jokes": [{"text": t, "approved": ok, "cast": cast} for t, ok, ca
   // It opens on the whole family, so every likeness can be checked at once.
   assert.deepEqual(seen(d, 'data-kid').sort(), ['atlas', 'delilah', 'ephraim', 'genevieve']);
   assert.equal(where(), 'The whole family');
-  assert(!d.getElementById('joke').hidden && !d.getElementById('scene-foot').hidden);
+  assert(!d.getElementById('affirm').hidden && !d.getElementById('scene-foot').hidden);
   assert.equal(current(), null);
-  // The card's own Next goes to the first joke that is waiting, then on through the approved ones, and round again.
-  tap('#joke-next');
-  assert.equal(shown(d), 'Joke C.');
+  // The card's own Next goes to the first affirmation that is waiting, then on through the approved ones, and round again.
+  tap('#affirm-next');
+  assert.equal(shown(d), 'Word C.');
   assert.equal(where(), 'Waiting: 1 of 2');
   assert.deepEqual(seen(d, 'data-kid').sort(), ['atlas', 'genevieve']);
-  assert.equal(current().textContent.slice(0, 7), 'Joke C.');
-  tap('#joke-next');
-  assert.equal(shown(d), 'Joke D.');
+  assert.equal(current().textContent.slice(0, 7), 'Word C.');
+  tap('#affirm-next');
+  assert.equal(shown(d), 'Word D.');
   assert.deepEqual(seen(d, 'data-kid'), [], 'Deborah alone');
-  tap('#joke-next');
-  assert.equal(shown(d), 'Joke A.');
+  tap('#affirm-next');
+  assert.equal(shown(d), 'Word A.');
   assert.equal(where(), 'In the turn: 1 of 2');
-  tap('#joke-next'); tap('#joke-next');
+  tap('#affirm-next'); tap('#affirm-next');
   assert.equal(where(), 'Waiting: 1 of 2', 'round again');
-  tap('#joke-prev');
-  assert.equal(where(), 'The whole family', 'Back from the first joke is the family');
-  // Tapping a joke shows its picture.
-  tap('.list button[data-joke="3"]');
-  assert.equal(shown(d), 'Joke B.');
+  tap('#affirm-prev');
+  assert.equal(where(), 'The whole family', 'Back from the first one is the family');
+  // Tapping one shows its picture.
+  tap('.list button[data-item="3"]');
+  assert.equal(shown(d), 'Word B.');
   assert.deepEqual(seen(d, 'data-kid'), ['ephraim']);
-  // Any pose, any sweater, any child: the buttons start from the joke on show and show what is on.
+  // Any pose, any sweater, any child: the buttons start from the affirmation on show and show what is on.
   assert(pressed().includes('ephraim') && pressed().length === 3, 'one child, one pose and one sweater are marked');
   assert.equal(pressed('act').length, 4, 'and what each child is doing');
   assert.deepEqual(pressed('when'), [''], 'and that the story is for any time');
@@ -333,7 +299,7 @@ print(jp.page({"jokes": [{"text": t, "approved": ok, "cast": cast} for t, ok, ca
   assert.equal(d.getElementById('scene-cap').textContent, 'Trying triangle pose in plum.');
   // What a child is doing, and when the story is for.
   tap('[data-try="act"][data-name="delilah.juice"]');
-  assert(seen(d, 'data-act').includes('delilah.juice') && !seen(d, 'data-act').includes('delilah.again'));
+  assert(seen(d, 'data-act').includes('delilah.juice') && !seen(d, 'data-act').includes('delilah.hug'));
   assert(pressed('act').includes('delilah.juice'));
   tap('[data-try="when"][data-name="night"]');
   assert.deepEqual([...new Set(seen(d, 'data-when'))], ['night'], 'the room after bedtime');
@@ -341,13 +307,13 @@ print(jp.page({"jokes": [{"text": t, "approved": ok, "cast": cast} for t, ok, ca
   assert.deepEqual(seen(d, 'data-when'), []);
   tap('[data-try="kid"][data-name="ephraim"]');
   assert.deepEqual(seen(d, 'data-kid'), ['delilah'], 'tapping a child again takes him out');
-  // Going back to a joke drops what was tried.
-  tap('.list button[data-joke="2"]');
-  assert.equal(shown(d), 'Joke A.');
+  // Going back to one drops what was tried.
+  tap('.list button[data-item="2"]');
+  assert.equal(shown(d), 'Word A.');
   assert.deepEqual(seen(d, 'data-kid'), ['delilah']);
   assert.match(d.getElementById('scene-cap').textContent, /^Deborah is working on /);
   tap('#all');
   assert.equal(where(), 'The whole family');
   assert.equal(all(d, 'a[href^="http"], [src], link').length, 0, 'the preview loads nothing and links nowhere');
 }
-console.log('PASS front-page picture is decoration beside the question; Deborah\'s jokes are her speech bubble in it: a random one first, another about once a minute while the page is in view, back and next to flip, a button to stop and start, and no turning on a device that asks for less motion; every joke brings its own pose, sweater, children, what they are doing and caption; seasonal and late-night stories come out only in their time, and open the card when they do; the owner\'s preview steps through every joke with the same picture');
+console.log('PASS front-page picture is decoration beside the question; the daily affirmation is Deborah\'s speech bubble in it: one a day by the visitor\'s own date, the next one tomorrow, back and next to flip, no timers, and one gentle line to the site\'s own page of people to talk to; every affirmation brings its own pose, sweater, children, what they are doing and caption; seasonal and late-night ones come out only in their time, and open the card when they do; the owner\'s preview steps through every affirmation with the same picture');

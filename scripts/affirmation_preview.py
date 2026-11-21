@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""A page for the owner to look at: every joke on file with the picture that goes with it.
+"""A page for the owner to look at: every affirmation on file with the picture that goes with it.
 
-    python3 scripts/joke_preview.py ../preview.html
+    python3 scripts/affirmation_preview.py ../preview.html
 
 It shows the picture card as the front pages draw it (the same drawing, the same rules, the same lines of
-script that dress it), for every joke on file: the ones waiting for approval first, then the ones already in
-the turn. The owner can step through them, tap any joke to see its picture, and try any pose, any sweater and
+script that dress it), for every affirmation on file: the ones waiting for approval first, then the ones already in
+the turn. The owner can step through them, tap any affirmation to see its picture, and try any pose, any sweater and
 any of the children. It is one file with nothing to load, so it can be opened on a phone or sent to someone.
-Unlike the site, it does not turn by itself.
+Unlike the site, it does not pick by the date: it opens on the whole family.
 
-It is not part of the site. It can hold jokes nobody has approved, so it is never written into this
+It is not part of the site. It can hold affirmations nobody has approved, so it is never written into this
 repository (the script refuses), never committed and never published.
 """
 import json
@@ -20,7 +20,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import home_extras as extras  # noqa: E402
 
-TITLE = 'Yoga Mom Talk: the family picture and Deborah’s jokes'
+TITLE = 'Yoga Mom Talk: the family picture and the daily affirmations'
 STYLE = '''
 :root{--ink:#2b2140;--muted:#655c78;--bg:#fff9f3;--line:#f1e4d8;--brand:#cf2f5b;--teal:#12766f;--soft:#fff1e6}
 *{box-sizing:border-box}
@@ -35,8 +35,7 @@ a{color:var(--teal)}
 .quiet{color:var(--muted);font-size:.92rem}
 .stage{position:sticky;top:0;z-index:5;margin:0 -1rem;padding:.6rem 1rem .5rem;background:var(--bg)}
 .stage .scenebox{width:100%;max-width:26rem;margin:0 auto}
-.stage .sayinghead a{pointer-events:none}
-.stage .pp{display:none}
+.stage .sayinghead a,.stage .sayhelp a{pointer-events:none}
 .where{max-width:26rem;margin:.45rem auto 0;text-align:center;font-size:.9rem;color:var(--muted)}
 button{font:inherit;color:inherit;cursor:pointer}
 .chips button{border:1.5px solid var(--line);background:#fff;border-radius:2rem;padding:.4rem .9rem;font-weight:600;font-size:.92rem}
@@ -54,25 +53,25 @@ button:focus-visible{outline:3px solid var(--teal);outline-offset:2px}
   .top,.stage{grid-column:1}.stage{top:.5rem;margin:0;padding:0}.rest{grid-column:2;grid-row:1/span 3}.rest h2:first-child{margin-top:0}}
 '''
 # The page's own script. `dress` is the front pages' own function (home_extras.DRESS), so what shows here is what
-# the site shows. The jokes are numbered as they are listed; after them come two more pictures: the whole family
+# the site shows. The affirmations are numbered as they are listed; after them come two more pictures: the whole family
 # (number n), and whatever the try-it-yourself buttons have put together (number n + 1).
-SCRIPT = '''(function(){var D=document,dress=%(dress)s,jokes=JSON.parse(D.getElementById("jokes-data").textContent),
-store=D.getElementById("scene-data"),scene=JSON.parse(store.textContent),n=jokes.length,at=-1,mine=null,
+SCRIPT = '''(function(){var D=document,dress=%(dress)s,affirmations=JSON.parse(D.getElementById("affirmations-data").textContent),
+store=D.getElementById("scene-data"),scene=JSON.parse(store.textContent),n=affirmations.length,at=-1,mine=null,
 $=function(id){return D.getElementById(id)},all=function(s){return Array.prototype.slice.call(D.querySelectorAll(s))};
 function press(){var v=(mine||scene.d[at<0?n:at]).split("|");
   all("[data-try]").forEach(function(b){var k=b.getAttribute("data-try"),name=b.getAttribute("data-name");
     b.setAttribute("aria-pressed",k=="kid"?(" "+v[2]+" ").indexOf(" "+name+" ")>=0:k=="act"?(" "+v[4]+" ").indexOf(" "+name+" ")>=0:
       k=="when"?(v[5]||"")==name:v[k=="pose"?0:1]==name)})}
-function show(key,words,label){$("joke-text").textContent=words;$("joke").hidden=false;$("scene-foot").hidden=false;dress(D,key);
-  $("where").textContent=label;all(".list button").forEach(function(b){b.setAttribute("aria-current",+b.getAttribute("data-joke")==key)});press()}
-function joke(i){at=i;mine=null;var w=%(waiting)d;show(i,jokes[i],i<w?"Waiting: "+(i+1)+" of "+w:"In the turn: "+(i-w+1)+" of "+(n-w))}
+function show(key,words,label){$("affirm-text").textContent=words;$("affirm").hidden=false;$("scene-foot").hidden=false;dress(D,key);
+  $("where").textContent=label;all(".list button").forEach(function(b){b.setAttribute("aria-current",+b.getAttribute("data-item")==key)});press()}
+function affirmation(i){at=i;mine=null;var w=%(waiting)d;show(i,affirmations[i],i<w?"Waiting: "+(i+1)+" of "+w:"In the turn: "+(i-w+1)+" of "+(n-w))}
 function everyone(){at=-1;mine=null;show(n,%(hello)s,"The whole family")}
 function tried(change){var v=(mine||scene.d[at<0?n:at]).split("|");change(v);v[3]="Trying "+scene.names[v[0]]+" in "+v[1]+".";
   mine=v.join("|");scene.d[n+1]=mine;store.textContent=JSON.stringify(scene);show(n+1,%(trying)s,"Trying it out")}
-$("joke-prev").onclick=function(){at<=0?everyone():joke(at-1)};
-$("joke-next").onclick=function(){joke(at<n-1?at+1:0)};
+$("affirm-prev").onclick=function(){at<=0?everyone():affirmation(at-1)};
+$("affirm-next").onclick=function(){affirmation(at<n-1?at+1:0)};
 $("all").onclick=everyone;
-all(".list button").forEach(function(b){b.onclick=function(){joke(+b.getAttribute("data-joke"))}});
+all(".list button").forEach(function(b){b.onclick=function(){affirmation(+b.getAttribute("data-item"))}});
 all("[data-try]").forEach(function(b){b.onclick=function(){var k=b.getAttribute("data-try"),name=b.getAttribute("data-name");
   tried(function(v){if(k=="pose")v[0]=name;else if(k=="sweater")v[1]=name;else if(k=="when")v[5]=name;
     else if(k=="act"){v[4]=(v[4]||"").split(" ").map(function(a){return a.split(".")[0]==name.split(".")[0]?name:a}).join(" ")}else{var c=v[2]?v[2].split(" "):[],i=c.indexOf(name);i<0?c.push(name):c.splice(i,1);v[2]=c.join(" ")}})}});
@@ -80,7 +79,7 @@ everyone()})();'''
 
 
 def who(look):
-    """One line under a joke in the list: who is around in its picture, her pose and her sweater."""
+    """One line under an affirmation in the list: who is around in its picture, her pose and her sweater."""
     pose, sweater, cast, _, acts, when = look
     doing = dict(a.split('.') for a in acts)
     kids = ', '.join(f'{extras.KID_NAMES[k]} ({doing[k]})' for k in cast) or 'Deborah alone'
@@ -95,15 +94,15 @@ def chips(kind, names, labels):
 
 def page(data=None):
     """The preview as one HTML document."""
-    data = extras.read_jokes() if data is None else data
-    errors = extras.check_jokes(data)
+    data = extras.read_affirmations() if data is None else data
+    errors = extras.check_affirmations(data)
     if errors:
-        raise SystemExit('data/jokes.json:\n' + '\n'.join(errors))
-    pairs = list(zip(data['jokes'], extras.looks(data)))
+        raise SystemExit('data/affirmations.json:\n' + '\n'.join(errors))
+    pairs = list(zip(data['affirmations'], extras.looks(data)))
     waiting = [pair for pair in pairs if pair[0].get('approved') is not True]
     approved = [pair for pair in pairs if pair[0].get('approved') is True]
     order = waiting + approved
-    jokes = [j['text'] for j, _ in order]
+    affirmations = [j['text'] for j, _ in order]
     scene = extras.scene_data([look for _, look in order])
     scene['d'].append('|'.join(('mountain', extras.FIRST_SWEATER, ' '.join(extras.KIDS),
                                 'Genevieve, Ephraim, Delilah and Atlas.', ' '.join(f'{k}.{v[0]}' for k, v in extras.ACTS.items()), '')))
@@ -111,17 +110,17 @@ def page(data=None):
 
     def rows(batch, first):
         return '<ol class="list">' + ''.join(
-            f'<li><button type="button" data-joke="{first + i}" aria-current="false">{esc(j["text"])}'
+            f'<li><button type="button" data-item="{first + i}" aria-current="false">{esc(j["text"])}'
             f'<span class="who">{esc(who(look))}</span></button></li>' for i, (j, look) in enumerate(batch)) + '</ol>'
 
-    hello = 'This is all of us at once, so you can check each of us. Use the arrows, or tap any joke below to see its picture.'
+    hello = 'This is all of us at once, so you can check each of us. Use the arrows, or tap any affirmation below to see its picture.'
     script = SCRIPT % {'dress': extras.DRESS, 'waiting': len(waiting), 'hello': json.dumps(hello, ensure_ascii=False),
                        'trying': json.dumps('Any pose, any sweater, any of the kids: tap the buttons below.', ensure_ascii=False)}
     rules = extras.STYLE.read_text(encoding='utf-8')
     wait_head = (f'<h2>Waiting for your OK ({len(waiting)})</h2><p class="quiet">None of these is on the site. Tap one to see its picture.</p>'
                  f'{rows(waiting, 0)}' if waiting else '')
-    done_head = (f'<h2>In the turn on the site ({len(approved)})</h2><p class="quiet">The site shows one at random and turns to another '
-                 f'every minute. Tap one to see its picture.</p>{rows(approved, len(waiting))}' if approved else '')
+    done_head = (f'<h2>In the turn on the site ({len(approved)})</h2><p class="quiet">The site shows one a day, in this order, '
+                 f'and a visitor can flip to the others. Tap one to see its picture.</p>{rows(approved, len(waiting))}' if approved else '')
     return f'''<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -134,9 +133,9 @@ def page(data=None):
 <body>
 <main>
 <div class="top"><p class="note">Preview. Not the site.</p>
-<h1>The family picture and Deborah’s jokes</h1>
+<h1>The family picture and the daily affirmations</h1>
 <p class="quiet">This is the card at the top of the Yoga Mom Talk and OhioMom home pages, drawn by the same code. It moves; give it a few seconds.</p></div>
-<div class="stage" id="stage">{extras.scene_block(False, jokes, '#')}
+<div class="stage" id="stage">{extras.scene_block(False, affirmations, '#', '#')}
 <p class="where" id="where" aria-live="polite"></p></div>
 <div class="rest">
 <h2>Try it yourself</h2>
@@ -150,7 +149,7 @@ def page(data=None):
 {done_head}
 </div>
 </main>
-{extras.as_data('jokes-data', jokes)}{extras.as_data('scene-data', scene)}
+{extras.as_data('affirmations-data', affirmations)}{extras.as_data('scene-data', scene)}
 <script>{script}</script>
 </body>
 </html>
@@ -162,7 +161,7 @@ def main():
         raise SystemExit(__doc__)
     out = Path(sys.argv[1]).resolve()
     if out == extras.ROOT or extras.ROOT in out.parents:
-        raise SystemExit('The preview can hold jokes that are not approved, so it is not written inside the repository. Give a path outside it.')
+        raise SystemExit('The preview can hold affirmations that are not approved, so it is not written inside the repository. Give a path outside it.')
     out.write_text(page(), encoding='utf-8')
     print(f'Wrote {out}')
 

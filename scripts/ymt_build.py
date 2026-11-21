@@ -254,9 +254,9 @@ def hero(title, lede, extra='', cls='slim'):
 # ---------------------------------------------------------------- pages
 def build_index(data):
     """The front page asks one question and shows no listings. Every listing is one choice away.
-    Beside the question is the picture, with one of Deborah's jokes in a speech bubble in it (scripts/home_extras.py)."""
+    Beside the question is the picture, with the day's affirmation in Deborah's speech bubble (scripts/home_extras.py)."""
     site = data['site']
-    jokes = extras.approved_jokes()
+    sayings = extras.approved_affirmations()
     tiles = ''.join(f'<a class="tile {c}" href="{h}"><span class="ico" aria-hidden="true">{i}</span><span class="ttext"><strong>{esc(t)}</strong><span>{esc(d)}</span></span></a>'
                     for c, i, t, d, h in TILES)
     options = '<option value="">Choose your state</option>' + ''.join(
@@ -266,7 +266,7 @@ def build_index(data):
             f'<a href="county.html">Find your county</a><a href="world.html">Outside the U.S.?</a></div>')
     lede = 'Pick one. You will get a short list of who to call. Free, private, no sign-up.'
     top = (f'<div class="herotop"><div class="herotext"><h1>Hi, mom. What do you need today?</h1>'
-           f'<p class="lede">{lede}</p></div>{extras.scene_block(False, jokes, "jokes.html")}</div>')
+           f'<p class="lede">{lede}</p></div>{extras.scene_block(False, sayings, "affirmations.html", "help.html#take-care")}</div>')
     body = (f'<section class="hero home"><div class="wrap">{top}<div class="tiles">{tiles}</div>{pick}</div></section>'
             + '\n' + urgent_strip(data))
     desc = f"{site['tagline']} Food, child care, health coverage, disability help and crisis lines in all 50 states."
@@ -277,16 +277,32 @@ def build_index(data):
     structured = '\n<script type="application/ld+json">' + json.dumps(about, ensure_ascii=False).replace('<', '\\u003c') + '</script>'
     return page(data, 'index.html', f"{site['name']}: help for moms in all 50 states", desc,
                 body, 'home', head_extra=OHIO_REDIRECT + structured, slots=('home',),
-                scripts='\n' + extras.joke_scripts(jokes, extras.approved_looks()) if jokes else '')
+                scripts='\n' + extras.affirmation_scripts(sayings, extras.approved_looks()) if sayings else '')
 
 
-def build_jokes(data, jokes):
-    """Every one of Deborah's jokes on one page. They take turns in the picture on the home page."""
-    lede = ('For the days that need one. They take turns at the top of the <a href="index.html">home page</a>, '
-            'a new one every minute. Here they all are.')
-    body = hero('Deborah’s mom jokes', lede) + f'\n<section class="wrap">{extras.joke_list(jokes)}</section>'
-    return page(data, 'jokes.html', 'Mom jokes', 'Mom jokes from Deborah, who started Yoga Mom Talk: yoga, sweaters and a house with kids in it.', body,
-                head_extra=structured_data(breadcrumbs(data, [('Mom jokes', 'jokes.html')])))
+def build_affirmations(data, sayings):
+    """Every daily affirmation on one page, in plain words. The front page shows one a day, in Deborah's speech bubble.
+    The page carries no ad: it is for a mom having a hard day."""
+    lede = ('A kind word for the hard days, from one mom to another. A new one comes up each day at the top of the '
+            '<a href="index.html">home page</a>. Here they all are, for whenever you need one.')
+    help_line = ('<p class="sayhelp">If today is more than a hard day, you do not have to get through it alone. '
+                 '<a href="help.html#take-care">Find someone to talk to</a>, or see <a href="help.html#help-now">help right now</a>.</p>')
+    body = hero('Kind words for hard days', lede, help_line) + f'\n<section class="wrap">{extras.affirmation_list(sayings)}</section>'
+    return page(data, 'affirmations.html', 'Daily affirmations for moms',
+                'Daily affirmations for moms going through a hard time: tired days, new babies, toddlers, teens, money worries and grief.',
+                body, head_extra=structured_data(breadcrumbs(data, [('Daily affirmations for moms', 'affirmations.html')])))
+
+
+def build_jokes_moved(data):
+    """Deborah's jokes gave way to the daily affirmations on November 20, 2026. This address stays so old links still
+    work, and passes visitors straight on."""
+    dest = 'affirmations.html'
+    head = (f'\n<meta name="robots" content="noindex">\n<meta http-equiv="refresh" content="0; url={dest}">'
+            f'\n<script>location.replace({json.dumps(dest)}+location.search+location.hash)</script>')
+    body = hero('Kind words for hard days', 'The jokes made way for a kind word each day.',
+                f'<p class="actions"><a class="btn big" href="{dest}">Go to the daily affirmations</a></p>')
+    return page(data, 'jokes.html', 'Daily affirmations for moms', 'The jokes made way for a daily affirmation for moms.',
+                body, head_extra=head, canonical=dest)
 
 
 def structured_data(*items):
@@ -658,9 +674,10 @@ def build_all(data):
         files['world.html'] = build_world(data)
         for c in data['world']['countries']:
             files[f'countries/{c["slug"]}.html'] = build_country(data, c)
-    jokes = extras.approved_jokes()
-    if jokes:  # no page until the owner has approved a batch
-        files['jokes.html'] = build_jokes(data, jokes)
+    sayings = extras.approved_affirmations()
+    if sayings:  # no page until the owner has approved a batch
+        files['affirmations.html'] = build_affirmations(data, sayings)
+        files['jokes.html'] = build_jokes_moved(data)
     domain = data['site']['domain']
     pages = sorted(p for p in files if p != '404.html' and 'name="robots" content="noindex"' not in files[p])
     # Pages that only pass the visitor on (marked noindex) stay out of the sitemap.

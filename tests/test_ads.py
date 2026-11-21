@@ -174,7 +174,7 @@ class AdSlotTests(unittest.TestCase):
 
     def test_crisis_and_other_pages_never_carry_an_ad(self):
         pages = built(fixture())
-        for rel in ('about.html', 'privacy.html', 'report.html', '404.html', 'states.html', 'yoga.html', 'jokes.html'):
+        for rel in ('about.html', 'privacy.html', 'report.html', '404.html', 'states.html', 'yoga.html', 'jokes.html', 'affirmations.html'):
             if rel in pages:
                 self.assertNotIn('ad-slot', pages[rel], rel)
         for rel in ads.NEVER:

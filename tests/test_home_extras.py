@@ -1,4 +1,4 @@
-"""The picture and Deborah's jokes on the two front pages. Run: python3 -m unittest discover tests"""
+"""The picture and the daily affirmation on the two front pages. Run: python3 -m unittest discover tests"""
 import json
 import math
 import re
@@ -10,7 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 import home_extras as extras  # noqa: E402
-import joke_preview as preview  # noqa: E402
+import affirmation_preview as preview  # noqa: E402
 
 FRONT = {'index.html': False, 'ohio/index.html': True}  # page: is it the OhioMom one
 TEMPLATE = (ROOT / 'templates' / 'home-extras.css').read_text(encoding='utf-8')
@@ -21,7 +21,14 @@ def read(rel):
 
 
 def batch(n=3, approved=True):
-    return {'jokes': [{'text': f'Joke number {i + 1}.', 'approved': approved} for i in range(n)]}
+    return {'affirmations': [{'text': f'Kind word number {i + 1}.', 'approved': approved} for i in range(n)]}
+
+
+def card(ohio, sayings):
+    """The picture card as each front page asks for it."""
+    if ohio:
+        return extras.scene_block(True, sayings, extras.OHIO_LIST, extras.OHIO_HELP)
+    return extras.scene_block(False, sayings, 'affirmations.html', 'help.html#take-care')
 
 
 def shown(svg, attribute):
@@ -35,15 +42,15 @@ def every(svg, attribute):
 
 class PictureTests(unittest.TestCase):
     def test_each_front_page_has_the_picture_beside_its_headline(self):
-        jokes = extras.approved_jokes()
+        sayings = extras.approved_affirmations()
         for rel, ohio in FRONT.items():
             text = read(rel)
             self.assertEqual(text.count('<svg class="scene"'), 1, rel)
-            card = extras.scene_block(ohio, jokes, '../jokes.html' if ohio else 'jokes.html')
-            self.assertIn(card, text, f'{rel}: the picture card on the page is the one the script makes')
+            built = card(ohio, sayings)
+            self.assertIn(built, text, f'{rel}: the picture card on the page is the one the script makes')
             hero = text[text.index('<section class="hero home">'):text.index('<div class="tiles">')]
             self.assertRegex(hero, r'<div class="herotop"><div class="herotext"><h1>[^<]+</h1><p class="lede">[^<]+</p></div>', rel)
-            self.assertIn(card, hero, f'{rel}: the picture card sits in the hero, after the question')
+            self.assertIn(built, hero, f'{rel}: the picture card sits in the hero, after the question')
             self.assertLess(text.index('<h1>'), text.index('<svg class="scene"'), f'{rel}: the question is read first')
 
     def test_the_picture_is_decoration(self):
@@ -86,16 +93,15 @@ class PictureTests(unittest.TestCase):
         self.assertEqual(shown(extras.scene_svg(cast=()), 'data-kid'), [], 'Deborah can have the mat to herself')
 
     def test_the_children_are_around_not_on_stage(self):
-        """They do their own things while she tries to get through her joke (the owner's call, November 17, 2026).
-        Nobody is there to answer it: no child has lines about the joke. Only the smallest speaks, and what she
-        says is what the child in the first picture said."""
+        """They do their own things while she says her kind word (the owner's call, November 17, 2026). Only the
+        smallest speaks, and only to her mother: she wants a hug."""
         svg = extras.scene_svg()
         kids = {}
         ends = sorted(svg.index(f'<g data-kid="{name}"') for name in extras.KIDS) + [svg.index('<g class="sc-leaf">')]
         for name in extras.KIDS:
             start = svg.index(f'<g data-kid="{name}"')
             kids[name] = svg[start:min(e for e in ends if e > start)]
-        self.assertEqual(re.findall(r'<text[^>]*>([^<]*)</text>', svg), ['Ha ha!', 'Again!', 'AGAIN!', 'Please?'])
+        self.assertEqual(re.findall(r'<text[^>]*>([^<]*)</text>', svg), ['Mama!', 'Hug?', 'LOVE YOU!', 'Big hug!'])
         self.assertEqual(kids['delilah'].count('class="sc-b '), 4)
         for name in ('ephraim', 'genevieve', 'atlas'):
             self.assertNotIn('<text', kids[name], f'{name} says nothing')
@@ -150,10 +156,10 @@ class PictureTests(unittest.TestCase):
                 self.assertTrue(45 <= leg <= 65, f'{pose}: a leg {leg:.0f} long is not her leg')
             points = [pt for limb in spec['arms'] + spec['legs'] + spec['feet'] for pt in limb] + [extras.placed(extras.HEAD, spec['top'])]
             self.assertTrue(all(200 <= x <= 330 for x, _ in points), f'{pose}: she stays between the children')
-            self.assertTrue(all(26 <= y <= 170 for _, y in points), f'{pose}: she stays under the joke and on her mat')
+            self.assertTrue(all(26 <= y <= 170 for _, y in points), f'{pose}: she stays under the bubble and on her mat')
             self.assertTrue(set(spec['front']) <= set('Lab'), pose)
             self.assertTrue(174 <= spec['foot'][0] <= 358, f'{pose}: she wobbles about a point on her mat')
-            self.assertRegex(extras.bubble_tail(pose), r'^[3-6]\d%$', f'{pose}: the tail of the joke points at her')
+            self.assertRegex(extras.bubble_tail(pose), r'^[3-6]\d%$', f'{pose}: the tail of the bubble points at her')
 
     def test_every_sweater_can_be_worn(self):
         svg = extras.scene_svg()
@@ -205,26 +211,43 @@ class PictureTests(unittest.TestCase):
         self.assertNotIn('@import', TEMPLATE)
 
 
-class JokeTests(unittest.TestCase):
-    def test_the_jokes_on_file_are_well_formed(self):
-        data = extras.read_jokes()
-        self.assertEqual(extras.check_jokes(data), [])
-        self.assertGreaterEqual(len(data['jokes']), 1)
+class AffirmationTests(unittest.TestCase):
+    def test_the_affirmations_on_file_are_well_formed(self):
+        data = extras.read_affirmations()
+        self.assertEqual(extras.check_affirmations(data), [])
+        self.assertGreaterEqual(len(data['affirmations']), 1)
+
+    def test_the_affirmations_are_kind_plain_and_never_preach(self):
+        """The owner's call, November 20, 2026: something warm and positive for a mom going through a tough time,
+        mom to mom. No guilt, no "should", no religion, and no medical or mental-health claims."""
+        texts = [j['text'] for j in extras.read_affirmations()['affirmations']]
+        self.assertGreaterEqual(len(texts), 90, 'plenty, so a mom can come back for weeks')
+        banned = (r'\bshould\b', r'\bmust\b', r'\bought\b', r'\bfailure\b', r'\bguilt', r'\bgod\b', r'\bpray', r'\bbless', r'\bfaith\b',
+                  r'\bchurch\b', r'\bjesus\b', r'\bheaven', r'\bdepress', r'\banxiety\b', r'\bdisorder\b', r'\bdiagnos', r'\btherap',
+                  r'\bmedic', r'\bcure', r'\bheal', r'\bsymptom', r'\bhormone', r'\bjoke', r'\bkill', r'\bdie\b', r'\bsuicid')
+        for text in texts:
+            for word in banned:
+                self.assertNotRegex(text.lower(), word, text)
+            for name in extras.KID_NAMES.values():
+                self.assertNotIn(name, text, 'the affirmations name no child')
+            self.assertRegex(text, r'^[A-Z“"]', text)
+            self.assertRegex(text, r'[.!?”]$', text)
+            self.assertNotRegex(text, r'\d{3}', 'no phone numbers: the help line under the bubble points to the site\'s own page')
 
     def test_the_check_catches_what_can_go_wrong(self):
         def problems(change):
             data = batch()
-            change(data['jokes'])
-            return ' '.join(extras.check_jokes(data))
-        self.assertEqual(extras.check_jokes(batch()), [])
+            change(data['affirmations'])
+            return ' '.join(extras.check_affirmations(data))
+        self.assertEqual(extras.check_affirmations(batch()), [])
         self.assertIn('empty', problems(lambda j: j[0].update(text=' ')))
-        self.assertIn('characters', problems(lambda j: j[0].update(text='ha ' * 100 + 'ha')))
-        self.assertIn('no markup', problems(lambda j: j[0].update(text='A <b>bold</b> joke.')))
+        self.assertIn('characters', problems(lambda j: j[0].update(text='kind ' * 50 + 'word')))
+        self.assertIn('no markup', problems(lambda j: j[0].update(text='A <b>bold</b> word.')))
         self.assertIn('no markup', problems(lambda j: j[0].update(text='One | two.')), 'the page splits a picture on this mark')
         self.assertIn('true or false', problems(lambda j: j[0].update(approved='yes')))
         self.assertIn('listed twice', problems(lambda j: j[1].update(text=j[0]['text'])))
-        # Jokes take turns now, so a joke has no day of its own.
-        self.assertIn('date is not something a joke has', problems(lambda j: j[0].update(date='2030-01-01')))
+        # The day an affirmation shows comes from its place in the list, so it has no date of its own.
+        self.assertIn('date is not something an affirmation has', problems(lambda j: j[0].update(date='2030-01-01')))
         # Who is in the picture, her pose and her sweater are optional, and checked when given.
         self.assertEqual(problems(lambda j: j[0].update(cast=['atlas', 'delilah'], pose='tree', sweater='plum')), '')
         self.assertEqual(problems(lambda j: j[0].update(cast=[])), '', 'Deborah alone')
@@ -234,163 +257,174 @@ class JokeTests(unittest.TestCase):
         self.assertIn('pose is one of', problems(lambda j: j[0].update(pose='handstand')))
         self.assertIn('sweater is one of', problems(lambda j: j[0].update(sweater='tuxedo')))
 
-    def test_only_approved_jokes_are_ever_published(self):
+    def test_only_approved_affirmations_are_ever_published(self):
         data = batch()
-        data['jokes'][1]['approved'] = False
-        self.assertEqual(extras.approved_jokes(data), ['Joke number 1.', 'Joke number 3.'])
-        self.assertEqual(extras.approved_jokes(batch(approved=False)), [])
-        real = extras.read_jokes()
-        pages = [read(rel) for rel in FRONT] + ([read('jokes.html')] if (ROOT / 'jokes.html').exists() else [])
-        for j in real['jokes']:
+        data['affirmations'][1]['approved'] = False
+        self.assertEqual(extras.approved_affirmations(data), ['Kind word number 1.', 'Kind word number 3.'])
+        self.assertEqual(extras.approved_affirmations(batch(approved=False)), [])
+        real = extras.read_affirmations()
+        pages = [read(rel) for rel in FRONT] + ([read('affirmations.html')] if (ROOT / 'affirmations.html').exists() else [])
+        for j in real['affirmations']:
             if j['approved'] is True:
                 continue
             for page in pages:
-                self.assertNotIn(j['text'], page, 'a joke the owner has not approved is in a page')
+                self.assertNotIn(j['text'], page, 'an affirmation the owner has not approved is in a page')
                 self.assertNotIn(json.dumps(j['text'], ensure_ascii=False), page)
-        # The same holds for the picture: a joke's pose, sweater, children and caption wait for its approval.
+        # The same holds for the picture: an affirmation's pose, sweater, children and caption wait for its approval.
         data = batch()
-        data['jokes'][1].update(approved=False, pose='goddess', sweater='plum', cast=['atlas'])
+        data['affirmations'][1].update(approved=False, pose='goddess', sweater='plum', cast=['atlas'])
         self.assertEqual(len(extras.approved_looks(data)), 2)
         self.assertNotIn('goddess|plum|atlas', ' '.join(extras.scene_data(extras.approved_looks(data))['d']))
         self.assertEqual(extras.approved_looks(batch(approved=False)), [])
 
-    def test_the_pages_match_the_jokes_on_file(self):
-        jokes, joke_looks = extras.approved_jokes(), extras.approved_looks()
+    def test_the_pages_match_the_affirmations_on_file(self):
+        sayings, saying_looks = extras.approved_affirmations(), extras.approved_looks()
         home, ohio = read('index.html'), read('ohio/index.html')
-        self.assertEqual(extras.render_ohio(ohio, jokes, joke_looks), ohio, 'run python3 scripts/home_extras.py')
-        if not jokes:
+        self.assertEqual(extras.render_ohio(ohio, sayings, saying_looks), ohio, 'run python3 scripts/home_extras.py')
+        if not sayings:
             for rel, page in (('index.html', home), ('ohio/index.html', ohio)):
-                for part in ('id="joke"', 'jokes-data', 'id="scene-data"', 'scene-cap', 'scene-foot', 'jokes.html'):
-                    self.assertNotIn(part, page, f'{rel}: nothing about jokes until some are approved')
-            self.assertFalse((ROOT / 'jokes.html').exists(), 'no jokes page until some are approved')
+                for part in ('id="affirm"', 'affirmations-data', 'id="scene-data"', 'scene-cap', 'scene-foot', 'affirmations.html'):
+                    self.assertNotIn(part, page, f'{rel}: nothing about affirmations until some are approved')
+            self.assertFalse((ROOT / 'affirmations.html').exists(), 'no affirmations page until some are approved')
             return
-        self.assertIn(extras.joke_bubble(jokes, 'jokes.html'), home)
-        self.assertIn(extras.joke_bubble(jokes, '../jokes.html'), ohio)
-        # The list page is plain words: every joke once, in the order on file, and no script.
-        listing = read('jokes.html')
-        self.assertEqual(listing.count(extras.joke_list(jokes)), 1)
-        self.assertEqual(listing.count('<li>'), len(jokes))
-        for part in ('id="jokes-data"', 'id="scene-data"', extras.JOKE_SCRIPT, '<svg class="scene"'):
-            self.assertNotIn(part, listing, 'the list has no picture to dress and nothing to turn')
+        self.assertIn(extras.affirmation_bubble(sayings, 'affirmations.html', 'help.html#take-care'), home)
+        self.assertIn(extras.affirmation_bubble(sayings, '../affirmations.html', 'wellbeing.html'), ohio)
+        # The list page is plain words: every affirmation once, in the order on file, and no script.
+        listing = read('affirmations.html')
+        self.assertEqual(listing.count(extras.affirmation_list(sayings)), 1)
+        self.assertEqual(listing.count('<li>'), len(sayings))
+        self.assertIn('<a href="help.html#take-care">Find someone to talk to</a>', listing, 'the list points to people to talk to')
+        for part in ('id="affirmations-data"', 'id="scene-data"', extras.AFFIRMATION_SCRIPT, '<svg class="scene"', 'ad-slot'):
+            self.assertNotIn(part, listing, 'the list has no picture to dress, nothing to turn and no ad')
+        # The old address of the jokes passes visitors on to the affirmations, and stays out of search.
+        moved = read('jokes.html')
+        self.assertIn('<meta http-equiv="refresh" content="0; url=affirmations.html">', moved)
+        self.assertIn('<script>location.replace("affirmations.html"+location.search+location.hash)</script>', moved)
+        self.assertIn('<meta name="robots" content="noindex">', moved)
+        self.assertIn('<link rel="canonical" href="https://www.yogamomtalk.com/affirmations.html">', moved)
         for rel, page in (('index.html', home), ('ohio/index.html', ohio)):
-            self.assertEqual(page.count('id="jokes-data"'), 1, rel)
-            self.assertEqual(page.count(extras.JOKE_SCRIPT), 1, f'{rel}: one script on the page')
-            # The joke is in the picture, at the top: Deborah's speech bubble, straight above the drawing, before the choices.
-            self.assertEqual(page.count('id="joke"'), 1, rel)
-            self.assertIn('<div class="scenebox" id="scene" style="position:relative"><div class="saying" id="joke" hidden>', page, rel)
+            self.assertEqual(page.count('id="affirmations-data"'), 1, rel)
+            self.assertEqual(page.count(extras.AFFIRMATION_SCRIPT), 1, f'{rel}: one script on the page')
+            # The affirmation is in the picture, at the top: Deborah's speech bubble, straight above the drawing, before the choices.
+            self.assertEqual(page.count('id="affirm"'), 1, rel)
+            self.assertIn('<div class="scenebox" id="scene" style="position:relative"><div class="saying" id="affirm" hidden>', page, rel)
             self.assertIn('</div><svg class="scene"', page, f'{rel}: the bubble sits straight above the drawing')
-            self.assertLess(page.index('id="joke"'), page.index('<div class="tiles">'), f'{rel}: the joke is met before the choices')
-            # Every joke brings its picture, and the same script shows both.
-            self.assertEqual(page.count(extras.joke_scripts(jokes, joke_looks)), 1, rel)
-            self.assertIn('</svg>' + extras.flip_bar(jokes) + '</div>', page, f'{rel}: the buttons that flip lie along the floor of the drawing')
-            block = page[page.index('id="jokes-data">') + len('id="jokes-data">'):]
-            self.assertEqual(json.loads(block[:block.index('</script>')]), jokes, f'{rel}: the approved jokes, in the order on file')
+            self.assertLess(page.index('id="affirm"'), page.index('<div class="tiles">'), f'{rel}: the affirmation is met before the choices')
+            # Every affirmation brings its picture, and the same script shows both.
+            self.assertEqual(page.count(extras.affirmation_scripts(sayings, saying_looks)), 1, rel)
+            self.assertIn('</svg>' + extras.flip_bar(sayings) + '</div>', page, f'{rel}: the buttons that flip lie along the floor of the drawing')
+            block = page[page.index('id="affirmations-data">') + len('id="affirmations-data">'):]
+            self.assertEqual(json.loads(block[:block.index('</script>')]), sayings, f'{rel}: the approved affirmations, in the order on file')
             block = page[page.index('id="scene-data">') + len('id="scene-data">'):]
             scene = json.loads(block[:block.index('</script>')])
-            self.assertEqual(len(scene['d']), len(jokes), f'{rel}: a picture for each joke')
-        self.assertIn('<url><loc>https://www.yogamomtalk.com/jokes.html</loc></url>', read('sitemap.xml'))
+            self.assertEqual(len(scene['d']), len(sayings), f'{rel}: a picture for each affirmation')
+        sitemap = read('sitemap.xml')
+        self.assertIn('<url><loc>https://www.yogamomtalk.com/affirmations.html</loc></url>', sitemap)
+        self.assertNotIn('jokes.html', sitemap, 'the old address only passes visitors on')
 
-    def test_no_joke_block_without_an_approved_joke(self):
-        self.assertEqual(extras.joke_bubble([], 'jokes.html'), '')
+    def test_no_affirmation_block_without_an_approved_affirmation(self):
+        self.assertEqual(extras.affirmation_bubble([], 'affirmations.html', 'help.html#take-care'), '')
         self.assertEqual(extras.flip_bar([]), '')
-        self.assertEqual(extras.joke_scripts([], []), '')
+        self.assertEqual(extras.affirmation_scripts([], []), '')
         self.assertEqual(extras.scene_block(True), f'<div class="scenebox" id="scene" style="position:relative">{extras.scene_svg(True)}</div>',
                          'the picture alone: no bubble, no buttons, no caption')
-        with self.assertRaises(SystemExit, msg='a joke with no picture, or a picture with no joke, is refused'):
-            extras.joke_scripts(['One.', 'Two.'], extras.approved_looks(batch(1)))
+        with self.assertRaises(SystemExit, msg='an affirmation with no picture, or a picture with no affirmation, is refused'):
+            extras.affirmation_scripts(['One.', 'Two.'], extras.approved_looks(batch(1)))
 
     def test_the_card_starts_hidden_and_has_its_buttons(self):
-        jokes = extras.approved_jokes(batch())
-        bubble = extras.joke_bubble(jokes, '../jokes.html')
-        self.assertTrue(bubble.startswith('<div class="saying" id="joke" hidden>'), 'no empty bubble when the script does not run')
-        self.assertIn('<h2>Deborah’s jokes</h2>', bubble, 'the jokes are hers, and the heading says so')
-        self.assertIn('<p class="joketext" id="joke-text"></p>', bubble)
-        self.assertIn('<a href="../jokes.html">All jokes</a>', bubble)
-        self.assertNotIn('Joke number', bubble, 'the joke itself is put in by the script')
-        self.assertNotIn('aria-live', bubble, 'a joke that turns by itself is not read out over whatever a screen reader is saying')
-        # A thing that changes by itself can be stopped: the button is in the bubble, beside the heading.
-        self.assertRegex(bubble, r'<button type="button" class="pp" id="joke-pause" aria-label="Pause the jokes"><svg [^>]*aria-hidden="true"')
-        self.assertEqual(bubble.count('data-icon="pause"'), 1)
-        self.assertIn('data-icon="play" display="none"', bubble, 'the play picture waits its turn')
-        bar = extras.flip_bar(jokes)
+        sayings = extras.approved_affirmations(batch())
+        bubble = extras.affirmation_bubble(sayings, '../affirmations.html', 'wellbeing.html')
+        self.assertTrue(bubble.startswith('<div class="saying" id="affirm" hidden>'), 'no empty bubble when the script does not run')
+        self.assertIn('<h2>A kind word for today</h2>', bubble)
+        self.assertIn('<p class="affirmtext" id="affirm-text"></p>', bubble)
+        self.assertIn('<a href="../affirmations.html">More kind words</a>', bubble)
+        # One gentle line under the affirmation points to the site's own page of people to talk to. It carries no number of its own.
+        self.assertIn('<p class="sayhelp">Having a really hard time? <a href="wellbeing.html">Find someone to talk to</a></p>', bubble)
+        self.assertLess(bubble.index('id="affirm-text"'), bubble.index('class="sayhelp"'))
+        self.assertNotIn('tel:', bubble)
+        self.assertNotIn('Kind word number', bubble, 'the affirmation itself is put in by the script')
+        self.assertNotIn('aria-live', bubble, 'the day\'s affirmation is not read out over whatever a screen reader is saying')
+        self.assertNotIn('<button', bubble, 'nothing turns by itself, so there is nothing to stop')
+        bar = extras.flip_bar(sayings)
         self.assertTrue(bar.startswith('<div class="flipbar" id="scene-foot" style="position:absolute;'), 'where it lies is on the bar itself')
         self.assertIn(' hidden>', bar[:bar.index('>') + 1], 'the buttons do nothing without the script, so they wait for it')
-        self.assertRegex(bar, r'<button type="button" id="joke-prev" aria-label="Previous joke"><svg [^>]*aria-hidden="true"')
-        self.assertRegex(bar, r'<button type="button" id="joke-next" aria-label="Next joke"><svg [^>]*aria-hidden="true"')
-        self.assertLess(bar.index('id="joke-prev"'), bar.index('id="scene-cap"'))
-        self.assertLess(bar.index('id="scene-cap"'), bar.index('id="joke-next"'), 'Back, what she is working on, Next')
+        self.assertRegex(bar, r'<button type="button" id="affirm-prev" aria-label="Previous affirmation"><svg [^>]*aria-hidden="true"')
+        self.assertRegex(bar, r'<button type="button" id="affirm-next" aria-label="Next affirmation"><svg [^>]*aria-hidden="true"')
+        self.assertLess(bar.index('id="affirm-prev"'), bar.index('id="scene-cap"'))
+        self.assertLess(bar.index('id="scene-cap"'), bar.index('id="affirm-next"'), 'Back, what she is working on, Next')
         for part in (bubble, bar):
             self.assertNotIn('aria-hidden="true"', re.sub(r'<svg [^>]*>.*?</svg>', '', part), 'only the little pictures in the buttons are hidden from screen readers')
             self.assertEqual(len(re.findall(r'<svg ', part)), len(re.findall(r'<svg width="14" height="14" ', part)), 'each carries its own size')
-        card = extras.scene_block(False, jokes, 'jokes.html')
-        self.assertEqual(card.count('<button '), 3)
-        self.assertEqual(card.count('type="button"'), 3, 'none of them can send a form')
-        self.assertEqual(extras.joke_list(jokes), '<ol class="jokelist"><li>Joke number 1.</li><li>Joke number 2.</li><li>Joke number 3.</li></ol>')
+        built = card(False, sayings)
+        self.assertEqual(built.count('<button '), 2)
+        self.assertEqual(built.count('type="button"'), 2, 'neither can send a form')
+        self.assertEqual(extras.affirmation_list(sayings),
+                         '<ol class="affirmlist"><li>Kind word number 1.</li><li>Kind word number 2.</li><li>Kind word number 3.</li></ol>')
 
-    def test_a_joke_cannot_break_out_of_the_page(self):
+    def test_an_affirmation_cannot_break_out_of_the_page(self):
         nasty = ['Ha</script><script>alert(1)</script> & "quotes"']
-        block = extras.jokes_data(nasty)
+        block = extras.affirmations_data(nasty)
         self.assertEqual(block.count('</script>'), 1)
         self.assertEqual(json.loads(block[block.index('>') + 1:block.rindex('<')]), nasty)
-        self.assertNotIn('<script>', extras.joke_list(nasty))
-        self.assertIn('&lt;/script&gt;', extras.joke_list(nasty))
+        self.assertNotIn('<script>', extras.affirmation_list(nasty))
+        self.assertIn('&lt;/script&gt;', extras.affirmation_list(nasty))
 
-    def test_the_joke_script_sends_and_stores_nothing(self):
+    def test_the_script_sends_and_stores_nothing(self):
         for banned in ('fetch(', 'XMLHttpRequest', 'sendBeacon', 'document.cookie', 'cookie', 'localStorage', 'sessionStorage',
                        'WebSocket', 'http', 'innerHTML', 'outerHTML', 'insertAdjacent', 'document.write', 'eval(', 'Function(',
                        'createElement', 'location', 'navigator', 'setTimeout', 'Date.parse', 'toLocale', 'getTimezone'):
-            self.assertNotIn(banned, extras.JOKE_SCRIPT, banned)
-        self.assertIn('textContent', extras.JOKE_SCRIPT)
-        self.assertIn(extras.DRESS, extras.JOKE_SCRIPT, 'the same few lines dress the picture')
-        self.assertEqual(extras.JOKE_SCRIPT.count('<script>'), 1)
-        # It reads the visitor's clock (for the seasonal and late-night stories) and nothing else about them.
-        self.assertEqual(extras.JOKE_SCRIPT.count('new Date()'), 1)
+            self.assertNotIn(banned, extras.AFFIRMATION_SCRIPT, banned)
+        self.assertIn('textContent', extras.AFFIRMATION_SCRIPT)
+        self.assertIn(extras.DRESS, extras.AFFIRMATION_SCRIPT, 'the same few lines dress the picture')
+        self.assertEqual(extras.AFFIRMATION_SCRIPT.count('<script>'), 1)
+        # It reads the visitor's clock (for the day's affirmation, and the seasonal and late-night ones) and nothing else about them.
+        self.assertEqual(extras.AFFIRMATION_SCRIPT.count('new Date()'), 1)
 
-    def test_the_jokes_take_turns_about_once_a_minute(self):
-        """The owner's call, November 17, 2026: a random one, and a new one every minute or so."""
-        self.assertTrue(45 <= extras.TURN_SECONDS <= 75, 'about a minute')
-        self.assertEqual(extras.TURN_SECONDS % 14, 0, 'a whole number of the picture\'s 14-second loops, so a turn never cuts a gag in half')
-        self.assertIn('animation:sc-mom 14s ', TEMPLATE)
-        self.assertEqual(extras.JOKE_SCRIPT.count(f'setInterval(function(){{if(!D.hidden)show(at+1)}},{extras.TURN_SECONDS * 1000})'), 1,
-                         'one timer, and it waits while the page is not in view')
-        self.assertIn('Math.random()', extras.JOKE_SCRIPT, 'the order is shuffled on every visit')
-        self.assertIn('prefers-reduced-motion: reduce', extras.JOKE_SCRIPT, 'a device that asks for less motion is not given a card that changes by itself')
-        # The bubble keeps room for the longest joke, so nothing under the card moves when the joke changes.
-        self.assertRegex(TEMPLATE, r'\.joketext\{[^}]*min-height:calc\(5\.2\*clamp\(')
+    def test_one_a_day_by_the_date(self):
+        """The owner's call, November 20, 2026: a daily affirmation. The day picks it; nothing turns by itself."""
+        for gone in ('setInterval', 'Math.random', 'clearInterval', 'TURN_SECONDS'):
+            self.assertNotIn(gone, extras.AFFIRMATION_SCRIPT, gone)
+        self.assertFalse(hasattr(extras, 'TURN_SECONDS'))
+        self.assertIn('Date.UTC(now.getFullYear(),now.getMonth(),now.getDate())/864e5', extras.AFFIRMATION_SCRIPT,
+                      'the day is counted on the visitor\'s own calendar, so it changes at her midnight')
+        # The bubble keeps room for the longest affirmation, so nothing under the card moves when the reader flips.
+        self.assertRegex(TEMPLATE, r'\.affirmtext\{[^}]*min-height:calc\(5\.2\*clamp\(')
+        self.assertRegex(TEMPLATE, r'\.sayhelp\{')
+        self.assertNotIn('.pp', TEMPLATE, 'no stop button, so no rule for one')
 
     def approving(self, data):
-        """The joke file after `approve`, run on a copy."""
+        """The affirmation file after `approve`, run on a copy."""
         with tempfile.TemporaryDirectory() as tmp:
-            path = Path(tmp) / 'jokes.json'
+            path = Path(tmp) / 'affirmations.json'
             path.write_text(json.dumps(data), encoding='utf-8')
-            real, extras.JOKES = extras.JOKES, path
+            real, extras.AFFIRMATIONS = extras.AFFIRMATIONS, path
             try:
                 extras.approve()
-                return extras.read_jokes()
+                return extras.read_affirmations()
             finally:
-                extras.JOKES = real
+                extras.AFFIRMATIONS = real
 
-    def test_approving_marks_every_waiting_joke(self):
+    def test_approving_marks_every_waiting_affirmation(self):
         data = batch(4)
-        data['jokes'][1]['approved'] = data['jokes'][3]['approved'] = False
-        data['jokes'][3]['cast'] = ['atlas']
+        data['affirmations'][1]['approved'] = data['affirmations'][3]['approved'] = False
+        data['affirmations'][3]['cast'] = ['atlas']
         after = self.approving(data)
-        self.assertEqual([j['text'] for j in after['jokes']], [j['text'] for j in data['jokes']], 'nothing moves')
-        self.assertTrue(all(j['approved'] is True for j in after['jokes']))
-        self.assertEqual(after['jokes'][3]['cast'], ['atlas'], 'a joke keeps its picture')
-        self.assertEqual(extras.check_jokes(after), [])
+        self.assertEqual([j['text'] for j in after['affirmations']], [j['text'] for j in data['affirmations']], 'nothing moves')
+        self.assertTrue(all(j['approved'] is True for j in after['affirmations']))
+        self.assertEqual(after['affirmations'][3]['cast'], ['atlas'], 'an affirmation keeps its picture')
+        self.assertEqual(extras.check_affirmations(after), [])
         with self.assertRaises(SystemExit, msg='nothing is waiting'):
             self.approving(batch())
 
 
 class StoryTests(unittest.TestCase):
-    """A joke and its picture are one little story: her pose, her sweater, which children are around, and the caption."""
+    """An affirmation and its picture are one little story: her pose, her sweater, which children are around, and the caption."""
 
-    def test_every_joke_on_file_has_its_picture(self):
-        data = extras.read_jokes()
-        joke_looks = extras.looks(data)
-        self.assertEqual(len(joke_looks), len(data['jokes']))
-        for j, (pose, sweater, cast, words, acts, when) in zip(data['jokes'], joke_looks):
+    def test_every_affirmation_on_file_has_its_picture(self):
+        data = extras.read_affirmations()
+        saying_looks = extras.looks(data)
+        self.assertEqual(len(saying_looks), len(data['affirmations']))
+        for j, (pose, sweater, cast, words, acts, when) in zip(data['affirmations'], saying_looks):
             self.assertEqual([a.split('.')[0] for a in acts], list(extras.KIDS), 'something to do for every child')
             for a in acts:
                 kid, what = a.split('.')
@@ -409,7 +443,7 @@ class StoryTests(unittest.TestCase):
             self.assertIn(pose, extras.POSES)
             self.assertIn(sweater, extras.SWEATERS)
             self.assertTrue(set(cast) <= set(extras.KIDS))
-            self.assertEqual((j.get('pose') or pose, j.get('sweater') or sweater), (pose, sweater), 'what a joke names, it gets')
+            self.assertEqual((j.get('pose') or pose, j.get('sweater') or sweater), (pose, sweater), 'what an affirmation names, it gets')
             if 'cast' in j:
                 self.assertEqual(list(cast), j['cast'])
             self.assertEqual(words, f'Deborah is working on {extras.POSES[pose]["name"]}.')
@@ -417,40 +451,40 @@ class StoryTests(unittest.TestCase):
 
     def test_there_are_plenty_of_stories_and_everyone_is_in_some(self):
         """The owner asked for about thirty little stories to flip through (November 17, 2026)."""
-        data = extras.read_jokes()
-        told = [(j, look) for j, look in zip(data['jokes'], extras.looks(data)) if j['approved'] is True]
+        data = extras.read_affirmations()
+        told = [(j, look) for j, look in zip(data['affirmations'], extras.looks(data)) if j['approved'] is True]
         self.assertGreaterEqual(len(told), 30)
         for kid in extras.KIDS:
             self.assertGreaterEqual(sum(kid in look[2] for _, look in told), 8, f'{kid} is around in plenty of them')
         self.assertGreaterEqual(sum(not look[2] for _, look in told) + sum(len(look[2]) == 1 for _, look in told), 10, 'some are quiet')
         self.assertEqual({look[0] for _, look in told}, set(extras.POSES), 'every pose is in a story')
         self.assertEqual({look[1] for _, look in told}, set(extras.SWEATERS), 'and every sweater')
-        # The site does not print the children's names: a joke says "my son" or "my youngest".
-        for j in data['jokes']:
+        # The site does not print the children's names.
+        for j in data['affirmations']:
             for name in extras.KID_NAMES.values():
-                self.assertNotIn(name, j['text'], 'the jokes name no child')
+                self.assertNotIn(name, j['text'], 'the affirmations name no child')
 
     def test_poses_and_sweaters_take_turns(self):
-        joke_looks = extras.looks(batch(40))
+        saying_looks = extras.looks(batch(40))
         for part, names in ((0, extras.POSES), (1, extras.EVERYDAY_SWEATERS)):
-            worn = [look[part] for look in joke_looks]
+            worn = [look[part] for look in saying_looks]
             self.assertEqual(set(worn), set(names), 'all of them come round')
             for gap in (1, 2):
                 self.assertTrue(all(a != b for a, b in zip(worn, worn[gap:])), 'never the same twice in three')
-        around = [look[2] for look in joke_looks]
+        around = [look[2] for look in saying_looks]
         self.assertEqual(around[:len(extras.CASTS)], list(extras.CASTS), 'with no cast named, who is around takes turns')
         self.assertTrue(all(a != b for a, b in zip(around, around[1:])), 'never the same children twice running')
-        # A joke that names who is around gets them, and the jokes on either side step aside.
+        # An affirmation that names who is around gets them, and the ones on either side step aside.
         named = batch(5)
-        named['jokes'][1]['cast'] = list(extras.CASTS[0])
-        named['jokes'][3]['cast'] = list(extras.CASTS[2])
+        named['affirmations'][1]['cast'] = list(extras.CASTS[0])
+        named['affirmations'][3]['cast'] = list(extras.CASTS[2])
         around = [look[2] for look in extras.looks(named)]
         self.assertEqual((around[1], around[3]), (extras.CASTS[0], extras.CASTS[2]))
         self.assertTrue(all(a != b for a, b in zip(around, around[1:])), around)
-        # A joke that names its pose gets it, and the jokes around it step aside.
+        # An affirmation that names its pose gets it, and the ones around it step aside.
         data = batch(6)
-        data['jokes'][2]['pose'] = 'tree'
-        data['jokes'][3]['sweater'] = extras.FIRST_SWEATER
+        data['affirmations'][2]['pose'] = 'tree'
+        data['affirmations'][3]['sweater'] = extras.FIRST_SWEATER
         worn = extras.looks(data)
         self.assertEqual(worn[2][0], 'tree')
         self.assertEqual(worn[3][1], extras.FIRST_SWEATER)
@@ -465,16 +499,16 @@ class StoryTests(unittest.TestCase):
         self.assertEqual(extras.caption('warrior2'), 'Deborah is working on warrior two.')
         for pose in extras.POSES:
             self.assertLessEqual(len(extras.caption(pose)), 36, 'one line between the two buttons, on a phone')
-            self.assertNotIn('oday', extras.caption(pose), 'the jokes take turns now, so no line speaks of today')
+            self.assertNotIn('oday', extras.caption(pose), 'the caption is about the picture; the bubble already says today')
         self.assertRegex(TEMPLATE, r'\.scenecap\{[^}]*font-size:clamp\([^)]*vw[^)]*\)', 'and on a narrow phone the line is set smaller, not broken in two')
         data = batch(3)
-        data['jokes'][0]['cast'] = ['genevieve', 'atlas']
+        data['affirmations'][0]['cast'] = ['genevieve', 'atlas']
         for pose, _, _, words, _, _ in extras.looks(data):
             self.assertEqual(words, extras.caption(pose), 'whoever is around')
 
     def test_the_page_gets_what_the_script_needs(self):
         data = batch(3)
-        data['jokes'][1].update(cast=['atlas', 'genevieve'], pose='triangle', sweater='plum')
+        data['affirmations'][1].update(cast=['atlas', 'genevieve'], pose='triangle', sweater='plum')
         scene = extras.scene_data(extras.approved_looks(data))
         self.assertEqual(set(scene), {'p', 'w', 'd', 's'})
         self.assertEqual(scene['s'], {k: list(v) for k, v in extras.WHENS.items()})
@@ -489,10 +523,10 @@ class StoryTests(unittest.TestCase):
         for move, foot, tail in scene['p'].values():
             self.assertRegex(move, r'^(translate\(-?[\d.]+ -?[\d.]+\))?(rotate\(-?[\d.]+ 262 113\))?$')
             self.assertRegex(foot, r'^[\d.]+px [\d.]+px$')
-        block = extras.joke_scripts(extras.approved_jokes(data), extras.approved_looks(data))
-        self.assertEqual(block.count('<script'), 3, 'the jokes, the picture, and one script')
+        block = extras.affirmation_scripts(extras.approved_affirmations(data), extras.approved_looks(data))
+        self.assertEqual(block.count('<script'), 3, 'the affirmations, the picture, and one script')
         self.assertEqual(block.count('<script>'), 1)
-        self.assertLess(block.index('id="jokes-data"'), block.index('id="scene-data"'))
+        self.assertLess(block.index('id="affirmations-data"'), block.index('id="scene-data"'))
 
 
 class SeasonTests(unittest.TestCase):
@@ -502,8 +536,8 @@ class SeasonTests(unittest.TestCase):
     def test_the_check_holds_the_season_rules(self):
         def problems(**change):
             data = batch(1)
-            data['jokes'][0].update(change)
-            return ' '.join(extras.check_jokes(data))
+            data['affirmations'][0].update(change)
+            return ' '.join(extras.check_affirmations(data))
         self.assertEqual(problems(when='winter', sweater='snowy', cast=['atlas'], do={'atlas': 'box'}), '')
         self.assertEqual(problems(when='night', cast=[], pose='easy'), '')
         self.assertIn('when is one of', problems(when='easter'))
@@ -544,26 +578,26 @@ class SeasonTests(unittest.TestCase):
 
 
 class PreviewTests(unittest.TestCase):
-    """The page the owner looks at (scripts/joke_preview.py). It shows the picture card as the site draws it, for
-    every joke on file, and it can hold jokes nobody has approved, so it stays out of the site."""
+    """The page the owner looks at (scripts/affirmation_preview.py). It shows the picture card as the site draws it, for
+    every affirmation on file, and it can hold affirmations nobody has approved, so it stays out of the site."""
 
-    def test_it_shows_every_joke_with_the_site_s_own_picture(self):
+    def test_it_shows_every_affirmation_with_the_site_s_own_picture(self):
         data = batch(4)
-        for j in data['jokes'][2:]:
+        for j in data['affirmations'][2:]:
             j['approved'] = False
-        data['jokes'][3]['cast'] = ['atlas', 'genevieve']
+        data['affirmations'][3]['cast'] = ['atlas', 'genevieve']
         html = preview.page(data)
         self.assertTrue(html.startswith('<!DOCTYPE html>'))
-        order = ['Joke number 3.', 'Joke number 4.', 'Joke number 1.', 'Joke number 2.']  # the waiting jokes come first
+        order = ['Kind word number 3.', 'Kind word number 4.', 'Kind word number 1.', 'Kind word number 2.']  # the waiting ones come first
         for i, text in enumerate(order):
-            self.assertEqual(html.count(f'data-joke="{i}"'), 1)
-            self.assertIn(f'data-joke="{i}" aria-current="false">{text}<span class="who">', html)
-        self.assertIn(extras.scene_block(False, order, '#'), html, 'the card the front pages show')
+            self.assertEqual(html.count(f'data-item="{i}"'), 1)
+            self.assertIn(f'data-item="{i}" aria-current="false">{text}<span class="who">', html)
+        self.assertIn(extras.scene_block(False, order, '#', '#'), html, 'the card the front pages show')
         self.assertIn(extras.DRESS, html, 'dressed by the front pages\' own lines of script')
         self.assertIn(TEMPLATE, html, 'and moved by the same rules')
         self.assertIn('Waiting for your OK (2)', html)
         self.assertIn('In the turn on the site (2)', html)
-        self.assertRegex(html, r'Atlas \([a-z]+\), Genevieve \([a-z]+\) · ', 'each joke says who is in its picture and what they are doing')
+        self.assertRegex(html, r'Atlas \([a-z]+\), Genevieve \([a-z]+\) · ', 'each affirmation says who is in its picture and what they are doing')
         self.assertEqual(html.count('data-try="pose"'), len(extras.POSES), 'and any pose, sweater or child can be tried')
         self.assertEqual(html.count('data-try="sweater"'), len(extras.SWEATERS))
         self.assertEqual(html.count('data-try="kid"'), len(extras.KIDS))
@@ -582,7 +616,7 @@ class PreviewTests(unittest.TestCase):
 
     def test_it_is_never_written_into_the_repository(self):
         for inside in (ROOT / 'preview.html', ROOT / 'ohio' / 'preview.html', ROOT):
-            real, sys.argv = sys.argv, ['joke_preview.py', str(inside)]
+            real, sys.argv = sys.argv, ['affirmation_preview.py', str(inside)]
             try:
                 with self.assertRaises(SystemExit):
                     preview.main()
@@ -591,14 +625,14 @@ class PreviewTests(unittest.TestCase):
         self.assertFalse((ROOT / 'preview.html').exists())
         self.assertFalse((ROOT / 'ohio' / 'preview.html').exists())
         with tempfile.TemporaryDirectory() as tmp:
-            real, sys.argv = sys.argv, ['joke_preview.py', str(Path(tmp) / 'preview.html')]
+            real, sys.argv = sys.argv, ['affirmation_preview.py', str(Path(tmp) / 'preview.html')]
             try:
                 preview.main()
             finally:
                 sys.argv = real
             written = (Path(tmp) / 'preview.html').read_text(encoding='utf-8')
         self.assertEqual(written, preview.page())
-        for j in extras.read_jokes()['jokes']:
+        for j in extras.read_affirmations()['affirmations']:
             self.assertIn(j['text'].replace('&', '&amp;'), written)
 
 

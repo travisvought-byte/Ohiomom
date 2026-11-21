@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.yogamomtalk.com/about.html</loc></url>
+  <url><loc>https://www.yogamomtalk.com/affirmations.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/connect.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/countries/australia.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/countries/canada.html</loc></url>
@@ -18,7 +19,6 @@
   <url><loc>https://www.yogamomtalk.com/family-guide.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/help.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/</loc></url>
-  <url><loc>https://www.yogamomtalk.com/jokes.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/ohio/about.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/ohio/all.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/ohio/connect.html</loc></url>
@@ -38,6 +38,7 @@
   <url><loc>https://www.yogamomtalk.com/ohio/holidays.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/ohio/index.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/ohio/listen.html</loc></url>
+  <url><loc>https://www.yogamomtalk.com/ohio/map.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/ohio/near-you.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/ohio/report.html</loc></url>
   <url><loc>https://www.yogamomtalk.com/ohio/wellbeing.html</loc></url>

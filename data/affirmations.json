@@ -1,0 +1,578 @@
+{
+ "schema_version": 1,
+ "purpose": "Daily affirmations for the Yoga Mom Talk and OhioMom front pages: a kind word for moms going through a hard time, in Deborah's speech bubble, each with the picture that goes with it. The card shows one a day, by the visitor's date, and a visitor can flip to others. Only affirmations with approved true are published. cast lists the children who are around in the picture (an empty list is Deborah alone); pose and sweater are optional too. Whatever an affirmation leaves out takes its turn. do says what a child is doing (otherwise each child's activities take turns). when is thanksgiving, winter or night: such an affirmation is in the turn only in its season, or only after bedtime, by the visitor's clock.",
+ "affirmations": [
+  {
+   "text": "You do not have to do it all today. The next small thing is enough.",
+   "approved": true
+  },
+  {
+   "text": "Tired is not the same as failing. You are tired because you keep showing up.",
+   "approved": true
+  },
+  {
+   "text": "The dishes can wait. You are allowed to sit down for five minutes.",
+   "approved": true
+  },
+  {
+   "text": "Cereal for dinner still counts as feeding your family.",
+   "approved": true,
+   "cast": [
+    "delilah"
+   ],
+   "do": {
+    "delilah": "juice"
+   }
+  },
+  {
+   "text": "Rest is not something you have to earn. You are allowed to rest right now.",
+   "approved": true
+  },
+  {
+   "text": "Some days the win is that everyone made it to bedtime. That is a real win.",
+   "approved": true
+  },
+  {
+   "text": "You are doing more than anyone sees. I see it.",
+   "approved": true
+  },
+  {
+   "text": "A messy house and loved kids. That is a good trade.",
+   "approved": true,
+   "cast": [
+    "atlas"
+   ],
+   "do": {
+    "atlas": "box"
+   }
+  },
+  {
+   "text": "Your best looks different on a hard day, and it still counts.",
+   "approved": true
+  },
+  {
+   "text": "One deep breath. Drop your shoulders. You are doing okay.",
+   "approved": true,
+   "pose": "easy"
+  },
+  {
+   "text": "It is okay to lower the bar today. You can raise it again another day.",
+   "approved": true
+  },
+  {
+   "text": "Asking for help is a strong thing to do, not a weak one.",
+   "approved": true
+  },
+  {
+   "text": "You are allowed to say no to one more thing.",
+   "approved": true
+  },
+  {
+   "text": "If today felt lonely, you are not the only mom who felt that way. There are a lot of us.",
+   "approved": true
+  },
+  {
+   "text": "You deserve a friend who asks how you are and waits for the answer.",
+   "approved": true
+  },
+  {
+   "text": "It is okay to reach out first. Most moms are hoping someone will.",
+   "approved": true
+  },
+  {
+   "text": "Feeling unseen does not mean you do not matter. You matter a great deal.",
+   "approved": true
+  },
+  {
+   "text": "Your feelings make sense. You are not too much.",
+   "approved": true
+  },
+  {
+   "text": "You do not have to explain your hard day here. We get it.",
+   "approved": true
+  },
+  {
+   "text": "A text to another mom that says “me too” can turn a whole day around.",
+   "approved": true
+  },
+  {
+   "text": "Feeding, changing, rocking, repeat. That is real work, even when it looks like sitting still.",
+   "approved": true,
+   "cast": []
+  },
+  {
+   "text": "You and your baby are still learning each other. There is no rush.",
+   "approved": true,
+   "cast": []
+  },
+  {
+   "text": "The days with a newborn are long. This stretch will not last forever.",
+   "approved": true,
+   "cast": []
+  },
+  {
+   "text": "If all you did today was keep a tiny person fed and warm, you did a big job.",
+   "approved": true,
+   "cast": []
+  },
+  {
+   "text": "You do not need to bounce back. You can just be where you are.",
+   "approved": true,
+   "cast": [],
+   "pose": "easy"
+  },
+  {
+   "text": "However your baby is fed, you are taking care of your baby. That is what counts.",
+   "approved": true,
+   "cast": []
+  },
+  {
+   "text": "You can be short on sleep and full of love at the same time.",
+   "approved": true,
+   "cast": []
+  },
+  {
+   "text": "Hold the baby and let the house go. The house will still be here.",
+   "approved": true,
+   "cast": []
+  },
+  {
+   "text": "A meltdown in the store does not make you a bad mom. It means you have a toddler.",
+   "approved": true,
+   "cast": [
+    "delilah"
+   ],
+   "do": {
+    "delilah": "hug"
+   }
+  },
+  {
+   "text": "Little ones test the limits because they feel safe with you.",
+   "approved": true,
+   "cast": [
+    "delilah",
+    "atlas"
+   ]
+  },
+  {
+   "text": "You stayed calm one minute longer than yesterday. That counts.",
+   "approved": true,
+   "cast": [
+    "delilah"
+   ]
+  },
+  {
+   "text": "If you lost your temper, a hug and a sorry fixes a lot. That teaches them something good too.",
+   "approved": true,
+   "cast": [
+    "delilah"
+   ],
+   "do": {
+    "delilah": "hug"
+   }
+  },
+  {
+   "text": "Sticky hands, loud voices, big feelings. You are raising a whole person.",
+   "approved": true,
+   "cast": [
+    "delilah",
+    "atlas"
+   ],
+   "do": {
+    "atlas": "blanket"
+   }
+  },
+  {
+   "text": "The fifth “why?” of the hour is a little mind growing.",
+   "approved": true,
+   "cast": [
+    "delilah"
+   ],
+   "do": {
+    "delilah": "copy"
+   },
+   "pose": "mountain"
+  },
+  {
+   "text": "You do not need a perfect day to make a happy memory.",
+   "approved": true,
+   "cast": [
+    "atlas",
+    "delilah"
+   ],
+   "do": {
+    "atlas": "plant"
+   }
+  },
+  {
+   "text": "A slammed door is not the end of the story. Keep the porch light on.",
+   "approved": true,
+   "cast": [
+    "genevieve"
+   ],
+   "do": {
+    "genevieve": "arms"
+   }
+  },
+  {
+   "text": "Your teen may not say it, but your steady presence matters.",
+   "approved": true,
+   "cast": [
+    "ephraim"
+   ],
+   "do": {
+    "ephraim": "music"
+   }
+  },
+  {
+   "text": "Being the calm one in the house is hard work. You are doing it.",
+   "approved": true,
+   "cast": [
+    "ephraim",
+    "genevieve"
+   ]
+  },
+  {
+   "text": "Some of the best talks happen in the car. Keep driving.",
+   "approved": true,
+   "cast": [
+    "ephraim"
+   ],
+   "do": {
+    "ephraim": "music"
+   }
+  },
+  {
+   "text": "They pull away to grow up, not to leave you behind.",
+   "approved": true,
+   "cast": [
+    "genevieve"
+   ],
+   "do": {
+    "genevieve": "sketch"
+   }
+  },
+  {
+   "text": "You do not need every answer. Listening is a big part of it.",
+   "approved": true,
+   "cast": [
+    "ephraim",
+    "genevieve"
+   ],
+   "do": {
+    "ephraim": "book"
+   }
+  },
+  {
+   "text": "Big kids still need you, just in quieter ways.",
+   "approved": true,
+   "cast": [
+    "genevieve"
+   ],
+   "do": {
+    "genevieve": "cat"
+   }
+  },
+  {
+   "text": "Doing it on your own takes a strength most people never see.",
+   "approved": true
+  },
+  {
+   "text": "You are enough parent for your child. You always have been.",
+   "approved": true
+  },
+  {
+   "text": "One set of hands, a hundred jobs. Go easy on yourself.",
+   "approved": true
+  },
+  {
+   "text": "Your kids are learning what a strong, loving person looks like by watching you.",
+   "approved": true
+  },
+  {
+   "text": "Taking a break is not leaving your post. It is how you keep going.",
+   "approved": true
+  },
+  {
+   "text": "Nobody is keeping score. Love and showing up are what matter.",
+   "approved": true
+  },
+  {
+   "text": "Grief and love come from the same place. Missing someone shows how much you loved them.",
+   "approved": true,
+   "cast": []
+  },
+  {
+   "text": "There is no right timeline for grief. Take the time you need.",
+   "approved": true,
+   "cast": []
+  },
+  {
+   "text": "On the hard anniversaries, be as gentle with yourself as you would be with a friend.",
+   "approved": true,
+   "cast": []
+  },
+  {
+   "text": "You can carry sadness and still laugh with your kids. Both are real.",
+   "approved": true
+  },
+  {
+   "text": "If you lost a pregnancy or a baby, that loss is real, and so is your love.",
+   "approved": true,
+   "cast": []
+  },
+  {
+   "text": "Some days grief is quiet and some days it is loud. Both are okay.",
+   "approved": true,
+   "cast": []
+  },
+  {
+   "text": "Being short on money does not make you short on love.",
+   "approved": true
+  },
+  {
+   "text": "Your kids will remember the time with you more than the things you bought.",
+   "approved": true
+  },
+  {
+   "text": "Asking about help with bills is smart, not shameful. That is what the help is there for.",
+   "approved": true
+  },
+  {
+   "text": "A free afternoon at the park can be the best day of the week.",
+   "approved": true,
+   "cast": [
+    "atlas",
+    "delilah"
+   ]
+  },
+  {
+   "text": "You stretched it one more week. That takes real skill.",
+   "approved": true
+  },
+  {
+   "text": "Worrying about money is tiring. You are carrying a lot, and you are still here.",
+   "approved": true
+  },
+  {
+   "text": "You drank a glass of water today. Start there.",
+   "approved": true
+  },
+  {
+   "text": "Everyone got out the door. The shoes may not have matched. Still a win.",
+   "approved": true
+  },
+  {
+   "text": "You made the phone call you were dreading. That was brave.",
+   "approved": true
+  },
+  {
+   "text": "You laughed today. Hold on to that.",
+   "approved": true
+  },
+  {
+   "text": "A warm meal, a clean shirt, a bedtime story. Small things add up to a childhood.",
+   "approved": true
+  },
+  {
+   "text": "Today you were kind to someone, even if it was only yourself.",
+   "approved": true
+  },
+  {
+   "text": "Progress, not perfect. You moved forward today.",
+   "approved": true
+  },
+  {
+   "text": "You finished one thing on the list. That is one more than none.",
+   "approved": true
+  },
+  {
+   "text": "You are a good mom. The fact that you worry about it shows how much you care.",
+   "approved": true
+  },
+  {
+   "text": "You are more than what you get done in a day.",
+   "approved": true
+  },
+  {
+   "text": "Your kids do not need a perfect mom. They need you, and they have you.",
+   "approved": true
+  },
+  {
+   "text": "Be as patient with yourself as you are with your kids.",
+   "approved": true
+  },
+  {
+   "text": "You are allowed to take up space, to want things and to have your own dreams.",
+   "approved": true
+  },
+  {
+   "text": "A mistake does not cancel out love. Tomorrow is a fresh start.",
+   "approved": true
+  },
+  {
+   "text": "You are someone’s whole world, and you are also your own person.",
+   "approved": true
+  },
+  {
+   "text": "It is okay not to love every minute. You can still love your kids with your whole heart.",
+   "approved": true
+  },
+  {
+   "text": "There is no one right way to be a mom. Your way is allowed.",
+   "approved": true
+  },
+  {
+   "text": "Like tree pose, it is okay to wobble. You can find your balance again.",
+   "approved": true,
+   "pose": "tree",
+   "cast": [
+    "delilah"
+   ],
+   "do": {
+    "delilah": "copy"
+   }
+  },
+  {
+   "text": "Plant your feet like mountain pose. You are steadier than you feel.",
+   "approved": true,
+   "pose": "mountain"
+  },
+  {
+   "text": "Warrior two: strong legs, open arms. That is you, facing this week.",
+   "approved": true,
+   "pose": "warrior2"
+  },
+  {
+   "text": "Breathe in for four, out for four. You are right here, and you are doing okay.",
+   "approved": true,
+   "pose": "easy",
+   "cast": []
+  },
+  {
+   "text": "Stretch wide like a star. You are allowed to take up room.",
+   "approved": true,
+   "pose": "star"
+  },
+  {
+   "text": "A wide, low squat is hard to hold. So is a long day. You are holding it.",
+   "approved": true,
+   "pose": "goddess"
+  },
+  {
+   "text": "You can lean like a crescent moon and still be standing.",
+   "approved": true,
+   "pose": "crescent"
+  },
+  {
+   "text": "You do not have to reach your toes yet. Every bit of a stretch counts.",
+   "approved": true,
+   "pose": "bigtoe"
+  },
+  {
+   "text": "Triangle pose: one hand down, one hand up. Stay grounded and keep reaching.",
+   "approved": true,
+   "pose": "triangle"
+  },
+  {
+   "text": "It is late. Whatever did not get done today can wait until tomorrow.",
+   "approved": true,
+   "when": "night",
+   "cast": [],
+   "pose": "easy"
+  },
+  {
+   "text": "Up with the baby at this hour? Lots of moms are awake with you right now.",
+   "approved": true,
+   "when": "night",
+   "cast": [],
+   "pose": "easy"
+  },
+  {
+   "text": "The house is quiet. This moment is yours. Breathe.",
+   "approved": true,
+   "when": "night",
+   "cast": [],
+   "pose": "easy"
+  },
+  {
+   "text": "You made it through today. That is all today needed.",
+   "approved": true,
+   "when": "night",
+   "cast": [],
+   "pose": "easy"
+  },
+  {
+   "text": "If your mind is busy tonight, write it down and let it wait until morning.",
+   "approved": true,
+   "when": "night",
+   "cast": [],
+   "pose": "easy"
+  },
+  {
+   "text": "Rest your eyes. Tomorrow you get to start again.",
+   "approved": true,
+   "when": "night",
+   "cast": [],
+   "pose": "easy"
+  },
+  {
+   "text": "Holidays can be hard as well as happy. Whatever this season feels like for you is okay.",
+   "approved": true,
+   "when": "thanksgiving"
+  },
+  {
+   "text": "The table does not need to be perfect. The people around it are what matter.",
+   "approved": true,
+   "when": "thanksgiving"
+  },
+  {
+   "text": "If you are missing someone at the table this year, be gentle with your heart.",
+   "approved": true,
+   "when": "thanksgiving",
+   "cast": []
+  },
+  {
+   "text": "Thank you, mom, for every meal, every ride and every hug.",
+   "approved": true,
+   "when": "thanksgiving"
+  },
+  {
+   "text": "You do not have to host, bake or smile through all of it. A simple holiday is still a holiday.",
+   "approved": true,
+   "when": "thanksgiving"
+  },
+  {
+   "text": "The best gift your kids get this year is time with you.",
+   "approved": true,
+   "when": "winter"
+  },
+  {
+   "text": "A small holiday is still full of love. It does not take a lot of money to make it special.",
+   "approved": true,
+   "when": "winter"
+  },
+  {
+   "text": "Cold days, warm hugs. You are the warm place in your house.",
+   "approved": true,
+   "when": "winter",
+   "cast": [
+    "delilah"
+   ],
+   "do": {
+    "delilah": "hug"
+   }
+  },
+  {
+   "text": "It is okay to skip some of the holiday rush. Peace counts as a present.",
+   "approved": true,
+   "when": "winter"
+  },
+  {
+   "text": "If the season is heavy this year, you are not alone. Take it one day at a time.",
+   "approved": true,
+   "when": "winter",
+   "cast": []
+  }
+ ]
+}
