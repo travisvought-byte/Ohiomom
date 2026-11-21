@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""The picture and the daily affirmation on the two front pages.
+"""The picture and the daily affirmation on the two front pages, and the affirmation alone on every location page.
 
 Both front pages carry the same card, drawn here so the two cannot drift apart:
 
@@ -52,6 +52,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 AFFIRMATIONS = ROOT / 'data' / 'affirmations.json'
 OHIO_HOME = ROOT / 'ohio' / 'index.html'
+OHIO_COUNTIES = ROOT / 'ohio' / 'counties'  # each hand-kept county page carries the day's affirmation too
+KINDWORD_JS = 'assets/kindword.js'  # the affirmation card's script; OhioMom keeps its own copy in ohio/assets/
 STYLE = ROOT / 'templates' / 'home-extras.css'
 SHEETS = ('assets/ymt.css', 'ohio/assets/site.css')
 AFFIRMATION_MAX = 220  # characters: an affirmation is a line or two, never a story
@@ -631,6 +633,47 @@ def scene_block(ohio=False, affirmations=None, list_href='affirmations.html', he
             f'{scene_svg(ohio)}{flip_bar(affirmations)}</div>')
 
 
+def affirmation_card(affirmations, list_href, help_href):
+    """The day's affirmation on its own, for the location pages (every state, country and county page): the same bubble
+    as on the front pages, the same day's affirmation and the same Back and Next buttons, but no picture, so a page
+    that is mostly phone numbers stays light. Like the bubble, it waits hidden until the script has filled it, and
+    there is nothing at all with no approved affirmations."""
+    if not affirmations:
+        return ''
+    ask, go = HELP_WORDS
+    return (f'<section class="wrap kindword" aria-label="{HEADING}"><div class="saying solo" id="affirm" hidden>'
+            f'<div class="sayinghead"><h2>{HEADING}</h2><a href="{esc(list_href)}">{LIST_LINK}</a></div>'
+            f'<p class="affirmtext" id="affirm-text"></p>'
+            f'<div class="flipbar solo" id="scene-foot" hidden>'
+            f'<button type="button" id="affirm-prev" aria-label="Previous affirmation">{ICON_BACK}</button>'
+            f'<p class="sayhelp">{ask} <a href="{esc(help_href)}">{go}</a></p>'
+            f'<button type="button" id="affirm-next" aria-label="Next affirmation">{ICON_NEXT}</button></div></div></section>')
+
+
+def affirmation_card_script(affirmations, saying_looks):
+    """The one script file behind affirmation_card (KINDWORD_JS): it puts the affirmations into the page and runs the
+    same script as the front pages, so the same affirmation shows on the same day everywhere. It is one file that a
+    browser keeps, not a copy in each of some 130 pages, which keeps the site well inside what Wix will host. Only
+    the part of each picture's description that says when it may show is carried (a seasonal or late-night one keeps
+    to its time here too); the drawing itself is not on these pages."""
+    if len(saying_looks) != len(affirmations):
+        raise SystemExit('every affirmation needs its picture: the two lists are not the same length')
+    when = {'d': ['|||||' + look[5] for look in saying_looks], 's': {name: list(spec) for name, spec in WHENS.items()}}
+    blocks = {'affirmations-data': list(affirmations), 'scene-data': when}
+    put = ''.join(f'add({json.dumps(name)},{json.dumps(json.dumps(value, ensure_ascii=False, sort_keys=True), ensure_ascii=False).replace('<', '\\u003c')});'
+                  for name, value in blocks.items())
+    run = AFFIRMATION_SCRIPT[len('<script>'):-len('</script>')]
+    return ('// The day\'s affirmation on the location pages. Written by scripts/home_extras.py from data/affirmations.json; do not edit.\n'
+            '(function(){var D=document;if(D.getElementById("affirmations-data"))return;'
+            'function add(id,v){var e=D.createElement("script");e.type="application/json";e.id=id;e.textContent=v;D.body.appendChild(e)}'
+            + put + '})();\n' + run + '\n')
+
+
+def affirmation_card_scripts(affirmations, root=''):
+    """What a location page loads for affirmation_card: the one script file, from the site's own assets."""
+    return f'<script src="{esc(root)}{KINDWORD_JS}"></script>' if affirmations else ''
+
+
 # ---------------------------------------------------------------- the affirmations
 def read_affirmations():
     return json.loads(AFFIRMATIONS.read_text(encoding='utf-8'))
@@ -870,11 +913,17 @@ def ohio_blocks(affirmations, saying_looks):
     return {'scene': scene_block(True, affirmations, OHIO_LIST, OHIO_HELP), 'affirmscript': affirmation_scripts(affirmations, saying_looks)}
 
 
-def render_ohio(text, affirmations, saying_looks):
-    blocks = ohio_blocks(affirmations, saying_looks)
+def ohio_county_blocks(affirmations, saying_looks):
+    """The day's affirmation on an OhioMom county page, the same card as on every national state, country and county page."""
+    return {'kindword': affirmation_card(affirmations, '../' + OHIO_LIST, '../' + OHIO_HELP),
+            'affirmscript': affirmation_card_scripts(affirmations, '../')}
+
+
+def render_ohio(text, affirmations, saying_looks, blocks=None, where='ohio/index.html'):
+    blocks = ohio_blocks(affirmations, saying_looks) if blocks is None else blocks
     found = [m.group('name') for m in MARK.finditer(text)]
     if sorted(found) != sorted(blocks):
-        raise SystemExit(f'ohio/index.html: expected one marker each for {sorted(blocks)}, found {found}')
+        raise SystemExit(f'{where}: expected one marker each for {sorted(blocks)}, found {found}')
     return MARK.sub(lambda m: f'<!--home-extras:{m.group("name")}-->{blocks[m.group("name")]}<!--/home-extras-->', text)
 
 
@@ -900,10 +949,17 @@ def main():
         raise SystemExit('data/affirmations.json:\n' + '\n'.join(errors))
     affirmations, saying_looks = approved_affirmations(data), approved_looks(data)
     targets = {OHIO_HOME: lambda text: render_ohio(text, affirmations, saying_looks)}
+    county_blocks = ohio_county_blocks(affirmations, saying_looks)
+    script = affirmation_card_script(affirmations, saying_looks)
+    for rel in (KINDWORD_JS, 'ohio/' + KINDWORD_JS):
+        targets[ROOT / rel] = lambda text: script
+    for page in sorted(OHIO_COUNTIES.glob('*.html')):
+        targets[page] = (lambda where: lambda text: render_ohio(text, affirmations, saying_looks, county_blocks, where))(
+            str(page.relative_to(ROOT)))
     targets.update({ROOT / rel: render_sheet for rel in SHEETS})
     stale = []
     for path, render in targets.items():
-        text = path.read_text(encoding='utf-8')
+        text = path.read_text(encoding='utf-8') if path.exists() else ''
         new = render(text)
         if new != text:
             stale.append(str(path.relative_to(ROOT)))
@@ -912,7 +968,7 @@ def main():
     if '--check' in sys.argv:
         if stale:
             raise SystemExit('Out of step with the picture, its rules or the affirmations (run python3 scripts/home_extras.py):\n' + '\n'.join(stale))
-        print(f'OK: {len(data["affirmations"])} affirmations, {len(affirmations)} approved; the OhioMom front page and both stylesheets match')
+        print(f'OK: {len(data["affirmations"])} affirmations, {len(affirmations)} approved; the OhioMom front page, its county pages and both stylesheets match')
     else:
         print(f'{len(affirmations)} approved affirmations. ' + ('Wrote ' + ', '.join(stale) if stale else 'Nothing to write'))
 

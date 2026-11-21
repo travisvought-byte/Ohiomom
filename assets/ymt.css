@@ -68,6 +68,9 @@ main>section .tile{border-color:var(--line);box-shadow:none}
 .need .nsum{grid-area:sum;align-self:start;min-width:0;display:block;color:var(--muted);font-size:.92rem;line-height:1.35;margin-top:.1rem}
 .need .ncount{grid-area:count;color:var(--muted);font-size:.85rem;white-space:nowrap;margin-left:.9rem}
 .need>.cards{padding:0 1rem 1rem;margin-top:.3rem}
+/* A need with nothing listed yet for a country: a plain line where the cards go, the same row as any other. */
+.need>.pending{margin:.3rem 1rem 1rem;background:#fff6dc;border-radius:.8rem;padding:.7rem 1rem;border:1.5px dashed #e9c96a}
+.kindword{margin-top:2rem}
 
 /* Listing cards: name, one line and the buttons. The rest opens on request. */
 .group{margin-top:2.4rem;scroll-margin-top:1rem}
@@ -244,5 +247,13 @@ button.btn{font-family:inherit;cursor:pointer}
 .affirmlist li::marker{color:var(--muted);font-size:.85rem}
 @media (max-width:760px){.hero.home{padding-top:1.2rem}.herotop{flex-direction:column;align-items:stretch;gap:.8rem}.scenebox{order:-1;width:100%;max-width:26rem}}
 @media (prefers-reduced-motion:reduce){.scene *{animation:none!important}.sc-b1{opacity:1}}
+/* The day's affirmation on its own, on every state, country and county page: the same bubble, no picture. */
+.saying.solo{margin:0;max-width:40rem;border:2px solid #e6f5f0;box-shadow:0 8px 18px -14px #6b3f5b99}
+.saying.solo::after{display:none}
+.saying.solo .affirmtext{min-height:calc(3.9*clamp(1.1rem,2.7vw,1.25rem))}
+.flipbar.solo{display:flex;align-items:center;padding:.35rem 0 0}
+.flipbar.solo button{background:var(--soft);box-shadow:none}
+.flipbar.solo .sayhelp{flex:1;min-width:0;margin:0;text-align:center}
 @media print{.scenebox{display:none}}
+@media print{.kindword{display:none}}
 /* home-extras:end */

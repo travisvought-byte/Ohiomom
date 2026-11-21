@@ -86,7 +86,8 @@
       var n = countKeys(hits);
       countLine.textContent = n + ' of ' + total + ' listings match.';
     } else {
-      countLine.textContent = 'Nothing matches. Try another word, or dial 211 and say what you need.';
+      // The page says what to suggest (a page outside the U.S. does not send anyone to 211).
+      countLine.textContent = finder.getAttribute('data-none') || 'Nothing matches. Try another word, or dial 211 and say what you need.';
     }
   }
   if (finder) {

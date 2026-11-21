@@ -245,17 +245,26 @@ def campaigns_card(data, st, camps, cid=None):
             f'<a href="{esc(xmas.SOURCE)}" rel="noopener">1</a></p></details></article>')
 
 
-def finder(what, hint):
-    """Search and "Show everything" for a page of needs. It only hides and shows what is already on the page."""
-    return (f'<section class="wrap finder" id="everything" data-finder hidden><label for="q">{esc(what)}</label>'
+# What the search box says when nothing matches. 211 is a U.S. number, so a page outside the U.S. says something else.
+NO_MATCH_US = 'Nothing matches. Try another word, or dial 211 and say what you need.'
+NO_MATCH_WORLD = 'Nothing matches. Try another word, or open Get help now.'
+
+
+def finder(what, hint, none=NO_MATCH_US):
+    """Search and "Show everything" for a page of needs. It only hides and shows what is already on the page.
+    none: the line shown when nothing matches (assets/ymt.js reads it from the page)."""
+    return (f'<section class="wrap finder" id="everything" data-finder data-none="{esc(none)}" hidden><label for="q">{esc(what)}</label>'
             f'<div class="finderrow"><input id="q" type="search" placeholder="{esc(hint)}" autocomplete="off" enterkeyhint="search">'
             f'<button type="button" class="btn" data-show-all aria-pressed="false">Show everything</button></div>'
             f'<p class="quiet" data-count role="status"></p>'
             f'<p class="quiet">Nothing you type here is sent or saved.</p></section>')
 
 
-def urgent_strip(data, root=''):
-    """The three lines that must never be more than one tap away, as small phone cards."""
+def urgent_strip(data, root='', more=None):
+    """The three lines that must never be more than one tap away, as small phone cards. The same block, in the same
+    words, is on the front page, every state page and the county page. more: where "More ways to get help now" goes
+    (a state page has its own Get help now row)."""
+    more = more or f'{root}help.html#help-now'
     nat = {r['id']: r for r in data['resources']}
     lines = [nat[i] for i in URGENT_LINES]
     items = ''.join(
@@ -265,7 +274,27 @@ def urgent_strip(data, root=''):
             f'<p class="quiet">Free, and answered any hour. If you or your child are in danger, call 911.</p>'
             f'<ul class="phonecards">{items}</ul>'
             f'<p class="quiet">Cannot talk out loud? {texts} for the domestic violence hotline, or text 988. '
-            f'<a href="{root}help.html#help-now">More ways to get help now</a></p></section>')
+            f'<a href="{esc(more)}">More ways to get help now</a></p></section>')
+
+
+def kind_word(help_href, root=''):
+    """The day's affirmation, as on the front page but without the picture. Every state, country and county page
+    carries it, in the same place: after the needs, before the closing note (scripts/home_extras.py)."""
+    sayings = extras.approved_affirmations()
+    return extras.affirmation_card(sayings, f'{root}affirmations.html', help_href)
+
+
+def kind_word_scripts(root=''):
+    """The card's script: one file, assets/kindword.js, written by scripts/home_extras.py."""
+    sayings = extras.approved_affirmations()
+    return ('\n' + extras.affirmation_card_scripts(sayings, root)) if sayings else ''
+
+
+def closing(root, free=''):
+    """The last lines of every state and country page, in the same words: shelter addresses are never listed, and
+    where to say something is out of date. free: a line about what calls cost, where the page can say it."""
+    return (f'<section class="wrap slim closing"><p>{free}Shelter addresses are never listed here, for safety. '
+            f'See something out of date? <a href="{root}report.html">Tell us</a>.</p></section>')
 
 
 def sec_map(data):
@@ -449,8 +478,10 @@ def build_state(data, s):
     intro = (f'Pick what you need, or search every listing. Each choice opens {esc(s["name"])}\'s own offices first, then national lines. '
              f'<a href="../states.html">Choose another state</a>.')
     body = (hero(f'{esc(s["name"])}: help for moms', intro, county_pick(data, s) + local, 'slim')
+            + urgent_strip(data, '../', '#help-now')
             + finder(f'Search every {s["name"]} listing', 'shelter, rent, WIC, child care…') + needs(rows)
-            + '<section class="wrap slim"><p><strong>Meet other moms.</strong> Find a group near you or online. <a href="../connect.html">Meet moms</a></p></section>')
+            + '<section class="wrap slim"><p><strong>Meet other moms.</strong> Find a group near you or online. <a href="../connect.html">Meet moms</a></p></section>'
+            + kind_word('#take-care', '../') + closing('../'))
     path = f'states/{s["abbr"].lower()}.html'
     desc = f'Free help for moms in {s["name"]}: housing and shelter, SNAP, WIC, child care, health coverage, disability services and domestic violence resources.'
     base = f"https://{data['site']['domain']}/"
@@ -459,7 +490,7 @@ def build_state(data, s):
              'about': {'@type': 'State', 'name': s['name']}}
     trail = breadcrumbs(data, [('Help by state', 'states.html'), (s['name'], path)])
     return page(data, path, f'{s["name"]}: help for moms', desc, body, head_extra=structured_data(about, trail),
-                slots=(f'state-{s["abbr"].lower()}', 'state'))
+                slots=(f'state-{s["abbr"].lower()}', 'state'), scripts=kind_word_scripts('../'))
 
 
 # ---------------------------------------------------------------- outside the U.S.
@@ -486,14 +517,28 @@ WORLD_SUMMARIES = {
 }
 
 
-def world_rows(data, records, root=''):
-    """Only the needs that have something in them, each closed until she opens it."""
+def world_rows(data, records, root='', country=None):
+    """The needs, each closed until she opens it. On world.html only the needs that have something in them. On a
+    country page every need, in the same order on every country: a need with nothing listed for the country yet says
+    so, gives the emergency number and asks for a service to add, so a thin page reads the same as a full one."""
     secs = {sid: dict(sec, summary=WORLD_SUMMARIES.get(sid, sec['summary'])) for sid, sec in sec_map(data).items()}
     out = ''
     for sid in WORLD_SECTIONS:
         if any(r['section'] == sid or sid in r.get('also', []) for r in records):
             out += row(secs[sid], records, root)
+        elif country:
+            out += empty_need(secs[sid], country, root)
     return out
+
+
+def empty_need(sec, c, root=''):
+    """A need with no listing for this country yet: the same row as any other, with a plain line where the cards go."""
+    return (f'<details class="need" id="{sec["id"]}"><summary><span class="ico" aria-hidden="true">{sec["icon"]}</span>'
+            f'<h2>{esc(sec["label"])}</h2><span class="nsum">{esc(sec["summary"])}</span>'
+            f'<span class="ncount">Not listed yet</span></summary><p class="pending">We have not listed a service in '
+            f'{esc(c["name"])} for this yet. If you or your child are in danger, call {esc(c["emergency"]["number"])}, or open '
+            f'<a href="#help-now">Get help now</a>. Know a free service for moms here? <a href="{root}report.html">Tell us</a> '
+            f'and we will add it.</p></details>')
 
 
 def emergency_card(c):
@@ -512,7 +557,7 @@ def build_world(data):
             + '<section class="wrap now" id="now"><h2>In danger right now?</h2>'
             '<p class="quiet">Call your country\'s emergency number. Here are the numbers for the countries we cover so far.</p>'
             f'<ul class="phonecards">{"".join(emergency_card(c) for c in world["countries"])}</ul></section>'
-            + finder('Search help that works in any country', 'helpline, breastfeeding, custody…')
+            + finder('Search help that works in any country', 'helpline, breastfeeding, custody…', NO_MATCH_WORLD)
             + needs(world_rows(data, world['worldwide']))
             + f'<section class="wrap"><h2>Countries</h2><ul class="statelist">{items}</ul>'
             '<p class="note">More countries are on the way. Living in the U.S.? <a href="states.html">Choose your state</a>. '
@@ -541,10 +586,10 @@ def build_country(data, c):
             + f'<section class="wrap now" id="now"><h2>Need help right now?</h2>'
             f'<p class="quiet">If you or your child are in danger, call {esc(c["emergency"]["number"])}.</p>'
             f'<ul class="phonecards">{cards_now}</ul></section>'
-            + finder(f'Search every {c["name"]} listing', 'helpline, benefit, breastfeeding…')
-            + needs(world_rows(data, everything, '../'))
-            + '<section class="wrap slim"><p>Numbers are free to call unless the listing says otherwise. Shelter addresses are never listed here, for safety. '
-            'See something out of date? <a href="../report.html">Tell us</a>.</p></section>')
+            + finder(f'Search every {c["name"]} listing', 'helpline, benefit, breastfeeding…', NO_MATCH_WORLD)
+            + needs(world_rows(data, everything, '../', c))
+            + kind_word('#take-care', '../')
+            + closing('../', 'Numbers are free to call unless the listing says otherwise. '))
     path = f'countries/{c["slug"]}.html'
     desc = (f'Free help for moms in {c["name"]}: the emergency number, domestic violence and crisis lines, family payments, '
             'breastfeeding and postpartum support.')
@@ -555,7 +600,7 @@ def build_country(data, c):
     trail = breadcrumbs(data, [('Worldwide', 'world.html'), (c['name'], path)])
     return page(data, path, f'{c["name"]}: help for moms', desc, body, head_extra=structured_data(about, trail),
                 slots=(f'country-{c["code"].lower()}', 'country'),
-                danger=f'In danger right now? Call {c["emergency"]["number"]}.')
+                danger=f'In danger right now? Call {c["emergency"]["number"]}.', scripts=kind_word_scripts('../'))
 
 
 def county_pick(data, s):
@@ -639,12 +684,13 @@ def build_county(data):
                'If something is wrong, <a href="report.html">tell us</a>.</p>'
                '<p class="note">Nothing you type on this page is saved. A ZIP code is matched inside your browser, using a list '
                'your browser downloads for the first digit of the code.</p></section>')
-    body = hero_html + f'\n<div id="county-app">{fallback}</div>' + statehelp + '\n' + urgent_strip(data) + '\n' + sources
+    body = (hero_html + f'\n<div id="county-app">{fallback}</div>' + statehelp + '\n' + urgent_strip(data) + '\n'
+            + kind_word('help.html#take-care') + '\n' + sources)
     return page(data, 'county.html', 'Help near you, by county',
                 'Public housing, housing counselors, legal aid, health centers, school districts and Head Start in every U.S. county, '
                 'from federal directories. Free, with no sign-up.',
                 body, head_extra=structured_data(breadcrumbs(data, [('Help near you, by county', 'county.html')])),
-                scripts='\n<script src="assets/county.js"></script>', slots=('county',))
+                scripts='\n<script src="assets/county.js"></script>' + kind_word_scripts(), slots=('county',))
 
 
 def build_yoga(data):

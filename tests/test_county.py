@@ -279,7 +279,7 @@ class CountyPages(unittest.TestCase):
         for need in ('cstate', 'ccounty', 'zip', 'cmsg', 'ctitle', 'clede', 'county-app', 'sources'):
             self.assertIn(need, ids)
         scripts = [a['src'] for tag, a in t if tag == 'script' and a.get('src')]
-        self.assertEqual(scripts, ['assets/ymt.js', 'assets/county.js'])
+        self.assertEqual(scripts, ['assets/ymt.js', 'assets/county.js', 'assets/kindword.js'])
         zipbox = [a for tag, a in t if tag == 'input']
         self.assertEqual(len(zipbox), 1)
         self.assertEqual((zipbox[0]['type'], zipbox[0]['id']), ('search', 'zip'))

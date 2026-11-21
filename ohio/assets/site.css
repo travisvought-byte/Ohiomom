@@ -293,5 +293,13 @@ body.county .brandline{font-weight:700;margin:0 0 .4rem}
 .affirmlist li::marker{color:var(--muted);font-size:.85rem}
 @media (max-width:760px){.hero.home{padding-top:1.2rem}.herotop{flex-direction:column;align-items:stretch;gap:.8rem}.scenebox{order:-1;width:100%;max-width:26rem}}
 @media (prefers-reduced-motion:reduce){.scene *{animation:none!important}.sc-b1{opacity:1}}
+/* The day's affirmation on its own, on every state, country and county page: the same bubble, no picture. */
+.saying.solo{margin:0;max-width:40rem;border:2px solid #e6f5f0;box-shadow:0 8px 18px -14px #6b3f5b99}
+.saying.solo::after{display:none}
+.saying.solo .affirmtext{min-height:calc(3.9*clamp(1.1rem,2.7vw,1.25rem))}
+.flipbar.solo{display:flex;align-items:center;padding:.35rem 0 0}
+.flipbar.solo button{background:var(--soft);box-shadow:none}
+.flipbar.solo .sayhelp{flex:1;min-width:0;margin:0;text-align:center}
 @media print{.scenebox{display:none}}
+@media print{.kindword{display:none}}
 /* home-extras:end */
