@@ -107,6 +107,14 @@ def main():
         # are not in yet (data/affirmations-i18n/) keeps the page in English until they are.
         if 'lang' in c and not (isinstance(c['lang'], str) and re.match(r'^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$', c['lang'])):
             errors.append(f'world {c.get("code")}: lang is a language tag such as en, es or zh-Hant')
+        # A country that shares its name with a U.S. state (Georgia) names the state, and its pages link to each other.
+        bare = re.sub(r'\s*\(.*\)$', '', c.get('name', ''))
+        if bare in {s['name'] for s in states} and ('us_state' not in c or bare == c.get('name')):
+            errors.append(f'world {c.get("code")}: {bare} is also a U.S. state: name it "{bare} (the country)" and set us_state')
+        if 'us_state' in c and c['us_state'] not in {s['abbr'] for s in states}:
+            errors.append(f'world {c.get("code")}: us_state is the two letters of a U.S. state')
+        if 'us_state' in c and c.get('slug') in {s['slug'] for s in states}:
+            errors.append(f'world {c.get("code")}: slug {c["slug"]} is also a state\'s slug')
         e = c.get('emergency') or {}
         if not emergency_dial.match(e.get('number', '')) or not e.get('label'):
             errors.append(f'world {c.get("code")}: emergency needs a number and a label')

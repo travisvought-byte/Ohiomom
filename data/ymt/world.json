@@ -1,5 +1,5 @@
 {
- "note": "Help for moms outside the United States, built into world.html and countries/<slug>.html by scripts/ymt_build.py. Every listing needs a source it was checked against and the date. 'phone' is printed as the country writes it; 'dial' is the digits a phone in that country dials (or a full +country number for a line called from abroad). Never list a shelter address. 'lang' is the language the country page shows the day's affirmation in, beside the English (en: English only; see data/affirmations-i18n/). Added November 19, 2026 at the owner's request: Yoga Mom Talk as a worldwide resource for moms.",
+ "note": "Help for moms outside the United States, built into world.html and countries/<slug>.html by scripts/ymt_build.py. Every listing needs a source it was checked against and the date. 'phone' is printed as the country writes it; 'dial' is the digits a phone in that country dials (or a full +country number for a line called from abroad). Never list a shelter address. 'lang' is the language the country page shows the day's affirmation in, beside the English (en: English only; see data/affirmations-i18n/). 'us_state' (Georgia) names a U.S. state of the same name: both pages link to each other so the two are never mixed up. Added November 19, 2026 at the owner's request: Yoga Mom Talk as a worldwide resource for moms.",
  "worldwide": [
   {
    "id": "world-findahelpline",
@@ -112,6 +112,52 @@
  ],
  "countries": [
   {
+   "code": "AL",
+   "slug": "albania",
+   "name": "Albania",
+   "flag": "🇦🇱",
+   "lang": "sq",
+   "emergency": {
+    "number": "112",
+    "label": "Emergency services. For an ambulance you can also dial 127",
+    "source": "https://www.gov.uk/foreign-travel-advice/albania/safety-and-security"
+   },
+   "resources": [
+    {
+     "id": "albania-116117",
+     "section": "help-now",
+     "name": "Linja e Këshillimit për Gra dhe Vajza (counselling line for women and girls)",
+     "org": "National line, listed by UN Women",
+     "what": "A national counselling line, open day and night, for women and girls facing domestic violence.",
+     "how": "Call 116 117, any hour. In danger right now, call 112.",
+     "url": "https://data.unwomen.org/global-database-on-violence-against-women/country-profile/Albania/measures/National%20Counselling%20Line%20for%20Victims%20of%20Domestic%20Violence",
+     "phone": "116 117",
+     "dial": "116117",
+     "urgent": true,
+     "chip": "Line for women and girls",
+     "sources": [
+      "https://data.unwomen.org/global-database-on-violence-against-women/country-profile/Albania/measures/National%20Counselling%20Line%20for%20Victims%20of%20Domestic%20Violence"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "albania-116111",
+     "section": "kids-differently",
+     "name": "ALO 116 111 (child helpline)",
+     "org": "National line, listed by UN Women",
+     "what": "A free line, open day and night, for children who are being hurt or abused.",
+     "how": "Call 116 111, free, any hour.",
+     "url": "https://data.unwomen.org/global-database-on-violence-against-women/country-profile/Albania/measures/ALO%20116111%20%E2%80%93%20Specialized%20Helpline%20for%20Abused%20Children",
+     "phone": "116 111",
+     "dial": "116111",
+     "sources": [
+      "https://data.unwomen.org/global-database-on-violence-against-women/country-profile/Albania/measures/ALO%20116111%20%E2%80%93%20Specialized%20Helpline%20for%20Abused%20Children"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "AR",
    "slug": "argentina",
    "name": "Argentina",
@@ -210,6 +256,37 @@
      "also": [
       "food-bills"
      ]
+    }
+   ]
+  },
+  {
+   "code": "AM",
+   "slug": "armenia",
+   "name": "Armenia",
+   "flag": "🇦🇲",
+   "lang": "hy",
+   "emergency": {
+    "number": "911",
+    "label": "Emergency hotline: ambulance, police and fire. 112 also works",
+    "source": "https://www.smartraveller.gov.au/destinations/europe/armenia"
+   },
+   "resources": [
+    {
+     "id": "armenia-womens-support-center",
+     "section": "help-now",
+     "name": "Domestic violence hotline (Women’s Support Center)",
+     "org": "Women’s Support Center, listed by UNHCR",
+     "what": "A line open day and night for women facing domestic violence. The centre also offers psychological help, legal help and urgent medical care.",
+     "how": "Call +374 99 887 808, any hour. In danger right now, call 911.",
+     "url": "https://help.unhcr.org/armenia/partners-and-contact-info/",
+     "phone": "+374 99 887 808",
+     "dial": "+37499887808",
+     "urgent": true,
+     "chip": "Domestic violence hotline",
+     "sources": [
+      "https://help.unhcr.org/armenia/partners-and-contact-info/"
+     ],
+     "reviewed_on": "2026-11-21"
     }
    ]
   },
@@ -488,6 +565,35 @@
      "also": [
       "pregnancy-baby"
      ]
+    }
+   ]
+  },
+  {
+   "code": "BH",
+   "slug": "bahrain",
+   "name": "Bahrain",
+   "flag": "🇧🇭",
+   "lang": "ar",
+   "emergency": {
+    "number": "999",
+    "label": "Emergency: police, ambulance and fire",
+    "source": "https://bahrain.bh/wps/portal/en/!ut/p/z0/fYy7EoIwEEV_JQ31Rh2B1keBjqOWsA0T4oqrcQMhOvL30tlZ3nPOXEAoAcW8uTWRvRg37QrTerZb6iLfaF0cz1udnoo8m2frhT4sYA_4P5ge-N73uAK0XiJ9IpSNdDVJokf_CsrxlRSLaswtGJ4oPSm0JJZpSHQgZyJdVPQd2-EnR2WNc8qSxEDQPbD6AuuFmrw!"
+   },
+   "resources": [
+    {
+     "id": "bahrain-998",
+     "section": "kids-differently",
+     "name": "Child Helpline 998",
+     "org": "Child Protection Centre, Ministry of Social Development",
+     "what": "A free line for a child, or anyone worried about a child, who is facing violence, abuse, neglect or danger. It offers counselling, a listening ear and referrals to help.",
+     "how": "Call 998, free.",
+     "url": "https://www.bahrain.bh/wps/portal/en/BNP/ServicesCatalogue/GSX-UI-PServiceDetails?psID=3512",
+     "phone": "998",
+     "dial": "998",
+     "sources": [
+      "https://www.bahrain.bh/wps/portal/en/BNP/ServicesCatalogue/GSX-UI-PServiceDetails?psID=3512"
+     ],
+     "reviewed_on": "2026-11-21"
     }
    ]
   },
@@ -826,6 +932,19 @@
      ]
     }
    ]
+  },
+  {
+   "code": "BA",
+   "slug": "bosnia-and-herzegovina",
+   "name": "Bosnia and Herzegovina",
+   "flag": "🇧🇦",
+   "lang": "bs",
+   "emergency": {
+    "number": "122",
+    "label": "Police. For an ambulance dial 124, for fire 123",
+    "source": "https://www.smartraveller.gov.au/destinations/europe/bosnia-and-herzegovina"
+   },
+   "resources": []
   },
   {
    "code": "BW",
@@ -2201,6 +2320,68 @@
    ]
   },
   {
+   "code": "FJ",
+   "slug": "fiji",
+   "name": "Fiji",
+   "flag": "🇫🇯",
+   "lang": "en",
+   "emergency": {
+    "number": "911",
+    "label": "Emergency: ambulance, fire and police",
+    "source": "https://www.gov.uk/foreign-travel-advice/fiji/getting-help"
+   },
+   "resources": [
+    {
+     "id": "fiji-1560",
+     "section": "help-now",
+     "name": "National Domestic Violence Helpline (1560)",
+     "org": "Fiji Women’s Crisis Centre, funded by the Government of Fiji",
+     "what": "The national helpline for anyone facing domestic violence. It is one of the toll-free helplines the Government funds, and callers are referred on to help.",
+     "how": "Call 1560, free. In danger right now, call 911.",
+     "url": "https://www.fiji.gov.fj/Media-Centre/News/NATIONAL-ACTION-PLAN-AGAINST-GENDER-BASED-VIOLENCE",
+     "phone": "1560",
+     "dial": "1560",
+     "urgent": true,
+     "chip": "Domestic violence helpline",
+     "sources": [
+      "https://www.fiji.gov.fj/Media-Centre/News/NATIONAL-ACTION-PLAN-AGAINST-GENDER-BASED-VIOLENCE",
+      "https://www.parliament.gov.fj/wp-content/uploads/2023/04/WR-76-of-2023.pdf"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "fiji-1325",
+     "section": "kids-differently",
+     "name": "Child Helpline 1325",
+     "org": "Funded by the Government of Fiji",
+     "what": "A free helpline for children, and for anyone worried about a child facing violence or abuse. Callers are referred on to help.",
+     "how": "Call 1325, free.",
+     "url": "https://www.fiji.gov.fj/Media-Centre/News/NATIONAL-ACTION-PLAN-AGAINST-GENDER-BASED-VIOLENCE",
+     "phone": "1325",
+     "dial": "1325",
+     "sources": [
+      "https://www.fiji.gov.fj/Media-Centre/News/NATIONAL-ACTION-PLAN-AGAINST-GENDER-BASED-VIOLENCE"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "fiji-lifeline",
+     "section": "take-care",
+     "name": "Lifeline Fiji (national crisis line)",
+     "org": "Lifeline Fiji",
+     "what": "A free national crisis line for anyone in a mental health crisis or thinking about suicide.",
+     "how": "Call 1543, free. In danger right now, call 911.",
+     "url": "https://parliament.gov.fj/lifeline-short-code-launched-by-the-speaker-of-parliament",
+     "phone": "1543",
+     "dial": "1543",
+     "sources": [
+      "https://parliament.gov.fj/lifeline-short-code-launched-by-the-speaker-of-parliament"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "FI",
    "slug": "finland",
    "name": "Finland",
@@ -2419,6 +2600,39 @@
      "also": [
       "food-bills"
      ]
+    }
+   ]
+  },
+  {
+   "code": "GE",
+   "slug": "georgia-country",
+   "name": "Georgia (the country)",
+   "flag": "🇬🇪",
+   "lang": "ka",
+   "us_state": "GA",
+   "emergency": {
+    "number": "112",
+    "label": "Emergency: police, fire and rescue, and ambulance",
+    "source": "https://112.gov.ge/?p=1686"
+   },
+   "resources": [
+    {
+     "id": "georgia-country-116006",
+     "section": "help-now",
+     "name": "Hotline 116 006 (counselling for anyone facing violence)",
+     "org": "National line, listed by UNHCR and UN Women",
+     "what": "A free line, open day and night, with counselling on domestic violence, violence against women, sexual violence and human trafficking. It answers in Georgian, English, Russian, Ukrainian, Azerbaijani, Armenian, Turkish, Arabic and Persian.",
+     "how": "Call 116 006, free, any hour. In danger right now, call 112.",
+     "url": "https://help.unhcr.org/georgia/wp-content/uploads/sites/47/2023/10/english.pdf",
+     "phone": "116 006",
+     "dial": "116006",
+     "urgent": true,
+     "chip": "Line for anyone facing violence",
+     "sources": [
+      "https://help.unhcr.org/georgia/wp-content/uploads/sites/47/2023/10/english.pdf",
+      "https://georgia.unwomen.org/en/stories/feature-story/2026/06/bringing-support-closer-raising-awareness-of-services-for-survivors-of-violence-across-georgia"
+     ],
+     "reviewed_on": "2026-11-21"
     }
    ]
   },
@@ -3764,6 +3978,37 @@
    ]
   },
   {
+   "code": "KZ",
+   "slug": "kazakhstan",
+   "name": "Kazakhstan",
+   "flag": "🇰🇿",
+   "lang": "kk",
+   "emergency": {
+    "number": "112",
+    "label": "Emergency services. For the police you can also dial 102",
+    "source": "https://www.gov.kz/situations/677/1457?lang=en"
+   },
+   "resources": [
+    {
+     "id": "kazakhstan-111",
+     "section": "help-now",
+     "name": "Contact Center 111 (help for families, women and children)",
+     "org": "Government of Kazakhstan",
+     "what": "A line that takes calls day and night, in Kazakh and Russian, on family matters and the rights of women and children: legal advice, psychological support, and help reaching the right government office or service.",
+     "how": "Call 111, any hour. In danger right now, call 102 for the police or 112.",
+     "url": "https://www.gov.kz/situations/677/1457?lang=en",
+     "phone": "111",
+     "dial": "111",
+     "urgent": true,
+     "chip": "Help for families, women and children",
+     "sources": [
+      "https://www.gov.kz/situations/677/1457?lang=en"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "KE",
    "slug": "kenya",
    "name": "Kenya",
@@ -4185,6 +4430,54 @@
    ]
   },
   {
+   "code": "MU",
+   "slug": "mauritius",
+   "name": "Mauritius",
+   "flag": "🇲🇺",
+   "lang": "fr",
+   "emergency": {
+    "number": "999",
+    "label": "Emergency: police, ambulance and fire. You can also dial 112 for the police, 114 for an ambulance or 115 for fire",
+    "source": "https://www.gov.uk/foreign-travel-advice/mauritius/getting-help"
+   },
+   "resources": [
+    {
+     "id": "mauritius-139",
+     "section": "help-now",
+     "name": "Hotline 139 (domestic violence)",
+     "org": "Government of Mauritius, as it reported to the United Nations",
+     "what": "A free line, open day and night, to report domestic violence.",
+     "how": "Call 139, free, any hour. In danger right now, call 999.",
+     "url": "https://knowledge.unwomen.org/sites/default/files/2024-10/a-79-322-submission-mauritius-en.pdf",
+     "phone": "139",
+     "dial": "139",
+     "urgent": true,
+     "chip": "Domestic violence line",
+     "sources": [
+      "https://knowledge.unwomen.org/sites/default/files/2024-10/a-79-322-submission-mauritius-en.pdf",
+      "https://gbvo.mric.mu/ministry-of-gender-equality-and-family-welfare/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "mauritius-113",
+     "section": "kids-differently",
+     "name": "Hotline 113 (child abuse)",
+     "org": "Government of Mauritius, as it reported to the United Nations",
+     "what": "A free line, open day and night, to report abuse of a child. You do not have to give your name.",
+     "how": "Call 113, free, any hour.",
+     "url": "https://knowledge.unwomen.org/sites/default/files/2024-10/a-79-322-submission-mauritius-en.pdf",
+     "phone": "113",
+     "dial": "113",
+     "sources": [
+      "https://knowledge.unwomen.org/sites/default/files/2024-10/a-79-322-submission-mauritius-en.pdf",
+      "https://gbvo.mric.mu/ministry-of-gender-equality-and-family-welfare/"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "MX",
    "slug": "mexico",
    "name": "Mexico",
@@ -4241,6 +4534,52 @@
    ]
   },
   {
+   "code": "MD",
+   "slug": "moldova",
+   "name": "Moldova",
+   "flag": "🇲🇩",
+   "lang": "ro",
+   "emergency": {
+    "number": "112",
+    "label": "Emergency: free, any hour",
+    "source": "https://help.unhcr.org/moldova/?p=5952"
+   },
+   "resources": [
+    {
+     "id": "moldova-080088008",
+     "section": "help-now",
+     "name": "Helpline for domestic and sexual violence",
+     "org": "Ministry of Labour and Social Protection, listed by UNHCR",
+     "what": "The national helpline for anyone facing domestic or sexual violence.",
+     "how": "Call 0 8008 8008. In danger right now, call 112.",
+     "url": "https://help.unhcr.org/moldova/?p=5952",
+     "phone": "0 8008 8008",
+     "dial": "080088008",
+     "urgent": true,
+     "chip": "Domestic and sexual violence line",
+     "sources": [
+      "https://help.unhcr.org/moldova/?p=5952"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "moldova-116111",
+     "section": "kids-differently",
+     "name": "Telefonul Copilului (child helpline)",
+     "org": "Ministry of Labour and Social Protection, listed by UNHCR",
+     "what": "A free line, open day and night, with psychological support and counselling for children, and help when a child needs protecting.",
+     "how": "Call 116 111, free, any hour.",
+     "url": "https://help.unhcr.org/moldova/?p=5952",
+     "phone": "116 111",
+     "dial": "116111",
+     "sources": [
+      "https://help.unhcr.org/moldova/?p=5952"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "MN",
    "slug": "mongolia",
    "name": "Mongolia",
@@ -4264,6 +4603,37 @@
      "dial": "108",
      "sources": [
       "https://mlsp.gov.mn/eng/content/detail/2016"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "ME",
+   "slug": "montenegro",
+   "name": "Montenegro",
+   "flag": "🇲🇪",
+   "lang": "cnr",
+   "emergency": {
+    "number": "112",
+    "label": "All emergencies. Police: 122, ambulance: 124, fire: 123",
+    "source": "https://www.smartraveller.gov.au/destinations/europe/montenegro"
+   },
+   "resources": [
+    {
+     "id": "montenegro-sos-niksic",
+     "section": "help-now",
+     "name": "SOS line for women and children facing violence (SOS Nikšić)",
+     "org": "SOS telephone Nikšić, listed by UNHCR",
+     "what": "A free line, open day and night, for women and children facing violence.",
+     "how": "Call 080 111 111, free, any hour. In danger right now, call 112.",
+     "url": "https://help.unhcr.org/montenegro/key-contacts/",
+     "phone": "080 111 111",
+     "dial": "080111111",
+     "urgent": true,
+     "chip": "Line for women and children facing violence",
+     "sources": [
+      "https://help.unhcr.org/montenegro/key-contacts/"
      ],
      "reviewed_on": "2026-11-21"
     }
@@ -4754,6 +5124,37 @@
       "https://childhelplineinternational.org/nigeria-cece-yara-child-helpline/?amp=1"
      ],
      "reviewed_on": "2026-11-19"
+    }
+   ]
+  },
+  {
+   "code": "MK",
+   "slug": "north-macedonia",
+   "name": "North Macedonia",
+   "flag": "🇲🇰",
+   "lang": "mk",
+   "emergency": {
+    "number": "112",
+    "label": "Emergency services. Police: 192, ambulance: 194",
+    "source": "https://www.gov.uk/foreign-travel-advice/macedonia/safety-and-security"
+   },
+   "resources": [
+    {
+     "id": "north-macedonia-141700",
+     "section": "help-now",
+     "name": "National free SOS mobile line (for women facing violence)",
+     "org": "National Council for Gender Equality, listed by UNFPA",
+     "what": "A free line, open day and night, for women facing gender-based or domestic violence. It is for mobile phones and works on every network.",
+     "how": "From a mobile phone, call 141 700, free, any hour. In danger right now, call 192 for the police or 112.",
+     "url": "https://northmacedonia.unfpa.org/sites/default/files/pub-pdf/unfpa_publication_eng_version_fixed_final.pdf",
+     "phone": "141 700",
+     "dial": "141700",
+     "urgent": true,
+     "chip": "SOS line for women",
+     "sources": [
+      "https://northmacedonia.unfpa.org/sites/default/files/pub-pdf/unfpa_publication_eng_version_fixed_final.pdf"
+     ],
+     "reviewed_on": "2026-11-21"
     }
    ]
   },
@@ -6825,6 +7226,37 @@
      "also": [
       "help-now"
      ]
+    }
+   ]
+  },
+  {
+   "code": "TN",
+   "slug": "tunisia",
+   "name": "Tunisia",
+   "flag": "🇹🇳",
+   "lang": "ar",
+   "emergency": {
+    "number": "197",
+    "label": "Police in towns. Ambulance: 190, fire: 198, National Guard in the countryside: 193",
+    "source": "https://www.gov.uk/foreign-travel-advice/tunisia/getting-help"
+   },
+   "resources": [
+    {
+     "id": "tunisia-1899",
+     "section": "help-now",
+     "name": "Ligne verte 1899 (line for women facing violence)",
+     "org": "Ministry of Women, Family, Children and Seniors, listed by UN Women",
+     "what": "The national line for women who have faced violence.",
+     "how": "Call 1899. In danger right now, call 197 for the police.",
+     "url": "https://iraq.unwomen.org/sites/default/files/Field%20Office%20Iraq/Attachments/Publications/2020/10/VAW%20mapping%20of%20services%20-%20Tunisia.pdf",
+     "phone": "1899",
+     "dial": "1899",
+     "urgent": true,
+     "chip": "Line for women facing violence",
+     "sources": [
+      "https://iraq.unwomen.org/sites/default/files/Field%20Office%20Iraq/Attachments/Publications/2020/10/VAW%20mapping%20of%20services%20-%20Tunisia.pdf"
+     ],
+     "reviewed_on": "2026-11-21"
     }
    ]
   },

@@ -512,6 +512,11 @@ def build_state(data, s):
         local = f'<div class="localbox"><strong>Ohio mom?</strong> <a href="../{esc(ls["path"])}">{esc(ls["name"])}</a> is {esc(ls["what"][0].lower() + ls["what"][1:])}</div>'
     intro = (f'Pick what you need, or search every listing. Each choice opens {esc(s["name"])}\'s own offices first, then national lines. '
              f'<a href="../states.html">Choose another state</a>.')
+    # A country with the same name (Georgia): say which is which, and link to the other.
+    for c in data['world']['countries']:
+        if c.get('us_state') == s['abbr']:
+            intro += (f' This page is the U.S. state. Looking for the country? '
+                      f'<a href="../countries/{c["slug"]}.html">{esc(c["name"])}</a>.')
     body = (hero(f'{esc(s["name"])}: help for moms', intro, county_pick(data, s) + local, 'slim')
             + urgent_strip(data, '../', '#help-now')
             + finder(f'Search every {s["name"]} listing', 'shelter, rent, WIC, child care…') + needs(rows)
@@ -583,7 +588,7 @@ def emergency_card(c):
 
 
 WORLD_MAP = lib.DATA / 'world-map.json'  # Natural Earth outlines, made by scripts/world_map_data.py
-DOT_AREA = 22  # a country drawn smaller than this (in square map units) also gets a dot, so it can be found and tapped
+DOT_AREA = 24  # a country drawn smaller than this (in square map units) also gets a dot, so it can be found and tapped (Albania, Armenia and North Macedonia, at 22, among them)
 
 
 def world_map(world):
@@ -659,6 +664,10 @@ def build_country(data, c):
         for r in urgent)
     intro = (f'Pick what you need, or search every listing. Each choice shows {esc(c["name"])}\'s own services first, '
              f'then help that works in any country. <a href="../world.html">Choose another country</a>.')
+    if c.get('us_state'):  # a country with the name of a U.S. state (Georgia): link to the state, so the two are never mixed up
+        st = next(s for s in data['states'] if s['abbr'] == c['us_state'])
+        intro += (f' This page is the country. Looking for the U.S. state? '
+                  f'<a href="../states/{st["abbr"].lower()}.html">{esc(st["name"])}, U.S. state</a>.')
     body = (hero(f'<span aria-hidden="true">{c["flag"]}</span> {esc(c["name"])}: help for moms', intro, '', 'slim')
             + f'<section class="wrap now" id="now"><h2>Need help right now?</h2>'
             f'<p class="quiet">If you or your child are in danger, call {esc(c["emergency"]["number"])}.</p>'

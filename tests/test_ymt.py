@@ -1,4 +1,5 @@
 """Safety and integrity tests for the national Yoga Mom Talk pages. Run: python3 -m unittest discover tests"""
+import json
 import re
 import struct
 import sys
@@ -220,7 +221,11 @@ class SiteTests(unittest.TestCase):
         self.assertIsNotNone(svg, 'world.html has the map')
         grey = re.search(r'<g class="land" aria-hidden="true">(.*?)</g>', svg.group(1), re.S).group(1)
         self.assertNotIn('<a', grey, 'grey countries are not links')
-        self.assertGreater(grey.count('<path'), 80, 'the rest of the world is drawn')
+        # The rest of the world is drawn: every outline without a page of its own (fewer as countries are added).
+        outlines = json.loads((ROOT / 'data/ymt/world-map.json').read_text(encoding='utf-8'))['countries']
+        linked = {c['code'] for c in data['world']['countries']} | {'US'}
+        self.assertEqual(grey.count('<path'), sum(1 for c in outlines if c.get('code') not in linked), 'the rest of the world is drawn')
+        self.assertGreater(grey.count('<path'), 40, 'the rest of the world is drawn')
         covered = re.search(r'<g class="covered">(.*)</g>', svg.group(1), re.S).group(1)
         links = re.findall(r'<a href="([^"]+)" aria-label="([^"]+)" data-country="([A-Z]{2})">(.*?)</a>', covered, re.S)
         self.assertEqual(len(links), covered.count('<a '), 'every link on the map has a name')
@@ -238,12 +243,32 @@ class SiteTests(unittest.TestCase):
         self.assertEqual(by_code.get('US', ('',))[0], 'states.html', 'the United States leads to the states')
         self.assertEqual(len(by_code), len(data['world']['countries']) + 1, 'no link for a country without a page')
         self.assertNotIn('tabindex="-1"', svg.group(0), 'every country link can be reached from the keyboard')
-        for small in ('SG', 'BB', 'BS', 'TT'):
+        for small in ('SG', 'BB', 'BS', 'TT', 'BH', 'MU', 'FJ', 'ME', 'AL', 'AM', 'MK'):
             if small in by_code:
                 self.assertIn('<circle ', by_code[small][2], f'{small} is big enough to tap')
         # The map stays small: the outlines file and the page.
         self.assertLess((ROOT / 'data/ymt/world-map.json').stat().st_size, 60_000)
         self.assertLess(len(text.encode('utf-8')), 110_000)
+
+    def test_georgia_the_country_is_never_mixed_up_with_the_state(self):
+        """Georgia is a country and a U.S. state. The country's page has its own address, says it is the country in its
+        title, heading and map label, and links to the state's page, which links back."""
+        data = lib.load()
+        twins = [c for c in data['world']['countries'] if c.get('us_state')]
+        self.assertIn('GE', [c['code'] for c in twins])
+        state_slugs = {s['slug'] for s in data['states']}
+        for c in twins:
+            st = next(s for s in data['states'] if s['abbr'] == c['us_state'])
+            self.assertNotIn(c['slug'], state_slugs, c['name'])
+            self.assertIn('(the country)', c['name'])
+            page = (ROOT / 'countries' / f"{c['slug']}.html").read_text(encoding='utf-8')
+            self.assertIn(f'<title>{esc(c["name"])}: help for moms', page)
+            self.assertIn(f'href="../states/{st["abbr"].lower()}.html"', page)
+            state = (ROOT / 'states' / f"{st['abbr'].lower()}.html").read_text(encoding='utf-8')
+            self.assertIn(f'href="../countries/{c["slug"]}.html"', state)
+            self.assertIn(f'<title>{esc(st["name"])}: help for moms', state)
+        world = (ROOT / 'world.html').read_text(encoding='utf-8')
+        self.assertIn('aria-label="Georgia (the country)" data-country="GE"', world)
 
     def test_state_grid_has_every_state_once(self):
         data = lib.load()
