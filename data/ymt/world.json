@@ -988,14 +988,15 @@
      "name": "Cuida tu Salud Mental",
      "org": "Ministry of Health",
      "what": "Trained behavioural health specialists listen and help you find care.",
-     "how": "Call 809-200-1400, every day from 8am to midnight. In Spanish.",
+     "how": "Call 809-200-1400, every day from 8am to midnight. In Spanish. The government plans to move this line to 811 during 2026, so if this number does not answer, try 811.",
      "phone": "809-200-1400",
      "dial": "8092001400",
      "urgent": true,
      "chip": "Mental health line",
      "sources": [
       "https://eldia.com.do/salud-mental-estara-disponible-de-8-de-la-manana-a-12-de-la-medianoche/",
-      "https://findahelpline.com/countries/do"
+      "https://findahelpline.com/countries/do",
+      "https://sns.gob.do/sin-categoria/presidente-abinader-encabeza-presentacion-de-avances-en-salud-mental-a-nivel-nacional-y-se-habilitara-linea-de-servicio-811-de-salud-mental-gratuita-y-confidencial/"
      ],
      "reviewed_on": "2026-11-21",
      "also": [
