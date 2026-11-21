@@ -34,8 +34,13 @@ function checkCards(d, label) {
     assert(name, `${label} #${c.id}: a name`);
     assert(c.querySelector(':scope > p.short').textContent.trim().length > 20, `${label} #${c.id}: one line`);
     const call = c.querySelector(':scope > p.actions a.call');
-    assert(call && /^tel:\+1\d{10}$/.test(call.getAttribute('href')), `${label} #${c.id}: a phone to call`);
-    assert(call.getAttribute('href').endsWith(call.textContent.replace(/\D/g, '')), `${label} #${c.id}: the link dials the number shown`);
+    if (c.id.startsWith('tft-')) {
+      // A Toys for Tots campaign has its website instead: each campaign keeps its phone on its own Contact page.
+      assert(!call && c.querySelector(':scope > p.actions a[href$=".toysfortots.org/"]'), `${label} #${c.id}: the campaign's website`);
+    } else {
+      assert(call && /^tel:\+1\d{10}$/.test(call.getAttribute('href')), `${label} #${c.id}: a phone to call`);
+      assert(call.getAttribute('href').endsWith(call.textContent.replace(/\D/g, '')), `${label} #${c.id}: the link dials the number shown`);
+    }
     for (const a of all(c, ':scope > p.actions a:not(.call)')) {
       assert.match(a.getAttribute('href'), /^https?:\/\/[^\s"'<>]+$/);
       assert.equal(a.getAttribute('rel'), 'noopener');
@@ -60,7 +65,7 @@ function checkCards(d, label) {
     assert.equal(d.getElementById('ctitle').textContent, 'Morrow County, Ohio');
     assert.equal(d.title, 'Morrow County, Ohio: help for moms | Yoga Mom Talk');
     const rows = all(d, '#county-app details.need');
-    assert.deepEqual(rows.map((r) => r.id), ['county-pha', 'county-hud', 'county-legal', 'county-health', 'county-schools', 'county-start', 'county-state']);
+    assert.deepEqual(rows.map((r) => r.id), ['county-christmas', 'county-pha', 'county-hud', 'county-legal', 'county-health', 'county-schools', 'county-start', 'county-state']);
     const legal = all(d, '#county-legal article.card');
     assert.equal(legal.length, 1);
     assert.equal(legal[0].querySelector('h3').textContent, 'Legal Aid of Southeast and Central Ohio');
@@ -88,7 +93,7 @@ function checkCards(d, label) {
     assert(fs.existsSync('ohio/counties/morrow.html'));
     const ohio = new JSDOM(fs.readFileSync('states/oh.html', 'utf8')).window.document;
     const links = all(d, '#county-app .statelinks a');
-    assert.equal(links.length, 8);
+    assert.equal(links.length, 9);
     for (const a of links) {
       const [page, frag] = a.getAttribute('href').split('#');
       assert.equal(page, 'states/oh.html');
@@ -117,7 +122,7 @@ function checkCards(d, label) {
       const fips = Object.keys(shard.c).sort((a, b) => shard.c[b].p - shard.c[a].p)[0];
       const { w, d } = load('#' + fips);
       await settle(w);
-      assert.equal(all(d, '#county-app details.need').length, 7, fips);
+      assert.equal(all(d, '#county-app details.need').length, 8, fips + ': Christmas help and seven needs');
       assert.equal(all(d, '#county-legal article.card').length >= 1, true, fips + ': every county has legal aid');
       checkCards(d, fips);
     }
@@ -191,7 +196,7 @@ function checkCards(d, label) {
     assert.equal(w.location.hash, '#39117');
     await settle(w);
     assert.equal(d.getElementById('ctitle').textContent, 'Morrow County, Ohio');
-    assert.deepEqual(asked.map((a) => a[0]), ['assets/us/z4.json', 'assets/us/oh.json']);
+    assert.deepEqual(asked.map((a) => a[0]), ['assets/us/z4.json', 'assets/us/oh.json', 'assets/us/christmas.json']);
     zip.value = '00001';
     zip.dispatchEvent(new w.Event('input'));
     await settle(w);

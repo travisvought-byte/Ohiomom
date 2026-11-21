@@ -258,7 +258,7 @@ class CountyData(unittest.TestCase):
 
     def test_files_stay_light_enough_for_phones_and_for_wix(self):
         files = sorted(US.glob('*.json'))
-        self.assertEqual(len(files), 61, '51 state files and 10 ZIP files')
+        self.assertEqual(len(files), 62, '51 state files, 10 ZIP files and christmas.json')
         for p in files:
             # Wix compresses these on the way to the phone, about five to one (California's travels as about 150 KB).
             self.assertLess(p.stat().st_size, 1_000_000, p.name)

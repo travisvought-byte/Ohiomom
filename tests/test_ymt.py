@@ -175,7 +175,7 @@ class SiteTests(unittest.TestCase):
 
     def test_front_pages_show_no_listings(self):
         """The front page asks what she needs. Listings appear only after she chooses."""
-        for rel, choices in (('index.html', 8), ('ohio/index.html', 10)):
+        for rel, choices in (('index.html', 9), ('ohio/index.html', 10)):
             text = (ROOT / rel).read_text(encoding='utf-8')
             self.assertNotIn('class="card', text, f'{rel}: a front page shows no listing cards')
             self.assertEqual(text.count('class="tile '), choices, f'{rel}: the needs to choose from')
@@ -294,11 +294,11 @@ class SiteTests(unittest.TestCase):
         expected = {path: 'assets/share.jpg' for path in PAGES}
         expected.update({path: 'ohio/assets/share.jpg' for path in ohio})
         expected[ROOT / 'family-guide.html'] = 'assets/share-family-guide.jpg'
-        # 61 national pages, the world page and one page per country (data/ymt/world.json), the list of daily affirmations
+        # 62 national pages (christmas.html among them), the world page and one page per country (data/ymt/world.json), the list of daily affirmations
         # and the old address of the jokes that passes visitors on to it, once an affirmation is approved; 24 Ohio pages;
         # the family guide
         world = 1 + len(lib.load()['world']['countries'])
-        self.assertEqual(len(expected), 61 + world + (2 if home_extras.approved_affirmations() else 0) + 24 + 1)
+        self.assertEqual(len(expected), 62 + world + (2 if home_extras.approved_affirmations() else 0) + 24 + 1)
         for path, picture in expected.items():
             p = parse(path)
             meta = {a.get('property') or a.get('name'): a.get('content') for t, a in p.tags if t == 'meta'}

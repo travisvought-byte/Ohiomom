@@ -36,7 +36,10 @@
     therapy: ['mental health'], counseling: ['mental health'], suicide: ['988'],
     electric: ['energy'], gas: ['energy'], heat: ['energy'], utilities: ['energy'], utility: ['energy'],
     insurance: ['coverage'], medicaid: ['coverage'], doctor: ['health center'], pregnant: ['pregnan', 'prenatal'],
-    nursing: ['breastfeeding'], iep: ['school'], veteran: ['veterans'], military: ['veterans', 'military']
+    nursing: ['breastfeeding'], iep: ['school'], veteran: ['veterans'], military: ['veterans', 'military'],
+    xmas: ['christmas'], holiday: ['christmas', 'holiday'], holidays: ['christmas', 'holiday'], toys: ['toy'],
+    gifts: ['gift', 'christmas'], presents: ['gift', 'christmas'], present: ['gift', 'christmas'], santa: ['santa'],
+    tots: ['toys for tots'], angel: ['angel tree'], dinner: ['meal'], turkey: ['meal']
   };
   var cards = [];
   rows.forEach(function (row) {

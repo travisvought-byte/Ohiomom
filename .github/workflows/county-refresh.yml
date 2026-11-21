@@ -39,6 +39,7 @@ jobs:
         run: |
           python3 scripts/county_data.py "$RUNNER_TEMP/src"
           python3 scripts/ohio_map.py
+          python3 scripts/christmas_data.py
           python3 scripts/ymt_build.py
           python3 scripts/coverage.py | tee "$RUNNER_TEMP/coverage.txt"
       - name: Every check the pull request would get
@@ -50,6 +51,7 @@ jobs:
           python3 scripts/prerender_ohio.py --check
           python3 scripts/home_extras.py --check
           python3 scripts/ohio_map.py --check
+          python3 scripts/christmas_data.py --check
           python3 -m unittest discover tests
           npm test
       - name: Open a pull request when anything changed

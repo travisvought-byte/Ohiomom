@@ -57,6 +57,11 @@
     if (!shards[st]) { shards[st] = fetchJson(DATA + st + '.json'); }
     return shards[st].catch(function (e) { delete shards[st]; throw e; });
   }
+  var xmas = null;
+  function loadXmas() {
+    if (!xmas) { xmas = fetchJson(DATA + 'christmas.json'); }
+    return xmas.catch(function (e) { xmas = null; throw e; });
+  }
   function loadZips(d) {
     if (!zips[d]) { zips[d] = fetchJson(DATA + 'z' + d + '.json'); }
     return zips[d].catch(function (e) { delete zips[d]; throw e; });
@@ -81,6 +86,35 @@
     if (safeUrl(web)) { acts.appendChild(h('a', { 'class': 'btn', href: web, rel: 'noopener', text: 'Website' })); }
     var details = h('details', { 'class': 'more' }, [h('summary', { text: 'More about this' }, [h('span', { 'class': 'sr', text: ': ' + name })])].concat(more));
     return h('article', { 'class': 'card', id: id }, [h('h3', { text: name }), h('p', { 'class': 'short', text: short }), acts, details]);
+  }
+  // Toys for Tots campaign: [website subdomain, name, state]
+  function tftCard(i, t, here, ctx) {
+    var web = safeUrl(String(ctx.site || '').replace('{}', t[0]));
+    var short = (here ? 'Named for ' + ctx.county + ', or with its address there. ' : 'Toys for Tots campaign in ' + t[1] + ', ' + t[2] + '. ')
+      + 'New toys for children whose families cannot afford Christmas gifts.';
+    var more = [h('p', { 'class': 'org', text: 'Marine Toys for Tots' }),
+      h('p', { text: 'The campaign\'s website says which towns it serves, its dates, and whether it takes requests from families or only through local charities and agencies.' }),
+      h('p', {}, [h('strong', { text: 'Next step:' }), ' Open the website and its Request a Toy page. If requests have closed, use its Contact page and ask which local groups are giving out its toys.']),
+      h('p', { 'class': 'src' }, ['From Toys for Tots\' list of local campaigns, checked ' + pretty(ctx.xasof) + '. Sources: ',
+        h('a', { href: safeUrl(ctx.source) || 'christmas.html', rel: 'noopener', text: '1' })])];
+    var acts = h('p', { 'class': 'actions' }, web ? [h('a', { 'class': 'btn', href: web, rel: 'noopener', text: 'Campaign website' })] : []);
+    var details = h('details', { 'class': 'more' }, [h('summary', { text: 'More about this' }, [h('span', { 'class': 'sr', text: ': Toys for Tots: ' + t[1] })])].concat(more));
+    return h('article', { 'class': 'card', id: 'tft-' + i }, [h('h3', { text: 'Toys for Tots: ' + t[1] }), h('p', { 'class': 'short', text: short }), acts, details]);
+  }
+  function christmasRow(x, fips, code, c, stName) {
+    var ctx = { county: c.n, xasof: x.asof, site: x.site, source: x.source };
+    var here = (x.c[fips] || []).filter(function (i) { return x.t[i]; });
+    var rest = (x.st[code.toUpperCase()] || []).filter(function (i) { return here.indexOf(i) === -1; });
+    var items = here.map(function (i) { return [i, true]; }).concat(rest.map(function (i) { return [i, false]; }));
+    var intro = h('p', { 'class': 'quiet' }, [here.length ? 'Toys for Tots campaigns for ' + c.n + ' come first, then every campaign in ' + stName + '. '
+      : 'No Toys for Tots campaign is named for ' + c.n + ' or has its address there, so here is every campaign in ' + stName + '. Each one\'s website says which towns it serves. ',
+      'Sign-ups close early. If one has closed, dial ', h('a', { href: 'tel:211', text: '211' }), ' and ask what Christmas help is still open. ',
+      h('a', { href: 'states/' + code + '.html#christmas', text: 'More Christmas help in ' + stName }), ' · ', h('a', { href: 'christmas.html', text: 'Christmas help everywhere' })]);
+    return row('county-christmas', '🎄', 'Christmas help',
+      here.length ? 'Toys for Tots for ' + c.n + ', and Christmas help across ' + stName : 'Toys for Tots campaigns in ' + stName + ', and more Christmas help',
+      items.length, ['campaign', 'campaigns'],
+      h('div', {}, [intro, items.length ? cardList(items, function (it) { return tftCard(it[0], x.t[it[0]], it[1], ctx); }, function (it) { return x.t[it[0]][1].toLowerCase() + ' '; })
+        : h('p', { 'class': 'quiet', text: 'No Toys for Tots campaign is listed in ' + stName + '. Dial 211 and ask what Christmas help is open near you.' })]));
   }
   function place(street, city, st, zip) { return [street, city + ', ' + st + (zip ? ' ' + zip : '')].filter(Boolean).join(', '); }
   function away(miles, county) {
@@ -246,7 +280,7 @@
   }
 
   // ---- showing a county
-  function showCounty(shard, fips, code) {
+  function showCounty(shard, fips, code, x) {
     var c = shard.c[fips];
     var stName = STATES[code].name;
     var nice = c.n === stName ? c.n : c.n + ', ' + stName;
@@ -255,6 +289,7 @@
     var start = c.headStart || c.headStartNear || [];
     var hud = c.hud || [];
     var rows = [];
+    if (x && x.t) { rows.push(christmasRow(x, fips, code, c, stName)); }
     function words(list) { return list.join(' ').toLowerCase().replace(/[^a-z0-9]+/g, ' ') + ' '; }
     // Where to apply for public housing and rent vouchers.
     var pha = (c.pha || []).filter(function (ref) { return shard.ph && shard.ph[ref[0]]; });
@@ -368,7 +403,11 @@
     if (!code) { showHome(); return; }
     loadShard(code).then(function (shard) {
       if (mine !== turn) { return; }
-      if (hash.length === 5 && shard.c[hash]) { showCounty(shard, hash, code); }
+      if (hash.length === 5 && shard.c[hash]) {
+        // The Christmas row is extra: if its list cannot load, the county page shows without it.
+        loadXmas().then(function (x) { if (mine === turn) { showCounty(shard, hash, code, x); } },
+          function () { if (mine === turn) { showCounty(shard, hash, code, null); } });
+      }
       else if (hash.length === 2) { showState(shard, code); }
       else { showHome(); say('We do not have a county with that code.'); }
     }).catch(function () { if (mine === turn) { problem(code); } });
