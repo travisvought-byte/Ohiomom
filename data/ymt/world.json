@@ -828,6 +828,50 @@
    ]
   },
   {
+   "code": "BW",
+   "slug": "botswana",
+   "name": "Botswana",
+   "flag": "🇧🇼",
+   "lang": "en",
+   "emergency": {
+    "number": "999",
+    "label": "Police. For an ambulance, dial 997",
+    "source": "https://www.gov.bw/policing/reporting-incident-police"
+   },
+   "resources": [
+    {
+     "id": "botswana-997",
+     "section": "help-now",
+     "name": "Emergency Medical Services 997",
+     "org": "Ministry of Health and Wellness",
+     "what": "Ambulance care for people who are acutely ill or injured, 24 hours a day, every day including public holidays. It serves Gaborone, Mochudi, Lobatse, Mahalapye, Palapye, Phikwe, Francistown, Maun and Kasane.",
+     "how": "Call 997 and say where you are and what has happened.",
+     "url": "https://gov.bw/public-health-services/emergency-medical-services-ambulance-services",
+     "phone": "997",
+     "dial": "997",
+     "urgent": true,
+     "chip": "Ambulance",
+     "sources": [
+      "https://gov.bw/public-health-services/emergency-medical-services-ambulance-services"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "botswana-clinics",
+     "section": "pregnancy-baby",
+     "name": "Government clinics",
+     "org": "Ministry of Health and Wellness",
+     "what": "Clinics give immunisations and child health care and sexual and reproductive health services, and some have maternity wards staffed by a midwife. Children under five do not pay the consultation fee; a general consultation for citizens is 5 pula.",
+     "how": "Go to your nearest government clinic.",
+     "url": "https://www.moh.gov.bw/clinics.html",
+     "sources": [
+      "https://www.moh.gov.bw/clinics.html"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "BR",
    "slug": "brazil",
    "name": "Brazil",
@@ -944,6 +988,139 @@
      "reviewed_on": "2026-11-21",
      "also": [
       "pregnancy-baby"
+     ]
+    }
+   ]
+  },
+  {
+   "code": "BG",
+   "slug": "bulgaria",
+   "name": "Bulgaria",
+   "flag": "🇧🇬",
+   "lang": "bg",
+   "emergency": {
+    "number": "112",
+    "label": "The single European emergency number",
+    "source": "https://www.unicef.org/bulgaria/%D0%BD%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%B5-%D0%BD%D0%B0%D0%B4-%D0%B4%D0%B5%D1%86%D0%B0"
+   },
+   "resources": [
+    {
+     "id": "bulgaria-116111",
+     "section": "help-now",
+     "name": "Национална телефонна линия за деца 116 111 (National Telephone Line for Children)",
+     "org": "State Agency for Child Protection",
+     "what": "A free line, open around the clock across the country, for children and for anyone worried about a child. Its counsellors give psychological support and advice and work with 112, the police and social services.",
+     "how": "Call 116 111.",
+     "url": "https://www.mlsp.government.bg/child-protection-2",
+     "phone": "116 111",
+     "dial": "116111",
+     "urgent": true,
+     "chip": "Child helpline",
+     "sources": [
+      "https://www.mlsp.government.bg/child-protection-2",
+      "https://www.unicef.org/bulgaria/%D0%BD%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%B5-%D0%BD%D0%B0%D0%B4-%D0%B4%D0%B5%D1%86%D0%B0"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "bulgaria-violence-hotline",
+     "section": "help-now",
+     "name": "Hotline for victims of violence",
+     "org": "Listed by UNICEF Bulgaria",
+     "what": "A hotline for people who have experienced violence, open 9am to 9pm.",
+     "how": "Call 0800 18676 free, or 02 981 76 86 at the local rate (this number can also be reached from outside Bulgaria). In danger right now, call 112.",
+     "url": "https://www.unicef.org/bulgaria/%D0%BD%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%B5-%D0%BD%D0%B0%D0%B4-%D0%B4%D0%B5%D1%86%D0%B0",
+     "phone": "0800 18676",
+     "dial": "080018676",
+     "urgent": true,
+     "chip": "Violence hotline",
+     "sources": [
+      "https://www.unicef.org/bulgaria/%D0%BD%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%B5-%D0%BD%D0%B0%D0%B4-%D0%B4%D0%B5%D1%86%D0%B0"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "bulgaria-family-allowances",
+     "section": "food-bills",
+     "name": "Семейни помощи за деца (family allowances for children)",
+     "org": "Ministry of Labour and Social Policy and the Social Assistance Agency",
+     "what": "The Family Allowances Act provides twelve kinds of payment for families raising children. Most are paid whatever the family's income; some depend on income. Children with a permanent disability, children with one living parent, and children placed with relatives or foster families get every kind whatever the family earns.",
+     "how": "Apply at the Social Assistance Directorate where you live. It decides on, pays and stops family allowances.",
+     "url": "https://www.mlsp.government.bg/eng/family-benefits",
+     "sources": [
+      "https://www.mlsp.government.bg/eng/family-benefits"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "pregnancy-baby",
+      "single-parent"
+     ]
+    }
+   ]
+  },
+  {
+   "code": "KH",
+   "slug": "cambodia",
+   "name": "Cambodia",
+   "flag": "🇰🇭",
+   "lang": "km",
+   "emergency": {
+    "number": "117",
+    "label": "Police. For an ambulance, dial 119; for fire, dial 118",
+    "source": "https://www.gov.uk/foreign-travel-advice/cambodia/getting-help"
+   },
+   "resources": [
+    {
+     "id": "cambodia-119",
+     "section": "help-now",
+     "name": "Ambulance 119",
+     "org": "Cambodia's emergency services",
+     "what": "The number for an ambulance.",
+     "how": "Call 119.",
+     "url": "https://www.gov.uk/foreign-travel-advice/cambodia/getting-help",
+     "phone": "119",
+     "dial": "119",
+     "urgent": true,
+     "chip": "Ambulance",
+     "sources": [
+      "https://www.gov.uk/foreign-travel-advice/cambodia/getting-help"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "cambodia-1280",
+     "section": "help-now",
+     "name": "Child Helpline Cambodia",
+     "org": "Child Helpline Cambodia, listed by UNICEF Cambodia",
+     "what": "A helpline for children, listed by UNICEF Cambodia with its mental health support.",
+     "how": "Call 1280.",
+     "url": "https://www.unicef.org/cambodia/mental-health",
+     "phone": "1280",
+     "dial": "1280",
+     "urgent": true,
+     "chip": "Child helpline",
+     "sources": [
+      "https://www.unicef.org/cambodia/mental-health"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "cambodia-family-package",
+     "section": "pregnancy-baby",
+     "name": "Family Package",
+     "org": "Ministry of Social Affairs, Veterans and Youth Rehabilitation, with UNICEF support",
+     "what": "A government cash support programme for poor families identified through the IDPoor system, including payments during pregnancy and after the birth and for health visits with a newborn.",
+     "how": "Families are chosen through the IDPoor system. Ask your commune officials about registering.",
+     "url": "https://www.unicef.org/cambodia/stories/lifeline-mothers-family-package-transforms-lives",
+     "sources": [
+      "https://www.unicef.org/cambodia/stories/lifeline-mothers-family-package-transforms-lives"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "food-bills"
      ]
     }
    ]
@@ -1866,6 +2043,37 @@
    ]
   },
   {
+   "code": "SV",
+   "slug": "el-salvador",
+   "name": "El Salvador",
+   "flag": "🇸🇻",
+   "lang": "es",
+   "emergency": {
+    "number": "911",
+    "label": "Emergency: police and rescue",
+    "source": "https://www.presidencia.gob.sv/sistema-de-emergencias-enlaza-al-numero-132-para-brindar-informacion-sobre-covid-19/"
+   },
+   "resources": [
+    {
+     "id": "el-salvador-126",
+     "section": "help-now",
+     "name": "Línea 126",
+     "org": "Instituto Salvadoreño para el Desarrollo de la Mujer (ISDEMU)",
+     "what": "A free, confidential line, open 24 hours, where social workers, lawyers and psychologists give guidance, psychological care and legal support to women facing violence. ISDEMU's centre in San Salvador also sees women in person.",
+     "how": "Call 126. In danger right now, call 911.",
+     "url": "https://www.transparencia.gob.sv/institutions/instituto-salvadoreno-para-el-desarrollo-de-la-mujer/services/10500.pdf",
+     "phone": "126",
+     "dial": "126",
+     "urgent": true,
+     "chip": "Line for women facing violence",
+     "sources": [
+      "https://www.transparencia.gob.sv/institutions/instituto-salvadoreno-para-el-desarrollo-de-la-mujer/services/10500.pdf"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "ET",
    "slug": "ethiopia",
    "name": "Ethiopia",
@@ -2488,6 +2696,88 @@
      "dial": "30688538",
      "sources": [
       "https://pgn.gob.gt/2025/01/pgn-con-nuevos-numeros-telefonicos-para-recepcion-y-atencion-de-denuncias/"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "HK",
+   "slug": "hong-kong",
+   "name": "Hong Kong",
+   "flag": "🇭🇰",
+   "lang": "zh-Hant",
+   "emergency": {
+    "number": "999",
+    "label": "Police or an ambulance",
+    "source": "https://swd.gov.hk/storage/asset/section/180/en/Victims_of_SCB_Cases-Chinese_and_English.pdf"
+   },
+   "resources": [
+    {
+     "id": "hong-kong-swd-hotline",
+     "section": "help-now",
+     "name": "Social Welfare Department Hotline",
+     "org": "Social Welfare Department",
+     "what": "Help with family violence and other family problems. Social workers answer from 9am to 5pm Monday to Friday and 9am to noon on Saturday; at other times the automated line runs 24 hours and can pass you to a partner hotline.",
+     "how": "Call 2343 2255. In danger right now, call 999.",
+     "url": "https://swd.gov.hk/storage/asset/section/180/en/Victims_of_SCB_Cases-Chinese_and_English.pdf",
+     "phone": "2343 2255",
+     "dial": "23432255",
+     "urgent": true,
+     "chip": "Family help line",
+     "sources": [
+      "https://swd.gov.hk/storage/asset/section/180/en/Victims_of_SCB_Cases-Chinese_and_English.pdf"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "hong-kong-18288",
+     "section": "help-now",
+     "name": "Family Crisis Support Centre Hotline",
+     "org": "Listed by the Social Welfare Department",
+     "what": "A 24-hour hotline for people facing a family crisis.",
+     "how": "Call 18288.",
+     "url": "https://swd.gov.hk/storage/asset/section/180/en/Victims_of_SCB_Cases-Chinese_and_English.pdf",
+     "phone": "18288",
+     "dial": "18288",
+     "urgent": true,
+     "chip": "Family crisis line",
+     "sources": [
+      "https://swd.gov.hk/storage/asset/section/180/en/Victims_of_SCB_Cases-Chinese_and_English.pdf"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "hong-kong-18111",
+     "section": "help-now",
+     "name": "18111 Mental Health Support Hotline",
+     "org": "Hong Kong Government",
+     "what": "A government-funded hotline answered 24 hours a day, every day of the year, for anyone in mental distress, and for family, friends and carers. Staff give support and counselling and can refer you on.",
+     "how": "Call 18111, or use WhatsApp. Help is in Cantonese, Mandarin, English and nine other languages.",
+     "url": "https://www.info.gov.hk/gia/general/202312/27/P2023122700238.htm",
+     "phone": "18111",
+     "dial": "18111",
+     "urgent": true,
+     "chip": "Mental health line",
+     "sources": [
+      "https://www.info.gov.hk/gia/general/202312/27/P2023122700238.htm",
+      "https://www.news.gov.hk/eng/2025/11/20251104/20251104_154302_203.html"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    },
+    {
+     "id": "hong-kong-mchc",
+     "section": "pregnancy-baby",
+     "name": "Maternal and Child Health Centres",
+     "org": "Family Health Service, Department of Health",
+     "what": "Health checks, immunisations and development checks for children from birth to 5, parenting guidance, and care for new mothers: postnatal check-ups, breastfeeding support, family planning and counselling. From 6 July 2026 antenatal care is moving to Hospital Authority hospitals in phases.",
+     "how": "Go to your nearest Maternal and Child Health Centre.",
+     "url": "https://www.dh.gov.hk/english/main/main_fhs/main_fhs.html",
+     "sources": [
+      "https://www.dh.gov.hk/english/main/main_fhs/main_fhs.html"
      ],
      "reviewed_on": "2026-11-21"
     }
@@ -3218,6 +3508,53 @@
    ]
   },
   {
+   "code": "JO",
+   "slug": "jordan",
+   "name": "Jordan",
+   "flag": "🇯🇴",
+   "lang": "ar",
+   "emergency": {
+    "number": "911",
+    "label": "The unified emergency number",
+    "source": "https://form.jordan.gov.jo/wps/portal/Home/Connect/ImportantNumbers"
+   },
+   "resources": [
+    {
+     "id": "jordan-family-protection",
+     "section": "help-now",
+     "name": "Family Protection Department",
+     "org": "Public Security Directorate (police)",
+     "what": "The police department that responds to violence in the family and to children at risk.",
+     "how": "Call 911, or send a WhatsApp message to +962 790 193 193. You can also report through the Ammn 911 app.",
+     "url": "https://help.unhcr.org/jordan/en/helpful-services-unhcr/response-services-for-survivors-of-sexual-and-gender-based-violence-including-family-violence-and-children-at-risk/",
+     "phone": "911",
+     "dial": "911",
+     "text": "WhatsApp +962 790 193 193",
+     "sources": [
+      "https://help.unhcr.org/jordan/en/helpful-services-unhcr/response-services-for-survivors-of-sexual-and-gender-based-violence-including-family-violence-and-children-at-risk/",
+      "https://form.jordan.gov.jo/wps/portal/Home/Connect/ImportantNumbers"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "jordan-naf-takaful",
+     "section": "food-bills",
+     "name": "Takaful cash support (Unified Cash Transfer)",
+     "org": "National Aid Fund",
+     "what": "Regular cash payments for poor and vulnerable Jordanian households, paid into a bank account or e-wallet. Households headed by a woman or with a person with a disability are given extra weight.",
+     "how": "Register online on the National Aid Fund's Takaful site, or at a registration centre. You can update your details the same way.",
+     "url": "https://takaful.naf.gov.jo/PublicPage/Index",
+     "sources": [
+      "https://naf.gov.jo/EBV4.0/Root_Storage/EN/EB_RelatedItems/SEP-2025.pdf"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "single-parent"
+     ]
+    }
+   ]
+  },
+  {
    "code": "KE",
    "slug": "kenya",
    "name": "Kenya",
@@ -3290,6 +3627,50 @@
      "also": [
       "help-now"
      ]
+    }
+   ]
+  },
+  {
+   "code": "LT",
+   "slug": "lithuania",
+   "name": "Lithuania",
+   "flag": "🇱🇹",
+   "lang": "lt",
+   "emergency": {
+    "number": "112",
+    "label": "Emergency: fire, police or ambulance",
+    "source": "https://migracija.lrv.lt/lt/naudinga-informacija/ukraina-ukrayina-ukraina-ukraine/information-for-ukrainian-citizens-1/emergency-help/"
+   },
+   "resources": [
+    {
+     "id": "lithuania-vaiko-pinigai",
+     "section": "food-bills",
+     "name": "Vaiko pinigai (child benefit)",
+     "org": "Ministry of Social Security and Labour, through the municipalities",
+     "what": "A monthly payment for every child from birth to 18 (longer while still in general education), whatever the family's income: about €129.50 a month in 2026, with about €76.22 more for a family on a low income, with three or more children, or with a disabled child.",
+     "how": "Apply once, online through the social support information system (SPIS) at spis.lt, or in writing at your municipality with your ID. Staff check the rest in public registers.",
+     "url": "https://socmin.lrv.lt/en/activities/family-and-children/social-assistance-to-families-and-children/assistance-to-pregnant-women-and-families-raising-children/",
+     "sources": [
+      "https://socmin.lrv.lt/en/activities/family-and-children/social-assistance-to-families-and-children/assistance-to-pregnant-women-and-families-raising-children/",
+      "https://socmin.lrv.lt/public/canonical/1766991781/6166/DUK_I%C5%A1mokos%20vaikams_clean.docx"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "single-parent"
+     ]
+    },
+    {
+     "id": "lithuania-birth-grant",
+     "section": "pregnancy-baby",
+     "name": "Lump-sum birth grant and pregnancy grant",
+     "org": "Ministry of Social Security and Labour",
+     "what": "A one-off grant of about €1,036 for each newborn. A pregnant woman who is not working and cannot get maternity benefit can also get a one-off grant of about €476, paid 70 days before the due date.",
+     "how": "The ministry's page lists both. Ask your municipality's social support department how to apply.",
+     "url": "https://socmin.lrv.lt/en/activities/family-and-children/social-assistance-to-families-and-children/assistance-to-pregnant-women-and-families-raising-children/",
+     "sources": [
+      "https://socmin.lrv.lt/en/activities/family-and-children/social-assistance-to-families-and-children/assistance-to-pregnant-women-and-families-raising-children/"
+     ],
+     "reviewed_on": "2026-11-21"
     }
    ]
   },
@@ -3501,6 +3882,51 @@
       "https://www.cg.gov.ma/en/node/11563"
      ],
      "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "NA",
+   "slug": "namibia",
+   "name": "Namibia",
+   "flag": "🇳🇦",
+   "lang": "en",
+   "emergency": {
+    "number": "10111",
+    "label": "Police emergency, free, open 24 hours",
+    "source": "https://nampol.gov.na/tourist-awareness"
+   },
+   "resources": [
+    {
+     "id": "namibia-gbv-units",
+     "section": "help-now",
+     "name": "Gender-Based Violence Protection Units",
+     "org": "Namibian Police Force",
+     "what": "Police units in every region for people who have experienced gender-based violence, including rape and sexual assault.",
+     "how": "Go to the unit in your region. In Windhoek (Khomas), call 061 209 5375. In danger right now, call 10111.",
+     "url": "https://www.gov.uk/government/publications/namibia-information-for-survivors-of-rape-and-sexual-assault/information-for-survivors-of-rape-and-sexual-assault-in-namibia",
+     "phone": "061 209 5375",
+     "dial": "0612095375",
+     "sources": [
+      "https://www.gov.uk/government/publications/namibia-information-for-survivors-of-rape-and-sexual-assault/information-for-survivors-of-rape-and-sexual-assault-in-namibia"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "namibia-maintenance-grant",
+     "section": "food-bills",
+     "name": "Maintenance Grant (child state grant)",
+     "org": "Ministry of Gender Equality and Child Welfare",
+     "what": "N$350 a month for each child under 18, for a parent on a low income whose spouse has died, has been in prison for six months or gets an old-age or disability grant, and for child-headed households. You must be a Namibian citizen or permanent resident.",
+     "how": "Apply in person at your constituency or regional office of the ministry, Monday to Friday, 8am to 5pm. Bring the child's birth certificate, your ID, proof of income or a sworn statement that you are not working, your bank details and the other papers the ministry lists. Staff help you fill in the form.",
+     "url": "https://mgecw.gov.na/maintenance-grant",
+     "sources": [
+      "https://mgecw.gov.na/maintenance-grant"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "single-parent"
+     ]
     }
    ]
   },
@@ -4076,6 +4502,38 @@
    ]
   },
   {
+   "code": "PY",
+   "slug": "paraguay",
+   "name": "Paraguay",
+   "flag": "🇵🇾",
+   "lang": "es",
+   "emergency": {
+    "number": "911",
+    "label": "The national emergency system, free from any phone",
+    "source": "https://www.bacn.gov.py/leyes-paraguayas/3143/ley-n-4739-crea-el-sistema-911-de-atencion-despacho-y-seguimiento-de-comunicaciones-de-emergencias-br"
+   },
+   "resources": [
+    {
+     "id": "paraguay-137",
+     "section": "help-now",
+     "name": "Línea 137 SOS Mujer",
+     "org": "Ministerio de la Mujer (Ministry of Women)",
+     "what": "A free line, open 24 hours across the country, for women facing violence. It gives psychological support and legal and social guidance, and can guide you through making a report.",
+     "how": "Call 137 from a landline or any mobile. In danger right now, call 911.",
+     "url": "https://www.bacn.gov.py/conoce-tu-ley/934/violencia-de-g-nero",
+     "phone": "137",
+     "dial": "137",
+     "urgent": true,
+     "chip": "Line for women facing violence",
+     "sources": [
+      "https://www.bacn.gov.py/conoce-tu-ley/934/violencia-de-g-nero",
+      "https://www.pj.gov.py/notas/11856-secretaria-de-genero-recuerda-el-dia-de-la-mujer-paraguaya"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "PE",
    "slug": "peru",
    "name": "Peru",
@@ -4418,6 +4876,68 @@
    ]
   },
   {
+   "code": "QA",
+   "slug": "qatar",
+   "name": "Qatar",
+   "flag": "🇶🇦",
+   "lang": "ar",
+   "emergency": {
+    "number": "999",
+    "label": "Emergency, including an ambulance",
+    "source": "https://hamad.qa/en/Hospitals-and-services/Emergency-Care-Services/Pages/Emergency-and-Urgent-Care-Services.aspx"
+   },
+   "resources": [
+    {
+     "id": "qatar-16000",
+     "section": "take-care",
+     "name": "National Mental Health Helpline",
+     "org": "Ministry of Public Health and Hamad Medical Corporation",
+     "what": "Free, confidential support from mental health professionals, who speak a range of languages.",
+     "how": "Call 16000, 8am to 7pm Sunday to Thursday and 8am to 3pm on Saturday. In a crisis, call 999.",
+     "url": "https://sehanafsia.moph.gov.qa/English/Pages/AreYouOk.aspx",
+     "phone": "16000",
+     "dial": "16000",
+     "sources": [
+      "https://sehanafsia.moph.gov.qa/English/Pages/AreYouOk.aspx"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "qatar-antenatal-care",
+     "section": "pregnancy-baby",
+     "name": "Antenatal care at PHCC health centres",
+     "org": "Primary Health Care Corporation (PHCC)",
+     "what": "Pregnancy care at every PHCC health centre, for citizens and residents registered there: a first visit as soon as the pregnancy is confirmed, with tests and scans, then check-ups up to 34 weeks, when you are referred to hospital.",
+     "how": "Call 107 or walk in to your health centre to book.",
+     "url": "https://www.phcc.gov.qa/clinics-and-services/browse-by-category/womens-health/antenatal-care",
+     "phone": "107",
+     "dial": "107",
+     "sources": [
+      "https://www.phcc.gov.qa/clinics-and-services/browse-by-category/womens-health/antenatal-care"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "qatar-postnatal-care",
+     "section": "pregnancy-baby",
+     "name": "Postnatal care at PHCC health centres",
+     "org": "Primary Health Care Corporation (PHCC), with Hamad Medical Corporation",
+     "what": "A check on your body and your feelings after the birth, with advice and counselling. A maternal and child health counsellor calls you within 3 to 5 working days of the request.",
+     "how": "Call 107, or ask the hospital where you gave birth or your health centre doctor to refer you.",
+     "url": "https://www.phcc.gov.qa/Clinics-And-Services/Womens-Health/Postnatal-Care",
+     "phone": "107",
+     "dial": "107",
+     "sources": [
+      "https://www.phcc.gov.qa/Clinics-And-Services/Womens-Health/Postnatal-Care"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care"
+     ]
+    }
+   ]
+  },
+  {
    "code": "RO",
    "slug": "romania",
    "name": "Romania",
@@ -4639,6 +5159,90 @@
    ]
   },
   {
+   "code": "RS",
+   "slug": "serbia",
+   "name": "Serbia",
+   "flag": "🇷🇸",
+   "lang": "sr-Cyrl",
+   "emergency": {
+    "number": "192",
+    "label": "Police. For an ambulance, dial 194; for the fire service, dial 193",
+    "source": "https://ratel.rs/uploads/documents/empire_plugin/672f179be81e2.pdf"
+   },
+   "resources": [
+    {
+     "id": "serbia-194",
+     "section": "help-now",
+     "name": "Ambulance 194",
+     "org": "Serbia's emergency medical service",
+     "what": "The number for an ambulance. Serbia has separate numbers for the police (192), the fire service (193) and an ambulance (194). The police number is also a free call for reporting any kind of violence, including at home, and you may call without giving your name.",
+     "how": "Call 194 for an ambulance, or 192 for the police.",
+     "url": "https://ratel.rs/uploads/documents/empire_plugin/672f179be81e2.pdf",
+     "phone": "194",
+     "dial": "194",
+     "urgent": true,
+     "chip": "Ambulance",
+     "sources": [
+      "https://ratel.rs/uploads/documents/empire_plugin/672f179be81e2.pdf",
+      "https://www.unicef.org/serbia/sve-je-ok-kada-tra%C5%BEi%C5%A1-pomo%C4%87"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "serbia-nadel",
+     "section": "help-now",
+     "name": "НАДЕЛ, Национална дечја линија (National Children's Line)",
+     "org": "NADEL, listed by UNICEF Serbia",
+     "what": "A counselling line for children and young people, open 24 hours a day, every day of the year. Chat is open every day from 6pm to 10pm.",
+     "how": "Call 116 111.",
+     "url": "https://www.unicef.org/serbia/sve-je-ok-kada-tra%C5%BEi%C5%A1-pomo%C4%87",
+     "phone": "116 111",
+     "dial": "116111",
+     "urgent": true,
+     "chip": "Children's line",
+     "sources": [
+      "https://www.unicef.org/serbia/sve-je-ok-kada-tra%C5%BEi%C5%A1-pomo%C4%87"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "serbia-laza-lazarevic",
+     "section": "help-now",
+     "name": "Free support lines of the Dr Laza Lazarević Clinic",
+     "org": "Dr Laza Lazarević Clinic for Psychiatric Disorders",
+     "what": "Free lines open 24 hours a day, every day: option 1 for suicide prevention, option 3 for teenagers, option 4 for psychological support for women before, during and after pregnancy, and option 5 for parents and carers of children on the autism spectrum.",
+     "how": "Call 0800 309 309 and choose the option you need.",
+     "url": "https://www.unicef.org/serbia/sve-je-ok-kada-tra%C5%BEi%C5%A1-pomo%C4%87",
+     "phone": "0800 309 309",
+     "dial": "0800309309",
+     "urgent": true,
+     "chip": "Crisis and pregnancy support",
+     "sources": [
+      "https://www.unicef.org/serbia/sve-je-ok-kada-tra%C5%BEi%C5%A1-pomo%C4%87"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "take-care",
+      "pregnancy-baby",
+      "kids-differently"
+     ]
+    },
+    {
+     "id": "serbia-roditeljski-dodatak",
+     "section": "pregnancy-baby",
+     "name": "Родитељски додатак (parental allowance)",
+     "org": "Municipalities, through the government's eBeba service",
+     "what": "A payment from the state when a child is born.",
+     "how": "You can apply for it in the maternity hospital, through the eBeba (“Bebo, dobro došla na svet”) service, when the birth is registered there. The request goes to the municipality where you live.",
+     "url": "https://ite.gov.rs/extfile/sr/3055/Najcesce-postavljana-pitanja-eBeba.pdf",
+     "sources": [
+      "https://ite.gov.rs/extfile/sr/3055/Najcesce-postavljana-pitanja-eBeba.pdf"
+     ],
+     "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
    "code": "SG",
    "slug": "singapore",
    "name": "Singapore",
@@ -4738,6 +5342,66 @@
       "https://lab.mlaw.gov.sg/legal-services/how-do-i-apply-for-legal-aid/"
      ],
      "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "SK",
+   "slug": "slovakia",
+   "name": "Slovakia",
+   "flag": "🇸🇰",
+   "lang": "sk",
+   "emergency": {
+    "number": "112",
+    "label": "Emergency. You can also dial 155 for an ambulance, 158 for the police or 150 for the fire service",
+    "source": "https://www.slovensko.sk/en/life-situation/life-situation/_services-provided-through-nati/"
+   },
+   "resources": [
+    {
+     "id": "slovakia-linka-pre-zeny",
+     "section": "help-now",
+     "name": "Národná linka pre ženy zažívajúce násilie (national line for women experiencing violence)",
+     "org": "Ministry of Labour, Social Affairs and Family, run by the Institute for Labour and Family Research",
+     "what": "A free line, open day and night, for women experiencing violence.",
+     "how": "Call 0800 212 212, free. In danger right now, call 112.",
+     "url": "https://www.mpsvr.sk/sk/linka/",
+     "phone": "0800 212 212",
+     "dial": "0800212212",
+     "urgent": true,
+     "chip": "Line for women facing violence",
+     "sources": [
+      "https://www.mpsvr.sk/sk/linka/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "slovakia-prispevok-pri-narodeni",
+     "section": "pregnancy-baby",
+     "name": "Príspevok pri narodení dieťaťa (birth allowance)",
+     "org": "Ministry of Labour, Social Affairs and Family, and the Offices of Labour, Social Affairs and Family",
+     "what": "A one-off payment to the mother after a birth: €829.86 for a child from a first to fourth birth, and €151.37 from a fifth birth on, with more for twins or more. It is lost if you did not go to monthly gynaecology check-ups from the fourth month of pregnancy, or did not register the baby with a children's doctor.",
+     "how": "For a baby born in Slovakia you do not need to apply: it is paid by itself once the birth is registered. Tell your local Office of Labour, Social Affairs and Family which bank account to pay. For a baby born abroad, take an officially translated birth certificate to the office. The claim runs out 12 months after the birth.",
+     "url": "https://www.mpsvr.sk/sk/rodina-socialna-pomoc/podpora-rodinam-detmi/penazna-pomoc/prispevok-pri-narodeni-dietata/",
+     "sources": [
+      "https://www.mpsvr.sk/sk/rodina-socialna-pomoc/podpora-rodinam-detmi/penazna-pomoc/prispevok-pri-narodeni-dietata/"
+     ],
+     "reviewed_on": "2026-11-21"
+    },
+    {
+     "id": "slovakia-pridavok-na-dieta",
+     "section": "food-bills",
+     "name": "Prídavok na dieťa (child allowance)",
+     "org": "Ministry of Labour, Social Affairs and Family, and the Offices of Labour, Social Affairs and Family",
+     "what": "A monthly payment to a parent raising a dependent child, paid up to age 25 while the child is still dependent. The ministry gives €60 a month, with €110 more in the month a child starts first grade.",
+     "how": "Apply in writing, or online with a qualified electronic signature, at the Office of Labour, Social Affairs and Family where you live. You can claim it for up to six months back.",
+     "url": "https://www.mpsvr.sk/sk/rodina-socialna-pomoc/podpora-rodinam-detmi/penazna-pomoc/pridavok-dieta/",
+     "sources": [
+      "https://www.mpsvr.sk/sk/rodina-socialna-pomoc/podpora-rodinam-detmi/penazna-pomoc/pridavok-dieta/"
+     ],
+     "reviewed_on": "2026-11-21",
+     "also": [
+      "single-parent"
+     ]
     }
    ]
   },
