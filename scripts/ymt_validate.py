@@ -94,6 +94,7 @@ def main():
     # Outside the U.S. (data/ymt/world.json): each listing needs a source, a date, and digits that a phone can dial.
     world = data.get('world', {})
     dial = re.compile(r'^\+?\d{3,15}$')
+    emergency_dial = re.compile(r'^\d{2,15}$')  # some countries' police number is two digits (Morocco: 19)
     codes = set()
     for c in world.get('countries', []):
         for key in ('code', 'slug', 'name', 'flag'):
@@ -103,7 +104,7 @@ def main():
             errors.append(f'world {c["code"]}: duplicate country')
         codes.add(c.get('code'))
         e = c.get('emergency') or {}
-        if not dial.match(e.get('number', '')) or not e.get('label'):
+        if not emergency_dial.match(e.get('number', '')) or not e.get('label'):
             errors.append(f'world {c.get("code")}: emergency needs a number and a label')
         check_url(f'world {c.get("code")} emergency', e.get('source'), errors)
     listings = list(world.get('worldwide', [])) + [dict(r, scope=c['code']) for c in world.get('countries', []) for r in c['resources']]
