@@ -316,4 +316,51 @@ print(jp.page({"affirmations": [{"text": t, "approved": ok, "cast": cast} for t,
   assert.equal(where(), 'The whole family');
   assert.equal(all(d, 'a[href^="http"], [src], link').length, 0, 'the preview loads nothing and links nowhere');
 }
+// 9. Every location page (each state, country and county page, the hand-kept Ohio county pages included) carries the
+// same day's affirmation as the front page, with the same Back and Next, even a country with few listings. Seasonal and
+// late-night ones keep to their time there too.
+{
+  const ROOT = path.join(__dirname, '..');
+  const built = (rel) => {
+    const d = new JSDOM(fs.readFileSync(path.join(ROOT, rel), 'utf8')).window.document;
+    const box = d.getElementById('scene') || d.getElementById('affirm');
+    assert(box, `${rel}: the affirmation card is on the page`);
+    // A location page loads the card's script from one file of the site's own.
+    const file = all(d, 'script[src]').map((el) => el.getAttribute('src')).filter((src) => src.endsWith('kindword.js'));
+    if (!d.getElementById('scene')) {
+      assert.equal(file.length, 1, `${rel}: the card's script`);
+      const code = fs.readFileSync(path.join(ROOT, path.dirname(rel), file[0]), 'utf8');
+      assert(!code.includes('</script'), 'the script file can sit in a page');
+      return box.outerHTML + `<script>${code}</script>`;
+    }
+    const run = ['affirmations-data', 'scene-data'].map((id) => d.getElementById(id));
+    assert(run.every(Boolean), `${rel}: the affirmations are in the page`);
+    const script = all(d, 'script:not([src]):not([type])').filter((el) => el.textContent.includes('affirmations-data'));
+    assert.equal(script.length, 1, `${rel}: one script shows the affirmation`);
+    return box.outerHTML + run.map((el) => el.outerHTML).join('') + script[0].outerHTML;
+  };
+  const places = ['index.html', 'county.html']
+    .concat(fs.readdirSync(path.join(ROOT, 'ohio/counties')).filter((f) => f.endsWith('.html')).map((f) => 'ohio/counties/' + f))
+    .concat(fs.readdirSync(path.join(ROOT, 'states')).filter((f) => f.endsWith('.html')).map((f) => 'states/' + f))
+    .concat(fs.readdirSync(path.join(ROOT, 'countries')).filter((f) => f.endsWith('.html')).map((f) => 'countries/' + f));
+  const bodies = Object.fromEntries(places.map((rel) => [rel, built(rel)]));
+  for (const now of ['2027-03-10T12:00:00', '2026-11-20T12:00:00', '2026-12-10T12:00:00', '2027-03-10T23:30:00']) {
+    const front = shown(open(bodies['index.html'], { now }).d);
+    assert(front, 'the front page shows one');
+    for (const rel of places) assert.equal(shown(open(bodies[rel], { now }).d), front, `${rel} at ${now}: the same affirmation as the front page`);
+  }
+  for (const rel of ['states/wy.html', 'countries/ethiopia.html', 'county.html', 'ohio/counties/morrow.html']) {
+    const page = open(bodies[rel]), d = page.d, first = shown(d);
+    assert(!d.getElementById('scene-foot').hidden, `${rel}: Back and Next show once the script runs`);
+    page.tap('#affirm-next');
+    assert.notEqual(shown(d), first, `${rel}: Next flips`);
+    page.tap('#affirm-prev');
+    assert.equal(shown(d), first, `${rel}: Back flips back`);
+    assert(d.querySelector('#affirm .sayhelp a'), `${rel}: one line points to people to talk to`);
+    const still = new JSDOM(bodies[rel]).window.document;
+    assert(still.getElementById('affirm').hidden, `${rel}: no empty card before the script runs`);
+  }
+  console.log(`PASS the day's affirmation is on all ${places.length - 1} location pages, the same one as the front page, with Back and Next`);
+}
+
 console.log('PASS front-page picture is decoration beside the question; the daily affirmation is Deborah\'s speech bubble in it: one a day by the visitor\'s own date, the next one tomorrow, back and next to flip, no timers, and one gentle line to the site\'s own page of people to talk to; every affirmation brings its own pose, sweater, children, what they are doing and caption; seasonal and late-night ones come out only in their time, and open the card when they do; the owner\'s preview steps through every affirmation with the same picture');

@@ -145,6 +145,33 @@ class SiteTests(unittest.TestCase):
         self.assertIn('Call your local emergency number.', world)
         self.assertNotIn('In danger right now? Call 911.', world)
 
+    def test_location_pages_of_a_level_read_the_same(self):
+        """Every state page has the same blocks in the same order, and so does every country page, however few listings
+        a country has: the crisis phone cards first, then search, every need, the day's affirmation and the same closing
+        lines. A thin country shows a plain line under a need it has nothing for, never an empty heading or list."""
+        def blocks(text):
+            return re.findall(r'<(?:section|details) class="([^"]+)"(?: id="([^"]+)")?', text)
+        for level, sections in (('states', ymt_build.STATE_SECTIONS), ('countries', ymt_build.WORLD_SECTIONS)):
+            pages = sorted((ROOT / level).glob('*.html'))
+            self.assertTrue(pages, level)
+            first = None
+            for path in pages:
+                text = path.read_text(encoding='utf-8')
+                found = [i for c, i in blocks(text) if c.startswith('need')]
+                self.assertEqual(found, sections, f'{path.name}: every need, in order')
+                shape = [(c, i) for c, i in blocks(text) if not c.startswith(('need', 'more'))]
+                first = first or shape
+                self.assertEqual(shape, first, f'{path.name}: the same blocks as {pages[0].name}')
+                self.assertEqual(text.count('class="wrap now" id="now"'), 1, f'{path.name}: one crisis block')
+                self.assertEqual(text.count('id="affirm"'), 1, f'{path.name}: the day\'s affirmation')
+                self.assertIn('Shelter addresses are never listed here, for safety.', text, path.name)
+                self.assertNotRegex(text, r'<h[1-3][^>]*>\s*</h|<ul[^>]*>\s*</ul>|<div class="cards">\s*</div>|\bundefined\b', path.name)
+                for need in re.findall(r'<details class="need[^"]*" id="[^"]+">.*?</details>(?=<details class="need|</section>)', text, re.S):
+                    self.assertTrue('class="card' in need or 'class="pending"' in need, f'{path.name}: a need with nothing under it')
+                if level == 'countries':
+                    self.assertNotIn('dial 211', text, f'{path.name}: 211 is a U.S. number')
+        self.assertIn('id="affirm"', (ROOT / 'county.html').read_text(encoding='utf-8'))
+
     def test_no_shelter_addresses_or_unfilled_placeholders(self):
         for path in PAGES:
             text = path.read_text(encoding='utf-8')
@@ -294,7 +321,7 @@ class SiteTests(unittest.TestCase):
         for path in pages:
             text = path.read_text(encoding='utf-8')
             self.assertEqual(text.count('data-finder'), 1, path)
-            self.assertRegex(text, r'<section class="wrap finder" id="everything" data-finder hidden>', path)
+            self.assertRegex(text, r'<section class="wrap finder" id="everything" data-finder data-none="[^"]+" hidden>', path)
             self.assertIn('Nothing you type here is sent or saved.', text, path)
         self.assertNotIn('data-finder', (ROOT / 'index.html').read_text(encoding='utf-8'))
 
