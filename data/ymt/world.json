@@ -244,6 +244,40 @@
    ]
   },
   {
+   "code": "AG",
+   "slug": "antigua-and-barbuda",
+   "name": "Antigua and Barbuda",
+   "flag": "🇦🇬",
+   "lang": "en",
+   "emergency": {
+    "number": "911",
+    "label": "Ambulance, fire and police. 999 also works",
+    "source": "https://www.gov.uk/foreign-travel-advice/antigua-and-barbuda/getting-help"
+   },
+   "resources": [
+    {
+     "id": "antigua-and-barbuda-sarc",
+     "section": "help-now",
+     "name": "Support and Referral Centre crisis hotline",
+     "org": "Support and Referral Centre, with the Directorate of Gender Affairs",
+     "what": "A crisis line open any hour for women and girls facing violence. The centre offers counselling, legal referrals and other help in one place.",
+     "how": "Call 268-463-5555, any hour. In danger right now, call 911.",
+     "phone": "268-463-5555",
+     "dial": "2684635555",
+     "urgent": true,
+     "chip": "Crisis hotline",
+     "url": "https://caribbean.unwomen.org/en/stories/news/2024/11/connecting-for-change-sarc-open-house-encourages-collaboration-to-combat-vawg",
+     "sources": [
+      "https://caribbean.unwomen.org/en/stories/news/2024/11/connecting-for-change-sarc-open-house-encourages-collaboration-to-combat-vawg"
+     ],
+     "also": [
+      "housing"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
    "code": "AR",
    "slug": "argentina",
    "name": "Argentina",
@@ -1465,6 +1499,76 @@
       "pregnancy-baby",
       "single-parent"
      ]
+    }
+   ]
+  },
+  {
+   "code": "BF",
+   "slug": "burkina-faso",
+   "name": "Burkina Faso",
+   "flag": "🇧🇫",
+   "lang": "fr",
+   "emergency": {
+    "number": "17",
+    "label": "Police. Fire and ambulance: 18. Outside Ouagadougou, emergency services are unlikely to respond",
+    "source": "https://www.gov.uk/foreign-travel-advice/burkina-faso/getting-help"
+   },
+   "resources": [
+    {
+     "id": "burkina-faso-vbg",
+     "section": "help-now",
+     "name": "Gender-based violence line 80 00 12 87",
+     "org": "Government of Burkina Faso",
+     "what": "A free national line (numéro vert) to report gender-based violence and get help.",
+     "how": "Call 80 00 12 87, free. In danger right now, call 17.",
+     "phone": "80 00 12 87",
+     "dial": "80001287",
+     "urgent": true,
+     "chip": "Violence line",
+     "url": "https://data.unwomen.org/global-database-on-violence-against-women/country-profile/Burkina%20Faso/measures/GBV%20hotline%20--%20num%C3%A9ro%20vert%20pour%20les%20cas%20de%20VBG",
+     "sources": [
+      "https://data.unwomen.org/global-database-on-violence-against-women/country-profile/Burkina%20Faso/measures/GBV%20hotline%20--%20num%C3%A9ro%20vert%20pour%20les%20cas%20de%20VBG",
+      "https://digitallibrary.un.org/record/4051018/files/CRPD_C_BFA_RQ_1-FR.pdf"
+     ],
+     "also": [
+      "housing"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "burkina-faso-116",
+     "section": "kids-differently",
+     "name": "Child protection line 116",
+     "org": "Government of Burkina Faso",
+     "what": "A free national line (numéro vert) to protect children and report a child at risk.",
+     "how": "Call 116, free.",
+     "phone": "116",
+     "dial": "116",
+     "urgent": true,
+     "chip": "Child protection line",
+     "url": "https://digitallibrary.un.org/record/4051018/files/CRPD_C_BFA_RQ_1-FR.pdf",
+     "sources": [
+      "https://digitallibrary.un.org/record/4051018/files/CRPD_C_BFA_RQ_1-FR.pdf"
+     ],
+     "also": [
+      "help-now"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "burkina-faso-excision",
+     "section": "kids-differently",
+     "name": "Line against female genital cutting 80 00 11 12",
+     "org": "Government of Burkina Faso",
+     "what": "A free national line (numéro vert) to report female genital cutting (excision) and protect a girl at risk.",
+     "how": "Call 80 00 11 12, free.",
+     "phone": "80 00 11 12",
+     "dial": "80001112",
+     "url": "https://digitallibrary.un.org/record/4051018/files/CRPD_C_BFA_RQ_1-FR.pdf",
+     "sources": [
+      "https://digitallibrary.un.org/record/4051018/files/CRPD_C_BFA_RQ_1-FR.pdf"
+     ],
+     "reviewed_on": "2026-11-22"
     }
    ]
   },
@@ -3353,6 +3457,92 @@
    ]
   },
   {
+   "code": "GD",
+   "slug": "grenada",
+   "name": "Grenada",
+   "flag": "🇬🇩",
+   "lang": "en",
+   "emergency": {
+    "number": "911",
+    "label": "Police and fire. Ambulance: 434 (St George's), 724 (Grenville), 774 (Carriacou)",
+    "source": "https://www.gov.gd/emergency-services"
+   },
+   "resources": [
+    {
+     "id": "grenada-411",
+     "section": "help-now",
+     "name": "Domestic violence line 411",
+     "org": "Royal Grenada Police Force, listed by the Government of Grenada",
+     "what": "A short number to report domestic violence to the police.",
+     "how": "Call 411. In danger right now, call 911.",
+     "phone": "411",
+     "dial": "411",
+     "urgent": true,
+     "chip": "Domestic violence line",
+     "url": "https://www.gov.gd/emergency-services",
+     "sources": [
+      "https://www.gov.gd/emergency-services"
+     ],
+     "also": [
+      "housing"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "grenada-400",
+     "section": "help-now",
+     "name": "Sexual abuse line 400",
+     "org": "Royal Grenada Police Force, listed by the Government of Grenada",
+     "what": "A short number to report sexual abuse to the police.",
+     "how": "Call 400. In danger right now, call 911.",
+     "phone": "400",
+     "dial": "400",
+     "urgent": true,
+     "chip": "Sexual abuse line",
+     "url": "https://www.gov.gd/emergency-services",
+     "sources": [
+      "https://www.gov.gd/emergency-services"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "grenada-677",
+     "section": "kids-differently",
+     "name": "Child abuse line 677",
+     "org": "Listed by the Government of Grenada",
+     "what": "A short number to report a child being abused and get the child protected.",
+     "how": "Call 677.",
+     "phone": "677",
+     "dial": "677",
+     "urgent": true,
+     "chip": "Child abuse line",
+     "url": "https://www.gov.gd/emergency-services",
+     "sources": [
+      "https://www.gov.gd/emergency-services"
+     ],
+     "also": [
+      "help-now"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "grenada-svu",
+     "section": "help-now",
+     "name": "Special Victims Unit",
+     "org": "Royal Grenada Police Force",
+     "what": "The police unit for domestic violence, sexual violence and child abuse.",
+     "how": "Call the hotline 444, or 473-440-4739.",
+     "phone": "444",
+     "dial": "444",
+     "url": "https://rgpf.gd/index.php/svu",
+     "sources": [
+      "https://rgpf.gd/index.php/svu"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
    "code": "GT",
    "slug": "guatemala",
    "name": "Guatemala",
@@ -4553,6 +4743,42 @@
    "resources": []
   },
   {
+   "code": "LA",
+   "slug": "laos",
+   "name": "Laos",
+   "flag": "🇱🇦",
+   "lang": "lo",
+   "emergency": {
+    "number": "1191",
+    "label": "Police. Ambulance: 1195; fire: 1190",
+    "source": "https://www.gov.uk/foreign-travel-advice/laos/getting-help"
+   },
+   "resources": [
+    {
+     "id": "laos-1362",
+     "section": "help-now",
+     "name": "Counselling and Protection Centre 1362",
+     "org": "Lao Women's Union",
+     "what": "The Lao Women's Union's line for counselling and protection for women and children facing violence.",
+     "how": "Call 1362. In danger right now, call 1191.",
+     "phone": "1362",
+     "dial": "1362",
+     "urgent": true,
+     "chip": "Women and children's line",
+     "url": "https://www.undp.org/node/220526",
+     "sources": [
+      "https://www.undp.org/node/220526",
+      "https://asiapacific.unwomen.org/sites/default/files/Field%20Office%20ESEAsia/Docs/Publications/2021/09/Service%20directory_Lao_YC_15%20Sept%202021.pdf"
+     ],
+     "also": [
+      "housing",
+      "kids-differently"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
    "code": "LV",
    "slug": "latvia",
    "name": "Latvia",
@@ -4685,6 +4911,74 @@
       "https://moph.gov.lb/en/view/75556/1564-the-lifeline"
      ],
      "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "LS",
+   "slug": "lesotho",
+   "name": "Lesotho",
+   "flag": "🇱🇸",
+   "lang": "st",
+   "emergency": {
+    "number": "112",
+    "label": "Ambulance, fire and police",
+    "source": "https://www.gov.uk/foreign-travel-advice/lesotho/getting-help"
+   },
+   "resources": [
+    {
+     "id": "lesotho-116",
+     "section": "kids-differently",
+     "name": "Child Helpline Lesotho 116",
+     "org": "Ministry of Social Development",
+     "what": "A free line, open day and night, for children, parents and guardians to report violence against a child and get help.",
+     "how": "Call 116, free, any hour. In danger right now, call 112.",
+     "phone": "116",
+     "dial": "116",
+     "urgent": true,
+     "chip": "Child helpline",
+     "url": "https://www.gov.ls/uncategorized/social-development-re-launches-child-helpline-lesotho/",
+     "sources": [
+      "https://www.gov.ls/uncategorized/social-development-re-launches-child-helpline-lesotho/"
+     ],
+     "also": [
+      "help-now"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
+   "code": "LR",
+   "slug": "liberia",
+   "name": "Liberia",
+   "flag": "🇱🇷",
+   "lang": "en",
+   "emergency": {
+    "number": "911",
+    "label": "Emergency. It may not be answered, so also know your nearest police station",
+    "source": "https://www.smartraveller.gov.au/destinations/africa/liberia"
+   },
+   "resources": [
+    {
+     "id": "liberia-116",
+     "section": "help-now",
+     "name": "National GBV 116 Call Center",
+     "org": "Ministry of Gender, Children and Social Protection",
+     "what": "A free national line for survivors of gender-based violence and anyone reporting abuse of women and girls. Trained staff offer counselling and connect you to services.",
+     "how": "Call 116, free. In danger right now, call 911.",
+     "phone": "116",
+     "dial": "116",
+     "urgent": true,
+     "chip": "Violence helpline",
+     "url": "https://mogcsp.gov.lr/?p=6449",
+     "sources": [
+      "https://mogcsp.gov.lr/?p=6449"
+     ],
+     "also": [
+      "housing"
+     ],
+     "reviewed_on": "2026-11-22"
     }
    ]
   },
@@ -6157,6 +6451,42 @@
    ]
   },
   {
+   "code": "PG",
+   "slug": "papua-new-guinea",
+   "name": "Papua New Guinea",
+   "flag": "🇵🇬",
+   "lang": "en",
+   "emergency": {
+    "number": "112",
+    "label": "Police. Ambulance: 111; fire: 110",
+    "source": "https://www.gov.uk/foreign-travel-advice/papua-new-guinea/getting-help"
+   },
+   "resources": [
+    {
+     "id": "papua-new-guinea-1-tok",
+     "section": "help-now",
+     "name": "1-Tok Kaunselin Helpim Lain",
+     "org": "National helpline, supported by UNICEF and UNFPA",
+     "what": "Free, confidential phone counselling, open day and night, for family and sexual violence and for anyone struggling: crisis support, safety planning, suicide support and referrals.",
+     "how": "Call 7150 8000, free from Digicel, any hour. In danger right now, call 112.",
+     "phone": "7150 8000",
+     "dial": "71508000",
+     "urgent": true,
+     "chip": "Counselling helpline",
+     "url": "https://png.unfpa.org/en/node/108667",
+     "sources": [
+      "https://png.unfpa.org/en/node/108667",
+      "https://www.unicef.org/png/press-releases/domestic-violence-helpline-papua-new-guinea-expand-during-covid-19-pandemic",
+      "https://papuanewguinea.un.org/en/node/96445"
+     ],
+     "also": [
+      "take-care"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
    "code": "PY",
    "slug": "paraguay",
    "name": "Paraguay",
@@ -6801,6 +7131,72 @@
    ]
   },
   {
+   "code": "KN",
+   "slug": "saint-kitts-and-nevis",
+   "name": "Saint Kitts and Nevis",
+   "flag": "🇰🇳",
+   "lang": "en",
+   "emergency": {
+    "number": "911",
+    "label": "Ambulance and police. Fire: 333",
+    "source": "https://www.gov.uk/foreign-travel-advice/st-kitts-and-nevis/getting-help"
+   },
+   "resources": [
+    {
+     "id": "saint-kitts-and-nevis-gender-affairs",
+     "section": "help-now",
+     "name": "Department of Gender Affairs",
+     "org": "Ministry of Social Development and Gender Affairs",
+     "what": "Support for anyone facing domestic violence, women and men.",
+     "how": "Call 869-765-5492. In danger right now, call 911.",
+     "phone": "869-765-5492",
+     "dial": "8697655492",
+     "urgent": true,
+     "chip": "Domestic violence support",
+     "url": "https://www.sknis.gov.kn/2024/02/15/general-and-emergency-contact-information-for-services-available-at-the-ministry-of-social-development-and-gender-affairs",
+     "sources": [
+      "https://www.sknis.gov.kn/2024/02/15/general-and-emergency-contact-information-for-services-available-at-the-ministry-of-social-development-and-gender-affairs",
+      "https://sknis.gov.kn/2022/09/22/press-release-from-the-ministry-of-social-development-and-gender-affairs-et-al-re-gender-based-violence-related-death/"
+     ],
+     "also": [
+      "housing"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "saint-kitts-and-nevis-counselling",
+     "section": "take-care",
+     "name": "National Counselling Centre",
+     "org": "Ministry of Social Development and Gender Affairs",
+     "what": "Psychosocial and clinical counselling from the government.",
+     "how": "Call 869-465-5000, Monday to Friday, 8am to 4pm.",
+     "phone": "869-465-5000",
+     "dial": "8694655000",
+     "url": "https://www.gov.kn/counseling-unit-contact-us/",
+     "sources": [
+      "https://www.gov.kn/counseling-unit-contact-us/",
+      "https://www.sknis.gov.kn/2024/02/15/general-and-emergency-contact-information-for-services-available-at-the-ministry-of-social-development-and-gender-affairs"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "saint-kitts-and-nevis-child-protection",
+     "section": "kids-differently",
+     "name": "Probation and Child Protection Services",
+     "org": "Ministry of Social Development and Gender Affairs",
+     "what": "The government service for child abuse, neglect and other child protection matters.",
+     "how": "Call 869-467-1311.",
+     "phone": "869-467-1311",
+     "dial": "8694671311",
+     "url": "https://www.sknis.gov.kn/2024/02/15/general-and-emergency-contact-information-for-services-available-at-the-ministry-of-social-development-and-gender-affairs",
+     "sources": [
+      "https://www.sknis.gov.kn/2024/02/15/general-and-emergency-contact-information-for-services-available-at-the-ministry-of-social-development-and-gender-affairs"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
    "code": "LC",
    "slug": "saint-lucia",
    "name": "Saint Lucia",
@@ -6832,6 +7228,41 @@
       "help-now"
      ],
      "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "WS",
+   "slug": "samoa",
+   "name": "Samoa",
+   "flag": "🇼🇸",
+   "lang": "sm",
+   "emergency": {
+    "number": "911",
+    "label": "Ambulance, fire and police",
+    "source": "https://www.gov.uk/foreign-travel-advice/samoa/getting-help"
+   },
+   "resources": [
+    {
+     "id": "samoa-svsg",
+     "section": "help-now",
+     "name": "Samoa Victim Support Group helpline",
+     "org": "Samoa Victim Support Group",
+     "what": "A free line, open day and night, for domestic and gender-based violence and other crises. It connects callers to counselling, shelter, the police and other services.",
+     "how": "Call 800-7874, free, any hour. In danger right now, call 911.",
+     "phone": "800-7874",
+     "dial": "8007874",
+     "urgent": true,
+     "chip": "Violence helpline",
+     "url": "https://www.undp.org/node/167696",
+     "sources": [
+      "https://www.undp.org/node/167696",
+      "https://ombudsman.gov.ws/wp-content/uploads/2022/05/Myths-Sexual-violence-infographic-eng-sam.pdf"
+     ],
+     "also": [
+      "housing"
+     ],
+     "reviewed_on": "2026-11-22"
     }
    ]
   },
@@ -7076,6 +7507,54 @@
    ]
   },
   {
+   "code": "SL",
+   "slug": "sierra-leone",
+   "name": "Sierra Leone",
+   "flag": "🇸🇱",
+   "lang": "en",
+   "emergency": {
+    "number": "117",
+    "label": "Ambulance, fire and police",
+    "source": "https://www.gov.uk/foreign-travel-advice/sierra-leone/getting-help"
+   },
+   "resources": [
+    {
+     "id": "sierra-leone-116",
+     "section": "help-now",
+     "name": "116 GBV Hotline",
+     "org": "Ministry of Gender and Children's Affairs, with UNFPA",
+     "what": "A free line for survivors of gender-based violence, with counselling and referral to services.",
+     "how": "Call 116, free. In danger right now, call 117.",
+     "phone": "116",
+     "dial": "116",
+     "urgent": true,
+     "chip": "Violence helpline",
+     "url": "https://sierraleone.unfpa.org/en/node/49681",
+     "sources": [
+      "https://sierraleone.unfpa.org/en/node/49681",
+      "https://sierraleone.un.org/sites/default/files/2025-07/UN%20Agencies%20Weekly%20Highlights%207th-11th%20July%202025.pdf"
+     ],
+     "also": [
+      "housing"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "sierra-leone-free-health-care",
+     "section": "pregnancy-baby",
+     "name": "Free Health Care Initiative",
+     "org": "Government of Sierra Leone, supported by UNICEF",
+     "what": "Free medicines and health services at government health facilities for pregnant women, breastfeeding mothers and children under five, anywhere in the country.",
+     "how": "Go to a government health facility and say you are pregnant, breastfeeding, or there with a child under five.",
+     "url": "https://www.unicef.org/sierraleone/stories/free-health-care-initiative-helps-improve-maternal-neonatal-and-child-health-sierra-leone",
+     "sources": [
+      "https://www.unicef.org/sierraleone/stories/free-health-care-initiative-helps-improve-maternal-neonatal-and-child-health-sierra-leone"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
    "code": "SG",
    "slug": "singapore",
    "name": "Singapore",
@@ -7310,6 +7789,85 @@
      "also": [
       "single-parent"
      ]
+    }
+   ]
+  },
+  {
+   "code": "SB",
+   "slug": "solomon-islands",
+   "name": "Solomon Islands",
+   "flag": "🇸🇧",
+   "lang": "en",
+   "emergency": {
+    "number": "999",
+    "label": "Police. Ambulance: 111; fire: 988",
+    "source": "https://www.gov.uk/foreign-travel-advice/solomon-islands/getting-help"
+   },
+   "resources": [
+    {
+     "id": "solomon-islands-safenet",
+     "section": "help-now",
+     "name": "SafeNet 24-hour helpline 132",
+     "org": "Listed by the Solomon Islands Government",
+     "what": "A helpline, open day and night, for victims of violence.",
+     "how": "Call 132, any hour. In danger right now, call 999.",
+     "phone": "132",
+     "dial": "132",
+     "urgent": true,
+     "chip": "Violence helpline",
+     "url": "https://solomons.gov.sb/?p=957",
+     "sources": [
+      "https://solomons.gov.sb/?p=957"
+     ],
+     "also": [
+      "housing"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "solomon-islands-family-support-centre",
+     "section": "help-now",
+     "name": "Family Support Centre",
+     "org": "Listed by the Solomon Islands Government",
+     "what": "Help for women and children facing violence at home.",
+     "how": "Call 20619 or 26999.",
+     "phone": "20619",
+     "dial": "20619",
+     "url": "https://solomons.gov.sb/?p=957",
+     "sources": [
+      "https://solomons.gov.sb/?p=957"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "solomon-islands-mental-health",
+     "section": "take-care",
+     "name": "Integrated Mental Health Clinic",
+     "org": "Ministry of Health and Medical Services",
+     "what": "The government's mental health clinic.",
+     "how": "Call 20690.",
+     "phone": "20690",
+     "dial": "20690",
+     "url": "https://solomons.gov.sb/?p=957",
+     "sources": [
+      "https://solomons.gov.sb/?p=957"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "solomon-islands-public-solicitor",
+     "section": "single-parent",
+     "name": "Public Solicitor's Office",
+     "org": "Solomon Islands Government",
+     "what": "The government's legal aid office, listed for victims of violence.",
+     "how": "Call 28406 or 22348.",
+     "phone": "28406",
+     "dial": "28406",
+     "url": "https://solomons.gov.sb/?p=957",
+     "sources": [
+      "https://solomons.gov.sb/?p=957"
+     ],
+     "reviewed_on": "2026-11-22"
     }
    ]
   },
@@ -8775,6 +9333,75 @@
       "https://ombudsman.uz/en/docs/tazyiq-va-zoravonlikdan-jabrlangan-shaxslar-qayerga-murojaat-qilishlari-kerak-2"
      ],
      "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "VU",
+   "slug": "vanuatu",
+   "name": "Vanuatu",
+   "flag": "🇻🇺",
+   "lang": "en",
+   "emergency": {
+    "number": "111",
+    "label": "Police (also 22222). Ambulance: 115; fire: 113",
+    "source": "https://www.gov.uk/foreign-travel-advice/vanuatu/getting-help"
+   },
+   "resources": [
+    {
+     "id": "vanuatu-161",
+     "section": "help-now",
+     "name": "Vanuatu Women's Centre helpline 161",
+     "org": "Vanuatu Women's Centre",
+     "what": "A free violence helpline, open day and night.",
+     "how": "Call 161, free, any hour. In danger right now, call 111.",
+     "phone": "161",
+     "dial": "161",
+     "urgent": true,
+     "chip": "Violence helpline",
+     "url": "https://www.undp.org/sites/g/files/zskgke326/files/2023-11/undp-pacific-vanuatu-victims-charter-2023.pdf",
+     "sources": [
+      "https://www.undp.org/sites/g/files/zskgke326/files/2023-11/undp-pacific-vanuatu-victims-charter-2023.pdf"
+     ],
+     "also": [
+      "housing"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "vanuatu-163",
+     "section": "kids-differently",
+     "name": "Child Desk Helpline 163",
+     "org": "Listed in Vanuatu's Victims Charter",
+     "what": "A free line for children who have been abused.",
+     "how": "Call 163, free.",
+     "phone": "163",
+     "dial": "163",
+     "urgent": true,
+     "chip": "Child helpline",
+     "url": "https://www.undp.org/sites/g/files/zskgke326/files/2023-11/undp-pacific-vanuatu-victims-charter-2023.pdf",
+     "sources": [
+      "https://www.undp.org/sites/g/files/zskgke326/files/2023-11/undp-pacific-vanuatu-victims-charter-2023.pdf"
+     ],
+     "also": [
+      "help-now"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "vanuatu-public-solicitor",
+     "section": "single-parent",
+     "name": "Public Solicitor's Office",
+     "org": "Government of Vanuatu",
+     "what": "The government's legal aid office, listed in Vanuatu's Victims Charter.",
+     "how": "In Port Vila, call 33825, 33160 or 23450.",
+     "phone": "33825",
+     "dial": "33825",
+     "url": "https://www.undp.org/sites/g/files/zskgke326/files/2023-11/undp-pacific-vanuatu-victims-charter-2023.pdf",
+     "sources": [
+      "https://www.undp.org/sites/g/files/zskgke326/files/2023-11/undp-pacific-vanuatu-victims-charter-2023.pdf"
+     ],
+     "reviewed_on": "2026-11-22"
     }
    ]
   },
