@@ -1118,6 +1118,40 @@
    ]
   },
   {
+   "code": "BJ",
+   "slug": "benin",
+   "name": "Benin",
+   "flag": "🇧🇯",
+   "lang": "fr",
+   "emergency": {
+    "number": "117",
+    "label": "Police. Fire and ambulance: 118. Help may be limited, so you may need to ask locally",
+    "source": "https://www.gov.uk/foreign-travel-advice/benin/getting-help"
+   },
+   "resources": [
+    {
+     "id": "benin-138",
+     "section": "kids-differently",
+     "name": "Child helpline 138 (Ligne d'Assistance aux Enfants)",
+     "org": "Ministry of Social Affairs and Microfinance",
+     "what": "A free line, open day and night, for children who are victims of violence or abuse. It is free from landlines and mobile phones.",
+     "how": "Call 138, free, any hour. In danger right now, call 117.",
+     "phone": "138",
+     "dial": "138",
+     "urgent": true,
+     "chip": "Child helpline",
+     "url": "https://www.gouv.bj/article/559/protection-enfance-ministre-veronique-tognifode-mewanou-lance-138---ligne-assistance-enfants/",
+     "sources": [
+      "https://www.gouv.bj/article/559/protection-enfance-ministre-veronique-tognifode-mewanou-lance-138---ligne-assistance-enfants/"
+     ],
+     "also": [
+      "help-now"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
    "code": "BT",
    "slug": "bhutan",
    "name": "Bhutan",
@@ -1636,6 +1670,40 @@
      "also": [
       "food-bills"
      ]
+    }
+   ]
+  },
+  {
+   "code": "CM",
+   "slug": "cameroon",
+   "name": "Cameroon",
+   "flag": "🇨🇲",
+   "lang": "fr",
+   "emergency": {
+    "number": "112",
+    "label": "Ambulance. Police: 117; fire: 119",
+    "source": "https://www.gov.uk/foreign-travel-advice/cameroon/getting-help"
+   },
+   "resources": [
+    {
+     "id": "cameroon-116",
+     "section": "kids-differently",
+     "name": "Call centre for children in distress 116",
+     "org": "Ministry of Women's Empowerment and the Family (Minproff)",
+     "what": "A free line set up in 2024 by the Ministry of Women's Empowerment and the Family, where social workers take reports of children who are abandoned, abused, exploited or forced to marry. It answers on working days from 7:30 a.m. to 6 p.m.",
+     "how": "Call 116, free, on a working day from 7:30 a.m. to 6 p.m. In danger right now, call 117 for the police.",
+     "phone": "116",
+     "dial": "116",
+     "urgent": true,
+     "chip": "Children's line",
+     "url": "https://cameroon-tribune.cm/article.html/76017/fr.html/details_2",
+     "sources": [
+      "https://cameroon-tribune.cm/article.html/76017/fr.html/details_2"
+     ],
+     "also": [
+      "help-now"
+     ],
+     "reviewed_on": "2026-11-22"
     }
    ]
   },
@@ -2353,6 +2421,38 @@
      "also": [
       "food-bills"
      ]
+    }
+   ]
+  },
+  {
+   "code": "CD",
+   "slug": "democratic-republic-of-the-congo",
+   "name": "Democratic Republic of the Congo",
+   "flag": "🇨🇩",
+   "lang": "fr",
+   "emergency": {
+    "number": "112",
+    "label": "Police (Kinshasa). Fire (Kinshasa): 118. There is no general ambulance number; call a hospital directly",
+    "source": "https://www.gov.uk/foreign-travel-advice/democratic-republic-of-the-congo/getting-help"
+   },
+   "resources": [
+    {
+     "id": "democratic-republic-of-the-congo-122",
+     "section": "help-now",
+     "name": "Green line 122 (gender-based violence)",
+     "org": "Call centre presented by the office of the President's special adviser on gender-based violence",
+     "what": "A line for victims and witnesses of gender-based violence. Its staff listen, record and follow up each case, and arrange free psychological, medical and legal help. Its hours are not stated.",
+     "how": "Call 122. In danger in Kinshasa, call 112 for the police.",
+     "phone": "122",
+     "dial": "122",
+     "urgent": true,
+     "chip": "Violence line",
+     "url": "https://drc.unfpa.org/en/node/55864",
+     "sources": [
+      "https://drc.unfpa.org/en/node/55864",
+      "https://acp.cd/genre/lutte-contre-le-vbg-le-numero-vert-122-presente-comme-un-point-dappui/"
+     ],
+     "reviewed_on": "2026-11-22"
     }
    ]
   },
@@ -4097,6 +4197,54 @@
    ]
   },
   {
+   "code": "IQ",
+   "slug": "iraq",
+   "name": "Iraq",
+   "flag": "🇮🇶",
+   "lang": "ar",
+   "emergency": {
+    "number": "911",
+    "label": "Police. Ambulance: 122; fire: 115",
+    "source": "https://www.gov.uk/foreign-travel-advice/iraq/getting-help"
+   },
+   "resources": [
+    {
+     "id": "iraq-119",
+     "section": "help-now",
+     "name": "Violence helpline 119 (Kurdistan Region)",
+     "org": "General Directorate for Combating Violence Against Women, Kurdistan Region",
+     "what": "A line in the Kurdistan Region, open day and night, for women and anyone facing violence. Trained social workers and legal and psychosocial counsellors give support and counselling and refer you to services near you.",
+     "how": "In the Kurdistan Region, call 119, any hour. Elsewhere in Iraq, call 911.",
+     "phone": "119",
+     "dial": "119",
+     "urgent": true,
+     "chip": "Violence line (Kurdistan Region)",
+     "url": "https://iraq.unfpa.org/en/node/35851",
+     "sources": [
+      "https://iraq.unfpa.org/en/node/35851",
+      "https://help.unhcr.org/iraq/en/2025/07/09/unhcr-phased-out-services-heres-where-you-can-get-help/"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "iraq-116",
+     "section": "kids-differently",
+     "name": "Child Protection Hotline 116 (Kurdistan Region)",
+     "org": "Listed by UNHCR",
+     "what": "A line in the Kurdistan Region for child protection and for family and child-related support, including psychosocial help.",
+     "how": "In the Kurdistan Region, call 116. Elsewhere in Iraq, call 911.",
+     "phone": "116",
+     "dial": "116",
+     "url": "https://help.unhcr.org/iraq/en/help/children-adolescents/",
+     "sources": [
+      "https://help.unhcr.org/iraq/en/help/children-adolescents/",
+      "https://help.unhcr.org/iraq/en/2025/07/09/unhcr-phased-out-services-heres-where-you-can-get-help/"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
    "code": "IE",
    "slug": "ireland",
    "name": "Ireland",
@@ -4730,6 +4878,40 @@
    ]
   },
   {
+   "code": "KI",
+   "slug": "kiribati",
+   "name": "Kiribati",
+   "flag": "🇰🇮",
+   "lang": "gil",
+   "emergency": {
+    "number": "999",
+    "label": "Ambulance, fire and police. Or ambulance: 994; fire: 993; police: 992",
+    "source": "https://www.gov.uk/foreign-travel-advice/kiribati/getting-help"
+   },
+   "resources": [
+    {
+     "id": "kiribati-191",
+     "section": "help-now",
+     "name": "Kiribati Women and Children Support Centre helpline 191",
+     "org": "Kiribati Women and Children Support Centre, listed by UN Women",
+     "what": "Trained counsellors give free, confidential counselling to women and children facing violence. The centre is in Bairiki, Tarawa.",
+     "how": "Call 191, or the centre's landline 750 21000. In danger right now, call 999.",
+     "phone": "191",
+     "dial": "191",
+     "urgent": true,
+     "chip": "Women and children's helpline",
+     "url": "https://asiapacific.unwomen.org/en/news-and-events/stories/2018/02/more-support-for-kiribati-women-and-children",
+     "sources": [
+      "https://asiapacific.unwomen.org/en/news-and-events/stories/2018/02/more-support-for-kiribati-women-and-children"
+     ],
+     "also": [
+      "kids-differently"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
    "code": "KW",
    "slug": "kuwait",
    "name": "Kuwait",
@@ -4741,6 +4923,41 @@
     "source": "https://e.gov.kw/sites/kgoEnglish/Pages/Visitors/TourismInKuwait/EssintialServicesEmergencies.aspx"
    },
    "resources": []
+  },
+  {
+   "code": "KG",
+   "slug": "kyrgyzstan",
+   "name": "Kyrgyzstan",
+   "flag": "🇰🇬",
+   "lang": "ky",
+   "emergency": {
+    "number": "112",
+    "label": "Rescue and emergency. Ambulance: 103; police: 102; fire: 101",
+    "source": "https://www.gov.uk/foreign-travel-advice/kyrgyzstan/getting-help"
+   },
+   "resources": [
+    {
+     "id": "kyrgyzstan-111",
+     "section": "kids-differently",
+     "name": "Child Helpline 111",
+     "org": "Listed by UNICEF",
+     "what": "A helpline where children, teenagers, parents and caregivers can get psychological support and counselling, including on staying safe online.",
+     "how": "Call 111. In danger right now, call 112.",
+     "phone": "111",
+     "dial": "111",
+     "urgent": true,
+     "chip": "Child helpline",
+     "url": "https://www.unicef.org/kyrgyzstan/press-releases/international-migrants-day-unicef-calls-caregivers-and-institutions-ensure",
+     "sources": [
+      "https://www.unicef.org/kyrgyzstan/press-releases/international-migrants-day-unicef-calls-caregivers-and-institutions-ensure",
+      "https://www.unicef.org/kyrgyzstan/press-releases/kyrgyzstan-adolescents-feel-safe-internet"
+     ],
+     "also": [
+      "help-now"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
   },
   {
    "code": "LA",
@@ -5392,6 +5609,50 @@
    ]
   },
   {
+   "code": "MH",
+   "slug": "marshall-islands",
+   "name": "Marshall Islands",
+   "flag": "🇲🇭",
+   "lang": "mh",
+   "emergency": {
+    "number": "6254142",
+    "label": "Ambulance (Majuro). Police: 625 8666",
+    "source": "https://www.gov.uk/foreign-travel-advice/marshall-islands/getting-help"
+   },
+   "resources": [
+    {
+     "id": "marshall-islands-hospital-er",
+     "section": "help-now",
+     "name": "Majuro Hospital emergency room",
+     "org": "Ministry of Health and Human Services",
+     "what": "The emergency room of the hospital in Majuro.",
+     "how": "Call 625-4144 or 625-4543. For an ambulance, call 625 4142.",
+     "phone": "625-4144",
+     "dial": "6254144",
+     "url": "https://rmihealth.org/about/contact/majuro-hospital.html",
+     "sources": [
+      "https://rmihealth.org/about/contact/majuro-hospital.html"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "marshall-islands-mental-health",
+     "section": "take-care",
+     "name": "Mental health support",
+     "org": "Ministry of Health and Human Services",
+     "what": "The number the Ministry of Health and Human Services gives for anyone who needs mental health support, or who knows someone who may need help. Its hours are not stated, so it may answer only in working hours.",
+     "how": "Call 625-3355.",
+     "phone": "625-3355",
+     "dial": "6253355",
+     "url": "https://rmihealth.org/news/latest-news/families-lead-the-way-in-mental-health-awareness.html",
+     "sources": [
+      "https://rmihealth.org/news/latest-news/families-lead-the-way-in-mental-health-awareness.html"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
    "code": "MU",
    "slug": "mauritius",
    "name": "Mauritius",
@@ -5492,6 +5753,50 @@
      "also": [
       "housing"
      ]
+    }
+   ]
+  },
+  {
+   "code": "FM",
+   "slug": "micronesia",
+   "name": "Micronesia",
+   "flag": "🇫🇲",
+   "lang": "en",
+   "emergency": {
+    "number": "911",
+    "label": "Ambulance, fire and police",
+    "source": "https://www.gov.uk/foreign-travel-advice/micronesia/getting-help"
+   },
+   "resources": [
+    {
+     "id": "micronesia-family-health",
+     "section": "pregnancy-baby",
+     "name": "Family Health Services",
+     "org": "FSM Department of Health and Social Affairs",
+     "what": "The national maternal and child health and family planning programs: screening during prenatal care, vaccinations and checks for developmental delays, breastfeeding support, newborn hearing checks, and private, confidential family planning.",
+     "how": "Call the department on 320 2619 to find the clinic near you.",
+     "phone": "320 2619",
+     "dial": "3202619",
+     "url": "https://hsa.gov.fm/family-health/",
+     "sources": [
+      "https://hsa.gov.fm/family-health/"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "micronesia-mental-health",
+     "section": "take-care",
+     "name": "Community Mental Health Services",
+     "org": "FSM Department of Health and Social Affairs",
+     "what": "The national department's behavioral health programs, including community mental health services and help with alcohol and drug use. This is an office number, not a crisis line.",
+     "how": "Call the department on 320 2619. In danger right now, call 911.",
+     "phone": "320 2619",
+     "dial": "3202619",
+     "url": "https://hsa.gov.fm/behavioral-health/",
+     "sources": [
+      "https://hsa.gov.fm/behavioral-health/"
+     ],
+     "reviewed_on": "2026-11-22"
     }
    ]
   },
@@ -6416,6 +6721,66 @@
      "also": [
       "food-bills"
      ]
+    }
+   ]
+  },
+  {
+   "code": "PW",
+   "slug": "palau",
+   "name": "Palau",
+   "flag": "🇵🇼",
+   "lang": "pau",
+   "emergency": {
+    "number": "911",
+    "label": "Ambulance, fire and police",
+    "source": "https://www.gov.uk/foreign-travel-advice/palau/getting-help"
+   },
+   "resources": [
+    {
+     "id": "palau-emergency-room",
+     "section": "help-now",
+     "name": "Hospital emergency room",
+     "org": "Ministry of Health and Human Services",
+     "what": "The emergency room's own number, in the Government of Palau's phone list.",
+     "how": "Call 488-2558. In danger right now, call 911.",
+     "phone": "488-2558",
+     "dial": "4882558",
+     "url": "https://www.palaugov.pw/phone-numbers/",
+     "sources": [
+      "https://www.palaugov.pw/phone-numbers/"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "palau-obstetrics",
+     "section": "pregnancy-baby",
+     "name": "Obstetrics ward",
+     "org": "Ministry of Health and Human Services",
+     "what": "The obstetrics (maternity) ward's number, in the Government of Palau's phone list.",
+     "how": "Call 488-6102.",
+     "phone": "488-6102",
+     "dial": "4886102",
+     "url": "https://www.palaugov.pw/phone-numbers/",
+     "sources": [
+      "https://www.palaugov.pw/phone-numbers/"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "palau-behavioral-health",
+     "section": "take-care",
+     "name": "Division of Behavioral Health",
+     "org": "Ministry of Health and Human Services",
+     "what": "The Ministry of Health and Human Services' behavioral health division, which covers mental health. It also answers on 488-4573 and 488-1907. Its hours are not stated, so it may answer only in working hours.",
+     "how": "Call 488-4572.",
+     "phone": "488-4572",
+     "dial": "4884572",
+     "url": "https://www.palaugov.pw/phone-numbers/",
+     "sources": [
+      "https://www.palaugov.pw/phone-numbers/",
+      "https://www.palaugov.pw/executive-branch/ministries/health/bureau-of-public-health/"
+     ],
+     "reviewed_on": "2026-11-22"
     }
    ]
   },
@@ -8558,6 +8923,37 @@
    ]
   },
   {
+   "code": "TJ",
+   "slug": "tajikistan",
+   "name": "Tajikistan",
+   "flag": "🇹🇯",
+   "lang": "tg",
+   "emergency": {
+    "number": "102",
+    "label": "Police (02 from a landline). Ambulance: 103 (03 from a landline); fire: 101 (01 from a landline)",
+    "source": "https://www.gov.uk/foreign-travel-advice/tajikistan/getting-help"
+   },
+   "resources": [
+    {
+     "id": "tajikistan-1313",
+     "section": "help-now",
+     "name": "Crisis Hotline 1313",
+     "org": "Committee on Women and the Family, with Eurasia Foundation Tajikistan",
+     "what": "A line, started in 2018, to help people facing domestic violence. Calls from a mobile phone are free. It answers Monday to Friday from 8 a.m. to 5 p.m. and Saturday from 8 a.m. to noon.",
+     "how": "Call 1313 (free from a mobile). In danger right now, call 102.",
+     "phone": "1313",
+     "dial": "1313",
+     "urgent": true,
+     "chip": "Domestic violence line",
+     "url": "https://data.unwomen.org/global-database-on-violence-against-women/country-profile/Tajikistan/measures/Crisis%20Hotline%201313",
+     "sources": [
+      "https://data.unwomen.org/global-database-on-violence-against-women/country-profile/Tajikistan/measures/Crisis%20Hotline%201313"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
    "code": "TZ",
    "slug": "tanzania",
    "name": "Tanzania",
@@ -8674,6 +9070,55 @@
      "also": [
       "pregnancy-baby"
      ]
+    }
+   ]
+  },
+  {
+   "code": "TG",
+   "slug": "togo",
+   "name": "Togo",
+   "flag": "🇹🇬",
+   "lang": "fr",
+   "emergency": {
+    "number": "117",
+    "label": "Police (or 177). Ambulance: 8200; fire: 118",
+    "source": "https://www.gov.uk/foreign-travel-advice/togo/getting-help"
+   },
+   "resources": [
+    {
+     "id": "togo-8284",
+     "section": "help-now",
+     "name": "Gender-based violence line 8284",
+     "org": "Government of Togo",
+     "what": "A free national line (ligne verte) to report gender-based violence.",
+     "how": "Call 8284, free. In danger right now, call 117.",
+     "phone": "8284",
+     "dial": "8284",
+     "urgent": true,
+     "chip": "Violence line",
+     "url": "https://data.unwomen.org/global-database-on-violence-against-women/country-profile/Togo/measures/Hotline%20on%20GBV%20--%20Num%C3%A9ro%20vert%20pour%20les%20cas%20de%20VBG",
+     "sources": [
+      "https://data.unwomen.org/global-database-on-violence-against-women/country-profile/Togo/measures/Hotline%20on%20GBV%20--%20Num%C3%A9ro%20vert%20pour%20les%20cas%20de%20VBG"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "togo-1011",
+     "section": "help-now",
+     "name": "Allô 1011 green line",
+     "org": "Government of Togo",
+     "what": "A free national line, open day and night, that gives advice to women facing violence, takes reports and refers you to help. It also offers psychosocial support and counselling on sexual and reproductive health.",
+     "how": "Call 1011, free, any hour.",
+     "phone": "1011",
+     "dial": "1011",
+     "urgent": true,
+     "chip": "Allô 1011",
+     "url": "https://data.unwomen.org/global-database-on-violence-against-women/country-profile/Togo/measures/Assistance%20t%C3%A9l%C3%A9phonique%20gratuite",
+     "sources": [
+      "https://data.unwomen.org/global-database-on-violence-against-women/country-profile/Togo/measures/Assistance%20t%C3%A9l%C3%A9phonique%20gratuite",
+      "https://www.unicef.org/media/136456/file/Togo-2022-COAR.pdf"
+     ],
+     "reviewed_on": "2026-11-22"
     }
    ]
   },
@@ -9400,6 +9845,38 @@
      "url": "https://www.undp.org/sites/g/files/zskgke326/files/2023-11/undp-pacific-vanuatu-victims-charter-2023.pdf",
      "sources": [
       "https://www.undp.org/sites/g/files/zskgke326/files/2023-11/undp-pacific-vanuatu-victims-charter-2023.pdf"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
+   "code": "VE",
+   "slug": "venezuela",
+   "name": "Venezuela",
+   "flag": "🇻🇪",
+   "lang": "es",
+   "emergency": {
+    "number": "911",
+    "label": "Ambulance, fire and police",
+    "source": "https://www.gov.uk/foreign-travel-advice/venezuela/getting-help"
+   },
+   "resources": [
+    {
+     "id": "venezuela-0800-mujeres",
+     "section": "help-now",
+     "name": "0800-MUJERES",
+     "org": "Government of Venezuela",
+     "what": "A national line for women facing violence. It gives emotional support and advice and works with the police and security services.",
+     "how": "Call 0800-685-37-37. In danger right now, call 911.",
+     "phone": "0800-685-37-37",
+     "dial": "08006853737",
+     "urgent": true,
+     "chip": "Line for women",
+     "url": "https://data.unwomen.org/global-database-on-violence-against-women/country-profile/Venezuela%20(Bolivarian%20Republic%20of)/measures/L%C3%ADnea%20Telef%C3%B3nica:%200800-Mujeres",
+     "sources": [
+      "https://data.unwomen.org/global-database-on-violence-against-women/country-profile/Venezuela%20(Bolivarian%20Republic%20of)/measures/L%C3%ADnea%20Telef%C3%B3nica:%200800-Mujeres",
+      "https://www.mites.gob.es/ficheros/ministerio/mundo/consejerias/venezuela_archivos/InformacionViolenciaGenero.pdf"
      ],
      "reviewed_on": "2026-11-22"
     }
