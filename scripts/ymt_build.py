@@ -717,6 +717,9 @@ def build_country(data, c):
     path = f'countries/{c["slug"]}.html'
     desc = (f'Free help for moms in {in_name(c)}: the emergency number, domestic violence and crisis lines, family payments, '
             'breastfeeding and postpartum support.')
+    if len(desc) > 160:  # a long name (the Democratic Republic of the Congo): a shorter line, so search results show it whole
+        desc = (f'Free help for moms in {in_name(c)}: the emergency number, crisis lines, family payments, '
+                'breastfeeding and postpartum support.')
     base = f"https://{data['site']['domain']}/"
     about = {'@type': 'CollectionPage', '@id': base + path, 'url': base + path, 'name': f'{c["name"]}: help for moms',
              'description': desc, 'inLanguage': 'en', 'isPartOf': {'@id': base + '#website'},

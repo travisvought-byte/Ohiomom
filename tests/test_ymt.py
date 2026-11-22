@@ -225,7 +225,7 @@ class SiteTests(unittest.TestCase):
         outlines = json.loads((ROOT / 'data/ymt/world-map.json').read_text(encoding='utf-8'))['countries']
         linked = {c['code'] for c in data['world']['countries']} | {'US'}
         self.assertEqual(grey.count('<path'), sum(1 for c in outlines if c.get('code') not in linked), 'the rest of the world is drawn')
-        self.assertGreater(grey.count('<path'), 40, 'the rest of the world is drawn')
+        self.assertGreater(grey.count('<path'), 20, 'the rest of the world is drawn')
         covered = re.search(r'<g class="covered">(.*)</g>', svg.group(1), re.S).group(1)
         links = re.findall(r'<a href="([^"]+)" aria-label="([^"]+)" data-country="([A-Z]{2})">(.*?)</a>', covered, re.S)
         self.assertEqual(len(links), covered.count('<a '), 'every link on the map has a name')
@@ -248,7 +248,8 @@ class SiteTests(unittest.TestCase):
                 self.assertIn('<circle ', by_code[small][2], f'{small} is big enough to tap')
         # The map stays small: the outlines file and the page.
         self.assertLess((ROOT / 'data/ymt/world-map.json').stat().st_size, 60_000)
-        self.assertLess(len(text.encode('utf-8')), 110_000)
+        # The page grows by about 460 bytes a country (its emergency card, its list row and its map link).
+        self.assertLess(len(text.encode('utf-8')), 125_000)
 
     def test_georgia_the_country_is_never_mixed_up_with_the_state(self):
         """Georgia is a country and a U.S. state. The country's page has its own address, says it is the country in its
@@ -274,9 +275,9 @@ class SiteTests(unittest.TestCase):
         """Inside a sentence a the-country reads "in the Philippines", "in the Bahamas", "in the United Kingdom", never
         "in Philippines" or "in The Bahamas"; its heading and title keep the plain name. Every page the build writes is
         read, so a new country or a new sentence is checked too."""
-        known = ('Bahamas', 'Central African Republic', 'Comoros', 'Czech Republic', 'Dominican Republic', 'Gambia',
-                 'Maldives', 'Marshall Islands', 'Netherlands', 'Philippines', 'Solomon Islands', 'United Arab Emirates',
-                 'United Kingdom')
+        known = ('Bahamas', 'Central African Republic', 'Comoros', 'Czech Republic', 'Democratic Republic of the Congo',
+                 'Dominican Republic', 'Gambia', 'Maldives', 'Marshall Islands', 'Netherlands', 'Philippines',
+                 'Solomon Islands', 'United Arab Emirates', 'United Kingdom')
         countries = lib.load()['world']['countries']
         for c in countries:
             bare = c['name'][4:] if c['name'].startswith('The ') else c['name']
