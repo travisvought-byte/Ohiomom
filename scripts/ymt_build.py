@@ -544,6 +544,44 @@ def country_pick(world, root=''):
             f'<select id="countrypick" data-state-pick>{options}</select><a href="{root}world.html">All countries</a></div>')
 
 
+# A country whose English name takes "the" in a sentence: "in the Philippines", "in the United Kingdom". Headings, titles,
+# lists and the map keep the plain name ("The Bahamas", "Philippines"); only words inside a sentence use in_name. A name
+# written with a capital The ("The Bahamas") is lowered by itself; any other the-country is listed here by its code.
+THE_COUNTRIES = {
+    'AE',  # the United Arab Emirates
+    'BS',  # the Bahamas
+    'CD',  # the Democratic Republic of the Congo
+    'CF',  # the Central African Republic
+    'CG',  # the Republic of the Congo
+    'CZ',  # the Czech Republic
+    'DO',  # the Dominican Republic
+    'GB',  # the United Kingdom
+    'GM',  # the Gambia
+    'KM',  # the Comoros
+    'MH',  # the Marshall Islands
+    'MV',  # the Maldives
+    'NL',  # the Netherlands
+    'PH',  # the Philippines
+    'SB',  # the Solomon Islands
+    'US',  # the United States
+    'VA',  # the Vatican
+}
+
+
+def in_name(c):
+    """The country's name as it reads inside a sentence: "in the Philippines", "in the Bahamas", "in Canada"."""
+    name = c['name']
+    if name.startswith('The '):
+        return 'the ' + name[4:]
+    return ('the ' + name) if c.get('code') in THE_COUNTRIES else name
+
+
+def possessive(c):
+    """"the Philippines' own services", "Canada's own services": a plural the-name takes the apostrophe alone."""
+    name = in_name(c)
+    return name + ("'" if name.startswith('the ') and name.endswith('s') else "'s")
+
+
 # The U.S. summaries name U.S. programs (WIC, Head Start), so the pages outside the U.S. say it their own way.
 WORLD_SUMMARIES = {
     'help-now': 'Safety, crisis support and urgent needs. Free, and most lines are open any hour.',
@@ -576,7 +614,7 @@ def empty_need(sec, c, root=''):
     return (f'<details class="need" id="{sec["id"]}"><summary><span class="ico" aria-hidden="true">{sec["icon"]}</span>'
             f'<h2>{esc(sec["label"])}</h2><span class="nsum">{esc(sec["summary"])}</span>'
             f'<span class="ncount">Not listed yet</span></summary><p class="pending">We have not listed a service in '
-            f'{esc(c["name"])} for this yet. If you or your child are in danger, call {esc(c["emergency"]["number"])}, or open '
+            f'{esc(in_name(c))} for this yet. If you or your child are in danger, call {esc(c["emergency"]["number"])}, or open '
             f'<a href="#help-now">Get help now</a>. Know a free service for moms here? <a href="{root}report.html">Tell us</a> '
             f'and we will add it.</p></details>')
 
@@ -584,7 +622,7 @@ def empty_need(sec, c, root=''):
 def emergency_card(c):
     e = c['emergency']
     return (f'<li><a class="phonecard" href="tel:{esc(e["number"])}">Call {esc(e["number"])}'
-            f'<small>Emergency in {esc(c["name"])}: {esc(e["label"])}</small></a></li>')
+            f'<small>Emergency in {esc(in_name(c))}: {esc(e["label"])}</small></a></li>')
 
 
 WORLD_MAP = lib.DATA / 'world-map.json'  # Natural Earth outlines, made by scripts/world_map_data.py
@@ -662,7 +700,7 @@ def build_country(data, c):
     cards_now = emergency_card(c) + ''.join(
         f'<li><a class="phonecard" href="{dial_href(r)}">Call {esc(r["phone"])}<small>{esc(r.get("chip") or r["name"])}</small></a></li>'
         for r in urgent)
-    intro = (f'Pick what you need, or search every listing. Each choice shows {esc(c["name"])}\'s own services first, '
+    intro = (f'Pick what you need, or search every listing. Each choice shows {esc(possessive(c))} own services first, '
              f'then help that works in any country. <a href="../world.html">Choose another country</a>.')
     if c.get('us_state'):  # a country with the name of a U.S. state (Georgia): link to the state, so the two are never mixed up
         st = next(s for s in data['states'] if s['abbr'] == c['us_state'])
@@ -672,12 +710,12 @@ def build_country(data, c):
             + f'<section class="wrap now" id="now"><h2>Need help right now?</h2>'
             f'<p class="quiet">If you or your child are in danger, call {esc(c["emergency"]["number"])}.</p>'
             f'<ul class="phonecards">{cards_now}</ul></section>'
-            + finder(f'Search every {c["name"]} listing', 'helpline, benefit, breastfeeding…', NO_MATCH_WORLD)
+            + finder(f'Search every listing for {in_name(c)}', 'helpline, benefit, breastfeeding…', NO_MATCH_WORLD)
             + needs(world_rows(data, everything, '../', c))
             + kind_word('#take-care', '../', c.get('lang'))
             + closing('../', 'Numbers are free to call unless the listing says otherwise. '))
     path = f'countries/{c["slug"]}.html'
-    desc = (f'Free help for moms in {c["name"]}: the emergency number, domestic violence and crisis lines, family payments, '
+    desc = (f'Free help for moms in {in_name(c)}: the emergency number, domestic violence and crisis lines, family payments, '
             'breastfeeding and postpartum support.')
     base = f"https://{data['site']['domain']}/"
     about = {'@type': 'CollectionPage', '@id': base + path, 'url': base + path, 'name': f'{c["name"]}: help for moms',
