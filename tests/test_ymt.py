@@ -85,6 +85,8 @@ class SiteTests(unittest.TestCase):
             self.assertEqual(html_tag.get('lang'), 'en', path)
             self.assertTrue([1 for t, a in p.tags if t == 'title'], path)
 
+    ADSENSE = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client='
+
     def test_no_third_party_loading_or_tracking(self):
         for path in PAGES:
             for tag, a in parse(path).tags:
@@ -92,6 +94,8 @@ class SiteTests(unittest.TestCase):
                     continue  # a canonical link names the page itself; it loads nothing
                 if tag in ('script', 'link', 'img', 'iframe', 'source', 'video', 'audio', 'form', 'input'):
                     ref = a.get('src') or (a.get('href') if tag == 'link' else '') or ''
+                    if tag == 'script' and lib.load()['adsense_client'] and ref == self.ADSENSE + lib.load()['adsense_client']:
+                        continue  # Google's ad code, once a publisher ID is set (scripts/ads.py; tests/test_ads.py NetworkTests)
                     self.assertFalse(ref.startswith(('http://', 'https://', '//')), f'{path}: external <{tag}> {ref}')
                     self.assertNotIn(tag, ('iframe', 'form'), f'{path}: unexpected <{tag}>')
                     if tag == 'input':
