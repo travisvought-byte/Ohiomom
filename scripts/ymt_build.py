@@ -843,7 +843,9 @@ def build_about(data):
 <h2>How we choose listings</h2><ul><li>We list free or low-cost public programs, nonprofits and official locators. We do not list private businesses, and nobody pays to be listed.</li><li>Each listing links to the published sources it came from and shows the date it was checked.</li><li>Contacts come from official sources and are not confirmed by telephone. Phone numbers and websites change. If one is wrong, <a href="report.html">tell us</a>.</li><li>Every link is checked automatically each month, and a person reviews any that fail.</li><li>Domestic violence shelter addresses are never listed. We point to the hotline or state coalition that places people safely.</li></ul>
 <h2>What this site is not</h2><p>It is not an emergency service. If you or someone else is in danger, call 911. It does not give legal, medical or financial advice, and it cannot sign you up for anything.</p>
 {advertise(site)}
+<h2 id="contact">Contact us</h2><p>Email <a href="{esc(mail_href(site, f'{site["name"]}: a question'))}">{esc(site["corrections_email"])}</a> with a question, a correction, an idea for a listing or an advertising request. To fix one listing, <a href="report.html">Report a problem</a> is quickest. We read every message, but this is not an emergency line.</p>
 <h2>Your privacy and safety</h2><ul><li>There is no sign-up, and the Yoga Mom Talk pages have no forms. The OhioMom pages have a few short forms for reports and questions; our <a href="privacy.html">Privacy page</a> says what they send.</li><li>We count visits with GoatCounter, which does not use cookies and does not record who you are. Nothing you type in a search or ZIP code box is sent.</li><li>The site may show ads. Each one is labeled Advertisement and kept apart from the listings. An ad network, if we use one, may set its own cookies; the <a href="privacy.html#ads">Privacy page</a> says how to turn off personalized ads.</li><li>This site is hosted on GitHub Pages, which logs visitors' internet addresses for security. The OhioMom pages also load a script from Wix, which runs their forms and may set a few cookies. We do not control those.</li><li>A <strong>Leave this site</strong> button is on every page. It takes you to a weather search and removes this page from your back button.</li><li>It cannot erase your browser history. If someone else may check your device, use a private or incognito window, or a device they cannot reach.</li><li>Sites we link to have their own privacy practices.</li></ul>
+<p>The <a href="terms.html">Terms of use</a> cover using this site.</p>
 <h2>Credit and license</h2><p>{esc(data["attribution"])} The data on this site is licensed CC BY 4.0 and the code is MIT. Listings describe third-party organizations from their published sources. The license covers the compilation and gives no rights in those organizations' names or marks.</p></div></section>'''
     return page(data, 'about.html', 'About', f'Who runs {site["name"]}, how listings are chosen and checked, and how your privacy and safety are protected.', body)
 
@@ -889,11 +891,38 @@ def build_privacy(data):
 <h2 id="selling">We do not sell your information</h2><p>We do not sell personal information.</p>
 <h2 id="children">Children</h2><p>This site is for parents and caregivers. It is not directed to children under 13, and we do not knowingly collect information from them.</p>
 <h2 id="links">Other sites</h2><p>Listings and ads link to other websites. Those sites have their own privacy practices.</p>
-<h2 id="contact">Questions</h2><p>Write to <a href="{esc(mail_href(site, f"{site['name']}: privacy question"))}">{email}</a>, or use <a href="report.html">Report a problem</a>. If this page changes, the date at the top changes with it.</p>
+<h2 id="contact">Questions</h2><p>Write to <a href="{esc(mail_href(site, f"{site['name']}: privacy question"))}">{email}</a>, or use <a href="report.html">Report a problem</a>. If this page changes, the date at the top changes with it. The <a href="terms.html">Terms of use</a> cover using the site.</p>
 </div></section>'''
     return page(data, 'privacy.html', 'Privacy',
                 f'What {site["name"]} collects and what it does not: hosting on GitHub Pages, no sign-up, the OhioMom forms, and how ads and ad cookies work.', body,
                 head_extra=structured_data(breadcrumbs(data, [('Privacy', 'privacy.html')])))
+
+
+TERMS_UPDATED = '2026-11-22'
+
+
+def build_terms(data):
+    """The plain terms for using the site (November 22, 2026), the page ad networks' reviewers look for."""
+    site = data['site']
+    name = esc(site['name'])
+    email = esc(site['corrections_email'])
+    updated = lib.pretty_date(TERMS_UPDATED)
+    lede = f'The plain terms for using {name}. Last updated <time datetime="{TERMS_UPDATED}">{updated}</time>.'
+    body = hero('Terms of use', lede) + f'''
+<section class="wrap"><div class="steps">
+<p>These terms cover {name} at {esc(site["domain"])}, including the OhioMom pages and the Ohio family guide. It is run by Travis and Deborah Vought. Using the site means you accept these terms.</p>
+<h2 id="what">What this site is</h2><p>{name} is a free directory of public programs, nonprofits and official locators for mothers and caregivers. It is information, not an emergency service, and it does not give legal, medical or financial advice. If you or someone else is in danger, call 911 or your local emergency number.</p>
+<h2 id="check">Check before you rely on a listing</h2><p>Listings come from published official and organization sources and show the date they were checked. They are not confirmed by telephone, and programs change. Confirm with the program before you rely on it. If a listing is wrong, <a href="report.html">tell us</a> and we fix it.</p>
+<h2 id="ads">Ads</h2><p>Ads are labeled Advertisement and kept apart from the listings. They are paid for by the advertiser, and we do not vouch for what an advertiser offers. An ad never changes what is listed or the order of the listings. <a href="about.html#advertise">How we take ads</a></p>
+<h2 id="links">Other sites</h2><p>Listings and ads link to sites we do not run. They have their own terms and privacy rules.</p>
+<h2 id="warranty">No warranty</h2><p>The site is provided as it is, without any warranty. We are not responsible for decisions made on the strength of a listing, or for what another organization does or does not provide.</p>
+<h2 id="use">Using what is here</h2><p>{esc(data["attribution"])} The data on this site is licensed CC BY 4.0 and the code is MIT. Those licenses give no rights in the names or marks of the organizations listed.</p>
+<h2 id="privacy">Your information</h2><p>The <a href="privacy.html">Privacy page</a> says what this site collects and what it does not.</p>
+<h2 id="contact">Changes and questions</h2><p>We may update these terms and will change the date at the top when we do. Questions: <a href="{esc(mail_href(site, f"{site['name']}: terms question"))}">{email}</a>.</p>
+</div></section>'''
+    return page(data, 'terms.html', 'Terms of use',
+                f'The terms for using {site["name"]}: a free information directory, listings to confirm with the program, labeled ads and no warranty.', body,
+                head_extra=structured_data(breadcrumbs(data, [('Terms of use', 'terms.html')])))
 
 
 def build_report(data):
@@ -923,7 +952,7 @@ def build_all(data):
         'index.html': build_index(data), 'help.html': build_help(data), 'connect.html': build_connect(data),
         'states.html': build_states_index(data), 'christmas.html': build_christmas(data), 'yoga.html': build_yoga(data), 'about.html': build_about(data),
         'report.html': build_report(data), '404.html': build_404(data), 'county.html': build_county(data),
-        'privacy.html': build_privacy(data),
+        'privacy.html': build_privacy(data), 'terms.html': build_terms(data),
     }
     for s in data['states']:
         files[f'states/{s["abbr"].lower()}.html'] = build_state(data, s)

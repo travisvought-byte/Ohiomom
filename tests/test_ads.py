@@ -98,6 +98,19 @@ class PrivacyTests(unittest.TestCase):
         self.assertIn('href="../about.html#advertise"', ohio)
         self.assertIn('href="../privacy.html"', ohio)
 
+    def test_contact_and_terms_for_ad_review(self):
+        # November 22, 2026: the About page names a contact, and a Terms of use page exists, is linked and is in the sitemap.
+        about = (ROOT / 'about.html').read_text(encoding='utf-8')
+        self.assertIn('<h2 id="contact">Contact us</h2>', about)
+        self.assertIn('href="terms.html"', about)
+        self.assertIn('href="terms.html"', (ROOT / 'privacy.html').read_text(encoding='utf-8'))
+        terms = (ROOT / 'terms.html').read_text(encoding='utf-8')
+        for words in ('Terms of use', 'not an emergency service', 'Ads are labeled Advertisement', 'without any warranty', 'href="privacy.html"',
+                      'mailto:' + DATA['site']['corrections_email']):
+            self.assertIn(words, terms)
+        self.assertNotIn('ad-slot', terms)
+        self.assertIn('<loc>https://www.yogamomtalk.com/terms.html</loc>', (ROOT / 'sitemap.xml').read_text(encoding='utf-8'))
+
     def test_the_one_visit_counter_is_the_one_the_privacy_page_describes(self):
         """GoatCounter (added November 19, 2026 at the owner's request) is the only counter. It is loaded by the three shared
         scripts, the same lines in each; it sends only the page's path, with no query string; no page loads a counter or ad
@@ -174,7 +187,7 @@ class AdSlotTests(unittest.TestCase):
 
     def test_crisis_and_other_pages_never_carry_an_ad(self):
         pages = built(fixture())
-        for rel in ('about.html', 'privacy.html', 'report.html', '404.html', 'states.html', 'yoga.html', 'jokes.html', 'affirmations.html'):
+        for rel in ('about.html', 'privacy.html', 'terms.html', 'report.html', '404.html', 'states.html', 'yoga.html', 'jokes.html', 'affirmations.html'):
             if rel in pages:
                 self.assertNotIn('ad-slot', pages[rel], rel)
         for rel in ads.NEVER:
