@@ -61,7 +61,7 @@ class SiteTests(unittest.TestCase):
     def test_expected_pages_exist(self):
         data = lib.load()
         names = {str(p.relative_to(ROOT)) for p in PAGES}
-        for n in ('index.html', 'help.html', 'connect.html', 'states.html', 'yoga.html', 'about.html', 'privacy.html', 'report.html', '404.html'):
+        for n in ('index.html', 'help.html', 'connect.html', 'states.html', 'yoga.html', 'about.html', 'privacy.html', 'terms.html', 'report.html', '404.html'):
             self.assertIn(n, names)
         for s in data['states']:
             self.assertIn(f"states/{s['abbr'].lower()}.html", names)
@@ -479,11 +479,11 @@ class SiteTests(unittest.TestCase):
         expected = {path: 'assets/share.jpg' for path in PAGES}
         expected.update({path: 'ohio/assets/share.jpg' for path in ohio})
         expected[ROOT / 'family-guide.html'] = 'assets/share-family-guide.jpg'
-        # 62 national pages (christmas.html among them), the world page and one page per country (data/ymt/world.json), the list of daily affirmations
+        # 63 national pages (christmas.html and terms.html among them), the world page and one page per country (data/ymt/world.json), the list of daily affirmations
         # and the old address of the jokes that passes visitors on to it, once an affirmation is approved; 24 Ohio pages;
         # the family guide
         world = 1 + len(lib.load()['world']['countries'])
-        self.assertEqual(len(expected), 62 + world + (2 if home_extras.approved_affirmations() else 0) + 24 + 1)
+        self.assertEqual(len(expected), 63 + world + (2 if home_extras.approved_affirmations() else 0) + 24 + 1)
         for path, picture in expected.items():
             p = parse(path)
             meta = {a.get('property') or a.get('name'): a.get('content') for t, a in p.tags if t == 'meta'}
