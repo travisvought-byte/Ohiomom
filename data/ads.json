@@ -1,4 +1,6 @@
 {
  "about": "Ads for the ad slots. Empty means no page carries an ad. The fields, the slot names and the rules are at the top of scripts/ads.py. After a change: python3 scripts/ymt_validate.py, python3 scripts/ymt_build.py, then publish.",
+ "adsense_client_about": "Google AdSense publisher ID, like ca-pub-1234567890123456. Empty means no page loads Google's ad code and there is no ads.txt. Set it once the AdSense account exists, then build and publish. See 'Google AdSense' at the top of scripts/ads.py.",
+ "adsense_client": "",
  "ads": []
 }

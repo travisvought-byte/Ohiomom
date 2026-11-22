@@ -53,7 +53,7 @@ class PrivacyTests(unittest.TestCase):
     def test_privacy_page_exists_and_says_what_it_must(self):
         text = (ROOT / 'privacy.html').read_text(encoding='utf-8')
         self.assertIn('<h1>Privacy</h1>', text)
-        self.assertIn('<time datetime="2026-11-20">November 20, 2026</time>', text)
+        self.assertIn('<time datetime="2026-11-22">November 22, 2026</time>', text)
         for words in ('hosted on GitHub Pages', 'We count visits with GoatCounter', 'does not use cookies', 'never a search or ZIP code', 'Your internet address itself is not stored', 'There is no sign-up',
                       'Every ad is labeled "Advertisement" and kept apart from the resource listings',
                       'Google AdSense', 'https://adssettings.google.com', 'https://policies.google.com/technologies/ads',
@@ -114,7 +114,7 @@ class PrivacyTests(unittest.TestCase):
     def test_the_one_visit_counter_is_the_one_the_privacy_page_describes(self):
         """GoatCounter (added November 19, 2026 at the owner's request) is the only counter. It is loaded by the three shared
         scripts, the same lines in each; it sends only the page's path, with no query string; no page loads a counter or ad
-        network of its own. If a counter or an ad network changes, the Privacy page changes in the same commit."""
+        network of its own (Google's ad code is added only once data/ads.json names a publisher ID; see NetworkTests). If a counter or an ad network changes, the Privacy page changes in the same commit."""
         scripts = ['assets/ymt.js', 'ohio/assets/site.js', 'assets/family-guide.js']
         blocks = []
         for rel in scripts:
@@ -128,7 +128,7 @@ class PrivacyTests(unittest.TestCase):
             self.assertNotRegex(text, r'(?i)googletagmanager|google-analytics|gtag\(|adsbygoogle', rel)
         self.assertEqual(len(set(blocks)), 1, 'the counter lines must be the same in all three scripts')
         for path in site_pages():
-            text = path.read_text(encoding='utf-8')
+            text = ads.NETWORK.sub('', path.read_text(encoding='utf-8'))  # Google's ad code, once a publisher ID is set, is checked in NetworkTests
             self.assertNotRegex(text, r'(?i)gc\.zgo\.at|googletagmanager|google-analytics|gtag\(|adsbygoogle', path)
 
     def test_every_page_carries_the_visit_counter(self):
@@ -225,3 +225,61 @@ class AdSlotTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class NetworkTests(unittest.TestCase):
+    """Google AdSense (owner decision, November 22, 2026): non-personalized only, off the help and crisis pages,
+    and nothing at all until data/ads.json names a publisher ID."""
+    CLIENT = 'ca-pub-1234567890123456'
+
+    def with_client(self):
+        data = copy.deepcopy(DATA)
+        data['adsense_client'] = self.CLIENT
+        return data
+
+    def test_no_publisher_id_means_no_ad_code(self):
+        if DATA['adsense_client']:
+            self.skipTest('a publisher ID is set; the tests below cover the code it adds')
+        self.assertFalse((ROOT / 'ads.txt').exists())
+        self.assertNotIn('ads.txt', ymt_build.build_all(DATA))
+        for path in site_pages():
+            self.assertNotIn('googlesyndication', path.read_text(encoding='utf-8'), path)
+
+    def test_publisher_id_is_checked(self):
+        self.assertEqual(ads.check_client(''), [])
+        self.assertEqual(ads.check_client(self.CLIENT), [])
+        for bad in ('pub-1234567890123456', 'ca-pub-123', 'ca-pub-1234567890123456"><script>'):
+            self.assertTrue(ads.check_client(bad), bad)
+
+    def test_code_only_on_slot_pages_that_are_not_help_pages(self):
+        data = self.with_client()
+        pages = built(data)
+        loader = f'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={self.CLIENT}'
+        carry = {'index.html', 'connect.html', 'county.html', 'states/oh.html', 'ohio/index.html', 'ohio/connect.html'}
+        carry |= {rel for rel in pages if rel.startswith('ohio/counties/') or rel.startswith('countries/')}
+        never = {'help.html', 'christmas.html', 'world.html', 'about.html', 'privacy.html', 'terms.html', 'report.html', '404.html',
+                 'states.html', 'yoga.html', 'affirmations.html', 'ohio/help/bills.html', 'ohio/help/pregnancy-baby.html',
+                 'ohio/help/single-parent.html'} | set(ads.NEVER)
+        for rel in carry:
+            if rel not in pages:
+                continue
+            text = pages[rel]
+            head = text.split('</head>')[0]
+            self.assertEqual(text.count(loader), 1, rel)
+            self.assertIn(loader, head, rel)
+            self.assertLess(head.index('requestNonPersonalizedAds=1'), head.index(loader), rel + ': non-personalized is asked first')
+            self.assertIn(f'<meta name="google-adsense-account" content="{self.CLIENT}">', head, rel)
+        for rel in never:
+            if rel in pages:
+                self.assertNotIn('googlesyndication', pages[rel], rel)
+            elif (ROOT / rel).exists():
+                self.assertNotIn('googlesyndication', (ROOT / rel).read_text(encoding='utf-8'), rel)
+        self.assertNotIn('googlesyndication', (ROOT / 'family-guide.html').read_text(encoding='utf-8'))
+
+    def test_ads_txt_and_hand_kept_pages_round_trip(self):
+        data = self.with_client()
+        self.assertEqual(ymt_build.build_all(data)['ads.txt'], 'google.com, pub-1234567890123456, DIRECT, f08c47fec0942fa0\n')
+        for rel, text in ymt_build.ohio_ad_files(data).items():
+            back = ads.place_network(text, '', ads.ohio_pages()[rel])
+            self.assertEqual(back, ads.NETWORK.sub('', (ROOT / rel).read_text(encoding='utf-8')), f'{rel}: removing the code restores the page')
+            self.assertEqual(ads.place_network(text, self.CLIENT, ads.ohio_pages()[rel]), text, f'{rel}: placing twice adds nothing')

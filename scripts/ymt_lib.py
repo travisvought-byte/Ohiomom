@@ -37,6 +37,9 @@ def load():
         'world': read_json('world.json') if (DATA / 'world.json').exists() else {'worldwide': [], 'countries': []},
         # The ads for the ad slots (scripts/ads.py). The list is empty until an ad is sold.
         'ads': json.loads((ROOT / 'data' / 'ads.json').read_text(encoding='utf-8')).get('ads', []) if (ROOT / 'data' / 'ads.json').exists() else [],
+        # Google AdSense publisher ID (ca-pub-...). Empty until the owner's AdSense account exists; then scripts/ads.py
+        # puts Google's ad code on the pages that may carry an ad and writes ads.txt.
+        'adsense_client': json.loads((ROOT / 'data' / 'ads.json').read_text(encoding='utf-8')).get('adsense_client', '') if (ROOT / 'data' / 'ads.json').exists() else '',
     }
 
 
