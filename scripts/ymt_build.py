@@ -49,6 +49,7 @@ IAM = [
     ('about to lose my home', 'help.html#housing'),
     ('leaving an unsafe situation', 'help.html#us-ndvh'),
     ('a military or veteran family', 'help.html#military'),
+    ('raising my grandkids', 'kinship.html'),
     ('missing someone in jail or prison', 'inside.html'),
     ('having a really hard time', 'help.html#take-care'),
     ('new here and want to meet moms', 'connect.html'),
@@ -514,6 +515,52 @@ def build_inside(data):
     return page(data, 'inside.html', 'When someone you love is in jail or prison: help for moms', desc, body,
                 head_extra=structured_data(about, breadcrumbs(data, [('Someone I love is in jail or prison', 'inside.html')])))
 
+
+KINSHIP_ROWS = [
+    ('kin-start', '\U0001f9ed', 'Where to start', 'A navigator who knows the programs, and the fact sheet for your state.',
+     ['us-kin-navigator', 'us-grandfacts', 'us-211-help']),
+    ('kin-money', '\U0001f9fa', 'Money and health coverage for the child', 'Cash help for the child, Medicaid or CHIP, and food.',
+     ['us-tanf-child-only', 'us-insure-kids', 'us-snap', 'us-wic']),
+    ('kin-legal', '\u2696\ufe0f', 'Custody, guardianship, foster care and school', 'Free legal help to choose the right papers, and what a foster license means.',
+     ['us-legal-aid', 'us-kin-foster-license', 'us-gu-grandfamilies']),
+    ('kin-you', '\u2615', 'Support for you', 'Other grandparents who understand, a break, and someone to talk to.',
+     ['us-kin-caregiver-support', 'us-parent-helpline', 'us-samhsa']),
+]
+
+
+def build_kinship(data):
+    """Grandparents and other relatives raising children (kinship care, "grandfamilies"): the national listings by need,
+    a plain-words note on legal custody and a foster license, and the way to Ohio's own page."""
+    nat = {r['id']: r for r in data['resources']}
+    rows = []
+    for rid, icon, label, summary, ids in KINSHIP_ROWS:
+        sec = {'id': rid, 'label': label, 'icon': icon, 'summary': summary}
+        rows.append(need(sec, [nat[i] for i in ids], '', {i: f'{rid}--{i}' for i in ids}))
+    lede = ('You stepped in when the children needed you. Whether you are their grandmother, aunt, uncle, big sister or a family friend, '
+            'there is help for them and for you. Pick what you need first.')
+    choose = ('<section class="wrap"><div class="localbox"><strong>Legal custody or a foster license?</strong> '
+              'If you are caring for the children on your own, with no court order, you may need papers to enroll them in school or to take them to the doctor. '
+              'A court can give you legal custody or guardianship, which lets you make those decisions. '
+              'If children services placed the children with you, you can also ask about becoming a licensed foster parent, which comes with foster care payments. '
+              'Each choice affects money, your rights and the parents\' rights differently, so talk with free legal aid before you sign anything. '
+              'Your <a href="https://grandfamilies.org/state-fact-sheets" rel="noopener">state\'s GrandFacts sheet</a> lists the options where you live.</div></section>')
+    parent = ('<section class="wrap"><div class="localbox"><strong>If a parent is struggling with addiction.</strong> Many grandparents are raising grandchildren because of opioids or other drugs. '
+              'The <a href="#kin-you--us-samhsa">SAMHSA National Helpline</a> is free and private, any hour, for the parent or for you. '
+              'Taking care of yourself is part of taking care of them.</div></section>')
+    ohio = ('<section class="wrap"><div class="localbox"><strong>In Ohio?</strong> '
+            '<a href="ohio/help/kinship.html">Raising a grandchild in Ohio</a> covers OhioKAN, Ohio\'s kinship programs, '
+            'the grandparent power of attorney and caretaker affidavit, cash help, Medicaid and school enrollment.</div></section>')
+    body = (hero('Raising a grandchild or a relative\'s child', lede)
+            + finder('Search this page', 'custody, cash help, Medicaid…') + needs(''.join(rows)) + choose + parent + ohio
+            + '<section class="wrap slim"><p>In danger right now? Call 911. To report a child in danger, call the Childhelp hotline at <a href="tel:8004224453">800-422-4453</a>.</p></section>')
+    desc = ('Raising your grandkids? Find a kinship navigator, cash help and Medicaid for the child, '
+            'custody or foster license options, and support for you.')
+    base = f"https://{data['site']['domain']}/"
+    about = {'@type': 'CollectionPage', '@id': base + 'kinship.html', 'url': base + 'kinship.html',
+             'name': 'Raising a grandchild or a relative\'s child', 'description': desc, 'inLanguage': 'en', 'isPartOf': {'@id': base + '#website'}}
+    return page(data, 'kinship.html', 'Raising a grandchild or a relative\'s child: help for grandparents and kinship caregivers', desc, body,
+                head_extra=structured_data(about, breadcrumbs(data, [('Find help', 'help.html'), ('Raising a grandchild', 'kinship.html')])),
+                slots=('topic-help', 'topic'))
 
 def build_connect(data):
     prim = [r for r in data['resources'] if r['section'] == 'connect']
