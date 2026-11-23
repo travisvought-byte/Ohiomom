@@ -56,6 +56,9 @@ function checkCards(d, label) {
     if (c.id.startsWith('tft-')) {
       // A Toys for Tots campaign has its website instead: each campaign keeps its phone on its own Contact page.
       assert(!call && c.querySelector(':scope > p.actions a[href$=".toysfortots.org/"]'), `${label} #${c.id}: the campaign's website`);
+    } else if (c.id.startsWith('mh-') && !call) {
+      // Help for moms: diaper banks and breastfeeding groups often publish a website and no phone; it is shown only once it loaded.
+      assert(c.querySelector(':scope > p.actions a[href^="https://"]'), `${label} #${c.id}: a phone or a website`);
     } else {
       assert(call && /^tel:\+1\d{10}$/.test(call.getAttribute('href')), `${label} #${c.id}: a phone to call`);
       assert(call.getAttribute('href').endsWith(call.textContent.replace(/\D/g, '')), `${label} #${c.id}: the link dials the number shown`);

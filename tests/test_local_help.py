@@ -184,6 +184,8 @@ class CountyRow(unittest.TestCase):
         self.assertIn('Columbus Diaper Bank', html)
         self.assertIn('https://columbusdiaperbank.org', html)
         self.assertIn('National Diaper Bank Network', html)
+        self.assertIn('<p class="nextstep"><strong>Next step:</strong>', html)   # said once for the group, like every row
+        self.assertIn('<p class="org">', html)
         self.assertIn('not confirmed by phone', html)
         self.assertIn('Diapers in or near Franklin County', html)
 

@@ -1132,14 +1132,10 @@ def _mh_card(r, m, src, ctx):
         short = where + what.split(': ')[0].split('. ')[0].rstrip('.') + '.'
     if len(short) > room:
         short = where.strip()
-    more = []
-    if r['org']:
-        more.append(_p(r['org'], 'org'))
+    more = [_p(r['org'] or f'Listed by {src["publisher"]}', 'org')]
     place = _place(r['street'], r['city'], r['state'], r['zip']) if r['street'] else ''
     if place:
         more.append(_p(place))
-    if src.get('next'):
-        more.append(_next(src['next']))
     url = _safe_url(r['source_url'])
     link = f' Source: <a href="{esc(url)}" rel="noopener">1</a>' if url else ''
     more.append(f'<p class="src">From {esc(src["publisher"])}: {esc(src["name"])}, copied {esc(_pretty(r["checked_on"]))}, '
@@ -1165,7 +1161,21 @@ def mh_row(st, fips, c, sname, code, root):
         items = sorted((x for x in refs if x[0]['need'] == need), key=lambda x: (x[1], x[0]['name']))
         if items:
             cards = ''.join(_mh_card(r, m, lh['sources'][r['source_id']], ctx) for r, m in items)
-            groups.append(f'<h3 class="subneed">{esc(heading)}</h3><div class="cards">{cards}</div>')
+            used = []   # the group's sources, most listings first: the next step is the main one's, the source line names all
+            for r, _m in items:
+                if r['source_id'] not in used:
+                    used.append(r['source_id'])
+            used.sort(key=lambda sid: -sum(1 for r, _m in items if r['source_id'] == sid))
+            srcs = [lh['sources'][sid] for sid in used]
+            nxt = next((x['next'] for x in srcs if x.get('next')), '')
+            links = ' '.join(f'<a href="{esc(_safe_url(x.get("cite_url") or x["homepage"]))}" rel="noopener">{i}</a>'
+                             for i, x in enumerate(srcs, 1) if _safe_url(x.get('cite_url') or x['homepage']))
+            copied = max(r['checked_on'] for r, _m in items)
+            groups.append(f'<h3 class="subneed">{esc(heading)}</h3>'
+                          + (f'<p class="nextstep"><strong>Next step:</strong> {esc(nxt)}</p>' if nxt else '')
+                          + f'<div class="cards">{cards}</div>'
+                          + f'<p class="src">From {esc("; ".join(x["publisher"] for x in srcs))}, copied {esc(_pretty(copied))}, '
+                          f'not confirmed by phone. Sources: {links}</p>')
             present.append(heading if need in ('wic', 'healthy-start') else heading.lower())
     inside = sum(1 for _r, m in refs if m == 0)
     tail = (f'<p class="quiet">WIC, help paying for child care, health coverage for you and your baby and more are on '
