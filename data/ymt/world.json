@@ -158,6 +158,40 @@
    ]
   },
   {
+   "code": "DZ",
+   "slug": "algeria",
+   "name": "Algeria",
+   "flag": "🇩🇿",
+   "lang": "ar",
+   "emergency": {
+    "number": "17",
+    "label": "Police (or 1548). Ambulance: 1021; fire: 14",
+    "source": "https://www.gov.uk/foreign-travel-advice/algeria/getting-help"
+   },
+   "resources": [
+    {
+     "id": "algeria-1111",
+     "section": "kids-differently",
+     "name": "Child protection green line 1111",
+     "org": "National Body for the Protection and Promotion of Childhood (ONPPE)",
+     "what": "A free national line for reporting harm to a child. A child, a parent or anyone else can call. Psychologists, sociologists and lawyers answer in shifts through the day; the caller's name is kept confidential and the call does not show on the phone bill.",
+     "how": "Call 1111, free, from a landline or a mobile. In danger right now, call 17.",
+     "phone": "1111",
+     "dial": "1111",
+     "urgent": true,
+     "chip": "Child line",
+     "url": "https://network.onppe.dz/en/1111-green-number",
+     "sources": [
+      "https://network.onppe.dz/en/1111-green-number"
+     ],
+     "also": [
+      "help-now"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
    "code": "AD",
    "slug": "andorra",
    "name": "Andorra",
@@ -2573,6 +2607,36 @@
    ]
   },
   {
+   "code": "DM",
+   "slug": "dominica",
+   "name": "Dominica",
+   "flag": "🇩🇲",
+   "lang": "en",
+   "emergency": {
+    "number": "999",
+    "label": "Ambulance, fire and police",
+    "source": "https://www.gov.uk/foreign-travel-advice/dominica/getting-help"
+   },
+   "resources": [
+    {
+     "id": "dominica-gender-affairs",
+     "section": "help-now",
+     "name": "Bureau of Gender Affairs",
+     "org": "Government of Dominica",
+     "what": "The government office for gender issues, which gives psychosocial support to people facing domestic violence. Its hours are not stated, so it may answer only in working hours.",
+     "how": "Call 767-266-3344 or 767-448-7855. In danger right now, call 999.",
+     "phone": "767-266-3344",
+     "dial": "7672663344",
+     "url": "https://genderaffairs.gov.dm/contact-us",
+     "sources": [
+      "https://genderaffairs.gov.dm/contact-us",
+      "https://communitydevelopment.gov.dm/blog/38-blog-post-1"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
    "code": "DO",
    "slug": "dominican-republic",
    "name": "Dominican Republic",
@@ -2859,6 +2923,35 @@
       "https://sotsiaalkindlustusamet.ee/en/family-benefits-and-allowances/family-benefits-overview/child-and-family-benefits-rates"
      ],
      "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "SZ",
+   "slug": "eswatini",
+   "name": "Eswatini",
+   "flag": "🇸🇿",
+   "lang": "ss",
+   "emergency": {
+    "number": "999",
+    "label": "Police. Ambulance: 977; fire: 933",
+    "source": "https://www.gov.uk/foreign-travel-advice/eswatini/getting-help"
+   },
+   "resources": [
+    {
+     "id": "eswatini-mental-health",
+     "section": "take-care",
+     "name": "Emergency lines for counselling and support",
+     "org": "Listed by the World Health Organization in Eswatini",
+     "what": "For emotional distress, depression, anxiety or thoughts of suicide, WHO in Eswatini says to go to your nearest health facility or call the toll-free emergency line 999 or 977 for counselling and support.",
+     "how": "Call 999 or 977, free.",
+     "phone": "977",
+     "dial": "977",
+     "url": "https://afro.who.int/countries/eswatini/event/eswatini-walks-talk-stepping-together-mental-health",
+     "sources": [
+      "https://afro.who.int/countries/eswatini/event/eswatini-walks-talk-stepping-together-mental-health"
+     ],
+     "reviewed_on": "2026-11-22"
     }
    ]
   },
@@ -4197,6 +4290,67 @@
    ]
   },
   {
+   "code": "IR",
+   "slug": "iran",
+   "name": "Iran",
+   "flag": "🇮🇷",
+   "lang": "fa",
+   "emergency": {
+    "number": "110",
+    "label": "Police. Ambulance: 115; fire: 125",
+    "source": "https://www.gov.uk/foreign-travel-advice/iran/getting-help"
+   },
+   "resources": [
+    {
+     "id": "iran-123",
+     "section": "help-now",
+     "name": "Social emergency line 123",
+     "org": "State Welfare Organization, listed by UNHCR",
+     "what": "The national social emergency line, free and open day and night.",
+     "how": "Call 123, free, any hour. In danger right now, call 110.",
+     "phone": "123",
+     "dial": "123",
+     "urgent": true,
+     "chip": "Social emergency line",
+     "url": "https://help.unhcr.org/iran/en/what-are-the-main-services-for-asylum-seekers-and-refugees-in-iran/psycho-social-support/",
+     "sources": [
+      "https://help.unhcr.org/iran/en/what-are-the-main-services-for-asylum-seekers-and-refugees-in-iran/psycho-social-support/"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "iran-1480",
+     "section": "take-care",
+     "name": "Counselling line 1480",
+     "org": "State Welfare Organization, listed by UNHCR",
+     "what": "Free psychological support and counselling by phone, every day from 8:00 to midnight.",
+     "how": "Call 1480, free, 8:00 to midnight.",
+     "phone": "1480",
+     "dial": "1480",
+     "url": "https://help.unhcr.org/iran/en/what-are-the-main-services-for-asylum-seekers-and-refugees-in-iran/psycho-social-support/",
+     "sources": [
+      "https://help.unhcr.org/iran/en/what-are-the-main-services-for-asylum-seekers-and-refugees-in-iran/psycho-social-support/"
+     ],
+     "reviewed_on": "2026-11-22"
+    },
+    {
+     "id": "iran-4030",
+     "section": "take-care",
+     "name": "Counselling line 4030",
+     "org": "Ministry of Health, listed by UNHCR",
+     "what": "Free psychological support and counselling by phone from the Ministry of Health. Its hours are not stated.",
+     "how": "Call 4030, free.",
+     "phone": "4030",
+     "dial": "4030",
+     "url": "https://help.unhcr.org/iran/en/what-are-the-main-services-for-asylum-seekers-and-refugees-in-iran/psycho-social-support/",
+     "sources": [
+      "https://help.unhcr.org/iran/en/what-are-the-main-services-for-asylum-seekers-and-refugees-in-iran/psycho-social-support/"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
    "code": "IQ",
    "slug": "iraq",
    "name": "Iraq",
@@ -5381,6 +5535,40 @@
       "https://guichet.public.lu/en/citoyens/aides/famille-education/allocations-naissance/allocations-familiales.html"
      ],
      "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "MG",
+   "slug": "madagascar",
+   "name": "Madagascar",
+   "flag": "🇲🇬",
+   "lang": "mg",
+   "emergency": {
+    "number": "117",
+    "label": "Ambulance or police from a mobile (17 from a landline). Fire: 118 from a mobile (18 from a landline)",
+    "source": "https://www.gov.uk/foreign-travel-advice/madagascar/getting-help"
+   },
+   "resources": [
+    {
+     "id": "madagascar-147",
+     "section": "help-now",
+     "name": "Free lines 147 and 113",
+     "org": "Listed by the UN in Madagascar",
+     "what": "Free numbers (lignes vertes) for reporting any form of violence, including against children, named by the UN system in Madagascar in 2022. Their hours are not stated.",
+     "how": "Call 147 or 113, free. In danger right now, call 117 from a mobile (17 from a landline).",
+     "phone": "147",
+     "dial": "147",
+     "urgent": true,
+     "chip": "Violence line",
+     "url": "https://madagascar.un.org/fr/195543-situation-et-reponse-sur-les-actes-d%E2%80%99enlevement-d%E2%80%99enfants-de-jeunes-filles-et-de-femmes",
+     "sources": [
+      "https://madagascar.un.org/fr/195543-situation-et-reponse-sur-les-actes-d%E2%80%99enlevement-d%E2%80%99enfants-de-jeunes-filles-et-de-femmes"
+     ],
+     "also": [
+      "kids-differently"
+     ],
+     "reviewed_on": "2026-11-22"
     }
    ]
   },
@@ -7597,6 +7785,36 @@
    ]
   },
   {
+   "code": "VC",
+   "slug": "saint-vincent-and-the-grenadines",
+   "name": "Saint Vincent and the Grenadines",
+   "flag": "🇻🇨",
+   "lang": "en",
+   "emergency": {
+    "number": "911",
+    "label": "Ambulance, fire and police. 999 also works; police landline: 457 1211",
+    "source": "https://www.gov.uk/foreign-travel-advice/st-vincent-and-the-grenadines/getting-help"
+   },
+   "resources": [
+    {
+     "id": "svg-gender-affairs",
+     "section": "help-now",
+     "name": "Gender Affairs Division",
+     "org": "Government of Saint Vincent and the Grenadines",
+     "what": "The government division where gender-based violence can be reported. It is open Monday to Friday, 8:00 a.m. to 4:15 p.m.",
+     "how": "Call 784-457-2789 in office hours. In danger right now, call 911 or 999.",
+     "phone": "784-457-2789",
+     "dial": "7844572789",
+     "url": "https://mobilization.gov.vc/mobilization/index.php/gender-affairs/contact-information",
+     "sources": [
+      "https://mobilization.gov.vc/mobilization/index.php/gender-affairs/contact-information",
+      "https://mobilization.gov.vc/mobilization/index.php/37-news/226-gender-affairs-division-in-solidarity-with-the-national-commission-on-gender-based-violence"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
    "code": "WS",
    "slug": "samoa",
    "name": "Samoa",
@@ -8846,6 +9064,37 @@
    ]
   },
   {
+   "code": "SY",
+   "slug": "syria",
+   "name": "Syria",
+   "flag": "🇸🇾",
+   "lang": "ar",
+   "emergency": {
+    "number": "112",
+    "label": "Police. Ambulance: 110; fire: 113",
+    "source": "https://www.smartraveller.gov.au/destinations/middle-east/syria"
+   },
+   "resources": [
+    {
+     "id": "syria-family-protection",
+     "section": "help-now",
+     "name": "Family Protection Unit helpline",
+     "org": "Family Protection Unit, supported by UNFPA, listed by UNHCR",
+     "what": "A free helpline, open day and night, for survivors of gender-based violence: psychological support, legal advice, referral to medical care, and a safe place to stay where needed and possible.",
+     "how": "Call 0119416 or 0951444190, free, any hour. In danger right now, call 112.",
+     "phone": "0119416",
+     "dial": "0119416",
+     "urgent": true,
+     "chip": "Family protection line",
+     "url": "https://help.unhcr.org/syria/where-to-find-help/have-you-experienced-violence/",
+     "sources": [
+      "https://help.unhcr.org/syria/where-to-find-help/have-you-experienced-violence/"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
    "code": "TW",
    "slug": "taiwan",
    "name": "Taiwan",
@@ -9074,6 +9323,36 @@
    ]
   },
   {
+   "code": "TL",
+   "slug": "timor-leste",
+   "name": "Timor-Leste",
+   "flag": "🇹🇱",
+   "lang": "tet",
+   "emergency": {
+    "number": "112",
+    "label": "Police (or +670 331 1380). Ambulance: 110; fire: 115. These numbers are not always reliable",
+    "source": "https://www.gov.uk/foreign-travel-advice/timor-leste/getting-help"
+   },
+   "resources": [
+    {
+     "id": "timor-leste-12123",
+     "section": "take-care",
+     "name": "Mental health line 12123",
+     "org": "Listed by the Ministry of Social Solidarity and Inclusion and UNICEF",
+     "what": "A free mental health line, on the national referral list the Ministry of Social Solidarity and Inclusion made with the police and UNICEF in 2022. It answers Monday to Friday, 8:00 to 17:30.",
+     "how": "Call 12123, free, Monday to Friday. In danger right now, call 112.",
+     "phone": "12123",
+     "dial": "12123",
+     "url": "https://www.unicef.org/timorleste/documents/child-protection-referral-network-contact-list-timor-leste",
+     "sources": [
+      "https://www.unicef.org/timorleste/media/4826/file/Poster_Referral%20network_21June22.pdf",
+      "https://www.unicef.org/timorleste/documents/child-protection-referral-network-contact-list-timor-leste"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
    "code": "TG",
    "slug": "togo",
    "name": "Togo",
@@ -9117,6 +9396,40 @@
      "sources": [
       "https://data.unwomen.org/global-database-on-violence-against-women/country-profile/Togo/measures/Assistance%20t%C3%A9l%C3%A9phonique%20gratuite",
       "https://www.unicef.org/media/136456/file/Togo-2022-COAR.pdf"
+     ],
+     "reviewed_on": "2026-11-22"
+    }
+   ]
+  },
+  {
+   "code": "TO",
+   "slug": "tonga",
+   "name": "Tonga",
+   "flag": "🇹🇴",
+   "lang": "to",
+   "emergency": {
+    "number": "911",
+    "label": "Ambulance, fire and police. Or police: 922; ambulance: 933; fire: 999",
+    "source": "https://www.gov.uk/foreign-travel-advice/tonga/getting-help"
+   },
+   "resources": [
+    {
+     "id": "tonga-wccc",
+     "section": "help-now",
+     "name": "Women and Children Crisis Centre",
+     "org": "Women and Children Crisis Centre, listed by the UN in the Pacific",
+     "what": "Counselling, case management, referrals and temporary shelter for women and children facing violence. Its toll-free line is open 24 hours. The centre is in Nuku'alofa.",
+     "how": "Call 0800444, free, any hour, or the centre on 22240. In danger right now, call 922 for the police.",
+     "phone": "0800444",
+     "dial": "0800444",
+     "urgent": true,
+     "chip": "Crisis centre",
+     "url": "https://pacific.un.org/sites/default/files/2024-04/Resource%20Book%20about%20DV%20for%20UN%20Staff%20in%20the%20Pacific_FINAL.pdf",
+     "sources": [
+      "https://pacific.un.org/sites/default/files/2024-04/Resource%20Book%20about%20DV%20for%20UN%20Staff%20in%20the%20Pacific_FINAL.pdf"
+     ],
+     "also": [
+      "kids-differently"
      ],
      "reviewed_on": "2026-11-22"
     }
