@@ -178,6 +178,7 @@ button.btn{font-family:inherit;cursor:pointer}
 .countyfind input:focus-visible,.rowfilter:focus-visible{outline:3px solid var(--teal);outline-offset:1px}
 #cmsg{margin:.5rem 0 0;min-height:1.2em}
 .need>.rowbody{padding:0 1rem 1rem}
+.rowbody h3.subneed{font-size:1rem;margin:1.1rem 0 .4rem}.rowbody h3.subneed:first-child{margin-top:.3rem}
 .rowfilter{font:inherit;color:var(--ink);background:#fff;border:1.5px solid #d9c9bb;border-radius:.8rem;padding:.55rem .8rem;width:100%;max-width:24rem;margin-top:.8rem}
 .rowbody>div>.btn{margin-top:.9rem}
 .statelinks{list-style:none;padding:0;margin:.6rem 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));gap:.5rem}

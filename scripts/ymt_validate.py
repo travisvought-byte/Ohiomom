@@ -150,6 +150,10 @@ def main():
         if isinstance(ad, dict) and ad.get('end') and str(ad['end']) < on:
             print(f"note: the ad for {ad.get('sponsor')} ended on {ad['end']}; take it out of data/ads.json")
 
+    # Help for moms and babies: the mined table, its county index and its source registry (scripts/local_help.py).
+    import local_help  # noqa: E402
+    errors += [f'local help: {e}' for e in local_help.check()]
+
     if errors:
         print('\n'.join(errors))
         sys.exit(1)

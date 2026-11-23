@@ -1,0 +1,460 @@
+{
+  "note": "Every source the local-help pipeline (scripts/local_help.py) can mine, active or not. 'active' sources are fetched every run. 'queued' sources are worth adding and say what is missing. 'blocked' sources refuse automated access, need an account or key, or sit behind a bot check; they are not worked around. evidence: 'government' (a government agency's own published list) or 'organization' (a network's own directory of its members or groups). recheck_days: how long a copy stands before the next check. Add a source here, add a parser in the script if its format is new, and run the script.",
+  "sources": [
+    {
+      "id": "pat-affiliates",
+      "need": "home-visiting",
+      "name": "Parents as Teachers affiliates",
+      "publisher": "Parents as Teachers National Center",
+      "homepage": "https://parentsasteachers.org/",
+      "evidence": "organization",
+      "status": "active",
+      "recheck_days": 30,
+      "parser": "pat",
+      "fetch": {
+        "kind": "get",
+        "url": "https://parentsasteachers.org/wp-json/asl-sync/v1/stores"
+      },
+      "what": "Free home visits for families from pregnancy until a child starts kindergarten: a parent educator helps with your child's development and health, and links you to other help.",
+      "next": "Call and ask whether they serve where you live and how to enroll. Many programs take families from pregnancy.",
+      "notes": "The data behind the affiliate finder on the publisher's site. Each affiliate lists the ZIP codes it serves; those place it in every county they fall in. Staff emails are not copied. Affiliates still pending approval are left out. Fetch at most once a day (the site asks for a 10-second crawl delay)."
+    },
+    {
+      "id": "ndbn-members",
+      "need": "diapers",
+      "name": "National Diaper Bank Network members",
+      "publisher": "National Diaper Bank Network",
+      "homepage": "https://nationaldiaperbanknetwork.org/",
+      "evidence": "organization",
+      "status": "active",
+      "recheck_days": 30,
+      "parser": "ndbn",
+      "fetch": {
+        "kind": "get",
+        "url": "https://nationaldiaperbanknetwork.org/wp-json/wp/v2/pages/573?_fields=content,modified,link"
+      },
+      "what": "A diaper bank gives free diapers to families who need them, usually through local partners such as food pantries, clinics and family programs.",
+      "next": "Open the website to see where it hands out diapers, which towns it serves and whether you need a referral.",
+      "notes": "The network's own member list, grouped by state with each member's city and website. It gives no street or phone, so each member is placed by its city (Census place centre) and shown with its website."
+    },
+    {
+      "id": "lllusa-groups",
+      "need": "breastfeeding",
+      "name": "La Leche League USA groups",
+      "publisher": "La Leche League USA",
+      "homepage": "https://lllusa.org/",
+      "default_website": "https://lllusa.org/",
+      "evidence": "organization",
+      "status": "active",
+      "recheck_days": 30,
+      "parser": "lll",
+      "parser_options": {
+        "map_id": "3"
+      },
+      "fetch": {
+        "kind": "get",
+        "url": "https://lllusa.org/wp-json/wpgmza/v1/markers?fields=id,map_id,title,address,lat,lng,link"
+      },
+      "what": "Free breastfeeding help from trained volunteer leaders, at group meetings and by phone or email. Moms who are pregnant are welcome too.",
+      "next": "Open the group's page for its meeting times and how to reach a leader.",
+      "notes": "The group map on the publisher's locator (map 3 is groups; map 1 is events and is left out). Only the group name, where it meets and its page are copied: the map's descriptions hold volunteer leaders' own phone numbers and emails, which are never published here."
+    },
+    {
+      "id": "nppes-public-health",
+      "need": "health-dept",
+      "name": "NPI Registry: state and local public health clinics",
+      "publisher": "Centers for Medicare & Medicaid Services",
+      "homepage": "https://npiregistry.cms.hhs.gov/",
+      "evidence": "government",
+      "status": "active",
+      "recheck_days": 30,
+      "parser": "nppes",
+      "parser_options": {
+        "taxonomy": "261QP0905X"
+      },
+      "fetch": {
+        "kind": "nppes",
+        "params": {
+          "taxonomy_description": "Public Health, State or Local",
+          "enumeration_type": "NPI-2"
+        }
+      },
+      "what": "Your local health department: shots for children, WIC in many places, pregnancy tests and prenatal referrals, and help finding a doctor.",
+      "next": "Call and ask what they offer for moms and babies, such as WIC, shots, a nurse visit after birth or help finding prenatal care.",
+      "notes": "Organizations whose primary type in the federal NPI Registry is 'Clinic/Center, Public Health, State or Local'. Organizations register themselves, so coverage is partial (about a quarter to a third of departments) and a few rows are state-run clinics rather than the county department. A supplement to state lists, never the only word.",
+      "priority": 2
+    },
+    {
+      "id": "oh-odh-lhd",
+      "need": "health-dept",
+      "name": "Ohio local health departments",
+      "publisher": "Ohio Department of Health",
+      "homepage": "https://services6.arcgis.com/tuxY7TQIaDhLWARO/ArcGIS/rest/services/Local_Health_Department_Locations_2022/FeatureServer/355",
+      "evidence": "government",
+      "status": "active",
+      "recheck_days": 90,
+      "parser": "generic",
+      "parser_options": {
+        "columns": {
+          "name": "Business_Name",
+          "street": "Location_Address_Line_1",
+          "city": "Location_City",
+          "zip": "Location_Zip",
+          "phone": "VoicePhone",
+          "website": "Website",
+          "lat": "LocationLat",
+          "lon": "LocationLong",
+          "record": "Business_Name"
+        },
+        "constants": {
+          "state": "OH"
+        }
+      },
+      "fetch": {
+        "kind": "arcgis",
+        "url": "https://services6.arcgis.com/tuxY7TQIaDhLWARO/ArcGIS/rest/services/Local_Health_Department_Locations_2022/FeatureServer/355",
+        "params": {
+          "outFields": "Business_Name,Location_Address_Line_1,Location_City,Location_Zip,VoicePhone,Website,LocationLat,LocationLong"
+        }
+      },
+      "what": "Your local health department: shots for children, WIC in many places, pregnancy tests and prenatal referrals, and help finding a doctor.",
+      "next": "Call and ask what they offer for moms and babies, such as WIC, shots, a nurse visit after birth or help finding prenatal care.",
+      "notes": "All 113 Ohio health districts, from the state's 2022 layer (Ohio OneSource). Only organization fields are requested; the layer also names staff, which is not copied."
+    },
+    {
+      "id": "mo-dhss-lpha",
+      "need": "health-dept",
+      "name": "Missouri local public health agencies",
+      "publisher": "Missouri Department of Health and Senior Services",
+      "homepage": "https://gis.mo.gov/arcgis/rest/services/DHSS/LPHA/MapServer/0",
+      "evidence": "government",
+      "status": "active",
+      "recheck_days": 90,
+      "parser": "generic",
+      "parser_options": {
+        "columns": {
+          "name": "FACILITY",
+          "street": "ADDRESS",
+          "city": "CITY",
+          "zip": "ZIP",
+          "county": "COUNTY",
+          "phone": "PHONE",
+          "record": "FACILITY"
+        },
+        "constants": {
+          "state": "MO"
+        }
+      },
+      "fetch": {
+        "kind": "arcgis",
+        "url": "https://gis.mo.gov/arcgis/rest/services/DHSS/LPHA/MapServer/0",
+        "params": {
+          "outFields": "FACILITY,ADDRESS,CITY,ZIP,COUNTY,PHONE"
+        }
+      },
+      "what": "Your local health department: shots for children, WIC in many places, pregnancy tests and prenatal referrals, and help finding a doctor.",
+      "next": "Call and ask what they offer for moms and babies, such as WIC, shots, a nurse visit after birth or help finding prenatal care.",
+      "notes": "The state's map layer of local public health agency offices (last updated 2020)."
+    },
+    {
+      "id": "wa-doh-wic",
+      "need": "wic",
+      "name": "Washington WIC clinics",
+      "publisher": "Washington State Department of Health",
+      "homepage": "https://services8.arcgis.com/rGGrs6HCnw87OFOT/arcgis/rest/services/Clinics/FeatureServer/0",
+      "evidence": "government",
+      "status": "active",
+      "recheck_days": 60,
+      "parser": "generic",
+      "parser_options": {
+        "columns": {
+          "name": "ClinicName",
+          "org": "AgencyName",
+          "street": "Address1",
+          "city": "City",
+          "zip": "Zip",
+          "county": "County",
+          "phone": "PhoneNumber",
+          "record": [
+            "OBJECTID",
+            "FID",
+            "ClinicName"
+          ]
+        },
+        "constants": {
+          "state": "WA"
+        }
+      },
+      "fetch": {
+        "kind": "arcgis",
+        "url": "https://services8.arcgis.com/rGGrs6HCnw87OFOT/arcgis/rest/services/Clinics/FeatureServer/0"
+      },
+      "what": "WIC gives healthy food, breastfeeding help and nutrition advice to pregnant women, new moms, babies and children under 5 in families with low to moderate incomes.",
+      "next": "Call to make a WIC appointment. Ask what to bring: usually proof of who you are, where you live and your income.",
+      "notes": "The state health department's WIC clinic layer. It carries the department's own no-warranty disclaimer."
+    },
+    {
+      "id": "mo-dhss-wic",
+      "need": "wic",
+      "name": "Missouri WIC offices",
+      "publisher": "Missouri Department of Health and Senior Services",
+      "homepage": "https://gis.mo.gov/arcgis/rest/services/DHSS/WIC/MapServer/0",
+      "evidence": "government",
+      "status": "active",
+      "recheck_days": 60,
+      "parser": "generic",
+      "parser_options": {
+        "columns": {
+          "name": "FACILITY",
+          "org": "AGENCY_NAME",
+          "street": "ADDRESS",
+          "city": "CITY",
+          "zip": "ZIP",
+          "county": "COUNTY",
+          "phone": "PHONE",
+          "record": [
+            "OBJECTID",
+            "FACILITY"
+          ]
+        },
+        "constants": {
+          "state": "MO"
+        }
+      },
+      "fetch": {
+        "kind": "arcgis",
+        "url": "https://gis.mo.gov/arcgis/rest/services/DHSS/WIC/MapServer/0"
+      },
+      "what": "WIC gives healthy food, breastfeeding help and nutrition advice to pregnant women, new moms, babies and children under 5 in families with low to moderate incomes.",
+      "next": "Call to make a WIC appointment. Ask what to bring: usually proof of who you are, where you live and your income.",
+      "notes": "The state's map layer of WIC offices and satellite sites."
+    },
+    {
+      "id": "dc-wic",
+      "need": "wic",
+      "name": "District of Columbia WIC sites",
+      "publisher": "DC Office of the Chief Technology Officer (Open Data DC)",
+      "homepage": "https://opendata.dc.gov/",
+      "evidence": "government",
+      "status": "active",
+      "recheck_days": 90,
+      "parser": "generic",
+      "parser_options": {
+        "columns": {
+          "name": [
+            "NAME",
+            "SITE_NAME",
+            "FACILITY_NAME",
+            "VENDOR_NAME"
+          ],
+          "street": [
+            "ADDRESS",
+            "SITE_ADDRESS",
+            "FULLADDRESS"
+          ],
+          "city": [
+            "CITY"
+          ],
+          "zip": [
+            "ZIPCODE",
+            "ZIP",
+            "ZIP_CODE"
+          ],
+          "phone": [
+            "PHONE",
+            "PHONE_NUMBER",
+            "TELEPHONE"
+          ],
+          "website": [
+            "WEB_URL",
+            "WEBSITE",
+            "URL"
+          ],
+          "record": [
+            "OBJECTID",
+            "GIS_ID",
+            "NAME"
+          ]
+        },
+        "constants": {
+          "state": "DC",
+          "county_fips": "11001"
+        }
+      },
+      "fetch": {
+        "kind": "get",
+        "url": "https://opendata.dc.gov/api/download/v1/items/cd60551c99f0421da412f79d2c7fe52b/geojson?layers=55"
+      },
+      "what": "WIC gives healthy food, breastfeeding help and nutrition advice to pregnant women, new moms, babies and children under 5 in families with low to moderate incomes.",
+      "next": "Call to make a WIC appointment. Ask what to bring: usually proof of who you are, where you live and your income.",
+      "notes": "Open Data DC's WIC layer (CC BY 4.0, 2022). The first run checks that its rows are WIC clinics, not stores that take WIC."
+    },
+    {
+      "id": "hrsa-healthy-start",
+      "need": "healthy-start",
+      "name": "HRSA Healthy Start grantees",
+      "publisher": "Health Resources and Services Administration",
+      "homepage": "https://mchb.hrsa.gov/programs-impact/healthy-start/fy-2024-awards",
+      "evidence": "government",
+      "status": "queued",
+      "why": "HRSA's active-grants file (activity code H49) names each project's grantee and address but no phone, website or counties served, and its server refuses automated requests from here. Needs the file fetched from GitHub Actions plus each project's own page for a way to reach it.",
+      "recheck_days": 180,
+      "fetch": {
+        "kind": "get",
+        "url": "https://data.hrsa.gov/DataDownload/DD_Files/EHB_ACTIVE_GRANT_FA_AGR.csv"
+      },
+      "notes": "Healthy Start = Grant Activity Code H49. The 2019 grantee table on the program page lists counties served but is out of date."
+    },
+    {
+      "id": "changent-nfp",
+      "need": "home-visiting",
+      "name": "Nurse-Family Partnership sites (Changent)",
+      "publisher": "Changent",
+      "homepage": "https://changent.org/",
+      "evidence": "organization",
+      "status": "queued",
+      "why": "The site list (about 287) is open, but addresses, phones and service areas appear only after a state is picked in the page. Needs a browser-run step or the page's data call.",
+      "recheck_days": 60,
+      "fetch": {
+        "kind": "get",
+        "url": "https://changent.org/wp-json/wp/v2/locations?per_page=100"
+      }
+    },
+    {
+      "id": "hfa-sites",
+      "need": "home-visiting",
+      "name": "Healthy Families America sites",
+      "publisher": "Prevent Child Abuse America",
+      "homepage": "https://www.healthyfamiliesamerica.org/",
+      "evidence": "organization",
+      "status": "blocked",
+      "why": "The site's data interface refuses outside requests and its map shows one state at a time with no data file. Ask the publisher for an export.",
+      "recheck_days": 60,
+      "fetch": {
+        "kind": "get",
+        "url": "https://www.healthyfamiliesamerica.org/map/"
+      }
+    },
+    {
+      "id": "miechv-counties",
+      "need": "home-visiting",
+      "name": "MIECHV counties served (state fact sheets)",
+      "publisher": "Health Resources and Services Administration",
+      "homepage": "https://mchb.hrsa.gov/sites/default/files/mchb/programs-impact/home-visiting/oh.pdf",
+      "evidence": "government",
+      "status": "queued",
+      "why": "One PDF per state lists the counties the federal home visiting program serves and the models used, but names no local agency or phone. Useful to say which model to ask for in a county; needs a PDF parser.",
+      "recheck_days": 365,
+      "fetch": {
+        "kind": "get",
+        "url": "https://mchb.hrsa.gov/sites/default/files/mchb/programs-impact/home-visiting/oh.pdf"
+      }
+    },
+    {
+      "id": "naccho-lhd",
+      "need": "health-dept",
+      "name": "NACCHO directory of local health departments",
+      "publisher": "National Association of County and City Health Officials",
+      "homepage": "https://www.naccho.org/membership/lhd-directory",
+      "evidence": "organization",
+      "status": "blocked",
+      "why": "Behind a 'verify you are human' check and offered with no export. Not worked around.",
+      "recheck_days": 90,
+      "fetch": {
+        "kind": "get",
+        "url": "https://www.naccho.org/membership/lhd-directory"
+      }
+    },
+    {
+      "id": "hifld-lhd",
+      "need": "health-dept",
+      "name": "HIFLD public health departments (archived)",
+      "publisher": "U.S. Department of Homeland Security (archived copy)",
+      "homepage": "https://maps.nccs.nasa.gov/mapping/rest/services/hifld_open/public_health/MapServer/3",
+      "evidence": "government",
+      "status": "queued",
+      "why": "National, but its records were collected in 2009 and 2010 and the original site went offline in 2025. Use only to fill a state with no other list, and only after checking each row.",
+      "recheck_days": 365,
+      "fetch": {
+        "kind": "arcgis",
+        "url": "https://maps.nccs.nasa.gov/mapping/rest/services/hifld_open/public_health/MapServer/3"
+      }
+    },
+    {
+      "id": "az-wic",
+      "need": "wic",
+      "name": "Arizona WIC clinics",
+      "publisher": "Arizona Department of Health Services",
+      "homepage": "https://services1.arcgis.com/mpVYz37anSdrK4d8/ArcGIS/rest/services/WIC_Clinics/FeatureServer/0",
+      "evidence": "government",
+      "status": "queued",
+      "why": "103 clinics with addresses (updated 2026) but no phone or website on any row. Needs the state WIC phone line, checked on the state's own page, to go on each card.",
+      "recheck_days": 60,
+      "fetch": {
+        "kind": "arcgis",
+        "url": "https://services1.arcgis.com/mpVYz37anSdrK4d8/ArcGIS/rest/services/WIC_Clinics/FeatureServer/0"
+      }
+    },
+    {
+      "id": "co-wic",
+      "need": "wic",
+      "name": "Colorado WIC clinics",
+      "publisher": "Colorado Department of Public Health and Environment",
+      "homepage": "https://www.cohealthmaps.dphe.state.co.us/arcgis/rest/services/OPEN_DATA/cdphe_wic_program/MapServer/0",
+      "evidence": "government",
+      "status": "queued",
+      "why": "The open layer was last geocoded in 2017. Use only if the state confirms it is current.",
+      "recheck_days": 60,
+      "fetch": {
+        "kind": "arcgis",
+        "url": "https://www.cohealthmaps.dphe.state.co.us/arcgis/rest/services/OPEN_DATA/cdphe_wic_program/MapServer/0"
+      }
+    },
+    {
+      "id": "psi-local",
+      "need": "postpartum",
+      "name": "Postpartum Support International local support",
+      "publisher": "Postpartum Support International",
+      "homepage": "https://www.postpartum.net/",
+      "evidence": "organization",
+      "status": "queued",
+      "why": "No local list is published as data: state pages now lead to an intake form, and the provider directory lists private practitioners, which this site does not list. The national helpline is already on every state page.",
+      "recheck_days": 90,
+      "fetch": {
+        "kind": "get",
+        "url": "https://www.postpartum.net/wp-json/wp/v2/group?per_page=100"
+      }
+    },
+    {
+      "id": "211-local",
+      "need": "health-dept",
+      "name": "211 local providers",
+      "publisher": "United Way Worldwide (211.org)",
+      "homepage": "https://www.211.org/",
+      "evidence": "organization",
+      "status": "blocked",
+      "why": "The only data interface needs an account and keys, which this project does not open. Dialing 211 is already on every page.",
+      "recheck_days": 90,
+      "fetch": {
+        "kind": "get",
+        "url": "https://www.211.org/about-us/your-local-211"
+      }
+    },
+    {
+      "id": "llli-countries",
+      "scope": "country",
+      "need": "breastfeeding",
+      "name": "La Leche League International groups by country",
+      "publisher": "La Leche League International",
+      "homepage": "https://llli.org/",
+      "evidence": "organization",
+      "status": "queued",
+      "why": "Next for the country pages: LLL groups or national contacts per country. Format not yet checked.",
+      "recheck_days": 90,
+      "fetch": {
+        "kind": "get",
+        "url": "https://llli.org/"
+      }
+    }
+  ]
+}

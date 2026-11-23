@@ -8,6 +8,8 @@ taken over, so nothing is linked on trust.
     python3 scripts/county_links.py SRC             check every address county_data.py would link (SRC as there)
     python3 scripts/county_links.py SRC --recheck   check them all again, not only the new ones
     python3 scripts/county_links.py --shards        check the addresses the built shards link now (the monthly check)
+    python3 scripts/county_links.py --local-help    check the new websites in the local help for moms listings
+                                                    (data/ymt/local-help/listings.csv; scripts/local_help.py)
 
 Answers: ok (loaded), refused (the site turns robots away, so it is there but cannot be confirmed),
 and everything else, which is left off the page: broken, moved, unverified. 'moved' needs a person
@@ -67,11 +69,22 @@ def shard_urls():
     return sorted(urls)
 
 
+def local_help_urls():
+    import csv
+    path = ROOT / 'data' / 'ymt' / 'local-help' / 'listings.csv'
+    if not path.exists():
+        return []
+    with path.open(encoding='utf-8', newline='') as fh:
+        return sorted({r['website'] for r in csv.DictReader(fh) if r['website']})
+
+
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith('--')]
     ledger = load()
     if '--shards' in sys.argv:
         urls = shard_urls()
+    elif '--local-help' in sys.argv:
+        urls = local_help_urls()
     elif args:
         import county_data
         urls = county_data.candidate_urls(Path(args[0]))

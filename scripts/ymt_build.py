@@ -795,6 +795,15 @@ COUNTY_SOURCES = [  # in the order the rows appear on the page
 ]
 
 
+# Where the "Help for moms and babies" row comes from, for county.html's list of sources (only once there is data).
+MH_SOURCE = ('mh', 'Help for moms and babies',
+             "each program's own published list: state health departments' WIC and health department lists, the federal "
+             "NPI Registry, and the member and group lists of Parents as Teachers, the National Diaper Bank Network and La "
+             "Leche League USA. Every source, and the ones we cannot use yet and why, is in our {0}",
+             [('https://github.com/travisvought-byte/Ohiomom/blob/main/data/ymt/local-help/registry.json', 'list of sources')],
+             'Each card names its source and the date it was copied. A listing is placed in the county where it is, or in each '
+             'county it says it serves; nearby ones are shown by distance when the county has none.')
+
 def build_county(data):
     """Find your county: by state and county, or by ZIP code. assets/county.js finds it and opens its own page
     (build_county_pages). The sources of every county listing are explained here."""
@@ -824,8 +833,11 @@ def build_county(data):
             else:
                 out.append(esc(part))
         return ''.join(out)
+    srcs = list(COUNTY_SOURCES)
+    if local_help():
+        srcs.insert(2, MH_SOURCE)
     items = ''.join(f'<li><strong>{esc(label)}:</strong> {sentence(key, what, links)}. {esc(note)}</li>'
-                    for key, label, what, links, note in COUNTY_SOURCES)
+                    for key, label, what, links, note in srcs)
     sources = (f'<section class="wrap slim" id="sources"><h2>Where these listings come from</h2><ul>{items}</ul>'
                '<p class="note">Listings are copied from these federal lists by a program, not checked by phone, and the date of '
                'the copy is on each one. A Website button appears only when that website loaded in our automatic check. '
@@ -1068,6 +1080,102 @@ def _clist(items, make, key=None, county='', asof=None):
     return out
 
 
+# ---- Help for moms and babies: the mined layer (scripts/local_help.py, data/ymt/local-help/) ----
+
+def local_help():
+    """{'rows': {id: row}, 'index': {fips: [[id, miles]]}, 'sources': {id: registry entry}}, or None before the first
+    run of scripts/local_help.py has written any listings."""
+    if not hasattr(local_help, 'cache'):
+        d = ROOT / 'data' / 'ymt' / 'local-help'
+        local_help.cache = None
+        if (d / 'listings.csv').exists() and (d / 'county-index.json').exists():
+            import csv
+            with (d / 'listings.csv').open(encoding='utf-8', newline='') as fh:
+                rows = {r['id']: r for r in csv.DictReader(fh)}
+            if rows:
+                reg = json.loads((d / 'registry.json').read_text(encoding='utf-8'))
+                links = ROOT / 'data' / 'county-links.json'
+                ledger = json.loads(links.read_text(encoding='utf-8')).get('urls', {}) if links.exists() else {}
+                local_help.cache = {'rows': rows, 'index': json.loads((d / 'county-index.json').read_text(encoding='utf-8')),
+                                    'sources': {s['id']: s for s in reg['sources']}, 'links': ledger}
+    return local_help.cache
+
+
+MH_NEEDS = [  # in the order the row shows them: (need, heading)
+    ('wic', 'WIC'),
+    ('health-dept', 'Health department'),
+    ('home-visiting', 'Home visits for new parents'),
+    ('healthy-start', 'Healthy Start'),
+    ('breastfeeding', 'Breastfeeding support'),
+    ('diapers', 'Diapers'),
+    ('postpartum', 'Support after the baby comes'),
+]
+
+
+def _mh_card(r, m, src, ctx):
+    name = r['name']
+    town = f"{r['city']}, {r['state']}" if r['city'] else r['state']
+    if m:
+        where = f'About {_count(m, "mile", "miles")} away, in {town}. Ask whether it serves where you live. '
+    elif r['county_fips'] and r['county_fips'] != ctx['fips']:
+        where = f'Based in {town}, and lists {ctx["county"]} among the places it serves. '
+    else:
+        where = f'In {town}. ' if r['city'] else ''
+    short = where + src.get('what', '')
+    acts = f'<a class="btn call" href="{_tel1(r["phone"])}">Call {esc(r["phone"])}</a>' if r['phone'] else ''
+    if _safe_url(r['website']) and ctx.get('links', {}).get(r['website']) in ('ok', 'refused'):
+        # only a website scripts/county_links.py --local-help has seen load, as on the rest of the county page
+        acts += f'<a class="btn" href="{esc(r["website"])}" rel="noopener">Website</a>'
+    more = []
+    if r['org']:
+        more.append(_p(r['org'], 'org'))
+    place = _place(r['street'], r['city'], r['state'], r['zip']) if r['street'] else ''
+    if place:
+        more.append(_p(place))
+    if src.get('next'):
+        more.append(_next(src['next']))
+    url = _safe_url(r['source_url'])
+    link = f' Source: <a href="{esc(url)}" rel="noopener">1</a>' if url else ''
+    more.append(f'<p class="src">From {esc(src["publisher"])}: {esc(src["name"])}, copied {esc(_pretty(r["checked_on"]))}, '
+                f'not confirmed by phone.{link}</p>')
+    cid = 'mh-' + r['id'][3:]
+    return (f'<article class="card" id="{esc(cid)}"><h3>{esc(name)}</h3><p class="short">{esc(short)}</p>'
+            f'<p class="actions">{acts}</p><details class="more"><summary>More about this<span class="sr">: {esc(name)}</span></summary>'
+            f'{"".join(more)}</details></article>')
+
+
+def mh_row(st, fips, c, sname, code, root):
+    """The 'Help for moms and babies' row of a county page: WIC, the health department, home visiting, breastfeeding
+    groups and diaper banks, each from its own published list. None before the pipeline has run."""
+    lh = local_help()
+    if lh is None:
+        return None
+    ctx = {'county': c['n'], 'fips': fips, 'links': lh.get('links', {})}
+    # a listing with no phone and no website that loaded gives a mom nothing to do, so it waits for the next check
+    refs = [(lh['rows'][i], m) for i, m in lh['index'].get(fips, [])
+            if i in lh['rows'] and (lh['rows'][i]['phone'] or ctx['links'].get(lh['rows'][i]['website']) in ('ok', 'refused'))]
+    groups, present = [], []
+    for need, heading in MH_NEEDS:
+        items = sorted((x for x in refs if x[0]['need'] == need), key=lambda x: (x[1], x[0]['name']))
+        if items:
+            cards = ''.join(_mh_card(r, m, lh['sources'][r['source_id']], ctx) for r, m in items)
+            groups.append(f'<h3 class="subneed">{esc(heading)}</h3><div class="cards">{cards}</div>')
+            present.append(heading if need in ('wic', 'healthy-start') else heading.lower())
+    inside = sum(1 for _r, m in refs if m == 0)
+    tail = (f'<p class="quiet">WIC, help paying for child care, health coverage for you and your baby and more are on '
+            f'<a href="{root}states/{code}.html#pregnancy-baby">the {esc(sname)} page</a>. '
+            'Or dial <a href="tel:211">211</a> and ask what help there is for moms and babies near you.</p>')
+    if not groups:
+        body = (f'<p class="quiet">We have not found a local listing for moms and babies in or near {esc(c["n"])} yet. '
+                'We add more every month.</p>' + tail)
+        summary = f'WIC, health department and more for {sname}'
+    else:
+        body = ''.join(groups) + tail
+        named = present[0] if len(present) == 1 else ', '.join(present[:-1]) + ' and ' + present[-1]
+        summary = f'{named[0].upper()}{named[1:]} {"in or near" if inside else "near"} {c["n"]}'
+    return _crow('county-moms', '🍼', 'Help for moms and babies', summary, len(refs) or None, ('place', 'places'), body)
+
+
 def county_rows(data, st, fips, shard, x, root):
     """The rows of one county's page, in the order county.html has always shown them."""
     c = shard['c'][fips]
@@ -1109,6 +1217,9 @@ def county_rows(data, st, fips, shard, x, root):
                       len(agencies), ('counselor', 'counselors'),
                       _clist(agencies, lambda ref, _i: _hud_card(ref, shard['hu'][ref[0]], ctx), 'hud', c['n'], shard['asof']) if agencies else
                       f'<p class="quiet">No HUD-approved counselor is listed near {esc(c["n"])}. Call HUD at 800-569-4287 to be matched with one by phone.</p>'))
+    moms = mh_row(st, fips, c, sname, code, root)
+    if moms:
+        rows.append(moms)
     legal = [sa for sa in c.get('lg', []) if sa in shard.get('lg', {})]
     rows.append(_crow('county-legal', '⚖️', 'Free legal help', f'Legal aid that serves {c["n"]}', len(legal), ('program', 'programs'),
                       _clist(legal, lambda sa, _i: _legal_card(sa, shard['lg'][sa], ctx), 'lg', c['n'], shard['asof']) if legal else
@@ -1192,6 +1303,10 @@ def build_county_page(data, st, fips, shard, x):
               f'<span aria-current="page">{esc(c["n"])}</span></nav>')
     lede = (f'Local listings for {esc(c["n"])}: where to apply for housing help, free legal help, low-cost health care, free '
             f'evaluations for your child and Head Start. Pick what you need. Free, private, no sign-up.')
+    if local_help():
+        lede = (f'Local listings for {esc(c["n"])}: help for moms and babies such as WIC, home visits, breastfeeding groups and '
+                f'diaper banks, plus where to apply for housing help, free legal help, low-cost health care, free evaluations '
+                f'for your child and Head Start. Pick what you need. Free, private, no sign-up.')
     first = (f'<a href="../{code}.html">All help in {esc(s["name"])}</a>' if c['n'] == s['name']  # D.C. is one county
              else f'<a href="../{code}.html#counties">Another {esc(county_noun(st))} in {esc(s["name"])}</a>')
     other = (f'<p class="countylink">{first} · '
