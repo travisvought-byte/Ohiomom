@@ -277,6 +277,9 @@ const staticPages = ['index.html', 'help.html', 'connect.html', 'states.html', '
   .concat(fs.readdirSync('ohio').filter((f) => f.endsWith('.html')).map((f) => 'ohio/' + f))
   .concat(fs.readdirSync('ohio/help').filter((f) => f.endsWith('.html')).map((f) => 'ohio/help/' + f))
   .concat(counties)
+  // One written county page per state (states/<state>/<county>.html), the first of each state's list.
+  .concat(fs.readdirSync('states', { withFileTypes: true }).filter((e) => e.isDirectory())
+    .map((e) => 'states/' + e.name + '/' + fs.readdirSync('states/' + e.name).filter((f) => f.endsWith('.html')).sort()[0]))
   .filter((f) => !/http-equiv="refresh"/i.test(fs.readFileSync(f, 'utf8')));
 assert(staticPages.length > 70);
 for (const f of staticPages) checkStructure(staticDoc(f), f);

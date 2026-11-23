@@ -1,12 +1,31 @@
-// The county page: it finds a county by state, by county or by ZIP code, draws that county's rows closed,
-// and its cards have the same parts as every other card on the site. Run: node tests/county-page.cjs
-const assert = require('node:assert/strict'), fs = require('node:fs'), { JSDOM } = require('jsdom');
+// The county pages. Every U.S. county has its own written page (states/<state>/<county>.html, scripts/ymt_build.py):
+// its rows closed, its cards with the same parts as every other card on the site, readable with no script at all.
+// county.html finds a county by state, by county or by ZIP code and opens that page. Run: node tests/county-page.cjs
+const assert = require('node:assert/strict'), fs = require('node:fs'), { JSDOM, VirtualConsole } = require('jsdom');
 const ymt = fs.readFileSync('assets/ymt.js', 'utf8');
 const countyJs = fs.readFileSync('assets/county.js', 'utf8');
 const all = (root, sel) => [...root.querySelectorAll(sel)];
+const slug = (name) => name.normalize('NFKD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+const SHARDS = {};
+for (const f of fs.readdirSync('assets/us').filter((f) => /^[a-z]{2}\.json$/.test(f))) SHARDS[f.slice(0, 2)] = JSON.parse(fs.readFileSync('assets/us/' + f, 'utf8'));
+const pageOf = (fips) => {
+  const code = Object.keys(SHARDS).find((c) => SHARDS[c].c[fips]);
+  return `states/${code}/${slug(SHARDS[code].c[fips].n)}.html`;
+};
 
-function load(hash = '', { fail = false, noFetch = false } = {}) {
-  const dom = new JSDOM(fs.readFileSync('county.html', 'utf8'), { url: 'https://example.org/county.html' + hash, runScripts: 'outside-only' });
+// A county's written page, with the site's own script (search, rows opened by address) running on it.
+function county(fips, hash = '') {
+  const file = pageOf(fips);
+  const dom = new JSDOM(fs.readFileSync(file, 'utf8'), { url: 'https://example.org/' + file + hash, runScripts: 'outside-only' });
+  dom.window.eval(ymt);
+  return { w: dom.window, d: dom.window.document, file };
+}
+// county.html, the finder.
+function finder(hash = '', { fail = false, noFetch = false } = {}) {
+  // jsdom cannot open another page; the script asking it to is what case 4 checks, so that one notice is dropped.
+  const quiet = new VirtualConsole();
+  quiet.on('jsdomError', (e) => { if (!/navigation to another Document/.test(e.message)) console.error(e); });
+  const dom = new JSDOM(fs.readFileSync('county.html', 'utf8'), { url: 'https://example.org/county.html' + hash, runScripts: 'outside-only', virtualConsole: quiet });
   const w = dom.window;
   const asked = [];
   w.fetch = noFetch ? undefined : (url, opts) => {
@@ -25,7 +44,7 @@ async function settle(w) {
 }
 
 function checkCards(d, label) {
-  const cards = all(d, '#county-app article.card');
+  const cards = all(d, 'main article.card');
   assert(cards.length > 0, `${label}: some cards`);
   for (const c of cards) {
     const kids = [...c.children].map((e) => e.tagName + (e.className ? '.' + e.className.split(' ')[0] : ''));
@@ -47,24 +66,39 @@ function checkCards(d, label) {
     }
     const more = c.querySelector(':scope > details.more');
     assert(more && !more.open, `${label} #${c.id}: details start closed`);
-    assert(more.querySelector('p.src a'), `${label} #${c.id}: sources are in the details`);
-    assert(more.textContent.includes('Next step:'), `${label} #${c.id}: a next step`);
+    assert(more.querySelector('p.org'), `${label} #${c.id}: who runs it is in the details`);
     assert(more.querySelector('summary').textContent.includes(name), `${label} #${c.id}: "More about this" names the listing`);
     const visible = [...c.children].filter((e) => e.tagName !== 'DETAILS').map((e) => e.textContent).join(' ');
     assert(visible.length <= 330, `${label} #${c.id}: the short part of a card got long`);
+    // The next step and the sources are said once for the whole row, around its cards.
+    const row = c.closest('details.need');
+    if (!c.id.startsWith('tft-')) {
+      assert(row.querySelector('.rowbody > p.nextstep').textContent.startsWith('Next step:'), `${label} #${c.id}: the row says the next step`);
+      assert(row.querySelector('.rowbody > p.src a[rel="noopener"]'), `${label} #${c.id}: the row names its sources`);
+    } else {
+      assert(more.querySelector('p.src a'), `${label} #${c.id}: sources are in the details`);
+    }
   }
   const ids = all(d, '[id]').map((e) => e.id);
   assert.equal(new Set(ids).size, ids.length, `${label}: no id is used twice`);
 }
 
 (async () => {
-  // 1. A county by its code: four closed rows, a local guide where there is one, and the pickers follow along.
+  // 1. A county's own page: its name in the title, the way back up, closed rows, a local guide where there is one.
   {
-    const { w, d, asked } = load('#39117');
-    await settle(w);
-    assert.equal(d.getElementById('ctitle').textContent, 'Morrow County, Ohio');
+    const { d, file } = county('39117');
+    assert.equal(file, 'states/oh/morrow-county.html');
+    assert.equal(d.querySelector('h1').textContent, 'Morrow County, Ohio');
     assert.equal(d.title, 'Morrow County, Ohio: help for moms | Yoga Mom Talk');
-    const rows = all(d, '#county-app details.need');
+    assert.equal(d.querySelector('link[rel="canonical"]').href, 'https://www.yogamomtalk.com/states/oh/morrow-county.html');
+    const desc = d.querySelector('meta[name="description"]').content;
+    assert(desc.includes('Morrow County, Ohio') && desc.length <= 160, desc);
+    assert.deepEqual(all(d, '.crumbs a').map((a) => a.getAttribute('href')), ['../../index.html', '../../states.html', '../oh.html']);
+    const ld = JSON.parse(d.querySelector('script[type="application/ld+json"]').textContent);
+    const trail = ld['@graph'].find((g) => g['@type'] === 'BreadcrumbList').itemListElement.map((i) => i.name);
+    assert.deepEqual(trail, ['Yoga Mom Talk', 'Help by state', 'Ohio', 'Morrow County']);
+    assert.equal(d.querySelector('.hero').nextElementSibling.id, 'now', 'the crisis cards come right after the heading');
+    const rows = all(d, 'details.need');
     assert.deepEqual(rows.map((r) => r.id), ['county-christmas', 'county-pha', 'county-hud', 'county-legal', 'county-health', 'county-schools', 'county-start', 'county-state']);
     const legal = all(d, '#county-legal article.card');
     assert.equal(legal.length, 1);
@@ -85,79 +119,63 @@ function checkCards(d, label) {
     assert.deepEqual(all(schools, 'article.card h3').map((h) => h.textContent).slice(0, 4),
       ['Highland Local', 'Northmor Local', 'Mount Gilead Exempted Village', 'Cardington-Lincoln Local']);
     assert.match(schools.querySelector('.rowbody p.quiet').textContent, /From age 3.*evaluation.*in writing/);
-    const ei = schools.querySelector('.rowbody p.quiet a');
-    assert.equal(ei.getAttribute('href'), 'states/oh.html#oh-ei');
+    assert.equal(schools.querySelector('.rowbody p.quiet a').getAttribute('href'), '../../states/oh.html#oh-ei');
     assert(new JSDOM(fs.readFileSync('states/oh.html', 'utf8')).window.document.getElementById('oh-ei'), 'the early intervention card is there');
-    const guide = d.querySelector('#county-app .localbox a');
-    assert.equal(guide.getAttribute('href'), 'ohio/counties/morrow.html');
-    assert(fs.existsSync('ohio/counties/morrow.html'));
+    assert.equal(d.querySelector('.localbox a').getAttribute('href'), '../../ohio/counties/morrow.html');
     const ohio = new JSDOM(fs.readFileSync('states/oh.html', 'utf8')).window.document;
-    const links = all(d, '#county-app .statelinks a');
+    const links = all(d, '#county-state .statelinks a');
     assert.equal(links.length, 9);
     for (const a of links) {
       const [page, frag] = a.getAttribute('href').split('#');
-      assert.equal(page, 'states/oh.html');
+      assert.equal(page, '../../states/oh.html');
       assert(ohio.getElementById(frag), `states/oh.html#${frag}`);
     }
-    assert.equal(d.getElementById('cstate').value, 'oh');
-    assert.equal(d.getElementById('ccounty').value, '39117');
-    assert.equal(d.getElementById('ccounty').options.length, 89, 'Ohio has 88 counties');
-    assert(!d.querySelector('[data-county-find]').hidden, 'the choosers show once the script runs');
-    assert(asked.length >= 1);
-    for (const [url, opts] of asked) {
-      assert.match(url, /^assets\/us\/[a-z0-9]+\.json$/, 'only this site\'s own files are read');
-      assert.equal(opts.credentials, 'omit');
-      assert.equal(opts.referrerPolicy, 'no-referrer');
-    }
+    // The way to another county: the state's list, which links every county's page.
+    const back = d.querySelector('.countylink a').getAttribute('href');
+    assert.equal(back, '../oh.html#counties');
+    const list = all(ohio, '#counties a');
+    assert.equal(list.length, 88, 'Ohio has 88 counties');
+    for (const a of list) assert(fs.existsSync('states/' + a.getAttribute('href')), a.getAttribute('href'));
+    assert(list.some((a) => a.getAttribute('href') === 'oh/morrow-county.html'));
     assert.equal(all(d, 'form').length, 0);
     assert.equal(all(d, 'input[name]').length, 0, 'no field has a name, so nothing can be sent');
   }
 
-  // 1b. Every state's counties load and draw, and no card breaks the card rules (a quick pass over one county per state).
+  // 1b. Every county of every state has its page, and no card breaks the card rules (the largest county of each state).
   {
-    const codes = fs.readdirSync('assets/us').filter((f) => /^[a-z]{2}\.json$/.test(f));
-    assert.equal(codes.length, 51);
-    for (const f of codes) {
-      const shard = JSON.parse(fs.readFileSync('assets/us/' + f, 'utf8'));
+    let n = 0;
+    for (const [code, shard] of Object.entries(SHARDS)) {
+      for (const fips of Object.keys(shard.c)) { assert(fs.existsSync(pageOf(fips)), pageOf(fips)); n++; }
       const fips = Object.keys(shard.c).sort((a, b) => shard.c[b].p - shard.c[a].p)[0];
-      const { w, d } = load('#' + fips);
-      await settle(w);
-      assert.equal(all(d, '#county-app details.need').length, 8, fips + ': Christmas help and seven needs');
-      assert.equal(all(d, '#county-legal article.card').length >= 1, true, fips + ': every county has legal aid');
-      checkCards(d, fips);
+      const { d } = county(fips);
+      assert.equal(all(d, 'details.need').length, 8, fips + ': Christmas help and seven needs');
+      assert(all(d, '#county-legal article.card').length >= 1, fips + ': every county has legal aid');
+      checkCards(d, `${code} ${fips}`);
     }
+    assert.equal(Object.keys(SHARDS).length, 51);
+    assert.equal(n, 3144);
   }
 
-  // 2. A county with hundreds of listings shows a few, then more on request, and can be narrowed by town.
+  // 2. A county with hundreds of listings lists them all, closed in their row, and the search box narrows them by town.
   {
-    const { w, d } = load('#06037');
-    await settle(w);
+    const { w, d } = county('06037');
     const health = d.getElementById('county-health');
-    assert.equal(all(health, 'article.card').length, 6);
-    const more = health.querySelector('.rowbody button');
-    assert.equal(more.textContent, 'Show 12 more');
-    more.click();
-    assert.equal(all(health, 'article.card').length, 18);
-    const box = health.querySelector('input.rowfilter');
-    assert.equal(box.type, 'search');
-    box.value = 'pasadena';
-    box.dispatchEvent(new w.Event('input'));
-    const shown = all(health, 'article.card');
+    const n = SHARDS.ca.c['06037'].health.length;
+    assert(n > 500);
+    assert.equal(all(health, 'article.card').length, n);
+    assert.equal(health.querySelector('.ncount').textContent, n + ' places');
+    const q = d.getElementById('q');
+    q.value = 'pasadena';
+    q.dispatchEvent(new w.Event('input', { bubbles: true }));
+    const shown = all(health, 'article.card').filter((c) => !c.hidden);
     assert(shown.length > 0 && shown.every((c) => /pasadena/i.test(c.textContent)), 'narrowing keeps only matching places');
-    assert(more.hidden, '"Show more" steps aside while narrowing');
-    box.value = 'zzzzqx';
-    box.dispatchEvent(new w.Event('input'));
-    assert.equal(all(health, 'article.card').length, 0);
-    assert.match(health.textContent, /Nothing matches/);
-    box.value = '';
-    box.dispatchEvent(new w.Event('input'));
+    assert(health.open, 'the row with a match opens');
     checkCards(d, 'Los Angeles');
   }
 
   // 3. A county with no health center of its own shows the nearest ones and says how far they are.
   {
-    const { w, d } = load('#48301');
-    await settle(w);
+    const { d } = county('48301');
     const health = d.getElementById('county-health');
     assert.match(health.querySelector('.nsum').textContent, /^Nearest health centers, outside Loving County$/);
     for (const c of all(health, 'article.card')) assert.match(c.querySelector('.short').textContent, /^About \d+ miles? from the middle of Loving County\./);
@@ -169,21 +187,27 @@ function checkCards(d, label) {
     checkCards(d, 'Loving');
   }
 
-  // 3b. A Virginia city with no school district of its own shows the nearest, with the distance.
+  // 3b. A Virginia city with no school district of its own shows the nearest, with the distance. Names with accents get plain addresses.
   {
-    const { w, d } = load('#51600');
-    await settle(w);
+    const { d } = county('51600');
     const schools = d.getElementById('county-schools');
     assert.match(schools.querySelector('.nsum').textContent, /^Nearest school districts, outside Fairfax City$/);
     const first = schools.querySelector('article.card');
     assert.equal(first.querySelector('h3').textContent, 'Fairfax County Public Schools');
     assert.match(first.querySelector('.short').textContent, /^About \d+ miles? away, in .*Ask whether it serves where you live\.$/);
     checkCards(d, 'Fairfax City');
+    assert.equal(pageOf('35013'), 'states/nm/dona-ana-county.html');
   }
 
-  // 4. A ZIP code is matched in the browser and opens its county. Nothing is sent but the request for a list.
+  // 3c. A link to a row opens it.
   {
-    const { w, d, asked } = load('');
+    const { d } = county('39117', '#county-legal');
+    assert.deepEqual(all(d, 'details.need').filter((r) => r.open).map((r) => r.id), ['county-legal']);
+  }
+
+  // 4. On county.html a ZIP code is matched in the browser and opens its county's page. Nothing is sent but the request for a list.
+  {
+    const { w, d, asked } = finder('');
     await settle(w);
     const zip = d.getElementById('zip');
     zip.value = '4333';
@@ -195,22 +219,29 @@ function checkCards(d, label) {
     await settle(w);
     assert.equal(w.location.hash, '#39117');
     await settle(w);
-    assert.equal(d.getElementById('ctitle').textContent, 'Morrow County, Ohio');
-    assert.deepEqual(asked.map((a) => a[0]), ['assets/us/z4.json', 'assets/us/oh.json', 'assets/us/christmas.json']);
+    assert.equal(d.getElementById('cmsg').textContent, 'Opening Morrow County…');
+    assert.deepEqual(asked.map((a) => a[0]), ['assets/us/z4.json', 'assets/us/oh.json']);
+    for (const [url, opts] of asked) {
+      assert.match(url, /^assets\/us\/[a-z0-9]+\.json$/, 'only this site\'s own files are read');
+      assert.equal(opts.credentials, 'omit');
+      assert.equal(opts.referrerPolicy, 'no-referrer');
+    }
     zip.value = '00001';
     zip.dispatchEvent(new w.Event('input'));
     await settle(w);
     assert.match(d.getElementById('cmsg').textContent, /could not match that ZIP code/);
+    assert(!d.querySelector('[data-county-find]').hidden, 'the choosers show once the script runs');
   }
 
-  // 5. A state's two letters list its counties; choosing a state does the same.
+  // 5. A state's two letters list its counties, each a link to its page; choosing a state does the same.
   {
-    const { w, d } = load('#oh');
+    const { w, d } = finder('#oh');
     await settle(w);
     assert.equal(d.getElementById('ctitle').textContent, 'Ohio counties');
     const links = all(d, '#county-app .statelist a');
     assert.equal(links.length, 88);
-    for (const a of links) assert.match(a.getAttribute('href'), /^#39\d{3}$/);
+    for (const a of links) assert(fs.existsSync(a.getAttribute('href')), a.getAttribute('href'));
+    assert.equal(d.getElementById('ccounty').options.length, 89);
     const pick = d.getElementById('cstate');
     pick.value = 'ct';
     pick.dispatchEvent(new w.Event('change'));
@@ -221,22 +252,22 @@ function checkCards(d, label) {
 
   // 6. When a list cannot be loaded, the page says so and points to the state page. An unknown code goes home.
   {
-    const { w, d } = load('#39117', { fail: true });
+    const { w, d } = finder('#39117', { fail: true });
     await settle(w);
     assert.match(d.getElementById('county-app').textContent, /could not load that list/);
     assert.equal(d.querySelector('#county-app a').getAttribute('href'), 'states/oh.html');
-    const other = load('#99999');
+    const other = finder('#99999');
     await settle(other.w);
     assert.equal(other.d.getElementById('ctitle').textContent, 'Help near you');
   }
 
   // 7. A browser that cannot fetch keeps the plain message and a way to the state pages.
   {
-    const { w, d } = load('#39117', { noFetch: true });
+    const { w, d } = finder('#39117', { noFetch: true });
     await settle(w);
     assert(d.querySelector('[data-county-find]').hidden);
-    assert.match(d.getElementById('county-app').textContent, /need JavaScript/);
+    assert.match(d.getElementById('county-app').textContent, /needs JavaScript/);
     assert(d.querySelector('#county-app a[href="states.html"]'));
   }
-  console.log('PASS county page: codes, ZIP codes and states find a county; closed rows; same card parts; long lists narrow; failures explained');
+  console.log('PASS county pages: 3,144 written pages with closed rows and the same card parts; county.html finds a county by code, state or ZIP code');
 })().catch((e) => { console.error(e); process.exit(1); });

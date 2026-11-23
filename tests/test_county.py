@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
 import county_data as cd  # noqa: E402
 from us_geo import FIPS_STATE, STATE_FIPS  # noqa: E402
+import ymt_build  # noqa: E402
 
 US = ROOT / 'assets' / 'us'
 COUNTIES = json.loads((ROOT / 'data' / 'ymt' / 'counties.json').read_text(encoding='utf-8'))
@@ -291,10 +292,17 @@ class CountyPages(unittest.TestCase):
         for st in STATE_FIPS:
             t = tags(f'states/{st.lower()}.html')
             mine = sorted(c['fips'] for c in COUNTIES if c['state'] == st)
-            values = [a['value'] for tag, a in t if tag == 'option' and a.get('value', '').startswith('../county.html#')]
-            links = [a['href'] for tag, a in t if tag == 'a' and a.get('href', '').startswith('../county.html#')]
-            shown = sorted(v.split('#')[1] for v in values + links)
-            self.assertEqual(shown, mine, st)
+            # Each county has its own page: in the picker beside the heading, and as a plain link in the list lower down.
+            pages = sorted(ymt_build.county_path(st, c['name']) for c in COUNTIES if c['state'] == st)
+            self.assertEqual(len(pages), len(mine), st)
+            prefix = st.lower() + '/'
+            values = sorted('states/' + a['value'] for tag, a in t if tag == 'option' and a.get('value', '').startswith(prefix))
+            links = sorted({'states/' + a['href'] for tag, a in t if tag == 'a' and a.get('href', '').startswith(prefix)})
+            self.assertEqual(links, pages, st)
+            if len(pages) > 1:
+                self.assertEqual(values, pages, st)
+            for p in pages:
+                self.assertTrue((ROOT / p).is_file(), p)
 
     def test_county_script_only_reads_this_site(self):
         js = (ROOT / 'assets' / 'county.js').read_text(encoding='utf-8')

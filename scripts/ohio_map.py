@@ -151,7 +151,9 @@ def plain_list(data, pages):
             out.append('</ul>')
         else:
             out.append('<p>None of these federal lists has an office inside this county. The county pages list the nearest ones.</p>')
-        more = [f'<a href="../county.html#{data["counties"][county]}">Everything for {esc(county)} County</a>']
+        # Every county has its own page on the national site (scripts/ymt_build.py, county_slug).
+        page = re.sub(r'[^a-z0-9]+', '-', f'{county} county'.lower()).strip('-')
+        more = [f'<a href="../states/oh/{page}.html">Everything for {esc(county)} County</a>']
         if pages.get(county):
             more.insert(0, f'<a href="{esc(pages[county])}">OhioMom page for {esc(county)} County</a>')
         out.append('<p class="small">' + ' · '.join(more) + '</p></details>')
