@@ -43,6 +43,9 @@ async function settle(w) {
   for (let i = 0; i < 30; i++) await new Promise((r) => w.setTimeout(r, 0));
 }
 
+// Help for moms and babies (scripts/local_help.py) sits after housing counselors once its listings are mined.
+const moms = fs.existsSync(__dirname + '/../data/ymt/local-help/listings.csv') ? ['county-moms'] : [];
+
 function checkCards(d, label) {
   const cards = all(d, 'main article.card');
   assert(cards.length > 0, `${label}: some cards`);
@@ -102,8 +105,6 @@ function checkCards(d, label) {
     assert.deepEqual(trail, ['Yoga Mom Talk', 'Help by state', 'Ohio', 'Morrow County']);
     assert.equal(d.querySelector('.hero').nextElementSibling.id, 'now', 'the crisis cards come right after the heading');
     const rows = all(d, 'details.need');
-    // Help for moms and babies (scripts/local_help.py) sits after housing counselors once its listings are mined.
-    const moms = fs.existsSync(__dirname + '/../data/ymt/local-help/listings.csv') ? ['county-moms'] : [];
     assert.deepEqual(rows.map((r) => r.id), ['county-christmas', 'county-pha', 'county-hud', ...moms, 'county-legal', 'county-health', 'county-schools', 'county-start', 'county-state']);
     if (moms.length) {
       assert(all(d, '#county-moms article.card').length >= 1, 'Morrow County has its health department at least');
@@ -157,7 +158,7 @@ function checkCards(d, label) {
       for (const fips of Object.keys(shard.c)) { assert(fs.existsSync(pageOf(fips)), pageOf(fips)); n++; }
       const fips = Object.keys(shard.c).sort((a, b) => shard.c[b].p - shard.c[a].p)[0];
       const { d } = county(fips);
-      assert.equal(all(d, 'details.need').length, 8, fips + ': Christmas help and seven needs');
+      assert.equal(all(d, 'details.need').length, 8 + moms.length, fips + ': Christmas help and seven needs (eight with help for moms)');
       assert(all(d, '#county-legal article.card').length >= 1, fips + ': every county has legal aid');
       checkCards(d, `${code} ${fips}`);
     }
