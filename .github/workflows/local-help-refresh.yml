@@ -1,0 +1,91 @@
+name: Monthly local help for moms refresh
+# Mines every active source in data/ymt/local-help/registry.json (WIC offices, health departments, home visiting,
+# diaper banks, breastfeeding groups), normalizes the rows into data/ymt/local-help/listings.csv, places them in
+# counties, writes the coverage report, checks each listing's website, rebuilds the pages and runs every check (scripts/local_help.py; README,
+# "Local help for moms"). When anything changed it opens a pull request (or, if this repository does not let
+# workflows open pull requests, an issue naming the branch).
+# A run started by hand on another branch is a trial: it mines, rebuilds and checks, prints what it found in the log
+# and the run summary, and opens nothing.
+on:
+  schedule:
+    - cron: '17 11 12 * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+concurrency:
+  group: local-help-refresh
+  cancel-in-progress: false
+jobs:
+  refresh:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Download every active source
+        run: python3 scripts/local_help.py "$RUNNER_TEMP/src" --fetch
+      - name: Normalize, place in counties, remove duplicates, report coverage
+        run: |
+          python3 scripts/local_help.py "$RUNNER_TEMP/src"
+          python3 scripts/local_help.py --sample
+          {
+            echo '### Sources this run'
+            echo '```'
+            cat data/ymt/local-help/last-run.json
+            echo '```'
+            sed -n '1,40p' data/ymt/local-help/coverage.md
+          } >> "$GITHUB_STEP_SUMMARY"
+      - name: Check the listings' websites (a card shows a Website button only for one that loaded)
+        run: python3 scripts/county_links.py --local-help
+      - name: Rebuild the pages
+        run: python3 scripts/ymt_build.py
+      - name: Every check the pull request would get
+        run: |
+          python3 scripts/validate.py
+          python3 scripts/build.py --check
+          python3 scripts/ymt_validate.py
+          python3 scripts/ymt_build.py --check
+          python3 scripts/prerender_ohio.py --check
+          python3 scripts/home_extras.py --check
+          python3 scripts/ohio_map.py --check
+          python3 scripts/christmas_data.py --check
+          python3 -m unittest discover tests
+          npm test
+      - name: Open a pull request when anything changed
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "Nothing changed." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          month="$(date +%B\ %Y)"
+          branch="data/local-help-$(date +%Y-%m-%d)"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add -A
+          git commit -m "Refresh local help for moms from its sources ($month)"
+          git push --force origin "$branch"
+          {
+            echo "The refresh of local help for moms on the county pages (WIC offices, health departments, home visiting, diaper banks, breastfeeding groups)."
+            echo
+            echo "Every check ran in [this job](${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}) and passed before this was opened. A pull request opened by a workflow does not start the usual checks by itself."
+            echo
+            echo '```'
+            cat data/ymt/local-help/last-run.json
+            echo '```'
+            sed -n '1,30p' data/ymt/local-help/coverage.md
+          } > "$RUNNER_TEMP/body.md"
+          gh pr create --base main --head "$branch" --title "Local help for moms refresh ($month)" --body-file "$RUNNER_TEMP/body.md" \
+            || gh issue create --title "Local help for moms refresh ready to review: $branch ($month)" --body-file "$RUNNER_TEMP/body.md"
