@@ -86,6 +86,14 @@ Added November 20, 2026 at the owner's request, after a search for "Christmas" o
 - **Refreshing the campaign list.** `python3 scripts/christmas_data.py --fetch` reads the list again from toysfortots.org, but the site refuses GitHub's servers (HTTP 403, November 20, 2026), so it has to run from an ordinary connection. The November 20, 2026 list was read in a browser on the owner's computer and checked character for character against what the site returned. Read it again each fall, when campaigns open.
 - **Dates.** Sign-up dates are set campaign by campaign and office by office, so the site does not print them except where a national program sets one (Operation Santa). Each card says to check the local campaign and to dial 211 when something has closed.
 
+## A loved one in jail or prison
+
+Added November 23, 2026 at the owner's request, for mothers and caregivers with a loved one in jail or prison or coming home.
+
+- **National page.** `inside.html` ("Someone I love is in jail or prison"), built by `build_inside` in `scripts/ymt_build.py` from the listings in the `inside` section of `data/ymt/resources.json` (a section with its own page, like `connect`, so it is not a row on `help.html` or the state pages) plus listings it shares with other needs (Angel Tree, 211, legal aid, the parent helpline, 988). Four rows: finding them and staying in touch (Bureau of Prisons locator, mail, calls, money and visits), helping your children (Sesame Workshop, Angel Tree), coming home (211, legal aid, clearing a past cannabis record on the-reefer.com, and the Veteran Resource Guide's justice page for veterans' families), and taking care of you. It is linked from `help.html` (the front page keeps its fixed set of tiles).
+- **Ohio page.** `ohio/help/family-inside.html` is hand-kept source like the other Ohio help pages: ODRC's prison search, visiting rules and ViaPath for calls, messages and money (from ODRC's visitation page and its ViaPath instructions), what every Ohio jail must offer (Ohio Administrative Code 5120:1-8-06, -07 and -16), OhioKAN for relatives raising the children, Sesame Workshop, ODRC's Office of Reentry and the state ID law (ORC 5120.59), clearing an Ohio record (the-reefer.com/expungement.html) and the Certificate of Qualification for Employment, and help for veterans' families. It is a tile on `ohio/help.html` and a need of its own on All resources (`ohio/assets/all.js`, "A loved one in jail or prison"); `tests/ohio-directory.cjs` checks that every listing reaches All resources.
+- Record sealing and expungement link to the cannabis site's record-clearing pages (the-reefer.com), which own that topic.
+
 ## The OhioMom map
 
 `ohio/map.html` puts the places the site already has on one map, in the style of Nina's Map in the Native repository: a map you can zoom, a list beside it (under it on a phone), chips to turn each kind on and off, a county box, and a search box that takes a town, a ZIP code, a county or any words.

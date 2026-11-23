@@ -759,7 +759,7 @@ def coverage():
     rowsc = []
     for c in world['countries']:
         n = Counter(x['section'] for x in c.get('resources', []))
-        empty = [s for s in secs if s not in ('christmas',) and not n.get(s)]
+        empty = [s for s in secs if s not in ('christmas', 'inside') and not n.get(s)]
         rowsc.append((len(c.get('resources', [])), len(empty), c['name'], empty))
     rowsc.sort(key=lambda x: (x[0], -x[1], x[2]))
     lines += ['## Thinnest countries (the next batch outside the U.S.)', '',

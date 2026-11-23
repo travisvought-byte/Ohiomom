@@ -72,6 +72,13 @@
    "icon": "🤝",
    "page": "connect",
    "summary": "Groups and communities where moms meet other moms."
+  },
+  {
+   "id": "inside",
+   "label": "A loved one in jail or prison",
+   "icon": "🕊️",
+   "page": "inside",
+   "summary": "Visits, calls and money, helping your kids, coming home, and support for you."
   }
  ],
  "attribution": "Disability and military-family listings are adapted from the family guide in the Veteran Resident Resource Guide, created by Travis Vought and shared by Veteran Home Guardians (CC BY 4.0).",
@@ -907,6 +914,97 @@
     "https://operationhomefront.org/holidaytoys"
    ],
    "reviewed_on": "2026-11-20"
+  },
+  {
+   "id": "us-bop-locator",
+   "section": "inside",
+   "scope": "US",
+   "name": "Find someone in federal prison",
+   "org": "Federal Bureau of Prisons",
+   "what": "The Bureau of Prisons' locator finds a person in federal prison by name or register number. State prisons and county jails each have their own search: use your state's department of corrections, or call the county sheriff's office.",
+   "how": "Search by name, or by the federal register number if you have it. Write down the prison name and register number; you will need them for mail, money and visits.",
+   "url": "https://www.bop.gov/inmateloc/",
+   "sources": [
+    "https://www.bop.gov/inmateloc/"
+   ],
+   "reviewed_on": "2026-11-23"
+  },
+  {
+   "id": "us-bop-contact",
+   "section": "inside",
+   "scope": "US",
+   "name": "Mail, calls, money and visits in federal prison",
+   "org": "Federal Bureau of Prisons",
+   "what": "The Bureau of Prisons explains how to send money to someone in federal prison (by MoneyGram, Western Union or the mail), and the rules for mail, phone calls and visits. Visitors must be on the person's approved visiting list.",
+   "how": "Read the sending-money steps before you pay, and check the prison's own page for visiting days and hours before you travel.",
+   "url": "https://www.bop.gov/inmates/communications.jsp",
+   "links": [
+    {
+     "label": "Visiting rules",
+     "url": "https://www.bop.gov/inmates/visiting.jsp"
+    }
+   ],
+   "sources": [
+    "https://www.bop.gov/inmates/communications.jsp",
+    "https://www.bop.gov/inmates/visiting.jsp"
+   ],
+   "reviewed_on": "2026-11-23"
+  },
+  {
+   "id": "us-sesame-incarceration",
+   "section": "inside",
+   "scope": "US",
+   "name": "Helping young children when a parent is incarcerated",
+   "org": "Sesame Workshop",
+   "what": "Free videos, printables, a read-aloud storybook and tips for talking with children about a parent's incarceration, getting ready for a visit and staying connected. Made for ages up to about 6, in English and Spanish, with a workshop on taking care of yourself as the caregiver.",
+   "how": "Start with \"Coping With Incarceration\" and the storybook \"In My Family\". Watch a video together before a first visit so your child knows what to expect.",
+   "url": "https://sesameworkshop.org/topics/incarceration/",
+   "sources": [
+    "https://sesameworkshop.org/topics/incarceration/"
+   ],
+   "reviewed_on": "2026-11-23"
+  },
+  {
+   "id": "us-record-relief",
+   "section": "inside",
+   "scope": "US",
+   "name": "Can a past cannabis record be cleared? Every state compared",
+   "org": "The Reefer",
+   "what": "A state-by-state table of whether and how a past cannabis record can be sealed, expunged or pardoned, with the source for each state and the date it was checked. For other records, ask legal aid in your state.",
+   "how": "Find your state in the table and follow its source. Ohio has a full step-by-step walkthrough for marijuana and other records.",
+   "url": "https://the-reefer.com/national/law-record-relief.html",
+   "links": [
+    {
+     "label": "Ohio walkthrough",
+     "url": "https://the-reefer.com/expungement.html"
+    }
+   ],
+   "sources": [
+    "https://the-reefer.com/national/law-record-relief.html"
+   ],
+   "reviewed_on": "2026-11-23"
+  },
+  {
+   "id": "us-vet-justice",
+   "section": "inside",
+   "scope": "US",
+   "name": "If your loved one is a veteran",
+   "org": "Veteran Resource Guide (Veteran Home Guardians)",
+   "what": "VA has justice outreach specialists for veterans in jail and court, and re-entry specialists for veterans in prison. VA pay is cut during a long prison stay after a felony conviction, and a spouse, children or dependent parents can ask VA for part of the money it holds back. VA does not send it unless the family applies.",
+   "how": "Read the guide's page on veterans in the justice system, then apply for the family's share on VA Form 21-0788.",
+   "url": "https://guide.vethomeguard.org/justice.html",
+   "links": [
+    {
+     "label": "VA Form 21-0788",
+     "url": "https://www.va.gov/find-forms/about-form-21-0788/"
+    }
+   ],
+   "sources": [
+    "https://www.benefits.va.gov/persona/veteran-incarcerated.asp",
+    "https://department.va.gov/homeless/veterans-justice-programs/veterans-justice-outreach/",
+    "https://www.va.gov/find-forms/about-form-21-0788/"
+   ],
+   "reviewed_on": "2026-11-23"
   }
  ]
 }

@@ -151,7 +151,7 @@ async function loadDirectory(hash = '', { missing = [], area = null } = {}) {
 
 (async () => {
   // 5. Everything is there, once.
-  const sources = ['ohio/help/bills.html', 'ohio/help/pregnancy-baby.html', 'ohio/help/single-parent.html', 'ohio/wellbeing.html', 'ohio/help/housing.html', 'ohio/holidays.html']
+  const sources = ['ohio/help/bills.html', 'ohio/help/pregnancy-baby.html', 'ohio/help/single-parent.html', 'ohio/wellbeing.html', 'ohio/help/housing.html', 'ohio/holidays.html', 'ohio/help/family-inside.html']
     .concat(fs.readdirSync('ohio/counties').filter((f) => f.endsWith('.html')).map((f) => 'ohio/counties/' + f));
   {
     const { d, asked, shown, found } = await loadDirectory();
@@ -175,7 +175,7 @@ async function loadDirectory(hash = '', { missing = [], area = null } = {}) {
     // Groups by need, each with a heading and a count, in a fixed order.
     const heads = all(d, '.dirgroup h2').map((h) => h.firstChild.textContent);
     assert.deepEqual(heads, ['Housing and shelter', 'Safety and crisis lines', 'Food and bills', 'Pregnancy and new baby',
-      'My child learns or grows differently', 'Parenting on my own', 'Take care of me', 'Military and veteran families', 'Holiday help', 'Meet other moms']);
+      'My child learns or grows differently', 'Parenting on my own', 'Take care of me', 'Military and veteran families', 'A loved one in jail or prison', 'Holiday help', 'Meet other moms']);
     for (const g of all(d, '.dirgroup')) assert.equal(g.querySelector('.ncount').textContent, `${g.querySelectorAll('article.card').length} listings`);
     // Every card is a short card: a name, one line, a way to act, the rest folded away. Nothing carries a duplicate id.
     for (const c of all(d, '[data-directory-list] article.card')) {

@@ -385,7 +385,8 @@ def build_help(data):
     # A listing that belongs under two needs is shown under both, so nobody has to hunt for it.
     rows = [row(s, data['resources']) for s in secs]
     lede = ('Pick what you need, or search every listing. These work in every state. '
-            'For your state\'s own offices, <a href="states.html">choose your state</a>.')
+            'For your state\'s own offices, <a href="states.html">choose your state</a>. '
+            'Someone you love in jail or prison? <a href="inside.html">Start here</a>.')
     body = (hero('Find help', lede) + finder('Search every listing', 'shelter, rent, WIC, child care…') + needs(''.join(rows))
             + '<section class="wrap slim"><p>In danger right now? Call 911. Domestic violence shelter addresses are never listed here, for safety.</p></section>')
     return page(data, 'help.html', 'Find help for moms',
@@ -445,6 +446,47 @@ def build_christmas(data):
     return page(data, 'christmas.html', 'Christmas help for moms: toys, gifts and holiday meals', desc, body,
                 head_extra=structured_data(about, breadcrumbs(data, [('Christmas help', 'christmas.html')])),
                 slots=('topic-help', 'topic'))
+
+
+INSIDE_ROWS = [
+    ('inside-touch', '📞', 'Find them, and stay in touch', 'Where they are held, visits, phone calls, mail and putting money on their account.',
+     ['us-bop-locator', 'us-bop-contact']),
+    ('inside-kids', '🧸', 'Helping your children', 'Talking with young children about it, getting ready for a visit, and a Christmas gift from their parent.',
+     ['us-sesame-incarceration', 'us-pf-angel-tree']),
+    ('inside-home', '🏡', 'Coming home', 'Local help after release, free legal help, clearing a record, and help for veterans and their families.',
+     ['us-211-help', 'us-legal-aid', 'us-record-relief', 'us-vet-justice']),
+    ('inside-you', '☕', 'Take care of you', 'When someone you love is inside, you are carrying a lot too. Someone to talk to, any hour.',
+     ['us-parent-helpline', 'us-988']),
+]
+
+
+def build_inside(data):
+    """For moms and caregivers with a loved one in jail or prison or coming home: national help by need, then Ohio."""
+    nat = {r['id']: r for r in data['resources']}
+    rows = []
+    for rid, icon, label, summary, ids in INSIDE_ROWS:
+        sec = {'id': rid, 'label': label, 'icon': icon, 'summary': summary}
+        rows.append(need(sec, [nat[i] for i in ids], '', {i: f'{rid}--{i}' for i in ids}))
+    first = ('<div class="localbox"><strong>Where to start.</strong> Find out where your loved one is held and how that '
+             'jail or prison handles visits, calls and money: each one sets its own rules. Read them before you pay or travel. '
+             'Your state\'s prison system has its own search; for a county jail, call the county sheriff\'s office.</div>')
+    lede = ('When your partner, your child\'s parent or someone else you love is in jail or prison, or coming home: '
+            'staying in touch, helping your kids, and help for you. Free, and no sign-up.')
+    ohio = ('<section class="wrap"><div class="localbox"><strong>In Ohio?</strong> '
+            '<a href="ohio/help/family-inside.html">A loved one in jail or prison, in Ohio</a> covers prison visits and video visits, '
+            'calls and money through the state\'s provider, what every Ohio jail must offer, help for relatives raising the children, '
+            'and coming home.</div></section>')
+    body = (hero('🕊️ Someone I love is in jail or prison', lede, first) + finder('Search this page', 'visit, money, kids, release…')
+            + needs(''.join(rows)) + ohio
+            + '<section class="wrap slim"><p>In danger right now? Call 911. Having a really hard time? You can call or text 988 any hour.</p></section>')
+    desc = ('For moms and caregivers when someone you love is in jail or prison: visits, calls and money, '
+            'helping your children, coming home, and support for you.')
+    site = data['site']
+    base = f"https://{site['domain']}/"
+    about = {'@type': 'CollectionPage', '@id': base + 'inside.html', 'url': base + 'inside.html',
+             'name': 'Someone I love is in jail or prison', 'description': desc, 'inLanguage': 'en', 'isPartOf': {'@id': base + '#website'}}
+    return page(data, 'inside.html', 'When someone you love is in jail or prison: help for moms', desc, body,
+                head_extra=structured_data(about, breadcrumbs(data, [('Someone I love is in jail or prison', 'inside.html')])))
 
 
 def build_connect(data):
@@ -1490,7 +1532,7 @@ def build_404(data):
 def build_all(data):
     files = {
         'index.html': build_index(data), 'help.html': build_help(data), 'connect.html': build_connect(data),
-        'states.html': build_states_index(data), 'christmas.html': build_christmas(data), 'yoga.html': build_yoga(data), 'about.html': build_about(data),
+        'states.html': build_states_index(data), 'christmas.html': build_christmas(data), 'inside.html': build_inside(data), 'yoga.html': build_yoga(data), 'about.html': build_about(data),
         'report.html': build_report(data), '404.html': build_404(data), 'county.html': build_county(data),
         'privacy.html': build_privacy(data), 'terms.html': build_terms(data),
     }
