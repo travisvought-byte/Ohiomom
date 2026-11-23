@@ -9,6 +9,7 @@ Edit data or this script, never the built pages. The Ohio pages under ohio/ are 
 import json
 import re
 import sys
+import unicodedata
 import urllib.parse
 from html import escape as esc
 from pathlib import Path
@@ -323,7 +324,7 @@ def build_index(data):
         f'<option value="states/{s["abbr"].lower()}.html">{esc(s["name"])}</option>' for s in data['states'])
     pick = (f'<div class="statepick"><label for="statepick">Or start with your state</label>'
             f'<select id="statepick" data-state-pick>{options}</select><a href="states.html">See all states</a>'
-            f'<a href="county.html">Find your county</a><a href="world.html">Outside the U.S.?</a></div>')
+            f'<a href="county.html">Find your county</a><a href="world.html">Outside the U.S.? Help in {len(data.get('world', {}).get('countries', []))} countries</a></div>')
     lede = 'Pick one. You will get a short list of who to call. Free, private, no sign-up.'
     top = (f'<div class="herotop"><div class="herotext"><h1>Hi, mom. What do you need today?</h1>'
            f'<p class="lede">{lede}</p></div>{extras.scene_block(False, sayings, "affirmations.html", "help.html#take-care")}</div>')
@@ -493,7 +494,7 @@ def build_states_index(data):
     body = (hero('Help by state', 'All 50 states and the District of Columbia. Tap yours on the map, or open the list.')
             + f'<section class="wrap mapwrap">{state_grid(data)}'
             f'<details class="maplist"><summary>All {len(data["states"])} as a list</summary><ul class="statelist">{items}</ul></details>'
-            '<p class="note">Looking for help close to home? <a href="county.html">Find your county</a>. Looking for something national? See <a href="help.html">Find help</a>.</p></section>')
+            '<p class="note">Looking for help close to home? Open your state for the list of its counties, or <a href="county.html">find your county by ZIP code</a>. Looking for something national? See <a href="help.html">Find help</a>. Outside the U.S.? <a href="world.html">Choose your country</a>.</p></section>')
     return page(data, 'states.html', 'Help by state',
                 'Pick your state for SNAP, WIC, child care, health coverage, disability help and domestic violence resources.', body,
                 head_extra=structured_data(breadcrumbs(data, [('Help by state', 'states.html')])))
@@ -522,6 +523,7 @@ def build_state(data, s):
     body = (hero(f'{esc(s["name"])}: help for moms', intro, county_pick(data, s) + local, 'slim')
             + urgent_strip(data, '../', '#help-now')
             + finder(f'Search every {s["name"]} listing', 'shelter, rent, WIC, child care…') + needs(rows)
+            + county_list(data, s)
             + '<section class="wrap slim"><p><strong>Meet other moms.</strong> Find a group near you or online. <a href="../connect.html">Meet moms</a></p></section>'
             + kind_word('#take-care', '../') + closing('../'))
     path = f'states/{s["abbr"].lower()}.html'
@@ -733,17 +735,35 @@ def build_country(data, c):
 
 
 def county_pick(data, s):
-    """Local listings for each county of the state, one choice away. The same picker the front page uses for states."""
+    """Local listings for each county of the state, one choice away: a picker beside the heading, and the same counties
+    as plain links lower on the page (county_list), which search engines follow."""
     counties = sorted((c for c in data['counties'] if c['state'] == s['abbr']), key=lambda c: c['name'])
     if not counties:
         return ''
+    code = s['abbr'].lower()
     if len(counties) == 1:
-        return f'<p class="countylink"><a href="../county.html#{counties[0]["fips"]}">Local listings for {esc(s["name"])}</a>: public housing, legal aid, health centers, school districts and Head Start.</p>'
-    noun = {'LA': 'parish', 'AK': 'borough or area'}.get(s['abbr'], 'county')
+        return (f'<p class="countylink"><a href="{code}/{county_slug(counties[0]["name"])}.html">Local listings for {esc(s["name"])}</a>: '
+                'public housing, legal aid, health centers, school districts and Head Start.</p>')
+    noun = county_noun(s['abbr'])
     options = f'<option value="">Choose your {noun}</option>' + ''.join(
-        f'<option value="../county.html#{c["fips"]}">{esc(c["name"])}</option>' for c in counties)
+        f'<option value="{code}/{county_slug(c["name"])}.html">{esc(c["name"])}</option>' for c in counties)
     return (f'<div class="statepick"><label for="countypick">Local help in your {noun}</label>'
-            f'<select id="countypick" data-state-pick>{options}</select></div>')
+            f'<select id="countypick" data-state-pick>{options}</select><a href="#counties">See the list</a></div>')
+
+
+def county_list(data, s):
+    """Every county of the state as a link to its own page."""
+    counties = sorted((c for c in data['counties'] if c['state'] == s['abbr']), key=lambda c: c['name'])
+    if not counties:
+        return ''
+    code = s['abbr'].lower()
+    items = ''.join(f'<li><a href="{code}/{county_slug(c["name"])}.html">{esc(c["name"])}</a></li>' for c in counties)
+    many = county_noun(s['abbr'], plural=True)
+    whose = (f'for each of {esc(s["name"])}\'s {len(counties)} {esc(many)}' if len(counties) > 1
+             else f'for {"the " if s["name"].startswith("District") else ""}{esc(s["name"])}')
+    return (f'<section class="wrap" id="counties"><h2>Local help by {esc(county_noun(s["abbr"]))}</h2>'
+            f'<p class="quiet">Public housing, housing counselors, legal aid, health centers, school districts and Head Start, '
+            f'{whose}.</p><ul class="statelist countylist">{items}</ul></section>')
 
 
 COUNTY_SOURCES = [  # in the order the rows appear on the page
@@ -776,8 +796,8 @@ COUNTY_SOURCES = [  # in the order the rows appear on the page
 
 
 def build_county(data):
-    """One page for every county. The listings are in assets/us/<state>.json and assets/county.js draws them."""
-    secs = sec_map(data)
+    """Find your county: by state and county, or by ZIP code. assets/county.js finds it and opens its own page
+    (build_county_pages). The sources of every county listing are explained here."""
     options = '<option value="">Choose your state</option>' + ''.join(
         f'<option value="{s["abbr"].lower()}" data-fips="{STATE_FIPS[s["abbr"]]}">{esc(s["name"])}</option>' for s in data['states'])
     find = ('<div class="countyfind" data-county-find hidden>'
@@ -790,10 +810,9 @@ def build_county(data):
             'for your child and Head Start close to you. Free, private, no sign-up.')
     hero_html = (f'<section class="hero slim"><div class="wrap"><h1 id="ctitle">Help near you</h1>'
                  f'<p class="lede" id="clede">{esc(lede)}</p>{find}</div></section>')
-    fallback = ('<section class="wrap"><p>The local listings on this page need JavaScript, which seems to be off or still loading. '
-                'You can still <a href="states.html">choose your state</a> for its offices and help lines.</p></section>')
-    statehelp = ('<div hidden data-statehelp><ul>' + ''.join(
-        f'<li><a data-sec="{sid}" href="states.html">{esc(secs[sid]["label"])}</a></li>' for sid in STATE_SECTIONS) + '</ul></div>')
+    fallback = ('<section class="wrap"><p>Finding a county by ZIP code needs JavaScript, which seems to be off or still loading. '
+                'You can still <a href="states.html">choose your state</a>: each state page lists its counties, and each county '
+                'has its own page.</p></section>')
     def sentence(key, template, links):
         # {0}, {1}... in the template are the links, in order; their numbers on each card follow the same order.
         parts = re.split(r'\{(\d)\}', template)
@@ -814,13 +833,378 @@ def build_county(data):
                '<p class="note">Nothing you type on this page is saved. A ZIP code is matched inside your browser, using a list '
                'your browser downloads for the first digit of the code.</p></section>')
     # The crisis phone cards come right after the heading, as on every state and country page.
-    body = (hero_html + '\n' + urgent_strip(data) + f'\n<div id="county-app">{fallback}</div>' + statehelp + '\n'
+    body = (hero_html + '\n' + urgent_strip(data) + f'\n<div id="county-app">{fallback}</div>\n'
             + kind_word('help.html#take-care') + '\n' + sources)
     return page(data, 'county.html', 'Help near you, by county',
                 'Public housing, housing counselors, legal aid, health centers, school districts and Head Start in every U.S. county, '
                 'from federal directories. Free, with no sign-up.',
                 body, head_extra=structured_data(breadcrumbs(data, [('Help near you, by county', 'county.html')])),
                 scripts='\n<script src="assets/county.js"></script>' + kind_word_scripts(), slots=('county',))
+
+
+# ---------------------------------------------------------------- one page for every U.S. county
+# assets/county.js once drew a county in the browser from assets/us/<state>.json. Search engines and slow phones read
+# a written page better, so every county now has its own: states/<state>/<county-slug>.html, written here from the
+# same files, with the same rows and cards. county.html stays as the way to find a county by state or ZIP code.
+MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+
+
+def county_slug(name):
+    """'Prince George's County' -> 'prince-george-s-county', 'Doña Ana County' -> 'dona-ana-county'. The same rule is in
+    assets/county.js."""
+    plain = ''.join(ch for ch in unicodedata.normalize('NFKD', name) if not unicodedata.combining(ch))
+    return re.sub(r'[^a-z0-9]+', '-', plain.lower()).strip('-')
+
+
+def county_path(st, name):
+    return f'states/{st.lower()}/{county_slug(name)}.html'
+
+
+def county_shards():
+    """{'OH': the parsed assets/us/oh.json, ...}, read once."""
+    if not hasattr(county_shards, 'cache'):
+        county_shards.cache = {p.stem.upper(): json.loads(p.read_text(encoding='utf-8'))
+                               for p in sorted((ROOT / 'assets' / 'us').glob('*.json')) if re.fullmatch(r'[a-z]{2}', p.stem)}
+    return county_shards.cache
+
+
+def christmas_shard():
+    p = ROOT / 'assets' / 'us' / 'christmas.json'
+    return json.loads(p.read_text(encoding='utf-8')) if p.exists() else None
+
+
+def _pretty(iso):
+    y, m, d = str(iso).split('-')
+    return f'{MONTHS[int(m) - 1]} {int(d)}, {y}'
+
+
+def _count(n, one, many):
+    return f'{n} {one if n == 1 else many}'
+
+
+def _words(items):
+    return items[0] if len(items) < 2 else ', '.join(items[:-1]) + ' and ' + items[-1]
+
+
+def _safe_url(u):
+    return u if re.fullmatch(r'https?://[^\s"\'<>]+', u or '') else ''
+
+
+def _tel1(p):
+    return 'tel:+1' + re.sub(r'\D', '', str(p))
+
+
+def _source_line(key, asof):
+    links = next(s[3] for s in COUNTY_SOURCES if s[0] == key)
+    nums = ' '.join(f'<a href="{esc(u)}" rel="noopener">{i}</a>' for i, (u, _t) in enumerate(links, 1))
+    return f'<p class="src">Federal data as of {esc(_pretty(asof))}, not confirmed by phone. Sources: {nums}</p>'
+
+
+def _next(text):
+    return f'<p><strong>Next step:</strong> {esc(text)}</p>'
+
+
+def _ccard(cid, name, short, phone, web, more):
+    acts = f'<a class="btn call" href="{_tel1(phone)}">Call {esc(phone)}</a>'
+    if _safe_url(web):
+        acts += f'<a class="btn" href="{esc(web)}" rel="noopener">Website</a>'
+    return (f'<article class="card" id="{esc(cid)}"><h3>{esc(name)}</h3><p class="short">{esc(short)}</p>'
+            f'<p class="actions">{acts}</p><details class="more"><summary>More about this<span class="sr">: {esc(name)}</span></summary>'
+            f'{"".join(more)}</details></article>')
+
+
+def _place(street, city, st, zip_):
+    return ', '.join(x for x in (street, f'{city}, {st}' + (f' {zip_}' if zip_ else '')) if x)
+
+
+def _away(miles, county):
+    return f'About {_count(miles, "mile", "miles")} from the middle of {county}. ' if miles else ''
+
+
+def _p(text, cls=''):
+    return f'<p class="{cls}">{esc(text)}</p>' if cls else f'<p>{esc(text)}</p>'
+
+
+def _health_card(r, i, ctx):
+    short = _away(r[9], ctx['county']) + f'Low-cost health care in {r[3]}, {r[10]}, whether or not you have insurance. Fees are based on your income.'
+    more = [_p('Part of ' + re.sub(r'^The ', 'the ', r[0]), 'org'), _p(_place(r[2], r[3], r[10], r[4]))]
+    if r[7] > 0:
+        more.append(_p(f'Open about {_count(r[7], "hour", "hours")} a week.'))
+    if r[8]:
+        more.append(_p('This site is open only part of the year, so call before you go.'))
+    return _ccard(f'hc-{i}', r[1], short, r[5], r[6], more)
+
+
+def _head_start_card(r, i, ctx):
+    kinds = r[6]
+    if kinds & 1 and kinds & 2:
+        what = (f'Free early learning in {r[3]}, {r[8]}: Head Start for ages 3 to 5, and Early Head Start for babies, toddlers '
+                'and pregnant moms. For families who qualify.')
+    elif kinds & 2:
+        what = f'Free early learning for babies and toddlers, and support for pregnant moms, in {r[3]}, {r[8]}. For families who qualify.'
+    else:
+        what = f'Free preschool in {r[3]}, {r[8]} for children ages 3 to 5 in families who qualify.'
+    notes = []
+    if kinds & 4:
+        notes.append('This program serves migrant and seasonal farmworker families.')
+    if kinds & 8:
+        notes.append('This is a tribal program (American Indian and Alaska Native Head Start). Ask who can enroll.')
+    notes.append('Free for families who qualify. Families with a low income qualify, and so do children in foster care and '
+                 'families who are homeless or who get TANF or SSI.')
+    more = [_p(r[1], 'org'), _p(_place(r[2], r[3], r[8], r[4])), _p(' '.join(notes))]
+    return _ccard(f'hs-{i}', r[0], _away(r[7], ctx['county']) + what, r[5], '', more)
+
+
+SERVICE_WORDS = {'R': 'renting', 'H': 'homelessness', 'D': 'mortgage trouble', 'B': 'budgeting', 'P': 'buying a home'}
+METHOD_WORDS = {'F': 'in person', 'P': 'by phone', 'V': 'by video', 'I': 'online'}
+
+
+def _hud_card(ref, a, ctx):
+    topics = [SERVICE_WORDS[k] for k in 'RHDBP' if k in a[6]]
+    where = f'About {_count(ref[1], "mile", "miles")} away, in {a[2]}, {a[9]}. ' if ref[1] else f'In {ctx["county"]}. '
+    short = where + 'Free or low-cost help from a HUD-approved counselor' + (f' with {_words(topics)}' if topics else '') + '.'
+    more = [_p('HUD-approved housing counseling agency', 'org'), _p(_place(a[1], a[2], a[9], a[3]))]
+    how = [METHOD_WORDS[k] for k in a[7] if k in METHOD_WORDS]
+    if how:
+        more.append(_p(f'Counseling is offered {_words(how)}.'))
+    if a[8]:
+        more.append(_p(f'Also helps in {_words(a[8])}.'))
+    return _ccard(f'hud-{ref[0]}', a[0], short, a[4], a[5], more)
+
+
+PROGRAM = {
+    'C': 'Public housing and Housing Choice Vouchers (Section 8).',
+    'S': 'Housing Choice Vouchers (Section 8), which help pay rent to a private landlord.',
+    'P': 'Public housing: apartments with rent based on your income.',
+}
+
+
+def _pha_card(ref, a, ctx):
+    how = ref[2]
+    if how == 's':
+        short = f'Statewide agency, run from {a[2]}, {a[8]}. {PROGRAM[a[5]]} Ask whether it serves {ctx["county"]}.'
+    elif how == 'r':
+        short = f'About {_count(ref[1], "mile", "miles")} away, in {a[2]}, {a[8]}. {PROGRAM[a[5]]} Ask whether it serves where you live.'
+    elif how == 'n':
+        short = f'Named for {ctx["county"]}, with its office in {a[2]}, {a[8]}. {PROGRAM[a[5]]}'
+    else:
+        short = f'Office in {a[2]}, {a[8]}. {PROGRAM[a[5]]}'
+    more = [_p('State housing agency, funded by HUD' if how == 's' else 'Public housing agency, funded by HUD', 'org'),
+            _p(_place(a[1], a[2], a[8], a[3]))]
+    size = []
+    if a[6] > 0:
+        size.append(f'about {a[6]:,} public housing {"home" if a[6] == 1 else "homes"}')
+    if a[7] > 0:
+        size.append(f'about {a[7]:,} {"voucher" if a[7] == 1 else "vouchers"}')
+    if size:
+        more.append(_p("By HUD's count, " + ' and '.join(size) + '.'))
+    return _ccard(f'ph-{ref[0]}', a[0], short, a[4], '', more)
+
+
+def _district_card(did, miles, d, ctx):
+    short = (f'About {_count(miles, "mile", "miles")} away, in {d[2]}, {d[6]}. Ask whether it serves where you live.' if miles
+             else f'Public school district with its office in {d[2]}, {d[6]}. Ask for the special education office.')
+    more = [_p('Public school district', 'org'), _p(_place(d[1], d[2], d[6], d[3]))]
+    return _ccard(f'sd-{did}', d[0], short, d[4], d[5], more)
+
+
+def _legal_card(sa, a, ctx):
+    short = 'Free legal help for people with low incomes, with problems such as custody, child support, protection from abuse and eviction.'
+    more = [_p('Legal aid program funded by the Legal Services Corporation', 'org'),
+            _p(f'It serves {ctx["county"]} and the rest of its area, and can tell you if another program is the one for you.')]
+    return _ccard(f'lg-{sa}', a[0], short, a[1], a[2], more)
+
+
+def _tft_card(i, t, here, ctx):
+    web = _safe_url(str(ctx['site'] or '').replace('{}', t[0]))
+    short = ((f'Named for {ctx["county"]}, or with its address there. ' if here else f'Toys for Tots campaign in {t[1]}, {t[2]}. ')
+             + 'New toys for children whose families cannot afford Christmas gifts.')
+    src = _safe_url(ctx['source']) or ctx['root'] + 'christmas.html'
+    more = [_p('Marine Toys for Tots', 'org'),
+            _p("The campaign's website says which towns it serves, its dates, and whether it takes requests from families or only "
+               'through local charities and agencies.'),
+            _next('Open the website and its Request a Toy page. If requests have closed, use its Contact page and ask which local '
+                  'groups are giving out its toys.'),
+            f'<p class="src">From Toys for Tots\' list of local campaigns, checked {esc(_pretty(ctx["xasof"]))}. Sources: '
+            f'<a href="{esc(src)}" rel="noopener">1</a></p>']
+    acts = f'<a class="btn" href="{esc(web)}" rel="noopener">Campaign website</a>' if web else ''
+    name = 'Toys for Tots: ' + t[1]
+    return (f'<article class="card" id="tft-{i}"><h3>{esc(name)}</h3><p class="short">{esc(short)}</p><p class="actions">{acts}</p>'
+            f'<details class="more"><summary>More about this<span class="sr">: {esc(name)}</span></summary>{"".join(more)}</details></article>')
+
+
+def _crow(rid, icon, label, summary, n, noun, body):
+    count = '' if n is None else _count(n, *noun)
+    return (f'<details class="need" id="{rid}"><summary><span class="ico" aria-hidden="true">{icon}</span><h2>{esc(label)}</h2>'
+            f'<span class="nsum">{esc(summary)}</span><span class="ncount">{count}</span></summary>'
+            f'<div class="rowbody">{body}</div></details>')
+
+
+# The next step for every card of a row, said once at the top of the row (a state page says it on each card; a county
+# row can hold dozens of cards of one kind, so it is said once, and the sources once at the end).
+COUNTY_NEXT = {
+    'pha': 'Call and ask whether the waiting list is open, how to apply, and whether they serve where you live. You can be on '
+           "more than one agency's list. If you are homeless or escaping violence, ask whether that moves you up the list.",
+    'hud': 'Call and say what is happening: rent you cannot pay, an eviction notice, a shutoff, or a mortgage you are behind on. '
+           'Ask whether there is a fee.',
+    'lg': 'Call and say what is happening and any date you have to meet, such as a court date or the deadline on an eviction '
+          'notice. If they cannot take your case, ask who can.',
+    'hrsa': 'Call, say you want to become a new patient, and ask about the sliding fee discount and what to bring. Ask whether '
+            'they offer what you need, such as prenatal care, checkups for children or dental care.',
+    'sd': 'Call and ask for the special education office, or preschool special education for a child under 5. Say you would like '
+          'your child evaluated, then make the same request in writing, with the date, and keep a copy.',
+    'hs': 'Call and ask how to apply and what papers to bring. Programs can have waiting lists, so ask to be added even if there '
+          'is no opening now.',
+}
+
+
+def _clist(items, make, key=None, county='', asof=None):
+    """Every card of a row, after the row's next step and before its sources. A large county lists hundreds; the
+    search box at the top of the page narrows them by town or name."""
+    out = (f'<p class="nextstep"><strong>Next step:</strong> {esc(COUNTY_NEXT[key])}</p>' if key in COUNTY_NEXT else '')
+    out += '<div class="cards">' + ''.join(make(it, i) for i, it in enumerate(items)) + '</div>'
+    if asof and key:
+        out += _source_line(key, asof)
+    return out
+
+
+def county_rows(data, st, fips, shard, x, root):
+    """The rows of one county's page, in the order county.html has always shown them."""
+    c = shard['c'][fips]
+    sname = next(s['name'] for s in data['states'] if s['abbr'] == st)
+    code = st.lower()
+    ctx = {'county': c['n'], 'asof': shard['asof'], 'root': root}
+    rows = []
+    if x and x.get('t'):
+        xc = dict(ctx, xasof=x['asof'], site=x.get('site'), source=x.get('source'))
+        here = [i for i in x['c'].get(fips, []) if i < len(x['t']) and x['t'][i]]
+        rest = [i for i in x['st'].get(st, []) if i not in here and i < len(x['t']) and x['t'][i]]
+        intro = (f'Toys for Tots campaigns named for {esc(c["n"])}, or with their address there. ' if here else
+                 f'No Toys for Tots campaign is named for {esc(c["n"])} or has its address there. Each campaign\'s website says '
+                 'which towns it serves, so open the list for your state below. ')
+        intro = (f'<p class="quiet">{intro}Sign-ups close early. If one has closed, dial <a href="tel:211">211</a> and ask what '
+                 f'Christmas help is still open. <a href="{root}states/{code}.html#christmas">More Christmas help in {esc(sname)}</a> · '
+                 f'<a href="{root}christmas.html">Christmas help everywhere</a></p>')
+        # Only the county's own campaigns are cards here. The state page lists every other campaign in one card.
+        every = (f'<p class="quiet"><a href="{root}states/{code}.html#tft-{code}">Every Toys for Tots campaign in {esc(sname)}</a> '
+                 f'({len(here) + len(rest)}), with a link to each one\'s website.</p>') if rest else ''
+        body = intro + (_clist(here, lambda i, _n: _tft_card(i, x['t'][i], True, xc)) if here else '') + every
+        if not here and not rest:
+            body = intro + f'<p class="quiet">No Toys for Tots campaign is listed in {esc(sname)}. Dial 211 and ask what Christmas help is open near you.</p>'
+        rows.append(_crow('county-christmas', '🎄', 'Christmas help',
+                          f'Toys for Tots for {c["n"]}, and Christmas help across {sname}' if here else
+                          f'Toys for Tots campaigns in {sname}, and more Christmas help', len(here) if here else None,
+                          ('campaign', 'campaigns'), body))
+    pha = [ref for ref in c.get('pha', []) if ref[0] in shard.get('ph', {})]
+    here = any(ref[2] in 'cn' for ref in pha)
+    near = any(ref[2] == 'r' for ref in pha)
+    rows.append(_crow('county-pha', '🔑', 'Public housing and Section 8',
+                      f'Where to apply in {c["n"]} for public housing and rent vouchers' if here else
+                      (f'Nearest agencies, outside {c["n"]}' if near else "Your state's agency for public housing and rent vouchers"),
+                      len(pha), ('agency', 'agencies'),
+                      _clist(pha, lambda ref, _i: _pha_card(ref, shard['ph'][ref[0]], ctx), 'pha', c['n'], shard['asof']) if pha else
+                      f'<p class="quiet">No public housing agency is listed near {esc(c["n"])}. Call HUD at 800-955-2232 to find the one that serves you.</p>'))
+    agencies = [ref for ref in c.get('hud', []) if ref[0] in shard.get('hu', {})]
+    rows.append(_crow('county-hud', '🏠', 'Housing counselors', 'Free or low-cost help with rent, eviction and mortgages',
+                      len(agencies), ('counselor', 'counselors'),
+                      _clist(agencies, lambda ref, _i: _hud_card(ref, shard['hu'][ref[0]], ctx), 'hud', c['n'], shard['asof']) if agencies else
+                      f'<p class="quiet">No HUD-approved counselor is listed near {esc(c["n"])}. Call HUD at 800-569-4287 to be matched with one by phone.</p>'))
+    legal = [sa for sa in c.get('lg', []) if sa in shard.get('lg', {})]
+    rows.append(_crow('county-legal', '⚖️', 'Free legal help', f'Legal aid that serves {c["n"]}', len(legal), ('program', 'programs'),
+                      _clist(legal, lambda sa, _i: _legal_card(sa, shard['lg'][sa], ctx), 'lg', c['n'], shard['asof']) if legal else
+                      f'<p class="quiet">No legal aid program is listed for {esc(c["n"])}. Your state\'s legal help is in the last row.</p>'))
+    health = c.get('health') or c.get('healthNear') or []
+    rows.append(_crow('county-health', '🩺', 'Low-cost health care',
+                      f'Health centers in {c["n"]}' if c.get('health') else f'Nearest health centers, outside {c["n"]}',
+                      len(health), ('place', 'places'),
+                      _clist(health, lambda r, i: _health_card(r, i, ctx), 'hrsa', c['n'], shard['asof']) if health else
+                      '<p class="quiet">No health center is listed within 60 miles. Dial 211 and ask for a free or low-cost clinic.</p>'))
+    sd = [[i, 0] for i in c.get('sd', [])] + list(c.get('sdNear', []))
+    sd = [ref for ref in sd if ref[0] in shard.get('sd', {})]
+    intro = ('<p class="quiet">From age 3, children can get special education free through the public schools, even before kindergarten. '
+             'If you think your child has a delay or disability, call your school district and ask for an evaluation. If the district '
+             'decides not to evaluate, it has to tell you why in writing. For a child under 3, ask '
+             f'<a href="{root}states/{code}.html#{code}-ei">early intervention in {esc(sname)}</a> instead.</p>')
+    rows.append(_crow('county-schools', '🧩', 'Free evaluation for your child',
+                      f'School districts in {c["n"]}, for children 3 and up' if c.get('sd') else f'Nearest school districts, outside {c["n"]}',
+                      len(sd), ('district', 'districts'),
+                      intro + (_clist(sd, lambda ref, _i: _district_card(ref[0], ref[1], shard['sd'][ref[0]], ctx), 'sd', c['n'], shard['asof']) if sd else
+                               f'<p class="quiet">No school district is listed for {esc(c["n"])}. Call your state\'s department of education and ask which district serves you.</p>')))
+    start = c.get('headStart') or c.get('headStartNear') or []
+    rows.append(_crow('county-start', '🧸', 'Head Start and Early Head Start',
+                      f'Free early learning in {c["n"]}' if c.get('headStart') else f'Nearest programs, outside {c["n"]}',
+                      len(start), ('place', 'places'),
+                      _clist(start, lambda r, i: _head_start_card(r, i, ctx), 'hs', c['n'], shard['asof']) if start else
+                      '<p class="quiet">No open Head Start location is listed within 60 miles. Dial 211 and ask about free child care and preschool.</p>'))
+    secs = sec_map(data)
+    links = ''.join(f'<li><a href="{root}states/{code}.html#{sid}">{esc(secs[sid]["label"])}</a></li>' for sid in STATE_SECTIONS)
+    rows.append(_crow('county-state', '📍', f'Help across {sname}', 'SNAP, WIC, child care, health coverage and more', None, None,
+                      '<p class="quiet">Your state has its own offices for SNAP, WIC, child care, health coverage and more.</p>'
+                      f'<ul class="statelinks">{links}</ul>'))
+    return ''.join(rows)
+
+
+def county_desc(nice):
+    for d in (f'Help for moms in {nice}: public housing and Section 8, housing counselors, free legal aid, low-cost health care, '
+              'school evaluations and Head Start, with phone numbers.',
+              f'Help for moms in {nice}: public housing, legal aid, low-cost health care, school evaluations and Head Start.',
+              f'Help for moms in {nice}: housing, legal aid, health care and Head Start.'):
+        if len(d) <= 158:
+            return d
+    return d
+
+
+def county_noun(st, plural=False):
+    one, many = {'LA': ('parish', 'parishes'), 'AK': ('borough or area', 'boroughs and areas'),
+                 'CT': ('planning region', 'planning regions')}.get(st, ('county', 'counties'))
+    return many if plural else one
+
+
+def build_county_page(data, st, fips, shard, x):
+    c = shard['c'][fips]
+    s = next(s for s in data['states'] if s['abbr'] == st)
+    nice = c['n'] if c['n'] == s['name'] else f'{c["n"]}, {s["name"]}'
+    path = county_path(st, c['n'])
+    root = '../../'
+    code = st.lower()
+    crumbs = (f'<nav class="crumbs" aria-label="You are here"><a href="{root}index.html">Home</a> › '
+              f'<a href="{root}states.html">States</a> › <a href="../{code}.html">{esc(s["name"])}</a> › '
+              f'<span aria-current="page">{esc(c["n"])}</span></nav>')
+    lede = (f'Local listings for {esc(c["n"])}: where to apply for housing help, free legal help, low-cost health care, free '
+            f'evaluations for your child and Head Start. Pick what you need. Free, private, no sign-up.')
+    other = (f'<p class="countylink"><a href="../{code}.html#counties">Another {esc(county_noun(st))} in {esc(s["name"])}</a> · '
+             f'<a href="{root}county.html">Find yours by ZIP code</a></p>')
+    top = hero(esc(nice), lede, other).replace('<div class="wrap">', '<div class="wrap">' + crumbs, 1)
+    local = ''
+    if c.get('pg'):
+        local = (f'<div class="localbox"><strong>We have a local guide for {esc(c["n"])}.</strong> <a href="{root}{esc(c["pg"])}">'
+                 f'Open the {esc(c["n"])} guide</a> for hand-checked listings, then come back here for the rest.</div>')
+    rows = county_rows(data, st, fips, shard, x, root)
+    body = (top + urgent_strip(data, root)
+            + finder(f'Search every listing for {c["n"]}', 'town, name, Section 8, dental…')
+            + f'<section class="wrap needs" aria-label="Help in {esc(nice)}">{local}{rows}</section>'
+            + kind_word(f'{root}help.html#take-care', root)
+            + f'<section class="wrap slim closing"><p>Listings come from federal directories and are not confirmed by phone. '
+              f'A phone number or address may be out of date. <a href="{root}county.html#sources">Where these listings come from</a> · '
+              f'<a href="{root}report.html">Report a problem</a>.</p></section>')
+    desc = county_desc(nice)
+    base = f"https://{data['site']['domain']}/"
+    about = {'@type': 'CollectionPage', '@id': base + path, 'url': base + path, 'name': f'{nice}: help for moms',
+             'description': desc, 'inLanguage': 'en', 'isPartOf': {'@id': base + '#website'},
+             'about': {'@type': 'AdministrativeArea', 'name': nice}}
+    trail = breadcrumbs(data, [('Help by state', 'states.html'), (s['name'], f'states/{code}.html'), (c['n'], path)])
+    return path, page(data, path, f'{nice}: help for moms', desc, body, head_extra=structured_data(about, trail),
+                      slots=('county',), scripts=kind_word_scripts(root))
+
+
+def build_county_pages(data):
+    x = christmas_shard()
+    out = {}
+    for st, shard in county_shards().items():
+        for fips in sorted(shard['c']):
+            path, html_ = build_county_page(data, st, fips, shard, x)
+            out[path] = html_
+    return out
 
 
 def build_yoga(data):
@@ -958,6 +1342,7 @@ def build_all(data):
     }
     for s in data['states']:
         files[f'states/{s["abbr"].lower()}.html'] = build_state(data, s)
+    files.update(build_county_pages(data))
     if data.get('world', {}).get('countries'):
         files['world.html'] = build_world(data)
         for c in data['world']['countries']:

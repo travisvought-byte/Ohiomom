@@ -199,6 +199,11 @@ button.btn{font-family:inherit;cursor:pointer}
 .camps{display:grid;grid-template-columns:repeat(auto-fill,minmax(8.5rem,1fr));gap:.35rem .9rem;margin:.6rem 0 .8rem;padding:0;list-style:none}
 .camps a{font-weight:600}
 .xmasnote{margin-top:1.1rem}
+/* County pages: where you are, the next step of a row, and a state's list of counties */
+.crumbs{font-size:.9rem;color:var(--muted);margin:0 0 .5rem}
+.crumbs a{color:inherit}
+.nextstep{margin:.2rem 0 .8rem}
+.countylist{grid-template-columns:repeat(auto-fill,minmax(11rem,1fr))}
 /* home-extras:start. Front-page picture and affirmations. Copied from templates/home-extras.css by scripts/home_extras.py; edit the template. */
 .herotop{display:flex;align-items:center;gap:1rem 2.2rem}
 .herotext{flex:1 1 0;min-width:0}

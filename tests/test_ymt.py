@@ -65,7 +65,11 @@ class SiteTests(unittest.TestCase):
             self.assertIn(n, names)
         for s in data['states']:
             self.assertIn(f"states/{s['abbr'].lower()}.html", names)
-        self.assertEqual(len([n for n in names if n.startswith('states/')]), 51)
+        self.assertEqual(len([n for n in names if re.fullmatch(r'states/[a-z]{2}\.html', n)]), 51)
+        # And one written page for every county (build_county_pages), under its state.
+        counties = [n for n in names if re.fullmatch(r'states/[a-z]{2}/[a-z0-9-]+\.html', n)]
+        self.assertEqual(len(counties), len(data['counties']))
+        self.assertIn('states/oh/morrow-county.html', counties)
 
     def test_every_page_has_exit_button_and_privacy_meta(self):
         for path in PAGES:
@@ -127,8 +131,9 @@ class SiteTests(unittest.TestCase):
                     target = (path.parent / target_part).resolve()
                 self.assertTrue(target.exists(), f'{path}: broken link {href}')
                 if frag and target_part and target.name == 'county.html' and target.parent == ROOT:
-                    # The county page reads a county's code, or a state's two letters, from the address.
-                    self.assertTrue(frag in COUNTY_CODES or frag.upper() in STATE_CODES, f'{path}: no county {href}')
+                    # The county finder reads a county's code, or a state's two letters, from the address.
+                    self.assertTrue(frag in COUNTY_CODES or frag.upper() in STATE_CODES or frag in ids.get(target, set()),
+                                    f'{path}: no county {href}')
                 elif frag and target.suffix == '.html':
                     self.assertIn(frag, ids.get(target, set()), f'{path}: missing anchor {href}')
 
@@ -293,7 +298,11 @@ class SiteTests(unittest.TestCase):
             else:
                 self.assertFalse(ymt_build.in_name(c).startswith('the '), c['slug'])
         names = '|'.join(re.escape(n) for n in known)
-        bad = re.compile(rf'\b(?:in|In|for|of|from|to|across|than) (?:The )?(?:{names})\b|\b(?:in|for|of|from|to) The [A-Z]')
+        # A country written with a capital The (The Bahamas) never follows a preposition that way. Places and groups in
+        # the U.S. county listings keep their own capital The (The Dalles, Oregon; The Villages, Florida).
+        the_names = '|'.join(re.escape(c['name'][4:]) for c in countries if c['name'].startswith('The '))
+        bad = re.compile(rf'\b(?:in|In|for|of|from|to|across|than) (?:The )?(?:{names})\b'
+                         + (rf'|\b(?:in|for|of|from|to) The (?:{the_names})\b' if the_names else ''))
         for path in PAGES:
             text = path.read_text(encoding='utf-8')
             found = bad.search(text)
@@ -485,9 +494,10 @@ class SiteTests(unittest.TestCase):
         expected[ROOT / 'family-guide.html'] = 'assets/share-family-guide.jpg'
         # 63 national pages (christmas.html and terms.html among them), the world page and one page per country (data/ymt/world.json), the list of daily affirmations
         # and the old address of the jokes that passes visitors on to it, once an affirmation is approved; 24 Ohio pages;
-        # the family guide
+        # the family guide; and one page for every U.S. county
         world = 1 + len(lib.load()['world']['countries'])
-        self.assertEqual(len(expected), 63 + world + (2 if home_extras.approved_affirmations() else 0) + 24 + 1)
+        counties = len(lib.load()['counties'])
+        self.assertEqual(len(expected), 63 + world + (2 if home_extras.approved_affirmations() else 0) + 24 + 1 + counties)
         for path, picture in expected.items():
             p = parse(path)
             meta = {a.get('property') or a.get('name'): a.get('content') for t, a in p.tags if t == 'meta'}
