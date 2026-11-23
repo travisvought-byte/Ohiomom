@@ -1,0 +1,51 @@
+{
+ "checked_on": "2026-11-23",
+ "fetch": {
+  "lllusa-groups": {
+   "bytes": 203489,
+   "ok": true
+  },
+  "mo-dhss-lpha": {
+   "bytes": 27396,
+   "ok": true
+  },
+  "mo-dhss-wic": {
+   "bytes": 96567,
+   "ok": true
+  },
+  "ndbn-members": {
+   "bytes": 49652,
+   "ok": true
+  },
+  "nppes-public-health": {
+   "bytes": 2393917,
+   "ok": true
+  },
+  "oh-odh-lhd": {
+   "bytes": 38212,
+   "ok": true
+  },
+  "pat-affiliates": {
+   "bytes": 868293,
+   "ok": true
+  },
+  "wa-doh-wic": {
+   "bytes": 121278,
+   "ok": true
+  }
+ },
+ "sources": {
+  "lllusa-groups": "390 in source, 187 usable",
+  "mo-dhss-lpha": "125 in source, 125 usable",
+  "mo-dhss-lpha columns": "ADDRESS, CITY, COUNTY, FACILITY, PHONE, ZIP, _lat, _lon",
+  "mo-dhss-wic": "215 in source, 215 usable",
+  "mo-dhss-wic columns": "ADDRESS, AGENCY_NAME, AgencyID, CITY, COUNTY, FACILITY, HOURS, LATITUDE, LONGITUDE, OBJECTID, PHONE, STATE, ServiceSiteID, ZIP, _lat, _lon",
+  "ndbn-members": "243 in source, 203 usable",
+  "nppes-public-health": "317 in source, 317 usable",
+  "oh-odh-lhd": "113 in source, 113 usable",
+  "oh-odh-lhd columns": "Business_Name, LocationLat, LocationLong, Location_Address_Line_1, Location_City, Location_Zip, VoicePhone, Website, _lat, _lon",
+  "pat-affiliates": "1405 in source, 1376 usable",
+  "wa-doh-wic": "207 in source, 207 usable",
+  "wa-doh-wic columns": "Accuracy, Additional_Info, Address1, Address2, AgencyName, AlternateID, Av_score, City, ClinicID, ClinicName, Combined_Address, County, OBJECTID, PhoneNumber, Plus4, Source, State, Updated, X_coord, Y_coord, Zip, _lat, _lon"
+ }
+}
