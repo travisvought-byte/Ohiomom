@@ -304,6 +304,17 @@ class CountyPages(unittest.TestCase):
             for p in pages:
                 self.assertTrue((ROOT / p).is_file(), p)
 
+    def test_county_page_titles_fit_and_differ(self):
+        """Every state and county page has its own title, short enough that search results show the place."""
+        seen = {}
+        for f in sorted((ROOT / 'states').rglob('*.html')):
+            title = re.search(r'<title>(.*?)</title>', f.read_text(encoding='utf-8')).group(1)
+            place = title.split(' | ')[0]
+            self.assertLessEqual(len(place), 54, f.name)
+            self.assertNotIn(title, seen, f'{f} has the same title as {seen.get(title)}')
+            seen[title] = f
+        self.assertGreater(len(seen), 3000)
+
     def test_county_script_only_reads_this_site(self):
         js = (ROOT / 'assets' / 'county.js').read_text(encoding='utf-8')
         for banned in ('XMLHttpRequest', 'sendBeacon', 'document.cookie', 'localStorage', 'sessionStorage', 'WebSocket',

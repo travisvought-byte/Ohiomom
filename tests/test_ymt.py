@@ -452,7 +452,8 @@ class SiteTests(unittest.TestCase):
             self.assertGreaterEqual(row.count('<article'), 10, s['name'])
             self.assertIn(f"https://www.hud.gov/states/{s['slug']}", row, s['name'])
             self.assertIn(f"https://www.womenslaw.org/find-help/{s['abbr'].lower()}/advocates-and-shelters/local-programs", row, s['name'])
-            self.assertIn(f"Women&#x27;s shelters and advocates in {s['name']}", row)
+            place = ('the ' if s['abbr'] == 'DC' else '') + s['name']  # "in the District of Columbia"
+            self.assertIn(f"Women&#x27;s shelters and advocates in {place}", row)
         # Shelter addresses are never printed: housing listings carry phone numbers and websites only.
         for r in lib.all_records(data):
             if r['section'] == 'housing':
