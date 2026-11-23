@@ -31,6 +31,16 @@ ad and the rest share one:
     ohio-county-morrow, ohio-county      ohio/counties/morrow.html (any Ohio county page)
     ohio-topic-bills, ohio-topic         ohio/help/bills.html, pregnancy-baby.html, single-parent.html
     ohio-topic-connect, ohio-topic       ohio/connect.html
+
+Google AdSense (owner decision, November 22, 2026: allow Google's ad code, non-personalized only, kept off the help
+and crisis pages). data/ads.json "adsense_client" holds the publisher ID (ca-pub- and 16 digits); it ships empty, and
+then nothing below happens. Once it is set, the build:
+- puts Google's ad code in the <head> of the pages that take an ad slot, except the help pages (help.html,
+  christmas.html, world.html and the OhioMom bills, pregnancy and single-parent pages, all slot topic-help or an
+  OhioMom help topic), and never on a page in NEVER or any page without a slot (About, Privacy, Terms, Report...).
+- asks Google for non-personalized ads only (requestNonPersonalizedAds), set before the ad code loads.
+- adds the google-adsense-account meta tag (site verification) and writes ads.txt at the site root.
+Where Google may put an ad is set in the AdSense account: keep Auto ads off, so ads go only where this site places them.
 """
 import datetime
 import json
@@ -48,6 +58,10 @@ SLOT = re.compile(r'^(home|topic|topic-help|topic-connect|state|state-[a-z]{2}|c
 OHIO_TOPICS = ('help/bills', 'help/pregnancy-baby', 'help/single-parent', 'connect')
 # Pages that must never carry one: crisis and help-now pages.
 NEVER = ('ohio/help/housing.html', 'ohio/wellbeing.html', 'family-guide.html', 'report.html', 'ohio/report.html')
+CLIENT = re.compile(r'^ca-pub-\d{16}$')
+# Slots of the help pages: they may still carry a labeled ad sold directly, but never Google's ad code.
+HELP_SLOTS = ('topic-help', 'ohio-topic-bills', 'ohio-topic-pregnancy-baby', 'ohio-topic-single-parent')
+NETWORK = re.compile(r'\n?<!-- ad network -->.*?<!-- /ad network -->', re.S)
 ASIDE = re.compile(r'\n?<aside class="ad-slot"[^>]*>.*?</aside>', re.S)
 
 
@@ -154,3 +168,46 @@ def place(text, ad, root=''):
     if not ad:
         return text
     return text.replace('</main>', aside(ad, root) + '\n</main>')
+
+
+def check_client(client):
+    """Problems with the AdSense publisher ID, as plain sentences. Empty is fine (no ad network)."""
+    if client in ('', None):
+        return []
+    if not isinstance(client, str) or not CLIENT.match(client):
+        return ['data/ads.json: adsense_client must look like ca-pub-1234567890123456, or be empty']
+    return []
+
+
+def network_ok(slots):
+    """Whether a page that takes `slots` may load Google's ad code: it takes a slot, and it is not a help page."""
+    return bool(slots) and slots[0] not in HELP_SLOTS
+
+
+def network_head(client):
+    """Google's ad code for <head>: non-personalized ads only, asked for before the code loads. Empty without a client."""
+    if not client:
+        return ''
+    return ('\n<!-- ad network -->'
+            f'<meta name="google-adsense-account" content="{esc(client)}">'
+            '<script>(window.adsbygoogle=window.adsbygoogle||[]).requestNonPersonalizedAds=1;</script>'
+            f'<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={esc(client)}" crossorigin="anonymous"></script>'
+            '<!-- /ad network -->')
+
+
+def place_network(text, client, slots):
+    """A hand-kept page with any old ad code taken out and Google's put back before </head>, where the page may carry it."""
+    text = NETWORK.sub('', text)
+    head = network_head(client) if network_ok(slots) else ''
+    if not head:
+        return text
+    if text.count('</head>') != 1:
+        raise SystemExit('a page with an ad slot needs exactly one </head>')
+    return text.replace('</head>', head + '</head>', 1)
+
+
+def ads_txt(client):
+    """The ads.txt line Google asks for, or None without a client."""
+    if not client:
+        return None
+    return f'google.com, {client[3:]}, DIRECT, f08c47fec0942fa0\n'

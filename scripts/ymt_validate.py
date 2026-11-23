@@ -144,6 +144,7 @@ def main():
         except ValueError:
             errors.append(f'{rid}: bad reviewed_on')
     errors += [f'data/ads.json: {e}' for e in ads.check(data['ads'])]
+    errors += ads.check_client(data.get('adsense_client', ''))
     on = ads.today()
     for ad in data['ads']:
         if isinstance(ad, dict) and ad.get('end') and str(ad['end']) < on:

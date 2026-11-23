@@ -278,7 +278,7 @@ class CountyPages(unittest.TestCase):
         ids = {a.get('id') for _, a in t}
         for need in ('cstate', 'ccounty', 'zip', 'cmsg', 'ctitle', 'clede', 'county-app', 'sources'):
             self.assertIn(need, ids)
-        scripts = [a['src'] for tag, a in t if tag == 'script' and a.get('src')]
+        scripts = [a['src'] for tag, a in t if tag == 'script' and a.get('src') and 'googlesyndication.com' not in a['src']]  # Google's ad code: tests/test_ads.py
         self.assertEqual(scripts, ['assets/ymt.js', 'assets/county.js', 'assets/kindword.js'])
         zipbox = [a for tag, a in t if tag == 'input']
         self.assertEqual(len(zipbox), 1)

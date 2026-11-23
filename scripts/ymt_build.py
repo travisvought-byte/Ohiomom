@@ -103,6 +103,8 @@ def page(data, path, title, desc, body, body_class='', head_extra='', canonical=
     site = data['site']
     root = '../' * path.count('/')
     ad = ads.aside(ads.pick(running_ads(data), slots), root) if slots else ''
+    if ads.network_ok(slots):
+        head_extra = head_extra + ads.network_head(data.get('adsense_client', ''))
     if ad:
         body = body + '\n' + ad
     url = f"https://{site['domain']}/" + ('' if (canonical or path) == 'index.html' else (canonical or path))
@@ -843,7 +845,9 @@ def build_about(data):
 <h2>How we choose listings</h2><ul><li>We list free or low-cost public programs, nonprofits and official locators. We do not list private businesses, and nobody pays to be listed.</li><li>Each listing links to the published sources it came from and shows the date it was checked.</li><li>Contacts come from official sources and are not confirmed by telephone. Phone numbers and websites change. If one is wrong, <a href="report.html">tell us</a>.</li><li>Every link is checked automatically each month, and a person reviews any that fail.</li><li>Domestic violence shelter addresses are never listed. We point to the hotline or state coalition that places people safely.</li></ul>
 <h2>What this site is not</h2><p>It is not an emergency service. If you or someone else is in danger, call 911. It does not give legal, medical or financial advice, and it cannot sign you up for anything.</p>
 {advertise(site)}
-<h2>Your privacy and safety</h2><ul><li>There is no sign-up, and the Yoga Mom Talk pages have no forms. The OhioMom pages have a few short forms for reports and questions; our <a href="privacy.html">Privacy page</a> says what they send.</li><li>We count visits with GoatCounter, which does not use cookies and does not record who you are. Nothing you type in a search or ZIP code box is sent.</li><li>The site may show ads. Each one is labeled Advertisement and kept apart from the listings. An ad network, if we use one, may set its own cookies; the <a href="privacy.html#ads">Privacy page</a> says how to turn off personalized ads.</li><li>This site is hosted on GitHub Pages, which logs visitors' internet addresses for security. The OhioMom pages also load a script from Wix, which runs their forms and may set a few cookies. We do not control those.</li><li>A <strong>Leave this site</strong> button is on every page. It takes you to a weather search and removes this page from your back button.</li><li>It cannot erase your browser history. If someone else may check your device, use a private or incognito window, or a device they cannot reach.</li><li>Sites we link to have their own privacy practices.</li></ul>
+<h2 id="contact">Contact us</h2><p>Email <a href="{esc(mail_href(site, f'{site["name"]}: a question'))}">{esc(site["corrections_email"])}</a> with a question, a correction, an idea for a listing or an advertising request. To fix one listing, <a href="report.html">Report a problem</a> is quickest. We read every message, but this is not an emergency line.</p>
+<h2>Your privacy and safety</h2><ul><li>There is no sign-up, and the Yoga Mom Talk pages have no forms. The OhioMom pages have a few short forms for reports and questions; our <a href="privacy.html">Privacy page</a> says what they send.</li><li>We count visits with GoatCounter, which does not use cookies and does not record who you are. Nothing you type in a search or ZIP code box is sent.</li><li>The site may show ads. Each one is labeled Advertisement and kept apart from the listings. If we use Google AdSense, we ask it for non-personalized ads only, and its code stays off our help pages. Google may still set its own cookies; the <a href="privacy.html#ads">Privacy page</a> says more.</li><li>This site is hosted on GitHub Pages, which logs visitors' internet addresses for security. The OhioMom pages also load a script from Wix, which runs their forms and may set a few cookies. We do not control those.</li><li>A <strong>Leave this site</strong> button is on every page. It takes you to a weather search and removes this page from your back button.</li><li>It cannot erase your browser history. If someone else may check your device, use a private or incognito window, or a device they cannot reach.</li><li>Sites we link to have their own privacy practices.</li></ul>
+<p>The <a href="terms.html">Terms of use</a> cover using this site.</p>
 <h2>Credit and license</h2><p>{esc(data["attribution"])} The data on this site is licensed CC BY 4.0 and the code is MIT. Listings describe third-party organizations from their published sources. The license covers the compilation and gives no rights in those organizations' names or marks.</p></div></section>'''
     return page(data, 'about.html', 'About', f'Who runs {site["name"]}, how listings are chosen and checked, and how your privacy and safety are protected.', body)
 
@@ -867,7 +871,7 @@ def advertise(site):
             f'at <strong>{esc(site["corrections_email"])}</strong>. Tell us who you are and what you would like to show.</p>')
 
 
-PRIVACY_UPDATED = '2026-11-20'
+PRIVACY_UPDATED = '2026-11-22'
 
 
 def build_privacy(data):
@@ -885,15 +889,42 @@ def build_privacy(data):
 <h2 id="counting">Visit counting</h2><p>We count visits with GoatCounter, a visit counter that does not use cookies and does not record who you are. For each page view it receives the address of the page (never a search or ZIP code you typed), the site that linked you here, your browser type and screen size, and a rough location (the country) worked out from your internet address. Your internet address itself is not stored. We use the totals to see which pages help people.</p>
 <h2 id="device">What stays on your device</h2><ul><li>The {name} pages store nothing on your device. Nothing you type in a search box or ZIP code box is sent or saved.</li><li>The OhioMom pages remember the area you pick, and which quick polls you have answered, in this browser only. Wix may set a few cookies of its own on the OhioMom pages.</li><li>The <strong>Leave this site</strong> button takes you to a weather search. It cannot erase your browser history.</li></ul>
 <h2 id="forms">Sign-up and forms</h2><ul><li>There is no sign-up and no account.</li><li>The {name} pages have no forms. The Report a problem page opens your own email app, and nothing is sent until you send it from there.</li><li>The OhioMom pages have a few short forms: Report a problem, the message box and quick polls on Talk to us, and a question at the bottom of some pages, "Did you find what you came for?" What you send goes to our account on Wix, and we read it there. With a poll answer, a message or that question we also receive the page you were on and, if you picked one, your Ohio area. We ask for an email address only if you want a reply. Sending one saves an anonymous visitor ID in your browser so Wix can deliver it.</li><li>Please leave out private details about your situation. These forms are not watched for emergencies.</li></ul>
-<h2 id="ads">Advertising</h2><p>This site may show ads. Every ad is labeled "Advertisement" and kept apart from the resource listings. If we use an ad network such as Google AdSense, it and its partners may use cookies to show ads based on your visits to this and other sites. You can turn off personalized ads at <a href="https://adssettings.google.com" rel="noopener">https://adssettings.google.com</a> and learn more at <a href="https://policies.google.com/technologies/ads" rel="noopener">https://policies.google.com/technologies/ads</a>, or opt out of many networks at <a href="https://optout.aboutads.info" rel="noopener">https://optout.aboutads.info</a>.</p><p>An ad never changes what is listed or the order of the listings. How we take ads is on the <a href="about.html#advertise">About page</a>.</p>
+<h2 id="ads">Advertising</h2><p>This site may show ads. Every ad is labeled "Advertisement" and kept apart from the resource listings. If we use Google AdSense, we ask Google to show only non-personalized ads, which are not chosen from your browsing on this or other sites. Google and its partners may still use cookies or similar technology to limit how often an ad is shown, to count ads and to stop fraud. Google's ad code never loads on the Find help, Christmas help or Worldwide pages, the OhioMom help pages, the family guide, or the About, Privacy, Terms and Report pages. You can turn off personalized ads at <a href="https://adssettings.google.com" rel="noopener">https://adssettings.google.com</a> and learn more at <a href="https://policies.google.com/technologies/ads" rel="noopener">https://policies.google.com/technologies/ads</a>, or opt out of many networks at <a href="https://optout.aboutads.info" rel="noopener">https://optout.aboutads.info</a>.</p><p>An ad never changes what is listed or the order of the listings. How we take ads is on the <a href="about.html#advertise">About page</a>.</p>
 <h2 id="selling">We do not sell your information</h2><p>We do not sell personal information.</p>
 <h2 id="children">Children</h2><p>This site is for parents and caregivers. It is not directed to children under 13, and we do not knowingly collect information from them.</p>
 <h2 id="links">Other sites</h2><p>Listings and ads link to other websites. Those sites have their own privacy practices.</p>
-<h2 id="contact">Questions</h2><p>Write to <a href="{esc(mail_href(site, f"{site['name']}: privacy question"))}">{email}</a>, or use <a href="report.html">Report a problem</a>. If this page changes, the date at the top changes with it.</p>
+<h2 id="contact">Questions</h2><p>Write to <a href="{esc(mail_href(site, f"{site['name']}: privacy question"))}">{email}</a>, or use <a href="report.html">Report a problem</a>. If this page changes, the date at the top changes with it. The <a href="terms.html">Terms of use</a> cover using the site.</p>
 </div></section>'''
     return page(data, 'privacy.html', 'Privacy',
                 f'What {site["name"]} collects and what it does not: hosting on GitHub Pages, no sign-up, the OhioMom forms, and how ads and ad cookies work.', body,
                 head_extra=structured_data(breadcrumbs(data, [('Privacy', 'privacy.html')])))
+
+
+TERMS_UPDATED = '2026-11-22'
+
+
+def build_terms(data):
+    """The plain terms for using the site (November 22, 2026), the page ad networks' reviewers look for."""
+    site = data['site']
+    name = esc(site['name'])
+    email = esc(site['corrections_email'])
+    updated = lib.pretty_date(TERMS_UPDATED)
+    lede = f'The plain terms for using {name}. Last updated <time datetime="{TERMS_UPDATED}">{updated}</time>.'
+    body = hero('Terms of use', lede) + f'''
+<section class="wrap"><div class="steps">
+<p>These terms cover {name} at {esc(site["domain"])}, including the OhioMom pages and the Ohio family guide. It is run by Travis and Deborah Vought. Using the site means you accept these terms.</p>
+<h2 id="what">What this site is</h2><p>{name} is a free directory of public programs, nonprofits and official locators for mothers and caregivers. It is information, not an emergency service, and it does not give legal, medical or financial advice. If you or someone else is in danger, call 911 or your local emergency number.</p>
+<h2 id="check">Check before you rely on a listing</h2><p>Listings come from published official and organization sources and show the date they were checked. They are not confirmed by telephone, and programs change. Confirm with the program before you rely on it. If a listing is wrong, <a href="report.html">tell us</a> and we fix it.</p>
+<h2 id="ads">Ads</h2><p>Ads are labeled Advertisement and kept apart from the listings. They are paid for by the advertiser, and we do not vouch for what an advertiser offers. An ad never changes what is listed or the order of the listings. <a href="about.html#advertise">How we take ads</a></p>
+<h2 id="links">Other sites</h2><p>Listings and ads link to sites we do not run. They have their own terms and privacy rules.</p>
+<h2 id="warranty">No warranty</h2><p>The site is provided as it is, without any warranty. We are not responsible for decisions made on the strength of a listing, or for what another organization does or does not provide.</p>
+<h2 id="use">Using what is here</h2><p>{esc(data["attribution"])} The data on this site is licensed CC BY 4.0 and the code is MIT. Those licenses give no rights in the names or marks of the organizations listed.</p>
+<h2 id="privacy">Your information</h2><p>The <a href="privacy.html">Privacy page</a> says what this site collects and what it does not.</p>
+<h2 id="contact">Changes and questions</h2><p>We may update these terms and will change the date at the top when we do. Questions: <a href="{esc(mail_href(site, f"{site['name']}: terms question"))}">{email}</a>.</p>
+</div></section>'''
+    return page(data, 'terms.html', 'Terms of use',
+                f'The terms for using {site["name"]}: a free information directory, listings to confirm with the program, labeled ads and no warranty.', body,
+                head_extra=structured_data(breadcrumbs(data, [('Terms of use', 'terms.html')])))
 
 
 def build_report(data):
@@ -923,7 +954,7 @@ def build_all(data):
         'index.html': build_index(data), 'help.html': build_help(data), 'connect.html': build_connect(data),
         'states.html': build_states_index(data), 'christmas.html': build_christmas(data), 'yoga.html': build_yoga(data), 'about.html': build_about(data),
         'report.html': build_report(data), '404.html': build_404(data), 'county.html': build_county(data),
-        'privacy.html': build_privacy(data),
+        'privacy.html': build_privacy(data), 'terms.html': build_terms(data),
     }
     for s in data['states']:
         files[f'states/{s["abbr"].lower()}.html'] = build_state(data, s)
@@ -948,6 +979,8 @@ def build_all(data):
     urls = ''.join(f'  <url><loc>https://{domain}/{loc(p)}</loc></url>\n' for p in sorted(set(pages)))
     files['sitemap.xml'] = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n'
     files['robots.txt'] = f'User-agent: *\nAllow: /\n\nSitemap: https://{domain}/sitemap.xml\n'
+    if ads.ads_txt(data.get('adsense_client', '')):
+        files['ads.txt'] = ads.ads_txt(data['adsense_client'])
     return files
 
 
@@ -958,14 +991,15 @@ def ohio_ad_files(data):
     out = {}
     for rel, slots in ads.ohio_pages().items():
         text = (ROOT / rel).read_text(encoding='utf-8')
-        out[rel] = ads.place(text, ads.pick(running, slots), '../' * rel.count('/'))
+        text = ads.place(text, ads.pick(running, slots), '../' * rel.count('/'))
+        out[rel] = ads.place_network(text, data.get('adsense_client', ''), slots)
     return out
 
 
 def main():
     check = '--check' in sys.argv
     data = lib.load()
-    problems = ads.check(data['ads'])
+    problems = ads.check(data['ads']) + ads.check_client(data.get('adsense_client', ''))
     if problems:
         print('data/ads.json:\n' + '\n'.join(problems))
         sys.exit(1)
