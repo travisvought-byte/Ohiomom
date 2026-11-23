@@ -70,7 +70,8 @@
       "recheck_days": 30,
       "parser": "nppes",
       "parser_options": {
-        "taxonomy": "261QP0905X"
+        "taxonomy": "261QP0905X",
+        "name_pattern": "\\b(public health|health (department|dept|district|unit|agency|authority|commission|services district)|board of health|department of (public )?health|(county|city|municipal) health|health and human services)\\b"
       },
       "fetch": {
         "kind": "nppes",
@@ -81,7 +82,7 @@
       },
       "what": "Your local health department: shots for children, WIC in many places, pregnancy tests and prenatal referrals, and help finding a doctor.",
       "next": "Call and ask what they offer for moms and babies, such as WIC, shots, a nurse visit after birth or help finding prenatal care.",
-      "notes": "Organizations whose primary type in the federal NPI Registry is 'Clinic/Center, Public Health, State or Local'. Organizations register themselves, so coverage is partial (about a quarter to a third of departments) and a few rows are state-run clinics rather than the county department. A supplement to state lists, never the only word.",
+      "notes": "Organizations whose primary type in the federal NPI Registry is 'Clinic/Center, Public Health, State or Local'. Organizations register themselves, so coverage is partial (about a quarter to a third of departments) and a few rows are state-run clinics rather than the county department. A supplement to state lists, never the only word. Only rows whose name says they are a health department, health district or board of health are kept: on the first run (Nov 23, 2026) the type also brought in state agencies and a prison health contractor.",
       "priority": 2
     },
     {
@@ -236,7 +237,7 @@
       "publisher": "DC Office of the Chief Technology Officer (Open Data DC)",
       "homepage": "https://opendata.dc.gov/",
       "evidence": "government",
-      "status": "active",
+      "status": "queued",
       "recheck_days": 90,
       "parser": "generic",
       "parser_options": {
@@ -287,7 +288,8 @@
       },
       "what": "WIC gives healthy food, breastfeeding help and nutrition advice to pregnant women, new moms, babies and children under 5 in families with low to moderate incomes.",
       "next": "Call to make a WIC appointment. Ask what to bring: usually proof of who you are, where you live and your income.",
-      "notes": "Open Data DC's WIC layer (CC BY 4.0, 2022). The first run checks that its rows are WIC clinics, not stores that take WIC."
+      "notes": "Open Data DC's WIC layer (CC BY 4.0, 2022). The first run checks that its rows are WIC clinics, not stores that take WIC.",
+      "why": "The first run (Nov 23, 2026) matched no rows: the layer's columns (ORGANIZATION, TYPE, DC_WIC_NUM, PHARMACY_PHONE) look like stores and pharmacies that take WIC, not WIC clinics. Needs a look at its TYPE values before any row is used."
     },
     {
       "id": "hrsa-healthy-start",

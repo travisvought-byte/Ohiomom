@@ -286,7 +286,8 @@ class CountyPages(unittest.TestCase):
         self.assertEqual((zipbox[0]['type'], zipbox[0]['id']), ('search', 'zip'))
         self.assertNotIn('name', zipbox[0], 'nothing typed can be sent')
         srcs = [a['data-src'] for tag, a in t if tag == 'a' and a.get('data-src')]
-        self.assertEqual(sorted(srcs), ['hrsa', 'hrsa', 'hs', 'hs', 'hud', 'hud', 'lg', 'lg', 'pha', 'pha', 'sd', 'sd', 'sd'])
+        moms = ['mh'] if (ROOT / 'data' / 'ymt' / 'local-help' / 'listings.csv').exists() else []   # once local help is mined
+        self.assertEqual(sorted(srcs), sorted(['hrsa', 'hrsa', 'hs', 'hs', 'hud', 'hud', 'lg', 'lg', 'pha', 'pha', 'sd', 'sd', 'sd'] + moms))
 
     def test_every_state_page_leads_to_its_counties(self):
         for st in STATE_FIPS:

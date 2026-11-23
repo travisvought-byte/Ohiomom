@@ -428,6 +428,9 @@ def parse_nppes(src, raw):
             continue
         basic = r.get('basic', {})
         name = basic.get('organization_name') or ''
+        keep = src.get('parser_options', {}).get('name_pattern')
+        if keep and not re.search(keep, name, re.I):
+            continue   # the type is self-chosen: state agencies, prison health contractors and tribal offices pick it too
         loc = next((a for a in r.get('addresses', []) if a.get('address_purpose') == 'LOCATION'), None)
         if not loc or loc.get('country_code', 'US') != 'US':
             continue

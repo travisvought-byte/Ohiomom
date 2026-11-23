@@ -1121,11 +1121,17 @@ def _mh_card(r, m, src, ctx):
         where = f'Based in {town}, and lists {ctx["county"]} among the places it serves. '
     else:
         where = f'In {town}. ' if r['city'] else ''
-    short = where + src.get('what', '')
     acts = f'<a class="btn call" href="{_tel1(r["phone"])}">Call {esc(r["phone"])}</a>' if r['phone'] else ''
     if _safe_url(r['website']) and ctx.get('links', {}).get(r['website']) in ('ok', 'refused'):
         # only a website scripts/county_links.py --local-help has seen load, as on the rest of the county page
         acts += f'<a class="btn" href="{esc(r["website"])}" rel="noopener">Website</a>'
+    what = src.get('what', '')
+    room = 320 - len(name) - len(re.sub(r'<[^>]+>', '', acts))   # the short part of a card stays short
+    short = where + what
+    if len(short) > room:
+        short = where + what.split(': ')[0].split('. ')[0].rstrip('.') + '.'
+    if len(short) > room:
+        short = where.strip()
     more = []
     if r['org']:
         more.append(_p(r['org'], 'org'))
