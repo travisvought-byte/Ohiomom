@@ -53,9 +53,10 @@ class PrivacyTests(unittest.TestCase):
     def test_privacy_page_exists_and_says_what_it_must(self):
         text = (ROOT / 'privacy.html').read_text(encoding='utf-8')
         self.assertIn('<h1>Privacy</h1>', text)
-        self.assertIn('<time datetime="2026-11-22">November 22, 2026</time>', text)
+        self.assertIn('<time datetime="2026-11-23">November 23, 2026</time>', text)
         for words in ('hosted on GitHub Pages', 'We count visits with GoatCounter', 'does not use cookies', 'never a search or ZIP code', 'Your internet address itself is not stored', 'There is no sign-up',
                       'Every ad is labeled "Advertisement" and kept apart from the resource listings',
+                      'We use Google AdSense and ask Google to show only non-personalized ads', 'store nothing of their own on your device', 'can set its own cookies',
                       'Google AdSense', 'https://adssettings.google.com', 'https://policies.google.com/technologies/ads',
                       'https://optout.aboutads.info', 'We do not sell personal information',
                       'not directed to children under 13', 'href="report.html"'):
