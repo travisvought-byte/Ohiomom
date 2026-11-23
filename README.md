@@ -122,6 +122,17 @@ A mom arrives with one need. The pages show her the choice, then a short list, t
 - A printed page opens everything.
 - `tests/ymt-pages.cjs` and `tests/test_ymt.py` fail the build if a listing appears on a front page, a need is open by default, or the short part of a card grows. `tests/ohio-directory.cjs` fails it if a listing on any Ohio page is missing from All resources or appears there twice, if a town or ZIP code lands in the wrong county, or if the page asks for anything but this site's own pages.
 
+## Every landing page speaks to the mom who lands on it
+
+Added November 23, 2026 at the owner's request ("every landing page should be specific to who's there looking for it"). Each entry page has its own title, description, Open Graph tags, heading and opening lines, written to her situation and place, and what she most likely came for comes first.
+
+- **"I'm…" chooser.** Both front pages have a row of short links right under the question, by who she is: a single mom, expecting, raising a child with a disability, behind on bills, about to lose her home, leaving an unsafe situation, a military or veteran family, having a really hard time, and so on. Each points at help that is already on the site (`IAM` in `scripts/ymt_build.py`; the OhioMom one is in `ohio/index.html`). Add a choice only when the page or row it points to exists. Styles: `.iam` in `assets/ymt.css` and `ohio/assets/site.css`.
+- **County pages** (`county_intro`, `county_desc`): the towns the county's own health center and Head Start listings are in ("Raising kids in Columbus, Canal Winchester or anywhere else in Franklin County?"), then by name the housing agency to apply to for Section 8 and the legal aid program that serves the county, each a link that opens its row, and what the "Help for moms and babies" row has near her (WIC, home visits, free diapers). The description names the same agency and program. A county with no agency of its own says the nearest one we list.
+- **State pages** (`state_intro`, `state_desc`): the state's own name for early intervention (Help Me Grow, Babies Can't Wait, SoonerStart) and its two most populous counties, linked.
+- **Country pages** (`country_intro`, `country_desc`): the emergency number, the country's own lines by name with what each is for, and the language the day's kind word is in.
+- **Topic and OhioMom pages** have hand-written opening lines (the bills page talks to a mom behind on utilities this month). The OhioMom pages are hand-kept, so change their title, description and `og:` tags together.
+- Everything is made from data already on the page; nothing is added that the page does not list.
+
 ## The picture and the daily affirmation
 
 Both front pages carry a small picture of the family, added November 17, 2026 at the owner's request and modeled on the-reefer.com. Until November 20, 2026 Deborah told jokes in it; that day the owner asked for a daily affirmation instead: something warm and positive for a mom going through a tough time. `scripts/home_extras.py` makes the card for both pages, so they cannot drift apart.

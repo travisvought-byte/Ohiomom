@@ -169,7 +169,10 @@ const dayOf = (now) => { const t = new Date(now); return Math.floor(Date.UTC(t.g
     const top = d.querySelector('.herotop');
     assert.equal(top.firstElementChild.className, 'herotext', `${file}: the question is first in reading order`);
     assert(top.querySelector('.herotext > h1') && top.querySelector('.herotext > .lede'), `${file}: the question and its line`);
-    assert(top.nextElementSibling.matches('.tiles'), `${file}: the choices follow at once`);
+    // The choices follow at once: "I'm..." (who she is), then the tiles (what she needs).
+    assert(top.nextElementSibling.matches('nav.iam'), `${file}: the "I'm..." chooser follows the question`);
+    assert(top.nextElementSibling.nextElementSibling.matches('.tiles'), `${file}: the choices follow at once`);
+    assert(all(top.nextElementSibling, 'a').length >= 6, `${file}: the chooser offers several ways in`);
     assert.equal(all(d, 'main > section').length, 2, `${file}: the affirmation adds no section of its own`);
     const box = d.getElementById('affirm');
     if (approved.length) {

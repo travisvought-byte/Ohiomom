@@ -44,6 +44,12 @@ main>section.wrap{margin-top:2.75rem}
 .t9 .ico{background:#dcefdc}.tile.t9{border-color:#c63b3b33;background:linear-gradient(135deg,#fff,#f3faf2)}.t1 .ico{background:#ffe0e8}.t2 .ico{background:#fff0bf}.t3 .ico{background:#d9f3ee}.t4 .ico{background:#e9e2fb}.t5 .ico{background:#ffe9c9}.t6 .ico{background:#ffe3d6}
 @media (min-width:761px){.hero.home .tiles{grid-template-columns:repeat(3,1fr)}}
 main>section .tiles{margin-top:1rem}
+/* "I'm..." chooser: who she is, one tap from the help for that */
+.iam{margin:1.3rem 0 0}.iam h2{font-size:1.05rem;margin:0 0 .5rem;color:var(--ink)}
+.iam ul{display:flex;flex-wrap:wrap;gap:.5rem;margin:0;padding:0;list-style:none}
+.iam a{display:inline-flex;align-items:center;min-height:2.75rem;padding:.35rem 1rem;border:1.5px solid var(--line);border-radius:2rem;background:#fff;color:var(--ink);font-weight:600;text-decoration:none}
+.iam a:hover,.iam a:focus-visible{border-color:var(--brand);background:var(--soft)}
+@media print{.iam{display:none}}
 main>section .tile{border-color:var(--line);box-shadow:none}
 
 /* Help right now: three small phone cards */

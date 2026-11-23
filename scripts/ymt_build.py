@@ -38,6 +38,29 @@ TILES = [
     ('t6', '☕', 'Take care of me', 'Someone to talk to on the hard days.', 'help.html#take-care'),
     ('t8', '🔎', 'See everything', 'Every listing in one place, with a search box.', 'help.html#everything'),
 ]
+# "I'm…": the front page's second way in, by who she is rather than what she needs. Each points at a need or listing
+# that is already on the site; nothing here is a page of its own. (label, href)
+IAM = [
+    ('a single mom', 'help.html#single-parent'),
+    ('expecting, or just had a baby', 'help.html#pregnancy-baby'),
+    ('raising a child with a disability', 'help.html#kids-differently'),
+    ('behind on bills', 'help.html#food-bills'),
+    ('about to lose my home', 'help.html#housing'),
+    ('leaving an unsafe situation', 'help.html#us-ndvh'),
+    ('a military or veteran family', 'help.html#military'),
+    ('missing someone in jail or prison', 'inside.html'),
+    ('having a really hard time', 'help.html#take-care'),
+    ('new here and want to meet moms', 'connect.html'),
+    ('raising kids outside the U.S.', 'world.html'),
+]
+
+
+def iam_block(items, root=''):
+    """The "I'm…" chooser: short links that each say who she is and go straight to the help for that."""
+    links = ''.join(f'<li><a href="{root}{h}">{esc(t)}</a></li>' for t, h in items)
+    return f'<nav class="iam" aria-labelledby="iam-h"><h2 id="iam-h">I’m…</h2><ul>{links}</ul></nav>'
+
+
 # ohiomom.org is one way into this site: its home page goes straight to the Ohio landing page.
 OHIO_REDIRECT = ('\n<script>if(/(^|\\.)ohiomom\\.org$/i.test(location.hostname)){'
                  'location.replace("ohio/index.html"+location.search+location.hash)}</script>')
@@ -325,12 +348,14 @@ def build_index(data):
     pick = (f'<div class="statepick"><label for="statepick">Or start with your state</label>'
             f'<select id="statepick" data-state-pick>{options}</select><a href="states.html">See all states</a>'
             f'<a href="county.html">Find your county</a><a href="world.html">Outside the U.S.? Help in {len(data.get('world', {}).get('countries', []))} countries</a></div>')
-    lede = 'Pick one. You will get a short list of who to call. Free, private, no sign-up.'
+    lede = ('Single mom, new baby, behind on the rent, or just worn thin? Tell us who you are or pick what you need, '
+            'and you will get a short list of who to call. Free, private, no sign-up.')
     top = (f'<div class="herotop"><div class="herotext"><h1>Hi, mom. What do you need today?</h1>'
            f'<p class="lede">{lede}</p></div>{extras.scene_block(False, sayings, "affirmations.html", "help.html#take-care")}</div>')
-    body = (f'<section class="hero home"><div class="wrap">{top}<div class="tiles">{tiles}</div>{pick}</div></section>'
+    body = (f'<section class="hero home"><div class="wrap">{top}{iam_block(IAM)}<div class="tiles">{tiles}</div>{pick}</div></section>'
             + '\n' + urgent_strip(data))
-    desc = f"{site['tagline']} Food, child care, health coverage, disability help and crisis lines in all 50 states."
+    desc = ('Free help for single moms, new moms and moms behind on bills: food, rent, child care, disability help and '
+            'crisis lines in every U.S. state, and beyond.')
     about = {'@context': 'https://schema.org', '@type': 'WebSite', '@id': f"https://{site['domain']}/#website", 'name': site['name'],
              'url': f"https://{site['domain']}/", 'description': desc, 'inLanguage': 'en',
              'publisher': {'@type': 'Organization', 'name': site['name'],
@@ -384,8 +409,8 @@ def build_help(data):
     secs = [s for s in data['sections'] if not s.get('page')]
     # A listing that belongs under two needs is shown under both, so nobody has to hunt for it.
     rows = [row(s, data['resources']) for s in secs]
-    lede = ('Pick what you need, or search every listing. These work in every state. '
-            'For your state\'s own offices, <a href="states.html">choose your state</a>. '
+    lede = ('Not sure where to start? Pick the one thing weighing on you most today, or search every listing. These work in '
+            'every state. For your state\'s own offices, <a href="states.html">choose your state</a>. '
             'Someone you love in jail or prison? <a href="inside.html">Start here</a>.')
     body = (hero('Find help', lede) + finder('Search every listing', 'shelter, rent, WIC, child care…') + needs(''.join(rows))
             + '<section class="wrap slim"><p>In danger right now? Call 911. Domestic violence shelter addresses are never listed here, for safety.</p></section>')
@@ -429,8 +454,8 @@ def build_christmas(data):
             'and each Toys for Tots campaign closes on its own date, some at the end of November and some in December. '
             'Start with your area\'s Toys for Tots campaign today. If something has closed, dial <a href="tel:211">211</a> and ask: '
             '\u201cWhat Christmas help is still open for my kids?\u201d Never pay to sign up for free Christmas help.</div>')
-    lede = ('Toys for your kids, a holiday meal and help with the heat bill. Free, and no sign-up here. '
-            'Pick what you need, or search for your town.')
+    lede = ('Worried about Christmas for your kids this year? Here is where to ask for toys, a holiday meal and help with the '
+            'heat bill. Free, and no sign-up here. Pick what you need, or search for your town.')
     site = data['site']
     ohio = (f'<section class="wrap"><div class="localbox"><strong>Ohio mom?</strong> '
             f'<a href="ohio/holidays.html">Christmas and holiday help in Ohio</a> lists Ohio\'s own programs, holiday meals, '
@@ -493,7 +518,8 @@ def build_connect(data):
     prim = [r for r in data['resources'] if r['section'] == 'connect']
     also = [r for r in data['resources'] if 'connect' in r.get('also', [])]
     site = data['site']
-    body = hero('Meet other moms', 'Moms groups, feeding groups and people who get it. Find one near you or online.') + f'''
+    body = hero('Meet other moms', 'New in town, home all day with a baby, or just want someone who gets it? Moms groups, feeding '
+                'groups and people who have been there, near you or online.') + f'''
 <section class="group wrap"><h2>Groups for moms</h2><p class="quiet">Local chapters and meetups run by volunteers. Groups differ, so ask how one runs before you go.</p>{cards(prim)}</section>
 <section class="group wrap"><h2>Support for the hard days</h2><p class="quiet">Feeding help and support lines from people who have been there.</p>{cards(also, '', {r['id']: 'connect--' + r['id'] for r in also})}</section>
 <section class="wrap"><div class="localbox"><strong>Ohio mom?</strong> <a href="{esc(site['ohio_path'])}">OhioMom</a> lists Ohio groups, meetups and events by region and county.</div></section>
@@ -533,13 +559,55 @@ def state_grid(data):
 
 def build_states_index(data):
     items = ''.join(f'<li><a href="states/{s["abbr"].lower()}.html">{esc(s["name"])}<small>{s["abbr"]}</small></a></li>' for s in data['states'])
-    body = (hero('Help by state', 'All 50 states and the District of Columbia. Tap yours on the map, or open the list.')
+    body = (hero('Help by state', 'SNAP, WIC, health coverage and child care help are run state by state, so your state\'s page has '
+                   'the right office and phone number. Tap yours on the map, or open the list.')
             + f'<section class="wrap mapwrap">{state_grid(data)}'
             f'<details class="maplist"><summary>All {len(data["states"])} as a list</summary><ul class="statelist">{items}</ul></details>'
             '<p class="note">Looking for help close to home? Open your state for the list of its counties, or <a href="county.html">find your county by ZIP code</a>. Looking for something national? See <a href="help.html">Find help</a>. Outside the U.S.? <a href="world.html">Choose your country</a>.</p></section>')
     return page(data, 'states.html', 'Help by state',
                 'Pick your state for SNAP, WIC, child care, health coverage, disability help and domestic violence resources.', body,
                 head_extra=structured_data(breadcrumbs(data, [('Help by state', 'states.html')])))
+
+
+def biggest_counties(data, st, n=2):
+    """The state's most populous counties (Census 2024 estimates), most people first."""
+    return sorted((c for c in data['counties'] if c['state'] == st), key=lambda c: -c.get('pop', 0))[:n]
+
+
+def fits(desc):
+    """A description short enough that search results show it whole, counted as it is written in the page."""
+    return len(esc(desc)) <= 158
+
+
+def state_intro(data, s):
+    """The opening lines of a state page, written to a mom in that state: the state's own name for the program she is
+    most likely to need and not know the name of (early intervention), and the counties most of its moms live in."""
+    name, code = esc(s['name']), s['abbr'].lower()
+    whose = 'the District\'s' if s['abbr'] == 'DC' else f'{name}\'s'
+    out = (f'Raising kids in {name} and need a hand? Pick what you need below: {whose} own offices come first, then '
+           'national lines that work anywhere.')
+    ei = s.get('early_intervention', {}).get('name')
+    if ei:
+        out += (f' If your baby or toddler seems behind, {whose} early intervention program is '
+                f'<a href="#{code}-ei">{esc(ei)}</a>, and you can call it yourself.')
+    big = biggest_counties(data, s['abbr'])
+    if len(big) == 2 and big[0]['name'] != s['name']:
+        links = ' or '.join(f'<a href="{code}/{county_slug(c["name"])}.html">{esc(c["name"])}</a>' for c in big)
+        out += (f' For housing, legal aid and clinics close to home, open your {esc(county_noun(s["abbr"]))}, such as {links}, '
+                'from the list below.')
+    return out + ' <a href="../states.html">Choose another state</a>.'
+
+
+def state_desc(s):
+    """Search-result line for a state page: the state's own early intervention program by name, then the rest."""
+    ei = s.get('early_intervention', {}).get('name')
+    tries = []
+    if ei:
+        tries.append(f'Free help for moms in {s["name"]}: SNAP, WIC, energy bills, housing and shelter, child care, and {ei} '
+                     'for babies and toddlers.')
+        tries.append(f'Free help for moms in {s["name"]}: SNAP, WIC, housing, child care and {ei}.')
+    tries.append(f'Free help for moms in {s["name"]}: housing and shelter, SNAP, WIC, child care, health coverage and disability services.')
+    return next((t for t in tries if fits(t)), tries[-1])
 
 
 def build_state(data, s):
@@ -555,8 +623,7 @@ def build_state(data, s):
     if s.get('local_site'):
         ls = s['local_site']
         local = f'<div class="localbox"><strong>Ohio mom?</strong> <a href="../{esc(ls["path"])}">{esc(ls["name"])}</a> is {esc(ls["what"][0].lower() + ls["what"][1:])}</div>'
-    intro = (f'Pick what you need, or search every listing. Each choice opens {esc(s["name"])}\'s own offices first, then national lines. '
-             f'<a href="../states.html">Choose another state</a>.')
+    intro = state_intro(data, s)
     # A country with the same name (Georgia): say which is which, and link to the other.
     for c in data['world']['countries']:
         if c.get('us_state') == s['abbr']:
@@ -569,7 +636,7 @@ def build_state(data, s):
             + '<section class="wrap slim"><p><strong>Meet other moms.</strong> Find a group near you or online. <a href="../connect.html">Meet moms</a></p></section>'
             + kind_word('#take-care', '../') + closing('../'))
     path = f'states/{s["abbr"].lower()}.html'
-    desc = f'Free help for moms in {s["name"]}: housing and shelter, SNAP, WIC, child care, health coverage, disability services and domestic violence resources.'
+    desc = state_desc(s)
     base = f"https://{data['site']['domain']}/"
     about = {'@type': 'CollectionPage', '@id': base + path, 'url': base + path, 'name': f'{s["name"]}: help for moms',
              'description': desc, 'inLanguage': 'en', 'isPartOf': {'@id': base + '#website'},
@@ -710,8 +777,8 @@ def build_world(data):
     world = data['world']
     items = ''.join(f'<li><a href="countries/{c["slug"]}.html"><span aria-hidden="true">{c["flag"]}</span> {esc(c["name"])}'
                     f'<small>Emergency {esc(c["emergency"]["number"])}</small></a></li>' for c in world['countries'])
-    lede = ('Help for moms wherever you live. Pick your country for its own crisis lines, family payments and support, '
-            'or use the help below, which works in any country. Free, private, no sign-up.')
+    lede = ('Raising children outside the U.S.? Pick your country for its own emergency number, crisis lines, family payments '
+            'and support, or use the help below, which works in any country. Free, private, no sign-up.')
     n = len(world['countries'])
     # The map comes first to the eye, so one line above it keeps the way to an emergency number first of all.
     danger = '<p class="dangerline"><a href="#now">In danger right now? Find your country\'s emergency number</a></p>'
@@ -738,6 +805,64 @@ def build_world(data):
                 danger='In danger right now? Call your local emergency number.')
 
 
+# What each need is for, said to a mother, for the opening lines of a country page.
+FOR_WHAT = {
+    'help-now': 'for urgent help', 'housing': 'if home is not safe', 'food-bills': 'for money, food and family payments',
+    'pregnancy-baby': 'for pregnancy and a new baby', 'kids-differently': 'if you are worried about a child',
+    'single-parent': 'if you are raising children on your own', 'take-care': 'when you need someone to talk to',
+    'connect': 'to meet other mothers',
+}
+
+
+def lower_first(text):
+    """'Someone to talk to' -> 'someone to talk to', but 'NHS 111' and 'WhatsApp line' stay as they are."""
+    return text[0].lower() + text[1:] if len(text) > 1 and text[1].islower() else text
+
+
+def own_lines(c, n=3):
+    """The country's own listings, the urgent ones first, as they lead its page."""
+    return sorted(c['resources'], key=lambda r: (not r.get('urgent'), c['resources'].index(r)))[:n]
+
+
+def country_intro(c):
+    """The opening lines of a country page, written to a mother there: the emergency number, the country's own lines by
+    name and what each is for, and the language the day's kind word is in."""
+    where = esc(re.sub(r' \(.*\)$', '', in_name(c)))  # "Georgia (the country)" reads as Georgia here; the page says which
+    out = f'Raising children in {where}? If you or your child are in danger, call {esc(c["emergency"]["number"])}.'
+    mine = own_lines(c)
+    if mine:
+        named = [f'<a href="#{esc(r["id"])}">{esc(r["name"])}</a>' + ('' if r['name'].endswith(')') else
+                 f' ({esc(lower_first(r["chip"]) if r.get("chip") else FOR_WHAT.get(r["section"], "for help"))})') for r in mine]
+        lst = named[0] if len(named) == 1 else ', '.join(named[:-1]) + ' and ' + named[-1]
+        whose = re.sub(r' \(.*\)', '', possessive(c))
+        out += f' {esc(whose[0].upper() + whose[1:])} own services come first, such as {lst}.'
+        out += ' Then come lines that work in any country.'
+    else:
+        out += f' We have not listed {esc(re.sub(r" [(].*[)]", "", possessive(c)))} own services yet, so the help below is the kind that works in any country.'
+    out += ' Pick what you need, or search.'
+    local = extras.local_language(c.get('lang'))
+    if local:
+        lname = extras.read_translation(local[0]).get('name', '')
+        lname = re.sub(r' \(.*\)$', '', lname)
+        if lname:
+            out += f' Today\'s kind word, near the end of the page, is in {esc(lname)}, with the English under it.'
+    out += ' <a href="../world.html">Choose another country</a>.'
+    return out
+
+
+def country_desc(c):
+    """Search-result line for a country page: the emergency number and the country's own lines by name."""
+    head = f'Free help for moms in {in_name(c)}: emergency {c["emergency"]["number"]}'
+    names = [r['name'] for r in own_lines(c)]
+    tail = ', crisis lines, family payments, breastfeeding and postpartum support.'
+    for k in range(len(names), 0, -1):
+        d = head + ', ' + ', '.join(names[:k]) + ' and more help for mothers.'
+        if fits(d):
+            return d
+    d = head + tail
+    return d if fits(d) else f'Free help for moms in {in_name(c)}: emergency {c["emergency"]["number"]}, crisis lines and family support.'
+
+
 def build_country(data, c):
     world = data['world']
     mine = [dict(r, scope=c['code']) for r in c['resources']]
@@ -746,8 +871,7 @@ def build_country(data, c):
     cards_now = emergency_card(c) + ''.join(
         f'<li><a class="phonecard" href="{dial_href(r)}">Call {esc(r["phone"])}<small>{esc(r.get("chip") or r["name"])}</small></a></li>'
         for r in urgent)
-    intro = (f'Pick what you need, or search every listing. Each choice shows {esc(possessive(c))} own services first, '
-             f'then help that works in any country. <a href="../world.html">Choose another country</a>.')
+    intro = country_intro(c)
     if c.get('us_state'):  # a country with the name of a U.S. state (Georgia): link to the state, so the two are never mixed up
         st = next(s for s in data['states'] if s['abbr'] == c['us_state'])
         intro += (f' This page is the country. Looking for the U.S. state? '
@@ -761,11 +885,7 @@ def build_country(data, c):
             + kind_word('#take-care', '../', c.get('lang'))
             + closing('../', 'Numbers are free to call unless the listing says otherwise. '))
     path = f'countries/{c["slug"]}.html'
-    desc = (f'Free help for moms in {in_name(c)}: the emergency number, domestic violence and crisis lines, family payments, '
-            'breastfeeding and postpartum support.')
-    if len(desc) > 160:  # a long name (the Democratic Republic of the Congo): a shorter line, so search results show it whole
-        desc = (f'Free help for moms in {in_name(c)}: the emergency number, crisis lines, family payments, '
-                'breastfeeding and postpartum support.')
+    desc = country_desc(c)
     base = f"https://{data['site']['domain']}/"
     about = {'@type': 'CollectionPage', '@id': base + path, 'url': base + path, 'name': f'{c["name"]}: help for moms',
              'description': desc, 'inLanguage': 'en', 'isPartOf': {'@id': base + '#website'},
@@ -857,8 +977,8 @@ def build_county(data):
             '<div><label for="zip">Or your ZIP code</label><input id="zip" type="search" inputmode="numeric" maxlength="5" '
             'autocomplete="off" enterkeyhint="go" placeholder="5 digits"></div></div>'
             '<p class="quiet" id="cmsg" role="status"></p>')
-    lede = ('Pick your county to see where to apply for housing help, free legal help, low-cost health care, free evaluations '
-            'for your child and Head Start close to you. Free, private, no sign-up.')
+    lede = ('Want help close to home? Pick your county, or type your ZIP code, to see where to apply for housing help, free '
+            'legal help, low-cost health care, free evaluations for your child and Head Start near you. Free, private, no sign-up.')
     hero_html = (f'<section class="hero slim"><div class="wrap"><h1 id="ctitle">Help near you</h1>'
                  f'<p class="lede" id="clede">{esc(lede)}</p>{find}</div></section>')
     fallback = ('<section class="wrap"><p>Finding a county by ZIP code needs JavaScript, which seems to be off or still loading. '
@@ -1313,7 +1433,110 @@ def county_rows(data, st, fips, shard, x, root):
     return ''.join(rows)
 
 
-def county_desc(nice):
+def county_towns(c, n=2):
+    """The towns a county's own listings are in (health center sites, Head Start locations and the housing agencies with
+    their office there), the most listed first: the places a mom from this county is likely to know it by. A county
+    named for its town (Carson City) or a city that is its own county (Baltimore city) gives none."""
+    from collections import Counter
+    seen = Counter()
+    for r in c.get('health') or []:
+        seen[r[3]] += 1
+    for r in c.get('headStart') or []:
+        seen[r[3]] += 1
+    towns = [t for t, k in sorted(seen.items(), key=lambda kv: -kv[1]) if t and t.lower() != c['n'].lower()
+             and t.upper() != t]
+    if re.search(r'\bcity$', c['n'], re.I):
+        return []
+    return towns[:n]
+
+
+def county_pha(c, shard):
+    """(name, how) of the first housing agency a county page lists, or None. how is the agency's tie to the county:
+    'c' office there, 'n' named for it, 'r' nearby, 's' the state's own voucher program."""
+    for ref in c.get('pha', []):
+        if ref[0] in shard.get('ph', {}):
+            return shard['ph'][ref[0]][0], ref[2]
+    return None
+
+
+def county_legal(c, shard):
+    return next((shard['lg'][sa][0] for sa in c.get('lg', []) if sa in shard.get('lg', {})), None)
+
+
+def the_place(name):
+    """'Capitol Planning Region' -> 'the Capitol Planning Region', as it reads in a sentence; counties keep their name."""
+    return ('the ' + name) if re.search(r'(Planning Region|Census Area|Borough|Municipality)$', name) else name
+
+
+def mh_needs(fips):
+    """The kinds of help for moms and babies a county page lists (as its row names them), in the row's order."""
+    lh = local_help()
+    if lh is None:
+        return []
+    links = lh.get('links', {})
+    have = {lh['rows'][i]['need'] for i, _m in lh['index'].get(fips, [])
+            if i in lh['rows'] and (lh['rows'][i]['phone'] or links.get(lh['rows'][i]['website']) in ('ok', 'refused'))}
+    say = {'wic': 'WIC', 'health-dept': 'the health department', 'home-visiting': 'home visits for new parents',
+           'healthy-start': 'Healthy Start', 'breastfeeding': 'breastfeeding support', 'diapers': 'free diapers',
+           'postpartum': 'support after the baby comes'}
+    return [say.get(need, h.lower()) for need, h in MH_NEEDS if need in have]
+
+
+def county_intro(c, shard, fips=None):
+    """The opening lines of a county page, written to a mom who lives there: the towns she knows it by, and by name the
+    housing agency to apply to and the legal aid program that serves her, each a link that opens its row."""
+    n = esc(the_place(c['n']))
+    towns = county_towns(c)
+    if len(towns) == 2:
+        out = f'Raising kids in {esc(towns[0])}, {esc(towns[1])} or anywhere else in {n}? Here is who to call close to home.'
+    elif towns:
+        out = f'Raising kids in {esc(towns[0])} or anywhere else in {n}? Here is who to call close to home.'
+    else:
+        out = f'Raising kids in {n}? Here is who to call close to home.'
+    pha = county_pha(c, shard)
+    if pha:
+        name, how = pha
+        if how in 'cn':
+            out += f' To apply for public housing or a Section 8 voucher, start with <a href="#county-pha">{esc(name)}</a>.'
+        elif how == 'r':
+            out += f' For public housing or a Section 8 voucher, the nearest agency we list is <a href="#county-pha">{esc(name)}</a>.'
+        else:
+            out += f' For a Section 8 voucher, start with <a href="#county-pha">{esc(name)}</a>.'
+    legal = county_legal(c, shard)
+    if legal:
+        out += (f' Free legal help with custody, child support, protection from abuse or an eviction comes from '
+                f'<a href="#county-legal">{esc(legal)}</a>.')
+    moms = mh_needs(fips) if fips else []
+    if moms:
+        named = moms[0] if len(moms) == 1 else ', '.join(moms[:-1]) + ' and ' + moms[-1]
+        out += f' Expecting, or have a little one? You will find {esc(named)} <a href="#county-moms">near you</a>.'
+    near = ' nearby' if not c.get('health') or not c.get('headStart') else ''
+    out += (f' Low-cost clinics, free evaluations for your child and Head Start{near} are below too. Pick what you need. '
+            'Free, private, no sign-up.')
+    return re.sub(r'\.(</a>)\.', r'.\1', out)  # a name that ends in "Inc." ends its sentence too
+
+
+def county_desc(nice, c=None, shard=None):
+    """Search-result line for a county page: the place (with its main towns), then by name the housing agency and the
+    legal aid program, shortened until it fits."""
+    tries = []
+    if c is not None:
+        towns = county_towns(c)
+        pha = county_pha(c, shard)
+        pha = pha if pha and pha[1] in 'cn' else None  # an agency only nearby may not serve the county
+        legal = county_legal(c, shard)
+        where = f'{nice} ({", ".join(towns)})' if towns else nice
+        if pha and legal:
+            tries.append(f'Help for moms in {where}: Section 8 with {pha[0]}, free legal aid from {legal}, clinics and Head Start.')
+            tries.append(f'Help for moms in {nice}: Section 8 with {pha[0]}, free legal aid from {legal}, clinics and Head Start.')
+        if pha:
+            tries.append(f'Help for moms in {where}: Section 8 with {pha[0]}, legal aid, clinics and Head Start.')
+            tries.append(f'Help for moms in {nice}: Section 8 with {pha[0]}, legal aid, clinics and Head Start.')
+        if legal:
+            tries.append(f'Help for moms in {where}: housing, free legal aid from {legal}, clinics and Head Start.')
+    for d in tries:
+        if fits(d):
+            return d
     for d in (f'Help for moms in {nice}: public housing and Section 8, housing counselors, free legal aid, low-cost health care, '
               'school evaluations and Head Start, with phone numbers.',
               f'Help for moms in {nice}: public housing, legal aid, low-cost health care, school evaluations and Head Start.',
@@ -1359,12 +1582,7 @@ def build_county_page(data, st, fips, shard, x):
     crumbs = (f'<nav class="crumbs" aria-label="You are here"><a href="{root}index.html">Home</a> › '
               f'<a href="{root}states.html">States</a> › <a href="../{code}.html">{esc(s["name"])}</a> › '
               f'<span aria-current="page">{esc(c["n"])}</span></nav>')
-    lede = (f'Local listings for {esc(c["n"])}: where to apply for housing help, free legal help, low-cost health care, free '
-            f'evaluations for your child and Head Start. Pick what you need. Free, private, no sign-up.')
-    if local_help():
-        lede = (f'Local listings for {esc(c["n"])}: help for moms and babies such as WIC, home visits, breastfeeding groups and '
-                f'diaper banks, plus where to apply for housing help, free legal help, low-cost health care, free evaluations '
-                f'for your child and Head Start. Pick what you need. Free, private, no sign-up.')
+    lede = county_intro(c, shard, fips)
     first = (f'<a href="../{code}.html">All help in {esc(s["name"])}</a>' if c['n'] == s['name']  # D.C. is one county
              else f'<a href="../{code}.html#counties">Another {esc(county_noun(st))} in {esc(s["name"])}</a>')
     other = (f'<p class="countylink">{first} · '
@@ -1382,7 +1600,7 @@ def build_county_page(data, st, fips, shard, x):
             + f'<section class="wrap slim closing"><p>Listings come from federal directories and are not confirmed by phone. '
               f'A phone number or address may be out of date. <a href="{root}county.html#sources">Where these listings come from</a> · '
               f'<a href="{root}report.html">Report a problem</a>.</p></section>')
-    desc = county_desc(nice)
+    desc = county_desc(nice, c, shard)
     base = f"https://{data['site']['domain']}/"
     title = county_title(c, s)
     about = {'@type': 'CollectionPage', '@id': base + path, 'url': base + path, 'name': title,
