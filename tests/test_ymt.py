@@ -281,7 +281,7 @@ class SiteTests(unittest.TestCase):
         read, so a new country or a new sentence is checked too."""
         known = ('Bahamas', 'Central African Republic', 'Comoros', 'Czech Republic', 'Democratic Republic of the Congo',
                  'Dominican Republic', 'Gambia', 'Maldives', 'Marshall Islands', 'Netherlands', 'Philippines',
-                 'Solomon Islands', 'United Arab Emirates', 'United Kingdom')
+                 'Republic of the Congo', 'Solomon Islands', 'United Arab Emirates', 'United Kingdom')
         countries = lib.load()['world']['countries']
         for c in countries:
             bare = c['name'][4:] if c['name'].startswith('The ') else c['name']

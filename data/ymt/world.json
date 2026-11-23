@@ -112,6 +112,56 @@
  ],
  "countries": [
   {
+   "code": "AF",
+   "slug": "afghanistan",
+   "name": "Afghanistan",
+   "flag": "🇦🇫",
+   "lang": "fa",
+   "emergency": {
+    "number": "119",
+    "label": "Police. The UK travel advice gives no ambulance or fire number",
+    "source": "https://www.gov.uk/foreign-travel-advice/afghanistan/getting-help"
+   },
+   "resources": [
+    {
+     "id": "afghanistan-unhcr-helplines",
+     "section": "help-now",
+     "name": "UNHCR helplines",
+     "org": "UNHCR, the UN Refugee Agency",
+     "what": "If you or someone you know has faced violence or feels threatened, UNHCR says help is available. Its confidential helplines are toll-free and answer Sunday to Thursday, during UNHCR's working hours.",
+     "how": "Call 0791990225, 0790691746 or 0704996168, Sunday to Thursday. In danger right now, call 119 for the police.",
+     "url": "https://help.unhcr.org/afghanistan/support/help-for-women-children-and-people-with-specific-needs/",
+     "phone": "0791 990 225",
+     "dial": "0791990225",
+     "urgent": true,
+     "chip": "UNHCR helpline",
+     "sources": [
+      "https://help.unhcr.org/afghanistan/support/help-for-women-children-and-people-with-specific-needs/",
+      "https://help.unhcr.org/afghanistan/contact/"
+     ],
+     "reviewed_on": "2026-11-23"
+    },
+    {
+     "id": "afghanistan-awaaz-410",
+     "section": "food-bills",
+     "name": "Awaaz helpline 410",
+     "org": "Awaaz helpline, listed by UNHCR",
+     "what": "A free line, open seven days a week, that tells you what support is available in Afghanistan, food help among it. Female and male agents answer in Dari, Pashto, Urdu, English and other languages.",
+     "how": "Call 410, free. You can ask for a female agent.",
+     "url": "https://help.unhcr.org/afghanistan/contact/",
+     "phone": "410",
+     "dial": "410",
+     "sources": [
+      "https://help.unhcr.org/afghanistan/contact/"
+     ],
+     "reviewed_on": "2026-11-23",
+     "also": [
+      "help-now"
+     ]
+    }
+   ]
+  },
+  {
    "code": "AL",
    "slug": "albania",
    "name": "Albania",
@@ -1851,6 +1901,37 @@
    ]
   },
   {
+   "code": "TD",
+   "slug": "chad",
+   "name": "Chad",
+   "flag": "🇹🇩",
+   "lang": "fr",
+   "emergency": {
+    "number": "112",
+    "label": "Ambulance and fire (or 18). Police: 117 or 2020",
+    "source": "https://www.gov.uk/foreign-travel-advice/chad/getting-help"
+   },
+   "resources": [
+    {
+     "id": "chad-1390",
+     "section": "help-now",
+     "name": "Green line 1390 (gender-based violence)",
+     "org": "Maison nationale de la femme, named in Chad's report to the UN",
+     "what": "A green line that takes reports of gender-based violence and directs survivors to the listening centres of the Maison nationale de la femme, which give psychological, medical and legal help. Chad's government described it in its 2023 report to the UN women's rights committee. Its hours, and whether the call is free, are not stated.",
+     "how": "Call 1390. In danger right now, call 117 for the police.",
+     "url": "https://documents.un.org/doc/undoc/gen/n23/330/66/pdf/n2333066.pdf",
+     "phone": "1390",
+     "dial": "1390",
+     "urgent": true,
+     "chip": "Violence line",
+     "sources": [
+      "https://documents.un.org/doc/undoc/gen/n23/330/66/pdf/n2333066.pdf"
+     ],
+     "reviewed_on": "2026-11-23"
+    }
+   ]
+  },
+  {
    "code": "CL",
    "slug": "chile",
    "name": "Chile",
@@ -3271,6 +3352,37 @@
      "also": [
       "food-bills"
      ]
+    }
+   ]
+  },
+  {
+   "code": "GA",
+   "slug": "gabon",
+   "name": "Gabon",
+   "flag": "🇬🇦",
+   "lang": "fr",
+   "emergency": {
+    "number": "117",
+    "label": "Ambulance. Police and fire: 177. These numbers are not always reliable",
+    "source": "https://www.gov.uk/foreign-travel-advice/gabon/getting-help"
+   },
+   "resources": [
+    {
+     "id": "gabon-1404",
+     "section": "help-now",
+     "name": "Free line 1404 (violence against women)",
+     "org": "Government of Gabon",
+     "what": "A free number the government set up in April 2021 so people can report violence and victims can get support. It handled more than 2,000 calls about violence in its first nine months, UN News reported in 2022. Its hours are not stated.",
+     "how": "Call 1404, free. In danger right now, call 177 for the police.",
+     "url": "https://news.un.org/fr/story/2022/02/1114102",
+     "phone": "1404",
+     "dial": "1404",
+     "urgent": true,
+     "chip": "Violence line",
+     "sources": [
+      "https://news.un.org/fr/story/2022/02/1114102"
+     ],
+     "reviewed_on": "2026-11-23"
     }
    ]
   },
@@ -7476,6 +7588,37 @@
    ]
   },
   {
+   "code": "CG",
+   "slug": "republic-of-the-congo",
+   "name": "Republic of the Congo",
+   "flag": "🇨🇬",
+   "lang": "fr",
+   "emergency": {
+    "number": "066654804",
+    "label": "Police (06 665 4804). There is no central number for emergency services, so know your nearest hospital",
+    "source": "https://www.gov.uk/foreign-travel-advice/congo/getting-help"
+   },
+   "resources": [
+    {
+     "id": "republic-of-the-congo-1444",
+     "section": "help-now",
+     "name": "Emergency line 14 44 (violence)",
+     "org": "Government of the Republic of the Congo",
+     "what": "A short emergency number, in service since 2018, for victims and witnesses to report violence anonymously and safely. The government's 2024 report to UN Women says it now runs on a dedicated platform and is being made known in all twelve departments. Its hours, and whether the call is free, are not stated.",
+     "how": "Call 1444. In danger right now, call the police on 06 665 4804.",
+     "url": "https://unwomen.org/sites/default/files/2024-09/b30_report_congo_fr.pdf",
+     "phone": "14 44",
+     "dial": "1444",
+     "urgent": true,
+     "chip": "Violence line",
+     "sources": [
+      "https://unwomen.org/sites/default/files/2024-09/b30_report_congo_fr.pdf"
+     ],
+     "reviewed_on": "2026-11-23"
+    }
+   ]
+  },
+  {
    "code": "RO",
    "slug": "romania",
    "name": "Romania",
@@ -7880,6 +8023,37 @@
       "take-care"
      ],
      "reviewed_on": "2026-11-21"
+    }
+   ]
+  },
+  {
+   "code": "ST",
+   "slug": "sao-tome-and-principe",
+   "name": "São Tomé and Príncipe",
+   "flag": "🇸🇹",
+   "lang": "pt",
+   "emergency": {
+    "number": "113",
+    "label": "Police (or 222 22 22). Ambulance: 222 22 22. Fire: 112",
+    "source": "https://www.gov.uk/foreign-travel-advice/sao-tome-and-principe/getting-help"
+   },
+   "resources": [
+    {
+     "id": "sao-tome-and-principe-150",
+     "section": "help-now",
+     "name": "Line 150 for victims of gender-based violence",
+     "org": "National strategy against gender-based violence, published with UNFPA",
+     "what": "A free information line for victims of gender-based violence. It was meant to answer at any hour, but the national strategy against gender-based violence for 2019 to 2023 says it was answered only 8 hours a day, Monday to Friday. That is the newest official word on it we found, so the hours may have changed.",
+     "how": "Call 150 on a weekday, during the day. In danger right now, call 113 for the police.",
+     "url": "https://saotomeandprincipe.unfpa.org/sites/default/files/pub-pdf/estrategia_vbg_2019_2023.pdf",
+     "phone": "150",
+     "dial": "150",
+     "urgent": true,
+     "chip": "Violence line",
+     "sources": [
+      "https://saotomeandprincipe.unfpa.org/sites/default/files/pub-pdf/estrategia_vbg_2019_2023.pdf"
+     ],
+     "reviewed_on": "2026-11-23"
     }
    ]
   },
