@@ -1192,7 +1192,9 @@ def build_county_page(data, st, fips, shard, x):
               f'<span aria-current="page">{esc(c["n"])}</span></nav>')
     lede = (f'Local listings for {esc(c["n"])}: where to apply for housing help, free legal help, low-cost health care, free '
             f'evaluations for your child and Head Start. Pick what you need. Free, private, no sign-up.')
-    other = (f'<p class="countylink"><a href="../{code}.html#counties">Another {esc(county_noun(st))} in {esc(s["name"])}</a> · '
+    first = (f'<a href="../{code}.html">All help in {esc(s["name"])}</a>' if c['n'] == s['name']  # D.C. is one county
+             else f'<a href="../{code}.html#counties">Another {esc(county_noun(st))} in {esc(s["name"])}</a>')
+    other = (f'<p class="countylink">{first} · '
              f'<a href="{root}county.html">Find yours by ZIP code</a></p>')
     top = hero(esc(nice), lede, other).replace('<div class="wrap">', '<div class="wrap">' + crumbs, 1)
     local = ''
