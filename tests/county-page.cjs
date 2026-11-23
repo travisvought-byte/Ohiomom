@@ -43,6 +43,9 @@ async function settle(w) {
   for (let i = 0; i < 30; i++) await new Promise((r) => w.setTimeout(r, 0));
 }
 
+// Help for moms and babies (scripts/local_help.py) sits after housing counselors once its listings are mined.
+const moms = fs.existsSync(__dirname + '/../data/ymt/local-help/listings.csv') ? ['county-moms'] : [];
+
 function checkCards(d, label) {
   const cards = all(d, 'main article.card');
   assert(cards.length > 0, `${label}: some cards`);
@@ -56,6 +59,9 @@ function checkCards(d, label) {
     if (c.id.startsWith('tft-')) {
       // A Toys for Tots campaign has its website instead: each campaign keeps its phone on its own Contact page.
       assert(!call && c.querySelector(':scope > p.actions a[href$=".toysfortots.org/"]'), `${label} #${c.id}: the campaign's website`);
+    } else if (c.id.startsWith('mh-') && !call) {
+      // Help for moms: diaper banks and breastfeeding groups often publish a website and no phone; it is shown only once it loaded.
+      assert(c.querySelector(':scope > p.actions a[href^="https://"]'), `${label} #${c.id}: a phone or a website`);
     } else {
       assert(call && /^tel:\+1\d{10}$/.test(call.getAttribute('href')), `${label} #${c.id}: a phone to call`);
       assert(call.getAttribute('href').endsWith(call.textContent.replace(/\D/g, '')), `${label} #${c.id}: the link dials the number shown`);
@@ -99,7 +105,11 @@ function checkCards(d, label) {
     assert.deepEqual(trail, ['Yoga Mom Talk', 'Help by state', 'Ohio', 'Morrow County']);
     assert.equal(d.querySelector('.hero').nextElementSibling.id, 'now', 'the crisis cards come right after the heading');
     const rows = all(d, 'details.need');
-    assert.deepEqual(rows.map((r) => r.id), ['county-christmas', 'county-pha', 'county-hud', 'county-legal', 'county-health', 'county-schools', 'county-start', 'county-state']);
+    assert.deepEqual(rows.map((r) => r.id), ['county-christmas', 'county-pha', 'county-hud', ...moms, 'county-legal', 'county-health', 'county-schools', 'county-start', 'county-state']);
+    if (moms.length) {
+      assert(all(d, '#county-moms article.card').length >= 1, 'Morrow County has its health department at least');
+      assert(all(d, '#county-moms .src').every((p) => /not confirmed by phone/.test(p.textContent)), 'every listing names its source');
+    }
     const legal = all(d, '#county-legal article.card');
     assert.equal(legal.length, 1);
     assert.equal(legal[0].querySelector('h3').textContent, 'Legal Aid of Southeast and Central Ohio');
@@ -148,7 +158,7 @@ function checkCards(d, label) {
       for (const fips of Object.keys(shard.c)) { assert(fs.existsSync(pageOf(fips)), pageOf(fips)); n++; }
       const fips = Object.keys(shard.c).sort((a, b) => shard.c[b].p - shard.c[a].p)[0];
       const { d } = county(fips);
-      assert.equal(all(d, 'details.need').length, 8, fips + ': Christmas help and seven needs');
+      assert.equal(all(d, 'details.need').length, 8 + moms.length, fips + ': Christmas help and seven needs (eight with help for moms)');
       assert(all(d, '#county-legal article.card').length >= 1, fips + ': every county has legal aid');
       checkCards(d, `${code} ${fips}`);
     }

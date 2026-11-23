@@ -90,6 +90,8 @@ class Parsers(unittest.TestCase):
              'addresses': [{'address_purpose': 'MAILING', 'city': 'X'},
                            {'address_purpose': 'LOCATION', 'address_1': '1763 STATE ROUTE 60', 'city': 'ASHLAND',
                             'state': 'OH', 'postal_code': '448059239', 'telephone_number': '419-282-4357', 'country_code': 'US'}]},
+            {'number': 3, 'basic': {'organization_name': 'State of Alaska'}, 'taxonomies': [{'code': '261QP0905X', 'primary': True}],
+             'addresses': [{'address_purpose': 'LOCATION', 'state': 'AK', 'postal_code': '99503', 'telephone_number': '907-334-2283'}]},
             {'number': 2, 'basic': {'organization_name': 'SOME HOSPITAL'}, 'taxonomies': [{'code': '282N00000X', 'primary': True}],
              'addresses': [{'address_purpose': 'LOCATION', 'state': 'OH', 'postal_code': '44805', 'telephone_number': '419-282-0000'}]},
         ]).encode()
@@ -182,6 +184,8 @@ class CountyRow(unittest.TestCase):
         self.assertIn('Columbus Diaper Bank', html)
         self.assertIn('https://columbusdiaperbank.org', html)
         self.assertIn('National Diaper Bank Network', html)
+        self.assertIn('<p class="nextstep"><strong>Next step:</strong>', html)   # said once for the group, like every row
+        self.assertIn('<p class="org">', html)
         self.assertIn('not confirmed by phone', html)
         self.assertIn('Diapers in or near Franklin County', html)
 
@@ -195,6 +199,17 @@ class CountyRow(unittest.TestCase):
         html = self.yb.mh_row('OH', '39049', {'n': 'Franklin County'}, 'Ohio', 'oh', '../../')
         self.assertNotIn('Columbus Diaper Bank', html)   # nothing left to do with it, so not shown until it loads
         self.assertIn('not found a local listing', html)
+
+    def test_a_long_card_keeps_its_short_part_short(self):
+        import re
+        r = dict(self.row, name='Chugachmiut Birth to Five/Ukut Ilanka Parents as Teachers Home Visiting', phone='907-248-5006',
+                 county_fips='02020', need='home-visiting', source_id='pat-affiliates', city='Anchorage', state='AK')
+        self.yb.local_help.cache.update(rows={r['id']: r}, index={'02063': [[r['id'], 0]]})
+        html = self.yb.mh_row('AK', '02063', {'n': 'Chugach Census Area'}, 'Alaska', 'ak', '../../')
+        card = re.search(r'<article class="card[^"]*" id="[^"]+">(.*?)</article>', html, re.S).group(1)
+        visible = re.sub(r'<[^>]+>', '', card.split('<details class="more">')[0])
+        self.assertLessEqual(len(visible), 330)
+        self.assertIn('Chugach Census Area', visible)
 
     def test_no_listings_yet_means_no_row(self):
         self.yb.local_help.cache = None
