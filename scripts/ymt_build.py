@@ -837,7 +837,7 @@ def build_county(data):
             + kind_word('help.html#take-care') + '\n' + sources)
     return page(data, 'county.html', 'Help near you, by county',
                 'Public housing, housing counselors, legal aid, health centers, school districts and Head Start in every U.S. county, '
-                'from federal directories. Free, with no sign-up.',
+                'from federal directories, free.',
                 body, head_extra=structured_data(breadcrumbs(data, [('Help near you, by county', 'county.html')])),
                 scripts='\n<script src="assets/county.js"></script>' + kind_word_scripts(), slots=('county',))
 
@@ -1154,6 +1154,26 @@ def county_desc(nice):
     return d
 
 
+def the_district(html_text):
+    """The District of Columbia takes "the" inside a sentence: "help in the District of Columbia".
+    Titles, headings that name the place alone and the breadcrumb keep the bare name."""
+    return re.sub(r'\b(in|In|for|to|serves|opens|across|and|Find) District of Columbia',
+                  lambda m: f'{m.group(1)} the District of Columbia', html_text)
+
+
+def county_title(c, s):
+    """A search title that fits: Google cuts titles near 60 characters, so a long county name
+    takes the state's two letters, and a Connecticut planning region or Alaska census area
+    drops that word last of all. The county page for D.C. gets its own title, apart from the state page's."""
+    if c['n'] == s['name']:
+        return 'Washington, DC: local help for moms'
+    for t in (f'{c["n"]}, {s["name"]}: help for moms', f'{c["n"]}, {s["abbr"]}: help for moms',
+              f'{re.sub(r" (Planning Region|Census Area)$", "", c["n"])}, {s["abbr"]}: help for moms'):
+        if len(t) <= 54:
+            return t
+    return t
+
+
 def county_noun(st, plural=False):
     one, many = {'LA': ('parish', 'parishes'), 'AK': ('borough or area', 'boroughs and areas'),
                  'CT': ('planning region', 'planning regions')}.get(st, ('county', 'counties'))
@@ -1189,11 +1209,12 @@ def build_county_page(data, st, fips, shard, x):
               f'<a href="{root}report.html">Report a problem</a>.</p></section>')
     desc = county_desc(nice)
     base = f"https://{data['site']['domain']}/"
-    about = {'@type': 'CollectionPage', '@id': base + path, 'url': base + path, 'name': f'{nice}: help for moms',
+    title = county_title(c, s)
+    about = {'@type': 'CollectionPage', '@id': base + path, 'url': base + path, 'name': title,
              'description': desc, 'inLanguage': 'en', 'isPartOf': {'@id': base + '#website'},
              'about': {'@type': 'AdministrativeArea', 'name': nice}}
     trail = breadcrumbs(data, [('Help by state', 'states.html'), (s['name'], f'states/{code}.html'), (c['n'], path)])
-    return path, page(data, path, f'{nice}: help for moms', desc, body, head_extra=structured_data(about, trail),
+    return path, page(data, path, title, desc, body, head_extra=structured_data(about, trail),
                       slots=('county',), scripts=kind_word_scripts(root))
 
 
@@ -1343,6 +1364,9 @@ def build_all(data):
     for s in data['states']:
         files[f'states/{s["abbr"].lower()}.html'] = build_state(data, s)
     files.update(build_county_pages(data))
+    for p in files:  # "in the District of Columbia", as it reads in a sentence
+        if p == 'states/dc.html' or p.startswith('states/dc/'):
+            files[p] = the_district(files[p])
     if data.get('world', {}).get('countries'):
         files['world.html'] = build_world(data)
         for c in data['world']['countries']:
