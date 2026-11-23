@@ -41,7 +41,7 @@ main>section.wrap{margin-top:2.75rem}
 .tile strong{display:block;font-size:1.15rem;line-height:1.25;margin:.55rem 0 .15rem;color:var(--ink)}
 .tile span{display:block;color:var(--muted);font-size:.96rem}
 .tile .ico{display:grid;place-items:center;width:2.9rem;height:2.9rem;border-radius:50%;background:var(--soft);font-size:1.45rem}
-.t9 .ico{background:#dcefdc}.tile.t9{border-color:#c63b3b33;background:linear-gradient(135deg,#fff,#f3faf2)}.t1 .ico{background:#ffe0e8}.t2 .ico{background:#fff0bf}.t3 .ico{background:#d9f3ee}.t4 .ico{background:#e9e2fb}.t5 .ico{background:#ffe9c9}.t6 .ico{background:#ffe3d6}
+.t9 .ico{background:#dcefdc}.tile.t9{border-color:#c63b3b33;background:linear-gradient(135deg,#fff,#f3faf2)}.t1 .ico{background:#ffe0e8}.t2 .ico{background:#fff0bf}.t3 .ico{background:#d9f3ee}.t4 .ico{background:#e9e2fb}.t5 .ico{background:#ffe9c9}.t10 .ico{background:#f1e4f7}.t6 .ico{background:#ffe3d6}
 @media (min-width:761px){.hero.home .tiles{grid-template-columns:repeat(3,1fr)}}
 main>section .tiles{margin-top:1rem}
 /* "I'm..." chooser: who she is, one tap from the help for that */

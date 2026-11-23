@@ -231,6 +231,9 @@ body.county .brandline{font-weight:700;margin:0 0 .4rem}
 .ad-slot img{flex:none;width:6.5rem;max-width:30%;height:auto;border-radius:.35rem}
 .ad-slot .ad-sponsor{font-weight:700}
 @media print{.ad-slot{display:none}}
+/* Language switch and the corrections line on the translated help pages (scripts/ohio_i18n.py). */
+.langs{background:#fff;border-bottom:1px solid #eadfd6}.langs .wrap{margin-top:0;display:flex;flex-wrap:wrap;gap:.25rem 1rem;padding-top:.35rem;padding-bottom:.35rem;font-size:.95rem}.langs a{display:inline-block;min-height:44px;line-height:44px;color:var(--teal)}.langs a[aria-current]{color:var(--ink);font-weight:700;text-decoration:none}.i18n-fix p{font-size:.95rem;color:var(--muted)}
+@media print{.langs{display:none}}
 /* home-extras:start. Front-page picture and affirmations. Copied from templates/home-extras.css by scripts/home_extras.py; edit the template. */
 .herotop{display:flex;align-items:center;gap:1rem 2.2rem}
 .herotext{flex:1 1 0;min-width:0}

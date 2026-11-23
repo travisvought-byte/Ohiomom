@@ -35,6 +35,7 @@ TILES = [
     ('t3', '🍼', "I'm pregnant or have a new baby", 'Health coverage, nursing help, diapers, safe sleep.', 'help.html#pregnancy-baby'),
     ('t4', '🧩', 'My child learns or grows differently', 'Autism, ADHD, delays, school help and other parents.', 'help.html#kids-differently'),
     ('t5', '💛', 'Parenting on my own', 'Child care, Head Start, child support and legal help.', 'help.html#single-parent'),
+    ('t10', '👵', 'Raising a grandchild', 'For grandparents and relatives raising kids: money, custody, school and support.', 'kinship.html'),
     ('t6', '☕', 'Take care of me', 'Someone to talk to on the hard days.', 'help.html#take-care'),
     ('t8', '🔎', 'See everything', 'Every listing in one place, with a search box.', 'help.html#everything'),
 ]
@@ -1750,7 +1751,7 @@ def build_404(data):
 def build_all(data):
     files = {
         'index.html': build_index(data), 'help.html': build_help(data), 'connect.html': build_connect(data),
-        'states.html': build_states_index(data), 'christmas.html': build_christmas(data), 'inside.html': build_inside(data), 'yoga.html': build_yoga(data), 'about.html': build_about(data),
+        'states.html': build_states_index(data), 'christmas.html': build_christmas(data), 'inside.html': build_inside(data), 'kinship.html': build_kinship(data), 'yoga.html': build_yoga(data), 'about.html': build_about(data),
         'report.html': build_report(data), '404.html': build_404(data), 'county.html': build_county(data),
         'privacy.html': build_privacy(data), 'terms.html': build_terms(data),
     }

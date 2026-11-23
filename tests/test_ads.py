@@ -73,7 +73,8 @@ class PrivacyTests(unittest.TestCase):
             self.assertTrue(foot, f'{path}: no footer')
             links = re.findall(r'<p class="footnav">.*?</p>', foot.group(1), re.S)
             self.assertEqual(len(links), 1, path)
-            href = re.search(r'<a href="([^"]*privacy\.html)">Privacy</a>', links[0])
+            # A translated page (ohio/<lang>/, scripts/ohio_i18n.py) names the page in its own language.
+            href = re.search(r'<a href="([^"]*privacy\.html)">[^<]+</a>', links[0])
             self.assertTrue(href, f'{path}: the footer links to the Privacy page')
             target = ROOT / href.group(1).lstrip('/') if href.group(1).startswith('/') else (path.parent / href.group(1)).resolve()
             self.assertEqual(target, ROOT / 'privacy.html', path)

@@ -19,7 +19,7 @@
   // The pages that hold listings, in the order they are read. When two pages carry the same listing, the
   // first one read is the one shown. The second part is the need a listing gets when its row does not say.
   var SOURCES = [
-    ['help/bills.html', 'food'], ['help/pregnancy-baby.html', 'baby'], ['help/single-parent.html', 'parent'],
+    ['help/bills.html', 'food'], ['help/pregnancy-baby.html', 'baby'], ['help/single-parent.html', 'parent'], ['help/kinship.html', 'parent'],
     ['wellbeing.html', 'care'], ['help/housing.html', 'housing'], ['holidays.html', 'holiday'], ['help/family-inside.html', 'inside'], ['../family-guide.html', 'kids'], ['../states/oh.html', '']
   ];
   var NEEDS = [

@@ -373,7 +373,7 @@ class SiteTests(unittest.TestCase):
 
     def test_front_pages_show_no_listings(self):
         """The front page asks what she needs. Listings appear only after she chooses."""
-        for rel, choices in (('index.html', 9), ('ohio/index.html', 10)):
+        for rel, choices in (('index.html', 10), ('ohio/index.html', 10)):
             text = (ROOT / rel).read_text(encoding='utf-8')
             self.assertNotIn('class="card', text, f'{rel}: a front page shows no listing cards')
             self.assertEqual(text.count('class="tile '), choices, f'{rel}: the needs to choose from')
@@ -494,12 +494,13 @@ class SiteTests(unittest.TestCase):
         expected = {path: 'assets/share.jpg' for path in PAGES}
         expected.update({path: 'ohio/assets/share.jpg' for path in ohio})
         expected[ROOT / 'family-guide.html'] = 'assets/share-family-guide.jpg'
-        # 64 national pages (christmas.html, inside.html and terms.html among them), the world page and one page per country (data/ymt/world.json), the list of daily affirmations
-        # and the old address of the jokes that passes visitors on to it, once an affirmation is approved; 25 Ohio pages;
+        # 65 national pages (christmas.html, inside.html, kinship.html and terms.html among them), the world page and one page per country (data/ymt/world.json), the list of daily affirmations
+        # and the old address of the jokes that passes visitors on to it, once an affirmation is approved; 46 Ohio pages (26 in English, and the
+        # Ohio help hub and four help pages in Spanish, Somali, Haitian Creole and Nepali, scripts/ohio_i18n.py);
         # the family guide; and one page for every U.S. county
         world = 1 + len(lib.load()['world']['countries'])
         counties = len(lib.load()['counties'])
-        self.assertEqual(len(expected), 64 + world + (2 if home_extras.approved_affirmations() else 0) + 25 + 1 + counties)
+        self.assertEqual(len(expected), 65 + world + (2 if home_extras.approved_affirmations() else 0) + 46 + 1 + counties)
         for path, picture in expected.items():
             p = parse(path)
             meta = {a.get('property') or a.get('name'): a.get('content') for t, a in p.tags if t == 'meta'}

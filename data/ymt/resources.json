@@ -55,6 +55,12 @@
    "summary": "Child care, Head Start, child support and free legal help."
   },
   {
+   "id": "kinship",
+   "label": "Raising a grandchild or a relative's child",
+   "icon": "👵",
+   "summary": "For grandparents and relatives raising kids: a navigator, money and health coverage for the child, legal options and support for you."
+  },
+  {
    "id": "take-care",
    "label": "Take care of me",
    "icon": "☕",
@@ -86,6 +92,9 @@
   {
    "id": "us-ndvh",
    "section": "help-now",
+   "also": [
+    "housing"
+   ],
    "scope": "US",
    "name": "National Domestic Violence Hotline",
    "org": "National Domestic Violence Hotline",
@@ -100,10 +109,7 @@
    "phone_label": "1-800-799-SAFE",
    "text": "Text START to 88788",
    "urgent": true,
-   "chip": "Domestic violence hotline",
-   "also": [
-    "housing"
-   ]
+   "chip": "Domestic violence hotline"
   },
   {
    "id": "us-988",
@@ -143,6 +149,9 @@
   {
    "id": "us-dv-coalition",
    "section": "help-now",
+   "also": [
+    "housing"
+   ],
    "scope": "US",
    "name": "Find your state's domestic violence coalition",
    "org": "National Network to End Domestic Violence (NNEDV)",
@@ -153,14 +162,16 @@
     "https://nnedv.org/get-involved/in-your-state-or-us-territory/",
     "https://nnedv.org/"
    ],
-   "reviewed_on": "2026-11-15",
-   "also": [
-    "housing"
-   ]
+   "reviewed_on": "2026-11-15"
   },
   {
    "id": "us-211-help",
    "section": "help-now",
+   "also": [
+    "food-bills",
+    "housing",
+    "christmas"
+   ],
    "scope": "US",
    "name": "Dial 211 for local help",
    "org": "211, United Way and partners",
@@ -171,12 +182,7 @@
     "https://www.211.org/"
    ],
    "reviewed_on": "2026-11-15",
-   "phone": "211",
-   "also": [
-    "food-bills",
-    "housing",
-    "christmas"
-   ]
+   "phone": "211"
   },
   {
    "id": "us-find-shelter",
@@ -268,6 +274,9 @@
   {
    "id": "us-wic",
    "section": "food-bills",
+   "also": [
+    "pregnancy-baby"
+   ],
    "scope": "US",
    "name": "WIC: food for pregnancy, babies and kids under 5",
    "org": "U.S. Department of Agriculture, Food and Nutrition Administration",
@@ -278,14 +287,14 @@
     "https://www.fna.usda.gov/wic/apply",
     "https://www.fna.usda.gov/wic/benefits"
    ],
-   "reviewed_on": "2026-11-15",
-   "also": [
-    "pregnancy-baby"
-   ]
+   "reviewed_on": "2026-11-15"
   },
   {
    "id": "us-liheap",
    "section": "food-bills",
+   "also": [
+    "christmas"
+   ],
    "scope": "US",
    "name": "Help with heating and cooling bills (LIHEAP)",
    "org": "Low Income Home Energy Assistance Program, U.S. Department of Health and Human Services",
@@ -298,14 +307,14 @@
    ],
    "reviewed_on": "2026-11-15",
    "phone": "866-674-6327",
-   "phone_label": "NEAR hotline",
-   "also": [
-    "christmas"
-   ]
+   "phone_label": "NEAR hotline"
   },
   {
    "id": "us-food-bank",
    "section": "food-bills",
+   "also": [
+    "christmas"
+   ],
    "scope": "US",
    "name": "Find a food bank near you",
    "org": "Feeding America",
@@ -315,10 +324,7 @@
    "sources": [
     "https://www.feedingamerica.org/find-your-local-foodbank"
    ],
-   "reviewed_on": "2026-11-15",
-   "also": [
-    "christmas"
-   ]
+   "reviewed_on": "2026-11-15"
   },
   {
    "id": "us-health-centers",
@@ -339,6 +345,9 @@
   {
    "id": "us-insure-kids",
    "section": "pregnancy-baby",
+   "also": [
+    "kinship"
+   ],
    "scope": "US",
    "name": "Health coverage for your child: Medicaid and CHIP",
    "org": "Insure Kids Now, U.S. Department of Health and Human Services",
@@ -371,6 +380,9 @@
   {
    "id": "us-lll",
    "section": "pregnancy-baby",
+   "also": [
+    "connect"
+   ],
    "scope": "US",
    "name": "La Leche League: breastfeeding support from other parents",
    "org": "La Leche League",
@@ -380,10 +392,7 @@
    "sources": [
     "https://llli.org/get-support/"
    ],
-   "reviewed_on": "2026-11-15",
-   "also": [
-    "connect"
-   ]
+   "reviewed_on": "2026-11-15"
   },
   {
    "id": "us-diaper-banks",
@@ -446,6 +455,10 @@
   {
    "id": "us-legal-aid",
    "section": "single-parent",
+   "also": [
+    "housing",
+    "kinship"
+   ],
    "scope": "US",
    "name": "Free legal help: custody, divorce, housing and benefits",
    "org": "Legal Services Corporation and LawHelp.org",
@@ -462,10 +475,114 @@
      "label": "LawHelp.org",
      "url": "https://www.lawhelp.org/"
     }
-   ],
-   "also": [
-    "housing"
    ]
+  },
+  {
+   "id": "us-kin-navigator",
+   "section": "kinship",
+   "also": [
+    "single-parent"
+   ],
+   "scope": "US",
+   "name": "Find a kinship navigator in your state",
+   "org": "Administration for Children and Families, U.S. Department of Health and Human Services",
+   "what": "Kinship navigators help relatives raising children find benefits, legal help and services, then follow up with you. This federal list names the known programs in each state and for tribes, and who each one serves.",
+   "how": "Open the list, find your state, and call or write to the program. Tell them who is living with you and what you need first.",
+   "url": "https://www.peerta.acf.hhs.gov/content/kinship-navigator-programs-around-united-states",
+   "sources": [
+    "https://www.peerta.acf.hhs.gov/content/kinship-navigator-programs-around-united-states"
+   ],
+   "reviewed_on": "2026-11-23"
+  },
+  {
+   "id": "us-grandfacts",
+   "section": "kinship",
+   "also": [
+    "single-parent"
+   ],
+   "scope": "US",
+   "name": "GrandFacts: your state's fact sheet for relatives raising children",
+   "org": "Generations United and partners (Grandfamilies.org)",
+   "what": "A short fact sheet for each state on the programs, public benefits, school help and legal options for grandparents and other relatives raising children. There are sheets for D.C., Puerto Rico and the U.S. Virgin Islands, and one in Spanish.",
+   "how": "Open your state's sheet and keep it handy. It lists the programs and benefits to ask about and the legal options in your state, such as custody and guardianship.",
+   "url": "https://grandfamilies.org/state-fact-sheets",
+   "sources": [
+    "https://grandfamilies.org/state-fact-sheets"
+   ],
+   "reviewed_on": "2026-11-23"
+  },
+  {
+   "id": "us-tanf-child-only",
+   "section": "kinship",
+   "also": [
+    "single-parent"
+   ],
+   "scope": "US",
+   "name": "Cash help for the child (TANF \"child-only\")",
+   "org": "Your state's TANF program, overseen by the U.S. Administration for Children and Families",
+   "what": "TANF, the cash assistance program for families, can help children who live with relatives. A grant for the child alone is often called a child-only case.",
+   "how": "Apply where your state takes cash assistance applications and ask about a child-only grant for the children in your care. Your state's GrandFacts sheet lists its public benefits.",
+   "url": "https://peerta.acf.hhs.gov/content/temporary-assistance-needy-families-tanf-help-kin-caregivers",
+   "sources": [
+    "https://peerta.acf.hhs.gov/content/temporary-assistance-needy-families-tanf-help-kin-caregivers",
+    "https://grandfamilies.org/state-fact-sheets"
+   ],
+   "reviewed_on": "2026-11-23"
+  },
+  {
+   "id": "us-kin-foster-license",
+   "section": "kinship",
+   "also": [
+    "single-parent"
+   ],
+   "scope": "US",
+   "name": "Becoming a licensed kinship foster parent",
+   "org": "Children's Bureau, U.S. Administration for Children and Families",
+   "what": "If children services placed the child with you, ask whether you can become a licensed foster parent. Since 2023, states may use licensing standards made for relatives, and licensed relative homes get the same foster care payments as other licensed foster homes.",
+   "how": "Ask the caseworker what licensing would mean for your family, what the payments are, and how it compares with legal custody or guardianship. Free legal aid can help you decide.",
+   "url": "https://acf.gov/cb/policy-guidance/im-23-07",
+   "sources": [
+    "https://acf.gov/cb/policy-guidance/im-23-07"
+   ],
+   "reviewed_on": "2026-11-23"
+  },
+  {
+   "id": "us-kin-caregiver-support",
+   "section": "kinship",
+   "also": [
+    "single-parent"
+   ],
+   "scope": "US",
+   "name": "Support for grandparents and relatives 55 and older",
+   "org": "Administration for Community Living (Eldercare Locator)",
+   "what": "Relatives 55 and older raising a child under 18 can get support groups, counseling, caregiver training and a break (respite) through their local Area Agency on Aging. It is the National Family Caregiver Support Program, for relatives who are not the child's parent.",
+   "how": "Call the Eldercare Locator or search by ZIP code, and ask your local Area Agency on Aging about help for grandparents and relatives raising children.",
+   "phone": "800-677-1116",
+   "phone_label": "Call or text",
+   "url": "https://eldercare.acl.gov/",
+   "sources": [
+    "https://acl.gov/programs/support-caregivers/national-family-caregiver-support-program",
+    "https://eldercare.acl.gov/"
+   ],
+   "reviewed_on": "2026-11-23"
+  },
+  {
+   "id": "us-gu-grandfamilies",
+   "section": "kinship",
+   "also": [
+    "single-parent"
+   ],
+   "scope": "US",
+   "name": "Generations United: help for grandfamilies",
+   "org": "Generations United, National Center on Grandfamilies",
+   "what": "A national organization working for grandparents and other relatives raising children. It explains programs and laws in plain words, including state laws on enrolling a child in school and consenting to health care.",
+   "how": "Start with Grandfamilies.org, its library of state laws and topics, or the guide to the caregiver support program for relatives raising children.",
+   "url": "https://www.gu.org/what-we-do/public-policy/kinship-grandfamilies/",
+   "sources": [
+    "https://www.gu.org/what-we-do/public-policy/kinship-grandfamilies/",
+    "https://grandfamilies.org/state-fact-sheets"
+   ],
+   "reviewed_on": "2026-11-23"
   },
   {
    "id": "us-tlc-mama",
@@ -487,6 +604,9 @@
   {
    "id": "us-psi",
    "section": "take-care",
+   "also": [
+    "connect"
+   ],
    "scope": "US",
    "name": "Postpartum Support International",
    "org": "Postpartum Support International (PSI)",
@@ -497,14 +617,15 @@
     "https://www.postpartum.net/get-help/locations/"
    ],
    "reviewed_on": "2026-11-15",
-   "phone": "800-944-4773",
-   "also": [
-    "connect"
-   ]
+   "phone": "800-944-4773"
   },
   {
    "id": "us-parent-helpline",
    "section": "take-care",
+   "also": [
+    "single-parent",
+    "connect"
+   ],
    "scope": "US",
    "name": "National Parent & Youth Helpline",
    "org": "Parents Anonymous",
@@ -515,11 +636,7 @@
     "https://parentsanonymous.org/helplines"
    ],
    "reviewed_on": "2026-11-15",
-   "phone": "855-427-2736",
-   "also": [
-    "single-parent",
-    "connect"
-   ]
+   "phone": "855-427-2736"
   },
   {
    "id": "us-samhsa",
@@ -614,6 +731,9 @@
   {
    "id": "us-homeless-veterans",
    "section": "military",
+   "also": [
+    "housing"
+   ],
    "scope": "US",
    "name": "National Call Center for Homeless Veterans",
    "org": "U.S. Department of Veterans Affairs",
@@ -625,14 +745,14 @@
    ],
    "reviewed_on": "2026-11-15",
    "phone": "877-424-3838",
-   "phone_label": "1-877-4AID-VET",
-   "also": [
-    "housing"
-   ]
+   "phone_label": "1-877-4AID-VET"
   },
   {
    "id": "us-vcl",
    "section": "help-now",
+   "also": [
+    "military"
+   ],
    "scope": "US",
    "name": "Veterans Crisis Line",
    "org": "U.S. Department of Veterans Affairs",
@@ -646,10 +766,7 @@
    "phone": "988",
    "phone_label": "Dial 988, then press 1",
    "text": "Text 838255",
-   "urgent": true,
-   "also": [
-    "military"
-   ]
+   "urgent": true
   },
   {
    "id": "us-cdc-act-early",
@@ -790,6 +907,9 @@
   {
    "id": "us-nami-family",
    "section": "kids-differently",
+   "also": [
+    "take-care"
+   ],
    "scope": "US",
    "name": "NAMI Basics and the NAMI HelpLine",
    "org": "National Alliance on Mental Illness",
@@ -802,10 +922,7 @@
    ],
    "reviewed_on": "2026-11-08",
    "phone": "800-950-6264",
-   "phone_label": "800-950-NAMI, weekdays",
-   "also": [
-    "take-care"
-   ]
+   "phone_label": "800-950-NAMI, weekdays"
   },
   {
    "id": "us-toys-for-tots",
@@ -894,10 +1011,10 @@
   {
    "id": "us-homefront-holidays",
    "section": "christmas",
-   "scope": "US",
    "also": [
     "military"
    ],
+   "scope": "US",
    "name": "Operation Homefront: holiday meals and toys for military families",
    "org": "Operation Homefront",
    "what": "Holiday Meals for Military events give a holiday meal to military families, mainly junior enlisted families (E-1 to E-6), and Holiday Toy Drive events give toys. Events are held in certain cities, most near bases, through December.",
