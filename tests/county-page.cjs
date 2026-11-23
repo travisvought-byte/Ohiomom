@@ -99,7 +99,13 @@ function checkCards(d, label) {
     assert.deepEqual(trail, ['Yoga Mom Talk', 'Help by state', 'Ohio', 'Morrow County']);
     assert.equal(d.querySelector('.hero').nextElementSibling.id, 'now', 'the crisis cards come right after the heading');
     const rows = all(d, 'details.need');
-    assert.deepEqual(rows.map((r) => r.id), ['county-christmas', 'county-pha', 'county-hud', 'county-legal', 'county-health', 'county-schools', 'county-start', 'county-state']);
+    // Help for moms and babies (scripts/local_help.py) sits after housing counselors once its listings are mined.
+    const moms = fs.existsSync(__dirname + '/../data/ymt/local-help/listings.csv') ? ['county-moms'] : [];
+    assert.deepEqual(rows.map((r) => r.id), ['county-christmas', 'county-pha', 'county-hud', ...moms, 'county-legal', 'county-health', 'county-schools', 'county-start', 'county-state']);
+    if (moms.length) {
+      assert(all(d, '#county-moms article.card').length >= 1, 'Morrow County has its health department at least');
+      assert(all(d, '#county-moms .src').every((p) => /not confirmed by phone/.test(p.textContent)), 'every listing names its source');
+    }
     const legal = all(d, '#county-legal article.card');
     assert.equal(legal.length, 1);
     assert.equal(legal[0].querySelector('h3').textContent, 'Legal Aid of Southeast and Central Ohio');
