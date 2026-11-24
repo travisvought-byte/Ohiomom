@@ -54,7 +54,7 @@ main>section .tile{border-color:var(--line);box-shadow:none}
 /* Map and area picker */
 .near{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:2rem;align-items:center}
 .picker label{display:block;font-weight:700;margin-bottom:.3rem}
-input[type=text],input[type=search],select{font:inherit;padding:.65rem .8rem;border:1.5px solid #cbbfd0;border-radius:.8rem;max-width:100%;background:#fff;color:var(--ink)}
+input[type=text],input[type=search],select{font:inherit;padding:.65rem .8rem;border:1.5px solid #877a90;border-radius:.8rem;max-width:100%;background:#fff;color:var(--ink)}
 input[type=text],input[type=search]{width:min(24rem,100%)}
 input:focus-visible,select:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #7fb8f0;outline-offset:2px}
 .regionbtns,.chips{display:flex;flex-wrap:wrap;gap:.45rem;margin:.9rem 0 0}
@@ -118,7 +118,7 @@ body.county .brandline{font-weight:700;margin:0 0 .4rem}
 /* Tell us form */
 .report{max-width:36rem;margin:1rem 0}
 .field{margin:0 0 1rem}.field label{display:block;font-weight:700;margin-bottom:.25rem}
-.report input,.report textarea{display:block;width:100%;font:inherit;padding:.6rem .7rem;border:1.5px solid #cbbfd0;border-radius:.8rem;background:#fff;color:var(--ink)}
+.report input,.report textarea{display:block;width:100%;font:inherit;padding:.6rem .7rem;border:1.5px solid #877a90;border-radius:.8rem;background:#fff;color:var(--ink)}
 .report [aria-invalid=true]{border-color:#b3261e}
 .error{display:block;color:#b3261e;font-size:.9rem}
 
@@ -145,13 +145,13 @@ body.county .brandline{font-weight:700;margin:0 0 .4rem}
 .poll{background:#fff;border:1.5px solid var(--line);border-radius:var(--r);padding:1.1rem 1.2rem;margin:1rem 0}
 .poll h3{font-size:1.2rem;margin:0 0 .7rem}
 .opts{display:flex;flex-wrap:wrap;gap:.5rem}
-.opts button,.helpful button{font:inherit;font-size:.98rem;font-weight:600;color:var(--ink);background:#fff;border:1.5px solid #cbbfd0;border-radius:2rem;padding:.45rem .95rem;cursor:pointer}
+.opts button,.helpful button{font:inherit;font-size:.98rem;font-weight:600;color:var(--ink);background:#fff;border:1.5px solid #877a90;border-radius:2rem;padding:.45rem .95rem;cursor:pointer}
 .opts button:hover:not(:disabled),.helpful button:hover{border-color:var(--brand)}
 .opts button[aria-pressed=true]{background:var(--brand);border-color:var(--brand);color:#fff}
 .opts button:disabled{cursor:default}.opts button:disabled:not([aria-pressed=true]){opacity:.55}
 .pollnote{color:var(--muted);font-size:.92rem;min-height:1.4em;margin:.6rem 0 0}
 .fb label{display:block;font-weight:700;margin:.9rem 0 .25rem}
-.fb textarea,.fb input,.fb select{display:block;width:100%;max-width:36rem;font:inherit;padding:.6rem .7rem;border:1.5px solid #cbbfd0;border-radius:.8rem;background:#fff;color:var(--ink)}
+.fb textarea,.fb input,.fb select{display:block;width:100%;max-width:36rem;font:inherit;padding:.6rem .7rem;border:1.5px solid #877a90;border-radius:.8rem;background:#fff;color:var(--ink)}
 .helpful{text-align:center;color:var(--muted);margin-top:3rem}
 .helpful input{width:min(18rem,100%);padding:.4rem .6rem}
 /* The map opens on request on a phone; site.js opens it on wider screens. */
