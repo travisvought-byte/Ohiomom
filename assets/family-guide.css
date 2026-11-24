@@ -28,7 +28,7 @@
 .stage.all{background:transparent;border-style:dashed}
 .place{margin-top:1.2rem}
 .place label{display:block;font-weight:700;margin-bottom:.25rem}
-.place select{font:inherit;width:100%;max-width:24rem;padding:.6rem .7rem;border:1.5px solid #cbbfd0;border-radius:.8rem;background:#fff;color:var(--ink)}
+.place select{font:inherit;width:100%;max-width:24rem;padding:.6rem .7rem;border:1.5px solid #877a90;border-radius:.8rem;background:#fff;color:var(--ink)}
 .needs-box{margin-top:.9rem;max-width:44rem;background:#fff;border:1.5px solid var(--line);border-radius:1rem;padding:.2rem .9rem}
 .needs-box>summary{cursor:pointer;font-weight:700;padding:.55rem 0}
 fieldset.needs{border:0;margin:0;padding:0 0 .6rem}
@@ -45,7 +45,7 @@ fieldset.needs{border:0;margin:0;padding:0 0 .6rem}
 .anchors a[href^="tel:"],.locations a[href^="tel:"],.pa-list a[href^="tel:"]{font-weight:700;white-space:nowrap}
 .letter{margin-top:.8rem}
 .letter>summary{font-size:1rem}
-.letter textarea{display:block;width:100%;font:inherit;font-size:.95rem;padding:.6rem .7rem;border:1.5px solid #cbbfd0;border-radius:.8rem;background:#fff;color:var(--ink)}
+.letter textarea{display:block;width:100%;font:inherit;font-size:.95rem;padding:.6rem .7rem;border:1.5px solid #877a90;border-radius:.8rem;background:#fff;color:var(--ink)}
 .county-box{margin-top:1rem;background:var(--soft);border-radius:.9rem;padding:.7rem .9rem}
 .county-box h3{font-size:1.05rem;margin:0 0 .2rem}
 .county-box ul{margin:0;padding-left:1.15rem}
