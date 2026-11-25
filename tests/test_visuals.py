@@ -142,5 +142,83 @@ class FamilyGuideAgeBarTests(unittest.TestCase):
             self.assertIn(key, es['stages'])
 
 
+class NeedGlanceTests(unittest.TestCase):
+    """help.html and connect.html: one tile per need or part, with the count its own row or part shows."""
+    def test_help_glance_counts_match_rows(self):
+        text = read(ROOT / 'help.html')
+        nav = re.search(r'<nav class="glance needglance"[^>]*>(.*?)</nav>', text, re.S)
+        self.assertIsNotNone(nav)
+        tiles = re.findall(r'<a href="#([a-z-]+)">.*?<span>([^<]+) <small><b>(\d+)</b> options?</small>', nav.group(1))
+        rows = re.findall(r'<details class="need(?: urgent)?" id="([a-z-]+)"><summary>.*?<h2>([^<]+)</h2>.*?<span class="ncount">(\d+) ', text)
+        self.assertEqual(tiles, [r for r in rows if r[2] != '0'])
+        self.assertGreater(len(tiles), 8)
+
+    def test_connect_glance_counts_match_sections(self):
+        text = read(ROOT / 'connect.html')
+        for sid, n in re.findall(r'<a href="#([a-z-]+)">.*?<b>(\d+)</b>', re.search(r'<nav class="glance needglance".*?</nav>', text, re.S).group(0)):
+            with self.subTest(part=sid):
+                part = re.search(rf'<section class="group wrap" id="{sid}">.*?</section>', text, re.S)
+                self.assertIsNotNone(part)
+                self.assertEqual(part.group(0).count('<article class="card'), int(n))
+
+
+class SmallPagePictureTests(unittest.TestCase):
+    def test_every_us_hub_and_topic_page_has_a_picture(self):
+        """Every national page (not a country page or a page that only passes visitors on) shows a picture."""
+        for page in PAGES:
+            rel = page.relative_to(ROOT).as_posix()
+            text = read(page)
+            if rel.startswith('countries/') or 'http-equiv="refresh"' in text:
+                continue
+            main = re.search(r'<main.*?</main>', text, re.S).group(0)
+            with self.subTest(page=rel):
+                self.assertRegex(main, r'class="(glance|flow|art|summary|when|paths|worldmap|usgrid|agebar|scene|aboutphoto|steps-fig|iconlist)[ "]')
+
+    def test_report_steps_and_summaries_are_page_text(self):
+        report = read(ROOT / 'report.html')
+        self.assertIn('<ol class="flow across" role="list">', report)
+        for name in ('privacy.html', 'terms.html'):
+            fig = re.search(r'<figure class="summary"><figcaption>At a glance</figcaption><ul class="iconlist" role="list">(.*?)</ul></figure>',
+                            read(ROOT / name), re.S)
+            with self.subTest(page=name):
+                self.assertIsNotNone(fig)
+                self.assertGreaterEqual(fig.group(1).count('<li>'), 3)
+
+
+class OhioPictureTests(unittest.TestCase):
+    """The OhioMom pictures (scripts/ohio_visuals.py) are page text or hidden decoration, and current."""
+    def test_ohio_pictures_are_current_and_accessible(self):
+        import ohio_visuals
+        for page in ohio_visuals.PLAN:
+            text = read(ROOT / 'ohio' / page)
+            with self.subTest(page=page):
+                self.assertEqual(text, ohio_visuals.render(page))
+                block = re.findall(r'<!-- visuals -->(.*?)<!-- /visuals -->', text, re.S)
+                self.assertTrue(block)
+                for tag in re.findall(r'<svg\b[^>]*>', ''.join(block)):
+                    hidden = 'aria-hidden="true"' in tag and 'focusable="false"' in tag
+                    named = 'role="img"' in tag and 'aria-labelledby="' in tag
+                    self.assertTrue(hidden or named, tag[:80])
+                ids = set(re.findall(r'\bid="([^"]+)"', text))
+                for href in re.findall(r'<a href="#([^"]+)"', ''.join(block)):
+                    self.assertIn(href, ids)
+                for href in re.findall(r'<use href="([^"#]+)#', ''.join(block)):
+                    self.assertEqual(((ROOT / 'ohio' / page).parent / href).resolve(), SPRITE.resolve())
+
+    def test_ohio_row_counts_are_the_rows_own(self):
+        text = read(ROOT / 'ohio' / 'help' / 'housing.html')
+        nav = re.search(r'<!-- visuals --><nav class="glance" aria-label="At a glance">(.*?)</nav>', text, re.S).group(1)
+        for rid, count in re.findall(r'<a href="#([a-z-]+)">.*?<small>([^<]+)</small>', nav):
+            row = re.search(rf'<details class="need[^"]*" id="{rid}"><summary>.*?<span class="ncount">([^<]+)</span>', text, re.S)
+            self.assertEqual(row.group(1), count)
+
+    def test_county_map_names_the_county_pages(self):
+        text = read(ROOT / 'ohio' / 'counties.html')
+        tiles = re.findall(r'href="counties/([a-z]+)\.html"', text)
+        desc = re.search(r'<desc id="ohmap-d">([^<]+)</desc>', text).group(1)
+        for county in tiles:
+            self.assertIn(county.capitalize(), desc)
+
+
 if __name__ == '__main__':
     unittest.main()

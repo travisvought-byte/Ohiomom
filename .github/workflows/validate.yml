@@ -12,6 +12,7 @@ jobs:
       - run: python3 scripts/ymt_validate.py
       - run: python3 scripts/ymt_build.py --check
       - run: python3 scripts/prerender_ohio.py --check
+      - run: python3 scripts/ohio_visuals.py --check
       - run: python3 scripts/ohio_i18n.py --check
       - run: python3 scripts/home_extras.py --check
       - run: python3 scripts/ohio_map.py --check

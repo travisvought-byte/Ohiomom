@@ -372,6 +372,32 @@ def flow(steps, cls='flow', root=''):
     return f'<ol class="{cls}" role="list">{items}</ol>'
 
 
+# One icon per need (data/ymt/resources.json sections), for the at-a-glance row of a page of needs. Added
+# November 25, 2026 at the owner's request ("add some reasonable visuals everywhere, at least for the US side").
+NEED_ICONS = {'help-now': 'phone', 'christmas': 'gift', 'housing': 'house', 'food-bills': 'basket',
+              'pregnancy-baby': 'bottle', 'kids-differently': 'blocks', 'single-parent': 'heart', 'kinship': 'people',
+              'take-care': 'cup', 'military': 'star', 'connect': 'people', 'inside': 'house-heart'}
+
+
+def needs_glance(rows, label, root=''):
+    """At a glance for a page of needs: one tile per row, with its icon, its name and the count its own row shows,
+    a link that opens that row. Read from the rows themselves, so the two can never disagree."""
+    items = []
+    for rid, summary in re.findall(r'<details class="need(?: urgent)?" id="([a-z-]+)"><summary>(.*?)</summary>', rows):
+        name = re.search(r'<h2>(.*?)</h2>', summary).group(1)
+        n = int(re.search(r'<span class="ncount">(\d+) ', summary).group(1))
+        if n and rid in NEED_ICONS:
+            items.append(f'<li><a href="#{rid}">{icon(NEED_ICONS[rid], root)}<span>{name} '
+                         f'<small><b>{n:,}</b> option{"s" if n != 1 else ""}</small></span></a></li>')
+    return f'<nav class="glance needglance" aria-label="{esc(label)}"><ul>{"".join(items)}</ul></nav>' if items else ''
+
+
+def icon_summary(caption, points, root=''):
+    """A short "at a glance" list of a page's own sentences, each beside an icon. points: [(icon, html)]."""
+    items = ''.join(f'<li>{icon(ico, root)}{text}</li>' for ico, text in points)
+    return f'<figure class="summary"><figcaption>{esc(caption)}</figcaption><ul class="iconlist" role="list">{items}</ul></figure>'
+
+
 # ---------------------------------------------------------------- pages
 def build_index(data):
     """The front page asks one question and shows no listings. Every listing is one choice away.
@@ -454,7 +480,8 @@ def build_help(data):
     lede = ('Not sure where to start? Pick the one thing weighing on you most today, or search every listing. These work in '
             'every state. For your state\'s own offices, <a href="states.html">choose your state</a>. '
             'Someone you love in jail or prison? <a href="inside.html">Start here</a>.')
-    body = (hero('Find help', lede) + finder('Search every listing', 'shelter, rent, WIC, child care…') + needs(''.join(rows))
+    glance = needs_glance(''.join(rows), 'At a glance: every need on this page')
+    body = (hero('Find help', lede, glance) + finder('Search every listing', 'shelter, rent, WIC, child care…') + needs(''.join(rows))
             + '<section class="wrap slim"><p>In danger right now? Call 911. Domestic violence shelter addresses are never listed here, for safety.</p></section>')
     return page(data, 'help.html', 'Find help for moms',
                 'Free national help for moms: crisis lines, housing and shelter, food and bills, pregnancy and baby, kids who learn differently and single parents.', body,
@@ -665,10 +692,14 @@ def build_connect(data):
     prim = [r for r in data['resources'] if r['section'] == 'connect']
     also = [r for r in data['resources'] if 'connect' in r.get('also', [])]
     site = data['site']
+    tiles = [('people', 'groups', 'Groups for moms', len(prim)), ('cup', 'hard-days', 'Support for the hard days', len(also))]
+    glance = ('<nav class="glance needglance" aria-label="At a glance: this page"><ul>' + ''.join(
+        f'<li><a href="#{sid}">{icon(ico)}<span>{label} <small><b>{n}</b> listing{"s" if n != 1 else ""}</small></span></a></li>'
+        for ico, sid, label, n in tiles if n) + '</ul></nav>')
     body = hero('Meet other moms', 'New in town, home all day with a baby, or just want someone who gets it? Moms groups, feeding '
-                'groups and people who have been there, near you or online.') + f'''
-<section class="group wrap"><h2>Groups for moms</h2><p class="quiet">Local chapters and meetups run by volunteers. Groups differ, so ask how one runs before you go.</p>{cards(prim)}</section>
-<section class="group wrap"><h2>Support for the hard days</h2><p class="quiet">Feeding help and support lines from people who have been there.</p>{cards(also, '', {r['id']: 'connect--' + r['id'] for r in also})}</section>
+                'groups and people who have been there, near you or online.', glance) + f'''
+<section class="group wrap" id="groups"><h2>Groups for moms</h2><p class="quiet">Local chapters and meetups run by volunteers. Groups differ, so ask how one runs before you go.</p>{cards(prim)}</section>
+<section class="group wrap" id="hard-days"><h2>Support for the hard days</h2><p class="quiet">Feeding help and support lines from people who have been there.</p>{cards(also, '', {r['id']: 'connect--' + r['id'] for r in also})}</section>
 <section class="wrap"><div class="localbox"><strong>Ohio mom?</strong> <a href="{esc(site['ohio_path'])}">OhioMom</a> lists Ohio groups, meetups and events by region and county.</div></section>
 <section class="wrap cta"><h2>Run a group, or know a good one?</h2><p>If it is free or low cost and good for moms, we want to list it. Nobody pays to be listed here.</p><p><a class="btn big" href="report.html">Tell us about it</a></p></section>'''
     return page(data, 'connect.html', 'Meet other moms',
@@ -706,8 +737,13 @@ def state_grid(data):
 
 def build_states_index(data):
     items = ''.join(f'<li><a href="states/{s["abbr"].lower()}.html">{esc(s["name"])}<small>{s["abbr"]}</small></a></li>' for s in data['states'])
+    n_dc = sum(1 for s in data['states'] if s['abbr'] == 'DC')
+    tiles = [glance_item('pin', len(data['states']), f'state pages, D.C. included' if n_dc else 'state pages'),
+             glance_item('house', len(data['counties']), 'county pages', 'county.html'),
+             glance_item('heart', sum(1 for r in data['resources'] if r['scope'] == 'US'), 'national listings', 'help.html')]
+    glance = f'<figure class="glance"><figcaption>On this site</figcaption><ul>{"".join(tiles)}</ul></figure>'
     body = (hero('Help by state', 'SNAP, WIC, health coverage and child care help are run state by state, so your state\'s page has '
-                   'the right office and phone number. Tap yours on the map, or open the list.')
+                   'the right office and phone number. Tap yours on the map, or open the list.', glance)
             + f'<section class="wrap mapwrap">{state_grid(data)}'
             f'<details class="maplist"><summary>All {len(data["states"])} as a list</summary><ul class="statelist">{items}</ul></details>'
             '<p class="note">Looking for help close to home? Open your state for the list of its counties, or <a href="county.html">find your county by ZIP code</a>. Looking for something national? See <a href="help.html">Find help</a>. Outside the U.S.? <a href="world.html">Choose your country</a>.</p></section>')
@@ -1134,6 +1170,14 @@ MH_SOURCE = ('mh', 'Help for moms and babies',
              'Each card names its source and the date it was copied. A listing is placed in the county where it is, or in each '
              'county it says it serves; nearby ones are shown by distance when the county has none.')
 
+def county_shows(n):
+    """What every county page holds, as icon tiles, in the words of this page's own lede."""
+    kinds = [('key', 'Where to apply for housing help'), ('scales', 'Free legal help'), ('clinic', 'Low-cost health care'),
+             ('book', 'Free evaluations for your child'), ('blocks', 'Head Start')]
+    items = ''.join(f'<li><span class="gtile">{icon(ico)}<span>{esc(label)}</span></span></li>' for ico, label in kinds)
+    return f'<figure class="glance shows"><figcaption>What each of our {n:,} county pages shows</figcaption><ul>{items}</ul></figure>'
+
+
 def build_county(data):
     """Find your county: by state and county, or by ZIP code. assets/county.js finds it and opens its own page
     (build_county_pages). The sources of every county listing are explained here."""
@@ -1148,7 +1192,7 @@ def build_county(data):
     lede = ('Want help close to home? Pick your county, or type your ZIP code, to see where to apply for housing help, free '
             'legal help, low-cost health care, free evaluations for your child and Head Start near you. Free, private, no sign-up.')
     hero_html = (f'<section class="hero slim"><div class="wrap"><h1 id="ctitle">Help near you</h1>'
-                 f'<p class="lede" id="clede">{esc(lede)}</p>{find}</div></section>')
+                 f'<p class="lede" id="clede">{esc(lede)}</p>{find}{county_shows(len(data["counties"]))}</div></section>')
     fallback = ('<section class="wrap"><p>Finding a county by ZIP code needs JavaScript, which seems to be off or still loading. '
                 'You can still <a href="states.html">choose your state</a>: each state page lists its counties, and each county '
                 'has its own page.</p></section>')
@@ -1878,6 +1922,10 @@ def build_privacy(data):
             f'Last updated <time datetime="{PRIVACY_UPDATED}">{updated}</time>.')
     body = hero('Privacy', lede) + f'''
 <section class="wrap"><div class="steps">
+{icon_summary('At a glance', [('lock', 'There is no sign-up and no account.'),
+                              ('doc', 'Nothing you type in a search box or ZIP code box is sent or saved.'),
+                              ('people', 'We count visits with GoatCounter, which does not use cookies and does not record who you are.'),
+                              ('heart', 'We do not sell personal information.')])}
 <p>This page covers {name} at {esc(site["domain"])}, including the OhioMom pages and the Ohio family guide. It is run by Travis and Deborah Vought.</p>
 <h2 id="hosting">Who hosts the site</h2><p>The site is hosted on GitHub Pages. GitHub logs the internet address of each visitor for security purposes. The OhioMom pages also load a script from Wix, which runs their forms and may set a few cookies of its own. We do not control those. GitHub's and Wix's own privacy policies say what they collect.</p>
 <h2 id="counting">Visit counting</h2><p>We count visits with GoatCounter, a visit counter that does not use cookies and does not record who you are. For each page view it receives the address of the page (never a search or ZIP code you typed), the site that linked you here, your browser type and screen size, and a rough location (the country) worked out from your internet address. Your internet address itself is not stored. We use the totals to see which pages help people.</p>
@@ -1906,6 +1954,10 @@ def build_terms(data):
     lede = f'The plain terms for using {name}. Last updated <time datetime="{TERMS_UPDATED}">{updated}</time>.'
     body = hero('Terms of use', lede) + f'''
 <section class="wrap"><div class="steps">
+{icon_summary('At a glance', [('heart', f'{name} is a free directory of public programs, nonprofits and official locators for mothers and caregivers.'),
+                              ('phone', 'It is information, not an emergency service. If you or someone else is in danger, call 911.'),
+                              ('doc', 'Confirm with the program before you rely on a listing.'),
+                              ('coins', 'Ads are labeled Advertisement and kept apart from the listings.')])}
 <p>These terms cover {name} at {esc(site["domain"])}, including the OhioMom pages and the Ohio family guide. It is run by Travis and Deborah Vought. Using the site means you accept these terms.</p>
 <h2 id="what">What this site is</h2><p>{name} is a free directory of public programs, nonprofits and official locators for mothers and caregivers. It is information, not an emergency service, and it does not give legal, medical or financial advice. If you or someone else is in danger, call 911 or your local emergency number.</p>
 <h2 id="check">Check before you rely on a listing</h2><p>Listings come from published official and organization sources and show the date they were checked. They are not confirmed by telephone, and programs change. Confirm with the program before you rely on it. If a listing is wrong, <a href="report.html">tell us</a> and we fix it.</p>
@@ -1921,18 +1973,35 @@ def build_terms(data):
                 head_extra=structured_data(breadcrumbs(data, [('Terms of use', 'terms.html')])))
 
 
+REPORT_STEPS = ('<figure class="steps-fig"><figcaption class="sr">How to report a problem, step by step</figcaption>'
+                + flow([('letter', 'Email us. That opens your email app with a short note to start from.'),
+                        ('doc', 'Tell us which page or listing, and what is wrong.'),
+                        ('people', 'A person will review it.')], 'flow across') + '</figure>')
+
+
 def build_report(data):
     site = data['site']
     subject = urllib.parse.quote(f'{site["name"]}: report a problem')
     mbody = urllib.parse.quote('Page or listing:\nWhat is wrong, or what should we add:\nA link or phone number for the right information:\n')
     href = f'mailto:{site["corrections_email"]}?subject={subject}&body={mbody}'
     body = hero('Report a problem', 'Found a phone number or link that is wrong? Know a group we should list? A person will review it.') + f'''
-<section class="wrap"><div class="steps"><p><a class="btn big" href="{esc(href)}">Email us</a></p><p>That opens your email app with a short note to start from. Or write to <strong>{esc(site["corrections_email"])}</strong>.</p><ul><li>Tell us which page or listing, and what is wrong.</li><li>Send a link to the right information if you have one.</li><li>Please leave out private details about your own situation.</li></ul><p class="note">This is not monitored for emergencies. If you need help now, call 911, or see <a href="help.html#help-now">Get help now</a>. We do not store anything on this site; your email goes only to the address above.</p></div></section>'''
+<section class="wrap"><div class="steps">{REPORT_STEPS}<p><a class="btn big" href="{esc(href)}">Email us</a></p><p>That opens your email app with a short note to start from. Or write to <strong>{esc(site["corrections_email"])}</strong>.</p><ul><li>Tell us which page or listing, and what is wrong.</li><li>Send a link to the right information if you have one.</li><li>Please leave out private details about your own situation.</li></ul><p class="note">This is not monitored for emergencies. If you need help now, call 911, or see <a href="help.html#help-now">Get help now</a>. We do not store anything on this site; your email goes only to the address above.</p></div></section>'''
     return page(data, 'report.html', 'Report a problem', 'Tell us about a wrong phone number or link, or suggest a moms group to list.', body)
 
 
+# A small signpost beside the heading of the page-not-found page: decoration only, drawn for this site.
+SIGNPOST = ('<svg class="art" viewBox="0 0 160 112" width="160" height="112" aria-hidden="true" focusable="false">'
+            '<circle cx="122" cy="30" r="14" fill="#ffe3a3"/><circle cx="122" cy="30" r="9" fill="#ffcb52"/>'
+            '<path d="M0 94c26-12 52-14 80-5s54 7 80-5v28H0z" fill="#a8ddd3"/><path d="M0 102c34-9 62-7 92 0s46 5 68-2v14H0z" fill="#12766f" opacity=".85"/>'
+            '<rect x="66" y="22" width="6" height="74" rx="2" fill="#8a5a3c"/>'
+            '<path d="M40 30h48l9 8-9 8H40z" fill="#fff" stroke="#cf2f5b" stroke-width="2.4" stroke-linejoin="round"/>'
+            '<path d="M98 52H50l-9 8 9 8h48z" fill="#fff" stroke="#12766f" stroke-width="2.4" stroke-linejoin="round"/>'
+            '<path d="M51 38h28M60 60h28" stroke="#655c78" stroke-width="2.4" stroke-linecap="round"/>'
+            '<path d="M69 17s-5-3-5-6.4a2.8 2.8 0 0 1 5-1.7 2.8 2.8 0 0 1 5 1.7C74 14 69 17 69 17z" fill="#cf2f5b"/></svg>')
+
+
 def build_404(data):
-    body = hero('We could not find that page', 'It may have moved. Try one of these.') + '''
+    body = hero('We could not find that page', 'It may have moved. Try one of these.').replace('<div class="wrap">', '<div class="wrap withart">' + SIGNPOST, 1) + '''
 <section class="wrap"><p class="actions"><a class="btn big" href="/index.html">Go to the home page</a> <a class="btn" href="/help.html">Find help</a> <a class="btn" href="/states.html">Help by state</a></p></section>'''
     # 404 is served from any path, so it uses root-absolute links and assets.
     html = page(data, '404.html', 'Page not found', 'This page could not be found.', body)
