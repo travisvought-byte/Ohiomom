@@ -337,6 +337,41 @@ def hero(title, lede, extra='', cls='slim'):
     return f'<section class="hero {cls}"><div class="wrap"><h1>{title}</h1><p class="lede">{lede}</p>{extra}</div></section>'
 
 
+# ---------------------------------------------------------------- visuals
+# Added November 24, 2026 at the owner's request ("I'd like our websites to have visuals on them as well, wherever
+# feasible"). Every picture here is drawn for this site: line icons in assets/icons.svg and small diagrams made of
+# plain HTML. An icon never stands alone (the words beside it say what it means), so each one is hidden from screen
+# readers. A diagram's words are page text, never words inside a picture. Every count comes from data the page shows.
+ICON_SPRITE = ROOT / 'assets' / 'icons.svg'
+
+
+def icon_names():
+    if not hasattr(icon_names, 'cache'):
+        icon_names.cache = set(re.findall(r'<symbol id="([a-z-]+)"', ICON_SPRITE.read_text(encoding='utf-8')))
+    return icon_names.cache
+
+
+def icon(name, root=''):
+    """One line icon from assets/icons.svg. It is decoration beside words that say the same, so screen readers skip it."""
+    if name not in icon_names():
+        sys.exit(f'scripts/ymt_build.py: no icon "{name}" in assets/icons.svg')
+    return (f'<svg class="gi" aria-hidden="true" focusable="false" width="24" height="24">'
+            f'<use href="{root}assets/icons.svg#{name}"/></svg>')
+
+
+def glance_item(ico, n, label, href=None, root=''):
+    """One tile of an at-a-glance row: an icon, a number and what it counts. A link when href is given."""
+    inner = f'{icon(ico, root)}<span><b>{n:,}</b> {esc(label)}</span>'
+    return f'<li><a href="{esc(href)}">{inner}</a></li>' if href else f'<li><span class="gtile">{inner}</span></li>'
+
+
+def flow(steps, cls='flow', root=''):
+    """A short how-to as numbered steps with an icon each: a real ordered list, so the steps read in order without
+    the picture. steps: [(icon, html)]."""
+    items = ''.join(f'<li>{icon(ico, root)}<span>{text}</span></li>' for ico, text in steps)
+    return f'<ol class="{cls}" role="list">{items}</ol>'
+
+
 # ---------------------------------------------------------------- pages
 def build_index(data):
     """The front page asks one question and shows no listings. Every listing is one choice away.
@@ -368,6 +403,10 @@ def build_index(data):
                 scripts='\n' + extras.affirmation_scripts(sayings, extras.approved_looks()) if sayings else '')
 
 
+# A small sunrise beside the heading of the affirmations page: decoration only, drawn for this site.
+SUNRISE = ('<svg class="art" viewBox="0 0 160 112" width="160" height="112" aria-hidden="true" focusable="false"><circle cx="80" cy="76" r="33" fill="#ffe3a3"/><circle cx="80" cy="76" r="23" fill="#ffcb52"/><path d="M52 44l-5-5M108 44l5-5M38 68h-7M122 68h7" fill="none" stroke="#f0b43c" stroke-width="2.4" stroke-linecap="round"/><path d="M80 33s-8.5-5-8.5-10.8a4.7 4.7 0 0 1 8.5-2.8 4.7 4.7 0 0 1 8.5 2.8C88.5 28 80 33 80 33z" fill="#cf2f5b"/><path d="M0 92c26-14 52-16 80-6s54 8 80-6v32H0z" fill="#a8ddd3"/><path d="M0 100c34-10 62-8 92 0s46 6 68-2v16H0z" fill="#12766f" opacity=".85"/><g fill="#3f9b88"><path d="M133 96c-.6-7 1-12.5 5-16.5l1.2 1.1c-3.6 3.7-5 8.6-4.4 15.2z"/><path d="M138.6 80.3c1.2-5 5.2-7.6 10.4-7.3-.6 5.2-4.6 8.3-10.4 7.3z"/><path d="M135.8 87.6c-4.3-3.7-9.4-3.9-12.8-1.2 3.2 3.6 8.4 4 12.8 1.2z"/></g></svg>')
+
+
 def build_affirmations(data, sayings):
     """Every daily affirmation on one page, in plain words. The front page shows one a day, in Deborah's speech bubble.
     The page carries no ad: it is for a mom having a hard day."""
@@ -375,7 +414,8 @@ def build_affirmations(data, sayings):
             '<a href="index.html">home page</a>. Here they all are, for whenever you need one.')
     help_line = ('<p class="sayhelp">If today is more than a hard day, you do not have to get through it alone. '
                  '<a href="help.html#take-care">Find someone to talk to</a>, or see <a href="help.html#help-now">help right now</a>.</p>')
-    body = hero('Kind words for hard days', lede, help_line) + f'\n<section class="wrap">{extras.affirmation_list(sayings)}</section>'
+    body = (hero('Kind words for hard days', lede, help_line).replace('<div class="wrap">', '<div class="wrap withart">' + SUNRISE, 1)
+            + f'\n<section class="wrap">{extras.affirmation_list(sayings)}</section>')
     return page(data, 'affirmations.html', 'Daily affirmations for moms',
                 'Daily affirmations for moms going through a hard time: tired days, new babies, toddlers, teens, money worries and grief.',
                 body, head_extra=structured_data(breadcrumbs(data, [('Daily affirmations for moms', 'affirmations.html')])))
@@ -433,6 +473,44 @@ CHRISTMAS_ROWS = [
 ]
 
 
+T4T_SHADES = [(5, 't1'), (12, 't2'), (24, 't3'), (44, 't4'), (10 ** 6, 't5')]  # campaigns up to n: shade
+
+
+def campaigns_map(data, by):
+    """The states as tiles, each with its two letters and its number of Toys for Tots campaigns, a link to that state's
+    card below it. The number is written on the tile; the shade only repeats it."""
+    names = {s['abbr']: s['name'] for s in data['states']}
+    tiles = ''
+    # In the order of the cards below (by name); each tile's place on the map comes from US_TILES. On a phone the
+    # tiles become a row of chips in this order.
+    for a, r, c in sorted(US_TILES, key=lambda t: names.get(t[0], t[0])):
+        n = len(by.get(a, []))
+        if a not in names or not n:
+            continue
+        shade = next(cls for top, cls in T4T_SHADES if n <= top)
+        tiles += (f'<li style="grid-area:{r + 1}/{c + 1}"><a class="{shade}" href="#tft-{a.lower()}">{a} <small>{n}</small>'
+                  f'<span class="sr"> {"campaign" if n == 1 else "campaigns"} in {esc(names[a])}</span></a></li>')
+    more = ' · '.join(f'<a href="#tft-{t.lower()}">{esc(TERRITORIES[t])} ({len(by[t])})</a>' for t in sorted(TERRITORIES) if t in by)
+    return (f'<nav class="tftnav" aria-label="Toys for Tots campaigns by state"><p class="quiet">Tap your state to jump to its campaigns. '
+            f'The number is how many local campaigns it has.</p><ul class="usgrid tftmap">{tiles}</ul>'
+            + (f'<p class="quiet">Also: {more}</p>' if more else '') + '</nav>')
+
+
+def christmas_when(nat):
+    """When Christmas help closes, from the listings on the page: Angel Tree sign-ups in the fall, Toys for Tots
+    campaigns from the end of November into December, Operation Santa's postmark date, and 211 any day."""
+    santa = re.search(r'postmarked by ([A-Z][a-z]+ \d{1,2}), \d{4}', nat['us-operation-santa']['how'])
+    if not santa:
+        sys.exit('scripts/ymt_build.py: the Operation Santa listing no longer gives a postmark date; update christmas_when')
+    steps = [('gift', 'In the fall', 'Many Salvation Army <a href="#xmas-gifts--us-angel-tree">Angel Tree</a> sign-ups close.'),
+             ('gift', 'Late November and December', '<a href="#toys-for-tots">Toys for Tots campaigns</a> close, each on its own date.'),
+             ('letter', santa.group(1), 'Last postmark for a letter to <a href="#xmas-gifts--us-operation-santa">Operation Santa</a>.'),
+             ('phone', 'Any day', 'If something has closed, dial <a href="tel:211">211</a> and ask what is still open.')]
+    items = ''.join(f'<li>{icon(ico)}<span><strong>{esc(when)}</strong> {text}</span></li>' for ico, when, text in steps)
+    return (f'<section class="wrap"><figure class="when"><figcaption>When Christmas help closes</figcaption>'
+            f'<ol role="list">{items}</ol></figure></section>')
+
+
 def build_christmas(data):
     """Christmas help in one place: the national programs by need, then every Toys for Tots campaign by state."""
     nat = {r['id']: r for r in data['resources']}
@@ -442,7 +520,7 @@ def build_christmas(data):
         rows.append(need(sec, [nat[i] for i in ids], '', {i: f'{rid}--{i}' for i in ids}))
     by = xmas.by_state()
     order = [s['abbr'] for s in data['states']] + sorted(k for k in by if k in TERRITORIES)
-    tft = ''.join(campaigns_card(data, st, by[st], f'tft-{st.lower()}') for st in order if st in by)
+    tft = campaigns_map(data, by) + ''.join(campaigns_card(data, st, by[st], f'tft-{st.lower()}') for st in order if st in by)
     total = sum(len(v) for v in by.values())
     sec = {'id': 'toys-for-tots', 'label': 'Toys for Tots near you, state by state', 'icon': '🧸',
            'summary': f'All {total} local campaigns, each with its own website and sign-up dates.'}
@@ -462,7 +540,7 @@ def build_christmas(data):
     ohio = (f'<section class="wrap"><div class="localbox"><strong>Ohio mom?</strong> '
             f'<a href="ohio/holidays.html">Christmas and holiday help in Ohio</a> lists Ohio\'s own programs, holiday meals, '
             f'and lights and Santa close to home.</div></section>')
-    body = (hero('🎄 Christmas help for moms', lede, pick + late)
+    body = (hero('🎄 Christmas help for moms', lede, pick + late) + christmas_when(nat)
             + finder('Search Christmas help', 'toys, Columbus, heat bill…') + needs(''.join(rows)) + ohio
             + '<section class="wrap slim"><p>In danger right now? Call 911. The holidays can be hard: you can call or text 988 any hour.</p></section>')
     desc = ('Free Christmas help for moms in every state: local Toys for Tots campaigns, Angel Tree, '
@@ -497,6 +575,11 @@ def build_inside(data):
     first = ('<div class="localbox"><strong>Where to start.</strong> Find out where your loved one is held and how that '
              'jail or prison handles visits, calls and money: each one sets its own rules. Read them before you pay or travel. '
              'Your state\'s prison system has its own search; for a county jail, call the county sheriff\'s office.</div>')
+    first += ('<figure class="steps-fig"><figcaption class="sr">Where to start, step by step</figcaption>'
+              + flow([('pin', 'Find out where they are held: your state\'s prison search, or the county sheriff\'s office for a county jail.'),
+                      ('doc', 'Read how that jail or prison handles visits, calls and money. Each one sets its own rules.'),
+                      ('calendar', 'Then pay or travel, once you know the rules. <a href="#inside-touch">Visits, calls and money</a>')],
+                     'flow across') + '</figure>')
     lede = ('When your partner, your child\'s parent or someone else you love is in jail or prison, or coming home: '
             'staying in touch, helping your kids, and help for you. Free, and no sign-up.')
     ohio = ('<section class="wrap"><div class="localbox"><strong>In Ohio?</strong> '
@@ -528,6 +611,21 @@ KINSHIP_ROWS = [
 ]
 
 
+def kinship_paths():
+    """The legal custody and foster license note above it, drawn as two short paths, one for each way the children may
+    have come to you, that meet at free legal aid. Every step says only what the note says."""
+    custody = flow([('people', 'Caring for the children on your own, with no court order'),
+                    ('court', 'A court can give you legal custody or guardianship'),
+                    ('book', 'That lets you enroll them in school and take them to the doctor')], 'flow path')
+    foster = flow([('house-heart', 'Children services placed the children with you'),
+                   ('doc', 'You can also ask about becoming a licensed foster parent'),
+                   ('coins', 'A foster license comes with foster care payments')], 'flow path')
+    return ('<figure class="paths"><figcaption>Two paths, depending on how the children came to you</figcaption>'
+            f'<div class="pathcols">{custody}<p class="pathor">or</p>{foster}</div>'
+            f'<p class="pathjoin">{icon("scales")}<span>Each choice affects money, your rights and the parents\' rights differently, '
+            'so talk with <a href="#kin-legal--us-legal-aid">free legal aid</a> before you sign anything.</span></p></figure>')
+
+
 def build_kinship(data):
     """Grandparents and other relatives raising children (kinship care, "grandfamilies"): the national listings by need,
     a plain-words note on legal custody and a foster license, and the way to Ohio's own page."""
@@ -543,7 +641,8 @@ def build_kinship(data):
               'A court can give you legal custody or guardianship, which lets you make those decisions. '
               'If children services placed the children with you, you can also ask about becoming a licensed foster parent, which comes with foster care payments. '
               'Each choice affects money, your rights and the parents\' rights differently, so talk with free legal aid before you sign anything. '
-              'Your <a href="https://grandfamilies.org/state-fact-sheets" rel="noopener">state\'s GrandFacts sheet</a> lists the options where you live.</div></section>')
+              'Your <a href="https://grandfamilies.org/state-fact-sheets" rel="noopener">state\'s GrandFacts sheet</a> lists the options where you live.</div>'
+              + kinship_paths() + '</section>')
     parent = ('<section class="wrap"><div class="localbox"><strong>If a parent is struggling with addiction.</strong> Many grandparents are raising grandchildren because of opioids or other drugs. '
               'The <a href="#kin-you--us-samhsa">SAMHSA National Helpline</a> is free and private, any hour, for the parent or for you. '
               'Taking care of yourself is part of taking care of them.</div></section>')
@@ -973,7 +1072,28 @@ def county_list(data, s):
              else f'for {"the " if s["name"].startswith("District") else ""}{esc(s["name"])}')
     return (f'<section class="wrap" id="counties"><h2>Local help by {esc(county_noun(s["abbr"]))}</h2>'
             f'<p class="quiet">Public housing, housing counselors, legal aid, health centers, school districts and Head Start, '
-            f'{whose}.</p><ul class="statelist countylist">{items}</ul></section>')
+            f'{whose}.</p>{state_glance(s, len(counties), many)}<ul class="statelist countylist">{items}</ul></section>')
+
+
+def state_glance(s, n_counties, many):
+    """How many places the county pages of a state list, by kind, counted from the same files the county pages are
+    written from (assets/us/<state>.json): the health center and Head Start sites in each county, and the agencies,
+    counselors, districts and legal aid programs based in the state."""
+    shard = county_shards().get(s['abbr'])
+    if not shard:
+        return ''
+    cs = list(shard['c'].values())
+    based = lambda table: sum(1 for v in shard.get(table, {}).values() if v[-1] == s['abbr'])
+    counts = [('clinic', sum(len(c.get('health', [])) for c in cs), 'health center site', 'health center sites'),
+              ('blocks', sum(len(c.get('headStart', [])) for c in cs), 'Head Start site', 'Head Start sites'),
+              ('key', based('ph'), 'public housing agency', 'public housing agencies'),
+              ('house', based('hu'), 'housing counselor', 'housing counselors'),
+              ('book', based('sd'), 'school district', 'school districts'),
+              ('scales', based('lg'), 'legal aid program', 'legal aid programs')]
+    items = ''.join(glance_item(ico, n, one if n == 1 else many, root='../') for ico, n, one, many in counts if n)
+    where = (f'Across {esc(s["name"])}\'s {n_counties} {esc(many)}, our pages list' if n_counties > 1
+             else f'For {"the " if s["name"].startswith("District") else ""}{esc(s["name"])}, our page lists')
+    return f'<figure class="glance"><figcaption>{where}</figcaption><ul>{items}</ul></figure>' if items else ''
 
 
 COUNTY_SOURCES = [  # in the order the rows appear on the page
@@ -1481,6 +1601,34 @@ def county_rows(data, st, fips, shard, x, root):
     return ''.join(rows)
 
 
+# The at-a-glance row of a county page: (row, icon, what one is called, what several are called). Christmas help is
+# seasonal and the last row is links, so neither is here.
+GLANCE = [
+    ('county-pha', 'key', 'housing agency', 'housing agencies'),
+    ('county-hud', 'house', 'housing counselor', 'housing counselors'),
+    ('county-moms', 'bottle', 'place for moms and babies', 'places for moms and babies'),
+    ('county-legal', 'scales', 'legal aid program', 'legal aid programs'),
+    ('county-health', 'clinic', 'health center', 'health centers'),
+    ('county-schools', 'book', 'school district', 'school districts'),
+    ('county-start', 'blocks', 'Head Start site', 'Head Start sites'),
+]
+
+
+def county_glance(rows, place, root):
+    """What a county page holds, one tile per row: the count its row shows, and a link that opens that row. Read from
+    the rows themselves, so the two can never disagree. A row that lists places outside the county says "nearby"."""
+    found = {}
+    for rid, summary in re.findall(r'<details class="need" id="(county-[a-z]+)"><summary>(.*?)</summary>', rows):
+        n = re.search(r'<span class="ncount">(\d+) ', summary)
+        nsum = re.search(r'<span class="nsum">([^<]*)</span>', summary).group(1)
+        if n and int(n.group(1)):
+            found[rid] = (int(n.group(1)), nsum.startswith(('Nearest', 'Your state')))
+    items = ''.join(glance_item(ico, found[rid][0], (one if found[rid][0] == 1 else many) + (' nearby' if found[rid][1] else ''),
+                                f'#{rid}', root)
+                    for rid, ico, one, many in GLANCE if rid in found)
+    return f'<nav class="glance" aria-label="At a glance: help in {esc(place)}"><ul>{items}</ul></nav>' if items else ''
+
+
 def county_towns(c, n=2):
     """The towns a county's own listings are in (health center sites, Head Start locations and the housing agencies with
     their office there), the most listed first: the places a mom from this county is likely to know it by. A county
@@ -1643,7 +1791,7 @@ def build_county_page(data, st, fips, shard, x):
     rows = county_rows(data, st, fips, shard, x, root)
     body = (top + urgent_strip(data, root)
             + finder(f'Search every listing for {c["n"]}', 'town, name, Section 8, dental…')
-            + f'<section class="wrap needs" aria-label="Help in {esc(nice)}">{local}{rows}</section>'
+            + f'<section class="wrap needs" aria-label="Help in {esc(nice)}">{county_glance(rows, c["n"], root)}{local}{rows}</section>'
             + kind_word(f'{root}help.html#take-care', root)
             + f'<section class="wrap slim closing"><p>Listings come from federal directories and are not confirmed by phone. '
               f'A phone number or address may be out of date. <a href="{root}county.html#sources">Where these listings come from</a> · '
@@ -1688,7 +1836,7 @@ def build_about(data):
 <section class="wrap"><div class="steps"><div class="aboutwho"><figure class="aboutphoto"><img src="assets/about-us.jpg" width="380" height="379" alt="Travis and Deborah smiling together outdoors on a sunny day"><figcaption>Travis and Deborah</figcaption></figure><div><h2>Who runs it</h2><p>We are Travis and Deborah Vought, and it is just the two of us. Deborah founded {esc(site["name"])}. It grows out of <a href="{esc(site["ohio_path"])}">OhioMom</a>, her Ohio hub for mothers, which is now the Ohio part of this site. The same approach now reaches every state. Travis looks after the website.</p>
 <p>We have four kids. One has type 1 diabetes and two have autism, so ours is a neurodivergent family. We live in rural Ohio, and we are involved in community building.</p>
 <p>It is an independent project. It is not affiliated with any podcast, show or organization named "Mom Talk".</p></div></div>
-<h2>How we choose listings</h2><ul><li>We list free or low-cost public programs, nonprofits and official locators. We do not list private businesses, and nobody pays to be listed.</li><li>Each listing links to the published sources it came from and shows the date it was checked.</li><li>Contacts come from official sources and are not confirmed by telephone. Phone numbers and websites change. If one is wrong, <a href="report.html">tell us</a>.</li><li>Every link is checked automatically each month, and a person reviews any that fail.</li><li>Domestic violence shelter addresses are never listed. We point to the hotline or state coalition that places people safely.</li></ul>
+<h2>How we choose listings</h2><ul class="iconlist" role="list"><li>{icon('heart')}We list free or low-cost public programs, nonprofits and official locators. We do not list private businesses, and nobody pays to be listed.</li><li>{icon('doc')}Each listing links to the published sources it came from and shows the date it was checked.</li><li>{icon('phone')}Contacts come from official sources and are not confirmed by telephone. Phone numbers and websites change. If one is wrong, <a href="report.html">tell us</a>.</li><li>{icon('refresh')}Every link is checked automatically each month, and a person reviews any that fail.</li><li>{icon('lock')}Domestic violence shelter addresses are never listed. We point to the hotline or state coalition that places people safely.</li></ul>
 <h2>What this site is not</h2><p>It is not an emergency service. If you or someone else is in danger, call 911. It does not give legal, medical or financial advice, and it cannot sign you up for anything.</p>
 {advertise(site)}
 <h2 id="contact">Contact us</h2><p>Email <a href="{esc(mail_href(site, f'{site["name"]}: a question'))}">{esc(site["corrections_email"])}</a> with a question, a correction, an idea for a listing or an advertising request. To fix one listing, <a href="report.html">Report a problem</a> is quickest. We read every message, but this is not an emergency line.</p>

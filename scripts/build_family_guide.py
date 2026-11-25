@@ -180,6 +180,26 @@ def share_body():
             f'<a href="https://guide.vethomeguard.org/flyers.html" data-i18n="share-all">All printable flyers</a></p></div>')
 
 
+def age_bar(stages):
+    """The stages that belong to an age, drawn as bars along the years from birth to 21 (November 24, 2026), so a parent
+    sees that early intervention ends at 3, school help starts there, and planning for adulthood starts at 14 while school
+    goes on. The words are the stage buttons' own (and turn Spanish with them); the bars and the scale are decoration."""
+    last = 22  # the scale runs from birth to just past 21
+    rows = ''
+    for s in stages:
+        m = re.fullmatch(r'Ages (\d+)(?:–(\d+)|(\+))', s['ages'])
+        if not m:
+            continue  # "Any age"
+        start, end = int(m.group(1)), (int(m.group(2)) if m.group(2) else last)
+        rows += (f'<li class="age-{s["id"]}"><span class="agelabel"><strong data-i18n-stage="{s["id"]}:label">{esc(s["label"])}</strong> '
+                 f'<span data-i18n-stage="{s["id"]}:ages">{esc(s["ages"])}</span></span>'
+                 f'<span class="agerange{" open" if m.group(3) else ""}" style="grid-column:{start + 1}/{end + 1}" aria-hidden="true"></span></li>')
+    ticks = sorted({0, 21} | {int(n) for s in stages for n in re.findall(r'\d+', s['ages'])})
+    axis = ''.join(f'<span style="grid-column:{t + 1}">{t}</span>' for t in ticks)
+    return (f'<figure class="agebar"><figcaption data-i18n="agebar-title">Help changes as your child grows</figcaption>'
+            f'<ol role="list">{rows}</ol><div class="ageaxis" aria-hidden="true">{axis}</div></figure>')
+
+
 def outputs():
     data = validate(json.loads((ROOT / 'data/family-guide.json').read_text()))
     sources = {s['id']: s for s in data['sources']}
@@ -216,7 +236,7 @@ def outputs():
         '__NEEDS__': need_boxes, '__CARDS__': '\n'.join(cards), '__MILITARY__': '\n'.join(military),
         '__CHANGES__': changes, '__ANCHORS__': anchors, '__REVIEWED__': data['reviewed_on'],
         '__COUNT__': str(sum(1 for r in data['resources'] if r['scope'] != 'MIL' and 'OH' not in r.get('state_replacements', {}))), '__MILCOUNT__': str(len(military)), '__GLOSSARY__': glossary,
-        '__SHARE__': share_body(), '__WORDS__': esc(words),
+        '__SHARE__': share_body(), '__WORDS__': esc(words), '__AGEBAR__': age_bar(data['stages']),
         '__DATA__': json.dumps(page_data, ensure_ascii=False).replace('<', '\\u003c'),
     }.items():
         assert key in page, key
