@@ -271,8 +271,19 @@ figure.glance{margin:1rem 0 0}
 /* A small sunrise beside the heading of affirmations.html (decoration) */
 .withart::after{content:"";display:block;clear:both}
 .withart>.art{float:right;width:clamp(6.5rem,26vw,10rem);height:auto;margin:-.3rem 0 .4rem 1rem;border-radius:0 0 1.1rem 1.1rem}
+/* November 25, 2026: the needs of a page as tiles with their counts (help.html, connect.html), what a county page
+   shows (county.html), and a short "at a glance" list of a page's own sentences (privacy.html, terms.html). */
+.hero .glance{margin:1.1rem 0 0}
+.needglance ul{grid-template-columns:repeat(auto-fill,minmax(13.5rem,1fr))}
+.needglance small{display:block;color:var(--muted);font-size:.85rem;margin-top:.1rem}
+.needglance small b{display:inline;font-size:1em;color:var(--ink)}
+.shows .gtile{font-weight:600}
+.summary{margin:0 0 1.4rem;background:#fff;border:1.5px solid var(--line);border-radius:var(--r);padding:.9rem 1.1rem .4rem}
+.summary figcaption{font-weight:700;font-size:1.08rem}
+.summary .iconlist{margin:.4rem 0}
+@media (max-width:560px){.needglance small{display:inline;margin:0 0 0 .2rem}.needglance small b{font-size:1em}}
 @media print{.tftnav,.art{display:none}.glance a,.flow>li,.paths{break-inside:avoid}}
-@media (forced-colors:active){.glance a,.glance .gtile,.flow>li,.paths,.pathjoin,.tftmap a{border-color:CanvasText}.when ol::before,.flow>li::after,.pathor::before,.pathor::after{border-color:CanvasText}}
+@media (forced-colors:active){.summary,.glance a,.glance .gtile,.flow>li,.paths,.pathjoin,.tftmap a{border-color:CanvasText}.when ol::before,.flow>li::after,.pathor::before,.pathor::after{border-color:CanvasText}}
 
 /* home-extras:start. Front-page picture and affirmations. Copied from templates/home-extras.css by scripts/home_extras.py; edit the template. */
 .herotop{display:flex;align-items:center;gap:1rem 2.2rem}
