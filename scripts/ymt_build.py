@@ -165,7 +165,7 @@ def page(data, path, title, desc, body, body_class='', head_extra='', canonical=
 <p class="footnav">{foot}</p>
 <p>Founded by {esc(site['founder'])}. See something out of date, or know a group we should list? <a href="{root}report.html">Report a problem</a>.</p>
 <p class="small">{esc(danger)} {esc(site['name'])} is an information directory, not an emergency service or a provider of legal, medical or financial advice. Contacts come from published official and organization sources and are not telephone-confirmed. No sign-up. We count visits without cookies, and nothing you type is sent. Any ad is labeled Advertisement. See <a href="{root}privacy.html">Privacy</a>.</p>
-<p class="small">Ohio mom? Visit <a href="{root}{esc(site['ohio_path'])}">OhioMom</a>. Mobility and disability resources: <a href="{esc(site['mobilitytalk_url'])}">Mobility Talk</a>.</p>
+<p class="small">Ohio mom? Visit <a href="{root}{esc(site['ohio_path'])}">OhioMom</a>. Mobility and disability resources: <a href="{esc(site['mobilitytalk_url'])}">Mobility Talk</a>. Military and veteran families: <a href="https://guide.vethomeguard.org/">Veteran Resource Guide</a>. Native families: <a href="https://ninas-map.com/">Nina's Map</a>.</p>
 </footer>
 <script src="{root}assets/ymt.js"></script>{scripts}
 </body>
