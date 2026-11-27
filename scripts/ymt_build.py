@@ -2012,6 +2012,34 @@ def build_404(data):
                 .replace('href="report.html', 'href="/report.html').replace('href="privacy.html', 'href="/privacy.html'))
 
 
+# IndexNow key. The build publishes it as <key>.txt at the site root; .github/workflows/indexnow.yml sends Bing and the
+# other IndexNow search engines the address of each sitemap page a push to main changed.
+INDEXNOW_KEY = '57462c1d53e6fe1c59e6e08cfbb0cd69'
+MONTHS = ('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December')
+# A date the page itself prints as when its listings were checked, copied or updated: "checked November 15, 2026",
+# "copied November 16, 2026", "as of November 16, 2026", "Checked against published sources November 23, 2026",
+# "Updated November 23, 2026" and the family guide's "checked 2026-11-08". Deadlines ("postmarked by December 5") don't count.
+DATED = re.compile(r'\b(?:checked|copied|as of|updated|published sources)\W{0,3}(?:(' + '|'.join(MONTHS)
+                   + r') (\d{1,2}), (\d{4})|(\d{4})-(\d\d)-(\d\d))\b', re.I)
+TRANSLATED = re.compile(r'^ohio/(?:es|so|ht|ne)/')
+
+
+def lastmod(html):
+    """The sitemap date for a page: the newest date its own main content says a listing was checked, copied or updated,
+    as YYYY-MM-DD, or None when it names none (the sitemap then gives no date rather than a made-up one). It comes from
+    the data's checked dates printed on the page, never from when the build ran, so rebuilding changes nothing."""
+    m = re.search(r'<main\b.*?</main>', html, re.S)
+    text = re.sub(r'<script\b.*?</script>', ' ', m.group(0) if m else html, flags=re.S)
+    text = re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', text))
+    dates = []
+    for d in DATED.finditer(text):
+        if d.group(1):
+            dates.append(f'{d.group(3)}-{MONTHS.index(d.group(1).capitalize()) + 1:02d}-{int(d.group(2)):02d}')
+        else:
+            dates.append(f'{d.group(4)}-{d.group(5)}-{d.group(6)}')
+    return max(dates) if dates else None
+
+
 def build_all(data):
     files = {
         'index.html': build_index(data), 'help.html': build_help(data), 'connect.html': build_connect(data),
@@ -2043,9 +2071,18 @@ def build_all(data):
     def loc(p):
         # Wix serves a folder address only at the site root, so every other page is named in full.
         return '' if p == 'index.html' else p
-    urls = ''.join(f'  <url><loc>https://{domain}/{loc(p)}</loc></url>\n' for p in sorted(set(pages)))
+    def text(p):
+        return files[p] if p in files else (ROOT / p).read_text(encoding='utf-8')
+    # A translated Ohio page prints its dates in its own language, so it takes the date of the English page it is made from.
+    dates = {p: lastmod(text(TRANSLATED.sub('ohio/', p))) for p in set(pages)}
+
+    def entry(p):
+        when = f'<lastmod>{dates[p]}</lastmod>' if dates[p] else ''
+        return f'  <url><loc>https://{domain}/{loc(p)}</loc>{when}</url>\n'
+    urls = ''.join(entry(p) for p in sorted(set(pages)))
     files['sitemap.xml'] = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n'
     files['robots.txt'] = f'User-agent: *\nAllow: /\n\nSitemap: https://{domain}/sitemap.xml\n'
+    files[f'{INDEXNOW_KEY}.txt'] = INDEXNOW_KEY + '\n'
     if ads.ads_txt(data.get('adsense_client', '')):
         files['ads.txt'] = ads.ads_txt(data['adsense_client'])
     return files

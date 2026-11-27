@@ -547,6 +547,22 @@ class SiteTests(unittest.TestCase):
         for loc in locs:
             self.assertNotIn('?', loc)
 
+    def test_sitemap_dates_come_from_the_pages_checked_dates(self):
+        """lastmod is the newest checked, copied or updated date the page prints, never the day of the build."""
+        sm = (ROOT / 'sitemap.xml').read_text(encoding='utf-8')
+        for loc, when in re.findall(r'<loc>https://www\.yogamomtalk\.com/([^<]*)</loc><lastmod>([^<]+)</lastmod>', sm):
+            rel = re.sub(r'^ohio/(es|so|ht|ne)/', 'ohio/', loc or 'index.html')
+            self.assertEqual(ymt_build.lastmod((ROOT / rel).read_text(encoding='utf-8')), when, loc)
+        self.assertEqual(ymt_build.lastmod('<main><p>Checked November 15, 2026. Postmarked by December 5, 2026.</p>'
+                                           '<p>copied November 16, 2026 · checked 2026-11-08</p></main>'), '2026-11-16')
+        self.assertIsNone(ymt_build.lastmod('<main><p>Sign up by December 5, 2026.</p></main>'))
+
+    def test_indexnow_key_file_is_published(self):
+        key = ymt_build.INDEXNOW_KEY
+        self.assertRegex(key, r'^[0-9a-f]{32}$')
+        self.assertEqual((ROOT / f'{key}.txt').read_text(encoding='utf-8').strip(), key)
+        self.assertIn(key, (ROOT / '.github/workflows/indexnow.yml').read_text(encoding='utf-8'))
+
     def test_yoga_sessions_are_offered_on_ohio_pages_only(self):
         """Deborah's sessions are in person in Ohio. National pages do not offer them; yoga.html passes visitors to OhioMom."""
         dest = lib.load()['site']['ohio_yoga_path']
