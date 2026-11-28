@@ -1246,6 +1246,22 @@ def county_path(st, name):
     return f'states/{st.lower()}/{county_slug(name)}.html'
 
 
+GUIDE_COUNTIES = 'https://guide.vethomeguard.org/counties/'
+# where the Veteran and Resident Guide's slug for a county differs from ours (its names drop apostrophes and accents)
+GUIDE_SLUG = {('tx', 'la-salle-county'): 'lasalle-county', ('il', 'de-witt-county'): 'dewitt-county',
+              ('va', 'charles-city-county'): 'charles-city', ('va', 'james-city-county'): 'james-city'}
+
+
+def guide_county_url(st, name):
+    """The county's page on the Veteran and Resident Guide, which names its veterans service office. Connecticut's
+    guide is by old county, not planning region, so a region links to the state's list."""
+    code = st.lower()
+    if code == 'ct':
+        return GUIDE_COUNTIES + 'ct/'
+    s = county_slug(name.replace("'", '').replace('ñ', ' ').replace('Ñ', ' '))
+    return f'{GUIDE_COUNTIES}{code}/{GUIDE_SLUG.get((code, s), s)}.html'
+
+
 def county_shards():
     """{'OH': the parsed assets/us/oh.json, ...}, read once."""
     if not hasattr(county_shards, 'cache'):
@@ -1825,8 +1841,10 @@ def build_county_page(data, st, fips, shard, x):
     lede = county_intro(c, shard, fips)
     first = (f'<a href="../{code}.html">All help in {esc(s["name"])}</a>' if c['n'] == s['name']  # D.C. is one county
              else f'<a href="../{code}.html#counties">Another {esc(county_noun(st))} in {esc(s["name"])}</a>')
+    vets = ('Veterans service offices in Connecticut' if st == 'CT' else f'{c["n"]} veterans service office')
     other = (f'<p class="countylink">{first} · '
-             f'<a href="{root}county.html">Find yours by ZIP code</a></p>')
+             f'<a href="{root}county.html">Find yours by ZIP code</a> · '
+             f'<a href="{esc(guide_county_url(st, c["n"]))}">{esc(vets)}</a></p>')
     top = hero(esc(nice), lede, other).replace('<div class="wrap">', '<div class="wrap">' + crumbs, 1)
     local = ''
     if c.get('pg'):
