@@ -103,7 +103,7 @@ function checkCards(d, label) {
     const ld = JSON.parse(d.querySelector('script[type="application/ld+json"]').textContent);
     const trail = ld['@graph'].find((g) => g['@type'] === 'BreadcrumbList').itemListElement.map((i) => i.name);
     assert.deepEqual(trail, ['Yoga Mom Talk', 'Help by state', 'Ohio', 'Morrow County']);
-    assert.equal(d.querySelector('.hero').nextElementSibling.id, 'now', 'the crisis cards come right after the heading');
+    assert(!d.querySelector('#now, [data-exit]'), 'no crisis box and no quick exit on a county page');
     const rows = all(d, 'details.need');
     assert.deepEqual(rows.map((r) => r.id), ['county-christmas', 'county-pha', 'county-hud', ...moms, 'county-legal', 'county-health', 'county-schools', 'county-start', 'county-state']);
     if (moms.length) {

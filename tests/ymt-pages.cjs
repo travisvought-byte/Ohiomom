@@ -13,12 +13,10 @@ const all = (d, sel) => [...d.querySelectorAll(sel)];
   const { d } = load('index.html');
   assert.equal(all(d, '.card').length, 0, 'front page shows no listing cards');
   assert.equal(all(d, '.hero .tile').length, 10, 'Christmas help, eight needs (raising a grandchild among them) and "See everything"');
-  assert.equal(all(d, 'main > section').length, 2, 'front page is the question and the help-now strip, nothing else (the picture and its affirmation are inside the question)');
-  assert(all(d, 'main > section')[1].matches('#now'), 'the help-now strip comes straight after the question');
+  assert.equal(all(d, 'main > section').length, 1, 'front page is the question, nothing else (the picture and its affirmation are inside the question)');
+  assert(!d.querySelector('#now, [data-exit]'), 'no crisis box and no quick exit on the front page');
   assert(d.querySelector('.hero .tile[href="help.html#housing"]'), 'housing and shelter is a choice of its own');
-  const phones = all(d, '.phonecard');
-  assert.equal(phones.length, 3);
-  for (const a of phones) assert.match(a.getAttribute('href'), /^tel:/);
+  assert.equal(all(d, '.phonecard').length, 0, 'no crisis phone cards on the front page');
   assert.equal(d.querySelector('[data-state-pick]').options.length, 52);
   for (const t of all(d, '.hero .tile')) {
     const [page, frag] = t.getAttribute('href').split('#');
@@ -304,11 +302,40 @@ console.log(`PASS structure: one banner, one main, landmarks and heading order o
   for (const a of tiles) assert(fs.existsSync(a.getAttribute('href')) && /^[A-Z]{2} \S/.test(a.textContent), a.textContent);
   assert.equal(all(s, 'details.maplist a').length, 51, 'and in the list under it');
   const c = staticDoc('county.html');
-  assert.equal(c.querySelector('.hero').nextElementSibling.id, 'now', 'the county page opens with the crisis cards');
+  assert(!c.querySelector('#now, [data-exit]'), 'the county page has no crisis box and no quick exit');
 }
-console.log('PASS maps: every country and state is a named link, with the list under the map; the county page opens with the crisis cards');
+console.log('PASS maps: every country and state is a named link, with the list under the map; the county page has no crisis box');
 
 (async () => {
+  // The quick exit is only on a page with Get help now, and shows only while that need is open.
+  {
+    const tick = () => new Promise((r) => setTimeout(r, 20));
+    for (const file of ['help.html', 'states/oh.html', 'countries/canada.html', 'world.html']) {
+      const { d } = load(file);
+      const exit = d.querySelector('header.top a.exit[data-exit]'), row = d.getElementById('help-now');
+      assert(exit && row, `${file}: a quick exit and a Get help now need`);
+      await tick();
+      assert(exit.hidden, `${file}: hidden while Get help now is closed`);
+      row.open = true; await tick();
+      assert(!exit.hidden, `${file}: shown once Get help now is opened`);
+      row.open = false; await tick();
+      assert(exit.hidden, `${file}: hidden again when it is closed`);
+    }
+    const linked = load('help.html', '#us-ndvh');
+    await tick();
+    assert(!linked.d.querySelector('a.exit').hidden, 'a link to the domestic violence hotline opens Get help now, with the quick exit');
+    const searched = load('states/oh.html');
+    const box = searched.d.getElementById('q');
+    box.value = 'abuse'; box.dispatchEvent(new searched.w.Event('input')); await tick();
+    assert(!searched.d.querySelector('a.exit').hidden, 'searching for abuse opens Get help now, with the quick exit');
+    box.value = 'diapers'; box.dispatchEvent(new searched.w.Event('input')); await tick();
+    assert(searched.d.querySelector('a.exit').hidden, 'a search that leaves Get help now closed hides it');
+    for (const file of ['index.html', 'yoga.html', 'states.html', 'county.html', 'states/oh/morrow-county.html', 'christmas.html']) {
+      assert(!load(file).d.querySelector('[data-exit]'), `${file}: no quick exit`);
+    }
+    console.log('PASS quick exit: only with Get help now, shown while it is open');
+  }
+
   // The pages that fill themselves in keep the same structure once they have.
   for (const [f, hash] of [['ohio/events.html', ''], ['ohio/connect.html', ''], ['ohio/near-you.html', '#central']]) {
     const { d } = await loadOhio(f, hash);

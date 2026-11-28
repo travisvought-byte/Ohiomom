@@ -173,7 +173,7 @@ const dayOf = (now) => { const t = new Date(now); return Math.floor(Date.UTC(t.g
     assert(top.nextElementSibling.matches('nav.iam'), `${file}: the "I'm..." chooser follows the question`);
     assert(top.nextElementSibling.nextElementSibling.matches('.tiles'), `${file}: the choices follow at once`);
     assert(all(top.nextElementSibling, 'a').length >= 6, `${file}: the chooser offers several ways in`);
-    assert.equal(all(d, 'main > section').length, 2, `${file}: the affirmation adds no section of its own`);
+    assert.equal(all(d, 'main > section').length, file === 'index.html' ? 1 : 2, `${file}: the affirmation adds no section of its own`);
     const box = d.getElementById('affirm');
     if (approved.length) {
       assert(box && box.hidden, `${file}: the bubble is there and waits for the script`);

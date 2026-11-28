@@ -1,12 +1,21 @@
 // Yoga Mom Talk: small helpers. No network requests, no storage, no tracking.
 (function () {
   'use strict';
-  // "Leave this site": replace this page in history so Back does not return to it.
+  // "Leave this site": replace this page in history so Back does not return to it. It is only on pages with a safety
+  // need (Get help now), and shows only while that need is open: chosen, found by a search, or linked to.
   document.querySelectorAll('[data-exit]').forEach(function (el) {
     el.addEventListener('click', function (e) {
       e.preventDefault();
       window.location.replace(el.getAttribute('href'));
     });
+    var ids = (el.getAttribute('data-exit-with') || '').split(' ').filter(Boolean);
+    if (!ids.length) { return; }
+    var rows = ids.map(function (id) { return document.getElementById(id); }).filter(Boolean);
+    function sync() {
+      el.hidden = !rows.some(function (row) { return row.open && !row.hidden; });
+    }
+    rows.forEach(function (row) { row.addEventListener('toggle', sync); });
+    sync();
   });
   // State picker: jump straight to the chosen state's page.
   document.querySelectorAll('[data-state-pick]').forEach(function (sel) {

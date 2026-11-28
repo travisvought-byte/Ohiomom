@@ -71,12 +71,52 @@ class SiteTests(unittest.TestCase):
         self.assertEqual(len(counties), len(data['counties']))
         self.assertIn('states/oh/morrow-county.html', counties)
 
-    def test_every_page_has_exit_button_and_privacy_meta(self):
+    def test_quick_exit_only_where_someone_looks_for_safety_help(self):
+        """The "Leave this site" button is only on a page with a safety need (Get help now: domestic violence, abuse and
+        crisis lines), and starts hidden until that need is opened (assets/ymt.js). Every other page reads as an ordinary
+        resource guide: no quick exit and no "Need help right now?" box (the owner's request, November 28, 2026)."""
+        safety = set()
         for path in PAGES:
             p = parse(path)
+            text = path.read_text(encoding='utf-8')
             exits = [a for t, a in p.tags if t == 'a' and 'data-exit' in a]
-            self.assertEqual(len(exits), 1, f'{path}: needs exactly one Leave this site button')
-            self.assertEqual(exits[0]['href'], EXIT_URL, path)
+            rows = [i for i in re.findall(r'<details class="need[^"]*" id="([^"]+)">', text) if i in ymt_build.SAFETY_SECTIONS]
+            self.assertNotIn('Need help right now?', text, f'{path}: no crisis box at the top of a page')
+            self.assertNotIn('class="wrap now"', text, path)
+            if rows:
+                safety.add(str(path.relative_to(ROOT)))
+                self.assertEqual(len(exits), 1, f'{path}: a page with a safety need has one Leave this site button')
+                self.assertEqual(exits[0]['href'], EXIT_URL, path)
+                self.assertEqual(exits[0]['data-exit-with'].split(), rows, f'{path}: it follows the safety need')
+                self.assertIn('hidden', exits[0], f'{path}: hidden until the safety need is opened')
+            else:
+                self.assertEqual(exits, [], f'{path}: no Leave this site button outside the safety pages')
+        self.assertEqual(ymt_build.SAFETY_SECTIONS, ('help-now',))
+        for rel in ('help.html', 'world.html', 'states/oh.html', 'states/ca.html', 'countries/canada.html'):
+            self.assertIn(rel, safety, f'{rel}: has Get help now, so it has the quick exit')
+        for rel in ('index.html', 'yoga.html', 'states.html', 'county.html', 'states/oh/morrow-county.html', 'christmas.html', 'about.html'):
+            self.assertNotIn(rel, safety, rel)
+            self.assertNotIn('data-exit', (ROOT / rel).read_text(encoding='utf-8'), f'{rel}: no quick exit')
+        self.assertNotIn('data-exit', (ROOT / 'family-guide.html').read_text(encoding='utf-8'), 'family guide: no quick exit')
+        self.assertEqual(len([r for r in safety if r.startswith('states/')]), 51)
+        self.assertEqual(len([r for r in safety if r.startswith('countries/')]), len(lib.load()['world']['countries']))
+
+    def test_footer_has_one_calm_link_to_the_help_lines(self):
+        for path in PAGES:
+            text = path.read_text(encoding='utf-8')
+            if '<footer class="foot">' not in text:
+                continue
+            foot = text[text.index('<footer class="foot">'):]
+            self.assertEqual(foot.count('>Help lines</a>'), 1, path)
+            href = re.search(r'<a href="([^"]+)">Help lines</a>', foot).group(1)
+            if href == '#help-now':
+                self.assertIn('id="help-now"', text, f'{path}: the link goes to this page\'s own Get help now')
+            else:
+                self.assertTrue(href.endswith('help.html#help-now'), f'{path}: {href}')
+
+    def test_every_page_has_privacy_meta(self):
+        for path in PAGES:
+            p = parse(path)
             metas = [a for t, a in p.tags if t == 'meta' and a.get('name') == 'referrer']
             self.assertEqual([m['content'] for m in metas], ['no-referrer'], f'{path}: referrer policy')
 
@@ -173,7 +213,6 @@ class SiteTests(unittest.TestCase):
                 shape = [(c, i) for c, i in blocks(text) if not c.startswith(('need', 'more'))]
                 first = first or shape
                 self.assertEqual(shape, first, f'{path.name}: the same blocks as {pages[0].name}')
-                self.assertEqual(text.count('class="wrap now" id="now"'), 1, f'{path.name}: one crisis block')
                 self.assertEqual(text.count('id="affirm"'), 1, f'{path.name}: the day\'s affirmation')
                 self.assertIn('Shelter addresses are never listed here, for safety.', text, path.name)
                 self.assertNotRegex(text, r'<h[1-3][^>]*>\s*</h|<ul[^>]*>\s*</ul>|<div class="cards">\s*</div>|\bundefined\b', path.name)
@@ -183,26 +222,28 @@ class SiteTests(unittest.TestCase):
                     self.assertNotIn('dial 211', text, f'{path.name}: 211 is a U.S. number')
         self.assertIn('id="affirm"', (ROOT / 'county.html').read_text(encoding='utf-8'))
 
-    def test_crisis_cards_come_right_after_the_heading(self):
-        """On every state page, country page and the county page, the "Need help right now?" phone cards are the first
-        thing after the heading, before search, the county picker's results or any need."""
+    def test_location_pages_open_with_search_not_a_crisis_box(self):
+        """On every state page, country page and the county page, the heading is followed by the page's own content,
+        never a crisis box. The crisis lines are in the Get help now need, and a country's emergency number is in its
+        opening lines, as a phone link."""
         pages = sorted((ROOT / 'states').glob('*.html')) + sorted((ROOT / 'countries').glob('*.html')) + [ROOT / 'county.html']
         for path in pages:
             text = path.read_text(encoding='utf-8')
             main = text[text.index('<main id="main">'):]
             first_after_hero = re.search(r'<section class="hero[^"]*">.*?</div></section>\s*(<[^>]+>)', main, re.S).group(1)
-            self.assertEqual(first_after_hero, '<section class="wrap now" id="now">', f'{path.name}: crisis cards first')
-            self.assertEqual(main.count('class="wrap now" id="now"'), 1, path.name)
-            self.assertIn('Need help right now?', main, path.name)
+            self.assertNotIn('id="now"', first_after_hero, path.name)
+            self.assertNotIn('Need help right now?', main, path.name)
+        for c in lib.load()['world']['countries']:
+            text = (ROOT / f"countries/{c['slug']}.html").read_text(encoding='utf-8')
+            num = esc(c['emergency']['number'])
+            self.assertIn(f'call <a href="tel:{num}">{num}</a>.', text, c['slug'])
 
-    def test_world_page_leads_with_the_emergency_line(self):
-        """Above the map, one short line goes straight to the emergency numbers."""
+    def test_world_page_lists_the_emergency_numbers_calmly(self):
+        """No alarm line above the map. The emergency numbers are listed under the map, as part of the page."""
         text = (ROOT / 'world.html').read_text(encoding='utf-8')
-        line = text.find('<p class="dangerline"><a href="#now">')
-        self.assertGreater(line, 0, 'the line is there')
-        self.assertLess(line, text.find('<h1'), 'it comes first')
-        self.assertLess(line, text.find('<svg class="worldmap"'), 'it comes before the map')
-        self.assertIn('id="now"', text, 'it leads somewhere')
+        self.assertNotIn('dangerline', text)
+        self.assertLess(text.find('<svg class="worldmap"'), text.find('id="emergency"'))
+        self.assertIn('<h2>Emergency numbers</h2>', text)
 
     def test_country_pages_load_only_their_own_language(self):
         """A country page in another language loads that language's affirmations and no other; an English-speaking
@@ -378,7 +419,7 @@ class SiteTests(unittest.TestCase):
             self.assertNotIn('class="card', text, f'{rel}: a front page shows no listing cards')
             self.assertEqual(text.count('class="tile '), choices, f'{rel}: the needs to choose from')
         home = (ROOT / 'index.html').read_text(encoding='utf-8')
-        self.assertEqual(home.count('class="phonecard"'), 3)
+        self.assertEqual(home.count('class="phonecard"'), 0, 'no crisis phone cards on the front page')
 
     def test_needs_are_closed_and_cards_are_short(self):
         for path in PAGES:
@@ -395,7 +436,8 @@ class SiteTests(unittest.TestCase):
         # Everything a screen reader meets is inside a landmark, the quick exit included.
         for path in PAGES:
             text = path.read_text(encoding='utf-8')
-            self.assertIn('<header class="top"><a class="exit" data-exit ', text, path)
+            if 'data-exit' in text:
+                self.assertIn('<header class="top"><a class="exit" data-exit ', text, path)
             self.assertEqual(text.count('<header'), 1, f'{path}: one banner')
             self.assertEqual(text.count('<main'), 1, path)
 
