@@ -124,7 +124,7 @@ console.log('PASS Ohio-only scope, 88 county contacts, stages and cross-site lin
 {
   const { w, d, $, all, click, inView } = load('?stage=early');
   const rows = all('details.need');
-  assert.deepEqual(rows.map((r) => r.id), ['military', 'words', 'changes', 'rights-list', 'good-to-know', 'share-guide']);
+  assert.deepEqual(rows.map((r) => r.id), ['military', 'words', 'changes', 'rights-list', 'crisis-help', 'good-to-know', 'share-guide']);
   for (const r of rows) {
     assert(!r.open, `#${r.id}: closed until asked`);
     assert.equal(r.querySelector('summary h2').parentElement.tagName, 'SUMMARY');
@@ -137,8 +137,8 @@ console.log('PASS Ohio-only scope, 88 county contacts, stages and cross-site lin
   let last = 0;
   for (const h of all('h1, h2, h3, h4, h5, h6')) { const n = +h.tagName[1]; assert(n <= last + 1, `"${h.textContent.trim().slice(0, 40)}" jumps from h${last} to h${n}`); last = n; }
   for (const b of all('.stage, .quick-btn')) assert(!b.hasAttribute('aria-labelledby') && !b.hasAttribute('aria-describedby'), 'a button is named by its own text');
-  const exit = d.querySelector('header.top [data-exit]');
-  assert(exit && exit.getAttribute('href') === 'https://www.google.com/search?q=weather', 'the quick exit is in the page header');
+  assert(!d.querySelector('[data-exit], .urgentline'), 'a disability guide: no quick exit and no crisis box at the top');
+  assert($('crisis-help').querySelector('a[href="tel:988"]'), 'the crisis lines are in their own row, further down');
   assert(!html.includes('www.ohiomom.org'), 'the printed address is the one the site lives at');
 
   // Printing shows each listing in view in full, then puts the page back.
@@ -146,6 +146,7 @@ console.log('PASS Ohio-only scope, 88 county contacts, stages and cross-site lin
   w.dispatchEvent(new w.Event('beforeprint'));
   assert(inView().every((c) => c.querySelector('details.more').open));
   assert($('good-to-know').open);
+  assert($('crisis-help').open, 'a printed list carries the crisis lines');
   w.dispatchEvent(new w.Event('afterprint'));
   assert.equal(all('details[open]').length, 0);
   assert.equal(inView().length, before);

@@ -67,7 +67,11 @@ def iam_block(items, root=''):
 OHIO_REDIRECT = ('\n<script>if(/(^|\\.)ohiomom\\.org$/i.test(location.hostname)){'
                  'location.replace("ohio/index.html"+location.search+location.hash)}</script>')
 STATE_SECTIONS = ['help-now', 'christmas', 'housing', 'food-bills', 'pregnancy-baby', 'kids-differently', 'single-parent', 'take-care', 'military']
-URGENT_LINES = ['us-ndvh', 'us-988', 'us-childhelp']
+# The needs where someone is looking for safety or crisis help (domestic violence, abuse, crisis lines). The quick exit
+# ("Leave this site") is on a page only when the page has one of these needs, and shows only while it is open
+# (assets/ymt.js). Everywhere else the pages read as an ordinary resource guide, with no exit or crisis box at the top
+# (the owner's request, November 28, 2026). The lines themselves stay listed in the needs as before.
+SAFETY_SECTIONS = ('help-now',)
 # A state page shows every national listing too, except the ones the state has its own version of.
 # National id: the state template (or state record) that takes its place.
 REPLACED_BY_STATE = {
@@ -123,8 +127,9 @@ def running_ads(data):
 
 
 def page(data, path, title, desc, body, body_class='', head_extra='', canonical=None, scripts='', slots=(),
-         danger='In danger right now? Call 911.'):
-    """slots: the ad slots this page takes, the most specific first (scripts/ads.py). A page with none never shows an ad,
+         danger='In danger right now? Call 911.', help_lines=None):
+    """help_lines: where the footer's "Help lines" link goes (a country page has its own Get help now need).
+    slots: the ad slots this page takes, the most specific first (scripts/ads.py). A page with none never shows an ad,
     and a page whose slots no running ad names has no ad markup at all. The ad comes last in <main>, after the page's own content."""
     site = data['site']
     root = '../' * path.count('/')
@@ -138,6 +143,8 @@ def page(data, path, title, desc, body, body_class='', head_extra='', canonical=
     nav = ''.join(
         f'<a href="{root}{h}"' + (' aria-current="page"' if h == path else '') + f'>{esc(t)}</a>' for h, t in NAV)
     foot = ''.join(f'<a href="{root}{h}">{esc(t)}</a>' for h, t in FOOT)
+    foot += f'<a href="{esc(help_lines or root + "help.html#help-now")}">Help lines</a>'
+    exit_html = exit_link(body)
     return f'''<!doctype html>
 <html lang="en">
 <head>
@@ -157,7 +164,7 @@ def page(data, path, title, desc, body, body_class='', head_extra='', canonical=
 </head>
 <body class="{esc(body_class)}">
 <a class="skip" href="#main">Skip to content</a>
-<header class="top"><a class="exit" data-exit href="{EXIT_URL}" rel="noreferrer">Leave this site</a><a class="logo" href="{root}index.html">{logo_html(site['name'])}</a><nav class="mainnav" aria-label="Main">{nav}</nav></header>
+<header class="top">{exit_html}<a class="logo" href="{root}index.html">{logo_html(site['name'])}</a><nav class="mainnav" aria-label="Main">{nav}</nav></header>
 <main id="main">
 {body}
 </main>
@@ -171,6 +178,21 @@ def page(data, path, title, desc, body, body_class='', head_extra='', canonical=
 </body>
 </html>
 '''
+
+
+def safety_rows(body):
+    """The ids of the safety needs (SAFETY_SECTIONS) on a page, in the order they come."""
+    return [i for i in re.findall(r'<details class="need[^"]*" id="([^"]+)">', body) if i in SAFETY_SECTIONS]
+
+
+def exit_link(body):
+    """The quick exit, only on a page with a safety need. It starts hidden; assets/ymt.js shows it while that need
+    is open (chosen, searched for, or linked to), so it appears only where someone is looking for that kind of help."""
+    rows = safety_rows(body)
+    if not rows:
+        return ''
+    return (f'<a class="exit" data-exit data-exit-with="{esc(" ".join(rows))}" href="{EXIT_URL}" rel="noreferrer" hidden>'
+            f'Leave this site</a>')
 
 
 ABBREVIATIONS = ('U.S.', 'a.m.', 'p.m.', 'e.g.', 'i.e.', 'St.', 'Dr.', 'Mr.', 'Mrs.', 'Ms.', 'vs.', 'No.', 'Inc.')
@@ -288,23 +310,6 @@ def finder(what, hint, none=NO_MATCH_US):
             f'<p class="quiet">Nothing you type here is sent or saved.</p></section>')
 
 
-def urgent_strip(data, root='', more=None):
-    """The three lines that must never be more than one tap away, as small phone cards. The same block, in the same
-    words, is on the front page, every state page and the county page. more: where "More ways to get help now" goes
-    (a state page has its own Get help now row)."""
-    more = more or f'{root}help.html#help-now'
-    nat = {r['id']: r for r in data['resources']}
-    lines = [nat[i] for i in URGENT_LINES]
-    items = ''.join(
-        f'<li><a class="phonecard" href="{tel(r["phone"])}">Call {esc(r["phone"])}<small>{esc(r["chip"])}</small></a></li>' for r in lines)
-    texts = esc(nat['us-ndvh']['text'])
-    return (f'<section class="wrap now" id="now"><h2>Need help right now?</h2>'
-            f'<p class="quiet">Free, and answered any hour. If you or your child are in danger, call 911.</p>'
-            f'<ul class="phonecards">{items}</ul>'
-            f'<p class="quiet">Cannot talk out loud? {texts} for the domestic violence hotline, or text 988. '
-            f'<a href="{esc(more)}">More ways to get help now</a></p></section>')
-
-
 def kind_word(help_href, root='', lang=None):
     """The day's affirmation, as on the front page but without the picture. Every state, country and county page
     carries it, in the same place: after the needs, before the closing note (scripts/home_extras.py).
@@ -415,8 +420,7 @@ def build_index(data):
             'and you will get a short list of who to call. Free, private, no sign-up.')
     top = (f'<div class="herotop"><div class="herotext"><h1>Hi, mom. What do you need today?</h1>'
            f'<p class="lede">{lede}</p></div>{extras.scene_block(False, sayings, "affirmations.html", "help.html#take-care")}</div>')
-    body = (f'<section class="hero home"><div class="wrap">{top}{iam_block(IAM)}<div class="tiles">{tiles}</div>{pick}</div></section>'
-            + '\n' + urgent_strip(data))
+    body = (f'<section class="hero home"><div class="wrap">{top}{iam_block(IAM)}<div class="tiles">{tiles}</div>{pick}</div></section>')
     desc = ('Free help for single moms, new moms and moms behind on bills: food, rent, child care, disability help and '
             'crisis lines in every U.S. state, and beyond.')
     about = {'@context': 'https://schema.org', '@type': 'WebSite', '@id': f"https://{site['domain']}/#website", 'name': site['name'],
@@ -813,7 +817,6 @@ def build_state(data, s):
             intro += (f' This page is the U.S. state. Looking for the country? '
                       f'<a href="../countries/{c["slug"]}.html">{esc(c["name"])}</a>.')
     body = (hero(f'{esc(s["name"])}: help for moms', intro, county_pick(data, s) + local, 'slim')
-            + urgent_strip(data, '../', '#help-now')
             + finder(f'Search every {s["name"]} listing', 'shelter, rent, WIC, child care…') + needs(rows)
             + county_list(data, s)
             + '<section class="wrap slim"><p><strong>Meet other moms.</strong> Find a group near you or online. <a href="../connect.html">Meet moms</a></p></section>'
@@ -963,9 +966,7 @@ def build_world(data):
     lede = ('Raising children outside the U.S.? Pick your country for its own emergency number, crisis lines, family payments '
             'and support, or use the help below, which works in any country. Free, private, no sign-up.')
     n = len(world['countries'])
-    # The map comes first to the eye, so one line above it keeps the way to an emergency number first of all.
-    danger = '<p class="dangerline"><a href="#now">In danger right now? Find your country\'s emergency number</a></p>'
-    top = hero('Help for moms, anywhere in the world', lede, country_pick(world)).replace('<div class="wrap">', '<div class="wrap">' + danger, 1)
+    top = hero('Help for moms, anywhere in the world', lede, country_pick(world))
     body = (top
             + f'<section class="wrap mapwrap" id="countries"><h2>Find your country</h2>'
             f'<p class="quiet">The {n} countries in pink have their own page, and the United States leads to its states. '
@@ -973,8 +974,8 @@ def build_world(data):
             f'<details class="maplist"><summary>All {n} countries as a list</summary><ul class="statelist">{items}</ul></details>'
             '<p class="note">More countries are on the way. Living in the U.S.? <a href="states.html">Choose your state</a>. '
             'Know a free service for moms in your country? <a href="report.html">Tell us</a>.</p></section>'
-            + '<section class="wrap now" id="now"><h2>In danger right now?</h2>'
-            '<p class="quiet">Call your country\'s emergency number. Here are the numbers for the countries we cover so far.</p>'
+            + '<section class="wrap" id="emergency"><h2>Emergency numbers</h2>'
+            '<p class="quiet">Each country\'s emergency number, for the countries we cover so far.</p>'
             f'<ul class="phonecards">{"".join(emergency_card(c) for c in world["countries"])}</ul></section>'
             + finder('Search help that works in any country', 'helpline, breastfeeding, custody…', NO_MATCH_WORLD)
             + needs(world_rows(data, world['worldwide'])))
@@ -985,7 +986,7 @@ def build_world(data):
              'description': desc, 'inLanguage': 'en', 'isPartOf': {'@id': base + '#website'}}
     return page(data, 'world.html', 'Help for moms around the world', desc, body,
                 head_extra=structured_data(about, breadcrumbs(data, [('Worldwide', 'world.html')])), slots=('topic-help', 'topic'),
-                danger='In danger right now? Call your local emergency number.')
+                danger='In danger right now? Call your local emergency number.', help_lines='#help-now')
 
 
 # What each need is for, said to a mother, for the opening lines of a country page.
@@ -1011,7 +1012,8 @@ def country_intro(c):
     """The opening lines of a country page, written to a mother there: the emergency number, the country's own lines by
     name and what each is for, and the language the day's kind word is in."""
     where = esc(re.sub(r' \(.*\)$', '', in_name(c)))  # "Georgia (the country)" reads as Georgia here; the page says which
-    out = f'Raising children in {where}? If you or your child are in danger, call {esc(c["emergency"]["number"])}.'
+    num = esc(c['emergency']['number'])
+    out = f'Raising children in {where}? If you or your child are in danger, call <a href="tel:{num}">{num}</a>.'
     mine = own_lines(c)
     if mine:
         named = [f'<a href="#{esc(r["id"])}">{esc(r["name"])}</a>' + ('' if r['name'].endswith(')') else
@@ -1050,19 +1052,12 @@ def build_country(data, c):
     world = data['world']
     mine = [dict(r, scope=c['code']) for r in c['resources']]
     everything = mine + world['worldwide']
-    urgent = [r for r in mine if r.get('urgent') and r.get('phone')]
-    cards_now = emergency_card(c) + ''.join(
-        f'<li><a class="phonecard" href="{dial_href(r)}">Call {esc(r["phone"])}<small>{esc(r.get("chip") or r["name"])}</small></a></li>'
-        for r in urgent)
     intro = country_intro(c)
     if c.get('us_state'):  # a country with the name of a U.S. state (Georgia): link to the state, so the two are never mixed up
         st = next(s for s in data['states'] if s['abbr'] == c['us_state'])
         intro += (f' This page is the country. Looking for the U.S. state? '
                   f'<a href="../states/{st["abbr"].lower()}.html">{esc(st["name"])}, U.S. state</a>.')
     body = (hero(f'<span aria-hidden="true">{c["flag"]}</span> {esc(c["name"])}: help for moms', intro, '', 'slim')
-            + f'<section class="wrap now" id="now"><h2>Need help right now?</h2>'
-            f'<p class="quiet">If you or your child are in danger, call {esc(c["emergency"]["number"])}.</p>'
-            f'<ul class="phonecards">{cards_now}</ul></section>'
             + finder(f'Search every listing for {in_name(c)}', 'helpline, benefit, breastfeeding…', NO_MATCH_WORLD)
             + needs(world_rows(data, everything, '../', c))
             + kind_word('#take-care', '../', c.get('lang'))
@@ -1076,7 +1071,8 @@ def build_country(data, c):
     trail = breadcrumbs(data, [('Worldwide', 'world.html'), (c['name'], path)])
     return page(data, path, f'{c["name"]}: help for moms', desc, body, head_extra=structured_data(about, trail),
                 slots=(f'country-{c["code"].lower()}', 'country'),
-                danger=f'In danger right now? Call {c["emergency"]["number"]}.', scripts=kind_word_scripts('../', c.get('lang')))
+                danger=f'In danger right now? Call {c["emergency"]["number"]}.', scripts=kind_word_scripts('../', c.get('lang')),
+                help_lines='#help-now')
 
 
 def county_pick(data, s):
@@ -1218,8 +1214,7 @@ def build_county(data):
                'If something is wrong, <a href="report.html">tell us</a>.</p>'
                '<p class="note">Nothing you type on this page is saved. A ZIP code is matched inside your browser, using a list '
                'your browser downloads for the first digit of the code.</p></section>')
-    # The crisis phone cards come right after the heading, as on every state and country page.
-    body = (hero_html + '\n' + urgent_strip(data) + f'\n<div id="county-app">{fallback}</div>\n'
+    body = (hero_html + f'\n<div id="county-app">{fallback}</div>\n'
             + kind_word('help.html#take-care') + '\n' + sources)
     return page(data, 'county.html', 'Help near you, by county',
                 'Public housing, housing counselors, legal aid, health centers, school districts and Head Start in every U.S. county, '
@@ -1851,7 +1846,7 @@ def build_county_page(data, st, fips, shard, x):
         local = (f'<div class="localbox"><strong>We have a local guide for {esc(c["n"])}.</strong> <a href="{root}{esc(c["pg"])}">'
                  f'Open the {esc(c["n"])} guide</a> for hand-checked listings, then come back here for the rest.</div>')
     rows = county_rows(data, st, fips, shard, x, root)
-    body = (top + urgent_strip(data, root)
+    body = (top
             + finder(f'Search every listing for {c["n"]}', 'town, name, Section 8, dental…')
             + f'<section class="wrap needs" aria-label="Help in {esc(nice)}">{county_glance(rows, c["n"], root)}{local}{rows}</section>'
             + kind_word(f'{root}help.html#take-care', root)
@@ -1902,7 +1897,7 @@ def build_about(data):
 <h2>What this site is not</h2><p>It is not an emergency service. If you or someone else is in danger, call 911. It does not give legal, medical or financial advice, and it cannot sign you up for anything.</p>
 {advertise(site)}
 <h2 id="contact">Contact us</h2><p>Email <a href="{esc(mail_href(site, f'{site["name"]}: a question'))}">{esc(site["corrections_email"])}</a> with a question, a correction, an idea for a listing or an advertising request. To fix one listing, <a href="report.html">Report a problem</a> is quickest. We read every message, but this is not an emergency line.</p>
-<h2>Your privacy and safety</h2><ul><li>There is no sign-up, and the Yoga Mom Talk pages have no forms. The OhioMom pages have a few short forms for reports and questions; our <a href="privacy.html">Privacy page</a> says what they send.</li><li>We count visits with GoatCounter, which does not use cookies and does not record who you are. Nothing you type in a search or ZIP code box is sent.</li><li>The site may show ads. Each one is labeled Advertisement and kept apart from the listings. If we use Google AdSense, we ask it for non-personalized ads only, and its code stays off our help pages. Google may still set its own cookies; the <a href="privacy.html#ads">Privacy page</a> says more.</li><li>This site is hosted on GitHub Pages, which logs visitors' internet addresses for security. The OhioMom pages also load a script from Wix, which runs their forms and may set a few cookies. We do not control those.</li><li>A <strong>Leave this site</strong> button is on every page. It takes you to a weather search and removes this page from your back button.</li><li>It cannot erase your browser history. If someone else may check your device, use a private or incognito window, or a device they cannot reach.</li><li>Sites we link to have their own privacy practices.</li></ul>
+<h2>Your privacy and safety</h2><ul><li>There is no sign-up, and the Yoga Mom Talk pages have no forms. The OhioMom pages have a few short forms for reports and questions; our <a href="privacy.html">Privacy page</a> says what they send.</li><li>We count visits with GoatCounter, which does not use cookies and does not record who you are. Nothing you type in a search or ZIP code box is sent.</li><li>The site may show ads. Each one is labeled Advertisement and kept apart from the listings. If we use Google AdSense, we ask it for non-personalized ads only, and its code stays off our help pages. Google may still set its own cookies; the <a href="privacy.html#ads">Privacy page</a> says more.</li><li>This site is hosted on GitHub Pages, which logs visitors' internet addresses for security. The OhioMom pages also load a script from Wix, which runs their forms and may set a few cookies. We do not control those.</li><li>While you have the <strong>Get help now</strong> listings open, a <strong>Leave this site</strong> button shows. It takes you to a weather search and removes this page from your back button.</li><li>It cannot erase your browser history. If someone else may check your device, use a private or incognito window, or a device they cannot reach.</li><li>Sites we link to have their own privacy practices.</li></ul>
 <p>The <a href="terms.html">Terms of use</a> cover using this site.</p>
 <h2>Credit and license</h2><p>{esc(data["attribution"])} The data on this site is licensed CC BY 4.0 and the code is MIT. Listings describe third-party organizations from their published sources. The license covers the compilation and gives no rights in those organizations' names or marks.</p></div></section>'''
     return page(data, 'about.html', 'About', f'Who runs {site["name"]}, how listings are chosen and checked, and how your privacy and safety are protected.', body)
@@ -1947,7 +1942,7 @@ def build_privacy(data):
 <p>This page covers {name} at {esc(site["domain"])}, including the OhioMom pages and the Ohio family guide. It is run by Travis and Deborah Vought.</p>
 <h2 id="hosting">Who hosts the site</h2><p>The site is hosted on GitHub Pages. GitHub logs the internet address of each visitor for security purposes. The OhioMom pages also load a script from Wix, which runs their forms and may set a few cookies of its own. We do not control those. GitHub's and Wix's own privacy policies say what they collect.</p>
 <h2 id="counting">Visit counting</h2><p>We count visits with GoatCounter, a visit counter that does not use cookies and does not record who you are. For each page view it receives the address of the page (never a search or ZIP code you typed), the site that linked you here, your browser type and screen size, and a rough location (the country) worked out from your internet address. Your internet address itself is not stored. We use the totals to see which pages help people.</p>
-<h2 id="device">What stays on your device</h2><ul><li>The {name} pages store nothing of their own on your device. Pages that show Google ads load Google's ad code, which can set its own cookies (see Advertising below). Nothing you type in a search box or ZIP code box is sent or saved.</li><li>The OhioMom pages remember the area you pick, and which quick polls you have answered, in this browser only. Wix may set a few cookies of its own on the OhioMom pages.</li><li>The <strong>Leave this site</strong> button takes you to a weather search. It cannot erase your browser history.</li></ul>
+<h2 id="device">What stays on your device</h2><ul><li>The {name} pages store nothing of their own on your device. Pages that show Google ads load Google's ad code, which can set its own cookies (see Advertising below). Nothing you type in a search box or ZIP code box is sent or saved.</li><li>The OhioMom pages remember the area you pick, and which quick polls you have answered, in this browser only. Wix may set a few cookies of its own on the OhioMom pages.</li><li>The <strong>Leave this site</strong> button, shown while the Get help now listings are open, takes you to a weather search. It cannot erase your browser history.</li></ul>
 <h2 id="forms">Sign-up and forms</h2><ul><li>There is no sign-up and no account.</li><li>The {name} pages have no forms. The Report a problem page opens your own email app, and nothing is sent until you send it from there.</li><li>The OhioMom pages have a few short forms: Report a problem, the message box and quick polls on Talk to us, and a question at the bottom of some pages, "Did you find what you came for?" What you send goes to our account on Wix, and we read it there. With a poll answer, a message or that question we also receive the page you were on and, if you picked one, your Ohio area. We ask for an email address only if you want a reply. Sending one saves an anonymous visitor ID in your browser so Wix can deliver it.</li><li>Please leave out private details about your situation. These forms are not watched for emergencies.</li></ul>
 <h2 id="ads">Advertising</h2><p>This site shows ads. Every ad is labeled "Advertisement" and kept apart from the resource listings. We use Google AdSense and ask Google to show only non-personalized ads, which are not chosen from your browsing on this or other sites. Google and its partners may still use cookies or similar technology to limit how often an ad is shown, to count ads and to stop fraud. Google's ad code never loads on the Find help, Christmas help or Worldwide pages, the OhioMom help pages, the family guide, or the About, Privacy, Terms and Report pages. You can turn off personalized ads at <a href="https://adssettings.google.com" rel="noopener">https://adssettings.google.com</a> and learn more at <a href="https://policies.google.com/technologies/ads" rel="noopener">https://policies.google.com/technologies/ads</a>, or opt out of many networks at <a href="https://optout.aboutads.info" rel="noopener">https://optout.aboutads.info</a>.</p><p>An ad never changes what is listed or the order of the listings. How we take ads is on the <a href="about.html#advertise">About page</a>.</p>
 <h2 id="selling">We do not sell your information</h2><p>We do not sell personal information.</p>

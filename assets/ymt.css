@@ -52,8 +52,7 @@ main>section .tiles{margin-top:1rem}
 @media print{.iam{display:none}}
 main>section .tile{border-color:var(--line);box-shadow:none}
 
-/* Help right now: three small phone cards */
-.now h2{font-size:clamp(1.25rem,2.8vw,1.5rem)}
+/* Phone cards (the emergency numbers on the Worldwide page) */
 .phonecards{list-style:none;padding:0;margin:.7rem 0 .5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(13.5rem,1fr));gap:.6rem}
 .phonecard{display:block;background:#fff;border:1.5px solid var(--line);border-left:6px solid var(--alert);border-radius:.9rem;padding:.55rem .9rem;text-decoration:none;color:var(--ink);font-weight:700;font-size:1.05rem;line-height:1.3}
 .phonecard small{display:block;font-weight:400;color:var(--muted);font-size:.9rem}
@@ -131,8 +130,6 @@ select:focus-visible,a:focus-visible,button:focus-visible,summary:focus-visible{
 .usgrid a:hover,.usgrid a:focus-visible{background:#8f1f40}
 .maplist{margin-top:1.2rem}
 /* world.html: one line above the map so the way to an emergency number stays first */
-.dangerline{margin:0 0 .5rem;font-weight:700;font-size:.98rem}
-.dangerline a{color:#a3173f}
 .maplist>summary{cursor:pointer;color:var(--teal);font-weight:700;padding:.4rem 0}
 @media (max-width:420px){.usgrid{gap:.18rem}.usgrid a{border-radius:.3rem}}
 @media print{.worldmap,.usgrid{display:none}.maplist>summary{display:none}}

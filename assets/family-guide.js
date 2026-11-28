@@ -263,12 +263,10 @@
  $('county').addEventListener('change', () => { const first = $('county').value && firstChoice(); apply(); if (first) reveal(); });
  document.querySelectorAll('input[name=need]').forEach(i => i.addEventListener('change', () => { const first = i.checked && firstChoice(); showAll = false; apply(); if (first) reveal(); }));
  window.addEventListener('hashchange', openNamed);
- // "Leave this site" replaces this page in the browser's history, so Back does not return here.
- document.querySelectorAll('[data-exit]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); location.replace(a.href); }));
  $('print').addEventListener('click', () => window.print());
  // A printed list shows each listing in full, then the page goes back to how it was.
  window.addEventListener('beforeprint', () => {
-  document.querySelectorAll('#results .resource:not([hidden]) details.more:not([open]), #good-to-know:not([open])').forEach(d => { d.setAttribute('data-print-opened', ''); d.open = true; });
+  document.querySelectorAll('#results .resource:not([hidden]) details.more:not([open]), #good-to-know:not([open]), #crisis-help:not([open])').forEach(d => { d.setAttribute('data-print-opened', ''); d.open = true; });
  });
  window.addEventListener('afterprint', () => {
   document.querySelectorAll('details[data-print-opened]').forEach(d => { d.removeAttribute('data-print-opened'); d.open = false; });
